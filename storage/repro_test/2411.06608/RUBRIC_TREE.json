@@ -1,0 +1,932 @@
+{
+  "paper_id": "paper:2411.06608",
+  "arxiv_id": "2411.06608",
+  "spec_hash": "sha256:0f1f79f23800ac4e5098d5162ed0760b04cdb00eda6b21380a938250e3aef805",
+  "root": "paper:2411.06608",
+  "n_leaves": 71,
+  "n_mounted": 71,
+  "n_unmounted": 0,
+  "n_branches": 23,
+  "depth_max": 3,
+  "branches": [
+    {
+      "path": "paper:2411.06608/algorithm:amp_designer/algorithmstep:2407.12296:2:top_k_and_top_p_filtering_sampler",
+      "parent_id": "algorithmstep:2407.12296:2:top_k_and_top_p_filtering_sampler",
+      "label": "Top-k and Top-p Filtering Sampler",
+      "depth": 2,
+      "sau_ids": [
+        "sau:241106608:code_grounding:013",
+        "sau:241106608:code_grounding:016"
+      ],
+      "n_required": 2
+    },
+    {
+      "path": "paper:2411.06608/algorithm:hiervae/algorithmmodule:2608.06956:graph_encoder",
+      "parent_id": "algorithmmodule:2608.06956:graph_encoder",
+      "label": "Graph Encoder",
+      "depth": 2,
+      "sau_ids": [
+        "sau:241106608:method:012",
+        "sau:241106608:ordering:000",
+        "sau:241106608:ordering:002"
+      ],
+      "n_required": 2
+    },
+    {
+      "path": "paper:2411.06608/algorithm:hiervae/algorithmmodule:2608.06956:hierarchical_decoder",
+      "parent_id": "algorithmmodule:2608.06956:hierarchical_decoder",
+      "label": "Hierarchical Decoder",
+      "depth": 2,
+      "sau_ids": [
+        "sau:241106608:method:013",
+        "sau:241106608:ordering:001"
+      ],
+      "n_required": 1
+    },
+    {
+      "path": "paper:2411.06608/algorithm:lingo3dmol/algorithmstep:2305.10133:0:pocket_ligand_transformer_encoder",
+      "parent_id": "algorithmstep:2305.10133:0:pocket_ligand_transformer_encoder",
+      "label": "Pocket/Ligand Transformer Encoder",
+      "depth": 2,
+      "sau_ids": [
+        "sau:241106608:code_grounding:014"
+      ],
+      "n_required": 1
+    },
+    {
+      "path": "paper:2411.06608/algorithm:lingo3dmol/algorithmstep:2305.10133:2:fsmiles_and_local_coordinates_decoder_d2d",
+      "parent_id": "algorithmstep:2305.10133:2:fsmiles_and_local_coordinates_decoder_d2d",
+      "label": "FSMILES and Local Coordinates Decoder (D2D)",
+      "depth": 2,
+      "sau_ids": [
+        "sau:241106608:code_grounding:010",
+        "sau:241106608:code_grounding:011",
+        "sau:241106608:code_grounding:012",
+        "sau:241106608:code_grounding:015"
+      ],
+      "n_required": 4
+    },
+    {
+      "path": "paper:2411.06608/algorithm:molminer/algorithmmodule:2411.06608:conditional_sampling",
+      "parent_id": "algorithmmodule:2411.06608:conditional_sampling",
+      "label": "Conditional Sampling",
+      "depth": 2,
+      "sau_ids": [
+        "sau:241106608:method:009"
+      ],
+      "n_required": 1
+    },
+    {
+      "path": "paper:2411.06608/algorithm:molminer/algorithmmodule:2411.06608:fragment_coarse_graining",
+      "parent_id": "algorithmmodule:2411.06608:fragment_coarse_graining",
+      "label": "Fragment Coarse-Graining",
+      "depth": 2,
+      "sau_ids": [
+        "sau:241106608:method:004"
+      ],
+      "n_required": 1
+    },
+    {
+      "path": "paper:2411.06608/algorithm:molminer/algorithmmodule:2411.06608:fragment_predictor",
+      "parent_id": "algorithmmodule:2411.06608:fragment_predictor",
+      "label": "Fragment Predictor",
+      "depth": 2,
+      "sau_ids": [
+        "sau:241106608:method:008"
+      ],
+      "n_required": 1
+    },
+    {
+      "path": "paper:2411.06608/algorithm:molminer/algorithmmodule:2411.06608:geometry_aware_transformer",
+      "parent_id": "algorithmmodule:2411.06608:geometry_aware_transformer",
+      "label": "Geometry-Aware Transformer",
+      "depth": 2,
+      "sau_ids": [
+        "sau:241106608:method:007"
+      ],
+      "n_required": 1
+    },
+    {
+      "path": "paper:2411.06608/algorithm:molminer/algorithmmodule:2411.06608:order_agnostic_rollout",
+      "parent_id": "algorithmmodule:2411.06608:order_agnostic_rollout",
+      "label": "Order-Agnostic Rollout",
+      "depth": 2,
+      "sau_ids": [
+        "sau:241106608:method:006"
+      ],
+      "n_required": 1
+    },
+    {
+      "path": "paper:2411.06608/algorithm:molminer/algorithmmodule:2411.06608:symmetry_aware_attachment_standardization",
+      "parent_id": "algorithmmodule:2411.06608:symmetry_aware_attachment_standardization",
+      "label": "Symmetry-Aware Attachment Standardization",
+      "depth": 2,
+      "sau_ids": [
+        "sau:241106608:method:005"
+      ],
+      "n_required": 1
+    },
+    {
+      "path": "paper:2411.06608/algorithm:molminer/algorithmmodule:2608.06956:autoregressive_decoder",
+      "parent_id": "algorithmmodule:2608.06956:autoregressive_decoder",
+      "label": "Autoregressive Decoder",
+      "depth": 2,
+      "sau_ids": [
+        "sau:241106608:method:010"
+      ],
+      "n_required": 1
+    },
+    {
+      "path": "paper:2411.06608/algorithm:molminer/algorithmmodule:2608.06956:identity_pullback",
+      "parent_id": "algorithmmodule:2608.06956:identity_pullback",
+      "label": "Identity Pullback",
+      "depth": 2,
+      "sau_ids": [
+        "sau:241106608:method:011"
+      ],
+      "n_required": 1
+    },
+    {
+      "path": "paper:2411.06608/algorithm:molminer/algorithmstep:2411.06608:0:symmetry_aware_attachment_standardization",
+      "parent_id": "algorithmstep:2411.06608:0:symmetry_aware_attachment_standardization",
+      "label": "Symmetry-Aware Attachment Standardization",
+      "depth": 2,
+      "sau_ids": [
+        "sau:241106608:method:000",
+        "sau:241106608:code_grounding:000",
+        "sau:241106608:code_grounding:001",
+        "sau:241106608:code_grounding:002",
+        "sau:241106608:code_grounding:007",
+        "sau:241106608:code_grounding:008"
+      ],
+      "n_required": 6
+    },
+    {
+      "path": "paper:2411.06608/algorithm:molminer/algorithmstep:2411.06608:1:geometry_biased_attention",
+      "parent_id": "algorithmstep:2411.06608:1:geometry_biased_attention",
+      "label": "Geometry-Biased Attention",
+      "depth": 2,
+      "sau_ids": [
+        "sau:241106608:method:001",
+        "sau:241106608:code_grounding:003",
+        "sau:241106608:code_grounding:004"
+      ],
+      "n_required": 3
+    },
+    {
+      "path": "paper:2411.06608/algorithm:molminer/algorithmstep:2411.06608:2:fragment_starter",
+      "parent_id": "algorithmstep:2411.06608:2:fragment_starter",
+      "label": "Fragment Starter",
+      "depth": 2,
+      "sau_ids": [
+        "sau:241106608:method:002",
+        "sau:241106608:code_grounding:005"
+      ],
+      "n_required": 2
+    },
+    {
+      "path": "paper:2411.06608/algorithm:molminer/algorithmstep:2411.06608:3:order_agnostic_autoregressive_rollout",
+      "parent_id": "algorithmstep:2411.06608:3:order_agnostic_autoregressive_rollout",
+      "label": "Order-Agnostic Autoregressive Rollout",
+      "depth": 2,
+      "sau_ids": [
+        "sau:241106608:method:003",
+        "sau:241106608:code_grounding:006",
+        "sau:241106608:code_grounding:009"
+      ],
+      "n_required": 3
+    },
+    {
+      "path": "paper:2411.06608/benchmark:canonical:zinc",
+      "parent_id": "benchmark:canonical:zinc",
+      "label": "ZINC",
+      "depth": 1,
+      "sau_ids": [
+        "sau:241106608:protocol:001"
+      ],
+      "n_required": 1
+    },
+    {
+      "path": "paper:2411.06608/benchmark:conditional_generation",
+      "parent_id": "benchmark:conditional_generation",
+      "label": "Conditional Generation",
+      "depth": 1,
+      "sau_ids": [
+        "sau:241106608:protocol:003"
+      ],
+      "n_required": 1
+    },
+    {
+      "path": "paper:2411.06608/benchmark:targeted_generation",
+      "parent_id": "benchmark:targeted_generation",
+      "label": "Targeted Generation",
+      "depth": 1,
+      "sau_ids": [
+        "sau:241106608:protocol:005"
+      ],
+      "n_required": 1
+    },
+    {
+      "path": "paper:2411.06608/benchmark:targeted_multi_property",
+      "parent_id": "benchmark:targeted_multi_property",
+      "label": "Targeted Multi-Property",
+      "depth": 1,
+      "sau_ids": [
+        "sau:241106608:protocol:004"
+      ],
+      "n_required": 1
+    },
+    {
+      "path": "paper:2411.06608/benchmark:unconditional_generation",
+      "parent_id": "benchmark:unconditional_generation",
+      "label": "Unconditional Generation",
+      "depth": 1,
+      "sau_ids": [
+        "sau:241106608:protocol:002",
+        "sau:241106608:numeric:016",
+        "sau:241106608:numeric:017",
+        "sau:241106608:numeric:018",
+        "sau:241106608:numeric:019",
+        "sau:241106608:numeric:020",
+        "sau:241106608:numeric:021",
+        "sau:241106608:numeric:022",
+        "sau:241106608:numeric:023",
+        "sau:241106608:numeric:024",
+        "sau:241106608:numeric:025",
+        "sau:241106608:numeric:026",
+        "sau:241106608:numeric:027",
+        "sau:241106608:numeric:028",
+        "sau:241106608:numeric:029",
+        "sau:241106608:numeric:030"
+      ],
+      "n_required": 6
+    },
+    {
+      "path": "paper:2411.06608/benchmark:zinc",
+      "parent_id": "benchmark:zinc",
+      "label": "ZINC",
+      "depth": 1,
+      "sau_ids": [
+        "sau:241106608:protocol:000",
+        "sau:241106608:numeric:000",
+        "sau:241106608:numeric:001",
+        "sau:241106608:numeric:002",
+        "sau:241106608:numeric:003",
+        "sau:241106608:numeric:004",
+        "sau:241106608:numeric:005",
+        "sau:241106608:numeric:006",
+        "sau:241106608:numeric:007",
+        "sau:241106608:numeric:008",
+        "sau:241106608:numeric:009",
+        "sau:241106608:numeric:010",
+        "sau:241106608:numeric:011",
+        "sau:241106608:numeric:012",
+        "sau:241106608:numeric:013",
+        "sau:241106608:numeric:014",
+        "sau:241106608:numeric:015"
+      ],
+      "n_required": 6
+    }
+  ],
+  "leaves": [
+    {
+      "id": "sau:241106608:method:000",
+      "kind": "method",
+      "parent_id": "algorithmstep:2411.06608:0:symmetry_aware_attachment_standardization",
+      "path": "paper:2411.06608/algorithm:molminer/algorithmstep:2411.06608:0:symmetry_aware_attachment_standardization",
+      "depth": 3,
+      "weight": 2.0,
+      "required": true
+    },
+    {
+      "id": "sau:241106608:code_grounding:000",
+      "kind": "code_grounding",
+      "parent_id": "algorithmstep:2411.06608:0:symmetry_aware_attachment_standardization",
+      "path": "paper:2411.06608/algorithm:molminer/algorithmstep:2411.06608:0:symmetry_aware_attachment_standardization",
+      "depth": 3,
+      "weight": 2.0,
+      "required": true
+    },
+    {
+      "id": "sau:241106608:code_grounding:001",
+      "kind": "code_grounding",
+      "parent_id": "algorithmstep:2411.06608:0:symmetry_aware_attachment_standardization",
+      "path": "paper:2411.06608/algorithm:molminer/algorithmstep:2411.06608:0:symmetry_aware_attachment_standardization",
+      "depth": 3,
+      "weight": 2.0,
+      "required": true
+    },
+    {
+      "id": "sau:241106608:code_grounding:002",
+      "kind": "code_grounding",
+      "parent_id": "algorithmstep:2411.06608:0:symmetry_aware_attachment_standardization",
+      "path": "paper:2411.06608/algorithm:molminer/algorithmstep:2411.06608:0:symmetry_aware_attachment_standardization",
+      "depth": 3,
+      "weight": 2.0,
+      "required": true
+    },
+    {
+      "id": "sau:241106608:method:001",
+      "kind": "method",
+      "parent_id": "algorithmstep:2411.06608:1:geometry_biased_attention",
+      "path": "paper:2411.06608/algorithm:molminer/algorithmstep:2411.06608:1:geometry_biased_attention",
+      "depth": 3,
+      "weight": 2.0,
+      "required": true
+    },
+    {
+      "id": "sau:241106608:code_grounding:003",
+      "kind": "code_grounding",
+      "parent_id": "algorithmstep:2411.06608:1:geometry_biased_attention",
+      "path": "paper:2411.06608/algorithm:molminer/algorithmstep:2411.06608:1:geometry_biased_attention",
+      "depth": 3,
+      "weight": 2.0,
+      "required": true
+    },
+    {
+      "id": "sau:241106608:method:002",
+      "kind": "method",
+      "parent_id": "algorithmstep:2411.06608:2:fragment_starter",
+      "path": "paper:2411.06608/algorithm:molminer/algorithmstep:2411.06608:2:fragment_starter",
+      "depth": 3,
+      "weight": 2.0,
+      "required": true
+    },
+    {
+      "id": "sau:241106608:code_grounding:004",
+      "kind": "code_grounding",
+      "parent_id": "algorithmstep:2411.06608:1:geometry_biased_attention",
+      "path": "paper:2411.06608/algorithm:molminer/algorithmstep:2411.06608:1:geometry_biased_attention",
+      "depth": 3,
+      "weight": 2.0,
+      "required": true
+    },
+    {
+      "id": "sau:241106608:code_grounding:005",
+      "kind": "code_grounding",
+      "parent_id": "algorithmstep:2411.06608:2:fragment_starter",
+      "path": "paper:2411.06608/algorithm:molminer/algorithmstep:2411.06608:2:fragment_starter",
+      "depth": 3,
+      "weight": 2.0,
+      "required": true
+    },
+    {
+      "id": "sau:241106608:method:003",
+      "kind": "method",
+      "parent_id": "algorithmstep:2411.06608:3:order_agnostic_autoregressive_rollout",
+      "path": "paper:2411.06608/algorithm:molminer/algorithmstep:2411.06608:3:order_agnostic_autoregressive_rollout",
+      "depth": 3,
+      "weight": 2.0,
+      "required": true
+    },
+    {
+      "id": "sau:241106608:code_grounding:006",
+      "kind": "code_grounding",
+      "parent_id": "algorithmstep:2411.06608:3:order_agnostic_autoregressive_rollout",
+      "path": "paper:2411.06608/algorithm:molminer/algorithmstep:2411.06608:3:order_agnostic_autoregressive_rollout",
+      "depth": 3,
+      "weight": 2.0,
+      "required": true
+    },
+    {
+      "id": "sau:241106608:method:004",
+      "kind": "method",
+      "parent_id": "algorithmmodule:2411.06608:fragment_coarse_graining",
+      "path": "paper:2411.06608/algorithm:molminer/algorithmmodule:2411.06608:fragment_coarse_graining",
+      "depth": 3,
+      "weight": 2.0,
+      "required": true
+    },
+    {
+      "id": "sau:241106608:method:005",
+      "kind": "method",
+      "parent_id": "algorithmmodule:2411.06608:symmetry_aware_attachment_standardization",
+      "path": "paper:2411.06608/algorithm:molminer/algorithmmodule:2411.06608:symmetry_aware_attachment_standardization",
+      "depth": 3,
+      "weight": 2.0,
+      "required": true
+    },
+    {
+      "id": "sau:241106608:code_grounding:007",
+      "kind": "code_grounding",
+      "parent_id": "algorithmstep:2411.06608:0:symmetry_aware_attachment_standardization",
+      "path": "paper:2411.06608/algorithm:molminer/algorithmstep:2411.06608:0:symmetry_aware_attachment_standardization",
+      "depth": 3,
+      "weight": 2.0,
+      "required": true
+    },
+    {
+      "id": "sau:241106608:code_grounding:008",
+      "kind": "code_grounding",
+      "parent_id": "algorithmstep:2411.06608:0:symmetry_aware_attachment_standardization",
+      "path": "paper:2411.06608/algorithm:molminer/algorithmstep:2411.06608:0:symmetry_aware_attachment_standardization",
+      "depth": 3,
+      "weight": 2.0,
+      "required": true
+    },
+    {
+      "id": "sau:241106608:method:006",
+      "kind": "method",
+      "parent_id": "algorithmmodule:2411.06608:order_agnostic_rollout",
+      "path": "paper:2411.06608/algorithm:molminer/algorithmmodule:2411.06608:order_agnostic_rollout",
+      "depth": 3,
+      "weight": 2.0,
+      "required": true
+    },
+    {
+      "id": "sau:241106608:code_grounding:009",
+      "kind": "code_grounding",
+      "parent_id": "algorithmstep:2411.06608:3:order_agnostic_autoregressive_rollout",
+      "path": "paper:2411.06608/algorithm:molminer/algorithmstep:2411.06608:3:order_agnostic_autoregressive_rollout",
+      "depth": 3,
+      "weight": 2.0,
+      "required": true
+    },
+    {
+      "id": "sau:241106608:method:007",
+      "kind": "method",
+      "parent_id": "algorithmmodule:2411.06608:geometry_aware_transformer",
+      "path": "paper:2411.06608/algorithm:molminer/algorithmmodule:2411.06608:geometry_aware_transformer",
+      "depth": 3,
+      "weight": 2.0,
+      "required": true
+    },
+    {
+      "id": "sau:241106608:code_grounding:010",
+      "kind": "code_grounding",
+      "parent_id": "algorithmstep:2305.10133:2:fsmiles_and_local_coordinates_decoder_d2d",
+      "path": "paper:2411.06608/algorithm:lingo3dmol/algorithmstep:2305.10133:2:fsmiles_and_local_coordinates_decoder_d2d",
+      "depth": 3,
+      "weight": 2.0,
+      "required": true
+    },
+    {
+      "id": "sau:241106608:code_grounding:011",
+      "kind": "code_grounding",
+      "parent_id": "algorithmstep:2305.10133:2:fsmiles_and_local_coordinates_decoder_d2d",
+      "path": "paper:2411.06608/algorithm:lingo3dmol/algorithmstep:2305.10133:2:fsmiles_and_local_coordinates_decoder_d2d",
+      "depth": 3,
+      "weight": 2.0,
+      "required": true
+    },
+    {
+      "id": "sau:241106608:method:008",
+      "kind": "method",
+      "parent_id": "algorithmmodule:2411.06608:fragment_predictor",
+      "path": "paper:2411.06608/algorithm:molminer/algorithmmodule:2411.06608:fragment_predictor",
+      "depth": 3,
+      "weight": 2.0,
+      "required": true
+    },
+    {
+      "id": "sau:241106608:method:009",
+      "kind": "method",
+      "parent_id": "algorithmmodule:2411.06608:conditional_sampling",
+      "path": "paper:2411.06608/algorithm:molminer/algorithmmodule:2411.06608:conditional_sampling",
+      "depth": 3,
+      "weight": 2.0,
+      "required": true
+    },
+    {
+      "id": "sau:241106608:method:010",
+      "kind": "method",
+      "parent_id": "algorithmmodule:2608.06956:autoregressive_decoder",
+      "path": "paper:2411.06608/algorithm:molminer/algorithmmodule:2608.06956:autoregressive_decoder",
+      "depth": 3,
+      "weight": 2.0,
+      "required": true
+    },
+    {
+      "id": "sau:241106608:code_grounding:012",
+      "kind": "code_grounding",
+      "parent_id": "algorithmstep:2305.10133:2:fsmiles_and_local_coordinates_decoder_d2d",
+      "path": "paper:2411.06608/algorithm:lingo3dmol/algorithmstep:2305.10133:2:fsmiles_and_local_coordinates_decoder_d2d",
+      "depth": 3,
+      "weight": 2.0,
+      "required": true
+    },
+    {
+      "id": "sau:241106608:code_grounding:013",
+      "kind": "code_grounding",
+      "parent_id": "algorithmstep:2407.12296:2:top_k_and_top_p_filtering_sampler",
+      "path": "paper:2411.06608/algorithm:amp_designer/algorithmstep:2407.12296:2:top_k_and_top_p_filtering_sampler",
+      "depth": 3,
+      "weight": 2.0,
+      "required": true
+    },
+    {
+      "id": "sau:241106608:method:011",
+      "kind": "method",
+      "parent_id": "algorithmmodule:2608.06956:identity_pullback",
+      "path": "paper:2411.06608/algorithm:molminer/algorithmmodule:2608.06956:identity_pullback",
+      "depth": 3,
+      "weight": 2.0,
+      "required": true
+    },
+    {
+      "id": "sau:241106608:method:012",
+      "kind": "method",
+      "parent_id": "algorithmmodule:2608.06956:graph_encoder",
+      "path": "paper:2411.06608/algorithm:hiervae/algorithmmodule:2608.06956:graph_encoder",
+      "depth": 3,
+      "weight": 2.0,
+      "required": true
+    },
+    {
+      "id": "sau:241106608:code_grounding:014",
+      "kind": "code_grounding",
+      "parent_id": "algorithmstep:2305.10133:0:pocket_ligand_transformer_encoder",
+      "path": "paper:2411.06608/algorithm:lingo3dmol/algorithmstep:2305.10133:0:pocket_ligand_transformer_encoder",
+      "depth": 3,
+      "weight": 2.0,
+      "required": true
+    },
+    {
+      "id": "sau:241106608:method:013",
+      "kind": "method",
+      "parent_id": "algorithmmodule:2608.06956:hierarchical_decoder",
+      "path": "paper:2411.06608/algorithm:hiervae/algorithmmodule:2608.06956:hierarchical_decoder",
+      "depth": 3,
+      "weight": 2.0,
+      "required": true
+    },
+    {
+      "id": "sau:241106608:code_grounding:015",
+      "kind": "code_grounding",
+      "parent_id": "algorithmstep:2305.10133:2:fsmiles_and_local_coordinates_decoder_d2d",
+      "path": "paper:2411.06608/algorithm:lingo3dmol/algorithmstep:2305.10133:2:fsmiles_and_local_coordinates_decoder_d2d",
+      "depth": 3,
+      "weight": 2.0,
+      "required": true
+    },
+    {
+      "id": "sau:241106608:code_grounding:016",
+      "kind": "code_grounding",
+      "parent_id": "algorithmstep:2407.12296:2:top_k_and_top_p_filtering_sampler",
+      "path": "paper:2411.06608/algorithm:amp_designer/algorithmstep:2407.12296:2:top_k_and_top_p_filtering_sampler",
+      "depth": 3,
+      "weight": 2.0,
+      "required": true
+    },
+    {
+      "id": "sau:241106608:protocol:000",
+      "kind": "protocol",
+      "parent_id": "benchmark:zinc",
+      "path": "paper:2411.06608/benchmark:zinc",
+      "depth": 2,
+      "weight": 2.0,
+      "required": true
+    },
+    {
+      "id": "sau:241106608:numeric:000",
+      "kind": "numeric",
+      "parent_id": "benchmark:zinc",
+      "path": "paper:2411.06608/benchmark:zinc",
+      "depth": 2,
+      "weight": 1.0,
+      "required": false
+    },
+    {
+      "id": "sau:241106608:numeric:001",
+      "kind": "numeric",
+      "parent_id": "benchmark:zinc",
+      "path": "paper:2411.06608/benchmark:zinc",
+      "depth": 2,
+      "weight": 2.0,
+      "required": true
+    },
+    {
+      "id": "sau:241106608:numeric:002",
+      "kind": "numeric",
+      "parent_id": "benchmark:zinc",
+      "path": "paper:2411.06608/benchmark:zinc",
+      "depth": 2,
+      "weight": 2.0,
+      "required": true
+    },
+    {
+      "id": "sau:241106608:numeric:003",
+      "kind": "numeric",
+      "parent_id": "benchmark:zinc",
+      "path": "paper:2411.06608/benchmark:zinc",
+      "depth": 2,
+      "weight": 1.0,
+      "required": false
+    },
+    {
+      "id": "sau:241106608:numeric:004",
+      "kind": "numeric",
+      "parent_id": "benchmark:zinc",
+      "path": "paper:2411.06608/benchmark:zinc",
+      "depth": 2,
+      "weight": 1.0,
+      "required": false
+    },
+    {
+      "id": "sau:241106608:numeric:005",
+      "kind": "numeric",
+      "parent_id": "benchmark:zinc",
+      "path": "paper:2411.06608/benchmark:zinc",
+      "depth": 2,
+      "weight": 2.0,
+      "required": true
+    },
+    {
+      "id": "sau:241106608:numeric:006",
+      "kind": "numeric",
+      "parent_id": "benchmark:zinc",
+      "path": "paper:2411.06608/benchmark:zinc",
+      "depth": 2,
+      "weight": 2.0,
+      "required": true
+    },
+    {
+      "id": "sau:241106608:numeric:007",
+      "kind": "numeric",
+      "parent_id": "benchmark:zinc",
+      "path": "paper:2411.06608/benchmark:zinc",
+      "depth": 2,
+      "weight": 1.0,
+      "required": false
+    },
+    {
+      "id": "sau:241106608:numeric:008",
+      "kind": "numeric",
+      "parent_id": "benchmark:zinc",
+      "path": "paper:2411.06608/benchmark:zinc",
+      "depth": 2,
+      "weight": 1.0,
+      "required": false
+    },
+    {
+      "id": "sau:241106608:numeric:009",
+      "kind": "numeric",
+      "parent_id": "benchmark:zinc",
+      "path": "paper:2411.06608/benchmark:zinc",
+      "depth": 2,
+      "weight": 1.0,
+      "required": false
+    },
+    {
+      "id": "sau:241106608:numeric:010",
+      "kind": "numeric",
+      "parent_id": "benchmark:zinc",
+      "path": "paper:2411.06608/benchmark:zinc",
+      "depth": 2,
+      "weight": 1.0,
+      "required": false
+    },
+    {
+      "id": "sau:241106608:numeric:011",
+      "kind": "numeric",
+      "parent_id": "benchmark:zinc",
+      "path": "paper:2411.06608/benchmark:zinc",
+      "depth": 2,
+      "weight": 1.0,
+      "required": false
+    },
+    {
+      "id": "sau:241106608:numeric:012",
+      "kind": "numeric",
+      "parent_id": "benchmark:zinc",
+      "path": "paper:2411.06608/benchmark:zinc",
+      "depth": 2,
+      "weight": 2.0,
+      "required": true
+    },
+    {
+      "id": "sau:241106608:numeric:013",
+      "kind": "numeric",
+      "parent_id": "benchmark:zinc",
+      "path": "paper:2411.06608/benchmark:zinc",
+      "depth": 2,
+      "weight": 1.0,
+      "required": false
+    },
+    {
+      "id": "sau:241106608:numeric:014",
+      "kind": "numeric",
+      "parent_id": "benchmark:zinc",
+      "path": "paper:2411.06608/benchmark:zinc",
+      "depth": 2,
+      "weight": 1.0,
+      "required": false
+    },
+    {
+      "id": "sau:241106608:numeric:015",
+      "kind": "numeric",
+      "parent_id": "benchmark:zinc",
+      "path": "paper:2411.06608/benchmark:zinc",
+      "depth": 2,
+      "weight": 1.0,
+      "required": false
+    },
+    {
+      "id": "sau:241106608:protocol:001",
+      "kind": "protocol",
+      "parent_id": "benchmark:canonical:zinc",
+      "path": "paper:2411.06608/benchmark:canonical:zinc",
+      "depth": 2,
+      "weight": 2.0,
+      "required": true
+    },
+    {
+      "id": "sau:241106608:protocol:002",
+      "kind": "protocol",
+      "parent_id": "benchmark:unconditional_generation",
+      "path": "paper:2411.06608/benchmark:unconditional_generation",
+      "depth": 2,
+      "weight": 2.0,
+      "required": true
+    },
+    {
+      "id": "sau:241106608:numeric:016",
+      "kind": "numeric",
+      "parent_id": "benchmark:unconditional_generation",
+      "path": "paper:2411.06608/benchmark:unconditional_generation",
+      "depth": 2,
+      "weight": 1.0,
+      "required": false
+    },
+    {
+      "id": "sau:241106608:numeric:017",
+      "kind": "numeric",
+      "parent_id": "benchmark:unconditional_generation",
+      "path": "paper:2411.06608/benchmark:unconditional_generation",
+      "depth": 2,
+      "weight": 1.0,
+      "required": false
+    },
+    {
+      "id": "sau:241106608:numeric:018",
+      "kind": "numeric",
+      "parent_id": "benchmark:unconditional_generation",
+      "path": "paper:2411.06608/benchmark:unconditional_generation",
+      "depth": 2,
+      "weight": 1.0,
+      "required": false
+    },
+    {
+      "id": "sau:241106608:numeric:019",
+      "kind": "numeric",
+      "parent_id": "benchmark:unconditional_generation",
+      "path": "paper:2411.06608/benchmark:unconditional_generation",
+      "depth": 2,
+      "weight": 2.0,
+      "required": true
+    },
+    {
+      "id": "sau:241106608:numeric:020",
+      "kind": "numeric",
+      "parent_id": "benchmark:unconditional_generation",
+      "path": "paper:2411.06608/benchmark:unconditional_generation",
+      "depth": 2,
+      "weight": 2.0,
+      "required": true
+    },
+    {
+      "id": "sau:241106608:numeric:021",
+      "kind": "numeric",
+      "parent_id": "benchmark:unconditional_generation",
+      "path": "paper:2411.06608/benchmark:unconditional_generation",
+      "depth": 2,
+      "weight": 2.0,
+      "required": true
+    },
+    {
+      "id": "sau:241106608:numeric:022",
+      "kind": "numeric",
+      "parent_id": "benchmark:unconditional_generation",
+      "path": "paper:2411.06608/benchmark:unconditional_generation",
+      "depth": 2,
+      "weight": 2.0,
+      "required": true
+    },
+    {
+      "id": "sau:241106608:numeric:023",
+      "kind": "numeric",
+      "parent_id": "benchmark:unconditional_generation",
+      "path": "paper:2411.06608/benchmark:unconditional_generation",
+      "depth": 2,
+      "weight": 1.0,
+      "required": false
+    },
+    {
+      "id": "sau:241106608:numeric:024",
+      "kind": "numeric",
+      "parent_id": "benchmark:unconditional_generation",
+      "path": "paper:2411.06608/benchmark:unconditional_generation",
+      "depth": 2,
+      "weight": 1.0,
+      "required": false
+    },
+    {
+      "id": "sau:241106608:numeric:025",
+      "kind": "numeric",
+      "parent_id": "benchmark:unconditional_generation",
+      "path": "paper:2411.06608/benchmark:unconditional_generation",
+      "depth": 2,
+      "weight": 1.0,
+      "required": false
+    },
+    {
+      "id": "sau:241106608:numeric:026",
+      "kind": "numeric",
+      "parent_id": "benchmark:unconditional_generation",
+      "path": "paper:2411.06608/benchmark:unconditional_generation",
+      "depth": 2,
+      "weight": 1.0,
+      "required": false
+    },
+    {
+      "id": "sau:241106608:numeric:027",
+      "kind": "numeric",
+      "parent_id": "benchmark:unconditional_generation",
+      "path": "paper:2411.06608/benchmark:unconditional_generation",
+      "depth": 2,
+      "weight": 1.0,
+      "required": false
+    },
+    {
+      "id": "sau:241106608:numeric:028",
+      "kind": "numeric",
+      "parent_id": "benchmark:unconditional_generation",
+      "path": "paper:2411.06608/benchmark:unconditional_generation",
+      "depth": 2,
+      "weight": 2.0,
+      "required": true
+    },
+    {
+      "id": "sau:241106608:numeric:029",
+      "kind": "numeric",
+      "parent_id": "benchmark:unconditional_generation",
+      "path": "paper:2411.06608/benchmark:unconditional_generation",
+      "depth": 2,
+      "weight": 1.0,
+      "required": false
+    },
+    {
+      "id": "sau:241106608:numeric:030",
+      "kind": "numeric",
+      "parent_id": "benchmark:unconditional_generation",
+      "path": "paper:2411.06608/benchmark:unconditional_generation",
+      "depth": 2,
+      "weight": 1.0,
+      "required": false
+    },
+    {
+      "id": "sau:241106608:protocol:003",
+      "kind": "protocol",
+      "parent_id": "benchmark:conditional_generation",
+      "path": "paper:2411.06608/benchmark:conditional_generation",
+      "depth": 2,
+      "weight": 2.0,
+      "required": true
+    },
+    {
+      "id": "sau:241106608:protocol:004",
+      "kind": "protocol",
+      "parent_id": "benchmark:targeted_multi_property",
+      "path": "paper:2411.06608/benchmark:targeted_multi_property",
+      "depth": 2,
+      "weight": 2.0,
+      "required": true
+    },
+    {
+      "id": "sau:241106608:protocol:005",
+      "kind": "protocol",
+      "parent_id": "benchmark:targeted_generation",
+      "path": "paper:2411.06608/benchmark:targeted_generation",
+      "depth": 2,
+      "weight": 2.0,
+      "required": true
+    },
+    {
+      "id": "sau:241106608:ordering:000",
+      "kind": "ordering",
+      "parent_id": "algorithmmodule:2608.06956:graph_encoder",
+      "path": "paper:2411.06608/algorithm:hiervae/algorithmmodule:2608.06956:graph_encoder",
+      "depth": 3,
+      "weight": 2.0,
+      "required": true
+    },
+    {
+      "id": "sau:241106608:ordering:001",
+      "kind": "ordering",
+      "parent_id": "algorithmmodule:2608.06956:hierarchical_decoder",
+      "path": "paper:2411.06608/algorithm:hiervae/algorithmmodule:2608.06956:hierarchical_decoder",
+      "depth": 3,
+      "weight": 1.0,
+      "required": false
+    },
+    {
+      "id": "sau:241106608:ordering:002",
+      "kind": "ordering",
+      "parent_id": "algorithmmodule:2608.06956:graph_encoder",
+      "path": "paper:2411.06608/algorithm:hiervae/algorithmmodule:2608.06956:graph_encoder",
+      "depth": 3,
+      "weight": 1.0,
+      "required": false
+    }
+  ]
+}

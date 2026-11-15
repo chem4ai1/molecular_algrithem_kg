@@ -1,0 +1,44 @@
+{
+  "paper_id": "paper:2411.06608",
+  "lineage": [
+    {
+      "id": "appsrc:paper_2411_06608_paper_1802_04364",
+      "label": "Junction Tree Variational Autoencoder for Molecular Graph Generation",
+      "type": "SourcePaper",
+      "relation": "SITUATED_IN",
+      "source": "paper_out",
+      "kind": "",
+      "node_type": "SourcePaper",
+      "category": "context",
+      "quote": "",
+      "arxiv_id": "",
+      "evidence_available": false
+    },
+    {
+      "id": "appsrc:paper_2411_06608_paper_src_2411_06608_g_schnet",
+      "label": "G-SchNet",
+      "type": "SourcePaper",
+      "relation": "SITUATED_IN",
+      "source": "paper_out",
+      "kind": "",
+      "node_type": "SourcePaper",
+      "category": "context",
+      "quote": "",
+      "arxiv_id": "",
+      "evidence_available": false
+    },
+    {
+      "id": "appsrc:paper_2411_06608_paper_src_2411_06608_hiervae",
+      "label": "HierVAE",
+      "type": "SourcePaper",
+      "relation": "SITUATED_IN",
+      "source": "paper_out",
+      "kind": "",
+      "node_type": "SourcePaper",
+      "category": "context",
+      "quote": "",
+      "arxiv_id": "",
+      "evidence_available": false
+    }
+  ]
+}

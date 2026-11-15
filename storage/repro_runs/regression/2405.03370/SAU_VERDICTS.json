@@ -1,0 +1,479 @@
+{
+  "paper_id": "paper:2405.03370",
+  "spec_hash": "sha256:1800f74ed5b5af74c8b87c7ee1c7304516427ea7d812b909b07a4f9de6b33fa9",
+  "effort": "lite",
+  "verdicts": [
+    {
+      "sau_id": "sau:240503370:method:000",
+      "kind": "method",
+      "required": true,
+      "verdict": "aligned",
+      "drift_type": "methodological",
+      "evidence": [
+        "sau:240503370:code_grounding:000",
+        "sau:240503370:code_grounding:001"
+      ],
+      "note": "2 个代码符号落地"
+    },
+    {
+      "sau_id": "sau:240503370:code_grounding:000",
+      "kind": "code_grounding",
+      "required": true,
+      "verdict": "aligned",
+      "drift_type": "methodological",
+      "evidence": [
+        "codefunction:oxpig_antifold:antifold_antiscripts_py:get_imgt_mask"
+      ],
+      "note": "AST 符号存在且非 stub"
+    },
+    {
+      "sau_id": "sau:240503370:code_grounding:001",
+      "kind": "code_grounding",
+      "required": true,
+      "verdict": "aligned",
+      "drift_type": "methodological",
+      "evidence": [
+        "codefunction:oxpig_antifold:antifold_antiscripts_py:parse_regions"
+      ],
+      "note": "AST 符号存在且非 stub"
+    },
+    {
+      "sau_id": "sau:240503370:method:001",
+      "kind": "method",
+      "required": true,
+      "verdict": "mismatch",
+      "drift_type": "methodological",
+      "evidence": [],
+      "note": "模块无 MODULE_IMPLEMENTED_BY / BELONGS_TO_MODULE 边"
+    },
+    {
+      "sau_id": "sau:240503370:method:002",
+      "kind": "method",
+      "required": true,
+      "verdict": "mismatch",
+      "drift_type": "methodological",
+      "evidence": [],
+      "note": "模块无 MODULE_IMPLEMENTED_BY / BELONGS_TO_MODULE 边"
+    },
+    {
+      "sau_id": "sau:240503370:method:003",
+      "kind": "method",
+      "required": true,
+      "verdict": "aligned",
+      "drift_type": "methodological",
+      "evidence": [
+        "sau:240503370:code_grounding:002",
+        "sau:240503370:code_grounding:003",
+        "sau:240503370:code_grounding:004"
+      ],
+      "note": "3 个代码符号落地"
+    },
+    {
+      "sau_id": "sau:240503370:code_grounding:002",
+      "kind": "code_grounding",
+      "required": true,
+      "verdict": "aligned",
+      "drift_type": "methodological",
+      "evidence": [
+        "codefunction:oxpig_antifold:antifold_antiscripts_py:get_pdbs_logits"
+      ],
+      "note": "AST 符号存在且非 stub"
+    },
+    {
+      "sau_id": "sau:240503370:code_grounding:003",
+      "kind": "code_grounding",
+      "required": true,
+      "verdict": "aligned",
+      "drift_type": "methodological",
+      "evidence": [
+        "codefunction:oxpig_antifold:antifold_antiscripts_py:dataset_dataloader_to_predictions_list"
+      ],
+      "note": "AST 符号存在且非 stub"
+    },
+    {
+      "sau_id": "sau:240503370:code_grounding:004",
+      "kind": "code_grounding",
+      "required": true,
+      "verdict": "aligned",
+      "drift_type": "methodological",
+      "evidence": [
+        "codefunction:oxpig_antifold:antifold_antiscripts_py:logits_to_seqprobs_list"
+      ],
+      "note": "AST 符号存在且非 stub"
+    },
+    {
+      "sau_id": "sau:240503370:method:004",
+      "kind": "method",
+      "required": true,
+      "verdict": "aligned",
+      "drift_type": "methodological",
+      "evidence": [
+        "sau:240503370:code_grounding:005",
+        "sau:240503370:code_grounding:006"
+      ],
+      "note": "2 个代码符号落地"
+    },
+    {
+      "sau_id": "sau:240503370:code_grounding:005",
+      "kind": "code_grounding",
+      "required": true,
+      "verdict": "aligned",
+      "drift_type": "methodological",
+      "evidence": [
+        "codefunction:oxpig_antifold:antifold_antiscripts_py:sample_new_sequences_cdr_hl"
+      ],
+      "note": "AST 符号存在且非 stub"
+    },
+    {
+      "sau_id": "sau:240503370:code_grounding:006",
+      "kind": "code_grounding",
+      "required": true,
+      "verdict": "aligned",
+      "drift_type": "methodological",
+      "evidence": [
+        "codefunction:oxpig_antifold:antifold_antiscripts_py:sample_from_df_logits_hl"
+      ],
+      "note": "AST 符号存在且非 stub"
+    },
+    {
+      "sau_id": "sau:240503370:method:005",
+      "kind": "method",
+      "required": true,
+      "verdict": "aligned",
+      "drift_type": "methodological",
+      "evidence": [
+        "sau:240503370:code_grounding:007"
+      ],
+      "note": "1 个代码符号落地"
+    },
+    {
+      "sau_id": "sau:240503370:code_grounding:007",
+      "kind": "code_grounding",
+      "required": true,
+      "verdict": "aligned",
+      "drift_type": "methodological",
+      "evidence": [
+        "codefunction:oxpig_antifold:antifold_antiscripts_py:calc_pos_perplexity"
+      ],
+      "note": "AST 符号存在且非 stub"
+    },
+    {
+      "sau_id": "sau:240503370:method:006",
+      "kind": "method",
+      "required": true,
+      "verdict": "aligned",
+      "drift_type": "methodological",
+      "evidence": [
+        "sau:240503370:code_grounding:008"
+      ],
+      "note": "1 个代码符号落地"
+    },
+    {
+      "sau_id": "sau:240503370:code_grounding:008",
+      "kind": "code_grounding",
+      "required": true,
+      "verdict": "aligned",
+      "drift_type": "methodological",
+      "evidence": [
+        "codefunction:jkwang93_amp_designer:amp_mic_amp_mic_py:combinedmodel"
+      ],
+      "note": "AST 符号存在且非 stub"
+    },
+    {
+      "sau_id": "sau:240503370:method:007",
+      "kind": "method",
+      "required": true,
+      "verdict": "aligned",
+      "drift_type": "methodological",
+      "evidence": [
+        "sau:240503370:code_grounding:009",
+        "sau:240503370:code_grounding:010"
+      ],
+      "note": "2 个代码符号落地"
+    },
+    {
+      "sau_id": "sau:240503370:code_grounding:009",
+      "kind": "code_grounding",
+      "required": true,
+      "verdict": "aligned",
+      "drift_type": "methodological",
+      "evidence": [
+        "codefunction:stonewiseaidrugdesign_lingo3dmol:model_module_py:encoder"
+      ],
+      "note": "AST 符号存在且非 stub"
+    },
+    {
+      "sau_id": "sau:240503370:code_grounding:010",
+      "kind": "code_grounding",
+      "required": true,
+      "verdict": "aligned",
+      "drift_type": "methodological",
+      "evidence": [
+        "codefunction:stonewiseaidrugdesign_lingo3dmol:model_module_py:decoder"
+      ],
+      "note": "AST 符号存在且非 stub"
+    },
+    {
+      "sau_id": "sau:240503370:method:008",
+      "kind": "method",
+      "required": true,
+      "verdict": "aligned",
+      "drift_type": "methodological",
+      "evidence": [
+        "sau:240503370:code_grounding:011",
+        "sau:240503370:code_grounding:012"
+      ],
+      "note": "2 个代码符号落地"
+    },
+    {
+      "sau_id": "sau:240503370:code_grounding:011",
+      "kind": "code_grounding",
+      "required": true,
+      "verdict": "aligned",
+      "drift_type": "methodological",
+      "evidence": [
+        "codefunction:oxpig_antifold:antifold_antiscripts_py:get_imgt_mask"
+      ],
+      "note": "AST 符号存在且非 stub"
+    },
+    {
+      "sau_id": "sau:240503370:code_grounding:012",
+      "kind": "code_grounding",
+      "required": true,
+      "verdict": "aligned",
+      "drift_type": "methodological",
+      "evidence": [
+        "codefunction:oxpig_antifold:antifold_antiscripts_py:parse_regions"
+      ],
+      "note": "AST 符号存在且非 stub"
+    },
+    {
+      "sau_id": "sau:240503370:method:009",
+      "kind": "method",
+      "required": true,
+      "verdict": "aligned",
+      "drift_type": "methodological",
+      "evidence": [
+        "sau:240503370:code_grounding:013",
+        "sau:240503370:code_grounding:014"
+      ],
+      "note": "2 个代码符号落地"
+    },
+    {
+      "sau_id": "sau:240503370:code_grounding:013",
+      "kind": "code_grounding",
+      "required": true,
+      "verdict": "aligned",
+      "drift_type": "methodological",
+      "evidence": [
+        "codefunction:jkwang93_amp_designer:amp_gpt_generator_py:predict"
+      ],
+      "note": "AST 符号存在且非 stub"
+    },
+    {
+      "sau_id": "sau:240503370:code_grounding:014",
+      "kind": "code_grounding",
+      "required": true,
+      "verdict": "aligned",
+      "drift_type": "methodological",
+      "evidence": [
+        "codefunction:raulorteg_molminer:molminer_models_py:forward"
+      ],
+      "note": "AST 符号存在且非 stub"
+    },
+    {
+      "sau_id": "sau:240503370:method:010",
+      "kind": "method",
+      "required": true,
+      "verdict": "aligned",
+      "drift_type": "methodological",
+      "evidence": [
+        "sau:240503370:code_grounding:015"
+      ],
+      "note": "1 个代码符号落地"
+    },
+    {
+      "sau_id": "sau:240503370:code_grounding:015",
+      "kind": "code_grounding",
+      "required": true,
+      "verdict": "aligned",
+      "drift_type": "methodological",
+      "evidence": [
+        "codefunction:oxpig_antifold:antifold_antiscripts_py:logits_to_seqprobs_list"
+      ],
+      "note": "AST 符号存在且非 stub"
+    },
+    {
+      "sau_id": "sau:240503370:protocol:000",
+      "kind": "protocol",
+      "required": true,
+      "verdict": "aligned",
+      "drift_type": "protocol",
+      "evidence": [
+        "benchmark:antibody_cdrh3_test_set",
+        "appcontract:benchmark_antibody_cdrh3_test_set"
+      ],
+      "note": "静态数据契约齐；shape 待 R3.5 实测",
+      "execution_unverified": true
+    },
+    {
+      "sau_id": "sau:240503370:numeric:000",
+      "kind": "numeric",
+      "required": true,
+      "verdict": "aligned",
+      "drift_type": "numerical",
+      "evidence": [
+        {
+          "observed": 71.0,
+          "expected": 71.0,
+          "relative_gap": 0.0,
+          "tolerance": 0.05
+        }
+      ],
+      "note": ""
+    },
+    {
+      "sau_id": "sau:240503370:numeric:001",
+      "kind": "numeric",
+      "required": false,
+      "verdict": "aligned",
+      "drift_type": "numerical",
+      "evidence": [
+        {
+          "observed": 48.0,
+          "expected": 48.0,
+          "relative_gap": 0.0,
+          "tolerance": 0.05
+        }
+      ],
+      "note": ""
+    },
+    {
+      "sau_id": "sau:240503370:numeric:002",
+      "kind": "numeric",
+      "required": false,
+      "verdict": "aligned",
+      "drift_type": "numerical",
+      "evidence": [
+        {
+          "observed": 71.0,
+          "expected": 71.0,
+          "relative_gap": 0.0,
+          "tolerance": 0.05
+        }
+      ],
+      "note": ""
+    },
+    {
+      "sau_id": "sau:240503370:protocol:001",
+      "kind": "protocol",
+      "required": true,
+      "verdict": "aligned",
+      "drift_type": "protocol",
+      "evidence": [
+        "benchmark:canonical:antibody_cdrh3_test_set",
+        "appcontract:benchmark_canonical_antibody_cdrh3_test_set"
+      ],
+      "note": "静态数据契约齐；shape 待 R3.5 实测",
+      "execution_unverified": true
+    },
+    {
+      "sau_id": "sau:240503370:protocol:002",
+      "kind": "protocol",
+      "required": true,
+      "verdict": "aligned",
+      "drift_type": "protocol",
+      "evidence": [
+        "benchmark:d44_1_anti_lysozyme_antibody_variants",
+        "appcontract:benchmark_d44_1_anti_lysozyme_antibody_variants"
+      ],
+      "note": "静态数据契约齐；shape 待 R3.5 实测",
+      "execution_unverified": true
+    },
+    {
+      "sau_id": "sau:240503370:ordering:000",
+      "kind": "ordering",
+      "required": true,
+      "verdict": "aligned",
+      "drift_type": "ordering",
+      "evidence": [
+        {
+          "before": 0,
+          "after": 4
+        }
+      ],
+      "note": ""
+    },
+    {
+      "sau_id": "sau:240503370:ordering:001",
+      "kind": "ordering",
+      "required": true,
+      "verdict": "aligned",
+      "drift_type": "ordering",
+      "evidence": [
+        {
+          "before": 0,
+          "after": 5
+        }
+      ],
+      "note": ""
+    }
+  ],
+  "counts": {
+    "method": {
+      "aligned": 9,
+      "mismatch": 2,
+      "stub": 0,
+      "absent": 0,
+      "unverified": 0
+    },
+    "code_grounding": {
+      "aligned": 16,
+      "mismatch": 0,
+      "stub": 0,
+      "absent": 0,
+      "unverified": 0
+    },
+    "protocol": {
+      "aligned": 3,
+      "mismatch": 0,
+      "stub": 0,
+      "absent": 0,
+      "unverified": 0
+    },
+    "numeric": {
+      "aligned": 3,
+      "mismatch": 0,
+      "stub": 0,
+      "absent": 0,
+      "unverified": 0
+    },
+    "ordering": {
+      "aligned": 2,
+      "mismatch": 0,
+      "stub": 0,
+      "absent": 0,
+      "unverified": 0
+    }
+  },
+  "score_by_kind": {
+    "method": 0.8182,
+    "code_grounding": 1.0,
+    "protocol": 1.0,
+    "numeric": 1.0,
+    "ordering": 1.0
+  },
+  "sau_score": 0.9429,
+  "coverage": 1.0,
+  "drift_rate": 0.0571,
+  "by_drift": {
+    "numerical": 0,
+    "methodological": 2,
+    "protocol": 0,
+    "ordering": 0
+  },
+  "n_total": 35,
+  "n_decidable": 35,
+  "n_aligned": 33,
+  "warnings": []
+}

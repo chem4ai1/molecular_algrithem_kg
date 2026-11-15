@@ -1,0 +1,309 @@
+{
+  "2411.06608": {
+    "paper_type": "method",
+    "confidence": 0.95,
+    "signals": [
+      "We introduce MolMiner, a fragment-based, geometry-aware, and order-agnostic autoregressive model for molecular design",
+      "constructs molecules via symmetry-aware fragment attachments",
+      "conditions each generation step on force-field-relaxed three-dimensional geometry",
+      "MolMiner unifies dynamic geometry, symmetry handling, order-agnostic generation, and scalable multi-property conditioning within a single framework"
+    ],
+    "secondary_type": "application",
+    "rationale": "论文提出了名为 MolMiner 的新型片段式、3D几何感知的自回归分子生成模型，重点在于新的生成算法和多属性条件控制机制。",
+    "focus": {
+      "sections": [
+        "abstract",
+        "method",
+        "experiment",
+        "result"
+      ],
+      "must_extract": [
+        "proposed_methods",
+        "baselines",
+        "modules",
+        "questions",
+        "experiments",
+        "observations"
+      ],
+      "skip": [],
+      "prompt_hint": "重点拆方法栈的模块、机制与输入输出，并抽研究问题"
+    },
+    "task_tag": "paper_type"
+  },
+  "2611.06237": {
+    "paper_type": "method",
+    "confidence": 0.95,
+    "signals": [
+      "We present SO3LR Tauri, a family of MLFFs",
+      "coupling a fast SO3krates network to explicit, physics-based interaction modules",
+      "each improved beyond its original formulation",
+      "The models are trained on 148 million structures",
+      "Released in three sizes"
+    ],
+    "secondary_type": "system_tool",
+    "rationale": "论文提出了 SO3LR Tauri 系列通用机器学习力场模型，通过将 SO3krates 网络与改进的显式物理相互作用模块相结合，属于新模型/方法类贡献。",
+    "focus": {
+      "sections": [
+        "abstract",
+        "method",
+        "experiment",
+        "result"
+      ],
+      "must_extract": [
+        "proposed_methods",
+        "baselines",
+        "modules",
+        "questions",
+        "experiments",
+        "observations"
+      ],
+      "skip": [],
+      "prompt_hint": "重点拆方法栈的模块、机制与输入输出，并抽研究问题"
+    },
+    "task_tag": "paper_type"
+  },
+  "2405.03370": {
+    "paper_type": "method",
+    "confidence": 0.95,
+    "signals": [
+      "Here, we present AntiFold, an antibody-specific inverse folding model",
+      "fine-tuned from ESM-IF1 on solved and predicted antibody structures",
+      "AntiFold outperforms existing inverse folding tools on sequence recovery"
+    ],
+    "secondary_type": "system_tool",
+    "rationale": "论文提出了针对抗体结构设计的专用逆折叠新模型 AntiFold，并通过对比实验展示其在 CDR 序列恢复率及零样本亲和力预测上的优越性能。",
+    "focus": {
+      "sections": [
+        "abstract",
+        "method",
+        "experiment",
+        "result"
+      ],
+      "must_extract": [
+        "proposed_methods",
+        "baselines",
+        "modules",
+        "questions",
+        "experiments",
+        "observations"
+      ],
+      "skip": [],
+      "prompt_hint": "重点拆方法栈的模块、机制与输入输出，并抽研究问题"
+    },
+    "task_tag": "paper_type"
+  },
+  "2407.12296": {
+    "paper_type": "method",
+    "confidence": 0.9,
+    "signals": [
+      "A foundation model approach to guide antimicrobial peptide design",
+      "We introduce AMP-Designer, an LLM-based approach for swiftly designing novel antimicrobial peptides (AMPs)"
+    ],
+    "secondary_type": "application",
+    "rationale": "论文提出了基于大语言模型设计抗菌肽的新方法 AMP-Designer，并结合湿实验验证了其实际生成效果。",
+    "focus": {
+      "sections": [
+        "abstract",
+        "method",
+        "experiment",
+        "result"
+      ],
+      "must_extract": [
+        "proposed_methods",
+        "baselines",
+        "modules",
+        "questions",
+        "experiments",
+        "observations"
+      ],
+      "skip": [],
+      "prompt_hint": "重点拆方法栈的模块、机制与输入输出，并抽研究问题"
+    },
+    "task_tag": "paper_type"
+  },
+  "2305.10133": {
+    "paper_type": "method",
+    "confidence": 0.95,
+    "signals": [
+      "introduce Lingo3DMol, a pocket-based 3D molecule generation method",
+      "A new molecular representation, fragment-based SMILES with local and global coordinates, was developed",
+      "Lingo3DMol outperformed state-of-the-art methods"
+    ],
+    "secondary_type": "application",
+    "rationale": "论文提出了结合语言模型和几何深度学习的新生成方法 Lingo3DMol 以及新的分子表征机制，并与现有基线进行了对比评测。",
+    "focus": {
+      "sections": [
+        "abstract",
+        "method",
+        "experiment",
+        "result"
+      ],
+      "must_extract": [
+        "proposed_methods",
+        "baselines",
+        "modules",
+        "questions",
+        "experiments",
+        "observations"
+      ],
+      "skip": [],
+      "prompt_hint": "重点拆方法栈的模块、机制与输入输出，并抽研究问题"
+    },
+    "task_tag": "paper_type"
+  },
+  "2306.08018": {
+    "paper_type": "dataset_benchmark",
+    "confidence": 0.99,
+    "signals": [
+      "A Large-Scale Biomolecular Instruction Dataset for Large Language Models",
+      "introduce Mol-Instructions, a comprehensive instruction dataset designed for the biomolecular domain",
+      "encompasses three key components: molecule-oriented instructions, protein-oriented instructions, and biomolecular text instructions",
+      "Mol-Instructions is publicly available for ongoing research"
+    ],
+    "secondary_type": "method",
+    "rationale": "论文明确提出并开源了一个面向生物分子领域的大规模指令微调数据集（Mol-Instructions），符合数据集/基准/指令集论文的定义。",
+    "focus": {
+      "sections": [
+        "abstract",
+        "dataset",
+        "benchmark",
+        "construction",
+        "experiment"
+      ],
+      "must_extract": [
+        "questions",
+        "benchmarks",
+        "data_modalities",
+        "split_rules",
+        "tasks",
+        "observations"
+      ],
+      "skip": [
+        "modules"
+      ],
+      "prompt_hint": "重点写基准的输入输出契约、模态、切分与任务，不要硬抽算法模块"
+    },
+    "task_tag": "paper_type"
+  },
+  "2507.00899": {
+    "paper_type": "method",
+    "confidence": 0.95,
+    "signals": [
+      "We introduce TABASCO which relaxes these assumptions",
+      "The model has a standard non-equivariant transformer architecture",
+      "On the GEOM-Drugs benchmark TABASCO achieves state-of-the-art PoseBusters validity",
+      "delivers inference roughly 10x faster than the strongest baseline"
+    ],
+    "secondary_type": "application",
+    "rationale": "论文提出了针对3D分子生成的新型极简非等变Transformer模型TABASCO，并验证了其生成有效性与高吞吐优势，属于典型的方法/算法论文。",
+    "focus": {
+      "sections": [
+        "abstract",
+        "method",
+        "experiment",
+        "result"
+      ],
+      "must_extract": [
+        "proposed_methods",
+        "baselines",
+        "modules",
+        "questions",
+        "experiments",
+        "observations"
+      ],
+      "skip": [],
+      "prompt_hint": "重点拆方法栈的模块、机制与输入输出，并抽研究问题"
+    },
+    "task_tag": "paper_type"
+  },
+  "2301.11259": {
+    "paper_type": "method",
+    "confidence": 0.95,
+    "signals": [
+      "introduce MOLGEN, a pre-trained molecular language model tailored specifically for molecule generation",
+      "domain-agnostic molecular prefix tuning",
+      "our chemical feedback paradigm steers the model away from 'molecular hallucinations'"
+    ],
+    "secondary_type": "application",
+    "rationale": "论文提出了针对分子生成任务的预训练语言模型 MOLGEN 及其化学反馈生成与领域无关前缀微调机制，核心贡献是新模型与算法。",
+    "focus": {
+      "sections": [
+        "abstract",
+        "method",
+        "experiment",
+        "result"
+      ],
+      "must_extract": [
+        "proposed_methods",
+        "baselines",
+        "modules",
+        "questions",
+        "experiments",
+        "observations"
+      ],
+      "skip": [],
+      "prompt_hint": "重点拆方法栈的模块、机制与输入输出，并抽研究问题"
+    },
+    "task_tag": "paper_type"
+  },
+  "2606.02455": {
+    "paper_type": "method",
+    "confidence": 0.95,
+    "signals": [
+      "we introduce Langevin Speculative Dynamics (LSD)",
+      "a distributed and model-agnostic speculative sampler for accelerating MD",
+      "extend speculative sampling to second-order Langevin dynamics"
+    ],
+    "secondary_type": "theory",
+    "rationale": "论文提出了加速分子动力学模拟的新算法框架 Langevin Speculative Dynamics (LSD)，并给出了理论推导与实验验证，核心贡献为新算法/机制。",
+    "focus": {
+      "sections": [
+        "abstract",
+        "method",
+        "experiment",
+        "result"
+      ],
+      "must_extract": [
+        "proposed_methods",
+        "baselines",
+        "modules",
+        "questions",
+        "experiments",
+        "observations"
+      ],
+      "skip": [],
+      "prompt_hint": "重点拆方法栈的模块、机制与输入输出，并抽研究问题"
+    },
+    "task_tag": "paper_type"
+  },
+  "2604.05181": {
+    "paper_type": "method",
+    "confidence": 0.95,
+    "signals": [
+      "We introduce DISCO, a multimodal model that co-designs protein sequence and 3D structure around arbitrary biomolecules",
+      "inference-time scaling methods that optimize objectives across both modalities",
+      "Conditioned solely on reactive intermediates, DISCO designs diverse heme enzymes with novel active-site geometries"
+    ],
+    "secondary_type": "application",
+    "rationale": "论文提出了用于以小分子/中间体为条件协同设计蛋白质序列与3D结构的新多模态生成模型DISCO及推理缩放方法，主要贡献为新模型与新算法。",
+    "focus": {
+      "sections": [
+        "abstract",
+        "method",
+        "experiment",
+        "result"
+      ],
+      "must_extract": [
+        "proposed_methods",
+        "baselines",
+        "modules",
+        "questions",
+        "experiments",
+        "observations"
+      ],
+      "skip": [],
+      "prompt_hint": "重点拆方法栈的模块、机制与输入输出，并抽研究问题"
+    },
+    "task_tag": "paper_type"
+  }
+}

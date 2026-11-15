@@ -1,0 +1,964 @@
+{
+  "paper_id": "paper:2405.03370",
+  "arxiv_id": "2405.03370",
+  "spec_hash": "sha256:1800f74ed5b5af74c8b87c7ee1c7304516427ea7d812b909b07a4f9de6b33fa9",
+  "sau": [
+    {
+      "id": "sau:240503370:method:000",
+      "kind": "method",
+      "statement": "AntiFold 的模块「IMGT-weighted masking」实现 sampling（inputs=['backbone_coords', 'imgt_regions'] → outputs=['masked_coords']）",
+      "source_node_ids": [
+        "algorithm:antifold",
+        "algorithmstep:2405.03370:0:imgt_weighted_masking"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "module_implemented",
+        "target": "algorithmstep:2405.03370:0:imgt_weighted_masking",
+        "algorithm": "algorithm:antifold",
+        "mechanism": "sampling",
+        "inputs": [
+          "backbone_coords",
+          "imgt_regions"
+        ],
+        "outputs": [
+          "masked_coords"
+        ],
+        "formula": ""
+      },
+      "required": true,
+      "provenance": "derived",
+      "relation_hint": "PROPOSES_METHOD|HAS_MODULE",
+      "parent_id": "algorithmstep:2405.03370:0:imgt_weighted_masking",
+      "path": "paper:2405.03370/algorithm:antifold/algorithmstep:2405.03370:0:imgt_weighted_masking",
+      "depth": 3,
+      "weight": 2.0
+    },
+    {
+      "id": "sau:240503370:code_grounding:000",
+      "kind": "code_grounding",
+      "statement": "「IMGT-weighted masking」由代码符号 get_imgt_mask 实现（未标注文件）",
+      "source_node_ids": [
+        "algorithmstep:2405.03370:0:imgt_weighted_masking",
+        "codefunction:oxpig_antifold:antifold_antiscripts_py:get_imgt_mask"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "symbol_exists",
+        "target": "codefunction:oxpig_antifold:antifold_antiscripts_py:get_imgt_mask",
+        "signature": "get_imgt_mask",
+        "file": "",
+        "lineno": 734,
+        "stub_allowed": false
+      },
+      "required": true,
+      "provenance": "extracted",
+      "relation_hint": "MODULE_IMPLEMENTED_BY",
+      "parent_id": "algorithmstep:2405.03370:0:imgt_weighted_masking",
+      "path": "paper:2405.03370/algorithm:antifold/algorithmstep:2405.03370:0:imgt_weighted_masking",
+      "depth": 3,
+      "weight": 2.0
+    },
+    {
+      "id": "sau:240503370:code_grounding:001",
+      "kind": "code_grounding",
+      "statement": "「IMGT-weighted masking」由代码符号 parse_regions 实现（未标注文件）",
+      "source_node_ids": [
+        "algorithmstep:2405.03370:0:imgt_weighted_masking",
+        "codefunction:oxpig_antifold:antifold_antiscripts_py:parse_regions"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "symbol_exists",
+        "target": "codefunction:oxpig_antifold:antifold_antiscripts_py:parse_regions",
+        "signature": "parse_regions",
+        "file": "",
+        "lineno": 709,
+        "stub_allowed": false
+      },
+      "required": true,
+      "provenance": "extracted",
+      "relation_hint": "MODULE_IMPLEMENTED_BY",
+      "parent_id": "algorithmstep:2405.03370:0:imgt_weighted_masking",
+      "path": "paper:2405.03370/algorithm:antifold/algorithmstep:2405.03370:0:imgt_weighted_masking",
+      "depth": 3,
+      "weight": 2.0
+    },
+    {
+      "id": "sau:240503370:method:001",
+      "kind": "method",
+      "statement": "AntiFold 的模块「Coordinate noise augmentation」实现 coordinate_update（inputs=['backbone_coords'] → outputs=['noisy_backbone_coords']）",
+      "source_node_ids": [
+        "algorithm:antifold",
+        "algorithmstep:2405.03370:1:coordinate_noise_augmentation"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "module_implemented",
+        "target": "algorithmstep:2405.03370:1:coordinate_noise_augmentation",
+        "algorithm": "algorithm:antifold",
+        "mechanism": "coordinate_update",
+        "inputs": [
+          "backbone_coords"
+        ],
+        "outputs": [
+          "noisy_backbone_coords"
+        ],
+        "formula": ""
+      },
+      "required": true,
+      "provenance": "derived",
+      "relation_hint": "PROPOSES_METHOD|HAS_MODULE",
+      "parent_id": "algorithmstep:2405.03370:1:coordinate_noise_augmentation",
+      "path": "paper:2405.03370/algorithm:antifold/algorithmstep:2405.03370:1:coordinate_noise_augmentation",
+      "depth": 3,
+      "weight": 2.0
+    },
+    {
+      "id": "sau:240503370:method:002",
+      "kind": "method",
+      "statement": "AntiFold 的模块「Layer-wise learning rate decay schedule」实现 other（inputs=['layer_index', 'base_lr'] → outputs=['decayed_lr']）",
+      "source_node_ids": [
+        "algorithm:antifold",
+        "algorithmstep:2405.03370:2:layer_wise_learning_rate_decay_schedule"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "module_implemented",
+        "target": "algorithmstep:2405.03370:2:layer_wise_learning_rate_decay_schedule",
+        "algorithm": "algorithm:antifold",
+        "mechanism": "other",
+        "inputs": [
+          "layer_index",
+          "base_lr"
+        ],
+        "outputs": [
+          "decayed_lr"
+        ],
+        "formula": ""
+      },
+      "required": true,
+      "provenance": "derived",
+      "relation_hint": "PROPOSES_METHOD|HAS_MODULE",
+      "parent_id": "algorithmstep:2405.03370:2:layer_wise_learning_rate_decay_schedule",
+      "path": "paper:2405.03370/algorithm:antifold/algorithmstep:2405.03370:2:layer_wise_learning_rate_decay_schedule",
+      "depth": 3,
+      "weight": 2.0
+    },
+    {
+      "id": "sau:240503370:method:003",
+      "kind": "method",
+      "statement": "AntiFold 的模块「Inverse folding sequence scoring and logit extraction」实现 scoring（inputs=['coords_dataloader', 'model_weights'] → outputs=['df_logits', 'seqprobs']）",
+      "source_node_ids": [
+        "algorithm:antifold",
+        "algorithmstep:2405.03370:3:inverse_folding_sequence_scoring_and_logit_extra"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "module_implemented",
+        "target": "algorithmstep:2405.03370:3:inverse_folding_sequence_scoring_and_logit_extra",
+        "algorithm": "algorithm:antifold",
+        "mechanism": "scoring",
+        "inputs": [
+          "coords_dataloader",
+          "model_weights"
+        ],
+        "outputs": [
+          "df_logits",
+          "seqprobs"
+        ],
+        "formula": ""
+      },
+      "required": true,
+      "provenance": "derived",
+      "relation_hint": "PROPOSES_METHOD|HAS_MODULE",
+      "parent_id": "algorithmstep:2405.03370:3:inverse_folding_sequence_scoring_and_logit_extra",
+      "path": "paper:2405.03370/algorithm:antifold/algorithmstep:2405.03370:3:inverse_folding_sequence_scoring_and_logit_extra",
+      "depth": 3,
+      "weight": 2.0
+    },
+    {
+      "id": "sau:240503370:code_grounding:002",
+      "kind": "code_grounding",
+      "statement": "「Inverse folding sequence scoring and logit extraction」由代码符号 get_pdbs_logits 实现（未标注文件）",
+      "source_node_ids": [
+        "algorithmstep:2405.03370:3:inverse_folding_sequence_scoring_and_logit_extra",
+        "codefunction:oxpig_antifold:antifold_antiscripts_py:get_pdbs_logits"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "symbol_exists",
+        "target": "codefunction:oxpig_antifold:antifold_antiscripts_py:get_pdbs_logits",
+        "signature": "get_pdbs_logits",
+        "file": "",
+        "lineno": 483,
+        "stub_allowed": false
+      },
+      "required": true,
+      "provenance": "extracted",
+      "relation_hint": "MODULE_IMPLEMENTED_BY",
+      "parent_id": "algorithmstep:2405.03370:3:inverse_folding_sequence_scoring_and_logit_extra",
+      "path": "paper:2405.03370/algorithm:antifold/algorithmstep:2405.03370:3:inverse_folding_sequence_scoring_and_logit_extra",
+      "depth": 3,
+      "weight": 2.0
+    },
+    {
+      "id": "sau:240503370:code_grounding:003",
+      "kind": "code_grounding",
+      "statement": "「Inverse folding sequence scoring and logit extraction」由代码符号 dataset_dataloader_to_predictions_list 实现（未标注文件）",
+      "source_node_ids": [
+        "algorithmstep:2405.03370:3:inverse_folding_sequence_scoring_and_logit_extra",
+        "codefunction:oxpig_antifold:antifold_antiscripts_py:dataset_dataloader_to_predictions_list"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "symbol_exists",
+        "target": "codefunction:oxpig_antifold:antifold_antiscripts_py:dataset_dataloader_to_predictions_list",
+        "signature": "dataset_dataloader_to_predictions_list",
+        "file": "",
+        "lineno": 278,
+        "stub_allowed": false
+      },
+      "required": true,
+      "provenance": "extracted",
+      "relation_hint": "MODULE_IMPLEMENTED_BY",
+      "parent_id": "algorithmstep:2405.03370:3:inverse_folding_sequence_scoring_and_logit_extra",
+      "path": "paper:2405.03370/algorithm:antifold/algorithmstep:2405.03370:3:inverse_folding_sequence_scoring_and_logit_extra",
+      "depth": 3,
+      "weight": 2.0
+    },
+    {
+      "id": "sau:240503370:code_grounding:004",
+      "kind": "code_grounding",
+      "statement": "「Inverse folding sequence scoring and logit extraction」由代码符号 logits_to_seqprobs_list 实现（未标注文件）",
+      "source_node_ids": [
+        "algorithmstep:2405.03370:3:inverse_folding_sequence_scoring_and_logit_extra",
+        "codefunction:oxpig_antifold:antifold_antiscripts_py:logits_to_seqprobs_list"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "symbol_exists",
+        "target": "codefunction:oxpig_antifold:antifold_antiscripts_py:logits_to_seqprobs_list",
+        "signature": "logits_to_seqprobs_list",
+        "file": "",
+        "lineno": 232,
+        "stub_allowed": false
+      },
+      "required": true,
+      "provenance": "extracted",
+      "relation_hint": "MODULE_IMPLEMENTED_BY",
+      "parent_id": "algorithmstep:2405.03370:3:inverse_folding_sequence_scoring_and_logit_extra",
+      "path": "paper:2405.03370/algorithm:antifold/algorithmstep:2405.03370:3:inverse_folding_sequence_scoring_and_logit_extra",
+      "depth": 3,
+      "weight": 2.0
+    },
+    {
+      "id": "sau:240503370:method:004",
+      "kind": "method",
+      "statement": "AntiFold 的模块「Temperature-controlled CDR sequence sampling」实现 sampling（inputs=['df_logits', 'sampling_temp', 'imgt_regions'] → outputs=['sampled_sequences']）",
+      "source_node_ids": [
+        "algorithm:antifold",
+        "algorithmstep:2405.03370:4:temperature_controlled_cdr_sequence_sampling"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "module_implemented",
+        "target": "algorithmstep:2405.03370:4:temperature_controlled_cdr_sequence_sampling",
+        "algorithm": "algorithm:antifold",
+        "mechanism": "sampling",
+        "inputs": [
+          "df_logits",
+          "sampling_temp",
+          "imgt_regions"
+        ],
+        "outputs": [
+          "sampled_sequences"
+        ],
+        "formula": ""
+      },
+      "required": true,
+      "provenance": "derived",
+      "relation_hint": "PROPOSES_METHOD|HAS_MODULE",
+      "parent_id": "algorithmstep:2405.03370:4:temperature_controlled_cdr_sequence_sampling",
+      "path": "paper:2405.03370/algorithm:antifold/algorithmstep:2405.03370:4:temperature_controlled_cdr_sequence_sampling",
+      "depth": 3,
+      "weight": 2.0
+    },
+    {
+      "id": "sau:240503370:code_grounding:005",
+      "kind": "code_grounding",
+      "statement": "「Temperature-controlled CDR sequence sampling」由代码符号 sample_new_sequences_CDR_HL 实现（未标注文件）",
+      "source_node_ids": [
+        "algorithmstep:2405.03370:4:temperature_controlled_cdr_sequence_sampling",
+        "codefunction:oxpig_antifold:antifold_antiscripts_py:sample_new_sequences_cdr_hl"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "symbol_exists",
+        "target": "codefunction:oxpig_antifold:antifold_antiscripts_py:sample_new_sequences_cdr_hl",
+        "signature": "sample_new_sequences_CDR_HL",
+        "file": "",
+        "lineno": 551,
+        "stub_allowed": false
+      },
+      "required": true,
+      "provenance": "extracted",
+      "relation_hint": "MODULE_IMPLEMENTED_BY",
+      "parent_id": "algorithmstep:2405.03370:4:temperature_controlled_cdr_sequence_sampling",
+      "path": "paper:2405.03370/algorithm:antifold/algorithmstep:2405.03370:4:temperature_controlled_cdr_sequence_sampling",
+      "depth": 3,
+      "weight": 2.0
+    },
+    {
+      "id": "sau:240503370:code_grounding:006",
+      "kind": "code_grounding",
+      "statement": "「Temperature-controlled CDR sequence sampling」由代码符号 sample_from_df_logits_HL 实现（未标注文件）",
+      "source_node_ids": [
+        "algorithmstep:2405.03370:4:temperature_controlled_cdr_sequence_sampling",
+        "codefunction:oxpig_antifold:antifold_antiscripts_py:sample_from_df_logits_hl"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "symbol_exists",
+        "target": "codefunction:oxpig_antifold:antifold_antiscripts_py:sample_from_df_logits_hl",
+        "signature": "sample_from_df_logits_HL",
+        "file": "",
+        "lineno": 807,
+        "stub_allowed": false
+      },
+      "required": true,
+      "provenance": "extracted",
+      "relation_hint": "MODULE_IMPLEMENTED_BY",
+      "parent_id": "algorithmstep:2405.03370:4:temperature_controlled_cdr_sequence_sampling",
+      "path": "paper:2405.03370/algorithm:antifold/algorithmstep:2405.03370:4:temperature_controlled_cdr_sequence_sampling",
+      "depth": 3,
+      "weight": 2.0
+    },
+    {
+      "id": "sau:240503370:method:005",
+      "kind": "method",
+      "statement": "AntiFold 的模块「Positional perplexity evaluation」实现 scoring（inputs=['df_logits'] → outputs=['pos_perplexity_scalar']）",
+      "source_node_ids": [
+        "algorithm:antifold",
+        "algorithmstep:2405.03370:5:positional_perplexity_evaluation"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "module_implemented",
+        "target": "algorithmstep:2405.03370:5:positional_perplexity_evaluation",
+        "algorithm": "algorithm:antifold",
+        "mechanism": "scoring",
+        "inputs": [
+          "df_logits"
+        ],
+        "outputs": [
+          "pos_perplexity_scalar"
+        ],
+        "formula": ""
+      },
+      "required": true,
+      "provenance": "derived",
+      "relation_hint": "PROPOSES_METHOD|HAS_MODULE",
+      "parent_id": "algorithmstep:2405.03370:5:positional_perplexity_evaluation",
+      "path": "paper:2405.03370/algorithm:antifold/algorithmstep:2405.03370:5:positional_perplexity_evaluation",
+      "depth": 3,
+      "weight": 2.0
+    },
+    {
+      "id": "sau:240503370:code_grounding:007",
+      "kind": "code_grounding",
+      "statement": "「Positional perplexity evaluation」由代码符号 calc_pos_perplexity 实现（未标注文件）",
+      "source_node_ids": [
+        "algorithmstep:2405.03370:5:positional_perplexity_evaluation",
+        "codefunction:oxpig_antifold:antifold_antiscripts_py:calc_pos_perplexity"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "symbol_exists",
+        "target": "codefunction:oxpig_antifold:antifold_antiscripts_py:calc_pos_perplexity",
+        "signature": "calc_pos_perplexity",
+        "file": "",
+        "lineno": 540,
+        "stub_allowed": false
+      },
+      "required": true,
+      "provenance": "extracted",
+      "relation_hint": "MODULE_IMPLEMENTED_BY",
+      "parent_id": "algorithmstep:2405.03370:5:positional_perplexity_evaluation",
+      "path": "paper:2405.03370/algorithm:antifold/algorithmstep:2405.03370:5:positional_perplexity_evaluation",
+      "depth": 3,
+      "weight": 2.0
+    },
+    {
+      "id": "sau:240503370:method:006",
+      "kind": "method",
+      "statement": "AntiFold 的模块「ESM-IF1 Initialization」实现 加载通用蛋白质逆折叠模型权重（inputs=['ESM-IF1 weights'] → outputs=['Initialized model parameters']）",
+      "source_node_ids": [
+        "algorithm:antifold",
+        "algorithmmodule:2405.03370:esm_if1_initialization"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "module_implemented",
+        "target": "algorithmmodule:2405.03370:esm_if1_initialization",
+        "algorithm": "algorithm:antifold",
+        "mechanism": "加载通用蛋白质逆折叠模型权重",
+        "inputs": [
+          "ESM-IF1 weights"
+        ],
+        "outputs": [
+          "Initialized model parameters"
+        ],
+        "formula": ""
+      },
+      "required": true,
+      "provenance": "derived",
+      "relation_hint": "PROPOSES_METHOD|HAS_MODULE",
+      "parent_id": "algorithmmodule:2405.03370:esm_if1_initialization",
+      "path": "paper:2405.03370/algorithm:antifold/algorithmmodule:2405.03370:esm_if1_initialization",
+      "depth": 3,
+      "weight": 2.0
+    },
+    {
+      "id": "sau:240503370:code_grounding:008",
+      "kind": "code_grounding",
+      "statement": "「ESM-IF1 Initialization」由代码符号 CombinedModel 实现（未标注文件）",
+      "source_node_ids": [
+        "algorithmmodule:2405.03370:esm_if1_initialization",
+        "codefunction:jkwang93_amp_designer:amp_mic_amp_mic_py:combinedmodel"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "symbol_exists",
+        "target": "codefunction:jkwang93_amp_designer:amp_mic_amp_mic_py:combinedmodel",
+        "signature": "CombinedModel",
+        "file": "",
+        "lineno": 101,
+        "stub_allowed": false
+      },
+      "required": true,
+      "provenance": "extracted",
+      "relation_hint": "MODULE_IMPLEMENTED_BY",
+      "parent_id": "algorithmstep:2407.12296:5:amp_mic_bacterial_potency_predictor",
+      "path": "paper:2405.03370/algorithm:amp_designer/algorithmstep:2407.12296:5:amp_mic_bacterial_potency_predictor",
+      "depth": 3,
+      "weight": 2.0
+    },
+    {
+      "id": "sau:240503370:method:007",
+      "kind": "method",
+      "statement": "AntiFold 的模块「Antibody Fine-tuning」实现 在抗体可变域结构上微调模型（inputs=['Antibody variable domain structures'] → outputs=['Fine-tuned AntiFold model']）",
+      "source_node_ids": [
+        "algorithm:antifold",
+        "algorithmmodule:2405.03370:antibody_fine_tuning"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "module_implemented",
+        "target": "algorithmmodule:2405.03370:antibody_fine_tuning",
+        "algorithm": "algorithm:antifold",
+        "mechanism": "在抗体可变域结构上微调模型",
+        "inputs": [
+          "Antibody variable domain structures"
+        ],
+        "outputs": [
+          "Fine-tuned AntiFold model"
+        ],
+        "formula": ""
+      },
+      "required": true,
+      "provenance": "derived",
+      "relation_hint": "PROPOSES_METHOD|HAS_MODULE",
+      "parent_id": "algorithmmodule:2405.03370:antibody_fine_tuning",
+      "path": "paper:2405.03370/algorithm:antifold/algorithmmodule:2405.03370:antibody_fine_tuning",
+      "depth": 3,
+      "weight": 2.0
+    },
+    {
+      "id": "sau:240503370:code_grounding:009",
+      "kind": "code_grounding",
+      "statement": "「Antibody Fine-tuning」由代码符号 Encoder 实现（未标注文件）",
+      "source_node_ids": [
+        "algorithmmodule:2405.03370:antibody_fine_tuning",
+        "codefunction:stonewiseaidrugdesign_lingo3dmol:model_module_py:encoder"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "symbol_exists",
+        "target": "codefunction:stonewiseaidrugdesign_lingo3dmol:model_module_py:encoder",
+        "signature": "Encoder",
+        "file": "",
+        "lineno": 24,
+        "stub_allowed": false
+      },
+      "required": true,
+      "provenance": "extracted",
+      "relation_hint": "MODULE_IMPLEMENTED_BY",
+      "parent_id": "algorithmstep:2305.10133:0:pocket_ligand_transformer_encoder",
+      "path": "paper:2405.03370/algorithm:lingo3dmol/algorithmstep:2305.10133:0:pocket_ligand_transformer_encoder",
+      "depth": 3,
+      "weight": 2.0
+    },
+    {
+      "id": "sau:240503370:code_grounding:010",
+      "kind": "code_grounding",
+      "statement": "「Antibody Fine-tuning」由代码符号 Decoder 实现（未标注文件）",
+      "source_node_ids": [
+        "algorithmmodule:2405.03370:antibody_fine_tuning",
+        "codefunction:stonewiseaidrugdesign_lingo3dmol:model_module_py:decoder"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "symbol_exists",
+        "target": "codefunction:stonewiseaidrugdesign_lingo3dmol:model_module_py:decoder",
+        "signature": "Decoder",
+        "file": "",
+        "lineno": 91,
+        "stub_allowed": false
+      },
+      "required": true,
+      "provenance": "extracted",
+      "relation_hint": "MODULE_IMPLEMENTED_BY",
+      "parent_id": "algorithmstep:2305.10133:2:fsmiles_and_local_coordinates_decoder_d2d",
+      "path": "paper:2405.03370/algorithm:lingo3dmol/algorithmstep:2305.10133:2:fsmiles_and_local_coordinates_decoder_d2d",
+      "depth": 3,
+      "weight": 2.0
+    },
+    {
+      "id": "sau:240503370:method:008",
+      "kind": "method",
+      "statement": "AntiFold 的模块「CDR Masking Strategy」实现 向单个CDR残基加权掩码（inputs=['Antibody structure with CDR regions'] → outputs=['Masked sequence for training']）",
+      "source_node_ids": [
+        "algorithm:antifold",
+        "algorithmmodule:2405.03370:cdr_masking_strategy"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "module_implemented",
+        "target": "algorithmmodule:2405.03370:cdr_masking_strategy",
+        "algorithm": "algorithm:antifold",
+        "mechanism": "向单个CDR残基加权掩码",
+        "inputs": [
+          "Antibody structure with CDR regions"
+        ],
+        "outputs": [
+          "Masked sequence for training"
+        ],
+        "formula": ""
+      },
+      "required": true,
+      "provenance": "derived",
+      "relation_hint": "PROPOSES_METHOD|HAS_MODULE",
+      "parent_id": "algorithmmodule:2405.03370:cdr_masking_strategy",
+      "path": "paper:2405.03370/algorithm:antifold/algorithmmodule:2405.03370:cdr_masking_strategy",
+      "depth": 3,
+      "weight": 2.0
+    },
+    {
+      "id": "sau:240503370:code_grounding:011",
+      "kind": "code_grounding",
+      "statement": "「CDR Masking Strategy」由代码符号 get_imgt_mask 实现（未标注文件）",
+      "source_node_ids": [
+        "algorithmmodule:2405.03370:cdr_masking_strategy",
+        "codefunction:oxpig_antifold:antifold_antiscripts_py:get_imgt_mask"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "symbol_exists",
+        "target": "codefunction:oxpig_antifold:antifold_antiscripts_py:get_imgt_mask",
+        "signature": "get_imgt_mask",
+        "file": "",
+        "lineno": 734,
+        "stub_allowed": false
+      },
+      "required": true,
+      "provenance": "extracted",
+      "relation_hint": "MODULE_IMPLEMENTED_BY",
+      "parent_id": "algorithmstep:2405.03370:0:imgt_weighted_masking",
+      "path": "paper:2405.03370/algorithm:antifold/algorithmstep:2405.03370:0:imgt_weighted_masking",
+      "depth": 3,
+      "weight": 2.0
+    },
+    {
+      "id": "sau:240503370:code_grounding:012",
+      "kind": "code_grounding",
+      "statement": "「CDR Masking Strategy」由代码符号 parse_regions 实现（未标注文件）",
+      "source_node_ids": [
+        "algorithmmodule:2405.03370:cdr_masking_strategy",
+        "codefunction:oxpig_antifold:antifold_antiscripts_py:parse_regions"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "symbol_exists",
+        "target": "codefunction:oxpig_antifold:antifold_antiscripts_py:parse_regions",
+        "signature": "parse_regions",
+        "file": "",
+        "lineno": 709,
+        "stub_allowed": false
+      },
+      "required": true,
+      "provenance": "extracted",
+      "relation_hint": "MODULE_IMPLEMENTED_BY",
+      "parent_id": "algorithmstep:2405.03370:0:imgt_weighted_masking",
+      "path": "paper:2405.03370/algorithm:antifold/algorithmstep:2405.03370:0:imgt_weighted_masking",
+      "depth": 3,
+      "weight": 2.0
+    },
+    {
+      "id": "sau:240503370:method:009",
+      "kind": "method",
+      "statement": "AntiFold 的模块「Inverse Folding Prediction」实现 计算序列的逆折叠概率（inputs=['Antibody structure (with', 'without antigen)'] → outputs=['Sequence log-likelihoods']）",
+      "source_node_ids": [
+        "algorithm:antifold",
+        "algorithmmodule:2405.03370:inverse_folding_prediction"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "module_implemented",
+        "target": "algorithmmodule:2405.03370:inverse_folding_prediction",
+        "algorithm": "algorithm:antifold",
+        "mechanism": "计算序列的逆折叠概率",
+        "inputs": [
+          "Antibody structure (with",
+          "without antigen)"
+        ],
+        "outputs": [
+          "Sequence log-likelihoods"
+        ],
+        "formula": ""
+      },
+      "required": true,
+      "provenance": "derived",
+      "relation_hint": "PROPOSES_METHOD|HAS_MODULE",
+      "parent_id": "algorithmmodule:2405.03370:inverse_folding_prediction",
+      "path": "paper:2405.03370/algorithm:antifold/algorithmmodule:2405.03370:inverse_folding_prediction",
+      "depth": 3,
+      "weight": 2.0
+    },
+    {
+      "id": "sau:240503370:code_grounding:013",
+      "kind": "code_grounding",
+      "statement": "「Inverse Folding Prediction」由代码符号 predict 实现（未标注文件）",
+      "source_node_ids": [
+        "algorithmmodule:2405.03370:inverse_folding_prediction",
+        "codefunction:jkwang93_amp_designer:amp_gpt_generator_py:predict"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "symbol_exists",
+        "target": "codefunction:jkwang93_amp_designer:amp_gpt_generator_py:predict",
+        "signature": "predict",
+        "file": "",
+        "lineno": 43,
+        "stub_allowed": false
+      },
+      "required": true,
+      "provenance": "extracted",
+      "relation_hint": "MODULE_IMPLEMENTED_BY",
+      "parent_id": "algorithmstep:2407.12296:0:amp_gpt_decoder_backbone",
+      "path": "paper:2405.03370/algorithm:amp_designer/algorithmstep:2407.12296:0:amp_gpt_decoder_backbone",
+      "depth": 3,
+      "weight": 2.0
+    },
+    {
+      "id": "sau:240503370:code_grounding:014",
+      "kind": "code_grounding",
+      "statement": "「Inverse Folding Prediction」由代码符号 forward 实现（未标注文件）",
+      "source_node_ids": [
+        "algorithmmodule:2405.03370:inverse_folding_prediction",
+        "codefunction:raulorteg_molminer:molminer_models_py:forward"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "symbol_exists",
+        "target": "codefunction:raulorteg_molminer:molminer_models_py:forward",
+        "signature": "forward",
+        "file": "",
+        "lineno": 53,
+        "stub_allowed": false
+      },
+      "required": true,
+      "provenance": "extracted",
+      "relation_hint": "MODULE_IMPLEMENTED_BY",
+      "parent_id": "algorithmstep:2411.06608:1:geometry_biased_attention",
+      "path": "paper:2405.03370/algorithm:molminer/algorithmstep:2411.06608:1:geometry_biased_attention",
+      "depth": 3,
+      "weight": 2.0
+    },
+    {
+      "id": "sau:240503370:method:010",
+      "kind": "method",
+      "statement": "AntiFold 的模块「Affinity Ranking」实现 对变体分数进行排名归一化以评估结合亲和力（inputs=['Variant log-likelihoods'] → outputs=['Rank-normalized scores']）",
+      "source_node_ids": [
+        "algorithm:antifold",
+        "algorithmmodule:2405.03370:affinity_ranking"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "module_implemented",
+        "target": "algorithmmodule:2405.03370:affinity_ranking",
+        "algorithm": "algorithm:antifold",
+        "mechanism": "对变体分数进行排名归一化以评估结合亲和力",
+        "inputs": [
+          "Variant log-likelihoods"
+        ],
+        "outputs": [
+          "Rank-normalized scores"
+        ],
+        "formula": ""
+      },
+      "required": true,
+      "provenance": "derived",
+      "relation_hint": "PROPOSES_METHOD|HAS_MODULE",
+      "parent_id": "algorithmmodule:2405.03370:affinity_ranking",
+      "path": "paper:2405.03370/algorithm:antifold/algorithmmodule:2405.03370:affinity_ranking",
+      "depth": 3,
+      "weight": 2.0
+    },
+    {
+      "id": "sau:240503370:code_grounding:015",
+      "kind": "code_grounding",
+      "statement": "「Affinity Ranking」由代码符号 logits_to_seqprobs_list 实现（未标注文件）",
+      "source_node_ids": [
+        "algorithmmodule:2405.03370:affinity_ranking",
+        "codefunction:oxpig_antifold:antifold_antiscripts_py:logits_to_seqprobs_list"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "symbol_exists",
+        "target": "codefunction:oxpig_antifold:antifold_antiscripts_py:logits_to_seqprobs_list",
+        "signature": "logits_to_seqprobs_list",
+        "file": "",
+        "lineno": 232,
+        "stub_allowed": false
+      },
+      "required": true,
+      "provenance": "extracted",
+      "relation_hint": "MODULE_IMPLEMENTED_BY",
+      "parent_id": "algorithmstep:2405.03370:3:inverse_folding_sequence_scoring_and_logit_extra",
+      "path": "paper:2405.03370/algorithm:antifold/algorithmstep:2405.03370:3:inverse_folding_sequence_scoring_and_logit_extra",
+      "depth": 3,
+      "weight": 2.0
+    },
+    {
+      "id": "sau:240503370:protocol:000",
+      "kind": "protocol",
+      "statement": "antibody CDRH3 test set 的数据契约为 蛋白口袋+配体 → 3D 构象/对接分数，样本量 unknown，评测基准=True",
+      "source_node_ids": [
+        "benchmark:antibody_cdrh3_test_set",
+        "appcontract:benchmark_antibody_cdrh3_test_set"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "data_contract",
+        "target": "benchmark:antibody_cdrh3_test_set",
+        "input_form": "蛋白口袋+配体",
+        "output_form": "3D 构象/对接分数",
+        "n_samples": "unknown",
+        "is_evaluation": true,
+        "shape_probe": null
+      },
+      "required": true,
+      "provenance": "derived",
+      "relation_hint": "EVALUATED_ON|HAS_CONTRACT",
+      "parent_id": "benchmark:antibody_cdrh3_test_set",
+      "path": "paper:2405.03370/benchmark:antibody_cdrh3_test_set",
+      "depth": 2,
+      "weight": 2.0
+    },
+    {
+      "id": "sau:240503370:numeric:000",
+      "kind": "numeric",
+      "statement": "antibody CDRH3 test set 上 AntiFold on short CDRH3 loops (6-9 residues) 的 accuracy = 71.0%（方向=max）",
+      "source_node_ids": [
+        "benchmark:antibody_cdrh3_test_set",
+        "applb:benchmark_antibody_cdrh3_test_set:0",
+        "appmetric:accuracy"
+      ],
+      "evidence_ids": [
+        "appev:benchmark_antibody_cdrh3_test_set:0"
+      ],
+      "check": {
+        "op": "numeric_compare",
+        "target": "applb:benchmark_antibody_cdrh3_test_set:0",
+        "metric": "accuracy",
+        "value": "71.0",
+        "value_num": 71.0,
+        "unit": "%",
+        "direction": "max",
+        "direction_raw": "higher",
+        "direction_source": "",
+        "tolerance": 0.05
+      },
+      "required": true,
+      "provenance": "extracted",
+      "relation_hint": "HAS_ENTRY|USES_METRIC",
+      "parent_id": "benchmark:antibody_cdrh3_test_set",
+      "path": "paper:2405.03370/benchmark:antibody_cdrh3_test_set",
+      "depth": 2,
+      "weight": 2.0
+    },
+    {
+      "id": "sau:240503370:numeric:001",
+      "kind": "numeric",
+      "statement": "antibody CDRH3 test set 上 AntiFold on long CDRH3 loops (16-28 residues) 的 accuracy = 48.0%（方向=max）",
+      "source_node_ids": [
+        "benchmark:antibody_cdrh3_test_set",
+        "applb:benchmark_antibody_cdrh3_test_set:1",
+        "appmetric:accuracy"
+      ],
+      "evidence_ids": [
+        "appev:benchmark_antibody_cdrh3_test_set:1"
+      ],
+      "check": {
+        "op": "numeric_compare",
+        "target": "applb:benchmark_antibody_cdrh3_test_set:1",
+        "metric": "accuracy",
+        "value": "48.0",
+        "value_num": 48.0,
+        "unit": "%",
+        "direction": "max",
+        "direction_raw": "higher",
+        "direction_source": "",
+        "tolerance": 0.05
+      },
+      "required": false,
+      "provenance": "extracted",
+      "relation_hint": "HAS_ENTRY|USES_METRIC",
+      "parent_id": "benchmark:antibody_cdrh3_test_set",
+      "path": "paper:2405.03370/benchmark:antibody_cdrh3_test_set",
+      "depth": 2,
+      "weight": 1.0
+    },
+    {
+      "id": "sau:240503370:numeric:002",
+      "kind": "numeric",
+      "statement": "antibody CDRH3 test set 上 未标注模型 的 accuracy = 71.0%（方向=max）",
+      "source_node_ids": [
+        "benchmark:antibody_cdrh3_test_set",
+        "applb:benchmark_antibody_cdrh3_test_set:2",
+        "appmetric:accuracy"
+      ],
+      "evidence_ids": [
+        "appev:benchmark_antibody_cdrh3_test_set:2"
+      ],
+      "check": {
+        "op": "numeric_compare",
+        "target": "applb:benchmark_antibody_cdrh3_test_set:2",
+        "metric": "accuracy",
+        "value": "71.0",
+        "value_num": 71.0,
+        "unit": "%",
+        "direction": "max",
+        "direction_raw": "higher",
+        "direction_source": "",
+        "tolerance": 0.05
+      },
+      "required": false,
+      "provenance": "extracted",
+      "relation_hint": "HAS_ENTRY|USES_METRIC",
+      "parent_id": "benchmark:antibody_cdrh3_test_set",
+      "path": "paper:2405.03370/benchmark:antibody_cdrh3_test_set",
+      "depth": 2,
+      "weight": 1.0
+    },
+    {
+      "id": "sau:240503370:protocol:001",
+      "kind": "protocol",
+      "statement": "antibody CDRH3 test set 的数据契约为 unknown → unknown，样本量 unknown，评测基准=True",
+      "source_node_ids": [
+        "benchmark:canonical:antibody_cdrh3_test_set",
+        "appcontract:benchmark_canonical_antibody_cdrh3_test_set"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "data_contract",
+        "target": "benchmark:canonical:antibody_cdrh3_test_set",
+        "input_form": "unknown",
+        "output_form": "unknown",
+        "n_samples": "unknown",
+        "is_evaluation": true,
+        "shape_probe": null
+      },
+      "required": true,
+      "provenance": "derived",
+      "relation_hint": "EVALUATED_ON|HAS_CONTRACT",
+      "parent_id": "benchmark:canonical:antibody_cdrh3_test_set",
+      "path": "paper:2405.03370/benchmark:canonical:antibody_cdrh3_test_set",
+      "depth": 2,
+      "weight": 2.0
+    },
+    {
+      "id": "sau:240503370:protocol:002",
+      "kind": "protocol",
+      "statement": "D44.1 anti-lysozyme antibody variants 的数据契约为 序列 → 标量，样本量 2209，评测基准=True",
+      "source_node_ids": [
+        "benchmark:d44_1_anti_lysozyme_antibody_variants",
+        "appcontract:benchmark_d44_1_anti_lysozyme_antibody_variants"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "data_contract",
+        "target": "benchmark:d44_1_anti_lysozyme_antibody_variants",
+        "input_form": "序列",
+        "output_form": "标量",
+        "n_samples": "2209",
+        "is_evaluation": true,
+        "shape_probe": null
+      },
+      "required": true,
+      "provenance": "derived",
+      "relation_hint": "EVALUATED_ON|HAS_CONTRACT",
+      "parent_id": "benchmark:d44_1_anti_lysozyme_antibody_variants",
+      "path": "paper:2405.03370/benchmark:d44_1_anti_lysozyme_antibody_variants",
+      "depth": 2,
+      "weight": 2.0
+    },
+    {
+      "id": "sau:240503370:ordering:000",
+      "kind": "ordering",
+      "statement": "执行顺序：Inverse folding sequence scoring and logit extraction 必须早于 Temperature-controlled CDR sequence sampling（数据流 ['df_logits']）",
+      "source_node_ids": [
+        "algorithmstep:2405.03370:3:inverse_folding_sequence_scoring_and_logit_extra",
+        "algorithmstep:2405.03370:4:temperature_controlled_cdr_sequence_sampling"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "ordering",
+        "before": "algorithmstep:2405.03370:3:inverse_folding_sequence_scoring_and_logit_extra",
+        "after": "algorithmstep:2405.03370:4:temperature_controlled_cdr_sequence_sampling",
+        "all_predecessors": []
+      },
+      "required": true,
+      "provenance": "derived",
+      "relation_hint": "HAS_MODULE",
+      "parent_id": "algorithmstep:2405.03370:3:inverse_folding_sequence_scoring_and_logit_extra",
+      "path": "paper:2405.03370/algorithm:antifold/algorithmstep:2405.03370:3:inverse_folding_sequence_scoring_and_logit_extra",
+      "depth": 3,
+      "weight": 2.0
+    },
+    {
+      "id": "sau:240503370:ordering:001",
+      "kind": "ordering",
+      "statement": "执行顺序：Inverse folding sequence scoring and logit extraction 必须早于 Positional perplexity evaluation（数据流 ['df_logits']）",
+      "source_node_ids": [
+        "algorithmstep:2405.03370:3:inverse_folding_sequence_scoring_and_logit_extra",
+        "algorithmstep:2405.03370:5:positional_perplexity_evaluation"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "ordering",
+        "before": "algorithmstep:2405.03370:3:inverse_folding_sequence_scoring_and_logit_extra",
+        "after": "algorithmstep:2405.03370:5:positional_perplexity_evaluation",
+        "all_predecessors": []
+      },
+      "required": true,
+      "provenance": "derived",
+      "relation_hint": "HAS_MODULE",
+      "parent_id": "algorithmstep:2405.03370:3:inverse_folding_sequence_scoring_and_logit_extra",
+      "path": "paper:2405.03370/algorithm:antifold/algorithmstep:2405.03370:3:inverse_folding_sequence_scoring_and_logit_extra",
+      "depth": 3,
+      "weight": 2.0
+    }
+  ]
+}

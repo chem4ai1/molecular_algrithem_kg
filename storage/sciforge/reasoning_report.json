@@ -1,0 +1,407 @@
+{
+  "paper": {
+    "edb": 954,
+    "derived": 680,
+    "iterations": 2,
+    "rules": [
+      "R01_code_for_paper",
+      "R02_module_has_code",
+      "R03_paper_metric",
+      "R04_paper_benchmark",
+      "R05_paper_algorithm",
+      "R06_same_metric_observation",
+      "R07_comparable_papers",
+      "R08_paper_claim",
+      "R09_phase_before_base",
+      "R10_phase_before_recursive",
+      "R11_claim_grounded",
+      "R12_repro_chain",
+      "R13_code_generated_by",
+      "R14_result_of_run"
+    ],
+    "consistency": {
+      "low_confidence": [],
+      "reflexive": [],
+      "contradictions": [],
+      "iterations": 2,
+      "ok": true
+    },
+    "sample_derivations": [
+      {
+        "fact": [
+          "code_implements_paper",
+          "codefunction:raulorteg_molminer:molminer_generator_py:sample",
+          "paper:2411.06608"
+        ],
+        "rule_id": "R01_code_for_paper",
+        "premises": [
+          [
+            "implements_module",
+            "codefunction:raulorteg_molminer:molminer_generator_py:sample",
+            "algorithmstep:2411.06608:3:order_agnostic_autoregressive_rollout"
+          ],
+          [
+            "has_module_detail",
+            "paper:2411.06608",
+            "algorithmstep:2411.06608:3:order_agnostic_autoregressive_rollout"
+          ]
+        ],
+        "confidence": 0.9,
+        "iteration": 1,
+        "origin": "inferred",
+        "phase": ""
+      },
+      {
+        "fact": [
+          "code_implements_paper",
+          "codefunction:stonewiseaidrugdesign_lingo3dmol:model_module_py:encoder",
+          "paper:2305.10133"
+        ],
+        "rule_id": "R01_code_for_paper",
+        "premises": [
+          [
+            "implements_module",
+            "codefunction:stonewiseaidrugdesign_lingo3dmol:model_module_py:encoder",
+            "algorithmstep:2305.10133:0:pocket_ligand_transformer_encoder"
+          ],
+          [
+            "has_module_detail",
+            "paper:2305.10133",
+            "algorithmstep:2305.10133:0:pocket_ligand_transformer_encoder"
+          ]
+        ],
+        "confidence": 0.9,
+        "iteration": 1,
+        "origin": "inferred",
+        "phase": ""
+      },
+      {
+        "fact": [
+          "code_implements_paper",
+          "codefunction:raulorteg_molminer:molminer_processor_py:get_canonicalization_map",
+          "paper:2411.06608"
+        ],
+        "rule_id": "R01_code_for_paper",
+        "premises": [
+          [
+            "implements_module",
+            "codefunction:raulorteg_molminer:molminer_processor_py:get_canonicalization_map",
+            "algorithmstep:2411.06608:0:symmetry_aware_attachment_standardization"
+          ],
+          [
+            "has_module_detail",
+            "paper:2411.06608",
+            "algorithmstep:2411.06608:0:symmetry_aware_attachment_standardization"
+          ]
+        ],
+        "confidence": 0.9,
+        "iteration": 1,
+        "origin": "inferred",
+        "phase": ""
+      },
+      {
+        "fact": [
+          "code_implements_paper",
+          "codefunction:jkwang93_amp_designer:amp_gpt_generator_py:predict",
+          "paper:2407.12296"
+        ],
+        "rule_id": "R01_code_for_paper",
+        "premises": [
+          [
+            "implements_module",
+            "codefunction:jkwang93_amp_designer:amp_gpt_generator_py:predict",
+            "algorithmstep:2407.12296:0:amp_gpt_decoder_backbone"
+          ],
+          [
+            "has_module_detail",
+            "paper:2407.12296",
+            "algorithmstep:2407.12296:0:amp_gpt_decoder_backbone"
+          ]
+        ],
+        "confidence": 0.9,
+        "iteration": 1,
+        "origin": "inferred",
+        "phase": ""
+      },
+      {
+        "fact": [
+          "code_implements_paper",
+          "codefunction:raulorteg_molminer:molminer_models_py:forward",
+          "paper:2411.06608"
+        ],
+        "rule_id": "R01_code_for_paper",
+        "premises": [
+          [
+            "implements_module",
+            "codefunction:raulorteg_molminer:molminer_models_py:forward",
+            "algorithmstep:2411.06608:1:geometry_biased_attention"
+          ],
+          [
+            "has_module_detail",
+            "paper:2411.06608",
+            "algorithmstep:2411.06608:1:geometry_biased_attention"
+          ]
+        ],
+        "confidence": 0.9,
+        "iteration": 1,
+        "origin": "inferred",
+        "phase": ""
+      },
+      {
+        "fact": [
+          "code_implements_paper",
+          "codefunction:oxpig_antifold:antifold_antiscripts_py:parse_regions",
+          "paper:2405.03370"
+        ],
+        "rule_id": "R01_code_for_paper",
+        "premises": [
+          [
+            "implements_module",
+            "codefunction:oxpig_antifold:antifold_antiscripts_py:parse_regions",
+            "algorithmstep:2405.03370:0:imgt_weighted_masking"
+          ],
+          [
+            "has_module_detail",
+            "paper:2405.03370",
+            "algorithmstep:2405.03370:0:imgt_weighted_masking"
+          ]
+        ],
+        "confidence": 0.9,
+        "iteration": 1,
+        "origin": "inferred",
+        "phase": ""
+      }
+    ],
+    "by_rule": {
+      "R01_code_for_paper": 45,
+      "R02_module_has_code": 48,
+      "R03_paper_metric": 13,
+      "R04_paper_benchmark": 42,
+      "R05_paper_algorithm": 12,
+      "R06_same_metric_observation": 514,
+      "R07_comparable_papers": 2,
+      "R08_paper_claim": 4
+    },
+    "answerable": {
+      "代码→论文方法": [
+        "forward -> paper:2611.06237",
+        "make_so3lr -> paper:2611.06237",
+        "kspace_dispersion_options -> paper:2611.06237",
+        "kspace_electrostatics_options -> paper:2611.06237"
+      ],
+      "可比论文对": [
+        [
+          "comparable",
+          "paper:2301.11259",
+          "paper:2411.06608"
+        ],
+        [
+          "comparable",
+          "paper:2411.06608",
+          "paper:2301.11259"
+        ]
+      ],
+      "同指标观测数": 514
+    }
+  },
+  "process": {
+    "edb": 57,
+    "derived": 40,
+    "iterations": 8,
+    "rules": [
+      "R01_code_for_paper",
+      "R02_module_has_code",
+      "R03_paper_metric",
+      "R04_paper_benchmark",
+      "R05_paper_algorithm",
+      "R06_same_metric_observation",
+      "R07_comparable_papers",
+      "R08_paper_claim",
+      "R09_phase_before_base",
+      "R10_phase_before_recursive",
+      "R11_claim_grounded",
+      "R12_repro_chain",
+      "R13_code_generated_by",
+      "R14_result_of_run"
+    ],
+    "consistency": {
+      "low_confidence": [],
+      "reflexive": [],
+      "contradictions": [],
+      "iterations": 8,
+      "ok": true
+    },
+    "sample_derivations": [
+      {
+        "fact": [
+          "phase_before",
+          "runphase:repro_denovo_2602:codegen",
+          "runphase:repro_denovo_2602:claim"
+        ],
+        "rule_id": "R09_phase_before_base",
+        "premises": [
+          [
+            "precedes",
+            "runphase:repro_denovo_2602:codegen",
+            "runphase:repro_denovo_2602:reproduce"
+          ],
+          [
+            "precedes",
+            "runphase:repro_denovo_2602:reproduce",
+            "runphase:repro_denovo_2602:claim"
+          ]
+        ],
+        "confidence": 1.0,
+        "iteration": 1,
+        "origin": "inferred",
+        "phase": ""
+      },
+      {
+        "fact": [
+          "phase_before",
+          "runphase:repro_denovo_2602:reproduce",
+          "runphase:repro_denovo_2602:narrative"
+        ],
+        "rule_id": "R09_phase_before_base",
+        "premises": [
+          [
+            "precedes",
+            "runphase:repro_denovo_2602:reproduce",
+            "runphase:repro_denovo_2602:claim"
+          ],
+          [
+            "precedes",
+            "runphase:repro_denovo_2602:claim",
+            "runphase:repro_denovo_2602:narrative"
+          ]
+        ],
+        "confidence": 1.0,
+        "iteration": 1,
+        "origin": "inferred",
+        "phase": ""
+      },
+      {
+        "fact": [
+          "phase_before",
+          "runphase:repro_denovo_2602:claim",
+          "runphase:repro_denovo_2602:review"
+        ],
+        "rule_id": "R09_phase_before_base",
+        "premises": [
+          [
+            "precedes",
+            "runphase:repro_denovo_2602:claim",
+            "runphase:repro_denovo_2602:narrative"
+          ],
+          [
+            "precedes",
+            "runphase:repro_denovo_2602:narrative",
+            "runphase:repro_denovo_2602:review"
+          ]
+        ],
+        "confidence": 1.0,
+        "iteration": 1,
+        "origin": "inferred",
+        "phase": ""
+      },
+      {
+        "fact": [
+          "phase_before",
+          "runphase:repro_denovo_2602:method_lock",
+          "runphase:repro_denovo_2602:reproduce"
+        ],
+        "rule_id": "R09_phase_before_base",
+        "premises": [
+          [
+            "precedes",
+            "runphase:repro_denovo_2602:method_lock",
+            "runphase:repro_denovo_2602:codegen"
+          ],
+          [
+            "precedes",
+            "runphase:repro_denovo_2602:codegen",
+            "runphase:repro_denovo_2602:reproduce"
+          ]
+        ],
+        "confidence": 1.0,
+        "iteration": 1,
+        "origin": "inferred",
+        "phase": ""
+      },
+      {
+        "fact": [
+          "phase_before",
+          "runphase:repro_denovo_2602:question",
+          "runphase:repro_denovo_2602:method_lock"
+        ],
+        "rule_id": "R09_phase_before_base",
+        "premises": [
+          [
+            "precedes",
+            "runphase:repro_denovo_2602:question",
+            "runphase:repro_denovo_2602:proposal"
+          ],
+          [
+            "precedes",
+            "runphase:repro_denovo_2602:proposal",
+            "runphase:repro_denovo_2602:method_lock"
+          ]
+        ],
+        "confidence": 1.0,
+        "iteration": 1,
+        "origin": "inferred",
+        "phase": ""
+      },
+      {
+        "fact": [
+          "phase_before",
+          "runphase:repro_denovo_2602:proposal",
+          "runphase:repro_denovo_2602:codegen"
+        ],
+        "rule_id": "R09_phase_before_base",
+        "premises": [
+          [
+            "precedes",
+            "runphase:repro_denovo_2602:proposal",
+            "runphase:repro_denovo_2602:method_lock"
+          ],
+          [
+            "precedes",
+            "runphase:repro_denovo_2602:method_lock",
+            "runphase:repro_denovo_2602:codegen"
+          ]
+        ],
+        "confidence": 1.0,
+        "iteration": 1,
+        "origin": "inferred",
+        "phase": ""
+      }
+    ],
+    "by_rule": {
+      "R09_phase_before_base": 8,
+      "R10_phase_before_recursive": 28,
+      "R11_claim_grounded": 1,
+      "R12_repro_chain": 1,
+      "R13_code_generated_by": 1,
+      "R14_result_of_run": 1
+    },
+    "explanation": "- claim_grounded.C1 [inferred, conf=0.95, R11_claim_grounded]\n  - anchored_to.C1.C1 [asserted, conf=1.0]\n  - produced_by.C1.toy [asserted, conf=1.0]",
+    "phase_transitive_example": [
+      [
+        "phase_before",
+        "runphase:repro_denovo_2602:claim",
+        "runphase:repro_denovo_2602:publish"
+      ],
+      [
+        "phase_before",
+        "runphase:repro_denovo_2602:claim",
+        "runphase:repro_denovo_2602:review"
+      ],
+      [
+        "phase_before",
+        "runphase:repro_denovo_2602:codegen",
+        "runphase:repro_denovo_2602:claim"
+      ]
+    ]
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "paper_id": "paper:2411.06608",
+  "n_lineage": 3,
+  "n_verbatim": 0,
+  "n_bibliographic": 3,
+  "n_none": 0,
+  "lineage": [
+    {
+      "id": "appsrc:paper_2411_06608_paper_1802_04364",
+      "label": "Junction Tree Variational Autoencoder for Molecular Graph Generation",
+      "type": "SourcePaper",
+      "relation": "SITUATED_IN",
+      "source": "paper_out",
+      "kind": "",
+      "evidence_type": "bibliographic",
+      "verbatim_available": false,
+      "quotes": [],
+      "bibliography": {
+        "title": "Junction Tree Variational Autoencoder for Molecular Graph Generation",
+        "ref_paper": "paper:1802.04364",
+        "resolved": "library",
+        "miner": "source_papers"
+      },
+      "note": "引用标题是书目证据，不是论文正文中引用该工作的逐字句子；需回到 PDF 原文把 Evidence.quote 挂到 SourcePaper 的 SUPPORTED_BY 上"
+    },
+    {
+      "id": "appsrc:paper_2411_06608_paper_src_2411_06608_g_schnet",
+      "label": "G-SchNet",
+      "type": "SourcePaper",
+      "relation": "SITUATED_IN",
+      "source": "paper_out",
+      "kind": "",
+      "evidence_type": "bibliographic",
+      "verbatim_available": false,
+      "quotes": [],
+      "bibliography": {
+        "title": "G-SchNet",
+        "ref_paper": "paper:src:2411.06608:g_schnet",
+        "resolved": "library",
+        "miner": "source_papers"
+      },
+      "note": "引用标题是书目证据，不是论文正文中引用该工作的逐字句子；需回到 PDF 原文把 Evidence.quote 挂到 SourcePaper 的 SUPPORTED_BY 上"
+    },
+    {
+      "id": "appsrc:paper_2411_06608_paper_src_2411_06608_hiervae",
+      "label": "HierVAE",
+      "type": "SourcePaper",
+      "relation": "SITUATED_IN",
+      "source": "paper_out",
+      "kind": "",
+      "evidence_type": "bibliographic",
+      "verbatim_available": false,
+      "quotes": [],
+      "bibliography": {
+        "title": "HierVAE",
+        "ref_paper": "paper:src:2411.06608:hiervae",
+        "resolved": "library",
+        "miner": "source_papers"
+      },
+      "note": "引用标题是书目证据，不是论文正文中引用该工作的逐字句子；需回到 PDF 原文把 Evidence.quote 挂到 SourcePaper 的 SUPPORTED_BY 上"
+    }
+  ],
+  "remedy": "Stage2/Stage3 抽取 related_work 段落时保存引文原句，建成 Evidence(kind='citation', quote=...) 并以 SUPPORTED_BY 连到 SourcePaper；本模块会自动升级为 verbatim_quote。"
+}

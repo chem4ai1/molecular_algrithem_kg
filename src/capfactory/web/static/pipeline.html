@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>CapFactory · Pipeline</title>
+<link rel="stylesheet" href="/static/app.css" />
+<style>
+  .dag{display:flex;align-items:stretch;gap:0;overflow-x:auto;padding:26px 4px 10px}
+  .node{flex:0 0 210px;background:var(--panel2);border:1px solid var(--line);
+    border-radius:13px;padding:15px;cursor:pointer;transition:.16s;position:relative}
+  .node:hover{border-color:#4a5a86;transform:translateY(-2px)}
+  .node.cur{border-color:var(--accent);box-shadow:0 0 0 1px rgba(110,231,200,.25)}
+  .node.off{opacity:.55;cursor:default}
+  .node .no{font:10px/1 var(--mono);color:var(--muted);letter-spacing:1.6px}
+  .node h3{margin:8px 0 5px;font-size:15px}
+  .node .d{color:var(--muted);font-size:11px;min-height:32px}
+  .arrow{flex:0 0 40px;display:flex;align-items:center;justify-content:center;color:#3a4a72}
+  .detail{margin-top:16px;display:grid;grid-template-columns:1.1fr .9fr;gap:14px}
+  @media(max-width:1000px){.detail{grid-template-columns:1fr}}
+  .box{background:var(--panel2);border:1px solid var(--line);border-radius:11px;padding:14px}
+  .box h4{margin:0 0 8px;font-size:12px;color:var(--muted);font-weight:500;letter-spacing:.4px}
+  .live{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+  .live span{font-size:11px;background:#0f1830;border:1px solid var(--line);
+    border-radius:7px;padding:4px 9px;color:var(--muted)}
+</style>
+</head>
+<body>
+<header>
+  <div><h1>Pipeline</h1><div class="sub">论文处理长 DAG · 当前开放「论文抽取」</div></div>
+  <div class="crumb"><a href="/">← 主界面</a><a class="cur" href="/pipeline">Pipeline</a>
+    <a href="/pipeline/extract">论文抽取</a><a href="/data">数据</a></div>
+</header>
+<main>
+  <section class="panel">
+    <h2>阶段 DAG</h2><p class="hint">点阶段看输入 / 输出 / 门；已完成阶段可直接进入</p>
+    <div class="dag" id="dag"></div>
+    <div class="detail" id="detail"></div>
+  </section>
+</main>
+<script>
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??'').replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+let STAGES=[], CUR=0;
+const STATE={done:['已完成','done'],ready:['可运行','done'],blocked:['已阻断','plan'],planned:['未开放','plan']};
+async function boot(){
+  const d=await (await fetch('/api/v6/pipeline/stages')).json();
+  STAGES=d.stages||[]; render();
+}
+function render(){
+  $('#dag').innerHTML=STAGES.map((s,i)=>`
+    <div class="node ${i===CUR?'cur':''} ${s.state==='planned'?'off':''}" data-i="${i}">
+      <div class="no">${String(s.order).padStart(2,'0')}</div>
+      <h3>${esc(s.label)}</h3>
+      <div class="d">${esc(s.output).slice(0,54)}…</div>
+      <div style="margin-top:9px"><span class="pill ${STATE[s.state][1]}">${STATE[s.state][0]}</span></div>
+    </div>${i<STAGES.length-1?'<div class="arrow">→</div>':''}`).join('');
+  document.querySelectorAll('.node').forEach(e=>e.onclick=()=>{CUR=+e.dataset.i;render();});
+  const s=STAGES[CUR]||{};
+  $('#detail').innerHTML=`
+    <div class="box"><h4>输入</h4><div class="kv"><b>${esc(s.input)}</b></div>
+      <h4 style="margin-top:14px">输出</h4><div class="kv"><b>${esc(s.output)}</b></div></div>
+    <div class="box"><h4>门（判定权在规则）</h4><div class="kv"><b>${esc(s.gate)}</b></div>
+      <div class="live">${s.route
+        ? `<a href="${s.route}"><button class="primary">进入${esc(s.label)}</button></a>`
+        : `<button disabled>待开放</button>`}
+        <a href="/relations"><button class="ghost">看关系</button></a></div>
+      <h4 style="margin-top:16px">阶段状态</h4>
+      <div class="kv"><span>id</span><b>${esc(s.id)}</b><span>state</span><b>${esc(s.state)}${s.state_note?'（'+esc(s.state_note)+'）':''}</b></div>
+    </div>`;
+}
+boot();
+</script>
+</body></html>

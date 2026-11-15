@@ -1,0 +1,46 @@
+{
+  "n_algorithms": 34,
+  "by_family": {
+    "fragment": 1,
+    "vae": 1,
+    "ml_potential": 6,
+    "classical_forcefield": 2,
+    "inverse_folding": 4,
+    "peptide_lm": 5,
+    "classifier_guidance": 1,
+    "wetlab": 1,
+    "instruction_tuning": 2,
+    "rnn": 1,
+    "autoregressive": 3,
+    "geometric_gnn": 1,
+    "diffusion": 1,
+    "general_lm": 4,
+    "speculative_sampling": 1
+  },
+  "by_task_type": {
+    "molecule_generation": 5,
+    "forcefield_simulation": 8,
+    "sequence_design": 12,
+    "classifier_screening": 1,
+    "wetlab_baseline": 1,
+    "structure_docking": 1,
+    "instruction_multitask": 1,
+    "representation_pretrain": 4,
+    "sampling_acceleration": 1
+  },
+  "changed_family": [],
+  "changed_task": [
+    {
+      "name": "Huang et al. RNN",
+      "from": "molecule_optimization",
+      "to": "sequence_design"
+    }
+  ],
+  "index": {
+    "ok": true,
+    "backend": "bge-m3+VectorStore",
+    "n_items": 34,
+    "n_new_vectors": 0,
+    "path": "storage_cf/sciforge/algorithm_search_index.json"
+  }
+}

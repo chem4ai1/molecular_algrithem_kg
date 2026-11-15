@@ -1,0 +1,62 @@
+{
+  "paper_id": "paper:2411.06608",
+  "arxiv_id": "2411.06608",
+  "spec_hash": "sha256:b3562d3f03436c3299655e49ceb53223bd4c8ab01e9e1b25cd9c91523f57e4fa",
+  "effort": "full",
+  "executable": false,
+  "blocking": [
+    "torch 不可用：ImportError: /home/zengshuxin/anaconda3/lib/python3.12/site-packages/torch/lib/libtorch_cuda.so: undefined symbol: ncclCommWindowDeregister",
+    "缺 rdkit（分子生成类论文必需）",
+    "数据集尚未下载并校验 sha256",
+    "训练配置未确认：repo_url"
+  ],
+  "n_gpus": 3,
+  "gpu_free": [
+    {
+      "index": "1",
+      "name": "NVIDIA H100 PCIe",
+      "memory_total_mib": "81559",
+      "memory_used_mib": "2563"
+    },
+    {
+      "index": "2",
+      "name": "NVIDIA H100 PCIe",
+      "memory_total_mib": "81559",
+      "memory_used_mib": "5"
+    }
+  ],
+  "torch": {
+    "ok": false,
+    "error": "ImportError: /home/zengshuxin/anaconda3/lib/python3.12/site-packages/torch/lib/libtorch_cuda.so: undefined symbol: ncclCommWindowDeregister"
+  },
+  "modules": {
+    "numpy": true,
+    "pandas": true,
+    "scipy": true,
+    "rdkit": false,
+    "torch": true,
+    "torch_geometric": false,
+    "transformers": true
+  },
+  "data_root": {
+    "path": "/home/zengshuxin/data",
+    "exists": true,
+    "n_files": 441,
+    "bytes": 1894514203,
+    "top_level": [
+      "paper"
+    ]
+  },
+  "n_datasets": 6,
+  "next_actions": [
+    "新建隔离 venv/conda 并安装与 CUDA 驱动匹配的 PyTorch（修复 NCCL 符号）",
+    "安装 rdkit / torch_geometric 等论文依赖并冻结 env.lock",
+    "确认原仓库 commit 与训练入口，补全 TRAIN_PLAN.config 全部字段",
+    "通过镜像下载数据集到 data_root/<arxiv>/<benchmark>/，登记 sha256",
+    "先跑 smoke，再 subset，最后 full；每阶段写事件与三哈希"
+  ],
+  "files": [
+    "TRAIN_FEASIBILITY.json",
+    "TRAIN_PLAN.json"
+  ]
+}

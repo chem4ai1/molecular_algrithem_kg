@@ -1,0 +1,45 @@
+{
+  "paper_id": "paper:2405.03370",
+  "lineage": [
+    {
+      "id": "algorithm:esm_if1",
+      "label": "ESM-IF1",
+      "type": "Algorithm",
+      "relation": "SUBCLASS_OF",
+      "source": "algorithm_subclass",
+      "direction": "out",
+      "kind": "extends",
+      "node_type": "Algorithm",
+      "category": "baseline",
+      "quote": "",
+      "arxiv_id": "",
+      "evidence_available": false
+    },
+    {
+      "id": "algorithm:abmpnn",
+      "label": "AbMPNN",
+      "type": "Algorithm",
+      "relation": "RELATED_TO",
+      "source": "paper_out",
+      "kind": "",
+      "node_type": "Algorithm",
+      "category": "context",
+      "quote": "",
+      "arxiv_id": "",
+      "evidence_available": false
+    },
+    {
+      "id": "algorithm:proteinmpnn",
+      "label": "ProteinMPNN",
+      "type": "Algorithm",
+      "relation": "RELATED_TO",
+      "source": "paper_out",
+      "kind": "",
+      "node_type": "Algorithm",
+      "category": "context",
+      "quote": "",
+      "arxiv_id": "",
+      "evidence_available": false
+    }
+  ]
+}

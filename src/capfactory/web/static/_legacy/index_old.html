@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CapFactory · 算法能力工厂</title>
+<style>
+  :root{
+    --bg:#f5f7fb; --panel:#ffffff; --ink:#13202f; --muted:#63748b; --line:#e2e8f2;
+    --brand:#1f4fd8; --brand-soft:#eaf0ff; --ok:#0f8a5f; --warn:#b4770a; --bad:#c0392b;
+    --cap:#1f4fd8; --paper:#7b5bd6; --task:#0e9f9f; --dataset:#c98b28; --metric:#6b7c93;
+    --artifact:#0f8a5f; --lesson:#c0392b; --direction:#d4562a;
+    --shadow:0 1px 2px rgba(16,32,52,.06),0 8px 24px rgba(16,32,52,.06);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:14px/1.55 "Segoe UI","PingFang SC","Microsoft YaHei",system-ui,sans-serif}
+  header{position:sticky;top:0;z-index:20;background:rgba(245,247,251,.88);
+    backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .wrap{max-width:1360px;margin:0 auto;padding:0 22px}
+  .topbar{display:flex;align-items:center;gap:18px;padding:14px 0}
+  .logo{font-weight:700;font-size:17px;letter-spacing:.2px;display:flex;align-items:center;gap:9px}
+  .logo .dot{width:10px;height:10px;border-radius:3px;background:var(--brand);box-shadow:0 0 0 4px var(--brand-soft)}
+  .logo small{font-weight:400;color:var(--muted);font-size:12px}
+  .chips{display:flex;gap:8px;margin-left:auto;flex-wrap:wrap}
+  .chip{background:var(--panel);border:1px solid var(--line);border-radius:999px;
+    padding:5px 11px;font-size:12px;color:var(--muted);box-shadow:var(--shadow)}
+  .chip b{color:var(--ink);font-size:13px;margin-left:4px}
+  nav{display:flex;gap:4px;padding-bottom:10px;flex-wrap:wrap}
+  nav button{border:0;background:transparent;padding:8px 13px;border-radius:9px;cursor:pointer;
+    color:var(--muted);font-size:13.5px;font-weight:500}
+  nav button:hover{background:#eaeff8;color:var(--ink)}
+  nav button.on{background:var(--brand);color:#fff;box-shadow:0 4px 12px rgba(31,79,216,.25)}
+  main{padding:22px 0 70px}
+  section{display:none}
+  section.on{display:block}
+  .grid{display:grid;gap:16px}
+  .cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .cols-4{grid-template-columns:repeat(4,minmax(0,1fr))}
+  @media(max-width:1000px){.cols-3,.cols-4{grid-template-columns:1fr 1fr}}
+  @media(max-width:700px){.cols-2,.cols-3,.cols-4{grid-template-columns:1fr}}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:14px;
+    padding:16px 18px;box-shadow:var(--shadow)}
+  .card h3{margin:0 0 10px;font-size:14px;letter-spacing:.2px}
+  .card h3 span{color:var(--muted);font-weight:400;font-size:12px;margin-left:6px}
+  .kpi{font-size:26px;font-weight:700;line-height:1.15}
+  .kpi small{font-size:12px;color:var(--muted);font-weight:400;display:block;margin-top:4px}
+  .bar{height:6px;background:#eef2f9;border-radius:4px;overflow:hidden;margin-top:9px}
+  .bar i{display:block;height:100%;background:linear-gradient(90deg,#3b6fe8,#1f4fd8)}
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{color:var(--muted);font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.4px}
+  tr:hover td{background:#fafbfe}
+  .tag{display:inline-block;padding:2px 8px;border-radius:6px;font-size:11.5px;
+    background:var(--brand-soft);color:var(--brand);margin:2px 4px 2px 0}
+  .tag.gray{background:#eef1f6;color:var(--muted)}
+  .tag.ok{background:#e6f6ef;color:var(--ok)}
+  .tag.warn{background:#fdf3e0;color:var(--warn)}
+  .tag.bad{background:#fdecea;color:var(--bad)}
+  .btn{border:1px solid var(--line);background:var(--panel);padding:8px 14px;border-radius:9px;
+    cursor:pointer;font-size:13px;color:var(--ink)}
+  .btn:hover{border-color:#c7d3e6;background:#f8faff}
+  .btn.primary{background:var(--brand);border-color:var(--brand);color:#fff}
+  .btn.primary:hover{background:#1a44bd}
+  .btn:disabled{opacity:.55;cursor:not-allowed}
+  input,select,textarea{width:100%;padding:9px 11px;border:1px solid var(--line);border-radius:9px;
+    font:inherit;color:var(--ink);background:#fff}
+  input:focus,textarea:focus,select:focus{outline:2px solid var(--brand-soft);border-color:#b9c8ea}
+  label{font-size:12px;color:var(--muted);display:block;margin:10px 0 5px}
+  .row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+  .muted{color:var(--muted)}
+  .mono{font-family:"Cascadia Mono",Consolas,monospace;font-size:12.5px}
+  pre{background:#0f1a2b;color:#d7e3f4;padding:14px;border-radius:11px;overflow:auto;
+    font:12.5px/1.5 "Cascadia Mono",Consolas,monospace;max-height:460px}
+  .logbox{background:#0f1a2b;color:#c9d7ea;border-radius:11px;padding:12px;height:260px;
+    overflow:auto;font:12px/1.6 "Cascadia Mono",Consolas,monospace}
+  .logbox .l{white-space:pre-wrap}
+  .logbox .lv-verify{color:#8fd3ff}.logbox .lv-repair{color:#ffd479}
+  .logbox .lv-done{color:#7ee2b8}.logbox .lv-error{color:#ff9b94}
+  #graphWrap{position:relative;background:linear-gradient(180deg,#fbfcff,#f2f6fd);
+    border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:var(--shadow)}
+  #graph{display:block;width:100%;height:620px;cursor:grab}
+  .legend{position:absolute;left:14px;bottom:12px;background:rgba(255,255,255,.9);
+    border:1px solid var(--line);border-radius:10px;padding:8px 10px;font-size:11.5px;color:var(--muted)}
+  .legend i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px}
+  .side{position:absolute;right:12px;top:12px;width:330px;max-height:560px;overflow:auto;
+    background:rgba(255,255,255,.97);border:1px solid var(--line);border-radius:12px;
+    padding:14px;box-shadow:var(--shadow);display:none}
+  .side.on{display:block}
+  .side h4{margin:0 0 8px;font-size:13px}
+  .side .close{position:absolute;right:10px;top:8px;cursor:pointer;color:var(--muted);border:0;background:none;font-size:16px}
+  .ev{border-left:2px solid #cfdcf5;padding:4px 0 4px 10px;margin:7px 0;color:#31425a;font-size:12.5px}
+  .split{display:grid;grid-template-columns:1.55fr 1fr;gap:16px}
+  @media(max-width:1000px){.split{grid-template-columns:1fr}}
+  .empty{padding:26px;text-align:center;color:var(--muted);font-size:13px}
+  .md h2{font-size:16px;margin:20px 0 8px;padding-bottom:6px;border-bottom:1px solid var(--line)}
+  .md h3{font-size:14px;margin:16px 0 6px;color:var(--brand)}
+  .md ul{padding-left:20px;margin:6px 0}
+  .md li{margin:3px 0}
+  .md table{margin:8px 0 14px}
+  .scroll{max-height:640px;overflow:auto}
+  .mini{font-size:12px;color:var(--muted)}
+  .pill{font-size:11px;padding:1px 7px;border-radius:99px;border:1px solid var(--line);color:var(--muted)}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="topbar">
+      <div class="logo"><span class="dot"></span>CapFactory<small>算法能力工厂 · 多肽药物研发</small></div>
+      <div class="chips" id="chips">
+        <span class="chip">论文<b id="k-papers">-</b></span>
+        <span class="chip">能力<b id="k-caps">-</b></span>
+        <span class="chip">已验证<b id="k-verified">-</b></span>
+        <span class="chip">图谱边<b id="k-edges">-</b></span>
+        <span class="chip">覆盖率<b id="k-cov">-</b></span>
+        <span class="chip" id="k-llm">模型<b>-</b></span>
+      </div>
+    </div>
+    <nav id="nav">
+      <button data-tab="overview" class="on">概览</button>
+      <button data-tab="papers">文献理解</button>
+      <button data-tab="caps">能力库</button>
+      <button data-tab="graph">能力图谱</button>
+      <button data-tab="pipeline">复刻流水线</button>
+      <button data-tab="research">研究方向</button>
+      <button data-tab="runs">运行记录</button>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <!-- 概览 -->
+  <section id="tab-overview" class="on">
+    <div class="grid cols-4" id="overviewKpis"></div>
+    <div class="split" style="margin-top:16px">
+      <div class="card">
+        <h3>能力覆盖度 <span>企业需求 × 已验证能力</span></h3>
+        <div id="coverageTable"></div>
+      </div>
+      <div class="card">
+        <h3>能力分布</h3>
+        <div id="taskDist"></div>
+      </div>
+    </div>
+    <div class="card" style="margin-top:16px">
+      <h3>闭环状态 <span>能力抽取 → 复刻 → 验证 → 沉淀</span></h3>
+      <div id="loopStatus"></div>
+    </div>
+  </section>
+
+  <!-- 文献 -->
+  <section id="tab-papers">
+    <div class="card"><h3>文献理解 <span>研究对象 / 背景 / 进展 / 局限</span></h3>
+      <div id="paperList"></div></div>
+  </section>
+
+  <!-- 能力库 -->
+  <section id="tab-caps">
+    <div class="card">
+      <h3>能力库 <span>点击查看证据与验证指标</span></h3>
+      <div class="row" style="margin-bottom:12px">
+        <input id="capSearch" placeholder="检索能力（如 toxicity prediction / AMP）" style="max-width:420px"/>
+        <button class="btn" onclick="loadCaps()">检索</button>
+        <span class="muted mini" id="capCount"></span>
+      </div>
+      <div class="scroll"><div id="capList"></div></div>
+    </div>
+  </section>
+
+  <!-- 图谱 -->
+  <section id="tab-graph">
+    <div class="row" style="margin-bottom:12px">
+      <button class="btn" onclick="loadGraph()">刷新图谱</button>
+      <span class="muted mini">滚轮缩放 · 拖拽节点 · 点击查看详情</span>
+    </div>
+    <div id="graphWrap">
+      <canvas id="graph"></canvas>
+      <div class="legend" id="legend"></div>
+      <div class="side" id="graphSide"></div>
+    </div>
+  </section>
+
+  <!-- 流水线 -->
+  <section id="tab-pipeline">
+    <div class="grid cols-3">
+      <div class="card">
+        <h3>① 能力抽取 <span>arXiv + GitHub</span></h3>
+        <label>检索式（每行一条）</label>
+        <textarea id="buildQueries" rows="3">abs:"peptide toxicity" AND abs:prediction
+abs:"antimicrobial peptide" AND abs:prediction</textarea>
+        <label>每式论文数</label>
+        <input id="buildMax" type="number" value="2" min="1" max="10"/>
+        <label>代码仓库（可选，匹配词|URL，每行一条）</label>
+        <textarea id="buildRepos" rows="2" placeholder="toxinpred|https://github.com/raghavagps/toxinpred3"></textarea>
+        <div class="row" style="margin-top:12px">
+          <button class="btn primary" id="btnBuild" onclick="startBuild()">开始抽取</button>
+          <span class="mini muted" id="buildHint"></span>
+        </div>
+      </div>
+      <div class="card">
+        <h3>② 能力复刻 <span>方案规划 → 代码生成 → 沙箱验证</span></h3>
+        <label>目标能力（名称或 ID）</label>
+        <input id="repCap" placeholder="留空则自动选择成熟度最高的能力"/>
+        <label>验证数据集（可选）</label>
+        <select id="repDataset"><option value="">自动选择</option></select>
+        <div class="row" style="margin-top:12px">
+          <button class="btn primary" id="btnRep" onclick="startReplicate()">开始复刻</button>
+        </div>
+        <div class="mini muted" style="margin-top:10px">生成代码与验证报告会写入 <span class="mono">storage_cf/workspace/runs/</span></div>
+      </div>
+      <div class="card">
+        <h3>③ 研究方向 <span>覆盖缺口 → 方向建议</span></h3>
+        <label>企业需求（每行一条，留空用内置）</label>
+        <textarea id="researchNeeds" rows="4" placeholder="多肽毒性预测&#10;抗菌肽活性预测"></textarea>
+        <div class="row" style="margin-top:12px">
+          <button class="btn primary" id="btnRes" onclick="startResearch()">生成方向</button>
+        </div>
+      </div>
+    </div>
+    <div class="card" style="margin-top:16px">
+      <h3>任务日志 <span id="jobIdLabel"></span></h3>
+      <div class="logbox" id="jobLog"><div class="l muted">尚未启动任务</div></div>
+      <div id="jobResult" style="margin-top:12px"></div>
+    </div>
+  </section>
+
+  <!-- 研究方向 -->
+  <section id="tab-research">
+    <div class="card"><h3>研究方向与缺口报告 <span id="reportPath" class="mini"></span></h3>
+      <div class="md" id="researchReport"><div class="empty">尚未生成，请到「复刻流水线」触发研究方向分析</div></div>
+    </div>
+  </section>
+
+  <!-- 运行记录 -->
+  <section id="tab-runs">
+    <div class="card"><h3>运行记录</h3><div id="runList"></div></div>
+  </section>
+</main>
+
+<script>
+const $ = (s, r=document) => r.querySelector(s);
+const $$ = (s, r=document) => Array.from(r.querySelectorAll(s));
+const TYPE_COLOR = {capability:'#1f4fd8', paper:'#7b5bd6', task:'#0e9f9f', dataset:'#c98b28',
+  metric:'#6b7c93', artifact:'#0f8a5f', lesson:'#c0392b', direction:'#d4562a'};
+const TYPE_LABEL = {capability:'能力', paper:'论文', task:'任务', dataset:'数据集',
+  metric:'指标', artifact:'工件', lesson:'经验', direction:'方向'};
+
+function esc(s){return String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+async function api(path, opt){
+  const r = await fetch(path, opt?{headers:{'Content-Type':'application/json'},...opt}:undefined);
+  if(!r.ok) throw new Error((await r.text()).slice(0,200));
+  return r.json();
+}
+function fmtPct(x){return (100*Number(x||0)).toFixed(0)+'%';}
+
+/* ---------------- 导航 ---------------- */
+function activate(tab){
+  $$('#nav button').forEach(x=>x.classList.toggle('on', x.dataset.tab===tab));
+  $$('section').forEach(s=>s.classList.remove('on'));
+  const sec = $('#tab-'+tab); if(sec) sec.classList.add('on');
+  if(tab==='graph') loadGraph();
+  if(tab==='caps') loadCaps();
+  if(tab==='papers') loadPapers();
+  if(tab==='research') loadResearch();
+  if(tab==='runs') loadRuns();
+  if(tab==='pipeline') loadDatasets();
+}
+$$('#nav button').forEach(b=>b.onclick=()=>{
+  history.replaceState(null,'','#'+b.dataset.tab);
+  activate(b.dataset.tab);
+});
+
+/* ---------------- 概览 ---------------- */
+let GRAPH_CACHE = null;
+async function loadStatus(){
+  const st = await api('/api/status');
+  const s = st.stats;
+  $('#k-papers').textContent = s.n_papers;
+  $('#k-caps').textContent = s.n_capabilities;
+  $('#k-verified').textContent = s.n_verified;
+  $('#k-edges').textContent = s.n_edges;
+  $('#k-llm').innerHTML = (st.llm.available? '<span style="color:#0f8a5f">在线</span>':'<span style="color:#c0392b">离线</span>') + `<b>${esc((st.llm.model||'').split('/').pop())}</b>`;
+  const kpis = [
+    ['能力节点', s.n_capabilities, `平均成熟度 ${(s.avg_maturity||0).toFixed(2)}`],
+    ['已验证能力', s.n_verified, `通过率 ${s.n_capabilities? fmtPct(s.n_verified/s.n_capabilities):'0%'}`],
+    ['论文', s.n_papers, `数据集 ${st.datasets.length} 个`],
+    ['图谱规模', s.n_edges, `节点 ${s.n_nodes}`],
+  ];
+  $('#overviewKpis').innerHTML = kpis.map(([t,v,sub])=>
+    `<div class="card"><div class="mini">${t}</div><div class="kpi">${v}<small>${sub}</small></div></div>`).join('');
+
+  const g = await api('/api/graph');
+  GRAPH_CACHE = g;
+  $('#k-cov').textContent = fmtPct(g.coverage.summary.coverage_rate);
+  $('#coverageTable').innerHTML = coverageHtml(g.coverage);
+  $('#taskDist').innerHTML = taskDistHtml(g);
+  $('#loopStatus').innerHTML = loopHtml(st, g);
+}
+function coverageHtml(cov){
+  if(!cov || !cov.needs.length) return '<div class="empty">暂无覆盖度数据</div>';
+  const rows = cov.needs.map(n=>{
+    const st = n.status==='covered'? '<span class="tag ok">已覆盖</span>'
+      : n.status==='partial'? '<span class="tag warn">部分</span>' : '<span class="tag bad">缺口</span>';
+    const top = n.matched[0];
+    return `<tr><td>${esc(n.need)}</td><td>${st}</td>
+      <td>${(100*n.relevance).toFixed(0)}%</td><td>${(100*n.maturity).toFixed(0)}%</td>
+      <td class="mini">${top? esc(top.name).slice(0,42) : '-'}</td></tr>`;
+  }).join('');
+  return `<table><thead><tr><th>需求</th><th>状态</th><th>相关度</th><th>成熟度</th><th>命中能力</th></tr></thead><tbody>${rows}</tbody></table>`;
+}
+function taskDistHtml(g){
+  const tasks = {};
+  g.nodes.filter(n=>n.type==='capability').forEach(n=>{const t=n.task||'unknown';tasks[t]=(tasks[t]||0)+1;});
+  const arr = Object.entries(tasks).sort((a,b)=>b[1]-a[1]).slice(0,8);
+  if(!arr.length) return '<div class="empty">暂无能力</div>';
+  const total = arr.reduce((s,a)=>s+a[1],0);
+  return arr.map(([t,c])=>`<div style="margin:9px 0">
+    <div class="row" style="justify-content:space-between"><span class="mini">${esc(t)}</span>
+      <span class="mini muted">${c} · ${(100*c/total).toFixed(0)}%</span></div>
+    <div class="bar"><i style="width:${Math.max(4,100*c/total)}%"></i></div></div>`).join('');
+}
+function loopHtml(st, g){
+  const s=st.stats, items=[
+    ['能力抽取', s.n_capabilities>0, `${s.n_papers} 篇论文 → ${s.n_capabilities} 条能力`],
+    ['方案规划', true, '多候选 + 加权评分（保真度/可行性/鲁棒性/成本）'],
+    ['代码复刻', g.nodes.filter(n=>n.type==='artifact').length>0, `已生成 ${g.nodes.filter(n=>n.type==='artifact').length} 个工件`],
+    ['自动验证', s.n_verified>0, `已验证 ${s.n_verified} 条能力`],
+    ['经验沉淀', (s.nodes.lesson||0)>0, `失败经验 ${s.nodes.lesson||0} 条`],
+  ];
+  return `<div class="grid cols-3">`+items.map(([t,ok,d])=>`<div style="padding:10px 12px;border:1px solid var(--line);border-radius:11px">
+    <div class="row"><span class="tag ${ok?'ok':'gray'}">${ok?'已完成':'待执行'}</span><b>${t}</b></div>
+    <div class="mini muted" style="margin-top:6px">${esc(d)}</div></div>`).join('')+`</div>`;
+}
+
+/* ---------------- 文献 ---------------- */
+async function loadPapers(){
+  const d = await api('/api/papers');
+  if(!d.items.length){$('#paperList').innerHTML='<div class="empty">暂无文献，请先在「复刻流水线」执行能力抽取</div>';return;}
+  $('#paperList').innerHTML = d.items.map(p=>`
+    <div style="border:1px solid var(--line);border-radius:12px;padding:14px;margin-bottom:12px">
+      <div class="row" style="justify-content:space-between">
+        <b style="font-size:14px">${esc(p.title)}</b>
+        <span class="pill">${p.year||'-'}</span>
+      </div>
+      <div class="mini muted" style="margin:6px 0">
+        ${p.arxiv_id?`<a href="https://arxiv.org/abs/${esc(p.arxiv_id)}" target="_blank">arXiv:${esc(p.arxiv_id)}</a>`:''}
+        ${p.repo_url?` · <a href="${esc(p.repo_url)}" target="_blank">代码仓库</a>`:''}
+      </div>
+      <div style="margin-top:8px"><span class="tag">研究对象</span> ${esc(p.research_object||'-')}</div>
+      <div style="margin-top:6px"><span class="tag gray">背景</span> ${esc(p.background||'-')}</div>
+      <div style="margin-top:6px"><span class="tag gray">进展</span> ${esc(p.progress||'-')}</div>
+      ${p.contributions.length? `<div style="margin-top:8px"><span class="tag gray">贡献</span><ul class="mini" style="margin:4px 0 0 18px">${p.contributions.map(c=>`<li>${esc(typeof c==='string'?c:JSON.stringify(c))}</li>`).join('')}</ul></div>`:''}
+      ${p.limitations.length? `<div style="margin-top:6px"><span class="tag warn">局限</span><ul class="mini" style="margin:4px 0 0 18px">${p.limitations.map(c=>`<li>${esc(typeof c==='string'?c:JSON.stringify(c))}</li>`).join('')}</ul></div>`:''}
+    </div>`).join('');
+}
+
+/* ---------------- 能力库 ---------------- */
+async function loadCaps(){
+  const q = $('#capSearch')?.value || '';
+  const d = await api('/api/capabilities?limit=100&q='+encodeURIComponent(q));
+  $('#capCount').textContent = `共 ${d.count} 条`;
+  if(!d.items.length){$('#capList').innerHTML='<div class="empty">暂无可能力，请先执行能力抽取</div>';return;}
+  $('#capList').innerHTML = `<table><thead><tr><th>能力</th><th>任务</th><th>置信度</th><th>成熟度</th><th>验证</th><th></th></tr></thead><tbody>`+
+    d.items.map(c=>`<tr>
+      <td><b>${esc(c.name)}</b><div class="mini muted">${esc(c.summary).slice(0,90)}</div></td>
+      <td class="mini">${esc(c.task)}</td>
+      <td>${(100*c.confidence).toFixed(0)}%</td>
+      <td><div class="bar" style="width:70px"><i style="width:${100*c.maturity}%"></i></div></td>
+      <td>${c.verified? `<span class="tag ok">通过 · AUC ${(c.metrics.roc_auc||0).toFixed(3)}</span>`:'<span class="tag gray">未验证</span>'}</td>
+      <td><button class="btn" onclick="showCap('${c.id}')">详情</button></td></tr>`).join('')+`</tbody></table>`;
+}
+async function showCap(id){
+  const d = await api('/api/capabilities/'+id);
+  const a = d.node.attrs;
+  const ev = (a.evidence||[]).map(e=>`<div class="ev">“${esc(e.quote)}”<div class="mini muted">${esc(e.locator||'')}</div></div>`).join('') || '<div class="mini muted">无证据</div>';
+  const met = a.metrics||[];
+  const ver = a.verification||{};
+  const html = `<div class="side on" id="capPanel"><button class="close" onclick="document.getElementById('capPanel').remove()">×</button>
+    <h4>${esc(d.node.label)}</h4>
+    <div class="mini muted">${esc(a.task||'')} · v${a.version||1} · 置信度 ${fmtPct(a.confidence)} · 成熟度 ${fmtPct(a.maturity)}</div>
+    <div style="margin-top:10px"><b class="mini">方法</b><div class="mini" style="margin-top:4px">${esc(a.method||'-').slice(0,1600)}</div></div>
+    <div style="margin-top:10px"><b class="mini">输入 / 输出</b><div class="mini" style="margin-top:4px">
+      ${(a.inputs||[]).map(i=>`${esc(i.name)}: ${esc(i.dtype)}`).join('、')||'-'} →
+      ${(a.outputs||[]).map(o=>`${esc(o.name)}: ${esc(o.dtype)}`).join('、')||'-'}</div></div>
+    <div style="margin-top:10px"><b class="mini">论文指标</b><div class="mini">${met.map(m=>`${esc(m.name)}${m.reported?': '+m.reported:''}`).join('、')||'-'}</div></div>
+    ${ver.passed!==undefined?`<div style="margin-top:10px"><b class="mini">复刻验证</b><div class="mini">
+      ${ver.passed?'<span class="tag ok">通过</span>':'<span class="tag bad">未通过</span>'} 综合分 ${(ver.score||0).toFixed(3)}<br>
+      ${Object.entries(ver.metrics||{}).map(([k,v])=>`${k}=${typeof v==='number'?v.toFixed(3):v}`).join(' · ')}</div></div>`:''}
+    <div style="margin-top:12px"><b class="mini">证据</b>${ev}</div>
+  </div>`;
+  const old = $('#capPanel'); if(old) old.remove();
+  $('#capList').insertAdjacentHTML('afterbegin', html);
+}
+
+/* ---------------- 图谱 ---------------- */
+let sim = {nodes:[],edges:[],running:false,scale:1,tx:0,ty:0};
+async function loadGraph(){
+  const g = await api('/api/graph'); GRAPH_CACHE = g;
+  buildSim(g);
+  $('#legend').innerHTML = Object.keys(TYPE_LABEL).map(t=>`<div><i style="background:${TYPE_COLOR[t]}"></i>${TYPE_LABEL[t]}</div>`).join('');
+}
+function buildSim(g){
+  const canvas = $('#graph'), dpr = window.devicePixelRatio||1;
+  const W = canvas.clientWidth, H = canvas.clientHeight;
+  canvas.width = W*dpr; canvas.height = H*dpr;
+  const ctx = canvas.getContext('2d'); ctx.setTransform(dpr,0,0,dpr,0,0);
+  const N = Math.max(g.nodes.length, 1);
+  const R0 = Math.min(W, H) * 0.32;
+  const nodes = g.nodes.map((n,i)=>({...n,
+    x: W/2 + Math.cos(2*Math.PI*i/N)*R0*(0.75+Math.random()*0.25),
+    y: H/2 + Math.sin(2*Math.PI*i/N)*R0*(0.75+Math.random()*0.25),
+    vx:0, vy:0, r: 5+Math.min(9,n.degree*0.7)}));
+  const idx = {}; nodes.forEach((n,i)=>idx[n.id]=i);
+  const edges = g.edges.map(e=>({s:idx[e.source],t:idx[e.target],type:e.type})).filter(e=>e.s!==undefined&&e.t!==undefined);
+  sim = {nodes,edges,W,H,ctx,dpr,scale:1,tx:0,ty:0,alpha:1};
+
+  // 力导向布局（Fruchterman-Reingold：斥力 k²/d，引力 d²/k，温度退火）
+  const K = Math.sqrt((W * H) / Math.max(nodes.length, 1)) * 0.72;
+  sim.temperature = K * 1.1;
+  function tick(){
+    const alpha = sim.alpha;
+    nodes.forEach(n=>{n.fx=0;n.fy=0});
+    for(let i=0;i<nodes.length;i++){
+      const a=nodes[i];
+      for(let j=i+1;j<nodes.length;j++){
+        const b=nodes[j];
+        let dx=a.x-b.x, dy=a.y-b.y;
+        let d=Math.sqrt(dx*dx+dy*dy);
+        if(d < 0.01){ dx=Math.random()-0.5; dy=Math.random()-0.5; d=0.01; }
+        // 斥力与节点重要性弱相关，避免大节点挤压小节点
+        const rep = (K*K/d) * (1 + 0.35*(a.r+b.r)/20);
+        const ux=dx/d, uy=dy/d;
+        a.fx+=ux*rep; a.fy+=uy*rep;
+        b.fx-=ux*rep; b.fy-=uy*rep;
+      }
+    }
+    edges.forEach(e=>{
+      const a=nodes[e.s], b=nodes[e.t];
+      let dx=b.x-a.x, dy=b.y-a.y;
+      let d=Math.sqrt(dx*dx+dy*dy)+0.01;
+      const att = (d*d/K) * 0.55;
+      const ux=dx/d, uy=dy/d;
+      a.fx+=ux*att; a.fy+=uy*att;
+      b.fx-=ux*att; b.fy-=uy*att;
+    });
+    const cx=W/2, cy=H/2;
+    nodes.forEach(n=>{
+      // 轻微向心，避免孤立节点漂到边缘
+      n.fx += (cx-n.x)*0.35; n.fy += (cy-n.y)*0.35;
+      const disp=Math.sqrt(n.fx*n.fx+n.fy*n.fy)||0.01;
+      const step=Math.min(disp, sim.temperature);
+      n.x += n.fx/disp*step;
+      n.y += n.fy/disp*step;
+      n.x = Math.max(28, Math.min(W-28, n.x));
+      n.y = Math.max(28, Math.min(H-28, n.y));
+    });
+    sim.temperature *= 0.975;
+    sim.alpha *= 0.985;
+    draw();
+    if(sim.temperature > 0.6 && sim.alpha > 0.02) requestAnimationFrame(tick);
+  }
+  function draw(){
+    const {ctx,W,H,nodes,edges,scale,tx,ty}=sim;
+    ctx.clearRect(0,0,W,H);
+    ctx.save(); ctx.translate(tx,ty); ctx.scale(scale,scale);
+    edges.forEach(e=>{
+      const a=nodes[e.s], b=nodes[e.t];
+      ctx.strokeStyle = e.type==='PROPOSES'?'rgba(123,91,214,.22)'
+        : e.type==='VERIFIED_BY'?'rgba(15,138,95,.45)'
+        : e.type==='EVALUATED_BY'?'rgba(107,124,147,.14)' : 'rgba(120,140,170,.20)';
+      ctx.lineWidth = (e.type==='SIMILAR_TO'?1.3:0.8)/Math.max(scale*0.8,0.6);
+      ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke();
+    });
+    nodes.forEach(n=>{
+      const c = TYPE_COLOR[n.type]||'#888';
+      if(n.type==='capability' && n.verified){
+        ctx.beginPath(); ctx.arc(n.x,n.y,n.r+3.5,0,Math.PI*2);
+        ctx.strokeStyle='rgba(15,138,95,.55)'; ctx.lineWidth=2; ctx.stroke();
+      }
+      if(n.type==='capability'){
+        ctx.beginPath(); ctx.arc(n.x,n.y,n.r+3,0,Math.PI*2);
+        ctx.fillStyle='rgba(31,79,216,.10)'; ctx.fill();
+      }
+      ctx.beginPath(); ctx.arc(n.x,n.y,n.r,0,Math.PI*2);
+      ctx.fillStyle=c; ctx.globalAlpha = n.type==='capability'? (0.55+0.45*(n.maturity||0)) : 0.85;
+      ctx.fill(); ctx.globalAlpha=1;
+      if(n.type==='capability'||n.type==='paper'||(n.type==='direction'&&n.degree>1)){
+        ctx.font='11px "Segoe UI","PingFang SC",sans-serif';
+        const text = n.label.length>22? n.label.slice(0,22)+'…' : n.label;
+        const w = ctx.measureText(text).width;
+        ctx.fillStyle='rgba(255,255,255,.82)';
+        ctx.fillRect(n.x+n.r+3, n.y-7, w+4, 13);
+        ctx.fillStyle='#2b3a4f';
+        ctx.fillText(text, n.x+n.r+5, n.y+3.5);
+      }
+    });
+    ctx.restore();
+  }
+  sim.draw = draw; sim.tick = tick;
+  let drag=null;
+  canvas.onmousedown = e=>{
+    const rect=canvas.getBoundingClientRect();
+    const mx=(e.clientX-rect.left-sim.tx)/sim.scale, my=(e.clientY-rect.top-sim.ty)/sim.scale;
+    drag = nodes.find(n=>Math.hypot(n.x-mx,n.y-my)<n.r+6) || null;
+    if(!drag){ sim.pan={x:e.clientX,y:e.clientY,tx:sim.tx,ty:sim.ty}; }
+    canvas.style.cursor='grabbing';
+  };
+  canvas.onmousemove = e=>{
+    const rect=canvas.getBoundingClientRect();
+    if(drag){
+      drag.x=(e.clientX-rect.left-sim.tx)/sim.scale;
+      drag.y=(e.clientY-rect.top-sim.ty)/sim.scale;
+      drag.vx=drag.vy=0; sim.alpha=Math.max(sim.alpha,0.18); draw();
+    } else if(sim.pan){
+      sim.tx=sim.pan.tx+(e.clientX-sim.pan.x); sim.ty=sim.pan.ty+(e.clientY-sim.pan.y); draw();
+    }
+  };
+  canvas.onmouseup = e=>{
+    if(drag && Math.hypot(drag.vx,drag.vy)<2) showNode(drag);
+    drag=null; sim.pan=null; canvas.style.cursor='grab';
+  };
+  canvas.onwheel = e=>{
+    e.preventDefault();
+    const rect=canvas.getBoundingClientRect();
+    const mx=e.clientX-rect.left, my=e.clientY-rect.top;
+    const f = e.deltaY<0? 1.12 : 1/1.12;
+    const ns = Math.max(0.35, Math.min(3, sim.scale*f));
+    sim.tx = mx - (mx-sim.tx)*(ns/sim.scale);
+    sim.ty = my - (my-sim.ty)*(ns/sim.scale);
+    sim.scale = ns; draw();
+  };
+  tick();
+}
+async function showNode(n){
+  const side=$('#graphSide');
+  if(n.type!=='capability'){ side.innerHTML=`<h4>${esc(n.label)}</h4><div class="mini muted">${TYPE_LABEL[n.type]||n.type}</div>`; side.classList.add('on'); return; }
+  const d = await api('/api/capabilities/'+n.id);
+  const a=d.node.attrs, ver=a.verification||{};
+  side.innerHTML=`<button class="close" onclick="this.parentNode.classList.remove('on')">×</button>
+    <h4>${esc(d.node.label)}</h4>
+    <div class="mini muted">${esc(a.task||'')} · 成熟度 ${fmtPct(a.maturity)} · 置信度 ${fmtPct(a.confidence)}</div>
+    <div class="mini" style="margin-top:8px">${esc(a.summary||'').slice(0,300)}</div>
+    ${ver.passed!==undefined?`<div style="margin-top:8px">${ver.passed?'<span class="tag ok">复刻已验证</span>':'<span class="tag bad">未通过</span>'}
+      <div class="mini">${Object.entries(ver.metrics||{}).map(([k,v])=>`${k}=${typeof v==='number'?v.toFixed(3):v}`).join(' · ')}</div></div>`:''}
+    <div class="mini muted" style="margin-top:8px">相邻节点</div>
+    <div>${(d.related||[]).slice(0,10).map(r=>`<span class="tag gray">${esc(r.label).slice(0,18)}</span>`).join('')}</div>
+    <div style="margin-top:8px;font-size:12px;color:#31425a">${esc(a.method||'').slice(0,420)}…</div>`;
+  side.classList.add('on');
+}
+
+/* ---------------- 流水线 ---------------- */
+let pollTimer=null;
+function jobLog(lines){$('#jobLog').innerHTML = lines.map(l=>`<div class="l lv-${l.level}">[${l.level}] ${esc(l.message)}</div>`).join('');$('#jobLog').scrollTop=1e9;}
+async function watchJob(id){
+  $('#jobIdLabel').textContent = '· '+id;
+  if(pollTimer) clearInterval(pollTimer);
+  pollTimer = setInterval(async ()=>{
+    const j = await api('/api/jobs/'+id);
+    jobLog(j.logs);
+    if(j.status!=='running'){
+      clearInterval(pollTimer); pollTimer=null;
+      ['btnBuild','btnRep','btnRes'].forEach(b=>{const el=$('#'+b); if(el) el.disabled=false;});
+      if(j.status==='failed'){
+        $('#jobResult').innerHTML = `<div class="card" style="border-color:#f3c9c4"><b style="color:#c0392b">任务失败</b><div class="mini mono" style="margin-top:6px">${esc(j.error)}</div></div>`;
+      } else {
+        renderJobResult(j);
+        loadStatus();
+      }
+    }
+  }, 1500);
+}
+function renderJobResult(j){
+  if(j.kind==='build'){
+    const r=j.result||{}, s=r.stats||{};
+    $('#jobResult').innerHTML=`<div class="card"><h3>抽取完成</h3>
+      <div class="mini">论文 ${(r.papers||[]).length} 篇 · 能力 ${s.n_capabilities||0} · 边 ${s.n_edges||0} · 用时 ${r.elapsed_s||0}s</div>
+      <div style="margin-top:8px">${(r.papers||[]).map(p=>`<span class="tag">${esc(p.title).slice(0,40)}</span>`).join('')}</div></div>`;
+  } else if(j.kind==='replicate'){
+    const r=j.result||{}, b=r.best||{};
+    const m=b.metrics||{};
+    $('#jobResult').innerHTML=`<div class="card"><h3>复刻完成 <span>${esc(r.capability_name||'')}</span></h3>
+      <div class="row"><span class="tag ${b.passed?'ok':'bad'}">${b.passed?'验证通过':'未通过'}</span>
+      <span class="tag gray">方案：${esc(b.plan||'')}</span><span class="tag gray">score ${(b.score||0).toFixed(3)}</span></div>
+      <table style="margin-top:10px"><thead><tr><th>指标</th><th>值</th></tr></thead><tbody>
+      ${Object.entries(m).map(([k,v])=>`<tr><td>${k}</td><td>${typeof v==='number'? v.toFixed(4): esc(v)}</td></tr>`).join('')}
+      </tbody></table>
+      <div class="mini muted" style="margin-top:8px">代码：<span class="mono">${esc(b.code_path||'')}</span></div>
+      <div class="row" style="margin-top:8px"><button class="btn" onclick="viewCode('${b.artifact_id||''}')">查看生成代码</button></div>
+      <div id="codeView"></div></div>`;
+  } else if(j.kind==='research'){
+    $('#jobResult').innerHTML=`<div class="card"><h3>方向分析完成</h3>
+      <div class="mini">缺口 ${j.result.coverage.summary.gap} 个 · 方向 ${(j.result.directions||[]).length} 条 · 报告：<span class="mono">${esc(j.result.report_path||'')}</span></div></div>`;
+    $('#nav button[data-tab="research"]').click();
+  }
+}
+async function viewCode(id){
+  if(!id) return;
+  const d = await api('/api/artifacts/'+id+'/code');
+  $('#codeView').innerHTML = `<pre>${esc(d.code)}</pre>`;
+}
+function setBusy(btn){const el=$('#'+btn); if(el) el.disabled=true;}
+async function startBuild(){
+  setBusy('btnBuild');
+  const queries = $('#buildQueries').value.split('\n').map(s=>s.trim()).filter(Boolean);
+  const repos = $('#buildRepos').value.split('\n').map(s=>s.trim()).filter(Boolean).map(line=>{
+    const [m,u]=line.split('|'); return {match:(m||'').trim(), url:(u||m||'').trim()};
+  });
+  try{
+    const {job_id} = await api('/api/jobs/build',{method:'POST',body:JSON.stringify({
+      queries, max_papers:Number($('#buildMax').value)||2, repos, fetch_code:true})});
+    watchJob(job_id);
+  }catch(e){alert(e.message); $('#btnBuild').disabled=false;}
+}
+async function startReplicate(){
+  setBusy('btnRep');
+  try{
+    const {job_id} = await api('/api/jobs/replicate',{method:'POST',body:JSON.stringify({
+      capability: $('#repCap').value.trim(), dataset: $('#repDataset').value||null})});
+    watchJob(job_id);
+  }catch(e){alert(e.message); $('#btnRep').disabled=false;}
+}
+async function startResearch(){
+  setBusy('btnRes');
+  const needs = $('#researchNeeds').value.split('\n').map(s=>s.trim()).filter(Boolean);
+  try{
+    const {job_id} = await api('/api/jobs/research',{method:'POST',body:JSON.stringify({needs:needs.length?needs:null})});
+    watchJob(job_id);
+  }catch(e){alert(e.message); $('#btnRes').disabled=false;}
+}
+async function loadDatasets(){
+  const d = await api('/api/datasets');
+  $('#repDataset').innerHTML = '<option value="">自动选择</option>' +
+    d.items.map(x=>`<option value="${esc(x.dataset_json||'')}">${esc(x.name)} (${x.n_total}, 正例率 ${fmtPct(x.positive_rate)})</option>`).join('');
+}
+
+/* ---------------- 研究方向报告 ---------------- */
+function mdToHtml(md){
+  const lines = md.split('\n'); let html='', inTable=false, inList=false;
+  const inline = s=>esc(s).replace(/\*\*(.+?)\*\*/g,'<b>$1</b>').replace(/`(.+?)`/g,'<code>$1</code>');
+  for(const raw of lines){
+    const line = raw.replace(/\r$/,'');
+    if(/^\|/.test(line)){
+      const cells = line.split('|').slice(1,-1).map(c=>c.trim());
+      if(/^\|[\s\-:|]+\|$/.test(line)){ continue; }
+      if(!inTable){ html+='<table>'; inTable=true; html+='<thead><tr>'+cells.map(c=>`<th>${inline(c)}</th>`).join('')+'</tr></thead><tbody>'; }
+      else html+='<tr>'+cells.map(c=>`<td>${inline(c)}</td>`).join('')+'</tr>';
+      continue;
+    } else if(inTable){ html+='</tbody></table>'; inTable=false; }
+    if(/^###\s/.test(line)){ if(inList){html+='</ul>';inList=false;} html+=`<h3>${inline(line.slice(4))}</h3>`; }
+    else if(/^##\s/.test(line)){ if(inList){html+='</ul>';inList=false;} html+=`<h2>${inline(line.slice(3))}</h2>`; }
+    else if(/^#\s/.test(line)){ if(inList){html+='</ul>';inList=false;} html+=`<h2>${inline(line.slice(2))}</h2>`; }
+    else if(/^\s*-\s/.test(line)){ if(!inList){html+='<ul>';inList=true;} html+=`<li>${inline(line.replace(/^\s*-\s/,''))}</li>`; }
+    else if(line.trim()===''){ if(inList){html+='</ul>';inList=false;} }
+    else { if(inList){html+='</ul>';inList=false;} html+=`<p>${inline(line)}</p>`; }
+  }
+  if(inList) html+='</ul>'; if(inTable) html+='</tbody></table>';
+  return html;
+}
+async function loadResearch(){
+  const d = await api('/api/reports/research');
+  $('#reportPath').textContent = d.path || '';
+  $('#researchReport').innerHTML = d.exists? mdToHtml(d.markdown) : '<div class="empty">尚未生成研究报告</div>';
+}
+
+/* ---------------- 运行记录 ---------------- */
+async function loadRuns(){
+  const d = await api('/api/runs');
+  if(!d.items.length){$('#runList').innerHTML='<div class="empty">暂无记录</div>';return;}
+  $('#runList').innerHTML=`<table><thead><tr><th>ID</th><th>类型</th><th>状态</th><th>摘要</th><th>开始</th></tr></thead><tbody>`+
+   d.items.map(r=>`<tr><td class="mono">${esc(r.id)}</td><td>${esc(r.kind)}</td>
+     <td>${r.status==='success'?'<span class="tag ok">成功</span>':r.status==='partial'?'<span class="tag warn">部分</span>':r.status==='running'?'<span class="tag">运行中</span>':'<span class="tag bad">失败</span>'}</td>
+     <td class="mini">${esc(r.summary||'')}</td><td class="mini">${esc((r.started_at||'').replace('T',' ').slice(0,19))}</td></tr>`).join('')+`</tbody></table>`;
+}
+
+loadStatus().then(()=>{
+  const h=(location.hash||'').replace('#','');
+  if(h && document.getElementById('tab-'+h)) activate(h);
+}).catch(e=>console.error(e));
+window.addEventListener('resize', ()=>{ if(GRAPH_CACHE && $('#tab-graph').classList.contains('on')) buildSim(GRAPH_CACHE); });
+</script>
+</body>
+</html>

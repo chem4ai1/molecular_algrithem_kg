@@ -1,0 +1,439 @@
+{
+  "canonicalize": {
+    "groups": 20,
+    "shared_nodes": 20,
+    "source": "rule_fallback",
+    "shared_by_2plus_papers": 1,
+    "groups_detail": [
+      {
+        "canonical_name": "ZINC",
+        "members": [
+          "ZINC",
+          "ZINC-15"
+        ],
+        "reason": "规则兜底：规范化名称互相包含（LLM 输出被截断）",
+        "modality": "",
+        "task_family": ""
+      },
+      {
+        "canonical_name": "SAPT10k",
+        "members": [
+          "SAPT10k"
+        ],
+        "reason": "规则兜底：规范化名称互相包含（LLM 输出被截断）",
+        "modality": "",
+        "task_family": ""
+      },
+      {
+        "canonical_name": "QUID",
+        "members": [
+          "QUID"
+        ],
+        "reason": "规则兜底：规范化名称互相包含（LLM 输出被截断）",
+        "modality": "",
+        "task_family": ""
+      },
+      {
+        "canonical_name": "JSCH-2005",
+        "members": [
+          "JSCH-2005"
+        ],
+        "reason": "规则兜底：规范化名称互相包含（LLM 输出被截断）",
+        "modality": "",
+        "task_family": ""
+      },
+      {
+        "canonical_name": "PLA15",
+        "members": [
+          "PLA15"
+        ],
+        "reason": "规则兜底：规范化名称互相包含（LLM 输出被截断）",
+        "modality": "",
+        "task_family": ""
+      },
+      {
+        "canonical_name": "TorsionNet500",
+        "members": [
+          "TorsionNet500"
+        ],
+        "reason": "规则兜底：规范化名称互相包含（LLM 输出被截断）",
+        "modality": "",
+        "task_family": ""
+      },
+      {
+        "canonical_name": "GlcMal",
+        "members": [
+          "GlcMal"
+        ],
+        "reason": "规则兜底：规范化名称互相包含（LLM 输出被截断）",
+        "modality": "",
+        "task_family": ""
+      },
+      {
+        "canonical_name": "Proline-catalyzed aldol addition",
+        "members": [
+          "Proline-catalyzed aldol addition"
+        ],
+        "reason": "规则兜底：规范化名称互相包含（LLM 输出被截断）",
+        "modality": "",
+        "task_family": ""
+      },
+      {
+        "canonical_name": "Side-chain pKa of pentapeptides",
+        "members": [
+          "Side-chain pKa of pentapeptides"
+        ],
+        "reason": "规则兜底：规范化名称互相包含（LLM 输出被截断）",
+        "modality": "",
+        "task_family": ""
+      },
+      {
+        "canonical_name": "Crambin in water",
+        "members": [
+          "Crambin in water"
+        ],
+        "reason": "规则兜底：规范化名称互相包含（LLM 输出被截断）",
+        "modality": "",
+        "task_family": ""
+      },
+      {
+        "canonical_name": "antibody CDRH3 test set",
+        "members": [
+          "antibody CDRH3 test set"
+        ],
+        "reason": "规则兜底：规范化名称互相包含（LLM 输出被截断）",
+        "modality": "",
+        "task_family": ""
+      },
+      {
+        "canonical_name": "UniProt and curated AMP datasets",
+        "members": [
+          "UniProt and curated AMP datasets"
+        ],
+        "reason": "规则兜底：规范化名称互相包含（LLM 输出被截断）",
+        "modality": "",
+        "task_family": ""
+      },
+      {
+        "canonical_name": "UniProt peptide distribution",
+        "members": [
+          "UniProt peptide distribution"
+        ],
+        "reason": "规则兜底：规范化名称互相包含（LLM 输出被截断）",
+        "modality": "",
+        "task_family": ""
+      },
+      {
+        "canonical_name": "CAMP, AMP Scanner, and Macrel ensemble",
+        "members": [
+          "CAMP, AMP Scanner, and Macrel ensemble"
+        ],
+        "reason": "规则兜底：规范化名称互相包含（LLM 输出被截断）",
+        "modality": "",
+        "task_family": ""
+      },
+      {
+        "canonical_name": "Real AMPs sequence database",
+        "members": [
+          "Real AMPs sequence database"
+        ],
+        "reason": "规则兜底：规范化名称互相包含（LLM 输出被截断）",
+        "modality": "",
+        "task_family": ""
+      },
+      {
+        "canonical_name": "Gramapa MIC dataset",
+        "members": [
+          "Gramapa MIC dataset"
+        ],
+        "reason": "规则兜底：规范化名称互相包含（LLM 输出被截断）",
+        "modality": "",
+        "task_family": ""
+      },
+      {
+        "canonical_name": "ESKAPE pathogen panel",
+        "members": [
+          "ESKAPE pathogen panel"
+        ],
+        "reason": "规则兜底：规范化名称互相包含（LLM 输出被截断）",
+        "modality": "",
+        "task_family": ""
+      },
+      {
+        "canonical_name": "XDR K. pneumoniae pneumonia mouse model",
+        "members": [
+          "XDR K. pneumoniae pneumonia mouse model"
+        ],
+        "reason": "规则兜底：规范化名称互相包含（LLM 输出被截断）",
+        "modality": "",
+        "task_family": ""
+      },
+      {
+        "canonical_name": "P. acnes in vitro panel",
+        "members": [
+          "P. acnes in vitro panel"
+        ],
+        "reason": "规则兜底：规范化名称互相包含（LLM 输出被截断）",
+        "modality": "",
+        "task_family": ""
+      },
+      {
+        "canonical_name": "DUD-E",
+        "members": [
+          "DUD-E"
+        ],
+        "reason": "规则兜底：规范化名称互相包含（LLM 输出被截断）",
+        "modality": "",
+        "task_family": ""
+      }
+    ],
+    "note": "共享节点解决跨论文零共享；旧私有节点保留 canonical_id 指针"
+  },
+  "analysis": {
+    "quality": {
+      "nodes": 357,
+      "edges": 597,
+      "edge_node_ratio": 1.67,
+      "isolated": 0,
+      "isolated_rate": 0.0,
+      "isolated_samples": [],
+      "by_class": {
+        "Paper": 10,
+        "CodeRepository": 10,
+        "Algorithm": 34,
+        "AlgorithmStep": 31,
+        "CodeFunction": 45,
+        "Benchmark": 41,
+        "ResearchQuestion": 17,
+        "ProblemCategory": 5,
+        "MetricDefinition": 12,
+        "MetricObservation": 73,
+        "LeaderboardEntry": 73,
+        "Evidence": 6
+      }
+    },
+    "shared_nodes": 1,
+    "shared_detail": [
+      [
+        "benchmark:canonical:zinc",
+        2,
+        "Benchmark"
+      ]
+    ],
+    "queryability": {
+      "papers": 10,
+      "queries": [
+        {
+          "query": "基准用什么指标",
+          "answerable": 4,
+          "total": 10,
+          "rate": 0.4
+        },
+        {
+          "query": "报告了哪些观测值",
+          "answerable": 4,
+          "total": 10,
+          "rate": 0.4
+        },
+        {
+          "query": "能否进榜单比较",
+          "answerable": 4,
+          "total": 10,
+          "rate": 0.4
+        },
+        {
+          "query": "方法由哪些模块组成",
+          "answerable": 6,
+          "total": 10,
+          "rate": 0.6
+        },
+        {
+          "query": "模块对应哪些代码符号",
+          "answerable": 6,
+          "total": 10,
+          "rate": 0.6
+        },
+        {
+          "query": "在什么基准上评测",
+          "answerable": 6,
+          "total": 10,
+          "rate": 0.6
+        },
+        {
+          "query": "论文要回答什么问题",
+          "answerable": 8,
+          "total": 10,
+          "rate": 0.8
+        },
+        {
+          "query": "论文提出什么方法",
+          "answerable": 8,
+          "total": 10,
+          "rate": 0.8
+        },
+        {
+          "query": "代码仓库在哪",
+          "answerable": 10,
+          "total": 10,
+          "rate": 1.0
+        }
+      ],
+      "overall_rate": 0.622
+    },
+    "reasoning": {
+      "same_family_method_comparison": {
+        "possible": true,
+        "groups": {
+          "A01": 6,
+          "A16": 2,
+          "A03": 2
+        },
+        "note": "需要 ≥2 篇论文共享同一算法族"
+      },
+      "same_benchmark_sota": {
+        "possible": true,
+        "groups": {
+          "benchmark:sapt10k": 3,
+          "benchmark:quid": 3,
+          "benchmark:jsch_2005": 3,
+          "benchmark:pla15": 3,
+          "benchmark:torsionnet500": 3,
+          "benchmark:glcmal": 5,
+          "benchmark:side_chain_pka_of_pentapeptides": 6,
+          "benchmark:crambin_in_water": 2,
+          "benchmark:proline_catalyzed_aldol_addition": 2,
+          "benchmark:antibody_cdrh3_test_set": 4,
+          "benchmark:camp_amp_scanner_and_macrel_ensemble": 5,
+          "benchmark:real_amps_sequence_database": 15,
+          "benchmark:dud_e": 19
+        },
+        "note": "需要同一 Benchmark 下 ≥2 条 LeaderboardEntry + 可比键"
+      },
+      "problem_to_method_recommendation": {
+        "possible": true,
+        "groups": {
+          "problemcategory:P02": 3,
+          "problemcategory:P04": 3,
+          "problemcategory:P06": 3,
+          "problemcategory:P01": 2
+        },
+        "note": "需要同一 ProblemCategory 下 ≥2 篇论文"
+      },
+      "code_algorithm_grounding": {
+        "links": 48,
+        "note": "模块↔代码符号对齐数量"
+      }
+    },
+    "distribution": {
+      "domains": {
+        "D1": 2,
+        "D10": 2,
+        "D6": 2,
+        "D5": 1,
+        "D3": 1,
+        "D8": 1,
+        "D0": 1
+      },
+      "algo_families": {
+        "A01": 6,
+        "A11": 1,
+        "A16": 2,
+        "A05": 1,
+        "A03": 1,
+        "A13": 1
+      },
+      "top_pairs": {
+        "D1+A01": 2,
+        "D10+A16": 2,
+        "D1+A11": 1,
+        "D6+A01": 1,
+        "D5+A01": 1,
+        "D3+A01": 1,
+        "D8+A01": 1,
+        "D0+A05": 1,
+        "D6+A03": 1,
+        "D6+A13": 1
+      },
+      "uncovered_domains": [
+        "D2",
+        "D4",
+        "D7",
+        "D9"
+      ],
+      "uncovered_algo_families": [
+        "A02",
+        "A04",
+        "A06",
+        "A07",
+        "A08",
+        "A09",
+        "A10",
+        "A12",
+        "A14",
+        "A15",
+        "A17",
+        "A18"
+      ],
+      "benchmarks": [
+        "ZINC",
+        "SAPT10k",
+        "QUID",
+        "JSCH-2005",
+        "PLA15",
+        "TorsionNet500",
+        "GlcMal",
+        "Proline-catalyzed aldol addition",
+        "Side-chain pKa of pentapeptides",
+        "Crambin in water",
+        "antibody CDRH3 test set",
+        "UniProt and curated AMP datasets",
+        "UniProt peptide distribution",
+        "CAMP, AMP Scanner, and Macrel ensemble",
+        "Real AMPs sequence database",
+        "Gramapa MIC dataset",
+        "ESKAPE pathogen panel",
+        "XDR K. pneumoniae pneumonia mouse model",
+        "P. acnes in vitro panel",
+        "DUD-E",
+        "ZINC-15",
+        "ZINC",
+        "SAPT10k",
+        "QUID",
+        "JSCH-2005",
+        "PLA15",
+        "TorsionNet500",
+        "GlcMal",
+        "Proline-catalyzed aldol addition",
+        "Side-chain pKa of pentapeptides",
+        "Crambin in water",
+        "antibody CDRH3 test set",
+        "UniProt and curated AMP datasets",
+        "UniProt peptide distribution",
+        "CAMP, AMP Scanner, and Macrel ensemble",
+        "Real AMPs sequence database",
+        "Gramapa MIC dataset",
+        "ESKAPE pathogen panel",
+        "XDR K. pneumoniae pneumonia mouse model",
+        "P. acnes in vitro panel",
+        "DUD-E"
+      ],
+      "metrics": [
+        "mae",
+        "rmse",
+        "spearman",
+        "rmsd",
+        "Pearson_r",
+        "accuracy",
+        "AMP_hit_percent",
+        "validity",
+        "uniqueness",
+        "novelty",
+        "QED",
+        "diversity"
+      ],
+      "n_benchmarks": 41,
+      "n_metrics": 12,
+      "papers_with_benchmark": 6
+    }
+  }
+}

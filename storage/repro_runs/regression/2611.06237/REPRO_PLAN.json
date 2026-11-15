@@ -1,0 +1,1123 @@
+{
+  "paper_id": "paper:2611.06237",
+  "arxiv_id": "2611.06237",
+  "inputs_sha": "f3be37a2d6556dac",
+  "research_problem": "评估SO3LR-T模型在分子相互作用能、金属有机框架(MOFs)力学性质及反应化学过渡态搜索中的精度与适用性",
+  "domain": "材料/晶体/分子动力学",
+  "algorithm_family": "机器学习势/神经力场",
+  "methods": [
+    {
+      "id": "algorithm:so3lr_tauri",
+      "name": "SO3LR Tauri",
+      "task_type": "forcefield_simulation",
+      "task_type_label": null,
+      "problems_solved": [
+        "需要可迁移到多种体系的机器学习力场，同时给出能量与力",
+        "需要统一建模长程相互作用与短程等变几何"
+      ],
+      "mechanism": "SO3krates 等变消息传递网络学习短程势，叠加显式长程静电/色散项，在能量与力上联合训练",
+      "why_it_works": "等变性保证旋转平移下的物理正确性，显式长程项弥补感受野限制",
+      "family": null,
+      "relation": "PROPOSES_METHOD"
+    },
+    {
+      "id": "algorithm:so3lr",
+      "name": "SO3LR",
+      "task_type": "forcefield_simulation",
+      "task_type_label": null,
+      "problems_solved": [
+        "预测全周期表元素覆盖的(生物)分子体系的能量与原子力",
+        "模拟反应性生物分子动力学，包括蛋白质-配体相互作用及反应路径"
+      ],
+      "mechanism": "结合SO3krates消息传递网络捕捉局部几何特征，并显式耦合短程排斥、环境依赖色散及静电等物理相互作用模块，实现几何等变预测。",
+      "why_it_works": "消息传递保证局部结构感知与等变性，显式物理项确保长程相互作用（如静电、色散）的物理正确性，兼顾精度与大规模模拟效率。",
+      "family": null,
+      "relation": "RELATED_TO"
+    },
+    {
+      "id": "algorithm:opls4",
+      "name": "OPLS4",
+      "task_type": "forcefield_simulation",
+      "task_type_label": null,
+      "problems_solved": [
+        "模拟有机液体密度与扩散系数等宏观物理性质",
+        "预测离子水合自由能及肽类质子化自由能",
+        "分析生物大分子的结构与动力学行为"
+      ],
+      "mechanism": "基于参数化解析势函数（经典力场），通过拟合实验数据或量子化学计算结果确定原子间相互作用参数，利用牛顿力学进行分子动力学模拟。",
+      "why_it_works": "参数化模型在保持计算效率的同时，能够准确捕捉分子间非共价相互作用（如范德华力、静电作用），从而重现宏观物理化学性质。",
+      "family": null,
+      "relation": "RELATED_TO"
+    },
+    {
+      "id": "algorithm:gaff",
+      "name": "GAFF",
+      "task_type": "forcefield_simulation",
+      "task_type_label": null,
+      "problems_solved": [
+        "为有机分子和药物样分子提供原子间相互作用力与能量计算",
+        "支持分子动力学模拟以预测宏观物理化学性质"
+      ],
+      "mechanism": "基于参数化解析势函数（如Lennard-Jones和库仑项），通过预定义的原子类型和参数表计算原子间的非键相互作用，无需量子力学计算。",
+      "why_it_works": "利用经验参数拟合量子力学数据，以极低的计算成本近似描述分子间相互作用，适合大规模体系模拟。",
+      "family": null,
+      "relation": "RELATED_TO"
+    },
+    {
+      "id": "algorithm:mace_polar_1_m",
+      "name": "MACE-POLAR-1-M",
+      "task_type": "forcefield_simulation",
+      "task_type_label": null,
+      "problems_solved": [
+        "预测极性分子体系的原子级能量与力",
+        "支持基于极化效应的分子动力学模拟",
+        "作为基础模型用于特定材料（如MOF）的微调"
+      ],
+      "mechanism": "基于MACE架构的几何等变图神经网络，通过消息传递机制学习原子间相互作用，并显式建模长程静电相互作用（Long-range），以捕捉极性体系中的电荷重分布效应。",
+      "why_it_works": "几何等变性保证了物理对称性，长程相互作用项弥补了短程消息传递在静电效应上的不足，从而准确描述极性分子间的非键合相互作用。",
+      "family": null,
+      "relation": "RELATED_TO"
+    },
+    {
+      "id": "algorithm:aimnet2_2025",
+      "name": "AIMNet2-2025",
+      "task_type": "forcefield_simulation",
+      "task_type_label": null,
+      "problems_solved": [
+        "预测分子体系的能量、力及偶极矩等物理性质",
+        "处理带电体系及非相互作用片段的电荷分配与能量加和性"
+      ],
+      "mechanism": "基于几何等变图神经网络（GNN），通过消息传递机制聚合原子局部环境特征，利用等变卷积层保持旋转/平移不变性，直接回归能量、力及偶极矩等物理量。",
+      "why_it_works": "几何等变性确保模型对分子构象的旋转和平移具有物理一致性，消息传递有效捕捉长程相互作用，从而在保持计算效率的同时实现高精度的能量和力预测。",
+      "family": null,
+      "relation": "RELATED_TO"
+    },
+    {
+      "id": "algorithm:uma_s_1_2_1",
+      "name": "UMA-S-1.2.1",
+      "task_type": "forcefield_simulation",
+      "task_type_label": null,
+      "problems_solved": [
+        "预测分子体系的能量和力",
+        "处理带电片段间的电荷重分布",
+        "评估非相互作用片段的能量可加性"
+      ],
+      "mechanism": "基于几何等变图神经网络（GNN）进行消息传递，利用几何不变性特征捕捉原子间相互作用，从而预测体系能量及受力。",
+      "why_it_works": "几何等变性确保模型对旋转和平移不变，能准确捕捉分子局部几何结构对能量和力的影响，符合物理对称性要求。",
+      "family": null,
+      "relation": "RELATED_TO"
+    }
+  ],
+  "code": [
+    {
+      "algorithm": "SO3LR Tauri",
+      "target_id": "coderepository:general_molecular_simulations_so3lr",
+      "target_label": "general-molecular-simulations__so3lr",
+      "relation": "HAS_CODE"
+    },
+    {
+      "algorithm": "(paper-level)",
+      "target_id": "coderepository:general_molecular_simulations_so3lr",
+      "target_label": "general-molecular-simulations__so3lr",
+      "relation": "HAS_CODE"
+    }
+  ],
+  "data": [
+    {
+      "id": "benchmark:sapt10k",
+      "name": "SAPT10k",
+      "input_form": "原子坐标",
+      "output_form": "能量/力",
+      "n_samples": "10k 二聚体构象",
+      "scale": "小规模 (<1k)",
+      "is_evaluation": true,
+      "source_papers": [
+        "SO3LR Tauri: Generally Applicable Force Fields for Reactive (Bio)Molecular Simul",
+        "SO3LR Tauri: Generally Applicable Force Fields for Reactive (Bio)Molecular Simul"
+      ],
+      "relation": "EVALUATED_ON"
+    },
+    {
+      "id": "benchmark:quid",
+      "name": "QUID",
+      "input_form": "原子坐标",
+      "output_form": "能量/力",
+      "n_samples": "量子化学相互作用能数据集",
+      "scale": "小规模 (<1k)",
+      "is_evaluation": true,
+      "source_papers": [
+        "SO3LR Tauri: Generally Applicable Force Fields for Reactive (Bio)Molecular Simul",
+        "SO3LR Tauri: Generally Applicable Force Fields for Reactive (Bio)Molecular Simul"
+      ],
+      "relation": "EVALUATED_ON"
+    },
+    {
+      "id": "benchmark:jsch_2005",
+      "name": "JSCH-2005",
+      "input_form": "原子坐标",
+      "output_form": "能量/力",
+      "n_samples": "JSCH-2005 基准集",
+      "scale": "小规模 (<1k)",
+      "is_evaluation": true,
+      "source_papers": [
+        "SO3LR Tauri: Generally Applicable Force Fields for Reactive (Bio)Molecular Simul",
+        "SO3LR Tauri: Generally Applicable Force Fields for Reactive (Bio)Molecular Simul"
+      ],
+      "relation": "EVALUATED_ON"
+    },
+    {
+      "id": "benchmark:pla15",
+      "name": "PLA15",
+      "input_form": "原子坐标",
+      "output_form": "能量/力",
+      "n_samples": "PLA15 构象集",
+      "scale": "小规模 (<1k)",
+      "is_evaluation": true,
+      "source_papers": [
+        "SO3LR Tauri: Generally Applicable Force Fields for Reactive (Bio)Molecular Simul",
+        "SO3LR Tauri: Generally Applicable Force Fields for Reactive (Bio)Molecular Simul"
+      ],
+      "relation": "EVALUATED_ON"
+    },
+    {
+      "id": "benchmark:torsionnet500",
+      "name": "TorsionNet500",
+      "input_form": "3D坐标",
+      "output_form": "标量",
+      "n_samples": "500",
+      "scale": "中规模 (1k–100k)",
+      "is_evaluation": true,
+      "source_papers": [
+        "SO3LR Tauri: Generally Applicable Force Fields for Reactive (Bio)Molecular Simul",
+        "SO3LR Tauri: Generally Applicable Force Fields for Reactive (Bio)Molecular Simul"
+      ],
+      "relation": "EVALUATED_ON"
+    },
+    {
+      "id": "benchmark:glcmal",
+      "name": "GlcMal",
+      "input_form": "SMILES",
+      "output_form": "分子",
+      "n_samples": "unknown",
+      "scale": "大规模 (>100k)",
+      "is_evaluation": true,
+      "source_papers": [
+        "SO3LR Tauri: Generally Applicable Force Fields for Reactive (Bio)Molecular Simul",
+        "SO3LR Tauri: Generally Applicable Force Fields for Reactive (Bio)Molecular Simul"
+      ],
+      "relation": "EVALUATED_ON"
+    },
+    {
+      "id": "benchmark:proline_catalyzed_aldol_addition",
+      "name": "Proline-catalyzed aldol addition",
+      "input_form": "SMILES",
+      "output_form": "分子",
+      "n_samples": "unknown",
+      "scale": "大规模 (>100k)",
+      "is_evaluation": true,
+      "source_papers": [
+        "SO3LR Tauri: Generally Applicable Force Fields for Reactive (Bio)Molecular Simul",
+        "SO3LR Tauri: Generally Applicable Force Fields for Reactive (Bio)Molecular Simul"
+      ],
+      "relation": "EVALUATED_ON"
+    },
+    {
+      "id": "benchmark:side_chain_pka_of_pentapeptides",
+      "name": "Side-chain pKa of pentapeptides",
+      "input_form": "氨基酸序列",
+      "output_form": "活性/MIC 标签",
+      "n_samples": "五肽侧链 pKa 数据",
+      "scale": "中规模 (1k–100k)",
+      "is_evaluation": true,
+      "source_papers": [
+        "SO3LR Tauri: Generally Applicable Force Fields for Reactive (Bio)Molecular Simul",
+        "SO3LR Tauri: Generally Applicable Force Fields for Reactive (Bio)Molecular Simul"
+      ],
+      "relation": "EVALUATED_ON"
+    },
+    {
+      "id": "benchmark:crambin_in_water",
+      "name": "Crambin in water",
+      "input_form": "原子坐标",
+      "output_form": "能量/力",
+      "n_samples": "水溶液体系模拟",
+      "scale": "小规模 (<1k)",
+      "is_evaluation": true,
+      "source_papers": [
+        "SO3LR Tauri: Generally Applicable Force Fields for Reactive (Bio)Molecular Simul",
+        "SO3LR Tauri: Generally Applicable Force Fields for Reactive (Bio)Molecular Simul"
+      ],
+      "relation": "EVALUATED_ON"
+    },
+    {
+      "id": "benchmark:canonical:sapt10k",
+      "name": "SAPT10k",
+      "input_form": "unknown",
+      "output_form": "unknown",
+      "n_samples": "unknown",
+      "scale": "规模未标注",
+      "is_evaluation": true,
+      "source_papers": [
+        "SO3LR Tauri: Generally Applicable Force Fields for Reactive (Bio)Molecular Simul"
+      ],
+      "relation": "EVALUATED_ON"
+    },
+    {
+      "id": "benchmark:canonical:quid",
+      "name": "QUID",
+      "input_form": "unknown",
+      "output_form": "unknown",
+      "n_samples": "unknown",
+      "scale": "规模未标注",
+      "is_evaluation": true,
+      "source_papers": [
+        "SO3LR Tauri: Generally Applicable Force Fields for Reactive (Bio)Molecular Simul"
+      ],
+      "relation": "EVALUATED_ON"
+    },
+    {
+      "id": "benchmark:canonical:jsch_2005",
+      "name": "JSCH-2005",
+      "input_form": "unknown",
+      "output_form": "unknown",
+      "n_samples": "unknown",
+      "scale": "规模未标注",
+      "is_evaluation": true,
+      "source_papers": [
+        "SO3LR Tauri: Generally Applicable Force Fields for Reactive (Bio)Molecular Simul"
+      ],
+      "relation": "EVALUATED_ON"
+    },
+    {
+      "id": "benchmark:canonical:pla15",
+      "name": "PLA15",
+      "input_form": "unknown",
+      "output_form": "unknown",
+      "n_samples": "unknown",
+      "scale": "规模未标注",
+      "is_evaluation": true,
+      "source_papers": [
+        "SO3LR Tauri: Generally Applicable Force Fields for Reactive (Bio)Molecular Simul"
+      ],
+      "relation": "EVALUATED_ON"
+    },
+    {
+      "id": "benchmark:canonical:torsionnet500",
+      "name": "TorsionNet500",
+      "input_form": "unknown",
+      "output_form": "unknown",
+      "n_samples": "unknown",
+      "scale": "规模未标注",
+      "is_evaluation": true,
+      "source_papers": [
+        "SO3LR Tauri: Generally Applicable Force Fields for Reactive (Bio)Molecular Simul"
+      ],
+      "relation": "EVALUATED_ON"
+    },
+    {
+      "id": "benchmark:canonical:glcmal",
+      "name": "GlcMal",
+      "input_form": "unknown",
+      "output_form": "unknown",
+      "n_samples": "unknown",
+      "scale": "规模未标注",
+      "is_evaluation": true,
+      "source_papers": [
+        "SO3LR Tauri: Generally Applicable Force Fields for Reactive (Bio)Molecular Simul"
+      ],
+      "relation": "EVALUATED_ON"
+    },
+    {
+      "id": "benchmark:canonical:proline_catalyzed_aldol_addition",
+      "name": "Proline-catalyzed aldol addition",
+      "input_form": "unknown",
+      "output_form": "unknown",
+      "n_samples": "unknown",
+      "scale": "规模未标注",
+      "is_evaluation": true,
+      "source_papers": [
+        "SO3LR Tauri: Generally Applicable Force Fields for Reactive (Bio)Molecular Simul"
+      ],
+      "relation": "EVALUATED_ON"
+    },
+    {
+      "id": "benchmark:canonical:side_chain_pka_of_pentapeptides",
+      "name": "Side-chain pKa of pentapeptides",
+      "input_form": "unknown",
+      "output_form": "unknown",
+      "n_samples": "unknown",
+      "scale": "规模未标注",
+      "is_evaluation": true,
+      "source_papers": [
+        "SO3LR Tauri: Generally Applicable Force Fields for Reactive (Bio)Molecular Simul"
+      ],
+      "relation": "EVALUATED_ON"
+    },
+    {
+      "id": "benchmark:canonical:crambin_in_water",
+      "name": "Crambin in water",
+      "input_form": "unknown",
+      "output_form": "unknown",
+      "n_samples": "unknown",
+      "scale": "规模未标注",
+      "is_evaluation": true,
+      "source_papers": [
+        "SO3LR Tauri: Generally Applicable Force Fields for Reactive (Bio)Molecular Simul"
+      ],
+      "relation": "EVALUATED_ON"
+    },
+    {
+      "id": "benchmark:drew_dickerson_dodecamer",
+      "name": "Drew–Dickerson dodecamer",
+      "input_form": "3D坐标",
+      "output_form": "3D坐标",
+      "n_samples": "15 ns",
+      "scale": "12-mer DNA duplex",
+      "is_evaluation": true,
+      "source_papers": [],
+      "relation": "EVALUATED_ON"
+    },
+    {
+      "id": "benchmark:cis_platin_1_2_d_gpg_crosslink",
+      "name": "cis-platin 1,2-d(GpG) crosslink",
+      "input_form": "3D坐标",
+      "output_form": "3D坐标",
+      "n_samples": "10 ns",
+      "scale": "Pt(II) crosslink",
+      "is_evaluation": true,
+      "source_papers": [],
+      "relation": "EVALUATED_ON"
+    },
+    {
+      "id": "benchmark:popc_bilayer",
+      "name": "POPC bilayer",
+      "input_form": "3D坐标",
+      "output_form": "3D坐标",
+      "n_samples": null,
+      "scale": "lipid bilayer",
+      "is_evaluation": true,
+      "source_papers": [],
+      "relation": "EVALUATED_ON"
+    }
+  ],
+  "metrics": [
+    {
+      "benchmark": "SAPT10k",
+      "name": "mae",
+      "unit": "",
+      "direction": "min",
+      "direction_source": "vocab",
+      "sota_model": "未标注模型",
+      "sota_value": "0.45",
+      "ties": [
+        "SO3LR-T-M"
+      ]
+    },
+    {
+      "benchmark": "SAPT10k",
+      "name": "rmse",
+      "unit": "",
+      "direction": "min",
+      "direction_source": "vocab",
+      "sota_model": "未标注模型",
+      "sota_value": "0.83",
+      "ties": []
+    },
+    {
+      "benchmark": "QUID",
+      "name": "mae",
+      "unit": "",
+      "direction": "min",
+      "direction_source": "vocab",
+      "sota_model": "未标注模型",
+      "sota_value": "1.24",
+      "ties": [
+        "SO3LR-T-M"
+      ]
+    },
+    {
+      "benchmark": "QUID",
+      "name": "rmse",
+      "unit": "",
+      "direction": "min",
+      "direction_source": "vocab",
+      "sota_model": "未标注模型",
+      "sota_value": "1.59",
+      "ties": []
+    },
+    {
+      "benchmark": "JSCH-2005",
+      "name": "mae",
+      "unit": "",
+      "direction": "min",
+      "direction_source": "vocab",
+      "sota_model": "SO3LR-T-M",
+      "sota_value": "0.78",
+      "ties": [
+        "未标注模型"
+      ]
+    },
+    {
+      "benchmark": "JSCH-2005",
+      "name": "rmse",
+      "unit": "",
+      "direction": "min",
+      "direction_source": "vocab",
+      "sota_model": "未标注模型",
+      "sota_value": "1.04",
+      "ties": []
+    },
+    {
+      "benchmark": "PLA15",
+      "name": "mae",
+      "unit": "",
+      "direction": "min",
+      "direction_source": "vocab",
+      "sota_model": "SO3LR-T-M",
+      "sota_value": "3.81",
+      "ties": [
+        "未标注模型"
+      ]
+    },
+    {
+      "benchmark": "PLA15",
+      "name": "rmse",
+      "unit": "",
+      "direction": "min",
+      "direction_source": "vocab",
+      "sota_model": "未标注模型",
+      "sota_value": "5.48",
+      "ties": []
+    },
+    {
+      "benchmark": "TorsionNet500",
+      "name": "energy_error",
+      "unit": "",
+      "direction": "min",
+      "direction_source": null,
+      "sota_model": null,
+      "sota_value": null,
+      "ties": []
+    },
+    {
+      "benchmark": "GlcMal",
+      "name": "mae",
+      "unit": "",
+      "direction": "min",
+      "direction_source": "vocab",
+      "sota_model": "未标注模型",
+      "sota_value": "1.36",
+      "ties": [
+        "SO3LR-T-M"
+      ]
+    },
+    {
+      "benchmark": "GlcMal",
+      "name": "rmse",
+      "unit": "",
+      "direction": "min",
+      "direction_source": "vocab",
+      "sota_model": "未标注模型",
+      "sota_value": "1.68",
+      "ties": []
+    },
+    {
+      "benchmark": "GlcMal",
+      "name": "spearman",
+      "unit": "",
+      "direction": "max",
+      "direction_source": "heuristic",
+      "sota_model": "SO3LR-T-M",
+      "sota_value": "0.89",
+      "ties": [
+        "未标注模型"
+      ]
+    },
+    {
+      "benchmark": "Proline-catalyzed aldol addition",
+      "name": "mae",
+      "unit": "",
+      "direction": "min",
+      "direction_source": "vocab",
+      "sota_model": "未标注模型",
+      "sota_value": "2.9",
+      "ties": []
+    },
+    {
+      "benchmark": "Proline-catalyzed aldol addition",
+      "name": "rmsd",
+      "unit": "",
+      "direction": "min",
+      "direction_source": "vocab",
+      "sota_model": "未标注模型",
+      "sota_value": "0.12",
+      "ties": []
+    },
+    {
+      "benchmark": "Side-chain pKa of pentapeptides",
+      "name": "Pearson_r",
+      "unit": "",
+      "direction": "max",
+      "direction_source": "heuristic",
+      "sota_model": "SO3LR-T-M",
+      "sota_value": "0.95",
+      "ties": [
+        "未标注模型"
+      ]
+    },
+    {
+      "benchmark": "Side-chain pKa of pentapeptides",
+      "name": "mae",
+      "unit": "",
+      "direction": "min",
+      "direction_source": "vocab",
+      "sota_model": "SO3LR-T-M",
+      "sota_value": "0.98",
+      "ties": [
+        "未标注模型"
+      ]
+    },
+    {
+      "benchmark": "Side-chain pKa of pentapeptides",
+      "name": "rmse",
+      "unit": "",
+      "direction": "min",
+      "direction_source": "vocab",
+      "sota_model": "SO3LR-T-M",
+      "sota_value": "1.12",
+      "ties": [
+        "未标注模型"
+      ]
+    },
+    {
+      "benchmark": "Crambin in water",
+      "name": "rmsd",
+      "unit": "",
+      "direction": "min",
+      "direction_source": "vocab",
+      "sota_model": "SO3LR-T-M",
+      "sota_value": "1.1",
+      "ties": [
+        "未标注模型"
+      ]
+    },
+    {
+      "benchmark": "Drew–Dickerson dodecamer",
+      "name": "RMSD",
+      "unit": "Å",
+      "direction": "min",
+      "direction_source": null,
+      "sota_model": null,
+      "sota_value": null,
+      "ties": []
+    },
+    {
+      "benchmark": "Drew–Dickerson dodecamer",
+      "name": "helical twist",
+      "unit": "deg",
+      "direction": "",
+      "direction_source": null,
+      "sota_model": null,
+      "sota_value": null,
+      "ties": []
+    },
+    {
+      "benchmark": "cis-platin 1,2-d(GpG) crosslink",
+      "name": "MAE",
+      "unit": "eV Å⁻¹",
+      "direction": "min",
+      "direction_source": null,
+      "sota_model": null,
+      "sota_value": null,
+      "ties": []
+    },
+    {
+      "benchmark": "cis-platin 1,2-d(GpG) crosslink",
+      "name": "r",
+      "unit": "",
+      "direction": "max",
+      "direction_source": null,
+      "sota_model": null,
+      "sota_value": null,
+      "ties": []
+    },
+    {
+      "benchmark": "POPC bilayer",
+      "name": "RMSD",
+      "unit": "",
+      "direction": "min",
+      "direction_source": null,
+      "sota_model": null,
+      "sota_value": null,
+      "ties": []
+    },
+    {
+      "benchmark": "POPC bilayer",
+      "name": "DHH",
+      "unit": "Å",
+      "direction": "",
+      "direction_source": null,
+      "sota_model": null,
+      "sota_value": null,
+      "ties": []
+    }
+  ],
+  "sota_baselines": {
+    "SAPT10k:mae": {
+      "metric": "mae",
+      "model": "未标注模型",
+      "value": "0.45",
+      "numeric": 0.45,
+      "direction": "min",
+      "direction_source": "vocab",
+      "ties": [
+        "SO3LR-T-M"
+      ],
+      "paper_id": "paper:2611.06237",
+      "provenance": "leaderboard_entry"
+    },
+    "SAPT10k:rmse": {
+      "metric": "rmse",
+      "model": "未标注模型",
+      "value": "0.83",
+      "numeric": 0.83,
+      "direction": "min",
+      "direction_source": "vocab",
+      "ties": [],
+      "paper_id": "paper:2611.06237",
+      "provenance": "leaderboard_entry"
+    },
+    "QUID:mae": {
+      "metric": "mae",
+      "model": "未标注模型",
+      "value": "1.24",
+      "numeric": 1.24,
+      "direction": "min",
+      "direction_source": "vocab",
+      "ties": [
+        "SO3LR-T-M"
+      ],
+      "paper_id": "paper:2611.06237",
+      "provenance": "leaderboard_entry"
+    },
+    "QUID:rmse": {
+      "metric": "rmse",
+      "model": "未标注模型",
+      "value": "1.59",
+      "numeric": 1.59,
+      "direction": "min",
+      "direction_source": "vocab",
+      "ties": [],
+      "paper_id": "paper:2611.06237",
+      "provenance": "leaderboard_entry"
+    },
+    "JSCH-2005:mae": {
+      "metric": "mae",
+      "model": "SO3LR-T-M",
+      "value": "0.78",
+      "numeric": 0.78,
+      "direction": "min",
+      "direction_source": "vocab",
+      "ties": [
+        "未标注模型"
+      ],
+      "paper_id": "paper:2611.06237",
+      "provenance": "leaderboard_entry"
+    },
+    "JSCH-2005:rmse": {
+      "metric": "rmse",
+      "model": "未标注模型",
+      "value": "1.04",
+      "numeric": 1.04,
+      "direction": "min",
+      "direction_source": "vocab",
+      "ties": [],
+      "paper_id": "paper:2611.06237",
+      "provenance": "leaderboard_entry"
+    },
+    "PLA15:mae": {
+      "metric": "mae",
+      "model": "SO3LR-T-M",
+      "value": "3.81",
+      "numeric": 3.81,
+      "direction": "min",
+      "direction_source": "vocab",
+      "ties": [
+        "未标注模型"
+      ],
+      "paper_id": "paper:2611.06237",
+      "provenance": "leaderboard_entry"
+    },
+    "PLA15:rmse": {
+      "metric": "rmse",
+      "model": "未标注模型",
+      "value": "5.48",
+      "numeric": 5.48,
+      "direction": "min",
+      "direction_source": "vocab",
+      "ties": [],
+      "paper_id": "paper:2611.06237",
+      "provenance": "leaderboard_entry"
+    },
+    "TorsionNet500:mae": {
+      "metric": "mae",
+      "model": "未标注模型",
+      "value": "0.62",
+      "numeric": 0.62,
+      "direction": "min",
+      "direction_source": "vocab",
+      "ties": [
+        "SO3LR-T-M"
+      ],
+      "paper_id": "paper:2611.06237",
+      "provenance": "leaderboard_entry"
+    },
+    "TorsionNet500:rmse": {
+      "metric": "rmse",
+      "model": "未标注模型",
+      "value": "0.93",
+      "numeric": 0.93,
+      "direction": "min",
+      "direction_source": "vocab",
+      "ties": [],
+      "paper_id": "paper:2611.06237",
+      "provenance": "leaderboard_entry"
+    },
+    "GlcMal:spearman": {
+      "metric": "spearman",
+      "model": "SO3LR-T-M",
+      "value": "0.89",
+      "numeric": 0.89,
+      "direction": "max",
+      "direction_source": "heuristic",
+      "ties": [
+        "未标注模型"
+      ],
+      "paper_id": "paper:2611.06237",
+      "provenance": "leaderboard_entry"
+    },
+    "GlcMal:mae": {
+      "metric": "mae",
+      "model": "未标注模型",
+      "value": "1.36",
+      "numeric": 1.36,
+      "direction": "min",
+      "direction_source": "vocab",
+      "ties": [
+        "SO3LR-T-M"
+      ],
+      "paper_id": "paper:2611.06237",
+      "provenance": "leaderboard_entry"
+    },
+    "GlcMal:rmse": {
+      "metric": "rmse",
+      "model": "未标注模型",
+      "value": "1.68",
+      "numeric": 1.68,
+      "direction": "min",
+      "direction_source": "vocab",
+      "ties": [],
+      "paper_id": "paper:2611.06237",
+      "provenance": "leaderboard_entry"
+    },
+    "Proline-catalyzed aldol addition:mae": {
+      "metric": "mae",
+      "model": "未标注模型",
+      "value": "2.9",
+      "numeric": 2.9,
+      "direction": "min",
+      "direction_source": "vocab",
+      "ties": [],
+      "paper_id": "paper:2611.06237",
+      "provenance": "leaderboard_entry"
+    },
+    "Proline-catalyzed aldol addition:rmsd": {
+      "metric": "rmsd",
+      "model": "未标注模型",
+      "value": "0.12",
+      "numeric": 0.12,
+      "direction": "min",
+      "direction_source": "vocab",
+      "ties": [],
+      "paper_id": "paper:2611.06237",
+      "provenance": "leaderboard_entry"
+    },
+    "Side-chain pKa of pentapeptides:mae": {
+      "metric": "mae",
+      "model": "SO3LR-T-M",
+      "value": "0.98",
+      "numeric": 0.98,
+      "direction": "min",
+      "direction_source": "vocab",
+      "ties": [
+        "未标注模型"
+      ],
+      "paper_id": "paper:2611.06237",
+      "provenance": "leaderboard_entry"
+    },
+    "Side-chain pKa of pentapeptides:rmse": {
+      "metric": "rmse",
+      "model": "SO3LR-T-M",
+      "value": "1.12",
+      "numeric": 1.12,
+      "direction": "min",
+      "direction_source": "vocab",
+      "ties": [
+        "未标注模型"
+      ],
+      "paper_id": "paper:2611.06237",
+      "provenance": "leaderboard_entry"
+    },
+    "Side-chain pKa of pentapeptides:Pearson_r": {
+      "metric": "Pearson_r",
+      "model": "SO3LR-T-M",
+      "value": "0.95",
+      "numeric": 0.95,
+      "direction": "max",
+      "direction_source": "heuristic",
+      "ties": [
+        "未标注模型"
+      ],
+      "paper_id": "paper:2611.06237",
+      "provenance": "leaderboard_entry"
+    },
+    "Crambin in water:rmsd": {
+      "metric": "rmsd",
+      "model": "SO3LR-T-M",
+      "value": "1.1",
+      "numeric": 1.1,
+      "direction": "min",
+      "direction_source": "vocab",
+      "ties": [
+        "未标注模型"
+      ],
+      "paper_id": "paper:2611.06237",
+      "provenance": "leaderboard_entry"
+    }
+  },
+  "chains": {
+    "paper_algorithm": [
+      {
+        "target_id": "algorithm:so3lr_tauri",
+        "target_label": "SO3LR Tauri",
+        "relation": "PROPOSES_METHOD"
+      },
+      {
+        "target_id": "algorithm:so3lr",
+        "target_label": "SO3LR",
+        "relation": "RELATED_TO"
+      },
+      {
+        "target_id": "algorithm:opls4",
+        "target_label": "OPLS4",
+        "relation": "RELATED_TO"
+      },
+      {
+        "target_id": "algorithm:gaff",
+        "target_label": "GAFF",
+        "relation": "RELATED_TO"
+      },
+      {
+        "target_id": "algorithm:mace_polar_1_m",
+        "target_label": "MACE-POLAR-1-M",
+        "relation": "RELATED_TO"
+      },
+      {
+        "target_id": "algorithm:aimnet2_2025",
+        "target_label": "AIMNet2-2025",
+        "relation": "RELATED_TO"
+      },
+      {
+        "target_id": "algorithm:uma_s_1_2_1",
+        "target_label": "UMA-S-1.2.1",
+        "relation": "RELATED_TO"
+      }
+    ],
+    "paper_data": [
+      {
+        "target_id": "benchmark:sapt10k",
+        "target_label": "SAPT10k",
+        "relation": "EVALUATED_ON"
+      },
+      {
+        "target_id": "benchmark:quid",
+        "target_label": "QUID",
+        "relation": "EVALUATED_ON"
+      },
+      {
+        "target_id": "benchmark:jsch_2005",
+        "target_label": "JSCH-2005",
+        "relation": "EVALUATED_ON"
+      },
+      {
+        "target_id": "benchmark:pla15",
+        "target_label": "PLA15",
+        "relation": "EVALUATED_ON"
+      },
+      {
+        "target_id": "benchmark:torsionnet500",
+        "target_label": "TorsionNet500",
+        "relation": "EVALUATED_ON"
+      },
+      {
+        "target_id": "benchmark:glcmal",
+        "target_label": "GlcMal",
+        "relation": "EVALUATED_ON"
+      },
+      {
+        "target_id": "benchmark:proline_catalyzed_aldol_addition",
+        "target_label": "Proline-catalyzed aldol addition",
+        "relation": "EVALUATED_ON"
+      },
+      {
+        "target_id": "benchmark:side_chain_pka_of_pentapeptides",
+        "target_label": "Side-chain pKa of pentapeptides",
+        "relation": "EVALUATED_ON"
+      },
+      {
+        "target_id": "benchmark:crambin_in_water",
+        "target_label": "Crambin in water",
+        "relation": "EVALUATED_ON"
+      },
+      {
+        "target_id": "benchmark:canonical:sapt10k",
+        "target_label": "SAPT10k",
+        "relation": "EVALUATED_ON"
+      },
+      {
+        "target_id": "benchmark:canonical:quid",
+        "target_label": "QUID",
+        "relation": "EVALUATED_ON"
+      },
+      {
+        "target_id": "benchmark:canonical:jsch_2005",
+        "target_label": "JSCH-2005",
+        "relation": "EVALUATED_ON"
+      },
+      {
+        "target_id": "benchmark:canonical:pla15",
+        "target_label": "PLA15",
+        "relation": "EVALUATED_ON"
+      },
+      {
+        "target_id": "benchmark:canonical:torsionnet500",
+        "target_label": "TorsionNet500",
+        "relation": "EVALUATED_ON"
+      },
+      {
+        "target_id": "benchmark:canonical:glcmal",
+        "target_label": "GlcMal",
+        "relation": "EVALUATED_ON"
+      },
+      {
+        "target_id": "benchmark:canonical:proline_catalyzed_aldol_addition",
+        "target_label": "Proline-catalyzed aldol addition",
+        "relation": "EVALUATED_ON"
+      },
+      {
+        "target_id": "benchmark:canonical:side_chain_pka_of_pentapeptides",
+        "target_label": "Side-chain pKa of pentapeptides",
+        "relation": "EVALUATED_ON"
+      },
+      {
+        "target_id": "benchmark:canonical:crambin_in_water",
+        "target_label": "Crambin in water",
+        "relation": "EVALUATED_ON"
+      }
+    ],
+    "paper_paper": [
+      {
+        "target_id": "paper:src:2611.06237:so3lr_t_m",
+        "target_label": "SO3LR-T-M",
+        "relation": "RELATED_TO"
+      },
+      {
+        "target_id": "paper:src:2611.06237:pbe_d3",
+        "target_label": "PBE-D3",
+        "relation": "RELATED_TO"
+      },
+      {
+        "target_id": "paper:src:2611.06237:so3lr_t_l",
+        "target_label": "SO3LR-T-L",
+        "relation": "RELATED_TO"
+      },
+      {
+        "target_id": "paper:src:2611.06237:pbe0_d3_bj",
+        "target_label": "PBE0-D3(BJ)",
+        "relation": "RELATED_TO"
+      },
+      {
+        "target_id": "paper:src:2611.06237:so3lr_t_m",
+        "target_label": "SO3LR-T-M",
+        "relation": "COMPARES_WITH"
+      },
+      {
+        "target_id": "paper:src:2611.06237:so3lr_t_m",
+        "target_label": "SO3LR-T-M",
+        "relation": "COMPARES_WITH"
+      },
+      {
+        "target_id": "paper:src:2611.06237:pbe_d3",
+        "target_label": "PBE-D3",
+        "relation": "CITES_RELATED"
+      },
+      {
+        "target_id": "paper:src:2611.06237:pbe_d3",
+        "target_label": "PBE-D3",
+        "relation": "CITES_RELATED"
+      },
+      {
+        "target_id": "paper:src:2611.06237:so3lr_t_l",
+        "target_label": "SO3LR-T-L",
+        "relation": "COMPARES_WITH"
+      },
+      {
+        "target_id": "paper:src:2611.06237:so3lr_t_l",
+        "target_label": "SO3LR-T-L",
+        "relation": "COMPARES_WITH"
+      },
+      {
+        "target_id": "paper:src:2611.06237:pbe0_d3_bj",
+        "target_label": "PBE0-D3(BJ)",
+        "relation": "CITES_RELATED"
+      },
+      {
+        "target_id": "paper:src:2611.06237:pbe0_d3_bj",
+        "target_label": "PBE0-D3(BJ)",
+        "relation": "CITES_RELATED"
+      },
+      {
+        "target_id": "SO3LR-T-M",
+        "target_label": "SO3LR-T-M",
+        "relation": "科技树·comparison"
+      },
+      {
+        "target_id": "PBE-D3",
+        "target_label": "PBE-D3",
+        "relation": "科技树·comparison"
+      },
+      {
+        "target_id": "SO3LR-T-L",
+        "target_label": "SO3LR-T-L",
+        "relation": "科技树·comparison"
+      },
+      {
+        "target_id": "PBE0-D3(BJ)",
+        "target_label": "PBE0-D3(BJ)",
+        "relation": "科技树·comparison"
+      }
+    ],
+    "paper_code": [
+      {
+        "target_id": "coderepository:general_molecular_simulations_so3lr",
+        "target_label": "general-molecular-simulations__so3lr",
+        "relation": "HAS_CODE"
+      }
+    ]
+  },
+  "gaps": [],
+  "warnings": [
+    "metric spearman 方向为启发式，需人工确认",
+    "metric Pearson_r 方向为启发式，需人工确认"
+  ]
+}

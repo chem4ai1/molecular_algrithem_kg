@@ -1,0 +1,2342 @@
+{
+  "paper_id": "paper:2411.06608",
+  "arxiv_id": "2411.06608",
+  "sau": [
+    {
+      "id": "sau:241106608:method:000",
+      "kind": "method",
+      "statement": "MolMiner 的模块「Symmetry-Aware Attachment Standardization」实现 encoding（inputs=['fragment_graph'] → outputs=['canonical_attachments']）",
+      "source_node_ids": [
+        "algorithm:molminer",
+        "algorithmstep:2411.06608:0:symmetry_aware_attachment_standardization"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "module_implemented",
+        "target": "algorithmstep:2411.06608:0:symmetry_aware_attachment_standardization",
+        "algorithm": "algorithm:molminer",
+        "mechanism": "encoding",
+        "inputs": [
+          "fragment_graph"
+        ],
+        "outputs": [
+          "canonical_attachments"
+        ],
+        "formula": ""
+      },
+      "required": true,
+      "provenance": "derived",
+      "relation_hint": "PROPOSES_METHOD|HAS_MODULE",
+      "parent_id": "",
+      "path": "",
+      "depth": 0,
+      "weight": 1.0
+    },
+    {
+      "id": "sau:241106608:code_grounding:000",
+      "kind": "code_grounding",
+      "statement": "「Symmetry-Aware Attachment Standardization」由代码符号 _get_all_possible_attachments 实现（未标注文件）",
+      "source_node_ids": [
+        "algorithmstep:2411.06608:0:symmetry_aware_attachment_standardization",
+        "codefunction:raulorteg_molminer:molminer_processor_py:get_all_possible_attachments"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "symbol_exists",
+        "target": "codefunction:raulorteg_molminer:molminer_processor_py:get_all_possible_attachments",
+        "signature": "_get_all_possible_attachments",
+        "file": "",
+        "lineno": 68,
+        "stub_allowed": false
+      },
+      "required": true,
+      "provenance": "extracted",
+      "relation_hint": "MODULE_IMPLEMENTED_BY",
+      "parent_id": "",
+      "path": "",
+      "depth": 0,
+      "weight": 1.0
+    },
+    {
+      "id": "sau:241106608:code_grounding:001",
+      "kind": "code_grounding",
+      "statement": "「Symmetry-Aware Attachment Standardization」由代码符号 _compute_possible_remaps 实现（未标注文件）",
+      "source_node_ids": [
+        "algorithmstep:2411.06608:0:symmetry_aware_attachment_standardization",
+        "codefunction:raulorteg_molminer:molminer_processor_py:compute_possible_remaps"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "symbol_exists",
+        "target": "codefunction:raulorteg_molminer:molminer_processor_py:compute_possible_remaps",
+        "signature": "_compute_possible_remaps",
+        "file": "",
+        "lineno": 132,
+        "stub_allowed": false
+      },
+      "required": true,
+      "provenance": "extracted",
+      "relation_hint": "MODULE_IMPLEMENTED_BY",
+      "parent_id": "",
+      "path": "",
+      "depth": 0,
+      "weight": 1.0
+    },
+    {
+      "id": "sau:241106608:code_grounding:002",
+      "kind": "code_grounding",
+      "statement": "「Symmetry-Aware Attachment Standardization」由代码符号 _get_canonicalization_map 实现（未标注文件）",
+      "source_node_ids": [
+        "algorithmstep:2411.06608:0:symmetry_aware_attachment_standardization",
+        "codefunction:raulorteg_molminer:molminer_processor_py:get_canonicalization_map"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "symbol_exists",
+        "target": "codefunction:raulorteg_molminer:molminer_processor_py:get_canonicalization_map",
+        "signature": "_get_canonicalization_map",
+        "file": "",
+        "lineno": 253,
+        "stub_allowed": false
+      },
+      "required": true,
+      "provenance": "extracted",
+      "relation_hint": "MODULE_IMPLEMENTED_BY",
+      "parent_id": "",
+      "path": "",
+      "depth": 0,
+      "weight": 1.0
+    },
+    {
+      "id": "sau:241106608:method:001",
+      "kind": "method",
+      "statement": "MolMiner 的模块「Geometry-Biased Attention」实现 attention（inputs=['fragment_centroids', 'fragment_embeddings'] → outputs=['attended_fragment_representations']）",
+      "source_node_ids": [
+        "algorithm:molminer",
+        "algorithmstep:2411.06608:1:geometry_biased_attention"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "module_implemented",
+        "target": "algorithmstep:2411.06608:1:geometry_biased_attention",
+        "algorithm": "algorithm:molminer",
+        "mechanism": "attention",
+        "inputs": [
+          "fragment_centroids",
+          "fragment_embeddings"
+        ],
+        "outputs": [
+          "attended_fragment_representations"
+        ],
+        "formula": "2"
+      },
+      "required": true,
+      "provenance": "derived",
+      "relation_hint": "PROPOSES_METHOD|HAS_MODULE",
+      "parent_id": "",
+      "path": "",
+      "depth": 0,
+      "weight": 1.0
+    },
+    {
+      "id": "sau:241106608:code_grounding:003",
+      "kind": "code_grounding",
+      "statement": "「Geometry-Biased Attention」由代码符号 forward 实现（未标注文件）",
+      "source_node_ids": [
+        "algorithmstep:2411.06608:1:geometry_biased_attention",
+        "codefunction:raulorteg_molminer:molminer_models_py:forward"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "symbol_exists",
+        "target": "codefunction:raulorteg_molminer:molminer_models_py:forward",
+        "signature": "forward",
+        "file": "",
+        "lineno": 53,
+        "stub_allowed": false
+      },
+      "required": true,
+      "provenance": "extracted",
+      "relation_hint": "MODULE_IMPLEMENTED_BY",
+      "parent_id": "",
+      "path": "",
+      "depth": 0,
+      "weight": 1.0
+    },
+    {
+      "id": "sau:241106608:method:002",
+      "kind": "method",
+      "statement": "MolMiner 的模块「Fragment Starter」实现 initialization（inputs=['conditioning_properties'] → outputs=['initial_fragment_id']）",
+      "source_node_ids": [
+        "algorithm:molminer",
+        "algorithmstep:2411.06608:2:fragment_starter"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "module_implemented",
+        "target": "algorithmstep:2411.06608:2:fragment_starter",
+        "algorithm": "algorithm:molminer",
+        "mechanism": "initialization",
+        "inputs": [
+          "conditioning_properties"
+        ],
+        "outputs": [
+          "initial_fragment_id"
+        ],
+        "formula": ""
+      },
+      "required": true,
+      "provenance": "derived",
+      "relation_hint": "PROPOSES_METHOD|HAS_MODULE",
+      "parent_id": "",
+      "path": "",
+      "depth": 0,
+      "weight": 1.0
+    },
+    {
+      "id": "sau:241106608:code_grounding:004",
+      "kind": "code_grounding",
+      "statement": "「Fragment Starter」由代码符号 forward 实现（未标注文件）",
+      "source_node_ids": [
+        "algorithmstep:2411.06608:2:fragment_starter",
+        "codefunction:raulorteg_molminer:molminer_models_py:forward"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "symbol_exists",
+        "target": "codefunction:raulorteg_molminer:molminer_models_py:forward",
+        "signature": "forward",
+        "file": "",
+        "lineno": 53,
+        "stub_allowed": false
+      },
+      "required": true,
+      "provenance": "extracted",
+      "relation_hint": "MODULE_IMPLEMENTED_BY",
+      "parent_id": "",
+      "path": "",
+      "depth": 0,
+      "weight": 1.0
+    },
+    {
+      "id": "sau:241106608:code_grounding:005",
+      "kind": "code_grounding",
+      "statement": "「Fragment Starter」由代码符号 __init__ 实现（未标注文件）",
+      "source_node_ids": [
+        "algorithmstep:2411.06608:2:fragment_starter",
+        "codefunction:raulorteg_molminer:molminer_models_py:init"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "symbol_exists",
+        "target": "codefunction:raulorteg_molminer:molminer_models_py:init",
+        "signature": "__init__",
+        "file": "",
+        "lineno": 39,
+        "stub_allowed": false
+      },
+      "required": true,
+      "provenance": "extracted",
+      "relation_hint": "MODULE_IMPLEMENTED_BY",
+      "parent_id": "",
+      "path": "",
+      "depth": 0,
+      "weight": 1.0
+    },
+    {
+      "id": "sau:241106608:method:003",
+      "kind": "method",
+      "statement": "MolMiner 的模块「Order-Agnostic Autoregressive Rollout」实现 sampling（inputs=['partial_structure', 'focal_attachment_site', 'properties'] → outputs=['next_fragment_attachment_action']）",
+      "source_node_ids": [
+        "algorithm:molminer",
+        "algorithmstep:2411.06608:3:order_agnostic_autoregressive_rollout"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "module_implemented",
+        "target": "algorithmstep:2411.06608:3:order_agnostic_autoregressive_rollout",
+        "algorithm": "algorithm:molminer",
+        "mechanism": "sampling",
+        "inputs": [
+          "partial_structure",
+          "focal_attachment_site",
+          "properties"
+        ],
+        "outputs": [
+          "next_fragment_attachment_action"
+        ],
+        "formula": "1"
+      },
+      "required": true,
+      "provenance": "derived",
+      "relation_hint": "PROPOSES_METHOD|HAS_MODULE",
+      "parent_id": "",
+      "path": "",
+      "depth": 0,
+      "weight": 1.0
+    },
+    {
+      "id": "sau:241106608:code_grounding:006",
+      "kind": "code_grounding",
+      "statement": "「Order-Agnostic Autoregressive Rollout」由代码符号 _sample 实现（未标注文件）",
+      "source_node_ids": [
+        "algorithmstep:2411.06608:3:order_agnostic_autoregressive_rollout",
+        "codefunction:raulorteg_molminer:molminer_generator_py:sample"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "symbol_exists",
+        "target": "codefunction:raulorteg_molminer:molminer_generator_py:sample",
+        "signature": "_sample",
+        "file": "",
+        "lineno": 527,
+        "stub_allowed": false
+      },
+      "required": true,
+      "provenance": "extracted",
+      "relation_hint": "MODULE_IMPLEMENTED_BY",
+      "parent_id": "",
+      "path": "",
+      "depth": 0,
+      "weight": 1.0
+    },
+    {
+      "id": "sau:241106608:method:004",
+      "kind": "method",
+      "statement": "MolMiner 的模块「Fragment Coarse-Graining」实现 分解分子为环和孤立键片段（inputs=['完整分子结构'] → outputs=['片段集合及其原子索引映射']）",
+      "source_node_ids": [
+        "algorithm:molminer",
+        "algorithmmodule:2411.06608:fragment_coarse_graining"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "module_implemented",
+        "target": "algorithmmodule:2411.06608:fragment_coarse_graining",
+        "algorithm": "algorithm:molminer",
+        "mechanism": "分解分子为环和孤立键片段",
+        "inputs": [
+          "完整分子结构"
+        ],
+        "outputs": [
+          "片段集合及其原子索引映射"
+        ],
+        "formula": ""
+      },
+      "required": true,
+      "provenance": "derived",
+      "relation_hint": "PROPOSES_METHOD|HAS_MODULE",
+      "parent_id": "",
+      "path": "",
+      "depth": 0,
+      "weight": 1.0
+    },
+    {
+      "id": "sau:241106608:method:005",
+      "kind": "method",
+      "statement": "MolMiner 的模块「Symmetry-Aware Attachment Standardization」实现 标准化片段连接点以消除对称性歧义（inputs=['片段原子环境及索引映射'] → outputs=['确定性连接点映射']）",
+      "source_node_ids": [
+        "algorithm:molminer",
+        "algorithmmodule:2411.06608:symmetry_aware_attachment_standardization"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "module_implemented",
+        "target": "algorithmmodule:2411.06608:symmetry_aware_attachment_standardization",
+        "algorithm": "algorithm:molminer",
+        "mechanism": "标准化片段连接点以消除对称性歧义",
+        "inputs": [
+          "片段原子环境及索引映射"
+        ],
+        "outputs": [
+          "确定性连接点映射"
+        ],
+        "formula": ""
+      },
+      "required": true,
+      "provenance": "derived",
+      "relation_hint": "PROPOSES_METHOD|HAS_MODULE",
+      "parent_id": "",
+      "path": "",
+      "depth": 0,
+      "weight": 1.0
+    },
+    {
+      "id": "sau:241106608:code_grounding:007",
+      "kind": "code_grounding",
+      "statement": "「Symmetry-Aware Attachment Standardization」由代码符号 _compute_possible_remaps 实现（未标注文件）",
+      "source_node_ids": [
+        "algorithmmodule:2411.06608:symmetry_aware_attachment_standardization",
+        "codefunction:raulorteg_molminer:molminer_processor_py:compute_possible_remaps"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "symbol_exists",
+        "target": "codefunction:raulorteg_molminer:molminer_processor_py:compute_possible_remaps",
+        "signature": "_compute_possible_remaps",
+        "file": "",
+        "lineno": 132,
+        "stub_allowed": false
+      },
+      "required": true,
+      "provenance": "extracted",
+      "relation_hint": "MODULE_IMPLEMENTED_BY",
+      "parent_id": "",
+      "path": "",
+      "depth": 0,
+      "weight": 1.0
+    },
+    {
+      "id": "sau:241106608:code_grounding:008",
+      "kind": "code_grounding",
+      "statement": "「Symmetry-Aware Attachment Standardization」由代码符号 _get_canonicalization_map 实现（未标注文件）",
+      "source_node_ids": [
+        "algorithmmodule:2411.06608:symmetry_aware_attachment_standardization",
+        "codefunction:raulorteg_molminer:molminer_processor_py:get_canonicalization_map"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "symbol_exists",
+        "target": "codefunction:raulorteg_molminer:molminer_processor_py:get_canonicalization_map",
+        "signature": "_get_canonicalization_map",
+        "file": "",
+        "lineno": 253,
+        "stub_allowed": false
+      },
+      "required": true,
+      "provenance": "extracted",
+      "relation_hint": "MODULE_IMPLEMENTED_BY",
+      "parent_id": "",
+      "path": "",
+      "depth": 0,
+      "weight": 1.0
+    },
+    {
+      "id": "sau:241106608:method:006",
+      "kind": "method",
+      "statement": "MolMiner 的模块「Order-Agnostic Rollout」实现 从开放连接点均匀采样并预测片段连接或终止（inputs=['当前部分结构及目标性质'] → outputs=['片段连接动作序列']）",
+      "source_node_ids": [
+        "algorithm:molminer",
+        "algorithmmodule:2411.06608:order_agnostic_rollout"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "module_implemented",
+        "target": "algorithmmodule:2411.06608:order_agnostic_rollout",
+        "algorithm": "algorithm:molminer",
+        "mechanism": "从开放连接点均匀采样并预测片段连接或终止",
+        "inputs": [
+          "当前部分结构及目标性质"
+        ],
+        "outputs": [
+          "片段连接动作序列"
+        ],
+        "formula": "L(θ | M) = log E_{R∼U(R(M))} [ ∏_{i=1}^{|R|} p_θ(x^{(R)}_i | x^{(R)}_{<i}, c) ]"
+      },
+      "required": true,
+      "provenance": "derived",
+      "relation_hint": "PROPOSES_METHOD|HAS_MODULE",
+      "parent_id": "",
+      "path": "",
+      "depth": 0,
+      "weight": 1.0
+    },
+    {
+      "id": "sau:241106608:code_grounding:009",
+      "kind": "code_grounding",
+      "statement": "「Order-Agnostic Rollout」由代码符号 _sample 实现（未标注文件）",
+      "source_node_ids": [
+        "algorithmmodule:2411.06608:order_agnostic_rollout",
+        "codefunction:raulorteg_molminer:molminer_generator_py:sample"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "symbol_exists",
+        "target": "codefunction:raulorteg_molminer:molminer_generator_py:sample",
+        "signature": "_sample",
+        "file": "",
+        "lineno": 527,
+        "stub_allowed": false
+      },
+      "required": true,
+      "provenance": "extracted",
+      "relation_hint": "MODULE_IMPLEMENTED_BY",
+      "parent_id": "",
+      "path": "",
+      "depth": 0,
+      "weight": 1.0
+    },
+    {
+      "id": "sau:241106608:method:007",
+      "kind": "method",
+      "statement": "MolMiner 的模块「Geometry-Aware Transformer」实现 利用片段质心距离计算高斯衰减核以调制注意力分数（inputs=['片段嵌入及力场弛豫后的三维坐标'] → outputs=['上下文向量']）",
+      "source_node_ids": [
+        "algorithm:molminer",
+        "algorithmmodule:2411.06608:geometry_aware_transformer"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "module_implemented",
+        "target": "algorithmmodule:2411.06608:geometry_aware_transformer",
+        "algorithm": "algorithm:molminer",
+        "mechanism": "利用片段质心距离计算高斯衰减核以调制注意力分数",
+        "inputs": [
+          "片段嵌入及力场弛豫后的三维坐标"
+        ],
+        "outputs": [
+          "上下文向量"
+        ],
+        "formula": "α_{ij} = \\frac{e^{g(h_i,h_j)+\\theta \\cdot D_{ij}}}{\\sum_{k=1}^{N} e^{g(h_i,h_k)+\\theta \\cdot D_{ik}}}, D_{ij} = e^{-\\frac{\\|x_i-x_j\\|^2}{2\\sigma^2}}"
+      },
+      "required": true,
+      "provenance": "derived",
+      "relation_hint": "PROPOSES_METHOD|HAS_MODULE",
+      "parent_id": "",
+      "path": "",
+      "depth": 0,
+      "weight": 1.0
+    },
+    {
+      "id": "sau:241106608:code_grounding:010",
+      "kind": "code_grounding",
+      "statement": "「Geometry-Aware Transformer」由代码符号 Decoder 实现（未标注文件）",
+      "source_node_ids": [
+        "algorithmmodule:2411.06608:geometry_aware_transformer",
+        "codefunction:stonewiseaidrugdesign_lingo3dmol:model_module_py:decoder"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "symbol_exists",
+        "target": "codefunction:stonewiseaidrugdesign_lingo3dmol:model_module_py:decoder",
+        "signature": "Decoder",
+        "file": "",
+        "lineno": 91,
+        "stub_allowed": false
+      },
+      "required": true,
+      "provenance": "extracted",
+      "relation_hint": "MODULE_IMPLEMENTED_BY",
+      "parent_id": "",
+      "path": "",
+      "depth": 0,
+      "weight": 1.0
+    },
+    {
+      "id": "sau:241106608:code_grounding:011",
+      "kind": "code_grounding",
+      "statement": "「Geometry-Aware Transformer」由代码符号 DecoderLayer 实现（未标注文件）",
+      "source_node_ids": [
+        "algorithmmodule:2411.06608:geometry_aware_transformer",
+        "codefunction:stonewiseaidrugdesign_lingo3dmol:model_module_py:decoderlayer"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "symbol_exists",
+        "target": "codefunction:stonewiseaidrugdesign_lingo3dmol:model_module_py:decoderlayer",
+        "signature": "DecoderLayer",
+        "file": "",
+        "lineno": 131,
+        "stub_allowed": false
+      },
+      "required": true,
+      "provenance": "extracted",
+      "relation_hint": "MODULE_IMPLEMENTED_BY",
+      "parent_id": "",
+      "path": "",
+      "depth": 0,
+      "weight": 1.0
+    },
+    {
+      "id": "sau:241106608:method:008",
+      "kind": "method",
+      "statement": "MolMiner 的模块「Fragment Predictor」实现 预测起始片段以初始化生成过程（inputs=['目标性质'] → outputs=['起始片段概率分布']）",
+      "source_node_ids": [
+        "algorithm:molminer",
+        "algorithmmodule:2411.06608:fragment_predictor"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "module_implemented",
+        "target": "algorithmmodule:2411.06608:fragment_predictor",
+        "algorithm": "algorithm:molminer",
+        "mechanism": "预测起始片段以初始化生成过程",
+        "inputs": [
+          "目标性质"
+        ],
+        "outputs": [
+          "起始片段概率分布"
+        ],
+        "formula": ""
+      },
+      "required": true,
+      "provenance": "derived",
+      "relation_hint": "PROPOSES_METHOD|HAS_MODULE",
+      "parent_id": "",
+      "path": "",
+      "depth": 0,
+      "weight": 1.0
+    },
+    {
+      "id": "sau:241106608:method:009",
+      "kind": "method",
+      "statement": "MolMiner 的模块「Conditional Sampling」实现 使用高斯混合模型补全缺失的目标性质（inputs=['部分目标性质'] → outputs=['完整条件向量']）",
+      "source_node_ids": [
+        "algorithm:molminer",
+        "algorithmmodule:2411.06608:conditional_sampling"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "module_implemented",
+        "target": "algorithmmodule:2411.06608:conditional_sampling",
+        "algorithm": "algorithm:molminer",
+        "mechanism": "使用高斯混合模型补全缺失的目标性质",
+        "inputs": [
+          "部分目标性质"
+        ],
+        "outputs": [
+          "完整条件向量"
+        ],
+        "formula": ""
+      },
+      "required": true,
+      "provenance": "derived",
+      "relation_hint": "PROPOSES_METHOD|HAS_MODULE",
+      "parent_id": "",
+      "path": "",
+      "depth": 0,
+      "weight": 1.0
+    },
+    {
+      "id": "sau:241106608:method:010",
+      "kind": "method",
+      "statement": "MolMiner 的模块「Autoregressive Decoder」实现 逐步生成分子表示（inputs=['潜在向量 z', '随机带 η'] → outputs=['分子表示 x']）",
+      "source_node_ids": [
+        "algorithm:molminer",
+        "algorithmmodule:2608.06956:autoregressive_decoder"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "module_implemented",
+        "target": "algorithmmodule:2608.06956:autoregressive_decoder",
+        "algorithm": "algorithm:molminer",
+        "mechanism": "逐步生成分子表示",
+        "inputs": [
+          "潜在向量 z",
+          "随机带 η"
+        ],
+        "outputs": [
+          "分子表示 x"
+        ],
+        "formula": ""
+      },
+      "required": true,
+      "provenance": "derived",
+      "relation_hint": "PROPOSES_METHOD|HAS_MODULE",
+      "parent_id": "",
+      "path": "",
+      "depth": 0,
+      "weight": 1.0
+    },
+    {
+      "id": "sau:241106608:code_grounding:012",
+      "kind": "code_grounding",
+      "statement": "「Autoregressive Decoder」由代码符号 Decoder 实现（未标注文件）",
+      "source_node_ids": [
+        "algorithmmodule:2608.06956:autoregressive_decoder",
+        "codefunction:stonewiseaidrugdesign_lingo3dmol:model_module_py:decoder"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "symbol_exists",
+        "target": "codefunction:stonewiseaidrugdesign_lingo3dmol:model_module_py:decoder",
+        "signature": "Decoder",
+        "file": "",
+        "lineno": 91,
+        "stub_allowed": false
+      },
+      "required": true,
+      "provenance": "extracted",
+      "relation_hint": "MODULE_IMPLEMENTED_BY",
+      "parent_id": "",
+      "path": "",
+      "depth": 0,
+      "weight": 1.0
+    },
+    {
+      "id": "sau:241106608:code_grounding:013",
+      "kind": "code_grounding",
+      "statement": "「Autoregressive Decoder」由代码符号 decode 实现（未标注文件）",
+      "source_node_ids": [
+        "algorithmmodule:2608.06956:autoregressive_decoder",
+        "codefunction:jkwang93_amp_designer:amp_gpt_generator_py:decode"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "symbol_exists",
+        "target": "codefunction:jkwang93_amp_designer:amp_gpt_generator_py:decode",
+        "signature": "decode",
+        "file": "",
+        "lineno": 35,
+        "stub_allowed": false
+      },
+      "required": true,
+      "provenance": "extracted",
+      "relation_hint": "MODULE_IMPLEMENTED_BY",
+      "parent_id": "",
+      "path": "",
+      "depth": 0,
+      "weight": 1.0
+    },
+    {
+      "id": "sau:241106608:method:011",
+      "kind": "method",
+      "statement": "MolMiner 的模块「Identity Pullback」实现 将分子身份类拉回生成过程（inputs=['分子等价类 [x]∼'] → outputs=['坐标集合 C[x]∼']）",
+      "source_node_ids": [
+        "algorithm:molminer",
+        "algorithmmodule:2608.06956:identity_pullback"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "module_implemented",
+        "target": "algorithmmodule:2608.06956:identity_pullback",
+        "algorithm": "algorithm:molminer",
+        "mechanism": "将分子身份类拉回生成过程",
+        "inputs": [
+          "分子等价类 [x]∼"
+        ],
+        "outputs": [
+          "坐标集合 C[x]∼"
+        ],
+        "formula": "C[x]∼= {(z, η) ∈Z × E : D(Γθ(z, η)) ∼x}"
+      },
+      "required": true,
+      "provenance": "derived",
+      "relation_hint": "PROPOSES_METHOD|HAS_MODULE",
+      "parent_id": "",
+      "path": "",
+      "depth": 0,
+      "weight": 1.0
+    },
+    {
+      "id": "sau:241106608:method:012",
+      "kind": "method",
+      "statement": "HierVAE 的模块「Graph Encoder」实现 编码分子图结构（inputs=['分子图'] → outputs=['潜在向量 z']）",
+      "source_node_ids": [
+        "algorithm:hiervae",
+        "algorithmmodule:2608.06956:graph_encoder"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "module_implemented",
+        "target": "algorithmmodule:2608.06956:graph_encoder",
+        "algorithm": "algorithm:hiervae",
+        "mechanism": "编码分子图结构",
+        "inputs": [
+          "分子图"
+        ],
+        "outputs": [
+          "潜在向量 z"
+        ],
+        "formula": ""
+      },
+      "required": true,
+      "provenance": "derived",
+      "relation_hint": "PROPOSES_METHOD|HAS_MODULE",
+      "parent_id": "",
+      "path": "",
+      "depth": 0,
+      "weight": 1.0
+    },
+    {
+      "id": "sau:241106608:code_grounding:014",
+      "kind": "code_grounding",
+      "statement": "「Graph Encoder」由代码符号 Encoder 实现（未标注文件）",
+      "source_node_ids": [
+        "algorithmmodule:2608.06956:graph_encoder",
+        "codefunction:stonewiseaidrugdesign_lingo3dmol:model_module_py:encoder"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "symbol_exists",
+        "target": "codefunction:stonewiseaidrugdesign_lingo3dmol:model_module_py:encoder",
+        "signature": "Encoder",
+        "file": "",
+        "lineno": 24,
+        "stub_allowed": false
+      },
+      "required": true,
+      "provenance": "extracted",
+      "relation_hint": "MODULE_IMPLEMENTED_BY",
+      "parent_id": "",
+      "path": "",
+      "depth": 0,
+      "weight": 1.0
+    },
+    {
+      "id": "sau:241106608:method:013",
+      "kind": "method",
+      "statement": "HierVAE 的模块「Hierarchical Decoder」实现 分层解码生成分子（inputs=['潜在向量 z', '随机带 η'] → outputs=['分子图']）",
+      "source_node_ids": [
+        "algorithm:hiervae",
+        "algorithmmodule:2608.06956:hierarchical_decoder"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "module_implemented",
+        "target": "algorithmmodule:2608.06956:hierarchical_decoder",
+        "algorithm": "algorithm:hiervae",
+        "mechanism": "分层解码生成分子",
+        "inputs": [
+          "潜在向量 z",
+          "随机带 η"
+        ],
+        "outputs": [
+          "分子图"
+        ],
+        "formula": ""
+      },
+      "required": true,
+      "provenance": "derived",
+      "relation_hint": "PROPOSES_METHOD|HAS_MODULE",
+      "parent_id": "",
+      "path": "",
+      "depth": 0,
+      "weight": 1.0
+    },
+    {
+      "id": "sau:241106608:code_grounding:015",
+      "kind": "code_grounding",
+      "statement": "「Hierarchical Decoder」由代码符号 Decoder 实现（未标注文件）",
+      "source_node_ids": [
+        "algorithmmodule:2608.06956:hierarchical_decoder",
+        "codefunction:stonewiseaidrugdesign_lingo3dmol:model_module_py:decoder"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "symbol_exists",
+        "target": "codefunction:stonewiseaidrugdesign_lingo3dmol:model_module_py:decoder",
+        "signature": "Decoder",
+        "file": "",
+        "lineno": 91,
+        "stub_allowed": false
+      },
+      "required": true,
+      "provenance": "extracted",
+      "relation_hint": "MODULE_IMPLEMENTED_BY",
+      "parent_id": "",
+      "path": "",
+      "depth": 0,
+      "weight": 1.0
+    },
+    {
+      "id": "sau:241106608:code_grounding:016",
+      "kind": "code_grounding",
+      "statement": "「Hierarchical Decoder」由代码符号 decode 实现（未标注文件）",
+      "source_node_ids": [
+        "algorithmmodule:2608.06956:hierarchical_decoder",
+        "codefunction:jkwang93_amp_designer:amp_gpt_generator_py:decode"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "symbol_exists",
+        "target": "codefunction:jkwang93_amp_designer:amp_gpt_generator_py:decode",
+        "signature": "decode",
+        "file": "",
+        "lineno": 35,
+        "stub_allowed": false
+      },
+      "required": true,
+      "provenance": "extracted",
+      "relation_hint": "MODULE_IMPLEMENTED_BY",
+      "parent_id": "",
+      "path": "",
+      "depth": 0,
+      "weight": 1.0
+    },
+    {
+      "id": "sau:241106608:protocol:000",
+      "kind": "protocol",
+      "statement": "ZINC 的数据契约为 SMILES → SMILES，样本量 1000M，评测基准=True",
+      "source_node_ids": [
+        "benchmark:zinc",
+        "appcontract:benchmark_zinc"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "data_contract",
+        "target": "benchmark:zinc",
+        "input_form": "SMILES",
+        "output_form": "SMILES",
+        "n_samples": "1000M",
+        "is_evaluation": true,
+        "shape_probe": null
+      },
+      "required": true,
+      "provenance": "derived",
+      "relation_hint": "EVALUATED_ON|HAS_CONTRACT",
+      "parent_id": "",
+      "path": "",
+      "depth": 0,
+      "weight": 1.0
+    },
+    {
+      "id": "sau:241106608:numeric:000",
+      "kind": "numeric",
+      "statement": "ZINC 上 GDSS 的 uniqueness = 99.6（方向=max）",
+      "source_node_ids": [
+        "benchmark:zinc",
+        "applb:benchmark_zinc:0",
+        "appmetric:uniqueness"
+      ],
+      "evidence_ids": [
+        "appev:benchmark_zinc:0"
+      ],
+      "check": {
+        "op": "numeric_compare",
+        "target": "applb:benchmark_zinc:0",
+        "metric": "uniqueness",
+        "value": "99.6",
+        "value_num": 99.6,
+        "unit": "",
+        "direction": "max",
+        "direction_raw": "higher",
+        "direction_source": "",
+        "tolerance": 0.05
+      },
+      "required": false,
+      "provenance": "extracted",
+      "relation_hint": "HAS_ENTRY|USES_METRIC",
+      "parent_id": "",
+      "path": "",
+      "depth": 0,
+      "weight": 1.0
+    },
+    {
+      "id": "sau:241106608:numeric:001",
+      "kind": "numeric",
+      "statement": "ZINC 上 GDSS 的 novelty = 100.0（方向=max）",
+      "source_node_ids": [
+        "benchmark:zinc",
+        "applb:benchmark_zinc:1",
+        "appmetric:novelty"
+      ],
+      "evidence_ids": [
+        "appev:benchmark_zinc:1"
+      ],
+      "check": {
+        "op": "numeric_compare",
+        "target": "applb:benchmark_zinc:1",
+        "metric": "novelty",
+        "value": "100.0",
+        "value_num": 100.0,
+        "unit": "",
+        "direction": "max",
+        "direction_raw": "higher",
+        "direction_source": "",
+        "tolerance": 0.05
+      },
+      "required": true,
+      "provenance": "extracted",
+      "relation_hint": "HAS_ENTRY|USES_METRIC",
+      "parent_id": "",
+      "path": "",
+      "depth": 0,
+      "weight": 1.0
+    },
+    {
+      "id": "sau:241106608:numeric:002",
+      "kind": "numeric",
+      "statement": "ZINC 上 GDSS 的 diversity = 0.9026（方向=max）",
+      "source_node_ids": [
+        "benchmark:zinc",
+        "applb:benchmark_zinc:2",
+        "appmetric:diversity"
+      ],
+      "evidence_ids": [
+        "appev:benchmark_zinc:2"
+      ],
+      "check": {
+        "op": "numeric_compare",
+        "target": "applb:benchmark_zinc:2",
+        "metric": "diversity",
+        "value": "0.9026",
+        "value_num": 0.9026,
+        "unit": "",
+        "direction": "max",
+        "direction_raw": "higher",
+        "direction_source": "",
+        "tolerance": 0.05
+      },
+      "required": true,
+      "provenance": "extracted",
+      "relation_hint": "HAS_ENTRY|USES_METRIC",
+      "parent_id": "",
+      "path": "",
+      "depth": 0,
+      "weight": 1.0
+    },
+    {
+      "id": "sau:241106608:numeric:003",
+      "kind": "numeric",
+      "statement": "ZINC 上 GDSS 的 validity = 100.0（方向=max）",
+      "source_node_ids": [
+        "benchmark:zinc",
+        "applb:benchmark_zinc:3",
+        "appmetric:validity"
+      ],
+      "evidence_ids": [
+        "appev:benchmark_zinc:3"
+      ],
+      "check": {
+        "op": "numeric_compare",
+        "target": "applb:benchmark_zinc:3",
+        "metric": "validity",
+        "value": "100.0",
+        "value_num": 100.0,
+        "unit": "",
+        "direction": "max",
+        "direction_raw": "higher",
+        "direction_source": "",
+        "tolerance": 0.05
+      },
+      "required": false,
+      "provenance": "extracted",
+      "relation_hint": "HAS_ENTRY|USES_METRIC",
+      "parent_id": "",
+      "path": "",
+      "depth": 0,
+      "weight": 1.0
+    },
+    {
+      "id": "sau:241106608:numeric:004",
+      "kind": "numeric",
+      "statement": "ZINC 上 GDSS 的 frag_ratio = 38.96（方向=未标注）",
+      "source_node_ids": [
+        "benchmark:zinc",
+        "applb:benchmark_zinc:4"
+      ],
+      "evidence_ids": [
+        "appev:benchmark_zinc:4"
+      ],
+      "check": {
+        "op": "numeric_compare",
+        "target": "applb:benchmark_zinc:4",
+        "metric": "frag_ratio",
+        "value": "38.96",
+        "value_num": 38.96,
+        "unit": "",
+        "direction": "",
+        "direction_raw": "",
+        "direction_source": "",
+        "tolerance": 0.05
+      },
+      "required": false,
+      "provenance": "extracted",
+      "relation_hint": "HAS_ENTRY|USES_METRIC",
+      "parent_id": "",
+      "path": "",
+      "depth": 0,
+      "weight": 1.0
+    },
+    {
+      "id": "sau:241106608:numeric:005",
+      "kind": "numeric",
+      "statement": "ZINC 上 MolMiner 的 validity = 100.0（方向=max）",
+      "source_node_ids": [
+        "benchmark:zinc",
+        "applb:benchmark_zinc:5",
+        "appmetric:validity"
+      ],
+      "evidence_ids": [
+        "appev:benchmark_zinc:5"
+      ],
+      "check": {
+        "op": "numeric_compare",
+        "target": "applb:benchmark_zinc:5",
+        "metric": "validity",
+        "value": "100.0",
+        "value_num": 100.0,
+        "unit": "",
+        "direction": "max",
+        "direction_raw": "higher",
+        "direction_source": "",
+        "tolerance": 0.05
+      },
+      "required": true,
+      "provenance": "extracted",
+      "relation_hint": "HAS_ENTRY|USES_METRIC",
+      "parent_id": "",
+      "path": "",
+      "depth": 0,
+      "weight": 1.0
+    },
+    {
+      "id": "sau:241106608:numeric:006",
+      "kind": "numeric",
+      "statement": "ZINC 上 MolMiner 的 frag_ratio = 0.00（方向=未标注）",
+      "source_node_ids": [
+        "benchmark:zinc",
+        "applb:benchmark_zinc:6"
+      ],
+      "evidence_ids": [
+        "appev:benchmark_zinc:6"
+      ],
+      "check": {
+        "op": "numeric_compare",
+        "target": "applb:benchmark_zinc:6",
+        "metric": "frag_ratio",
+        "value": "0.00",
+        "value_num": 0.0,
+        "unit": "",
+        "direction": "",
+        "direction_raw": "",
+        "direction_source": "",
+        "tolerance": 0.05
+      },
+      "required": true,
+      "provenance": "extracted",
+      "relation_hint": "HAS_ENTRY|USES_METRIC",
+      "parent_id": "",
+      "path": "",
+      "depth": 0,
+      "weight": 1.0
+    },
+    {
+      "id": "sau:241106608:numeric:007",
+      "kind": "numeric",
+      "statement": "ZINC 上 MolMiner 的 uniqueness = 98.5（方向=max）",
+      "source_node_ids": [
+        "benchmark:zinc",
+        "applb:benchmark_zinc:7",
+        "appmetric:uniqueness"
+      ],
+      "evidence_ids": [
+        "appev:benchmark_zinc:7"
+      ],
+      "check": {
+        "op": "numeric_compare",
+        "target": "applb:benchmark_zinc:7",
+        "metric": "uniqueness",
+        "value": "98.5",
+        "value_num": 98.5,
+        "unit": "",
+        "direction": "max",
+        "direction_raw": "higher",
+        "direction_source": "",
+        "tolerance": 0.05
+      },
+      "required": false,
+      "provenance": "extracted",
+      "relation_hint": "HAS_ENTRY|USES_METRIC",
+      "parent_id": "",
+      "path": "",
+      "depth": 0,
+      "weight": 1.0
+    },
+    {
+      "id": "sau:241106608:numeric:008",
+      "kind": "numeric",
+      "statement": "ZINC 上 MolMiner 的 novelty = 99.9（方向=max）",
+      "source_node_ids": [
+        "benchmark:zinc",
+        "applb:benchmark_zinc:8",
+        "appmetric:novelty"
+      ],
+      "evidence_ids": [
+        "appev:benchmark_zinc:8"
+      ],
+      "check": {
+        "op": "numeric_compare",
+        "target": "applb:benchmark_zinc:8",
+        "metric": "novelty",
+        "value": "99.9",
+        "value_num": 99.9,
+        "unit": "",
+        "direction": "max",
+        "direction_raw": "higher",
+        "direction_source": "",
+        "tolerance": 0.05
+      },
+      "required": false,
+      "provenance": "extracted",
+      "relation_hint": "HAS_ENTRY|USES_METRIC",
+      "parent_id": "",
+      "path": "",
+      "depth": 0,
+      "weight": 1.0
+    },
+    {
+      "id": "sau:241106608:numeric:009",
+      "kind": "numeric",
+      "statement": "ZINC 上 MolMiner 的 diversity = 0.8919（方向=max）",
+      "source_node_ids": [
+        "benchmark:zinc",
+        "applb:benchmark_zinc:9",
+        "appmetric:diversity"
+      ],
+      "evidence_ids": [
+        "appev:benchmark_zinc:9"
+      ],
+      "check": {
+        "op": "numeric_compare",
+        "target": "applb:benchmark_zinc:9",
+        "metric": "diversity",
+        "value": "0.8919",
+        "value_num": 0.8919,
+        "unit": "",
+        "direction": "max",
+        "direction_raw": "higher",
+        "direction_source": "",
+        "tolerance": 0.05
+      },
+      "required": false,
+      "provenance": "extracted",
+      "relation_hint": "HAS_ENTRY|USES_METRIC",
+      "parent_id": "",
+      "path": "",
+      "depth": 0,
+      "weight": 1.0
+    },
+    {
+      "id": "sau:241106608:numeric:010",
+      "kind": "numeric",
+      "statement": "ZINC 上 HierVAE 的 validity = 100.0（方向=max）",
+      "source_node_ids": [
+        "benchmark:zinc",
+        "applb:benchmark_zinc:10",
+        "appmetric:validity"
+      ],
+      "evidence_ids": [
+        "appev:benchmark_zinc:10"
+      ],
+      "check": {
+        "op": "numeric_compare",
+        "target": "applb:benchmark_zinc:10",
+        "metric": "validity",
+        "value": "100.0",
+        "value_num": 100.0,
+        "unit": "",
+        "direction": "max",
+        "direction_raw": "higher",
+        "direction_source": "",
+        "tolerance": 0.05
+      },
+      "required": false,
+      "provenance": "extracted",
+      "relation_hint": "HAS_ENTRY|USES_METRIC",
+      "parent_id": "",
+      "path": "",
+      "depth": 0,
+      "weight": 1.0
+    },
+    {
+      "id": "sau:241106608:numeric:011",
+      "kind": "numeric",
+      "statement": "ZINC 上 HierVAE 的 frag_ratio = 0.00（方向=未标注）",
+      "source_node_ids": [
+        "benchmark:zinc",
+        "applb:benchmark_zinc:11"
+      ],
+      "evidence_ids": [
+        "appev:benchmark_zinc:11"
+      ],
+      "check": {
+        "op": "numeric_compare",
+        "target": "applb:benchmark_zinc:11",
+        "metric": "frag_ratio",
+        "value": "0.00",
+        "value_num": 0.0,
+        "unit": "",
+        "direction": "",
+        "direction_raw": "",
+        "direction_source": "",
+        "tolerance": 0.05
+      },
+      "required": false,
+      "provenance": "extracted",
+      "relation_hint": "HAS_ENTRY|USES_METRIC",
+      "parent_id": "",
+      "path": "",
+      "depth": 0,
+      "weight": 1.0
+    },
+    {
+      "id": "sau:241106608:numeric:012",
+      "kind": "numeric",
+      "statement": "ZINC 上 HierVAE 的 uniqueness = 100.0（方向=max）",
+      "source_node_ids": [
+        "benchmark:zinc",
+        "applb:benchmark_zinc:12",
+        "appmetric:uniqueness"
+      ],
+      "evidence_ids": [
+        "appev:benchmark_zinc:12"
+      ],
+      "check": {
+        "op": "numeric_compare",
+        "target": "applb:benchmark_zinc:12",
+        "metric": "uniqueness",
+        "value": "100.0",
+        "value_num": 100.0,
+        "unit": "",
+        "direction": "max",
+        "direction_raw": "higher",
+        "direction_source": "",
+        "tolerance": 0.05
+      },
+      "required": true,
+      "provenance": "extracted",
+      "relation_hint": "HAS_ENTRY|USES_METRIC",
+      "parent_id": "",
+      "path": "",
+      "depth": 0,
+      "weight": 1.0
+    },
+    {
+      "id": "sau:241106608:numeric:013",
+      "kind": "numeric",
+      "statement": "ZINC 上 HierVAE 的 novelty = 99.9（方向=max）",
+      "source_node_ids": [
+        "benchmark:zinc",
+        "applb:benchmark_zinc:13",
+        "appmetric:novelty"
+      ],
+      "evidence_ids": [
+        "appev:benchmark_zinc:13"
+      ],
+      "check": {
+        "op": "numeric_compare",
+        "target": "applb:benchmark_zinc:13",
+        "metric": "novelty",
+        "value": "99.9",
+        "value_num": 99.9,
+        "unit": "",
+        "direction": "max",
+        "direction_raw": "higher",
+        "direction_source": "",
+        "tolerance": 0.05
+      },
+      "required": false,
+      "provenance": "extracted",
+      "relation_hint": "HAS_ENTRY|USES_METRIC",
+      "parent_id": "",
+      "path": "",
+      "depth": 0,
+      "weight": 1.0
+    },
+    {
+      "id": "sau:241106608:numeric:014",
+      "kind": "numeric",
+      "statement": "ZINC 上 HierVAE 的 diversity = 0.8759（方向=max）",
+      "source_node_ids": [
+        "benchmark:zinc",
+        "applb:benchmark_zinc:14",
+        "appmetric:diversity"
+      ],
+      "evidence_ids": [
+        "appev:benchmark_zinc:14"
+      ],
+      "check": {
+        "op": "numeric_compare",
+        "target": "applb:benchmark_zinc:14",
+        "metric": "diversity",
+        "value": "0.8759",
+        "value_num": 0.8759,
+        "unit": "",
+        "direction": "max",
+        "direction_raw": "higher",
+        "direction_source": "",
+        "tolerance": 0.05
+      },
+      "required": false,
+      "provenance": "extracted",
+      "relation_hint": "HAS_ENTRY|USES_METRIC",
+      "parent_id": "",
+      "path": "",
+      "depth": 0,
+      "weight": 1.0
+    },
+    {
+      "id": "sau:241106608:numeric:015",
+      "kind": "numeric",
+      "statement": "ZINC 上 NeVAE 的 property_value_improvement = 121%（方向=未标注）",
+      "source_node_ids": [
+        "benchmark:zinc",
+        "applb:benchmark_zinc:120"
+      ],
+      "evidence_ids": [
+        "appev:benchmark_zinc:120"
+      ],
+      "check": {
+        "op": "numeric_compare",
+        "target": "applb:benchmark_zinc:120",
+        "metric": "property_value_improvement",
+        "value": "121",
+        "value_num": 121.0,
+        "unit": "%",
+        "direction": "",
+        "direction_raw": "",
+        "direction_source": "",
+        "tolerance": 0.05
+      },
+      "required": false,
+      "provenance": "extracted",
+      "relation_hint": "HAS_ENTRY|USES_METRIC",
+      "parent_id": "",
+      "path": "",
+      "depth": 0,
+      "weight": 1.0
+    },
+    {
+      "id": "sau:241106608:protocol:001",
+      "kind": "protocol",
+      "statement": "ZINC 的数据契约为 unknown → unknown，样本量 unknown，评测基准=True",
+      "source_node_ids": [
+        "benchmark:canonical:zinc",
+        "appcontract:benchmark_canonical_zinc"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "data_contract",
+        "target": "benchmark:canonical:zinc",
+        "input_form": "unknown",
+        "output_form": "unknown",
+        "n_samples": "unknown",
+        "is_evaluation": true,
+        "shape_probe": null
+      },
+      "required": true,
+      "provenance": "derived",
+      "relation_hint": "EVALUATED_ON|HAS_CONTRACT",
+      "parent_id": "",
+      "path": "",
+      "depth": 0,
+      "weight": 1.0
+    },
+    {
+      "id": "sau:241106608:protocol:002",
+      "kind": "protocol",
+      "statement": "Unconditional Generation 的数据契约为 向量 → SMILES，样本量 N ≈5,000，评测基准=True",
+      "source_node_ids": [
+        "benchmark:unconditional_generation",
+        "appcontract:benchmark_unconditional_generation"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "data_contract",
+        "target": "benchmark:unconditional_generation",
+        "input_form": "向量",
+        "output_form": "SMILES",
+        "n_samples": "N ≈5,000",
+        "is_evaluation": true,
+        "shape_probe": null
+      },
+      "required": true,
+      "provenance": "derived",
+      "relation_hint": "EVALUATED_ON|HAS_CONTRACT",
+      "parent_id": "",
+      "path": "",
+      "depth": 0,
+      "weight": 1.0
+    },
+    {
+      "id": "sau:241106608:numeric:016",
+      "kind": "numeric",
+      "statement": "Unconditional Generation 上 GDSS 的 validity = 100.0（方向=max）",
+      "source_node_ids": [
+        "benchmark:unconditional_generation",
+        "applb:benchmark_unconditional_generation:0",
+        "appmetric:validity"
+      ],
+      "evidence_ids": [
+        "appev:benchmark_unconditional_generation:0"
+      ],
+      "check": {
+        "op": "numeric_compare",
+        "target": "applb:benchmark_unconditional_generation:0",
+        "metric": "validity",
+        "value": "100.0",
+        "value_num": 100.0,
+        "unit": "",
+        "direction": "max",
+        "direction_raw": "higher",
+        "direction_source": "",
+        "tolerance": 0.05
+      },
+      "required": false,
+      "provenance": "extracted",
+      "relation_hint": "HAS_ENTRY|USES_METRIC",
+      "parent_id": "",
+      "path": "",
+      "depth": 0,
+      "weight": 1.0
+    },
+    {
+      "id": "sau:241106608:numeric:017",
+      "kind": "numeric",
+      "statement": "Unconditional Generation 上 GDSS 的 frag_ratio = 38.96（方向=未标注）",
+      "source_node_ids": [
+        "benchmark:unconditional_generation",
+        "applb:benchmark_unconditional_generation:1"
+      ],
+      "evidence_ids": [
+        "appev:benchmark_unconditional_generation:1"
+      ],
+      "check": {
+        "op": "numeric_compare",
+        "target": "applb:benchmark_unconditional_generation:1",
+        "metric": "frag_ratio",
+        "value": "38.96",
+        "value_num": 38.96,
+        "unit": "",
+        "direction": "",
+        "direction_raw": "",
+        "direction_source": "",
+        "tolerance": 0.05
+      },
+      "required": false,
+      "provenance": "extracted",
+      "relation_hint": "HAS_ENTRY|USES_METRIC",
+      "parent_id": "",
+      "path": "",
+      "depth": 0,
+      "weight": 1.0
+    },
+    {
+      "id": "sau:241106608:numeric:018",
+      "kind": "numeric",
+      "statement": "Unconditional Generation 上 GDSS 的 uniqueness = 99.6（方向=max）",
+      "source_node_ids": [
+        "benchmark:unconditional_generation",
+        "applb:benchmark_unconditional_generation:2",
+        "appmetric:uniqueness"
+      ],
+      "evidence_ids": [
+        "appev:benchmark_unconditional_generation:2"
+      ],
+      "check": {
+        "op": "numeric_compare",
+        "target": "applb:benchmark_unconditional_generation:2",
+        "metric": "uniqueness",
+        "value": "99.6",
+        "value_num": 99.6,
+        "unit": "",
+        "direction": "max",
+        "direction_raw": "higher",
+        "direction_source": "",
+        "tolerance": 0.05
+      },
+      "required": false,
+      "provenance": "extracted",
+      "relation_hint": "HAS_ENTRY|USES_METRIC",
+      "parent_id": "",
+      "path": "",
+      "depth": 0,
+      "weight": 1.0
+    },
+    {
+      "id": "sau:241106608:numeric:019",
+      "kind": "numeric",
+      "statement": "Unconditional Generation 上 GDSS 的 novelty = 100.0（方向=max）",
+      "source_node_ids": [
+        "benchmark:unconditional_generation",
+        "applb:benchmark_unconditional_generation:3",
+        "appmetric:novelty"
+      ],
+      "evidence_ids": [
+        "appev:benchmark_unconditional_generation:3"
+      ],
+      "check": {
+        "op": "numeric_compare",
+        "target": "applb:benchmark_unconditional_generation:3",
+        "metric": "novelty",
+        "value": "100.0",
+        "value_num": 100.0,
+        "unit": "",
+        "direction": "max",
+        "direction_raw": "higher",
+        "direction_source": "",
+        "tolerance": 0.05
+      },
+      "required": true,
+      "provenance": "extracted",
+      "relation_hint": "HAS_ENTRY|USES_METRIC",
+      "parent_id": "",
+      "path": "",
+      "depth": 0,
+      "weight": 1.0
+    },
+    {
+      "id": "sau:241106608:numeric:020",
+      "kind": "numeric",
+      "statement": "Unconditional Generation 上 GDSS 的 diversity = 0.9026（方向=max）",
+      "source_node_ids": [
+        "benchmark:unconditional_generation",
+        "applb:benchmark_unconditional_generation:4",
+        "appmetric:diversity"
+      ],
+      "evidence_ids": [
+        "appev:benchmark_unconditional_generation:4"
+      ],
+      "check": {
+        "op": "numeric_compare",
+        "target": "applb:benchmark_unconditional_generation:4",
+        "metric": "diversity",
+        "value": "0.9026",
+        "value_num": 0.9026,
+        "unit": "",
+        "direction": "max",
+        "direction_raw": "higher",
+        "direction_source": "",
+        "tolerance": 0.05
+      },
+      "required": true,
+      "provenance": "extracted",
+      "relation_hint": "HAS_ENTRY|USES_METRIC",
+      "parent_id": "",
+      "path": "",
+      "depth": 0,
+      "weight": 1.0
+    },
+    {
+      "id": "sau:241106608:numeric:021",
+      "kind": "numeric",
+      "statement": "Unconditional Generation 上 MolMiner 的 validity = 100.0（方向=max）",
+      "source_node_ids": [
+        "benchmark:unconditional_generation",
+        "applb:benchmark_unconditional_generation:5",
+        "appmetric:validity"
+      ],
+      "evidence_ids": [
+        "appev:benchmark_unconditional_generation:5"
+      ],
+      "check": {
+        "op": "numeric_compare",
+        "target": "applb:benchmark_unconditional_generation:5",
+        "metric": "validity",
+        "value": "100.0",
+        "value_num": 100.0,
+        "unit": "",
+        "direction": "max",
+        "direction_raw": "higher",
+        "direction_source": "",
+        "tolerance": 0.05
+      },
+      "required": true,
+      "provenance": "extracted",
+      "relation_hint": "HAS_ENTRY|USES_METRIC",
+      "parent_id": "",
+      "path": "",
+      "depth": 0,
+      "weight": 1.0
+    },
+    {
+      "id": "sau:241106608:numeric:022",
+      "kind": "numeric",
+      "statement": "Unconditional Generation 上 MolMiner 的 frag_ratio = 0.00（方向=未标注）",
+      "source_node_ids": [
+        "benchmark:unconditional_generation",
+        "applb:benchmark_unconditional_generation:6"
+      ],
+      "evidence_ids": [
+        "appev:benchmark_unconditional_generation:6"
+      ],
+      "check": {
+        "op": "numeric_compare",
+        "target": "applb:benchmark_unconditional_generation:6",
+        "metric": "frag_ratio",
+        "value": "0.00",
+        "value_num": 0.0,
+        "unit": "",
+        "direction": "",
+        "direction_raw": "",
+        "direction_source": "",
+        "tolerance": 0.05
+      },
+      "required": true,
+      "provenance": "extracted",
+      "relation_hint": "HAS_ENTRY|USES_METRIC",
+      "parent_id": "",
+      "path": "",
+      "depth": 0,
+      "weight": 1.0
+    },
+    {
+      "id": "sau:241106608:numeric:023",
+      "kind": "numeric",
+      "statement": "Unconditional Generation 上 MolMiner 的 uniqueness = 98.5（方向=max）",
+      "source_node_ids": [
+        "benchmark:unconditional_generation",
+        "applb:benchmark_unconditional_generation:7",
+        "appmetric:uniqueness"
+      ],
+      "evidence_ids": [
+        "appev:benchmark_unconditional_generation:7"
+      ],
+      "check": {
+        "op": "numeric_compare",
+        "target": "applb:benchmark_unconditional_generation:7",
+        "metric": "uniqueness",
+        "value": "98.5",
+        "value_num": 98.5,
+        "unit": "",
+        "direction": "max",
+        "direction_raw": "higher",
+        "direction_source": "",
+        "tolerance": 0.05
+      },
+      "required": false,
+      "provenance": "extracted",
+      "relation_hint": "HAS_ENTRY|USES_METRIC",
+      "parent_id": "",
+      "path": "",
+      "depth": 0,
+      "weight": 1.0
+    },
+    {
+      "id": "sau:241106608:numeric:024",
+      "kind": "numeric",
+      "statement": "Unconditional Generation 上 MolMiner 的 novelty = 99.9（方向=max）",
+      "source_node_ids": [
+        "benchmark:unconditional_generation",
+        "applb:benchmark_unconditional_generation:8",
+        "appmetric:novelty"
+      ],
+      "evidence_ids": [
+        "appev:benchmark_unconditional_generation:8"
+      ],
+      "check": {
+        "op": "numeric_compare",
+        "target": "applb:benchmark_unconditional_generation:8",
+        "metric": "novelty",
+        "value": "99.9",
+        "value_num": 99.9,
+        "unit": "",
+        "direction": "max",
+        "direction_raw": "higher",
+        "direction_source": "",
+        "tolerance": 0.05
+      },
+      "required": false,
+      "provenance": "extracted",
+      "relation_hint": "HAS_ENTRY|USES_METRIC",
+      "parent_id": "",
+      "path": "",
+      "depth": 0,
+      "weight": 1.0
+    },
+    {
+      "id": "sau:241106608:numeric:025",
+      "kind": "numeric",
+      "statement": "Unconditional Generation 上 MolMiner 的 diversity = 0.8919（方向=max）",
+      "source_node_ids": [
+        "benchmark:unconditional_generation",
+        "applb:benchmark_unconditional_generation:9",
+        "appmetric:diversity"
+      ],
+      "evidence_ids": [
+        "appev:benchmark_unconditional_generation:9"
+      ],
+      "check": {
+        "op": "numeric_compare",
+        "target": "applb:benchmark_unconditional_generation:9",
+        "metric": "diversity",
+        "value": "0.8919",
+        "value_num": 0.8919,
+        "unit": "",
+        "direction": "max",
+        "direction_raw": "higher",
+        "direction_source": "",
+        "tolerance": 0.05
+      },
+      "required": false,
+      "provenance": "extracted",
+      "relation_hint": "HAS_ENTRY|USES_METRIC",
+      "parent_id": "",
+      "path": "",
+      "depth": 0,
+      "weight": 1.0
+    },
+    {
+      "id": "sau:241106608:numeric:026",
+      "kind": "numeric",
+      "statement": "Unconditional Generation 上 HierVAE 的 validity = 100.0（方向=max）",
+      "source_node_ids": [
+        "benchmark:unconditional_generation",
+        "applb:benchmark_unconditional_generation:10",
+        "appmetric:validity"
+      ],
+      "evidence_ids": [
+        "appev:benchmark_unconditional_generation:10"
+      ],
+      "check": {
+        "op": "numeric_compare",
+        "target": "applb:benchmark_unconditional_generation:10",
+        "metric": "validity",
+        "value": "100.0",
+        "value_num": 100.0,
+        "unit": "",
+        "direction": "max",
+        "direction_raw": "higher",
+        "direction_source": "",
+        "tolerance": 0.05
+      },
+      "required": false,
+      "provenance": "extracted",
+      "relation_hint": "HAS_ENTRY|USES_METRIC",
+      "parent_id": "",
+      "path": "",
+      "depth": 0,
+      "weight": 1.0
+    },
+    {
+      "id": "sau:241106608:numeric:027",
+      "kind": "numeric",
+      "statement": "Unconditional Generation 上 HierVAE 的 frag_ratio = 0.00（方向=未标注）",
+      "source_node_ids": [
+        "benchmark:unconditional_generation",
+        "applb:benchmark_unconditional_generation:11"
+      ],
+      "evidence_ids": [
+        "appev:benchmark_unconditional_generation:11"
+      ],
+      "check": {
+        "op": "numeric_compare",
+        "target": "applb:benchmark_unconditional_generation:11",
+        "metric": "frag_ratio",
+        "value": "0.00",
+        "value_num": 0.0,
+        "unit": "",
+        "direction": "",
+        "direction_raw": "",
+        "direction_source": "",
+        "tolerance": 0.05
+      },
+      "required": false,
+      "provenance": "extracted",
+      "relation_hint": "HAS_ENTRY|USES_METRIC",
+      "parent_id": "",
+      "path": "",
+      "depth": 0,
+      "weight": 1.0
+    },
+    {
+      "id": "sau:241106608:numeric:028",
+      "kind": "numeric",
+      "statement": "Unconditional Generation 上 HierVAE 的 uniqueness = 100.0（方向=max）",
+      "source_node_ids": [
+        "benchmark:unconditional_generation",
+        "applb:benchmark_unconditional_generation:12",
+        "appmetric:uniqueness"
+      ],
+      "evidence_ids": [
+        "appev:benchmark_unconditional_generation:12"
+      ],
+      "check": {
+        "op": "numeric_compare",
+        "target": "applb:benchmark_unconditional_generation:12",
+        "metric": "uniqueness",
+        "value": "100.0",
+        "value_num": 100.0,
+        "unit": "",
+        "direction": "max",
+        "direction_raw": "higher",
+        "direction_source": "",
+        "tolerance": 0.05
+      },
+      "required": true,
+      "provenance": "extracted",
+      "relation_hint": "HAS_ENTRY|USES_METRIC",
+      "parent_id": "",
+      "path": "",
+      "depth": 0,
+      "weight": 1.0
+    },
+    {
+      "id": "sau:241106608:numeric:029",
+      "kind": "numeric",
+      "statement": "Unconditional Generation 上 HierVAE 的 novelty = 99.9（方向=max）",
+      "source_node_ids": [
+        "benchmark:unconditional_generation",
+        "applb:benchmark_unconditional_generation:13",
+        "appmetric:novelty"
+      ],
+      "evidence_ids": [
+        "appev:benchmark_unconditional_generation:13"
+      ],
+      "check": {
+        "op": "numeric_compare",
+        "target": "applb:benchmark_unconditional_generation:13",
+        "metric": "novelty",
+        "value": "99.9",
+        "value_num": 99.9,
+        "unit": "",
+        "direction": "max",
+        "direction_raw": "higher",
+        "direction_source": "",
+        "tolerance": 0.05
+      },
+      "required": false,
+      "provenance": "extracted",
+      "relation_hint": "HAS_ENTRY|USES_METRIC",
+      "parent_id": "",
+      "path": "",
+      "depth": 0,
+      "weight": 1.0
+    },
+    {
+      "id": "sau:241106608:numeric:030",
+      "kind": "numeric",
+      "statement": "Unconditional Generation 上 HierVAE 的 diversity = 0.8759（方向=max）",
+      "source_node_ids": [
+        "benchmark:unconditional_generation",
+        "applb:benchmark_unconditional_generation:14",
+        "appmetric:diversity"
+      ],
+      "evidence_ids": [
+        "appev:benchmark_unconditional_generation:14"
+      ],
+      "check": {
+        "op": "numeric_compare",
+        "target": "applb:benchmark_unconditional_generation:14",
+        "metric": "diversity",
+        "value": "0.8759",
+        "value_num": 0.8759,
+        "unit": "",
+        "direction": "max",
+        "direction_raw": "higher",
+        "direction_source": "",
+        "tolerance": 0.05
+      },
+      "required": false,
+      "provenance": "extracted",
+      "relation_hint": "HAS_ENTRY|USES_METRIC",
+      "parent_id": "",
+      "path": "",
+      "depth": 0,
+      "weight": 1.0
+    },
+    {
+      "id": "sau:241106608:protocol:003",
+      "kind": "protocol",
+      "statement": "Conditional Generation 的数据契约为 标量 → 图，样本量 30 times per target value，评测基准=True",
+      "source_node_ids": [
+        "benchmark:conditional_generation",
+        "appcontract:benchmark_conditional_generation"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "data_contract",
+        "target": "benchmark:conditional_generation",
+        "input_form": "标量",
+        "output_form": "图",
+        "n_samples": "30 times per target value",
+        "is_evaluation": true,
+        "shape_probe": null
+      },
+      "required": true,
+      "provenance": "derived",
+      "relation_hint": "EVALUATED_ON|HAS_CONTRACT",
+      "parent_id": "",
+      "path": "",
+      "depth": 0,
+      "weight": 1.0
+    },
+    {
+      "id": "sau:241106608:protocol:004",
+      "kind": "protocol",
+      "statement": "Targeted Multi-Property 的数据契约为 unknown → unknown，样本量 unknown，评测基准=True",
+      "source_node_ids": [
+        "benchmark:targeted_multi_property",
+        "appcontract:benchmark_targeted_multi_property"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "data_contract",
+        "target": "benchmark:targeted_multi_property",
+        "input_form": "unknown",
+        "output_form": "unknown",
+        "n_samples": "unknown",
+        "is_evaluation": true,
+        "shape_probe": null
+      },
+      "required": true,
+      "provenance": "derived",
+      "relation_hint": "EVALUATED_ON|HAS_CONTRACT",
+      "parent_id": "",
+      "path": "",
+      "depth": 0,
+      "weight": 1.0
+    },
+    {
+      "id": "sau:241106608:protocol:005",
+      "kind": "protocol",
+      "statement": "Targeted Generation 的数据契约为 向量 → SMILES，样本量 N ≈5,000，评测基准=True",
+      "source_node_ids": [
+        "benchmark:targeted_generation",
+        "appcontract:benchmark_targeted_generation"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "data_contract",
+        "target": "benchmark:targeted_generation",
+        "input_form": "向量",
+        "output_form": "SMILES",
+        "n_samples": "N ≈5,000",
+        "is_evaluation": true,
+        "shape_probe": null
+      },
+      "required": true,
+      "provenance": "derived",
+      "relation_hint": "EVALUATED_ON|HAS_CONTRACT",
+      "parent_id": "",
+      "path": "",
+      "depth": 0,
+      "weight": 1.0
+    },
+    {
+      "id": "sau:241106608:ordering:000",
+      "kind": "ordering",
+      "statement": "执行顺序：Graph Encoder 必须早于 Autoregressive Decoder（数据流 ['潜在向量 z']）",
+      "source_node_ids": [
+        "algorithmmodule:2608.06956:graph_encoder",
+        "algorithmmodule:2608.06956:autoregressive_decoder"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "ordering",
+        "before": "algorithmmodule:2608.06956:graph_encoder",
+        "after": "algorithmmodule:2608.06956:autoregressive_decoder",
+        "all_predecessors": []
+      },
+      "required": true,
+      "provenance": "derived",
+      "relation_hint": "HAS_MODULE",
+      "parent_id": "",
+      "path": "",
+      "depth": 0,
+      "weight": 1.0
+    },
+    {
+      "id": "sau:241106608:ordering:001",
+      "kind": "ordering",
+      "statement": "执行顺序：Hierarchical Decoder 必须早于 Graph Encoder（数据流 ['分子图']）（⚠ 与其它依赖构成环，降级为待人工确认）",
+      "source_node_ids": [
+        "algorithmmodule:2608.06956:hierarchical_decoder",
+        "algorithmmodule:2608.06956:graph_encoder"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "ordering",
+        "before": "algorithmmodule:2608.06956:hierarchical_decoder",
+        "after": "algorithmmodule:2608.06956:graph_encoder",
+        "all_predecessors": [],
+        "cycle": true
+      },
+      "required": false,
+      "provenance": "inferred",
+      "relation_hint": "HAS_MODULE",
+      "parent_id": "",
+      "path": "",
+      "depth": 0,
+      "weight": 1.0
+    },
+    {
+      "id": "sau:241106608:ordering:002",
+      "kind": "ordering",
+      "statement": "执行顺序：Graph Encoder 必须早于 Hierarchical Decoder（数据流 ['潜在向量 z']）（⚠ 与其它依赖构成环，降级为待人工确认）",
+      "source_node_ids": [
+        "algorithmmodule:2608.06956:graph_encoder",
+        "algorithmmodule:2608.06956:hierarchical_decoder"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "ordering",
+        "before": "algorithmmodule:2608.06956:graph_encoder",
+        "after": "algorithmmodule:2608.06956:hierarchical_decoder",
+        "all_predecessors": [],
+        "cycle": true
+      },
+      "required": false,
+      "provenance": "inferred",
+      "relation_hint": "HAS_MODULE",
+      "parent_id": "",
+      "path": "",
+      "depth": 0,
+      "weight": 1.0
+    }
+  ],
+  "method_lock": {
+    "locked": true,
+    "compiler_version": "ggr-spec-0.2.0",
+    "n_method_sau": 14,
+    "method_sau_hash": "sha256:d62df8a27988eac0"
+  },
+  "data_contract": [
+    {
+      "benchmark": "benchmark:zinc",
+      "label": "ZINC",
+      "input_form": "SMILES",
+      "output_form": "SMILES",
+      "n_samples": "1000M",
+      "scale": "1000M pairs",
+      "is_evaluation": true
+    },
+    {
+      "benchmark": "benchmark:canonical:zinc",
+      "label": "ZINC",
+      "input_form": "unknown",
+      "output_form": "unknown",
+      "n_samples": "unknown",
+      "scale": "规模未标注",
+      "is_evaluation": true
+    },
+    {
+      "benchmark": "benchmark:unconditional_generation",
+      "label": "Unconditional Generation",
+      "input_form": "向量",
+      "output_form": "SMILES",
+      "n_samples": "N ≈5,000",
+      "scale": "规模未标注",
+      "is_evaluation": true
+    },
+    {
+      "benchmark": "benchmark:conditional_generation",
+      "label": "Conditional Generation",
+      "input_form": "标量",
+      "output_form": "图",
+      "n_samples": "30 times per target value",
+      "scale": "more than 80 single and multi-property control in silico exp",
+      "is_evaluation": true
+    },
+    {
+      "benchmark": "benchmark:targeted_multi_property",
+      "label": "Targeted Multi-Property",
+      "input_form": "unknown",
+      "output_form": "unknown",
+      "n_samples": "unknown",
+      "scale": "规模未标注",
+      "is_evaluation": true
+    },
+    {
+      "benchmark": "benchmark:targeted_generation",
+      "label": "Targeted Generation",
+      "input_form": "向量",
+      "output_form": "SMILES",
+      "n_samples": "N ≈5,000",
+      "scale": null,
+      "is_evaluation": true
+    }
+  ],
+  "metric_plan": {
+    "validity": {
+      "name": "validity",
+      "direction": "higher",
+      "direction_source": "",
+      "unit": "",
+      "target": "appmetric:validity",
+      "sota_model": "MolMiner",
+      "sota_value": "100.0",
+      "benchmarks": [
+        "benchmark:zinc",
+        "benchmark:unconditional_generation",
+        "benchmark:conditional_generation"
+      ]
+    },
+    "novelty": {
+      "name": "novelty",
+      "direction": "higher",
+      "direction_source": "",
+      "unit": "",
+      "target": "appmetric:novelty",
+      "sota_model": "GDSS",
+      "sota_value": "100.0",
+      "benchmarks": [
+        "benchmark:zinc",
+        "benchmark:unconditional_generation"
+      ]
+    },
+    "Wasserstein distance": {
+      "name": "Wasserstein distance",
+      "direction": "lower",
+      "direction_source": "",
+      "unit": "",
+      "target": "appmetric:wasserstein_distance",
+      "sota_model": null,
+      "sota_value": null,
+      "benchmarks": [
+        "benchmark:unconditional_generation"
+      ]
+    },
+    "uniqueness": {
+      "name": "uniqueness",
+      "direction": "higher",
+      "direction_source": "",
+      "unit": "",
+      "target": "appmetric:uniqueness",
+      "sota_model": "HierVAE",
+      "sota_value": "100.0",
+      "benchmarks": [
+        "benchmark:unconditional_generation"
+      ]
+    },
+    "controllability": {
+      "name": "controllability",
+      "direction": "higher",
+      "direction_source": "",
+      "unit": "",
+      "target": "appmetric:controllability",
+      "sota_model": null,
+      "sota_value": null,
+      "benchmarks": [
+        "benchmark:conditional_generation"
+      ]
+    },
+    "fidelity": {
+      "name": "fidelity",
+      "direction": "higher",
+      "direction_source": "",
+      "unit": "",
+      "target": "appmetric:fidelity",
+      "sota_model": null,
+      "sota_value": null,
+      "benchmarks": [
+        "benchmark:conditional_generation"
+      ]
+    },
+    "Hit rate": {
+      "name": "Hit rate",
+      "direction": "higher",
+      "direction_source": "",
+      "unit": "%",
+      "target": "appmetric:hit_rate",
+      "sota_model": null,
+      "sota_value": null,
+      "benchmarks": [
+        "benchmark:targeted_generation"
+      ]
+    },
+    "Fold-enrichment": {
+      "name": "Fold-enrichment",
+      "direction": "higher",
+      "direction_source": "",
+      "unit": "x",
+      "target": "appmetric:fold_enrichment",
+      "sota_model": null,
+      "sota_value": null,
+      "benchmarks": [
+        "benchmark:targeted_generation"
+      ]
+    }
+  },
+  "lineage": [
+    {
+      "id": "appsrc:paper_2411_06608_paper_1802_04364",
+      "label": "Junction Tree Variational Autoencoder for Molecular Graph Generation",
+      "type": "SourcePaper",
+      "relation": "SITUATED_IN",
+      "source": "paper_out",
+      "kind": ""
+    },
+    {
+      "id": "appsrc:paper_2411_06608_paper_src_2411_06608_g_schnet",
+      "label": "G-SchNet",
+      "type": "SourcePaper",
+      "relation": "SITUATED_IN",
+      "source": "paper_out",
+      "kind": ""
+    },
+    {
+      "id": "appsrc:paper_2411_06608_paper_src_2411_06608_hiervae",
+      "label": "HierVAE",
+      "type": "SourcePaper",
+      "relation": "SITUATED_IN",
+      "source": "paper_out",
+      "kind": ""
+    }
+  ],
+  "code_plan": {
+    "strategy": "audit_repo",
+    "has_repo": true,
+    "repositories": [
+      "coderepository:raulorteg_molminer"
+    ],
+    "modules": [
+      "algorithmstep:2411.06608:0:symmetry_aware_attachment_standardization",
+      "algorithmstep:2411.06608:1:geometry_biased_attention",
+      "algorithmstep:2411.06608:2:fragment_starter",
+      "algorithmstep:2411.06608:3:order_agnostic_autoregressive_rollout",
+      "algorithmmodule:2411.06608:fragment_coarse_graining",
+      "algorithmmodule:2411.06608:symmetry_aware_attachment_standardization",
+      "algorithmmodule:2411.06608:order_agnostic_rollout",
+      "algorithmmodule:2411.06608:geometry_aware_transformer",
+      "algorithmmodule:2411.06608:fragment_predictor",
+      "algorithmmodule:2411.06608:conditional_sampling",
+      "algorithmmodule:2608.06956:autoregressive_decoder",
+      "algorithmmodule:2608.06956:identity_pullback",
+      "algorithmmodule:2608.06956:graph_encoder",
+      "algorithmmodule:2608.06956:hierarchical_decoder"
+    ],
+    "functions": [
+      "codefunction:raulorteg_molminer:molminer_processor_py:get_all_possible_attachments",
+      "codefunction:raulorteg_molminer:molminer_processor_py:compute_possible_remaps",
+      "codefunction:raulorteg_molminer:molminer_processor_py:get_canonicalization_map",
+      "codefunction:raulorteg_molminer:molminer_models_py:forward",
+      "codefunction:raulorteg_molminer:molminer_models_py:init",
+      "codefunction:raulorteg_molminer:molminer_generator_py:sample",
+      "codefunction:stonewiseaidrugdesign_lingo3dmol:model_module_py:decoder",
+      "codefunction:stonewiseaidrugdesign_lingo3dmol:model_module_py:decoderlayer",
+      "codefunction:jkwang93_amp_designer:amp_gpt_generator_py:decode",
+      "codefunction:stonewiseaidrugdesign_lingo3dmol:model_module_py:encoder",
+      "codefunction:general_molecular_simulations_so3lr:so3lr_base_calculator_py:forward",
+      "codefunction:jkwang93_amp_designer:amp_distiilation_py:forward",
+      "codefunction:jkwang93_amp_designer:amp_distiilation_py:sample",
+      "codefunction:jkwang93_amp_designer:amp_mic_amp_mic_py:forward",
+      "codefunction:zjunlp_molgen:molgen_model_bart_configuration_bart_py:init",
+      "codefunction:ast:compute_possible_remaps",
+      "codefunction:ast:get_canonicalization_map",
+      "codefunction:ast:forward",
+      "codefunction:ast:sample"
+    ],
+    "order": [
+      "algorithmmodule:2608.06956:graph_encoder",
+      "algorithmmodule:2608.06956:hierarchical_decoder",
+      "algorithmstep:2411.06608:0:symmetry_aware_attachment_standardization",
+      "algorithmstep:2411.06608:1:geometry_biased_attention",
+      "algorithmstep:2411.06608:2:fragment_starter",
+      "algorithmstep:2411.06608:3:order_agnostic_autoregressive_rollout",
+      "algorithmmodule:2411.06608:fragment_coarse_graining",
+      "algorithmmodule:2411.06608:symmetry_aware_attachment_standardization",
+      "algorithmmodule:2411.06608:order_agnostic_rollout",
+      "algorithmmodule:2411.06608:geometry_aware_transformer",
+      "algorithmmodule:2411.06608:fragment_predictor",
+      "algorithmmodule:2411.06608:conditional_sampling",
+      "algorithmmodule:2608.06956:autoregressive_decoder",
+      "algorithmmodule:2608.06956:identity_pullback"
+    ]
+  },
+  "budgets": {
+    "effort": "dry",
+    "debug_tries_max": 20,
+    "engineer_rounds_max": 2,
+    "deviation_tolerance": 0.05,
+    "allow_execution": false
+  },
+  "spec_hash": "sha256:0f1f79f23800ac4e5098d5162ed0760b04cdb00eda6b21380a938250e3aef805",
+  "graph_path": "storage_cf/sciforge/app_reproduction.json",
+  "graph_stats": {
+    "n_nodes": 8300,
+    "n_assertions": 10260
+  },
+  "warnings": [
+    "ordering 存在 2 条环依赖，已降级为 required=False"
+  ],
+  "gaps": [],
+  "sau_count": 71,
+  "sau_counts": {
+    "method": 14,
+    "code_grounding": 17,
+    "protocol": 6,
+    "numeric": 31,
+    "ordering": 3
+  }
+}

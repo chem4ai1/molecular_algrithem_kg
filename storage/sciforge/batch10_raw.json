@@ -1,0 +1,1543 @@
+[
+  {
+    "paper": {
+      "title": "MolMiner: A Fragment-Based, Geometry-Aware, and Order-Agnostic Generative Model",
+      "arxiv_id": "2411.06608",
+      "doi": ""
+    },
+    "proposed_methods": [
+      {
+        "name": "MolMiner",
+        "aliases": [
+          "MolMiner"
+        ],
+        "architecture": "Decoder-only Transformer with Geometry-Aware Attention Bias"
+      }
+    ],
+    "baselines": [],
+    "modules": [
+      {
+        "module_name": "Symmetry-Aware Attachment Canonicalization",
+        "mechanism": "encoding",
+        "causal_role": "mechanism",
+        "input_schema": "mol_reference, mol_other, radius",
+        "output_schema": "canonical_map",
+        "inputs": [
+          "mol_reference",
+          "mol_other"
+        ],
+        "outputs": [
+          "canonical_map"
+        ],
+        "parameters": [],
+        "equation_ref": "",
+        "order": 1,
+        "code_symbols": [
+          "GraphProcessor._get_canonicalization_map",
+          "GraphProcessor._compute_possible_remaps"
+        ],
+        "grounding_status": "grounded",
+        "evidence_ids": [
+          "section:2411.06608:Symmetry-Aware Attachment Modeling"
+        ]
+      },
+      {
+        "module_name": "Fragment Starter Predictor",
+        "mechanism": "initialization",
+        "causal_role": "mechanism",
+        "input_schema": "condition_embedding",
+        "output_schema": "starter_fragment_logits",
+        "inputs": [
+          "c"
+        ],
+        "outputs": [
+          "f_0"
+        ],
+        "parameters": [
+          "W_starter"
+        ],
+        "equation_ref": "",
+        "order": 2,
+        "code_symbols": [
+          "FragmentStarter.forward",
+          "FragmentStarter.__init__"
+        ],
+        "grounding_status": "grounded",
+        "evidence_ids": [
+          "section:2411.06608:Method"
+        ]
+      },
+      {
+        "module_name": "Geometry-Aware Molecule Transformer",
+        "mechanism": "attention",
+        "causal_role": "state",
+        "input_schema": "atom_ids, attn_mask, focal_attachment_order, nodes_saturation",
+        "output_schema": "fragment_embeddings",
+        "inputs": [
+          "atom_ids",
+          "attn_mask",
+          "nodes_saturation"
+        ],
+        "outputs": [
+          "fragment_embeddings"
+        ],
+        "parameters": [
+          "W_attn",
+          "W_geom_bias"
+        ],
+        "equation_ref": "1",
+        "order": 3,
+        "code_symbols": [
+          "MoleculeTransformer.forward",
+          "MoleculeDecoderBlock.forward"
+        ],
+        "grounding_status": "grounded",
+        "evidence_ids": [
+          "section:2411.06608:Method",
+          "section:2411.06608:Model Architecture"
+        ]
+      },
+      {
+        "module_name": "Order-Agnostic Autoregressive Rollout",
+        "mechanism": "sampling",
+        "causal_role": "decision",
+        "input_schema": "partial_structure_graph, condition_vector",
+        "output_schema": "next_fragment_action",
+        "inputs": [
+          "x_partial",
+          "c"
+        ],
+        "outputs": [
+          "next_action"
+        ],
+        "parameters": [],
+        "equation_ref": "1",
+        "order": 4,
+        "code_symbols": [
+          "MolecularGenerator._sample",
+          "Architect"
+        ],
+        "grounding_status": "grounded",
+        "evidence_ids": [
+          "section:2411.06608:Method",
+          "section:2411.06608:Model Architecture"
+        ]
+      }
+    ],
+    "experiments": [],
+    "metric_proposals": [],
+    "limitations": [
+      "MolMiner does not explicitly generate full 3D coordinates end-to-end, but relies on force-field relaxation (e.g., UFF) of intermediate partial structures to incorporate spatial attention biases."
+    ]
+  },
+  {
+    "paper": {
+      "title": "SO3LR Tauri: Generally Applicable Force Fields for Reactive (Bio)Molecular Simulations Covering the Periodic Table",
+      "arxiv_id": "2611.06237",
+      "doi": ""
+    },
+    "proposed_methods": [
+      {
+        "name": "SO3LR Tauri",
+        "aliases": [
+          "SO3LR-T",
+          "SO3LR-T-S",
+          "SO3LR-T-M",
+          "SO3LR-T-L"
+        ],
+        "architecture": "SO3krates message-passing backbone coupled with explicit physical interaction modules for short-range repulsion, environment-dependent dispersion, and electrostatics"
+      }
+    ],
+    "baselines": [
+      {
+        "name": "SO3LR",
+        "kind": "baseline"
+      }
+    ],
+    "modules": [
+      {
+        "module_name": "SO3krates Backbone",
+        "mechanism": "feature_update",
+        "causal_role": "mechanism",
+        "input_schema": "R, Z, Q, S",
+        "output_schema": "E_i, q_i, h_i, r_C6_i",
+        "inputs": [
+          "R",
+          "Z",
+          "Q",
+          "S"
+        ],
+        "outputs": [
+          "E_i",
+          "q_i",
+          "h_i",
+          "r_C6_i"
+        ],
+        "parameters": [],
+        "equation_ref": "Eq. (2)",
+        "order": 1,
+        "code_symbols": [
+          "make_so3lr"
+        ],
+        "grounding_status": "grounded",
+        "evidence_ids": []
+      },
+      {
+        "module_name": "Short-range Repulsion Potential",
+        "mechanism": "scoring",
+        "causal_role": "mechanism",
+        "input_schema": "R, Z",
+        "output_schema": "E_rep",
+        "inputs": [
+          "R",
+          "Z"
+        ],
+        "outputs": [
+          "E_rep"
+        ],
+        "parameters": [],
+        "equation_ref": "Eq. (1)",
+        "order": 2,
+        "code_symbols": [],
+        "grounding_status": "conceptual_gap",
+        "evidence_ids": []
+      },
+      {
+        "module_name": "Electrostatics Module",
+        "mechanism": "scoring",
+        "causal_role": "mechanism",
+        "input_schema": "R, q_i",
+        "output_schema": "E_elec",
+        "inputs": [
+          "R",
+          "q_i"
+        ],
+        "outputs": [
+          "E_elec"
+        ],
+        "parameters": [],
+        "equation_ref": "Eq. (1)",
+        "order": 3,
+        "code_symbols": [],
+        "grounding_status": "conceptual_gap",
+        "evidence_ids": []
+      },
+      {
+        "module_name": "Environment-dependent Dispersion Module",
+        "mechanism": "scoring",
+        "causal_role": "mechanism",
+        "input_schema": "R, h_i, r_C6_i",
+        "output_schema": "E_disp",
+        "inputs": [
+          "R",
+          "h_i",
+          "r_C6_i"
+        ],
+        "outputs": [
+          "E_disp"
+        ],
+        "parameters": [],
+        "equation_ref": "Eq. (1)",
+        "order": 4,
+        "code_symbols": [],
+        "grounding_status": "conceptual_gap",
+        "evidence_ids": [
+          "section:2611.06237:SO3LR derived all atomic dispersion parameters from"
+        ]
+      },
+      {
+        "module_name": "Total Potential Energy Summation",
+        "mechanism": "aggregation",
+        "causal_role": "output",
+        "input_schema": "E_rep, E_SO3k, E_elec, E_disp",
+        "output_schema": "E_total",
+        "inputs": [
+          "E_rep",
+          "E_SO3k",
+          "E_elec",
+          "E_disp"
+        ],
+        "outputs": [
+          "E_total"
+        ],
+        "parameters": [],
+        "equation_ref": "Eq. (1)",
+        "order": 5,
+        "code_symbols": [
+          "forward"
+        ],
+        "grounding_status": "grounded",
+        "evidence_ids": []
+      }
+    ],
+    "experiments": [],
+    "metric_proposals": [
+      "energy_mae",
+      "force_rmse",
+      "density_error",
+      "pKa_mae"
+    ],
+    "limitations": [
+      "Predictive accuracy for static and dynamic liquid properties and reaction barriers remains to be achieved.",
+      "Coverage of chemical and conformational space needs further expansion.",
+      "Sampling and inference speed require improvement to comprehensively describe large-scale biomolecular processes."
+    ]
+  },
+  {
+    "paper": {
+      "title": "AntiFold",
+      "arxiv_id": "2405.03370",
+      "doi": ""
+    },
+    "proposed_methods": [
+      {
+        "name": "AntiFold",
+        "aliases": [],
+        "architecture": "ESM-IF1-based antibody inverse folding model with IMGT-weighted masking and fine-tuning"
+      }
+    ],
+    "baselines": [
+      {
+        "name": "ESM-IF1",
+        "kind": "baseline"
+      },
+      {
+        "name": "AbMPNN",
+        "kind": "baseline"
+      },
+      {
+        "name": "ProteinMPNN",
+        "kind": "baseline"
+      },
+      {
+        "name": "BLOSUM62",
+        "kind": "baseline"
+      }
+    ],
+    "modules": [
+      {
+        "module_name": "Backbone Loading and Preparation",
+        "mechanism": "coordinate_update",
+        "causal_role": "input",
+        "input_schema": "pdb_dir, pdbs_csv_or_dataframe",
+        "output_schema": "dataset_dataloader",
+        "inputs": [
+          "pdb_file"
+        ],
+        "outputs": [
+          "dataloader"
+        ],
+        "parameters": [
+          "batch_size",
+          "custom_chain_"
+        ],
+        "equation_ref": "",
+        "order": 1,
+        "code_symbols": [
+          "get_dataset_dataloader",
+          "extract_chains_biotite",
+          "generate_pdbs_csv"
+        ],
+        "grounding_status": "grounded",
+        "evidence_ids": [
+          "section:2405.03370:Supplementary results"
+        ]
+      },
+      {
+        "module_name": "Structure Noise Augmentation and Masking",
+        "mechanism": "feature_update",
+        "causal_role": "state",
+        "input_schema": "backbone_coordinates, imgt_regions",
+        "output_schema": "masked_noisy_coordinates",
+        "inputs": [
+          "backbone_coordinates"
+        ],
+        "outputs": [
+          "masked_noisy_coordinates"
+        ],
+        "parameters": [
+          "noise_scale=0.1A",
+          "mask_ratio=0.15",
+          "cdr_weight=3x"
+        ],
+        "equation_ref": "",
+        "order": 2,
+        "code_symbols": [
+          "get_imgt_mask"
+        ],
+        "grounding_status": "grounded",
+        "evidence_ids": [
+          "section:2405.03370:Supplementary results"
+        ]
+      },
+      {
+        "module_name": "Inverse Folding Logits Prediction",
+        "mechanism": "scoring",
+        "causal_role": "mechanism",
+        "input_schema": "coordinates_3d, model_weights",
+        "output_schema": "residue_logits",
+        "inputs": [
+          "coordinates_3d"
+        ],
+        "outputs": [
+          "residue_logits"
+        ],
+        "parameters": [
+          "esm_if1_weights"
+        ],
+        "equation_ref": "",
+        "order": 3,
+        "code_symbols": [
+          "dataset_dataloader_to_predictions_list",
+          "get_pdbs_logits",
+          "predictions_list_to_df_logits_list"
+        ],
+        "grounding_status": "grounded",
+        "evidence_ids": [
+          "section:2405.03370:Supplementary results"
+        ]
+      },
+      {
+        "module_name": "Probability Conversion and Perplexity Calculation",
+        "mechanism": "decoding",
+        "causal_role": "state",
+        "input_schema": "residue_logits",
+        "output_schema": "seqprobs_distribution, pos_perplexity_scalar",
+        "inputs": [
+          "residue_logits"
+        ],
+        "outputs": [
+          "seqprobs_distribution",
+          "pos_perplexity_scalar"
+        ],
+        "parameters": [],
+        "equation_ref": "",
+        "order": 4,
+        "code_symbols": [
+          "logits_to_seqprobs_list",
+          "calc_pos_perplexity",
+          "get_temp_probs"
+        ],
+        "grounding_status": "grounded",
+        "evidence_ids": [
+          "section:2405.03370:Supplementary results"
+        ]
+      },
+      {
+        "module_name": "CDR-directed Sequence Sampling",
+        "mechanism": "sampling",
+        "causal_role": "output",
+        "input_schema": "df_logits, sampling_temp, imgt_regions",
+        "output_schema": "sampled_amino_sequence",
+        "inputs": [
+          "df_logits"
+        ],
+        "outputs": [
+          "sampled_amino_sequence"
+        ],
+        "parameters": [
+          "sampling_temp",
+          "sample_n"
+        ],
+        "equation_ref": "",
+        "order": 5,
+        "code_symbols": [
+          "sample_new_sequences_CDR_HL",
+          "sample_new_sequences_CDR_H",
+          "sample_from_df_logits_HL"
+        ],
+        "grounding_status": "grounded",
+        "evidence_ids": [
+          "section:2405.03370:Supplementary results"
+        ]
+      }
+    ],
+    "experiments": [
+      {
+        "section": "Supplementary results",
+        "benchmark": "Anti-lysozyme deep mutational scan",
+        "metrics": [],
+        "values": []
+      }
+    ],
+    "metric_proposals": [
+      "perplexity",
+      "amino_acid_recovery",
+      "deselection_rate"
+    ],
+    "limitations": [
+      "Sequence recovery performance is lower for antibodies with longer CDRH3 loops (median AAR of 71% for 6-9 residues vs 48% for 16-28 residues).",
+      "Distinctly disfavors mutations from alanine, or to proline and cysteine in CDRH3 positions."
+    ]
+  },
+  {
+    "paper": {
+      "title": "Discovery of novel antimicrobial peptides with notable antibacterial potency by a LLM-based foundation model",
+      "arxiv_id": "2407.12296",
+      "doi": ""
+    },
+    "proposed_methods": [
+      {
+        "name": "AMP-Designer",
+        "aliases": [
+          "AMP-GPT",
+          "AMP-Prompt",
+          "AMP-Distillation",
+          "AMP-MIC"
+        ],
+        "architecture": "Foundation GPT model with contrastive prompt tuning, knowledge distillation into multi-layer GRU, and MIC prediction regressor"
+      }
+    ],
+    "baselines": [
+      {
+        "name": "RNN",
+        "kind": "baseline"
+      },
+      {
+        "name": "GAN",
+        "kind": "baseline"
+      },
+      {
+        "name": "VAE",
+        "kind": "baseline"
+      }
+    ],
+    "modules": [
+      {
+        "module_name": "AMP-GPT Generator",
+        "mechanism": "decoding",
+        "causal_role": "mechanism",
+        "input_schema": "prompt_tokens, peptide_sequence_tokens",
+        "output_schema": "token_logits",
+        "inputs": [
+          "prompt_tokens",
+          "peptide_sequence_tokens"
+        ],
+        "outputs": [
+          "token_logits"
+        ],
+        "parameters": [
+          "gpt_weights"
+        ],
+        "equation_ref": "",
+        "order": 1,
+        "code_symbols": [
+          "predict",
+          "decode"
+        ],
+        "grounding_status": "grounded",
+        "evidence_ids": []
+      },
+      {
+        "module_name": "Top-k Top-p Token Sampler",
+        "mechanism": "sampling",
+        "causal_role": "decision",
+        "input_schema": "token_logits",
+        "output_schema": "sampled_token_indices",
+        "inputs": [
+          "token_logits"
+        ],
+        "outputs": [
+          "sampled_token_indices"
+        ],
+        "parameters": [
+          "top_k",
+          "top_p",
+          "filter_value"
+        ],
+        "equation_ref": "",
+        "order": 2,
+        "code_symbols": [
+          "top_k_top_p_filtering"
+        ],
+        "grounding_status": "grounded",
+        "evidence_ids": []
+      },
+      {
+        "module_name": "AMP-Distillation Student Model",
+        "mechanism": "feature_update",
+        "causal_role": "mechanism",
+        "input_schema": "token_indices, hidden_state_h",
+        "output_schema": "next_token_logits, next_hidden_state_h",
+        "inputs": [
+          "token_indices",
+          "hidden_state_h"
+        ],
+        "outputs": [
+          "next_token_logits",
+          "next_hidden_state_h"
+        ],
+        "parameters": [
+          "gru_weights",
+          "embedding_weights"
+        ],
+        "equation_ref": "",
+        "order": 3,
+        "code_symbols": [
+          "MultiGRU.forward",
+          "MultiGRU.init_h",
+          "RNN.sample"
+        ],
+        "grounding_status": "grounded",
+        "evidence_ids": [
+          "section:2407.12296:AMP-Distillation"
+        ]
+      },
+      {
+        "module_name": "AMP-Distillation Distillation Loss",
+        "mechanism": "loss",
+        "causal_role": "decision",
+        "input_schema": "log_probabilities, target_tokens",
+        "output_schema": "loss_scalar",
+        "inputs": [
+          "log_probabilities",
+          "target_tokens"
+        ],
+        "outputs": [
+          "loss_scalar"
+        ],
+        "parameters": [],
+        "equation_ref": "",
+        "order": 4,
+        "code_symbols": [
+          "NLLLoss"
+        ],
+        "grounding_status": "grounded",
+        "evidence_ids": [
+          "section:2407.12296:AMP-Distillation"
+        ]
+      },
+      {
+        "module_name": "AMP-MIC Combined Predictor",
+        "mechanism": "scoring",
+        "causal_role": "decision",
+        "input_schema": "peptide_tokens",
+        "output_schema": "mic_score_scalar",
+        "inputs": [
+          "peptide_tokens"
+        ],
+        "outputs": [
+          "mic_score_scalar"
+        ],
+        "parameters": [
+          "gpt_parameters",
+          "regressor_weights"
+        ],
+        "equation_ref": "",
+        "order": 5,
+        "code_symbols": [
+          "CombinedModel.forward"
+        ],
+        "grounding_status": "grounded",
+        "evidence_ids": []
+      }
+    ],
+    "experiments": [
+      {
+        "section": "Abstract",
+        "benchmark": "In vitro Gram-negative bacteria antimicrobial evaluation",
+        "metrics": [
+          {
+            "name": "AMP_hit_percent",
+            "direction": "higher",
+            "unit": "%"
+          }
+        ],
+        "values": [
+          {
+            "metric": "AMP_hit_percent",
+            "value": 94.4,
+            "unit": "%"
+          }
+        ]
+      }
+    ],
+    "metric_proposals": [
+      "MIC"
+    ],
+    "limitations": [
+      "Reliance on experimental MIC feedback requires strain-specific data",
+      "Peptide synthesis and wet-lab evaluation remain necessary bottlenecks for validation"
+    ]
+  },
+  {
+    "paper": {
+      "title": "Generation of 3D Molecules in Pockets via Language Model",
+      "arxiv_id": "2305.10133",
+      "doi": ""
+    },
+    "proposed_methods": [
+      {
+        "name": "Lingo3DMol",
+        "aliases": [
+          "FSMILES-based generator"
+        ],
+        "architecture": "Transformer Encoder-Decoder with fragment-based SMILES sequence and 3D coordinate prediction"
+      }
+    ],
+    "baselines": [
+      {
+        "name": "TargetDiff",
+        "kind": "baseline"
+      }
+    ],
+    "modules": [
+      {
+        "module_name": "Pocket & Ligand Feature Loader",
+        "mechanism": "coordinate_update",
+        "causal_role": "input",
+        "input_schema": "ligand_file, fl_name",
+        "output_schema": "coords, features",
+        "inputs": [
+          "ligand_file"
+        ],
+        "outputs": [
+          "coords"
+        ],
+        "parameters": [],
+        "equation_ref": "",
+        "order": 1,
+        "code_symbols": [
+          "mydataset.load_lgd_coords"
+        ],
+        "grounding_status": "fully_grounded",
+        "evidence_ids": []
+      },
+      {
+        "module_name": "Transformer Encoder",
+        "mechanism": "encoding",
+        "causal_role": "mechanism",
+        "input_schema": "x_embed, mask",
+        "output_schema": "encoded_features",
+        "inputs": [
+          "x_embed",
+          "mask"
+        ],
+        "outputs": [
+          "encoded_features"
+        ],
+        "parameters": [
+          "layers",
+          "norm"
+        ],
+        "equation_ref": "",
+        "order": 2,
+        "code_symbols": [
+          "Encoder"
+        ],
+        "grounding_status": "fully_grounded",
+        "evidence_ids": []
+      },
+      {
+        "module_name": "Transformer Decoder",
+        "mechanism": "decoding",
+        "causal_role": "mechanism",
+        "input_schema": "tgt_embed, memory, src_mask, tgt_mask",
+        "output_schema": "decoded_hidden_states",
+        "inputs": [
+          "tgt_embed",
+          "memory",
+          "src_mask",
+          "tgt_mask"
+        ],
+        "outputs": [
+          "decoded_hidden_states"
+        ],
+        "parameters": [
+          "layers",
+          "norm"
+        ],
+        "equation_ref": "",
+        "order": 3,
+        "code_symbols": [
+          "Decoder"
+        ],
+        "grounding_status": "fully_grounded",
+        "evidence_ids": []
+      },
+      {
+        "module_name": "Autoregressive Molecular Generator",
+        "mechanism": "sampling",
+        "causal_role": "decision",
+        "input_schema": "caption_contact, caption, testloader, testset",
+        "output_schema": "generated_molecules",
+        "inputs": [
+          "caption_contact",
+          "caption"
+        ],
+        "outputs": [
+          "generated_molecules"
+        ],
+        "parameters": [
+          "args"
+        ],
+        "equation_ref": "",
+        "order": 4,
+        "code_symbols": [
+          "validation"
+        ],
+        "grounding_status": "fully_grounded",
+        "evidence_ids": []
+      },
+      {
+        "module_name": "Collision & Clash Checker",
+        "mechanism": "filtering",
+        "causal_role": "state",
+        "input_schema": "protein_path, distance, center",
+        "output_schema": "grid_file, atom_pos",
+        "inputs": [
+          "protein_path",
+          "atom_pos"
+        ],
+        "outputs": [
+          "grid_file"
+        ],
+        "parameters": [
+          "resolution",
+          "distance"
+        ],
+        "equation_ref": "",
+        "order": 5,
+        "code_symbols": [
+          "CollisionCheck.get_grid_file"
+        ],
+        "grounding_status": "fully_grounded",
+        "evidence_ids": []
+      }
+    ],
+    "experiments": [],
+    "metric_proposals": [
+      "synthetic_accessibility_score"
+    ],
+    "limitations": [
+      "Relies on a separate non-covalent interaction predictor which may propagate upstream errors.",
+      "Excludes complex rings beyond 5- or 6-membered or fused 5/6-membered rings during pretraining filter."
+    ]
+  },
+  {},
+  {
+    "paper": {
+      "title": "TABASCO: Fast, Simple, and High-Quality Molecule Generation",
+      "arxiv_id": "2507.00899",
+      "doi": ""
+    },
+    "proposed_methods": [
+      {
+        "name": "TABASCO",
+        "aliases": [
+          "Transformer-based Atomistic Bondless Scalable Conformer Output"
+        ],
+        "architecture": "Non-equivariant Transformer flow-matching model with sequence-ordered atoms and post-hoc bond reconstruction"
+      }
+    ],
+    "baselines": [
+      {
+        "name": "FlowMol",
+        "kind": "baseline"
+      },
+      {
+        "name": "SemlaFlow",
+        "kind": "baseline"
+      },
+      {
+        "name": "MiDi",
+        "kind": "baseline"
+      },
+      {
+        "name": "EQGAT-diff",
+        "kind": "baseline"
+      }
+    ],
+    "modules": [
+      {
+        "module_name": "Atom and Time Feature Embedding",
+        "mechanism": "encoding",
+        "causal_role": "state",
+        "input_schema": "coords_t, atom_types_t, t, seq_pos",
+        "output_schema": "h_atom_embeddings",
+        "inputs": [
+          "coords_t",
+          "atom_types_t",
+          "t",
+          "seq_pos"
+        ],
+        "outputs": [
+          "h_atom_embeddings"
+        ],
+        "parameters": [
+          "embedding_weights"
+        ],
+        "equation_ref": "",
+        "order": 1,
+        "code_symbols": [],
+        "grounding_status": "conceptual_gap",
+        "evidence_ids": [
+          "section:2507.00899:3.1. Model Architecture",
+          "section:2507.00899:3.4. Ordering Atoms as Sequences"
+        ]
+      },
+      {
+        "module_name": "Standard Transformer Backbone",
+        "mechanism": "attention",
+        "causal_role": "mechanism",
+        "input_schema": "h_atom_embeddings",
+        "output_schema": "h_transformed_states",
+        "inputs": [
+          "h_atom_embeddings"
+        ],
+        "outputs": [
+          "h_transformed_states"
+        ],
+        "parameters": [
+          "transformer_layer_weights"
+        ],
+        "equation_ref": "",
+        "order": 2,
+        "code_symbols": [],
+        "grounding_status": "conceptual_gap",
+        "evidence_ids": [
+          "section:2507.00899:3.1. Model Architecture"
+        ]
+      },
+      {
+        "module_name": "Flow-Matching Velocity Prediction Heads",
+        "mechanism": "decoding",
+        "causal_role": "output",
+        "input_schema": "h_transformed_states",
+        "output_schema": "v_coords, v_atom_types",
+        "inputs": [
+          "h_transformed_states"
+        ],
+        "outputs": [
+          "v_coords",
+          "v_atom_types"
+        ],
+        "parameters": [
+          "mlp_head_weights"
+        ],
+        "equation_ref": "section:2507.00899:2.1. Flow-Matching Models",
+        "order": 3,
+        "code_symbols": [],
+        "grounding_status": "conceptual_gap",
+        "evidence_ids": [
+          "section:2507.00899:2.1. Flow-Matching Models",
+          "section:2507.00899:3.1. Model Architecture",
+          "section:2507.00899:3.2. Training Objective"
+        ]
+      },
+      {
+        "module_name": "Flow-Matching Velocity Loss",
+        "mechanism": "loss",
+        "causal_role": "decision",
+        "input_schema": "v_theta_xt, u_t",
+        "output_schema": "loss_fm",
+        "inputs": [
+          "v_theta_xt",
+          "u_t"
+        ],
+        "outputs": [
+          "loss_fm"
+        ],
+        "parameters": [],
+        "equation_ref": "section:2507.00899:2.1. Flow-Matching Models",
+        "order": 4,
+        "code_symbols": [],
+        "grounding_status": "conceptual_gap",
+        "evidence_ids": [
+          "section:2507.00899:2.1. Flow-Matching Models",
+          "section:2507.00899:3.2. Training Objective"
+        ]
+      },
+      {
+        "module_name": "ODE Integration Sampling",
+        "mechanism": "sampling",
+        "causal_role": "state",
+        "input_schema": "x_0, v_theta",
+        "output_schema": "x_1_generated",
+        "inputs": [
+          "x_0",
+          "v_theta"
+        ],
+        "outputs": [
+          "x_1_generated"
+        ],
+        "parameters": [
+          "num_steps"
+        ],
+        "equation_ref": "",
+        "order": 5,
+        "code_symbols": [
+          "sample_batch"
+        ],
+        "grounding_status": "fully_grounded",
+        "evidence_ids": [
+          "section:2507.00899:2.1. Flow-Matching Models",
+          "section:2507.00899:3.3. Sampling"
+        ]
+      },
+      {
+        "module_name": "Distance-Bounds Last-Mile Pose Guidance",
+        "mechanism": "coordinate_update",
+        "causal_role": "mechanism",
+        "input_schema": "x_intermediate_coords, distance_bounds",
+        "output_schema": "x_guided_coords",
+        "inputs": [
+          "x_intermediate_coords",
+          "distance_bounds"
+        ],
+        "outputs": [
+          "x_guided_coords"
+        ],
+        "parameters": [],
+        "equation_ref": "",
+        "order": 6,
+        "code_symbols": [
+          "main"
+        ],
+        "grounding_status": "fully_grounded",
+        "evidence_ids": [
+          "section:2507.00899:3.5. Physically Constrained Last-Mile Pose Guidance",
+          "section:2507.00899:Two-phase sampling with distance-bounds guidance."
+        ]
+      }
+    ],
+    "experiments": [
+      {
+        "section": "4.1. Experimental Setup",
+        "benchmark": "GEOM-Drugs",
+        "metrics": [
+          {
+            "name": "PB_valid_fraction",
+            "direction": "maximize",
+            "unit": ""
+          },
+          {
+            "name": "validity",
+            "direction": "maximize",
+            "unit": ""
+          }
+        ],
+        "values": []
+      }
+    ],
+    "metric_proposals": [
+      "sampling_speedup",
+      "inference_time_per_molecule"
+    ],
+    "limitations": [
+      "Requires post-hoc bond reconstruction using chemoinformatics tools rather than predicting bond orders end-to-end",
+      "Requires filtering molecules with more than 72 heavy atoms during GEOM-Drugs training"
+    ]
+  },
+  {
+    "paper": {
+      "title": "MOLGEN: Domain-Agnostic Molecular Pre-training with Chemical Feedback for Molecule Generation",
+      "arxiv_id": "2301.11259",
+      "doi": ""
+    },
+    "proposed_methods": [
+      {
+        "name": "MOLGEN",
+        "aliases": [
+          "MolGen"
+        ],
+        "architecture": "BART-based bidirectional and autoregressive Transformer with domain-agnostic molecular prefix tuning and chemical feedback"
+      }
+    ],
+    "baselines": [],
+    "modules": [
+      {
+        "module_name": "BartConfig Initialization",
+        "mechanism": "initialization",
+        "causal_role": "parameter",
+        "input_schema": "vocab_size, max_position_embeddings, encoder_layers, encoder_ffn_dim",
+        "output_schema": "config",
+        "inputs": [
+          "vocab_size",
+          "max_position_embeddings",
+          "encoder_layers",
+          "encoder_ffn_dim"
+        ],
+        "outputs": [
+          "config"
+        ],
+        "parameters": [
+          "vocab_size",
+          "max_position_embeddings",
+          "encoder_layers",
+          "encoder_ffn_dim"
+        ],
+        "equation_ref": "",
+        "order": 1,
+        "code_symbols": [
+          "BartConfig.__init__"
+        ],
+        "grounding_status": "grounded",
+        "evidence_ids": [
+          "section:2301.11259:INTRODUCTION",
+          "section:2301.11259:METHODOLOGY"
+        ]
+      },
+      {
+        "module_name": "Molecular SELFIES Denoising Pre-training",
+        "mechanism": "encoding",
+        "causal_role": "mechanism",
+        "input_schema": "corrupted_selfies_sequence",
+        "output_schema": "encoder_hidden_states",
+        "inputs": [
+          "corrupted_selfies_sequence"
+        ],
+        "outputs": [
+          "encoder_hidden_states"
+        ],
+        "parameters": [
+          "transformer_weights"
+        ],
+        "equation_ref": "",
+        "order": 2,
+        "code_symbols": [],
+        "grounding_status": "conceptual_gap",
+        "evidence_ids": [
+          "section:2301.11259:INTRODUCTION",
+          "section:2301.11259:METHODOLOGY",
+          "section:2301.11259:DOMAIN-AGNOSTIC MOLECULAR PRE-TRAINING"
+        ]
+      },
+      {
+        "module_name": "Domain-Agnostic Molecular Prefix Tuning",
+        "mechanism": "feature_update",
+        "causal_role": "state",
+        "input_schema": "prefix_prompt_embedding, hidden_states",
+        "output_schema": "adapted_hidden_states",
+        "inputs": [
+          "prefix_prompt_embedding",
+          "hidden_states"
+        ],
+        "outputs": [
+          "adapted_hidden_states"
+        ],
+        "parameters": [
+          "prefix_parameters"
+        ],
+        "equation_ref": "",
+        "order": 3,
+        "code_symbols": [
+          "Runner.get_prompt"
+        ],
+        "grounding_status": "grounded",
+        "evidence_ids": [
+          "section:2301.11259:INTRODUCTION",
+          "section:2301.11259:METHODOLOGY"
+        ]
+      },
+      {
+        "module_name": "Chemical Feedback Optimization",
+        "mechanism": "loss",
+        "causal_role": "decision",
+        "input_schema": "batch_selfies, target_properties",
+        "output_schema": "loss_scalar",
+        "inputs": [
+          "batch_selfies",
+          "target_properties"
+        ],
+        "outputs": [
+          "loss_scalar"
+        ],
+        "parameters": [
+          "reward_weights"
+        ],
+        "equation_ref": "",
+        "order": 4,
+        "code_symbols": [
+          "Runner.loss_output",
+          "Runner.update_loss_log"
+        ],
+        "grounding_status": "grounded",
+        "evidence_ids": [
+          "section:2301.11259:INTRODUCTION",
+          "section:2301.11259:METHODOLOGY",
+          "section:2301.11259:CHEMICAL FEEDBACK PARADIGM: ALIGN PLM WITH CHEMICAL PREFERENCE"
+        ]
+      },
+      {
+        "module_name": "Autoregressive Molecular Generation",
+        "mechanism": "decoding",
+        "causal_role": "output",
+        "input_schema": "encoder_hidden_states, prompt_tokens",
+        "output_schema": "generated_selfies_tokens",
+        "inputs": [
+          "encoder_hidden_states",
+          "prompt_tokens"
+        ],
+        "outputs": [
+          "generated_selfies_tokens"
+        ],
+        "parameters": [
+          "decoder_weights"
+        ],
+        "equation_ref": "",
+        "order": 5,
+        "code_symbols": [
+          "Runner.generate_molecules",
+          "Runner.generate_candidate_selfies"
+        ],
+        "grounding_status": "grounded",
+        "evidence_ids": [
+          "section:2301.11259:INTRODUCTION",
+          "section:2301.11259:EXPERIMENTAL SETUP"
+        ]
+      }
+    ],
+    "experiments": [
+      {
+        "section": "EXPERIMENTAL SETUP",
+        "benchmark": "ZINC-15 & Synthetic and Natural Product Pre-training Corpora",
+        "metrics": [],
+        "values": []
+      }
+    ],
+    "metric_proposals": [
+      "penalized_logP"
+    ],
+    "limitations": [
+      "Focuses primarily on generation within synthetics and natural products rather than retrosynthesis or reaction prediction",
+      "Does not yet incorporate multimodal representations such as 3D conformations or biomedical text"
+    ]
+  },
+  {
+    "paper": {
+      "title": "Langevin Speculative Dynamics",
+      "arxiv_id": "2606.02455",
+      "doi": ""
+    },
+    "proposed_methods": [
+      {
+        "name": "LSD",
+        "aliases": [
+          "Langevin Speculative Dynamics"
+        ],
+        "architecture": "Speculative sampling framework for molecular dynamics integrating draft potential proposals with concurrent target MLIP verification and transport-map step correction under Langevin dynamics"
+      }
+    ],
+    "baselines": [],
+    "modules": [
+      {
+        "module_name": "BaseSpeculativeLangevin",
+        "mechanism": "initialization",
+        "causal_role": "state",
+        "input_schema": "atoms, verifier, timestep, speculative_error_correction, temperature",
+        "output_schema": "integrator_state",
+        "inputs": [
+          "atoms",
+          "verifier",
+          "timestep",
+          "speculative_error_correction",
+          "temperature"
+        ],
+        "outputs": [
+          "integrator_state"
+        ],
+        "parameters": [
+          "timestep",
+          "temperature"
+        ],
+        "equation_ref": "",
+        "order": 1,
+        "code_symbols": [
+          "BaseSpeculativeLangevin.__init__"
+        ],
+        "grounding_status": "grounded",
+        "evidence_ids": [
+          "section:2606.02455:Introduction",
+          "section:2606.02455:Conclusion and Limitations"
+        ]
+      },
+      {
+        "module_name": "DraftStepProposer",
+        "mechanism": "sampling",
+        "causal_role": "mechanism",
+        "input_schema": "cur_state, draft_forces",
+        "output_schema": "next_state, dx, dp",
+        "inputs": [
+          "cur_state",
+          "draft_forces"
+        ],
+        "outputs": [
+          "next_state",
+          "dx",
+          "dp"
+        ],
+        "parameters": [
+          "timestep"
+        ],
+        "equation_ref": "",
+        "order": 2,
+        "code_symbols": [
+          "BaseSpeculativeLangevin._draft_step"
+        ],
+        "grounding_status": "grounded",
+        "evidence_ids": [
+          "section:2606.02455:Introduction"
+        ]
+      },
+      {
+        "module_name": "TargetLogLikelihoodVerification",
+        "mechanism": "scoring",
+        "causal_role": "decision",
+        "input_schema": "forces, position_x, momentum_p, masses, integrator_state",
+        "output_schema": "loglikelihood",
+        "inputs": [
+          "forces",
+          "position_x",
+          "momentum_p",
+          "masses",
+          "integrator_state"
+        ],
+        "outputs": [
+          "loglikelihood"
+        ],
+        "parameters": [],
+        "equation_ref": "",
+        "order": 3,
+        "code_symbols": [
+          "BaseSpeculativeLangevin.forces_to_loglikelihood"
+        ],
+        "grounding_status": "grounded",
+        "evidence_ids": [
+          "section:2606.02455:Introduction"
+        ]
+      },
+      {
+        "module_name": "PostSamplingCoordinateUpdate",
+        "mechanism": "coordinate_update",
+        "causal_role": "state",
+        "input_schema": "dx, dp, position_x, momentum_p",
+        "output_schema": "updated_position_x, updated_momentum_p",
+        "inputs": [
+          "dx",
+          "dp",
+          "position_x",
+          "momentum_p"
+        ],
+        "outputs": [
+          "updated_position_x",
+          "updated_momentum_p"
+        ],
+        "parameters": [],
+        "equation_ref": "",
+        "order": 4,
+        "code_symbols": [
+          "BaseSpeculativeLangevin._post_sampling_step"
+        ],
+        "grounding_status": "grounded",
+        "evidence_ids": [
+          "section:2606.02455:Introduction"
+        ]
+      }
+    ],
+    "experiments": [],
+    "metric_proposals": [
+      "speedup",
+      "rejection_rate"
+    ],
+    "limitations": [
+      "Performance is system-size-dependent: for systems with > O(10^3) atoms, rejection rates become limiting.",
+      "For smaller systems, speedups are often bounded by the cost of the draft model.",
+      "Focuses on throughput under the assumption of sufficient concurrent GPU compute resources."
+    ]
+  },
+  {
+    "paper": {
+      "title": "General Multimodal Protein Design Enables DNA-Encoding of Chemistry",
+      "arxiv_id": "2604.05181",
+      "doi": ""
+    },
+    "proposed_methods": [
+      {
+        "name": "DISCO",
+        "aliases": [
+          "DIffusion for Sequence-structure CO-design"
+        ],
+        "architecture": "Multimodal co-design network combining continuous coordinate diffusion and masked discrete sequence diffusion with cross-modal recycling, frozen pLM, Pairformer, and atom-level attention joint diffusion module"
+      }
+    ],
+    "baselines": [],
+    "modules": [
+      {
+        "module_name": "Input Embedder and Featurizer",
+        "mechanism": "encoding",
+        "causal_role": "mechanism",
+        "input_schema": "cropped_token_array, cropped_atom_array, ref_pos",
+        "output_schema": "single_representations, pair_representations",
+        "inputs": [
+          "cropped_token_array",
+          "cropped_atom_array",
+          "ref_pos"
+        ],
+        "outputs": [
+          "single_representations",
+          "pair_representations"
+        ],
+        "parameters": [],
+        "equation_ref": "",
+        "order": 1,
+        "code_symbols": [
+          "Featurizer",
+          "Featurizer.get_token_features",
+          "Featurizer.get_reference_features"
+        ],
+        "grounding_status": "grounded",
+        "evidence_ids": [
+          "section:2604.05181:Conditioning"
+        ]
+      },
+      {
+        "module_name": "Single and Pair Conditioning",
+        "mechanism": "feature_update",
+        "causal_role": "mechanism",
+        "input_schema": "single_repr, pair_repr, t_struct, r_seq",
+        "output_schema": "conditioned_single_repr, conditioned_pair_repr",
+        "inputs": [
+          "single_repr",
+          "pair_repr",
+          "t_struct",
+          "r_seq"
+        ],
+        "outputs": [
+          "conditioned_single_repr",
+          "conditioned_pair_repr"
+        ],
+        "parameters": [],
+        "equation_ref": "",
+        "order": 2,
+        "code_symbols": [],
+        "grounding_status": "conceptual_gap",
+        "evidence_ids": [
+          "section:2604.05181:Pair conditioning",
+          "section:2604.05181:Single conditioning, t is structure noise, r is sequence noise"
+        ]
+      },
+      {
+        "module_name": "Atom Attention and Token Aggregation",
+        "mechanism": "attention",
+        "causal_role": "mechanism",
+        "input_schema": "atom_positions, atom_features, token_index",
+        "output_schema": "coarse_grained_token_activations",
+        "inputs": [
+          "atom_positions",
+          "atom_features",
+          "token_index"
+        ],
+        "outputs": [
+          "coarse_grained_token_activations"
+        ],
+        "parameters": [],
+        "equation_ref": "",
+        "order": 3,
+        "code_symbols": [],
+        "grounding_status": "conceptual_gap",
+        "evidence_ids": [
+          "section:2604.05181:Sequence-local Atom Attention and aggregation to coarse-grained tokens",
+          "section:2604.05181:Restrict to bespoke inclusion radius"
+        ]
+      },
+      {
+        "module_name": "Token Level Self-Attention",
+        "mechanism": "attention",
+        "causal_role": "mechanism",
+        "input_schema": "coarse_grained_token_activations, pair_repr",
+        "output_schema": "updated_token_activations",
+        "inputs": [
+          "coarse_grained_token_activations",
+          "pair_repr"
+        ],
+        "outputs": [
+          "updated_token_activations"
+        ],
+        "parameters": [],
+        "equation_ref": "",
+        "order": 4,
+        "code_symbols": [],
+        "grounding_status": "conceptual_gap",
+        "evidence_ids": [
+          "section:2604.05181:Full self-attention on token level."
+        ]
+      },
+      {
+        "module_name": "Atom Broadcast and Attention Decoder",
+        "mechanism": "attention",
+        "causal_role": "mechanism",
+        "input_schema": "updated_token_activations, atom_features",
+        "output_schema": "decoded_atom_activations",
+        "inputs": [
+          "updated_token_activations",
+          "atom_features"
+        ],
+        "outputs": [
+          "decoded_atom_activations"
+        ],
+        "parameters": [],
+        "equation_ref": "",
+        "order": 5,
+        "code_symbols": [],
+        "grounding_status": "conceptual_gap",
+        "evidence_ids": [
+          "section:2604.05181:Broadcast token activations to atoms and run Sequence-local Atom Attention"
+        ]
+      },
+      {
+        "module_name": "Joint Readout and Coordinate Update",
+        "mechanism": "coordinate_update",
+        "causal_role": "output",
+        "input_schema": "decoded_atom_activations, input_positions",
+        "output_schema": "denoised_positions, sequence_logits",
+        "inputs": [
+          "decoded_atom_activations",
+          "input_positions"
+        ],
+        "outputs": [
+          "denoised_positions",
+          "sequence_logits"
+        ],
+        "parameters": [],
+        "equation_ref": "",
+        "order": 6,
+        "code_symbols": [
+          "get_coord"
+        ],
+        "grounding_status": "grounded",
+        "evidence_ids": [
+          "section:2604.05181:Map to positions update or logits",
+          "section:2604.05181:Rescale updates to positions and combine with input positions"
+        ]
+      }
+    ],
+    "experiments": [
+      {
+        "section": "Multimodal protein generation with DISCO",
+        "benchmark": "unconditional monomer design",
+        "metrics": [
+          {
+            "name": "rmsd",
+            "direction": "lower",
+            "unit": "Å"
+          }
+        ],
+        "values": [
+          {
+            "metric": "rmsd",
+            "value": 2.0,
+            "unit": "Å"
+          }
+        ]
+      }
+    ],
+    "metric_proposals": [
+      "refolding_success_percent"
+    ],
+    "limitations": [
+      "Standard masked diffusion yields sequences that fail to fold into their generated geometries without iterative self-correction and temperature smoothing.",
+      "Requires sampling noise independently per modality during training."
+    ]
+  }
+]

@@ -1,0 +1,1997 @@
+{
+  "arxiv_id": "2405.03370",
+  "stages": {
+    "E1_paper": {
+      "ok": true,
+      "attempts": 1,
+      "issues": [],
+      "fatal": [],
+      "n_fields": 6,
+      "data": {
+        "research_question": "利用AntiFold模型对蛋白质语言模型推荐的抗体变体进行反向折叠评分，以筛选出结合亲和力降低的变体",
+        "problem_category": "sequence_design",
+        "domain_code": "D6",
+        "why_hard": "蛋白质语言模型推荐的变体中混杂了结合亲和力降低的变体，需要有效的去筛选机制",
+        "relation_hints": {
+          "related_papers": [
+            "Hie et al. [2023]"
+          ],
+          "algorithms": [
+            "AbMPNN",
+            "AntiFold"
+          ],
+          "benchmarks": []
+        },
+        "evidence": {
+          "research_question": "AntiFold enables de-selection of protein language model-suggested variants. Model rank-scoring performance across 124 variants of 7 antibodi",
+          "why_hard": "Variants are separated into lower (fold-change <0.75), maintained (fold-change 0.75-1.25) and higher (fold-change >1.25) binding affinity gr"
+        }
+      }
+    },
+    "E2_algorithm": {
+      "ok": true,
+      "attempts": 1,
+      "issues": [],
+      "fatal": [],
+      "n_fields": 1,
+      "data": {
+        "algorithms": [
+          {
+            "name": "AntiFold",
+            "task_type": "sequence_design",
+            "problems_solved": [
+              "生成保持输入结构折叠的多样化抗体序列",
+              "预测抗体-抗原结合亲和力",
+              "在亲和力成熟实验中筛选高亲和力变体"
+            ],
+            "mechanism": "基于ESM-IF1预训练权重，在抗体可变域结构上微调，利用逆折叠概率预测序列并评估结合亲和力。",
+            "why_it_works": "预训练权重显著提升了性能，包含预测结构并向单个CDR残基加权掩码进一步提高了性能。",
+            "applicable_to": [
+              "抗体序列设计",
+              "抗体亲和力成熟",
+              "抗体-抗原结合亲和力预测"
+            ],
+            "limitations": [
+              "主要驱动于对结合丧失变体的去选择",
+              "框架残基的性能在包含抗原链时基本不变"
+            ],
+            "modules": [
+              {
+                "name": "ESM-IF1 Initialization",
+                "mechanism": "加载通用蛋白质逆折叠模型权重",
+                "formula": "",
+                "inputs": "ESM-IF1 weights",
+                "outputs": "Initialized model parameters",
+                "code_symbols": [
+                  "CombinedModel"
+                ],
+                "tools": [
+                  "ESM-IF1"
+                ]
+              },
+              {
+                "name": "Antibody Fine-tuning",
+                "mechanism": "在抗体可变域结构上微调模型",
+                "formula": "",
+                "inputs": "Antibody variable domain structures",
+                "outputs": "Fine-tuned AntiFold model",
+                "code_symbols": [
+                  "Encoder",
+                  "Decoder"
+                ],
+                "tools": [
+                  "SAbDab",
+                  "OAS"
+                ]
+              },
+              {
+                "name": "CDR Masking Strategy",
+                "mechanism": "向单个CDR残基加权掩码",
+                "formula": "",
+                "inputs": "Antibody structure with CDR regions",
+                "outputs": "Masked sequence for training",
+                "code_symbols": [
+                  "get_imgt_mask",
+                  "parse_regions"
+                ],
+                "tools": [
+                  "IMGT"
+                ]
+              },
+              {
+                "name": "Inverse Folding Prediction",
+                "mechanism": "计算序列的逆折叠概率",
+                "formula": "",
+                "inputs": "Antibody structure (with/without antigen)",
+                "outputs": "Sequence log-likelihoods",
+                "code_symbols": [
+                  "predict",
+                  "forward"
+                ],
+                "tools": []
+              },
+              {
+                "name": "Affinity Ranking",
+                "mechanism": "对变体分数进行排名归一化以评估结合亲和力",
+                "formula": "",
+                "inputs": "Variant log-likelihoods",
+                "outputs": "Rank-normalized scores",
+                "code_symbols": [
+                  "logits_to_seqprobs_list"
+                ],
+                "tools": []
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "E3_benchmark": {
+      "ok": true,
+      "attempts": 1,
+      "issues": [],
+      "fatal": [],
+      "n_fields": 1,
+      "data": {
+        "benchmarks": [
+          {
+            "name": "D44.1 anti-lysozyme antibody variants",
+            "input_form": "序列",
+            "output_form": "标量",
+            "n_samples": "2209",
+            "scale": "",
+            "modality": "抗体序列",
+            "research_object": "抗体-抗原结合亲和力",
+            "metrics": [
+              {
+                "name": "Spearman’s rank correlation",
+                "unit": "",
+                "direction": "max"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "E4_values": {
+      "ok": true,
+      "attempts": 1,
+      "issues": [],
+      "fatal": [],
+      "n_fields": 1,
+      "data": {
+        "model_results": []
+      }
+    },
+    "E6_lineage": {
+      "ok": true,
+      "attempts": 1,
+      "issues": [],
+      "fatal": [],
+      "n_fields": 1,
+      "data": {
+        "lineage": [
+          {
+            "from": "AntiFold",
+            "to": "ESM-IF1",
+            "kind": "extends",
+            "evidence": "AntiFold is initialized with weights from ESM-IF1 [Hsu et al., 2022], then fine-tuned on antibody variable domain structures."
+          },
+          {
+            "from": "AntiFold",
+            "to": "ESM-IF1",
+            "kind": "improves",
+            "evidence": "AntiFold, fine-tuned from the general protein inverse folding ESM-IF1, achieves state-of-the-art performance on antibody sequence recovery"
+          },
+          {
+            "from": "AntiFold",
+            "to": "ProteinMPNN",
+            "kind": "compared_with",
+            "evidence": "AntiFold significantly outperformed the other models with a Spearman’s rank correlation of 0.418, versus ESM-IF1 (0.334), AbMPNN (0.322), Pr"
+          },
+          {
+            "from": "AntiFold",
+            "to": "AbMPNN",
+            "kind": "compared_with",
+            "evidence": "AntiFold significantly outperformed the other models with a Spearman’s rank correlation of 0.418, versus ESM-IF1 (0.334), AbMPNN (0.322), Pr"
+          },
+          {
+            "from": "AntiFold",
+            "to": "ESM-2",
+            "kind": "compared_with",
+            "evidence": "As a sequence-only baseline, we included the sequence-based ESM-2 model (650M parameters)."
+          }
+        ]
+      }
+    },
+    "E5_relations": {
+      "ok": true,
+      "attempts": 1,
+      "issues": [],
+      "fatal": [],
+      "n_fields": 1,
+      "data": {
+        "relations": [
+          {
+            "module": "AntiFold",
+            "kind": "tool",
+            "target": "ABodyBuilder2",
+            "evidence": "structures of antibody sequences from OAS [Kovaltsuk et al., 2018, Olsen et al., 2022b] modeled with ABodyBuilder2 [Abanades et al., 2023]"
+          },
+          {
+            "module": "AntiFold",
+            "kind": "tool",
+            "target": "ESM-IF1",
+            "evidence": "AntiFold is initialized with weights from ESM-IF1 [Hsu et al., 2022], then fine-tuned on antibody variable domain structures."
+          },
+          {
+            "module": "AntiFold",
+            "kind": "tool",
+            "target": "ESM-2",
+            "evidence": "As a sequence-only baseline, we included the sequence-based ESM-2 model (650M parameters)."
+          }
+        ]
+      }
+    }
+  },
+  "paper_type": {
+    "paper_type": "method",
+    "confidence": 0.0,
+    "method": "rule",
+    "scores": {
+      "method": 0,
+      "dataset_benchmark": 0,
+      "theory": 0,
+      "survey": 0,
+      "system_tool": 0,
+      "application": 0
+    },
+    "stages": [
+      "E1_paper",
+      "E2_algorithm",
+      "E3_benchmark",
+      "E4_values",
+      "E5_relations",
+      "E6_lineage"
+    ],
+    "focus": "重点抽算法模块与机理；基准只抽本文实际评测的"
+  },
+  "slice_meta": {
+    "source": "blocks.jsonl",
+    "n_blocks": 12,
+    "kinds": {
+      "related_work": 2,
+      "method": 3,
+      "benchmark": 7
+    },
+    "lengths": {
+      "paper": 3118,
+      "algorithm": 15011,
+      "benchmark": 4143,
+      "lineage": 16000
+    }
+  },
+  "n_ast_symbols": 41,
+  "guide_chars": 2406,
+  "domain_calibrated": "D6",
+  "model_results": {
+    "table": 0,
+    "llm_fallback": 0,
+    "deduplicated": 0,
+    "rows": []
+  },
+  "application_hints": {
+    "tools_formulas": [
+      {
+        "module": "AntiFold",
+        "kind": "tool",
+        "target": "ABodyBuilder2",
+        "evidence": "structures of antibody sequences from OAS [Kovaltsuk et al., 2018, Olsen et al., 2022b] modeled with ABodyBuilder2 [Abanades et al., 2023]"
+      },
+      {
+        "module": "AntiFold",
+        "kind": "tool",
+        "target": "ESM-IF1",
+        "evidence": "AntiFold is initialized with weights from ESM-IF1 [Hsu et al., 2022], then fine-tuned on antibody variable domain structures."
+      },
+      {
+        "module": "AntiFold",
+        "kind": "tool",
+        "target": "ESM-2",
+        "evidence": "As a sequence-only baseline, we included the sequence-based ESM-2 model (650M parameters)."
+      }
+    ],
+    "note": "节点化留给应用层任务（复现/生成论文时按任务构建）"
+  },
+  "lineage": {
+    "all": [
+      {
+        "from": "AntiFold",
+        "to": "ESM-IF1",
+        "kind": "extends",
+        "evidence": "AntiFold is initialized with weights from ESM-IF1 [Hsu et al., 2022], then fine-tuned on antibody variable domain structures."
+      },
+      {
+        "from": "AntiFold",
+        "to": "ESM-IF1",
+        "kind": "improves",
+        "evidence": "AntiFold, fine-tuned from the general protein inverse folding ESM-IF1, achieves state-of-the-art performance on antibody sequence recovery"
+      },
+      {
+        "from": "AntiFold",
+        "to": "ProteinMPNN",
+        "kind": "compared_with",
+        "evidence": "AntiFold significantly outperformed the other models with a Spearman’s rank correlation of 0.418, versus ESM-IF1 (0.334), AbMPNN (0.322), Pr"
+      },
+      {
+        "from": "AntiFold",
+        "to": "AbMPNN",
+        "kind": "compared_with",
+        "evidence": "AntiFold significantly outperformed the other models with a Spearman’s rank correlation of 0.418, versus ESM-IF1 (0.334), AbMPNN (0.322), Pr"
+      },
+      {
+        "from": "AntiFold",
+        "to": "ESM-2",
+        "kind": "compared_with",
+        "evidence": "As a sequence-only baseline, we included the sequence-based ESM-2 model (650M parameters)."
+      }
+    ],
+    "subclass_of": [
+      {
+        "from": "AntiFold",
+        "to": "ESM-IF1",
+        "kind": "extends",
+        "evidence": "AntiFold is initialized with weights from ESM-IF1 [Hsu et al., 2022], then fine-tuned on antibody variable domain structures."
+      },
+      {
+        "from": "AntiFold",
+        "to": "ESM-IF1",
+        "kind": "improves",
+        "evidence": "AntiFold, fine-tuned from the general protein inverse folding ESM-IF1, achieves state-of-the-art performance on antibody sequence recovery"
+      }
+    ],
+    "compared_only": [
+      {
+        "from": "AntiFold",
+        "to": "ProteinMPNN",
+        "kind": "compared_with",
+        "evidence": "AntiFold significantly outperformed the other models with a Spearman’s rank correlation of 0.418, versus ESM-IF1 (0.334), AbMPNN (0.322), Pr"
+      },
+      {
+        "from": "AntiFold",
+        "to": "AbMPNN",
+        "kind": "compared_with",
+        "evidence": "AntiFold significantly outperformed the other models with a Spearman’s rank correlation of 0.418, versus ESM-IF1 (0.334), AbMPNN (0.322), Pr"
+      },
+      {
+        "from": "AntiFold",
+        "to": "ESM-2",
+        "kind": "compared_with",
+        "evidence": "As a sequence-only baseline, we included the sequence-based ESM-2 model (650M parameters)."
+      }
+    ]
+  },
+  "cross_check": [
+    "unknown_module:AntiFold",
+    "unknown_module:AntiFold",
+    "unknown_module:AntiFold"
+  ],
+  "ok": true,
+  "seconds": 146.66,
+  "paradigm": {
+    "ner": {
+      "algorithms": [
+        {
+          "text": "MolMiner",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:molminer"
+        },
+        {
+          "text": "ChemicalVAE",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:chemicalvae"
+        },
+        {
+          "text": "SchNet",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:schnet"
+        },
+        {
+          "text": "SO3LR Tauri",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:so3lr_tauri"
+        },
+        {
+          "text": "SO3LR",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:so3lr"
+        },
+        {
+          "text": "OPLS4",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:opls4"
+        },
+        {
+          "text": "GAFF",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:gaff"
+        },
+        {
+          "text": "MACE-POLAR-1-M",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:mace_polar_1_m"
+        },
+        {
+          "text": "AIMNet2-2025",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:aimnet2_2025"
+        },
+        {
+          "text": "UMA-S-1.2.1",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:uma_s_1_2_1"
+        },
+        {
+          "text": "AntiFold",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:antifold"
+        },
+        {
+          "text": "ESM-IF1",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:esm_if1"
+        },
+        {
+          "text": "AbMPNN",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:abmpnn"
+        },
+        {
+          "text": "ProteinMPNN",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:proteinmpnn"
+        },
+        {
+          "text": "AMP-Designer",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:amp_designer"
+        },
+        {
+          "text": "AMP-GPT",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:amp_gpt"
+        },
+        {
+          "text": "AMP-Prompt",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:amp_prompt"
+        },
+        {
+          "text": "AMP-Distillation",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:amp_distillation"
+        },
+        {
+          "text": "AMP-MIC",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:amp_mic"
+        },
+        {
+          "text": "CLaSS",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:class"
+        },
+        {
+          "text": "CFPS",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:cfps"
+        },
+        {
+          "text": "Condition Token (CT)",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:condition_token_ct"
+        },
+        {
+          "text": "Fine-Tuning (FT)",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:fine_tuning_ft"
+        },
+        {
+          "text": "Huang et al. RNN",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:huang_et_al_rnn"
+        },
+        {
+          "text": "Lingo3DMol",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:lingo3dmol"
+        },
+        {
+          "text": "Pocket2Mol",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:pocket2mol"
+        },
+        {
+          "text": "TargetDiff",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:targetdiff"
+        },
+        {
+          "text": "Mol-Instructions",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:mol_instructions"
+        },
+        {
+          "text": "LLaMA",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:llama"
+        },
+        {
+          "text": "Stanford Alpaca",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:stanford_alpaca"
+        },
+        {
+          "text": "GPT4All",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:gpt4all"
+        },
+        {
+          "text": "MOLGEN",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:molgen"
+        },
+        {
+          "text": "SMILES-based PLMs",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:smiles_based_plms"
+        },
+        {
+          "text": "Langevin Speculative Dynamics",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:langevin_speculative_dynamics"
+        },
+        {
+          "text": "DISCO",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:disco"
+        },
+        {
+          "text": "BART",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:bart"
+        },
+        {
+          "text": "SELFIES",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:selfies"
+        },
+        {
+          "text": "SMILES",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:smiles"
+        },
+        {
+          "text": "self-instruct",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:self_instruct"
+        },
+        {
+          "text": "MMseqs",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:mmseqs"
+        },
+        {
+          "text": "JTNN",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:jtnn"
+        },
+        {
+          "text": "HierVAE",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:hiervae"
+        },
+        {
+          "text": "MoLeR",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:moler"
+        },
+        {
+          "text": "Flow-matching",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:flow_matching"
+        },
+        {
+          "text": "Euclidean conditional flowmatching",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:euclidean_conditional_flowmatching"
+        },
+        {
+          "text": "Discrete Flow Models",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:discrete_flow_models"
+        },
+        {
+          "text": "Transformer",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:transformer"
+        },
+        {
+          "text": "SUBS",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:subs"
+        },
+        {
+          "text": "AlphaFold 2",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:alphafold_2"
+        },
+        {
+          "text": "AF3",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:af3"
+        },
+        {
+          "text": "random remasking",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:random_remasking"
+        },
+        {
+          "text": "Noisy guidance",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:noisy_guidance"
+        },
+        {
+          "text": "reflection-maximal couplings",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:reflection_maximal_couplings"
+        },
+        {
+          "text": "speculative sampling",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:speculative_sampling"
+        },
+        {
+          "text": "Leviathan et al. (2023)",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:leviathan_et_al_2023"
+        },
+        {
+          "text": "TABASCO",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:tabasco"
+        },
+        {
+          "text": "Mann-Whitney",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 726,
+          "block": "paper"
+        },
+        {
+          "text": "CDRH3",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 2976,
+          "block": "paper"
+        },
+        {
+          "text": "CDR3",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 3069,
+          "block": "paper"
+        },
+        {
+          "text": "IMGT",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 3097,
+          "block": "paper"
+        },
+        {
+          "text": "SAbDab",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 146,
+          "block": "algorithm"
+        },
+        {
+          "text": "OAS",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 241,
+          "block": "algorithm"
+        },
+        {
+          "text": "ABodyBuilder2",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 304,
+          "block": "algorithm"
+        },
+        {
+          "text": "CDRs",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 482,
+          "block": "algorithm"
+        },
+        {
+          "text": "PDB",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 878,
+          "block": "algorithm"
+        },
+        {
+          "text": "CDRL1",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 1020,
+          "block": "algorithm"
+        },
+        {
+          "text": "CDRL2",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 1026,
+          "block": "algorithm"
+        },
+        {
+          "text": "CDRL3",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 1032,
+          "block": "algorithm"
+        },
+        {
+          "text": "CDRH1",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 1038,
+          "block": "algorithm"
+        },
+        {
+          "text": "CDRH2",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 1044,
+          "block": "algorithm"
+        },
+        {
+          "text": "CDR",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 1056,
+          "block": "algorithm"
+        },
+        {
+          "text": "IF1",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 1126,
+          "block": "algorithm"
+        },
+        {
+          "text": "RMSD",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 1454,
+          "block": "algorithm"
+        },
+        {
+          "text": "ESM-2",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 1984,
+          "block": "algorithm"
+        },
+        {
+          "text": "CDR2",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 2535,
+          "block": "algorithm"
+        },
+        {
+          "text": "Sino-Danish",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 5190,
+          "block": "algorithm"
+        },
+        {
+          "text": "GlaxoSmithKline",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 5417,
+          "block": "algorithm"
+        },
+        {
+          "text": "ImmuneBuilder",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 5527,
+          "block": "algorithm"
+        },
+        {
+          "text": "Deep-Learning",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 5542,
+          "block": "algorithm"
+        },
+        {
+          "text": "ISSN",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 5653,
+          "block": "algorithm"
+        }
+      ],
+      "benchmarks": [
+        {
+          "text": "ZINC",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:zinc"
+        },
+        {
+          "text": "SAPT10k",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:sapt10k"
+        },
+        {
+          "text": "QUID",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:quid"
+        },
+        {
+          "text": "JSCH-2005",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:jsch_2005"
+        },
+        {
+          "text": "PLA15",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:pla15"
+        },
+        {
+          "text": "TorsionNet500",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:torsionnet500"
+        },
+        {
+          "text": "GlcMal",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:glcmal"
+        },
+        {
+          "text": "Proline-catalyzed aldol addition",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:proline_catalyzed_aldol_addition"
+        },
+        {
+          "text": "Side-chain pKa of pentapeptides",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:side_chain_pka_of_pentapeptides"
+        },
+        {
+          "text": "Crambin in water",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:crambin_in_water"
+        },
+        {
+          "text": "antibody CDRH3 test set",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:antibody_cdrh3_test_set"
+        },
+        {
+          "text": "UniProt and curated AMP datasets",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:uniprot_and_curated_amp_datasets"
+        },
+        {
+          "text": "UniProt peptide distribution",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:uniprot_peptide_distribution"
+        },
+        {
+          "text": "CAMP, AMP Scanner, and Macrel ensemble",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:camp_amp_scanner_and_macrel_ensemble"
+        },
+        {
+          "text": "Real AMPs sequence database",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:real_amps_sequence_database"
+        },
+        {
+          "text": "Gramapa MIC dataset",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:gramapa_mic_dataset"
+        },
+        {
+          "text": "ESKAPE pathogen panel",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:eskape_pathogen_panel"
+        },
+        {
+          "text": "XDR K. pneumoniae pneumonia mouse model",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:xdr_k_pneumoniae_pneumonia_mouse_model"
+        },
+        {
+          "text": "P. acnes in vitro panel",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:p_acnes_in_vitro_panel"
+        },
+        {
+          "text": "DUD-E",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:dud_e"
+        },
+        {
+          "text": "ZINC-15",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:zinc_15"
+        },
+        {
+          "text": "ZINC-250k",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:zinc_250k"
+        },
+        {
+          "text": "MOSES",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:moses"
+        },
+        {
+          "text": "GuacaMol",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:guacamol"
+        },
+        {
+          "text": "ChEMBL",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:chembl"
+        },
+        {
+          "text": "GEOM-Drugs",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:geom_drugs"
+        },
+        {
+          "text": "GDB-17",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:gdb_17"
+        },
+        {
+          "text": "PubChem",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:pubchem"
+        },
+        {
+          "text": "QM9",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:qm9"
+        },
+        {
+          "text": "ESOL",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:esol"
+        },
+        {
+          "text": "FreeSolv",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:freesolv"
+        },
+        {
+          "text": "Lipophilicity",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:lipophilicity"
+        },
+        {
+          "text": "BBBP",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:bbbp"
+        },
+        {
+          "text": "HIV",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:hiv"
+        },
+        {
+          "text": "Tox21",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:tox21"
+        },
+        {
+          "text": "ClinTox",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:clintox"
+        },
+        {
+          "text": "SIDER",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:sider"
+        },
+        {
+          "text": "TDC-ADMET",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:tdc_admet"
+        },
+        {
+          "text": "AqSolDB",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:aqsoldb"
+        },
+        {
+          "text": "S22x5",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:s22x5"
+        },
+        {
+          "text": "S66x8",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:s66x8"
+        },
+        {
+          "text": "ANI-1x",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:ani_1x"
+        },
+        {
+          "text": "QM7-X",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:qm7_x"
+        },
+        {
+          "text": "MD17",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:md17"
+        },
+        {
+          "text": "ISO17",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:iso17"
+        },
+        {
+          "text": "PDBbind",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:pdbbind"
+        },
+        {
+          "text": "CASF-2016",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:casf_2016"
+        },
+        {
+          "text": "CrossDocked2020",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:crossdocked2020"
+        },
+        {
+          "text": "BindingDB",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:bindingdb"
+        },
+        {
+          "text": "DBAASP",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:dbaasp"
+        },
+        {
+          "text": "CAMP",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:camp"
+        },
+        {
+          "text": "UniProt",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:uniprot"
+        },
+        {
+          "text": "APD3",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:apd3"
+        },
+        {
+          "text": "AMP Scanner ensemble",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:amp_scanner_ensemble"
+        },
+        {
+          "text": "ChEBI-20",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:chebi_20"
+        },
+        {
+          "text": "SMolInstruct",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:smolinstruct"
+        },
+        {
+          "text": "PubChemQC",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:pubchemqc"
+        },
+        {
+          "text": "Mol-Instructions",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:mol_instructions"
+        },
+        {
+          "text": "USPTO-50k",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:uspto_50k"
+        },
+        {
+          "text": "USPTO-MIT",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:uspto_mit"
+        },
+        {
+          "text": "Pistachio",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:pistachio"
+        },
+        {
+          "text": "ORD",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:ord"
+        },
+        {
+          "text": "Unconditional Generation",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:unconditional_generation"
+        },
+        {
+          "text": "Conditional Generation",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:conditional_generation"
+        },
+        {
+          "text": "Targeted Multi-Property",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:targeted_multi_property"
+        },
+        {
+          "text": "D44.1 anti-lysozyme antibody variants",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:d44_1_anti_lysozyme_antibody_variants"
+        },
+        {
+          "text": "Targeted Generation",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:targeted_generation"
+        },
+        {
+          "text": "Drew–Dickerson dodecamer",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:drew_dickerson_dodecamer"
+        },
+        {
+          "text": "cis-platin 1,2-d(GpG) crosslink",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:cis_platin_1_2_d_gpg_crosslink"
+        },
+        {
+          "text": "POPC bilayer",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:popc_bilayer"
+        }
+      ],
+      "code_symbols": [
+        {
+          "text": "_get_all_possible_attachments",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:raulorteg_molminer:molminer_processor_py:get_all_possible_attachments"
+        },
+        {
+          "text": "_compute_possible_remaps",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:raulorteg_molminer:molminer_processor_py:compute_possible_remaps"
+        },
+        {
+          "text": "_get_canonicalization_map",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:raulorteg_molminer:molminer_processor_py:get_canonicalization_map"
+        },
+        {
+          "text": "forward",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:raulorteg_molminer:molminer_models_py:forward"
+        },
+        {
+          "text": "__init__",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:raulorteg_molminer:molminer_models_py:init"
+        },
+        {
+          "text": "_sample",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:raulorteg_molminer:molminer_generator_py:sample"
+        },
+        {
+          "text": "make_so3lr",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:general_molecular_simulations_so3lr:so3lr_base_calculator_py:make_so3lr"
+        },
+        {
+          "text": "kspace_electrostatics_options",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:general_molecular_simulations_so3lr:so3lr_cli_so3lr_cli_py:kspace_electrostatics_options"
+        },
+        {
+          "text": "kspace_dispersion_options",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:general_molecular_simulations_so3lr:so3lr_cli_so3lr_cli_py:kspace_dispersion_options"
+        },
+        {
+          "text": "get_imgt_mask",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:oxpig_antifold:antifold_antiscripts_py:get_imgt_mask"
+        },
+        {
+          "text": "parse_regions",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:oxpig_antifold:antifold_antiscripts_py:parse_regions"
+        },
+        {
+          "text": "get_pdbs_logits",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:oxpig_antifold:antifold_antiscripts_py:get_pdbs_logits"
+        },
+        {
+          "text": "dataset_dataloader_to_predictions_list",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:oxpig_antifold:antifold_antiscripts_py:dataset_dataloader_to_predictions_list"
+        },
+        {
+          "text": "logits_to_seqprobs_list",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:oxpig_antifold:antifold_antiscripts_py:logits_to_seqprobs_list"
+        },
+        {
+          "text": "sample_new_sequences_CDR_HL",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:oxpig_antifold:antifold_antiscripts_py:sample_new_sequences_cdr_hl"
+        },
+        {
+          "text": "sample_from_df_logits_HL",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:oxpig_antifold:antifold_antiscripts_py:sample_from_df_logits_hl"
+        },
+        {
+          "text": "calc_pos_perplexity",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:oxpig_antifold:antifold_antiscripts_py:calc_pos_perplexity"
+        },
+        {
+          "text": "predict",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:jkwang93_amp_designer:amp_gpt_generator_py:predict"
+        },
+        {
+          "text": "top_k_top_p_filtering",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:jkwang93_amp_designer:amp_prompt_generator_py:top_k_top_p_filtering"
+        },
+        {
+          "text": "decode",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:jkwang93_amp_designer:amp_gpt_generator_py:decode"
+        },
+        {
+          "text": "MultiGRU",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:jkwang93_amp_designer:amp_distiilation_py:multigru"
+        },
+        {
+          "text": "RNN",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:jkwang93_amp_designer:amp_distiilation_py:rnn"
+        },
+        {
+          "text": "CombinedModel",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:jkwang93_amp_designer:amp_mic_amp_mic_py:combinedmodel"
+        },
+        {
+          "text": "Encoder",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:stonewiseaidrugdesign_lingo3dmol:model_module_py:encoder"
+        },
+        {
+          "text": "EncoderLayer",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:stonewiseaidrugdesign_lingo3dmol:model_module_py:encoderlayer"
+        },
+        {
+          "text": "DecoderBias",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:stonewiseaidrugdesign_lingo3dmol:model_module_py:decoderbias"
+        },
+        {
+          "text": "DecoderLayerBias",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:stonewiseaidrugdesign_lingo3dmol:model_module_py:decoderlayerbias"
+        },
+        {
+          "text": "Decoder",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:stonewiseaidrugdesign_lingo3dmol:model_module_py:decoder"
+        },
+        {
+          "text": "DecoderLayer",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:stonewiseaidrugdesign_lingo3dmol:model_module_py:decoderlayer"
+        },
+        {
+          "text": "changepos",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:stonewiseaidrugdesign_lingo3dmol:inference_inference_avoid_clash_py:changepos"
+        },
+        {
+          "text": "changepos2",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:stonewiseaidrugdesign_lingo3dmol:inference_inference_avoid_clash_py:changepos2"
+        },
+        {
+          "text": "CollisionCheck",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:stonewiseaidrugdesign_lingo3dmol:inference_cube_collision_check_py:collisioncheck"
+        },
+        {
+          "text": "bonusVSpenalty2",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:stonewiseaidrugdesign_lingo3dmol:inference_inference_avoid_clash_py:bonusvspenalty2"
+        },
+        {
+          "text": "get_grid_file",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:stonewiseaidrugdesign_lingo3dmol:inference_cube_collision_check_py:get_grid_file"
+        },
+        {
+          "text": "BartConfig",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:zjunlp_molgen:molgen_model_bart_configuration_bart_py:bartconfig"
+        },
+        {
+          "text": "get_prompt",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:zjunlp_molgen:molgen_finetune_py:get_prompt"
+        },
+        {
+          "text": "loss_output",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:zjunlp_molgen:molgen_finetune_py:loss_output"
+        },
+        {
+          "text": "update_loss_log",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:zjunlp_molgen:molgen_finetune_py:update_loss_log"
+        },
+        {
+          "text": "generate_molecules",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:zjunlp_molgen:molgen_generate_ds_py:generate_molecules"
+        },
+        {
+          "text": "generate_candidate_selfies",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:zjunlp_molgen:molgen_generate_ds_py:generate_candidate_selfies"
+        }
+      ],
+      "metrics": [
+        {
+          "text": "diversity",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "frag_ratio",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "novelty",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "uniqueness",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "validity",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "mae",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "rmse",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "spearman",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "rmsd",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "Pearson_r",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "accuracy",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "percentage",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "AMP_hit_percent",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "drug-likeness",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "synthetic accessibility",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "pocket binding mode",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "molecule generation speed",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "penalized logP",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "QED",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "PoseBUSTERS",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "JSD",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "Wasserstein distance",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "Mean Absolute Error",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "R2",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "Spearman’s rank correlation",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "Hit rate",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "Fold-enrichment",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "helical twist",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "r",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "DHH",
+          "type": "Metric",
+          "source": "graph_catalog"
+        }
+      ],
+      "tables": []
+    },
+    "canonicalization": {
+      "canonical_map": {
+        "algorithm:AntiFold": {
+          "canonical": "AntiFold",
+          "node_id": "algorithm:antifold",
+          "match": "exact",
+          "score": 1.0
+        },
+        "code:CombinedModel": {
+          "canonical": "CombinedModel",
+          "match": "grounded",
+          "node_id": "",
+          "score": 1.0
+        },
+        "code:Encoder": {
+          "canonical": "Encoder",
+          "match": "grounded",
+          "node_id": "",
+          "score": 1.0
+        },
+        "code:Decoder": {
+          "canonical": "Decoder",
+          "match": "grounded",
+          "node_id": "",
+          "score": 1.0
+        },
+        "code:get_imgt_mask": {
+          "canonical": "get_imgt_mask",
+          "match": "grounded",
+          "node_id": "",
+          "score": 1.0
+        },
+        "code:parse_regions": {
+          "canonical": "parse_regions",
+          "match": "grounded",
+          "node_id": "",
+          "score": 1.0
+        },
+        "code:predict": {
+          "canonical": "predict",
+          "match": "grounded",
+          "node_id": "",
+          "score": 1.0
+        },
+        "code:forward": {
+          "canonical": "forward",
+          "match": "grounded",
+          "node_id": "",
+          "score": 1.0
+        },
+        "code:logits_to_seqprobs_list": {
+          "canonical": "logits_to_seqprobs_list",
+          "match": "grounded",
+          "node_id": "",
+          "score": 1.0
+        },
+        "benchmark:D44.1 anti-lysozyme antibody variants": {
+          "canonical": "D44.1 anti-lysozyme antibody variants",
+          "node_id": "benchmark:d44_1_anti_lysozyme_antibody_variants",
+          "match": "exact",
+          "score": 1.0
+        }
+      },
+      "alias_groups": {},
+      "n_exact": 2,
+      "n_fuzzy": 0,
+      "n_new": 0,
+      "n_ungrounded_code": 0
+    },
+    "relations": {
+      "grounded": [
+        {
+          "from": "AntiFold",
+          "to": "ESM-IF1",
+          "kind": "extends",
+          "char_offset": 36674,
+          "evidence": "AntiFold is initialized with weights from ESM-IF1 [Hsu et al., 2022], then fine-tuned on antibody variable domain struct"
+        },
+        {
+          "from": "AntiFold",
+          "to": "ESM-IF1",
+          "kind": "improves",
+          "char_offset": 13642,
+          "evidence": "AntiFold, fine-tuned from the general protein inverse folding ESM-IF1, achieves state-of-the-art performance on antibody"
+        },
+        {
+          "from": "AntiFold",
+          "to": "ProteinMPNN",
+          "kind": "compared_with",
+          "char_offset": 11704,
+          "evidence": "AntiFold significantly outperformed the other models with a Spearman’s rank correlation of 0.418, versus ESM-IF1 (0.334)"
+        },
+        {
+          "from": "AntiFold",
+          "to": "AbMPNN",
+          "kind": "compared_with",
+          "char_offset": 11704,
+          "evidence": "AntiFold significantly outperformed the other models with a Spearman’s rank correlation of 0.418, versus ESM-IF1 (0.334)"
+        },
+        {
+          "from": "AntiFold",
+          "to": "ESM-2",
+          "kind": "compared_with",
+          "char_offset": 11613,
+          "evidence": "As a sequence-only baseline, we included the sequence-based ESM-2 model (650M parameters)."
+        },
+        {
+          "from": "AntiFold",
+          "to": "ABodyBuilder2",
+          "kind": "tool",
+          "char_offset": 36286,
+          "evidence": "structures of antibody sequences from OAS [Kovaltsuk et al., 2018, Olsen et al., 2022b] modeled with ABodyBuilder2 [Aban"
+        },
+        {
+          "from": "AntiFold",
+          "to": "ESM-IF1",
+          "kind": "tool",
+          "char_offset": 36674,
+          "evidence": "AntiFold is initialized with weights from ESM-IF1 [Hsu et al., 2022], then fine-tuned on antibody variable domain struct"
+        },
+        {
+          "from": "AntiFold",
+          "to": "ESM-2",
+          "kind": "tool",
+          "char_offset": 11613,
+          "evidence": "As a sequence-only baseline, we included the sequence-based ESM-2 model (650M parameters)."
+        }
+      ],
+      "ungrounded": [],
+      "n": 8
+    },
+    "modules": {
+      "chains": [
+        {
+          "algorithm": "AntiFold",
+          "modules": [
+            {
+              "step_order": 1,
+              "name": "ESM-IF1 Initialization",
+              "depends_on": "",
+              "data_flow": "ESM-IF1 weights",
+              "inputs": "ESM-IF1 weights",
+              "outputs": "Initialized model parameters",
+              "goal": "加载通用蛋白质逆折叠模型权重",
+              "formula": "",
+              "code_symbols": [
+                "CombinedModel"
+              ],
+              "code_aligned": [
+                "CombinedModel"
+              ],
+              "code_alignment_rate": 1.0
+            },
+            {
+              "step_order": 2,
+              "name": "Antibody Fine-tuning",
+              "depends_on": "ESM-IF1 Initialization",
+              "data_flow": "Initialized model parameters -> Antibody variable domain structures",
+              "inputs": "Antibody variable domain structures",
+              "outputs": "Fine-tuned AntiFold model",
+              "goal": "在抗体可变域结构上微调模型",
+              "formula": "",
+              "code_symbols": [
+                "Encoder",
+                "Decoder"
+              ],
+              "code_aligned": [
+                "Encoder",
+                "Decoder"
+              ],
+              "code_alignment_rate": 1.0
+            },
+            {
+              "step_order": 3,
+              "name": "CDR Masking Strategy",
+              "depends_on": "Antibody Fine-tuning",
+              "data_flow": "Fine-tuned AntiFold model -> Antibody structure with CDR regions",
+              "inputs": "Antibody structure with CDR regions",
+              "outputs": "Masked sequence for training",
+              "goal": "向单个CDR残基加权掩码",
+              "formula": "",
+              "code_symbols": [
+                "get_imgt_mask",
+                "parse_regions"
+              ],
+              "code_aligned": [
+                "get_imgt_mask",
+                "parse_regions"
+              ],
+              "code_alignment_rate": 1.0
+            },
+            {
+              "step_order": 4,
+              "name": "Inverse Folding Prediction",
+              "depends_on": "CDR Masking Strategy",
+              "data_flow": "Masked sequence for training -> Antibody structure (with/without antigen)",
+              "inputs": "Antibody structure (with/without antigen)",
+              "outputs": "Sequence log-likelihoods",
+              "goal": "计算序列的逆折叠概率",
+              "formula": "",
+              "code_symbols": [
+                "predict",
+                "forward"
+              ],
+              "code_aligned": [
+                "predict",
+                "forward"
+              ],
+              "code_alignment_rate": 1.0
+            },
+            {
+              "step_order": 5,
+              "name": "Affinity Ranking",
+              "depends_on": "Inverse Folding Prediction",
+              "data_flow": "Sequence log-likelihoods -> Variant log-likelihoods",
+              "inputs": "Variant log-likelihoods",
+              "outputs": "Rank-normalized scores",
+              "goal": "对变体分数进行排名归一化以评估结合亲和力",
+              "formula": "",
+              "code_symbols": [
+                "logits_to_seqprobs_list"
+              ],
+              "code_aligned": [
+                "logits_to_seqprobs_list"
+              ],
+              "code_alignment_rate": 1.0
+            }
+          ],
+          "n_modules": 5,
+          "pipeline": "ESM-IF1 Initialization -> Antibody Fine-tuning -> CDR Masking Strategy -> Inverse Folding Prediction -> Affinity Ranking"
+        }
+      ],
+      "n_algorithms": 1,
+      "n_modules": 5
+    },
+    "slot_audit": {
+      "checks": [
+        {
+          "slot": "Paper.research_question",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "slot": "Paper.problem_category",
+          "ok": true,
+          "detail": "sequence_design"
+        },
+        {
+          "slot": "Algorithm.mechanism",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "slot": "AlgorithmModule.inputs",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "slot": "AlgorithmModule.outputs",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "slot": "Benchmark.input_form",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "slot": "Benchmark.output_form",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "slot": "Benchmark.model_results",
+          "ok": false,
+          "detail": ""
+        }
+      ],
+      "n_ok": 7,
+      "n_total": 8,
+      "score": 0.875
+    },
+    "summary": {
+      "n_entity_candidates": 220,
+      "n_grounded_relations": 8,
+      "n_ungrounded_relations": 0,
+      "n_modules_tracked": 5,
+      "slot_score": 0.875
+    }
+  }
+}

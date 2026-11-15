@@ -1,0 +1,868 @@
+{
+  "selected": [
+    {
+      "arxiv_id": "2411.06608",
+      "title": "MolMiner: Towards Controllable, 3D-Aware, Fragment-Based Molecular Design",
+      "domain": "D1",
+      "algorithms": "A01;A11",
+      "repo": "raulorteg__molminer",
+      "code_url": "raulorteg/molminer"
+    },
+    {
+      "arxiv_id": "2611.06237",
+      "title": "SO3LR Tauri: Generally Applicable Force Fields for Reactive (Bio)Molecular Simulations Covering the Periodic Table",
+      "domain": "D10",
+      "algorithms": "A16",
+      "repo": "general-molecular-simulations__so3lr",
+      "code_url": "general-molecular-simulations/so3lr"
+    },
+    {
+      "arxiv_id": "2405.03370",
+      "title": "AntiFold: Improved antibody structure-based design using inverse folding",
+      "domain": "D6",
+      "algorithms": "A01",
+      "repo": "oxpig__antifold",
+      "code_url": "oxpig/antifold"
+    },
+    {
+      "arxiv_id": "2407.12296",
+      "title": "A foundation model approach to guide antimicrobial peptide design in the era of artificial intelligence driven scientific discovery",
+      "domain": "D5",
+      "algorithms": "A01",
+      "repo": "jkwang93__amp-designer",
+      "code_url": "jkwang93/amp-designer"
+    },
+    {
+      "arxiv_id": "2305.10133",
+      "title": "Lingo3DMol: Generation of a Pocket-based 3D Molecule using a Language Model",
+      "domain": "D3",
+      "algorithms": "A01",
+      "repo": "stonewiseaidrugdesign__lingo3dmol",
+      "code_url": "stonewiseaidrugdesign/lingo3dmol"
+    },
+    {
+      "arxiv_id": "2306.08018",
+      "title": "Mol-Instructions: A Large-Scale Biomolecular Instruction Dataset for Large Language Models",
+      "domain": "D8",
+      "algorithms": "A01",
+      "repo": "zjunlp__mol-instructions",
+      "code_url": "zjunlp/mol-instructions"
+    },
+    {
+      "arxiv_id": "2507.00899",
+      "title": "TABASCO (Vonessen et al., 2025",
+      "domain": "D0",
+      "algorithms": "A05",
+      "repo": "carlosinator__tabasco",
+      "code_url": "carlosinator/tabasco"
+    },
+    {
+      "arxiv_id": "2301.11259",
+      "title": "Domain-Agnostic Molecular Generation with Self-feedback",
+      "domain": "D1",
+      "algorithms": "A01;A03",
+      "repo": "zjunlp__molgen",
+      "code_url": "zjunlp/molgen"
+    },
+    {
+      "arxiv_id": "2606.02455",
+      "title": "Speculative Sampling For Faster Molecular Dynamics",
+      "domain": "D10",
+      "algorithms": "A16",
+      "repo": "facebookresearch__lsd",
+      "code_url": "facebookresearch/lsd"
+    },
+    {
+      "arxiv_id": "2604.05181",
+      "title": "General Multimodal Protein Design Enables DNA-Encoding of Chemistry",
+      "domain": "D6",
+      "algorithms": "A03;A04;A13",
+      "repo": "disco-design__disco",
+      "code_url": "disco-design/disco"
+    }
+  ],
+  "types": {
+    "2411.06608": {
+      "paper_type": "method",
+      "confidence": 0.55,
+      "signals": [
+        "LLM 未给出合法类型，规则兜底"
+      ],
+      "rationale": "fallback",
+      "focus": {
+        "sections": [
+          "abstract",
+          "method",
+          "experiment",
+          "result"
+        ],
+        "must_extract": [
+          "proposed_methods",
+          "baselines",
+          "modules",
+          "questions",
+          "experiments",
+          "observations"
+        ],
+        "skip": [],
+        "prompt_hint": "重点拆方法栈的模块、机制与输入输出，并抽研究问题"
+      },
+      "task_tag": "paper_type"
+    },
+    "2611.06237": {
+      "paper_type": "method",
+      "confidence": 0.95,
+      "signals": [
+        "We present SO3LR Tauri, a family of MLFFs",
+        "coupling a fast SO3krates network to explicit, physics-based interaction modules",
+        "each improved beyond its original formulation",
+        "The models are trained on 148 million structures",
+        "Released in three sizes"
+      ],
+      "secondary_type": "system_tool",
+      "rationale": "论文提出了 SO3LR Tauri 系列通用机器学习力场模型，通过将 SO3krates 网络与改进的显式物理相互作用模块相结合，属于新模型/方法类贡献。",
+      "focus": {
+        "sections": [
+          "abstract",
+          "method",
+          "experiment",
+          "result"
+        ],
+        "must_extract": [
+          "proposed_methods",
+          "baselines",
+          "modules",
+          "questions",
+          "experiments",
+          "observations"
+        ],
+        "skip": [],
+        "prompt_hint": "重点拆方法栈的模块、机制与输入输出，并抽研究问题"
+      },
+      "task_tag": "paper_type"
+    },
+    "2405.03370": {
+      "paper_type": "method",
+      "confidence": 0.55,
+      "signals": [
+        "LLM 未给出合法类型，规则兜底"
+      ],
+      "rationale": "fallback",
+      "focus": {
+        "sections": [
+          "abstract",
+          "method",
+          "experiment",
+          "result"
+        ],
+        "must_extract": [
+          "proposed_methods",
+          "baselines",
+          "modules",
+          "questions",
+          "experiments",
+          "observations"
+        ],
+        "skip": [],
+        "prompt_hint": "重点拆方法栈的模块、机制与输入输出，并抽研究问题"
+      },
+      "task_tag": "paper_type"
+    },
+    "2407.12296": {
+      "paper_type": "method",
+      "confidence": 0.9,
+      "signals": [
+        "A foundation model approach to guide antimicrobial peptide design",
+        "We introduce AMP-Designer, an LLM-based approach for swiftly designing novel antimicrobial peptides (AMPs)"
+      ],
+      "secondary_type": "application",
+      "rationale": "论文提出了基于大语言模型设计抗菌肽的新方法 AMP-Designer，并结合湿实验验证了其实际生成效果。",
+      "focus": {
+        "sections": [
+          "abstract",
+          "method",
+          "experiment",
+          "result"
+        ],
+        "must_extract": [
+          "proposed_methods",
+          "baselines",
+          "modules",
+          "questions",
+          "experiments",
+          "observations"
+        ],
+        "skip": [],
+        "prompt_hint": "重点拆方法栈的模块、机制与输入输出，并抽研究问题"
+      },
+      "task_tag": "paper_type"
+    },
+    "2305.10133": {
+      "paper_type": "method",
+      "confidence": 0.95,
+      "signals": [
+        "introduce Lingo3DMol, a pocket-based 3D molecule generation method",
+        "A new molecular representation, fragment-based SMILES with local and global coordinates, was developed",
+        "Lingo3DMol outperformed state-of-the-art methods"
+      ],
+      "secondary_type": "application",
+      "rationale": "论文提出了结合语言模型和几何深度学习的新生成方法 Lingo3DMol 以及新的分子表征机制，并与现有基线进行了对比评测。",
+      "focus": {
+        "sections": [
+          "abstract",
+          "method",
+          "experiment",
+          "result"
+        ],
+        "must_extract": [
+          "proposed_methods",
+          "baselines",
+          "modules",
+          "questions",
+          "experiments",
+          "observations"
+        ],
+        "skip": [],
+        "prompt_hint": "重点拆方法栈的模块、机制与输入输出，并抽研究问题"
+      },
+      "task_tag": "paper_type"
+    },
+    "2306.08018": {
+      "paper_type": "dataset_benchmark",
+      "confidence": 0.99,
+      "signals": [
+        "A Large-Scale Biomolecular Instruction Dataset for Large Language Models",
+        "introduce Mol-Instructions, a comprehensive instruction dataset designed for the biomolecular domain",
+        "encompasses three key components: molecule-oriented instructions, protein-oriented instructions, and biomolecular text instructions",
+        "Mol-Instructions is publicly available for ongoing research"
+      ],
+      "secondary_type": "method",
+      "rationale": "论文明确提出并开源了一个面向生物分子领域的大规模指令微调数据集（Mol-Instructions），符合数据集/基准/指令集论文的定义。",
+      "focus": {
+        "sections": [
+          "abstract",
+          "dataset",
+          "benchmark",
+          "construction",
+          "experiment"
+        ],
+        "must_extract": [
+          "questions",
+          "benchmarks",
+          "data_modalities",
+          "split_rules",
+          "tasks",
+          "observations"
+        ],
+        "skip": [
+          "modules"
+        ],
+        "prompt_hint": "重点写基准的输入输出契约、模态、切分与任务，不要硬抽算法模块"
+      },
+      "task_tag": "paper_type"
+    },
+    "2507.00899": {
+      "paper_type": "dataset_benchmark",
+      "confidence": 0.55,
+      "signals": [
+        "LLM 未给出合法类型，规则兜底"
+      ],
+      "rationale": "fallback",
+      "focus": {
+        "sections": [
+          "abstract",
+          "dataset",
+          "benchmark",
+          "construction",
+          "experiment"
+        ],
+        "must_extract": [
+          "questions",
+          "benchmarks",
+          "data_modalities",
+          "split_rules",
+          "tasks",
+          "observations"
+        ],
+        "skip": [
+          "modules"
+        ],
+        "prompt_hint": "重点写基准的输入输出契约、模态、切分与任务，不要硬抽算法模块"
+      },
+      "task_tag": "paper_type"
+    },
+    "2301.11259": {
+      "paper_type": "method",
+      "confidence": 0.95,
+      "signals": [
+        "introduce MOLGEN, a pre-trained molecular language model tailored specifically for molecule generation",
+        "domain-agnostic molecular prefix tuning",
+        "our chemical feedback paradigm steers the model away from 'molecular hallucinations'"
+      ],
+      "secondary_type": "application",
+      "rationale": "论文提出了针对分子生成任务的预训练语言模型 MOLGEN 及其化学反馈生成与领域无关前缀微调机制，核心贡献是新模型与算法。",
+      "focus": {
+        "sections": [
+          "abstract",
+          "method",
+          "experiment",
+          "result"
+        ],
+        "must_extract": [
+          "proposed_methods",
+          "baselines",
+          "modules",
+          "questions",
+          "experiments",
+          "observations"
+        ],
+        "skip": [],
+        "prompt_hint": "重点拆方法栈的模块、机制与输入输出，并抽研究问题"
+      },
+      "task_tag": "paper_type"
+    },
+    "2606.02455": {
+      "paper_type": "theory",
+      "confidence": 0.55,
+      "signals": [
+        "LLM 未给出合法类型，规则兜底"
+      ],
+      "rationale": "fallback",
+      "focus": {
+        "sections": [
+          "abstract",
+          "assumption",
+          "theorem",
+          "proof"
+        ],
+        "must_extract": [
+          "questions",
+          "assumptions",
+          "claims",
+          "derivation_conditions"
+        ],
+        "skip": [
+          "modules",
+          "experiments",
+          "code_symbols"
+        ],
+        "prompt_hint": "抽假设、命题与推导条件，不要抽实验与代码"
+      },
+      "task_tag": "paper_type"
+    },
+    "2604.05181": {
+      "paper_type": "method",
+      "confidence": 0.95,
+      "signals": [
+        "We introduce DISCO, a multimodal model that co-designs protein sequence and 3D structure around arbitrary biomolecules",
+        "inference-time scaling methods that optimize objectives across both modalities",
+        "Conditioned solely on reactive intermediates, DISCO designs diverse heme enzymes with novel active-site geometries"
+      ],
+      "secondary_type": "application",
+      "rationale": "论文提出了用于以小分子/中间体为条件协同设计蛋白质序列与3D结构的新多模态生成模型DISCO及推理缩放方法，主要贡献为新模型与新算法。",
+      "focus": {
+        "sections": [
+          "abstract",
+          "method",
+          "experiment",
+          "result"
+        ],
+        "must_extract": [
+          "proposed_methods",
+          "baselines",
+          "modules",
+          "questions",
+          "experiments",
+          "observations"
+        ],
+        "skip": [],
+        "prompt_hint": "重点拆方法栈的模块、机制与输入输出，并抽研究问题"
+      },
+      "task_tag": "paper_type"
+    }
+  },
+  "stats": {
+    "papers": 10,
+    "modules": 31,
+    "methods": 12,
+    "baselines": 22,
+    "metrics": 12,
+    "benchmarks": 21,
+    "code_functions": 45,
+    "questions": 17,
+    "categories": 5,
+    "observations": 73,
+    "leaderboard_entries": 73,
+    "edges": 570,
+    "problems": []
+  },
+  "per_doc": [
+    {
+      "paper": {
+        "arxiv_id": "2411.06608",
+        "title": "MolMiner: Towards Controllable, 3D-Aware, Fragment-Based Molecular Design",
+        "domain": "D1",
+        "algorithms": "A01;A11",
+        "repo": "raulorteg__molminer",
+        "code_url": "raulorteg/molminer"
+      },
+      "raw_out_len": 4774,
+      "raw_out_head": "{\n  \"paper\": {\n    \"title\": \"MolMiner: Fragment-Based, Geometry-Aware, and Order-Agnostic Molecular Generation\",\n    \"arxiv_id\": \"2411.06608\",\n    \"doi\": \"\",\n  ",
+      "evidence_ids": [
+        "section:2411.06608:Introduction",
+        "section:2411.06608:Related Work",
+        "section:2411.06608:Method",
+        "section:2411.06608:Fragment-Based Molecular Representation",
+        "section:2411.06608:Symmetry-Aware Attachment Modeling",
+        "section:2411.06608:Order-agnostic Molecular Rollouts",
+        "section:2411.06608:Model Architecture",
+        "section:2411.06608:Training Objective",
+        "section:2411.06608:Sampling Procedure",
+        "section:2411.06608:Experiments",
+        "section:2411.06608:Benchmarking Unconditional Generation",
+        "section:2411.06608:GDSS"
+      ],
+      "paper_type": "method",
+      "symbol_stats": {
+        "claimed": 9,
+        "valid": 9,
+        "hallucinated": [],
+        "rate": 1.0
+      },
+      "n_sections": 19,
+      "prompt_chars": 28819
+    },
+    {
+      "paper": {
+        "arxiv_id": "2611.06237",
+        "title": "SO3LR Tauri: Generally Applicable Force Fields for Reactive (Bio)Molecular Simulations Covering the Periodic Table",
+        "domain": "D10",
+        "algorithms": "A16",
+        "repo": "general-molecular-simulations__so3lr",
+        "code_url": "general-molecular-simulations/so3lr"
+      },
+      "raw_out_len": 15140,
+      "raw_out_head": "{\n  \"paper\": {\n    \"title\": \"SO3LR Tauri: Generally Applicable Force Fields for Reactive (Bio)Molecular Simulations Covering the Periodic Table\",\n    \"arxiv_id\"",
+      "evidence_ids": [
+        "section:2611.06237:SO3LR derived all atomic dispersion parameters from",
+        "section:2611.06237:Radial basis functions",
+        "section:2611.06237:SO3LR-T-S",
+        "section:2611.06237:SO3LR-T-L",
+        "section:2611.06237:SO3LR-T-M pK",
+        "section:2611.06237:The domain evaluation is so far limited to force evalua-",
+        "section:2611.06237:SUPPORTING INFORMATION",
+        "section:2611.06237:SUPPLEMENTARY INFORMATION",
+        "section:2611.06237:Total Atom Count",
+        "section:2611.06237:Dataset subsets",
+        "section:2611.06237:Pairs per batch",
+        "section:2611.06237:Energy heads trained"
+      ],
+      "paper_type": "method",
+      "symbol_stats": {
+        "claimed": 4,
+        "valid": 4,
+        "hallucinated": [],
+        "rate": 1.0
+      },
+      "n_sections": 29,
+      "prompt_chars": 135092
+    },
+    {
+      "paper": {
+        "arxiv_id": "2405.03370",
+        "title": "AntiFold: Improved antibody structure-based design using inverse folding",
+        "domain": "D6",
+        "algorithms": "A01",
+        "repo": "oxpig__antifold",
+        "code_url": "oxpig/antifold"
+      },
+      "raw_out_len": 6225,
+      "raw_out_head": "{\n  \"paper\": {\n    \"title\": \"AntiFold: antibody-specific inverse folding for structure-based antibody design\",\n    \"arxiv_id\": \"2405.03370\",\n    \"doi\": \"\",\n    ",
+      "evidence_ids": [
+        "section:2405.03370:AbAg",
+        "section:2405.03370:Supplementary information",
+        "section:2405.03370:Supplementary results",
+        "section:2405.03370:Train Antibody",
+        "section:2405.03370:Mask structures",
+        "section:2405.03370:AbMPNN",
+        "section:2405.03370:Perplexity",
+        "section:2405.03370:Predicted structures",
+        "section:2405.03370:Solved structures",
+        "section:2405.03370:CDRL1",
+        "section:2405.03370:Binding correlation",
+        "section:2405.03370:Threshold"
+      ],
+      "paper_type": "method",
+      "symbol_stats": {
+        "claimed": 8,
+        "valid": 8,
+        "hallucinated": [],
+        "rate": 1.0
+      },
+      "n_sections": 17,
+      "prompt_chars": 13063
+    },
+    {
+      "paper": {
+        "arxiv_id": "2407.12296",
+        "title": "A foundation model approach to guide antimicrobial peptide design in the era of artificial intelligence driven scientific discovery",
+        "domain": "D5",
+        "algorithms": "A01",
+        "repo": "jkwang93__amp-designer",
+        "code_url": "jkwang93/amp-designer"
+      },
+      "raw_out_len": 13377,
+      "raw_out_head": "{\n  \"paper\": {\n    \"title\": \"Discovery of novel antimicrobial peptides with notable antibacterial potency by a LLM-based foundation model\",\n    \"arxiv_id\": \"240",
+      "evidence_ids": [
+        "section:2407.12296:AV20",
+        "section:2407.12296:GI16",
+        "section:2407.12296:KW18",
+        "section:2407.12296:AMP-Distillation",
+        "section:2407.12296:CRRI7"
+      ],
+      "paper_type": "method",
+      "symbol_stats": {
+        "claimed": 9,
+        "valid": 9,
+        "hallucinated": [],
+        "rate": 1.0
+      },
+      "n_sections": 5,
+      "prompt_chars": 109116
+    },
+    {
+      "paper": {
+        "arxiv_id": "2305.10133",
+        "title": "Lingo3DMol: Generation of a Pocket-based 3D Molecule using a Language Model",
+        "domain": "D3",
+        "algorithms": "A01",
+        "repo": "stonewiseaidrugdesign__lingo3dmol",
+        "code_url": "stonewiseaidrugdesign/lingo3dmol"
+      },
+      "raw_out_len": 9864,
+      "raw_out_head": "{\n  \"paper\": {\n    \"title\": \"Generation of 3D Molecules in Pockets via Language Model\",\n    \"arxiv_id\": \"2305.10133\",\n    \"doi\": \"\",\n    \"paper_type\": \"method\"\n",
+      "evidence_ids": [
+        "section:2305.10133:of molecules generated",
+        "section:2305.10133:of drug-like molecules",
+        "section:2305.10133:of drug-like molecules (4)",
+        "section:2305.10133:of molecules generated (5)"
+      ],
+      "paper_type": "method",
+      "symbol_stats": {
+        "claimed": 13,
+        "valid": 13,
+        "hallucinated": [],
+        "rate": 1.0
+      },
+      "n_sections": 4,
+      "prompt_chars": 92813
+    },
+    {
+      "paper": {
+        "arxiv_id": "2306.08018",
+        "title": "Mol-Instructions: A Large-Scale Biomolecular Instruction Dataset for Large Language Models",
+        "domain": "D8",
+        "algorithms": "A01",
+        "repo": "zjunlp__mol-instructions",
+        "code_url": "zjunlp/mol-instructions"
+      },
+      "raw_out_len": 1902,
+      "raw_out_head": "{\n  \"paper\": {\n    \"title\": \"Mol-Instructions: A Large-Scale Biomolecular Instruction Dataset for Large Language Models\",\n    \"arxiv_id\": \"2306.08018\",\n    \"doi",
+      "evidence_ids": [
+        "section:2306.08018:INTRODUCTION",
+        "section:2306.08018:Published as a conference paper at ICLR 2024",
+        "section:2306.08018:RELATED WORK",
+        "section:2306.08018:UNDERLYING PRINCIPLES",
+        "section:2306.08018:HUMAN-AI COLLABORATION TASK DESCRIPTION CREATION",
+        "section:2306.08018:INFORMATION DERIVATION FROM EXISTING DATA",
+        "section:2306.08018:TEMPLATE-BASED CONVERSION OF BIOLOGICAL DATA INTO TEXTUAL FORMAT",
+        "section:2306.08018:QUALITY CONTROL",
+        "section:2306.08018:CATEGORIZATION AND POTENTIAL APPLICATIONS OF INSTRUCTION TASKS",
+        "section:2306.08018:DIVERSITY AND COMPLEXITY OF BIOMOLECULAR TRAITS",
+        "section:2306.08018:EXTENSIVE COVERAGE OF BIOMOLECULAR DESCRIPTIONS",
+        "section:2306.08018:INSIGHTS FROM PERFORMANCE ANALYSIS"
+      ],
+      "paper_type": "dataset_benchmark",
+      "symbol_stats": {
+        "claimed": 0,
+        "valid": 0,
+        "hallucinated": [],
+        "rate": 0.0
+      },
+      "n_sections": 17,
+      "prompt_chars": 13454
+    },
+    {
+      "paper": {
+        "arxiv_id": "2507.00899",
+        "title": "TABASCO (Vonessen et al., 2025",
+        "domain": "D0",
+        "algorithms": "A05",
+        "repo": "carlosinator__tabasco",
+        "code_url": "carlosinator/tabasco"
+      },
+      "raw_out_len": 1399,
+      "raw_out_head": "{\n  \"paper\": {\n    \"title\": \"TABASCO: Fast, Simple, and High-Quality Molecule Generation\",\n    \"arxiv_id\": \"2507.00899\",\n    \"doi\": \"\",\n    \"paper_type\": \"datas",
+      "evidence_ids": [
+        "section:2507.00899:Abstract",
+        "section:2507.00899:1. Introduction",
+        "section:2507.00899:2.1. Flow-Matching Models",
+        "section:2507.00899:2.2. Generative Models for 3D Molecule Design",
+        "section:2507.00899:3. TABASCO: Fast, Simple, and High-Quality Molecule Generation",
+        "section:2507.00899:3.1. Model Architecture",
+        "section:2507.00899:3.2. Training Objective",
+        "section:2507.00899:3.3. Sampling",
+        "section:2507.00899:3.4. Ordering Atoms as Sequences",
+        "section:2507.00899:3.5. Physically Constrained Last-Mile Pose Guidance",
+        "section:2507.00899:Two-phase sampling with distance-bounds guidance.",
+        "section:2507.00899:4.1. Experimental Setup"
+      ],
+      "paper_type": "dataset_benchmark",
+      "symbol_stats": {
+        "claimed": 0,
+        "valid": 0,
+        "hallucinated": [],
+        "rate": 0.0
+      },
+      "n_sections": 28,
+      "prompt_chars": 23056
+    },
+    {
+      "paper": {
+        "arxiv_id": "2301.11259",
+        "title": "Domain-Agnostic Molecular Generation with Self-feedback",
+        "domain": "D1",
+        "algorithms": "A01;A03",
+        "repo": "zjunlp__molgen",
+        "code_url": "zjunlp/molgen"
+      },
+      "raw_out_len": 3931,
+      "raw_out_head": "{\n  \"paper\": {\n    \"title\": \"MOLGEN: Pre-trained Molecular Language Model for Molecule Generation\",\n    \"arxiv_id\": \"2301.11259\",\n    \"doi\": \"\",\n    \"paper_type",
+      "evidence_ids": [
+        "section:2301.11259:INTRODUCTION",
+        "section:2301.11259:METHODOLOGY",
+        "section:2301.11259:DOMAIN-AGNOSTIC MOLECULAR PRE-TRAINING",
+        "section:2301.11259:Published as a conference paper at ICLR 2024",
+        "section:2301.11259:CHEMICAL FEEDBACK PARADIGM: ALIGN PLM WITH CHEMICAL PREFERENCE",
+        "section:2301.11259:EXPERIMENTAL SETUP",
+        "section:2301.11259:MOLGEN CAPTURES REAL-WORLD MOLECULAR DISTRIBUTIONS",
+        "section:2301.11259:MOLGEN MITIGATES MOLECULAR HALLUCINATIONS",
+        "section:2301.11259:Table 3: The top 3 highest binding affinities",
+        "section:2301.11259:MOLGEN",
+        "section:2301.11259:PRE-TRAINING STAGE CAPTURES COMPLEX MOLECULAR CHARACTERISTICS",
+        "section:2301.11259:CHEMICAL FEEDBACK PARADIGM FACILITATES PROPERTY OPTIMIZATION"
+      ],
+      "paper_type": "method",
+      "symbol_stats": {
+        "claimed": 7,
+        "valid": 7,
+        "hallucinated": [],
+        "rate": 1.0
+      },
+      "n_sections": 15,
+      "prompt_chars": 15418
+    },
+    {
+      "paper": {
+        "arxiv_id": "2606.02455",
+        "title": "Speculative Sampling For Faster Molecular Dynamics",
+        "domain": "D10",
+        "algorithms": "A16",
+        "repo": "facebookresearch__lsd",
+        "code_url": "facebookresearch/lsd"
+      },
+      "raw_out_len": 1741,
+      "raw_out_head": "{\n  \"paper\": {\n    \"title\": \"Langevin Speculative Dynamics\",\n    \"arxiv_id\": \"2606.02455\",\n    \"doi\": \"\",\n    \"paper_type\": \"theory\"\n  },\n  \"questions\": [\n    {",
+      "evidence_ids": [
+        "section:2606.02455:Introduction",
+        "section:2606.02455:Molecular Dynamics",
+        "section:2606.02455:Speculative Sampling",
+        "section:2606.02455:Verification of MD Steps",
+        "section:2606.02455:Speedup and Optimal Resource Bounds",
+        "section:2606.02455:Prediction of the Speedup and Rejection Rate",
+        "section:2606.02455:Related Work",
+        "section:2606.02455:Atom Count",
+        "section:2606.02455:Predicted and Real Speedups",
+        "section:2606.02455:GPUs",
+        "section:2606.02455:Preservation of Target Distribution",
+        "section:2606.02455:Conclusion and Limitations"
+      ],
+      "paper_type": "theory",
+      "symbol_stats": {
+        "claimed": 0,
+        "valid": 0,
+        "hallucinated": [],
+        "rate": 0.0
+      },
+      "n_sections": 19,
+      "prompt_chars": 13192
+    },
+    {
+      "paper": {
+        "arxiv_id": "2604.05181",
+        "title": "General Multimodal Protein Design Enables DNA-Encoding of Chemistry",
+        "domain": "D6",
+        "algorithms": "A03;A04;A13",
+        "repo": "disco-design__disco",
+        "code_url": "disco-design/disco"
+      },
+      "raw_out_len": 1870,
+      "raw_out_head": "{\n  \"paper\": {\n    \"title\": \"General Multimodal Protein Design Enables DNA-Encoding of Chemistry\",\n    \"arxiv_id\": \"2604.05181v1\",\n    \"doi\": \"\",\n    \"paper_typ",
+      "evidence_ids": [
+        "section:2604.05181:Conditioning",
+        "section:2604.05181:Scale positions to dimensionless vectors with approximately unit variance.",
+        "section:2604.05181:Sequence-local Atom Attention and aggregation to coarse-grained tokens",
+        "section:2604.05181:Full self-attention on token level.",
+        "section:2604.05181:Broadcast token activations to atoms and run Sequence-local Atom Attention",
+        "section:2604.05181:Rescale updates to positions and combine with input positions",
+        "section:2604.05181:Pair conditioning",
+        "section:2604.05181:Single conditioning, t is structure noise, r is sequence noise",
+        "section:2604.05181:Cross attention transformer",
+        "section:2604.05181:Map to positions update or logits",
+        "section:2604.05181:Compute distance difference for all pairs of atoms",
+        "section:2604.05181:Restrict to bespoke inclusion radius"
+      ],
+      "paper_type": "method",
+      "symbol_stats": {
+        "claimed": 0,
+        "valid": 0,
+        "hallucinated": [],
+        "rate": 0.0
+      },
+      "n_sections": 18,
+      "prompt_chars": 135968
+    }
+  ],
+  "usage": {
+    "calls": 20,
+    "ok": 20,
+    "failed": 0,
+    "prompt_tokens": 205782,
+    "completion_tokens": 58186,
+    "total_tokens": 263968,
+    "latency_s": 313.19,
+    "avg_latency_s": 15.66,
+    "by_task": {
+      "type:2305.10133": {
+        "calls": 1,
+        "prompt_tokens": 1077,
+        "completion_tokens": 635,
+        "total_tokens": 1712
+      },
+      "type:2405.03370": {
+        "calls": 1,
+        "prompt_tokens": 1317,
+        "completion_tokens": 600,
+        "total_tokens": 1917
+      },
+      "type:2611.06237": {
+        "calls": 1,
+        "prompt_tokens": 1427,
+        "completion_tokens": 367,
+        "total_tokens": 1794
+      },
+      "type:2411.06608": {
+        "calls": 1,
+        "prompt_tokens": 949,
+        "completion_tokens": 596,
+        "total_tokens": 1545
+      },
+      "type:2306.08018": {
+        "calls": 1,
+        "prompt_tokens": 1452,
+        "completion_tokens": 454,
+        "total_tokens": 1906
+      },
+      "type:2407.12296": {
+        "calls": 1,
+        "prompt_tokens": 1105,
+        "completion_tokens": 428,
+        "total_tokens": 1533
+      },
+      "type:2301.11259": {
+        "calls": 1,
+        "prompt_tokens": 1221,
+        "completion_tokens": 572,
+        "total_tokens": 1793
+      },
+      "type:2606.02455": {
+        "calls": 1,
+        "prompt_tokens": 985,
+        "completion_tokens": 596,
+        "total_tokens": 1581
+      },
+      "type:2604.05181": {
+        "calls": 1,
+        "prompt_tokens": 1417,
+        "completion_tokens": 178,
+        "total_tokens": 1595
+      },
+      "type:2507.00899": {
+        "calls": 1,
+        "prompt_tokens": 639,
+        "completion_tokens": 596,
+        "total_tokens": 1235
+      },
+      "extract:2411.06608": {
+        "calls": 1,
+        "prompt_tokens": 7576,
+        "completion_tokens": 1451,
+        "total_tokens": 9027
+      },
+      "extract:2405.03370": {
+        "calls": 1,
+        "prompt_tokens": 4806,
+        "completion_tokens": 4797,
+        "total_tokens": 9603
+      },
+      "extract:2611.06237": {
+        "calls": 1,
+        "prompt_tokens": 52118,
+        "completion_tokens": 5636,
+        "total_tokens": 57754
+      },
+      "extract:2306.08018": {
+        "calls": 1,
+        "prompt_tokens": 3831,
+        "completion_tokens": 510,
+        "total_tokens": 4341
+      },
+      "extract:2305.10133": {
+        "calls": 1,
+        "prompt_tokens": 28809,
+        "completion_tokens": 3267,
+        "total_tokens": 32076
+      },
+      "extract:2301.11259": {
+        "calls": 1,
+        "prompt_tokens": 4507,
+        "completion_tokens": 1174,
+        "total_tokens": 5681
+      },
+      "extract:2407.12296": {
+        "calls": 1,
+        "prompt_tokens": 37730,
+        "completion_tokens": 11870,
+        "total_tokens": 49600
+      },
+      "extract:2606.02455": {
+        "calls": 1,
+        "prompt_tokens": 3946,
+        "completion_tokens": 463,
+        "total_tokens": 4409
+      },
+      "extract:2507.00899": {
+        "calls": 1,
+        "prompt_tokens": 7520,
+        "completion_tokens": 12000,
+        "total_tokens": 19520
+      },
+      "extract:2604.05181": {
+        "calls": 1,
+        "prompt_tokens": 43350,
+        "completion_tokens": 11996,
+        "total_tokens": 55346
+      }
+    }
+  }
+}

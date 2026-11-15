@@ -1,0 +1,210 @@
+{
+  "paper_id": "paper:2411.06608",
+  "arxiv_id": "2411.06608",
+  "scope": "strict",
+  "source_graph": "storage_cf/sciforge/app_reproduction.json",
+  "n_assertions_before": 10260,
+  "n_assertions_after": 10259,
+  "removed_edges": [
+    {
+      "assertion_id": "assertion:5841",
+      "source": "algorithm:molminer",
+      "relation": "HAS_MODULE",
+      "target": "algorithmmodule:2608.06956:autoregressive_decoder",
+      "reason": "cross_paper_module"
+    },
+    {
+      "assertion_id": "assertion:5844",
+      "source": "algorithm:molminer",
+      "relation": "HAS_MODULE",
+      "target": "algorithmmodule:2608.06956:identity_pullback",
+      "reason": "cross_paper_module"
+    },
+    {
+      "assertion_id": "assertion:5846",
+      "source": "algorithm:hiervae",
+      "relation": "HAS_MODULE",
+      "target": "algorithmmodule:2608.06956:graph_encoder",
+      "reason": "cross_paper_module"
+    },
+    {
+      "assertion_id": "assertion:5848",
+      "source": "algorithm:hiervae",
+      "relation": "HAS_MODULE",
+      "target": "algorithmmodule:2608.06956:hierarchical_decoder",
+      "reason": "cross_paper_module"
+    },
+    {
+      "assertion_id": "assertion:0386",
+      "source": "paper:2411.06608",
+      "relation": "PROPOSES_METHOD",
+      "target": "algorithm:jtnn",
+      "reason": "baseline_algorithm_without_in_scope_module"
+    },
+    {
+      "assertion_id": "assertion:0387",
+      "source": "paper:2411.06608",
+      "relation": "PROPOSES_METHOD",
+      "target": "algorithm:hiervae",
+      "reason": "baseline_algorithm_without_in_scope_module"
+    },
+    {
+      "assertion_id": "assertion:0388",
+      "source": "paper:2411.06608",
+      "relation": "PROPOSES_METHOD",
+      "target": "algorithm:moler",
+      "reason": "baseline_algorithm_without_in_scope_module"
+    }
+  ],
+  "excluded_modules": [
+    {
+      "id": "algorithmmodule:2608.06956:autoregressive_decoder",
+      "foreign_arxiv": [
+        "2608.06956"
+      ],
+      "label": "Autoregressive Decoder",
+      "reason": "模块 id 含本篇之外的 arxiv 号，不属于本论文复现范围"
+    },
+    {
+      "id": "algorithmmodule:2608.06956:graph_encoder",
+      "foreign_arxiv": [
+        "2608.06956"
+      ],
+      "label": "Graph Encoder",
+      "reason": "模块 id 含本篇之外的 arxiv 号，不属于本论文复现范围"
+    },
+    {
+      "id": "algorithmmodule:2608.06956:hierarchical_decoder",
+      "foreign_arxiv": [
+        "2608.06956"
+      ],
+      "label": "Hierarchical Decoder",
+      "reason": "模块 id 含本篇之外的 arxiv 号，不属于本论文复现范围"
+    },
+    {
+      "id": "algorithmmodule:2608.06956:identity_pullback",
+      "foreign_arxiv": [
+        "2608.06956"
+      ],
+      "label": "Identity Pullback",
+      "reason": "模块 id 含本篇之外的 arxiv 号，不属于本论文复现范围"
+    }
+  ],
+  "excluded_algorithms": [
+    {
+      "id": "algorithm:jtnn",
+      "label": "JTNN",
+      "reason": "归一化后无本篇 HAS_MODULE 边，属基线/相关工作误挂"
+    },
+    {
+      "id": "algorithm:hiervae",
+      "label": "HierVAE",
+      "reason": "归一化后无本篇 HAS_MODULE 边，属基线/相关工作误挂"
+    },
+    {
+      "id": "algorithm:moler",
+      "label": "MoLeR",
+      "reason": "归一化后无本篇 HAS_MODULE 边，属基线/相关工作误挂"
+    }
+  ],
+  "added_edges": [
+    {
+      "module": "algorithmmodule:2411.06608:fragment_coarse_graining",
+      "function": "codefunction:raulorteg_molminer:molminer_processor_py:get_all_possible_attachments",
+      "relation": "MODULE_IMPLEMENTED_BY",
+      "rule": "fragment_coarse_graining",
+      "matched_terms": [
+        "grain",
+        "attachment"
+      ],
+      "evidence_purpose": "Compute all possible attachment points for a grain",
+      "evidence_name": "_get_all_possible_attachments",
+      "attribution": "analyst_inference",
+      "grade": "purpose_keyword_inference (非 AST 直接落地)"
+    },
+    {
+      "module": "algorithmmodule:2411.06608:fragment_coarse_graining",
+      "function": "codefunction:raulorteg_molminer:molminer_processor_py:compute_possible_remaps",
+      "relation": "MODULE_IMPLEMENTED_BY",
+      "rule": "fragment_coarse_graining",
+      "matched_terms": [
+        "remap"
+      ],
+      "evidence_purpose": "Compute all valid remappings between atoms in two equivalent molecules",
+      "evidence_name": "_compute_possible_remaps",
+      "attribution": "analyst_inference",
+      "grade": "purpose_keyword_inference (非 AST 直接落地)"
+    },
+    {
+      "module": "algorithmmodule:2411.06608:fragment_coarse_graining",
+      "function": "codefunction:raulorteg_molminer:molminer_processor_py:get_canonicalization_map",
+      "relation": "MODULE_IMPLEMENTED_BY",
+      "rule": "fragment_coarse_graining",
+      "matched_terms": [
+        "remap",
+        "canonicalization"
+      ],
+      "evidence_purpose": "Return a canonical remapping from the list of possible remaps",
+      "evidence_name": "_get_canonicalization_map",
+      "attribution": "analyst_inference",
+      "grade": "purpose_keyword_inference (非 AST 直接落地)"
+    },
+    {
+      "module": "algorithmmodule:2411.06608:fragment_predictor",
+      "function": "codefunction:raulorteg_molminer:molminer_models_py:init",
+      "relation": "MODULE_IMPLEMENTED_BY",
+      "rule": "fragment_predictor",
+      "matched_terms": [
+        "starter"
+      ],
+      "evidence_purpose": "Initialize and load pretrained components: MolMiner, FragmentStarter, GMM, prope",
+      "evidence_name": "__init__",
+      "attribution": "analyst_inference",
+      "grade": "purpose_keyword_inference (非 AST 直接落地)"
+    },
+    {
+      "module": "algorithmmodule:2411.06608:fragment_predictor",
+      "function": "codefunction:raulorteg_molminer:molminer_generator_py:sample",
+      "relation": "MODULE_IMPLEMENTED_BY",
+      "rule": "fragment_predictor",
+      "matched_terms": [
+        "seed"
+      ],
+      "evidence_purpose": "Core sampling routine: seed selection + autoregressive fragment generation",
+      "evidence_name": "_sample",
+      "attribution": "analyst_inference",
+      "grade": "purpose_keyword_inference (非 AST 直接落地)"
+    },
+    {
+      "module": "algorithmmodule:2411.06608:conditional_sampling",
+      "function": "codefunction:raulorteg_molminer:molminer_models_py:init",
+      "relation": "MODULE_IMPLEMENTED_BY",
+      "rule": "conditional_sampling",
+      "matched_terms": [
+        "gmm"
+      ],
+      "evidence_purpose": "Initialize and load pretrained components: MolMiner, FragmentStarter, GMM, prope",
+      "evidence_name": "__init__",
+      "attribution": "analyst_inference",
+      "grade": "purpose_keyword_inference (非 AST 直接落地)"
+    }
+  ],
+  "unresolved_modules": [],
+  "candidate_functions": [
+    "codefunction:raulorteg_molminer:molminer_processor_py:get_all_possible_attachments",
+    "codefunction:raulorteg_molminer:molminer_processor_py:compute_possible_remaps",
+    "codefunction:raulorteg_molminer:molminer_processor_py:get_canonicalization_map",
+    "codefunction:raulorteg_molminer:molminer_models_py:forward",
+    "codefunction:raulorteg_molminer:molminer_models_py:init",
+    "codefunction:raulorteg_molminer:molminer_generator_py:sample"
+  ],
+  "warnings": [
+    "剔除 4 个跨论文模块；跨论文模块造成的 inputs/outputs 双向依赖环随之消失",
+    "剔除 3 个无本篇模块的基线算法，避免 R1 门把缺机理的 related work 算成本篇方法"
+  ],
+  "note": "只作用于内存归一化视图；源图文件不变。补边来自 CodeFunction.name/purpose 关键词证据，非 AST 直接落地。",
+  "n_removed_edges": 7,
+  "n_added_edges": 6,
+  "n_excluded_modules": 4,
+  "n_excluded_algorithms": 3
+}

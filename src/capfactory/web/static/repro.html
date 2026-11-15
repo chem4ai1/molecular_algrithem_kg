@@ -1,0 +1,179 @@
+<!doctype html><html lang="zh"><head><meta charset="utf-8"/>
+<title>复现控制台 · 方法锁定 → 代码生成 → 执行 → 锚定</title>
+<style>
+:root{--bg:#080e18;--pnl:#0c1526;--bd:#1d2940;--tx:#cfe0ff;--mut:#7d8bb0;
+--ok:#3ddc97;--bad:#ff6b6b;--warn:#ffb454;--acc:#8fb4ff;--cur:#173c42}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:13px/1.6 -apple-system,"Segoe UI",monospace}
+header{display:flex;gap:12px;align-items:center;padding:12px 18px;border-bottom:1px solid var(--bd)}
+h1{font-size:15px;margin:0;font-weight:600}
+select,button{background:var(--pnl);color:var(--tx);border:1px solid var(--bd);
+  border-radius:5px;padding:5px 10px;font:inherit;cursor:pointer}
+button:hover{border-color:var(--acc)}
+button.primary{background:var(--cur);border-color:#2a6a63;color:#9ff0d8}
+main{padding:14px 18px 40px}
+.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px}
+.step{background:var(--pnl);border:1px solid var(--bd);border-radius:8px;padding:10px 12px}
+.step h3{margin:0 0 6px;font-size:12px;color:var(--acc);display:flex;justify-content:space-between}
+.step .st{font-size:10px;padding:1px 7px;border-radius:10px;border:1px solid var(--bd)}
+.st.done{color:var(--ok);border-color:#22543f}
+.st.failed{color:var(--bad);border-color:#5a2424}
+.st.pending{color:var(--mut)}
+.kv{display:flex;justify-content:space-between;font-size:11px;padding:1px 0}
+.kv b{font-weight:500}
+.panel{background:var(--pnl);border:1px solid var(--bd);border-radius:8px;margin:0 0 12px}
+.panel>h2{margin:0;padding:9px 12px;font-size:12px;color:var(--acc);
+  border-bottom:1px solid var(--bd);display:flex;justify-content:space-between}
+.panel .body{padding:10px 12px;overflow:auto;max-height:320px}
+table{width:100%;border-collapse:collapse;font-size:11px}
+th,td{text-align:left;padding:3px 6px;border-bottom:1px solid #131d30;white-space:nowrap}
+th{color:var(--mut);font-weight:500}
+td.mono{font-family:ui-monospace,monospace;color:#9ad}
+.ok{color:var(--ok)}.bad{color:var(--bad)}.warn{color:var(--warn)}.mut{color:var(--mut)}
+#verify{padding:8px 12px;border-radius:6px;margin-bottom:12px;display:none;font-size:11px}
+#verify.ok{background:#0f2a22;border:1px solid #22543f;display:block}
+#verify.bad{background:#2a1216;border:1px solid #5a2424;display:block}
+</style></head><body>
+<header>
+  <h1>复现控制台</h1>
+  <select id="paper"></select>
+  <button id="reload">刷新</button>
+  <button id="runAll" class="primary">运行全流程</button>
+  <button id="verifyBtn">校验完整性</button>
+  <span id="msg" class="mut"></span>
+</header>
+<main>
+  <div id="verify"></div>
+  <div class="flow" id="flow"></div>
+  <div class="panel"><h2>① 方法锁定 <span class="mut" id="lockHint"></span></h2>
+    <div class="body" id="lockBody"><span class="mut">暂无</span></div></div>
+  <div class="panel"><h2>② 代码生成 <span class="mut" id="cgHint"></span></h2>
+    <div class="body" id="cgBody"><span class="mut">暂无</span></div></div>
+  <div class="panel"><h2>③ 复现执行 <span class="mut" id="exHint"></span></h2>
+    <div class="body" id="exBody"><span class="mut">暂无</span></div></div>
+  <div class="panel"><h2>④ 主张锚定 <span class="mut" id="anHint"></span></h2>
+    <div class="body" id="anBody"><span class="mut">暂无</span></div></div>
+</main>
+<script>
+const $ = s => document.querySelector(s);
+const esc = s => String(s == null ? '' : s).replace(/&/g,'&amp;')
+  .replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+let AID = '';
+const API = '/api/v9/repro';
+
+async function jget(p){ const r = await fetch(p); if(!r.ok) return null; return r.json(); }
+function tbl(head, rows, cls=''){
+  if(!rows.length) return '<span class="mut">无数据</span>';
+  return `<table class="${cls}"><thead><tr>${head.map(h=>`<th>${esc(h)}</th>`).join('')}</tr></thead>
+  <tbody>${rows.map(r=>`<tr>${r.map(c=>`<td>${c}</td>`).join('')}</tr>`).join('')}</tbody></table>`;
+}
+const stBadge = s => `<span class="st ${esc(s)}">${esc(s)}</span>`;
+
+async function loadPapers(){
+  const d = await jget(API + '/papers');
+  const sel = $('#paper');
+  sel.innerHTML = (d?.papers || []).map(p=>`<option value="${esc(p.arxiv_id)}">${esc(p.arxiv_id)}</option>`).join('')
+    || '<option value="">无工作区</option>';
+  AID = sel.value || '';
+}
+
+function renderFlow(st){
+  const S = st?.stages || {};
+  const defs = [['lock','① 方法锁定'],['codegen','② 代码生成'],['execute','③ 复现执行'],['anchor','④ 主张锚定']];
+  $('#flow').innerHTML = defs.map(([k,label])=>{
+    const x = S[k] || {};
+    const kv = [];
+    if(k==='lock'){ kv.push(['方法 SAU', x.n_method_sau ?? '-']); kv.push(['漂移', x.drift ?? 0]); }
+    if(k==='codegen'){ kv.push(['任务', x.n_tasks ?? '-']); kv.push(['依赖边', x.n_edges ?? '-']); kv.push(['符号召回', x.symbol_recall ?? '-']); }
+    if(k==='execute'){ kv.push(['阶梯', x.n_stages ?? '-']); kv.push(['覆盖', (x.coverage||[]).join('/')]); kv.push(['失败', x.failures ?? 0]); }
+    if(k==='anchor'){ kv.push(['主张', x.n_claims ?? '-']); kv.push(['三级', x.n_three_level ?? '-']); kv.push(['完整', x.integrity ? '是':'否']); }
+    return `<div class="step"><h3>${label} ${stBadge(x.state || 'pending')}</h3>
+      ${kv.map(([a,b])=>`<div class="kv"><span class="mut">${a}</span><b>${esc(b)}</b></div>`).join('')}</div>`;
+  }).join('');
+}
+
+async function load(aid){
+  const st = await jget(`${API}/${aid}/status`);
+  renderFlow(st);
+  const lock = await jget(`${API}/${aid}/method-lock`);
+  if(lock){
+    const fps = Object.entries(lock.fingerprints || {});
+    $('#lockHint').textContent = `${lock.n_method_sau} 条 · ${lock.method_sau_hash}`;
+    $('#lockBody').innerHTML =
+      `<div class="kv"><span class="mut">锁定时间</span><b>${esc(lock.locked_at)}</b></div>
+       <div class="kv"><span class="mut">spec_hash</span><b class="mono">${esc(lock.spec_hash)}</b></div>
+       <div class="kv"><span class="mut">漂移</span><b class="${(lock.drift||[]).length?'bad':'ok'}">${(lock.drift||[]).length} 条</b></div>
+       ${tbl(['SAU','指纹'], fps.map(([k,v])=>[`<span class="mono">${esc(k)}</span>`,`<span class="mono">${esc(v)}</span>`]))}`;
+  }
+  const cg = await jget(`${API}/${aid}/code-plan`);
+  if(cg){
+    const tasks = cg.tasks || [];
+    const ch = cg.checks || {};
+    $('#cgHint').textContent = `${tasks.length} 任务 · ${(cg.dag?.edges||[]).length} 依赖 · recall ${ch.symbol_recall}`;
+    $('#cgBody').innerHTML =
+      `<div class="kv"><span class="mut">脚本</span><b class="mono">${esc(cg.script?.sha)} · ${cg.script?.bytes} B</b></div>
+       <div class="kv"><span class="mut">校验</span><b>${(ch.safety||[]).length? '<span class="bad">安全告警 '+ch.safety.length+'</span>':'<span class="ok">安全通过</span>'}
+         · 顺序 ${ch.order_ok?'<span class="ok">OK</span>':'<span class="bad">违反</span>'}
+         · 告警 ${(ch.warnings||[]).join(',') || '无'}</b></div>
+       ${tbl(['#','模块','策略','依赖','状态'], tasks.map(t=>[t.order,
+         `<span class="mono">${esc(t.module_id)}</span>`,
+         `<span class="${t.strategy==='existing'?'ok':'warn'}">${esc(t.strategy)}</span>`,
+         esc((t.depends_on||[]).length), esc(t.status)]))}`;
+  }
+  const ex = await jget(`${API}/${aid}/execution`);
+  if(ex){
+    const cov = ex.coverage || {};
+    $('#exHint').textContent = `${cov.n_executed}/${cov.n_method} 方法覆盖 · 双跑 ${ex.repeatable?'一致':'不一致'}`;
+    $('#exBody').innerHTML =
+      `<div class="kv"><span class="mut">输出 sha</span><b class="mono">${esc(ex.outputs_sha)}</b></div>
+       ${tbl(['阶段','状态','行数','步数','baseline','candidate'], (ex.stages||[]).map(s=>[
+         esc(s.name), `<span class="${s.status==='PASS'?'ok':'bad'}">${esc(s.status)}</span>`,
+         esc(s.n_rows), esc(s.steps_executed), esc(s.baseline), esc(s.candidate)]))}
+       <div class="kv" style="margin-top:8px"><span class="mut">失败定位</span><b class="${(ex.failures||[]).length?'bad':'ok'}">${(ex.failures||[]).length} 条</b></div>
+       ${tbl(['范围','对象','原因','可修复'], (ex.failures||[]).slice(0,15).map(f=>[
+         esc(f.scope), `<span class="mono">${esc(f.sau_id||f.reason)}</span>`,
+         esc(f.reason), f.fixable?'是':'否']))}`;
+  }
+  const an = await jget(`${API}/${aid}/anchors`);
+  if(an){
+    $('#anHint').textContent = `${an.n_claims} 主张 · 三级命中 ${an.n_three_level} · 完整 ${an.integrity?'是':'否'}`;
+    $('#anBody').innerHTML =
+      `<div class="kv"><span class="mut">spec / code / inputs / outputs</span>
+        <b class="mono">${esc(String(an.spec_hash).slice(0,18))} · ${esc(String(an.code_sha).slice(0,18))} · ${esc(String(an.inputs_sha).slice(0,18))} · ${esc(String(an.outputs_sha).slice(0,18))}</b></div>
+       ${tbl(['主张','SAU','模型','指标','值','表格出处','级','校验'],
+         (an.claims||[]).slice(0,40).map(c=>{
+           const l1=c.level1_claim||{}, l2=c.level2_cell||{};
+           return [esc(c.claim_id), `<span class="mono">${esc(String(c.sau_id).slice(-16))}</span>`,
+             esc(l1.model), esc(l1.metric), esc(l1.value),
+             `<span class="mono">${esc(l2.table_ref||'—')}</span>`,
+             c.three_level?'<span class="ok">3</span>':'<span class="warn">2</span>',
+             c.verified?'<span class="ok">✓</span>':'<span class="bad">✗</span>'];
+         }))}`;
+  }
+}
+
+async function doVerify(){
+  const v = await jget(`${API}/${AID}/verify`);
+  const el = $('#verify');
+  if(!v) return;
+  el.className = v.ok ? 'ok' : 'bad';
+  el.textContent = v.ok ? '完整性校验通过：脚本未改写、锚 hash 一致、claim 全部 verified'
+    : '发现问题：' + (v.issues||[]).join(' / ');
+}
+async function runAll(){
+  $('#msg').textContent = '运行中（约 5–20s）…';
+  const r = await fetch(`${API}/${AID}/run?stage=all`, {method:'POST'});
+  const d = await r.json();
+  $('#msg').textContent = d.blocked_at ? `在 ${d.blocked_at} 被阻断`
+    : `完成 · ready=${d.status?.ready}`;
+  await load(AID);
+  await doVerify();
+}
+$('#reload').onclick = () => load(AID);
+$('#verifyBtn').onclick = doVerify;
+$('#runAll').onclick = runAll;
+$('#paper').onchange = e => { AID = e.target.value; load(AID); };
+(async()=>{ await loadPapers(); if(AID) await load(AID); })();
+</script>
+</body></html>
+

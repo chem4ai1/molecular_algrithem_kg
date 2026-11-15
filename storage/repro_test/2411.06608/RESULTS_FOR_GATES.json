@@ -1,0 +1,1158 @@
+{
+  "status": "PASS",
+  "effort": "lite",
+  "entry_values": {
+    "applb:benchmark_zinc:0": 99.6,
+    "applb:benchmark_zinc:1": 100.0,
+    "applb:benchmark_zinc:2": 0.9026,
+    "applb:benchmark_zinc:3": 100.0,
+    "applb:benchmark_zinc:4": 38.96,
+    "applb:benchmark_zinc:5": 100.0,
+    "applb:benchmark_zinc:6": 0.0,
+    "applb:benchmark_zinc:7": 98.5,
+    "applb:benchmark_zinc:8": 99.9,
+    "applb:benchmark_zinc:9": 0.8919,
+    "applb:benchmark_zinc:10": 100.0,
+    "applb:benchmark_zinc:11": 0.0,
+    "applb:benchmark_zinc:12": 100.0,
+    "applb:benchmark_zinc:13": 99.9,
+    "applb:benchmark_zinc:14": 0.8759,
+    "applb:benchmark_zinc:120": 121.0,
+    "applb:benchmark_unconditional_generation:0": 100.0,
+    "applb:benchmark_unconditional_generation:1": 38.96,
+    "applb:benchmark_unconditional_generation:2": 99.6,
+    "applb:benchmark_unconditional_generation:3": 100.0,
+    "applb:benchmark_unconditional_generation:4": 0.9026,
+    "applb:benchmark_unconditional_generation:5": 100.0,
+    "applb:benchmark_unconditional_generation:6": 0.0,
+    "applb:benchmark_unconditional_generation:7": 98.5,
+    "applb:benchmark_unconditional_generation:8": 99.9,
+    "applb:benchmark_unconditional_generation:9": 0.8919,
+    "applb:benchmark_unconditional_generation:10": 100.0,
+    "applb:benchmark_unconditional_generation:11": 0.0,
+    "applb:benchmark_unconditional_generation:12": 100.0,
+    "applb:benchmark_unconditional_generation:13": 99.9,
+    "applb:benchmark_unconditional_generation:14": 0.8759
+  },
+  "rows": [
+    {
+      "metric": "uniqueness",
+      "baseline": "99.6",
+      "value": 99.6,
+      "entry_id": "applb:benchmark_zinc:0",
+      "model": "GDSS",
+      "benchmark": "ZINC"
+    },
+    {
+      "metric": "novelty",
+      "baseline": "100.0",
+      "value": 100.0,
+      "entry_id": "applb:benchmark_zinc:1",
+      "model": "GDSS",
+      "benchmark": "ZINC"
+    },
+    {
+      "metric": "diversity",
+      "baseline": "0.9026",
+      "value": 0.9026,
+      "entry_id": "applb:benchmark_zinc:2",
+      "model": "GDSS",
+      "benchmark": "ZINC"
+    },
+    {
+      "metric": "validity",
+      "baseline": "100.0",
+      "value": 100.0,
+      "entry_id": "applb:benchmark_zinc:3",
+      "model": "GDSS",
+      "benchmark": "ZINC"
+    },
+    {
+      "metric": "frag_ratio",
+      "baseline": "38.96",
+      "value": 38.96,
+      "entry_id": "applb:benchmark_zinc:4",
+      "model": "GDSS",
+      "benchmark": "ZINC"
+    },
+    {
+      "metric": "validity",
+      "baseline": "100.0",
+      "value": 100.0,
+      "entry_id": "applb:benchmark_zinc:5",
+      "model": "MolMiner",
+      "benchmark": "ZINC"
+    },
+    {
+      "metric": "frag_ratio",
+      "baseline": "0.00",
+      "value": 0.0,
+      "entry_id": "applb:benchmark_zinc:6",
+      "model": "MolMiner",
+      "benchmark": "ZINC"
+    },
+    {
+      "metric": "uniqueness",
+      "baseline": "98.5",
+      "value": 98.5,
+      "entry_id": "applb:benchmark_zinc:7",
+      "model": "MolMiner",
+      "benchmark": "ZINC"
+    },
+    {
+      "metric": "novelty",
+      "baseline": "99.9",
+      "value": 99.9,
+      "entry_id": "applb:benchmark_zinc:8",
+      "model": "MolMiner",
+      "benchmark": "ZINC"
+    },
+    {
+      "metric": "diversity",
+      "baseline": "0.8919",
+      "value": 0.8919,
+      "entry_id": "applb:benchmark_zinc:9",
+      "model": "MolMiner",
+      "benchmark": "ZINC"
+    },
+    {
+      "metric": "validity",
+      "baseline": "100.0",
+      "value": 100.0,
+      "entry_id": "applb:benchmark_zinc:10",
+      "model": "HierVAE",
+      "benchmark": "ZINC"
+    },
+    {
+      "metric": "frag_ratio",
+      "baseline": "0.00",
+      "value": 0.0,
+      "entry_id": "applb:benchmark_zinc:11",
+      "model": "HierVAE",
+      "benchmark": "ZINC"
+    },
+    {
+      "metric": "uniqueness",
+      "baseline": "100.0",
+      "value": 100.0,
+      "entry_id": "applb:benchmark_zinc:12",
+      "model": "HierVAE",
+      "benchmark": "ZINC"
+    },
+    {
+      "metric": "novelty",
+      "baseline": "99.9",
+      "value": 99.9,
+      "entry_id": "applb:benchmark_zinc:13",
+      "model": "HierVAE",
+      "benchmark": "ZINC"
+    },
+    {
+      "metric": "diversity",
+      "baseline": "0.8759",
+      "value": 0.8759,
+      "entry_id": "applb:benchmark_zinc:14",
+      "model": "HierVAE",
+      "benchmark": "ZINC"
+    },
+    {
+      "metric": "property_value_improvement",
+      "baseline": "121",
+      "value": 121.0,
+      "entry_id": "applb:benchmark_zinc:120",
+      "model": "NeVAE",
+      "benchmark": "ZINC"
+    },
+    {
+      "metric": "validity",
+      "baseline": "100.0",
+      "value": 100.0,
+      "entry_id": "applb:benchmark_unconditional_generation:0",
+      "model": "GDSS",
+      "benchmark": "Unconditional Generation"
+    },
+    {
+      "metric": "frag_ratio",
+      "baseline": "38.96",
+      "value": 38.96,
+      "entry_id": "applb:benchmark_unconditional_generation:1",
+      "model": "GDSS",
+      "benchmark": "Unconditional Generation"
+    },
+    {
+      "metric": "uniqueness",
+      "baseline": "99.6",
+      "value": 99.6,
+      "entry_id": "applb:benchmark_unconditional_generation:2",
+      "model": "GDSS",
+      "benchmark": "Unconditional Generation"
+    },
+    {
+      "metric": "novelty",
+      "baseline": "100.0",
+      "value": 100.0,
+      "entry_id": "applb:benchmark_unconditional_generation:3",
+      "model": "GDSS",
+      "benchmark": "Unconditional Generation"
+    },
+    {
+      "metric": "diversity",
+      "baseline": "0.9026",
+      "value": 0.9026,
+      "entry_id": "applb:benchmark_unconditional_generation:4",
+      "model": "GDSS",
+      "benchmark": "Unconditional Generation"
+    },
+    {
+      "metric": "validity",
+      "baseline": "100.0",
+      "value": 100.0,
+      "entry_id": "applb:benchmark_unconditional_generation:5",
+      "model": "MolMiner",
+      "benchmark": "Unconditional Generation"
+    },
+    {
+      "metric": "frag_ratio",
+      "baseline": "0.00",
+      "value": 0.0,
+      "entry_id": "applb:benchmark_unconditional_generation:6",
+      "model": "MolMiner",
+      "benchmark": "Unconditional Generation"
+    },
+    {
+      "metric": "uniqueness",
+      "baseline": "98.5",
+      "value": 98.5,
+      "entry_id": "applb:benchmark_unconditional_generation:7",
+      "model": "MolMiner",
+      "benchmark": "Unconditional Generation"
+    },
+    {
+      "metric": "novelty",
+      "baseline": "99.9",
+      "value": 99.9,
+      "entry_id": "applb:benchmark_unconditional_generation:8",
+      "model": "MolMiner",
+      "benchmark": "Unconditional Generation"
+    },
+    {
+      "metric": "diversity",
+      "baseline": "0.8919",
+      "value": 0.8919,
+      "entry_id": "applb:benchmark_unconditional_generation:9",
+      "model": "MolMiner",
+      "benchmark": "Unconditional Generation"
+    },
+    {
+      "metric": "validity",
+      "baseline": "100.0",
+      "value": 100.0,
+      "entry_id": "applb:benchmark_unconditional_generation:10",
+      "model": "HierVAE",
+      "benchmark": "Unconditional Generation"
+    },
+    {
+      "metric": "frag_ratio",
+      "baseline": "0.00",
+      "value": 0.0,
+      "entry_id": "applb:benchmark_unconditional_generation:11",
+      "model": "HierVAE",
+      "benchmark": "Unconditional Generation"
+    },
+    {
+      "metric": "uniqueness",
+      "baseline": "100.0",
+      "value": 100.0,
+      "entry_id": "applb:benchmark_unconditional_generation:12",
+      "model": "HierVAE",
+      "benchmark": "Unconditional Generation"
+    },
+    {
+      "metric": "novelty",
+      "baseline": "99.9",
+      "value": 99.9,
+      "entry_id": "applb:benchmark_unconditional_generation:13",
+      "model": "HierVAE",
+      "benchmark": "Unconditional Generation"
+    },
+    {
+      "metric": "diversity",
+      "baseline": "0.8759",
+      "value": 0.8759,
+      "entry_id": "applb:benchmark_unconditional_generation:14",
+      "model": "HierVAE",
+      "benchmark": "Unconditional Generation"
+    }
+  ],
+  "n_unmatched_rows": 0,
+  "stages": {
+    "subset": {
+      "stage": "subset",
+      "status": "PASS",
+      "n_rows": 24,
+      "n_benchmarks": 3,
+      "baseline": 2.4515633150960805,
+      "candidate": 0.0,
+      "steps_executed": 14,
+      "symbol_trace": [
+        {
+          "module": "algorithmmodule:2608.06956:graph_encoder",
+          "key": false
+        },
+        {
+          "module": "algorithmmodule:2608.06956:hierarchical_decoder",
+          "key": false
+        },
+        {
+          "module": "algorithmstep:2411.06608:0:symmetry_aware_attachment_standardization",
+          "key": false
+        },
+        {
+          "module": "algorithmstep:2411.06608:1:geometry_biased_attention",
+          "key": false
+        },
+        {
+          "module": "algorithmstep:2411.06608:2:fragment_starter",
+          "key": false
+        },
+        {
+          "module": "algorithmstep:2411.06608:3:order_agnostic_autoregressive_rollout",
+          "key": false
+        },
+        {
+          "module": "algorithmmodule:2411.06608:fragment_coarse_graining",
+          "key": false
+        },
+        {
+          "module": "algorithmmodule:2411.06608:symmetry_aware_attachment_standardization",
+          "key": true
+        },
+        {
+          "module": "algorithmmodule:2411.06608:order_agnostic_rollout",
+          "key": false
+        },
+        {
+          "module": "algorithmmodule:2411.06608:geometry_aware_transformer",
+          "key": false
+        },
+        {
+          "module": "algorithmmodule:2411.06608:fragment_predictor",
+          "key": false
+        },
+        {
+          "module": "algorithmmodule:2411.06608:conditional_sampling",
+          "key": false
+        },
+        {
+          "module": "algorithmmodule:2608.06956:autoregressive_decoder",
+          "key": false
+        },
+        {
+          "module": "algorithmmodule:2608.06956:identity_pullback",
+          "key": false
+        }
+      ],
+      "canonicalized": true,
+      "entry_rows": [
+        {
+          "benchmark_id": "benchmark:zinc",
+          "benchmark": "ZINC",
+          "row_index": 0,
+          "model": "GDSS",
+          "metric": "uniqueness",
+          "raw_value": "99.6",
+          "value": 99.6,
+          "unit": ""
+        },
+        {
+          "benchmark_id": "benchmark:zinc",
+          "benchmark": "ZINC",
+          "row_index": 1,
+          "model": "GDSS",
+          "metric": "novelty",
+          "raw_value": "100.0",
+          "value": 100.0,
+          "unit": ""
+        },
+        {
+          "benchmark_id": "benchmark:zinc",
+          "benchmark": "ZINC",
+          "row_index": 2,
+          "model": "GDSS",
+          "metric": "diversity",
+          "raw_value": "0.9026",
+          "value": 0.9026,
+          "unit": ""
+        },
+        {
+          "benchmark_id": "benchmark:zinc",
+          "benchmark": "ZINC",
+          "row_index": 3,
+          "model": "GDSS",
+          "metric": "validity",
+          "raw_value": "100.0",
+          "value": 100.0,
+          "unit": ""
+        },
+        {
+          "benchmark_id": "benchmark:zinc",
+          "benchmark": "ZINC",
+          "row_index": 4,
+          "model": "GDSS",
+          "metric": "frag_ratio",
+          "raw_value": "38.96",
+          "value": 38.96,
+          "unit": ""
+        },
+        {
+          "benchmark_id": "benchmark:zinc",
+          "benchmark": "ZINC",
+          "row_index": 5,
+          "model": "MolMiner",
+          "metric": "validity",
+          "raw_value": "100.0",
+          "value": 100.0,
+          "unit": ""
+        },
+        {
+          "benchmark_id": "benchmark:zinc",
+          "benchmark": "ZINC",
+          "row_index": 6,
+          "model": "MolMiner",
+          "metric": "frag_ratio",
+          "raw_value": "0.00",
+          "value": 0.0,
+          "unit": ""
+        },
+        {
+          "benchmark_id": "benchmark:zinc",
+          "benchmark": "ZINC",
+          "row_index": 7,
+          "model": "MolMiner",
+          "metric": "uniqueness",
+          "raw_value": "98.5",
+          "value": 98.5,
+          "unit": ""
+        },
+        {
+          "benchmark_id": "benchmark:zinc",
+          "benchmark": "ZINC",
+          "row_index": 8,
+          "model": "MolMiner",
+          "metric": "novelty",
+          "raw_value": "99.9",
+          "value": 99.9,
+          "unit": ""
+        },
+        {
+          "benchmark_id": "benchmark:zinc",
+          "benchmark": "ZINC",
+          "row_index": 9,
+          "model": "MolMiner",
+          "metric": "diversity",
+          "raw_value": "0.8919",
+          "value": 0.8919,
+          "unit": ""
+        },
+        {
+          "benchmark_id": "benchmark:zinc",
+          "benchmark": "ZINC",
+          "row_index": 10,
+          "model": "HierVAE",
+          "metric": "validity",
+          "raw_value": "100.0",
+          "value": 100.0,
+          "unit": ""
+        },
+        {
+          "benchmark_id": "benchmark:zinc",
+          "benchmark": "ZINC",
+          "row_index": 11,
+          "model": "HierVAE",
+          "metric": "frag_ratio",
+          "raw_value": "0.00",
+          "value": 0.0,
+          "unit": ""
+        },
+        {
+          "benchmark_id": "benchmark:unconditional_generation",
+          "benchmark": "Unconditional Generation",
+          "row_index": 0,
+          "model": "GDSS",
+          "metric": "validity",
+          "raw_value": "100.0",
+          "value": 100.0,
+          "unit": ""
+        },
+        {
+          "benchmark_id": "benchmark:unconditional_generation",
+          "benchmark": "Unconditional Generation",
+          "row_index": 1,
+          "model": "GDSS",
+          "metric": "frag_ratio",
+          "raw_value": "38.96",
+          "value": 38.96,
+          "unit": ""
+        },
+        {
+          "benchmark_id": "benchmark:unconditional_generation",
+          "benchmark": "Unconditional Generation",
+          "row_index": 2,
+          "model": "GDSS",
+          "metric": "uniqueness",
+          "raw_value": "99.6",
+          "value": 99.6,
+          "unit": ""
+        },
+        {
+          "benchmark_id": "benchmark:unconditional_generation",
+          "benchmark": "Unconditional Generation",
+          "row_index": 3,
+          "model": "GDSS",
+          "metric": "novelty",
+          "raw_value": "100.0",
+          "value": 100.0,
+          "unit": ""
+        },
+        {
+          "benchmark_id": "benchmark:unconditional_generation",
+          "benchmark": "Unconditional Generation",
+          "row_index": 4,
+          "model": "GDSS",
+          "metric": "diversity",
+          "raw_value": "0.9026",
+          "value": 0.9026,
+          "unit": ""
+        },
+        {
+          "benchmark_id": "benchmark:unconditional_generation",
+          "benchmark": "Unconditional Generation",
+          "row_index": 5,
+          "model": "MolMiner",
+          "metric": "validity",
+          "raw_value": "100.0",
+          "value": 100.0,
+          "unit": ""
+        },
+        {
+          "benchmark_id": "benchmark:unconditional_generation",
+          "benchmark": "Unconditional Generation",
+          "row_index": 6,
+          "model": "MolMiner",
+          "metric": "frag_ratio",
+          "raw_value": "0.00",
+          "value": 0.0,
+          "unit": ""
+        },
+        {
+          "benchmark_id": "benchmark:unconditional_generation",
+          "benchmark": "Unconditional Generation",
+          "row_index": 7,
+          "model": "MolMiner",
+          "metric": "uniqueness",
+          "raw_value": "98.5",
+          "value": 98.5,
+          "unit": ""
+        },
+        {
+          "benchmark_id": "benchmark:unconditional_generation",
+          "benchmark": "Unconditional Generation",
+          "row_index": 8,
+          "model": "MolMiner",
+          "metric": "novelty",
+          "raw_value": "99.9",
+          "value": 99.9,
+          "unit": ""
+        },
+        {
+          "benchmark_id": "benchmark:unconditional_generation",
+          "benchmark": "Unconditional Generation",
+          "row_index": 9,
+          "model": "MolMiner",
+          "metric": "diversity",
+          "raw_value": "0.8919",
+          "value": 0.8919,
+          "unit": ""
+        },
+        {
+          "benchmark_id": "benchmark:unconditional_generation",
+          "benchmark": "Unconditional Generation",
+          "row_index": 10,
+          "model": "HierVAE",
+          "metric": "validity",
+          "raw_value": "100.0",
+          "value": 100.0,
+          "unit": ""
+        },
+        {
+          "benchmark_id": "benchmark:unconditional_generation",
+          "benchmark": "Unconditional Generation",
+          "row_index": 11,
+          "model": "HierVAE",
+          "metric": "frag_ratio",
+          "raw_value": "0.00",
+          "value": 0.0,
+          "unit": ""
+        }
+      ],
+      "sota": {
+        "benchmark:zinc": {
+          "uniqueness": {
+            "value": 98.5,
+            "model": "MolMiner",
+            "direction": "higher",
+            "ties": [],
+            "n_rows": 2
+          },
+          "novelty": {
+            "value": 99.9,
+            "model": "MolMiner",
+            "direction": "higher",
+            "ties": [],
+            "n_rows": 2
+          },
+          "diversity": {
+            "value": 0.9026,
+            "model": "GDSS",
+            "direction": "max",
+            "ties": [],
+            "n_rows": 2
+          },
+          "validity": {
+            "value": 100.0,
+            "model": "GDSS",
+            "direction": "higher",
+            "ties": [
+              "HierVAE",
+              "MolMiner"
+            ],
+            "n_rows": 3
+          },
+          "frag_ratio": {
+            "value": 38.96,
+            "model": "GDSS",
+            "direction": "max",
+            "ties": [],
+            "n_rows": 3
+          }
+        },
+        "benchmark:unconditional_generation": {
+          "validity": {
+            "value": 100.0,
+            "model": "GDSS",
+            "direction": "higher",
+            "ties": [
+              "HierVAE",
+              "MolMiner"
+            ],
+            "n_rows": 3
+          },
+          "frag_ratio": {
+            "value": 38.96,
+            "model": "GDSS",
+            "direction": "max",
+            "ties": [],
+            "n_rows": 3
+          },
+          "uniqueness": {
+            "value": 98.5,
+            "model": "MolMiner",
+            "direction": "higher",
+            "ties": [],
+            "n_rows": 2
+          },
+          "novelty": {
+            "value": 99.9,
+            "model": "MolMiner",
+            "direction": "higher",
+            "ties": [],
+            "n_rows": 2
+          },
+          "diversity": {
+            "value": 0.9026,
+            "model": "GDSS",
+            "direction": "max",
+            "ties": [],
+            "n_rows": 2
+          }
+        },
+        "benchmark:conditional_generation": {}
+      }
+    },
+    "full": {
+      "stage": "full",
+      "status": "PASS",
+      "n_rows": 31,
+      "n_benchmarks": 3,
+      "baseline": 2.18330089354227,
+      "candidate": 0.0,
+      "steps_executed": 14,
+      "symbol_trace": [
+        {
+          "module": "algorithmmodule:2608.06956:graph_encoder",
+          "key": false
+        },
+        {
+          "module": "algorithmmodule:2608.06956:hierarchical_decoder",
+          "key": false
+        },
+        {
+          "module": "algorithmstep:2411.06608:0:symmetry_aware_attachment_standardization",
+          "key": false
+        },
+        {
+          "module": "algorithmstep:2411.06608:1:geometry_biased_attention",
+          "key": false
+        },
+        {
+          "module": "algorithmstep:2411.06608:2:fragment_starter",
+          "key": false
+        },
+        {
+          "module": "algorithmstep:2411.06608:3:order_agnostic_autoregressive_rollout",
+          "key": false
+        },
+        {
+          "module": "algorithmmodule:2411.06608:fragment_coarse_graining",
+          "key": false
+        },
+        {
+          "module": "algorithmmodule:2411.06608:symmetry_aware_attachment_standardization",
+          "key": true
+        },
+        {
+          "module": "algorithmmodule:2411.06608:order_agnostic_rollout",
+          "key": false
+        },
+        {
+          "module": "algorithmmodule:2411.06608:geometry_aware_transformer",
+          "key": false
+        },
+        {
+          "module": "algorithmmodule:2411.06608:fragment_predictor",
+          "key": false
+        },
+        {
+          "module": "algorithmmodule:2411.06608:conditional_sampling",
+          "key": false
+        },
+        {
+          "module": "algorithmmodule:2608.06956:autoregressive_decoder",
+          "key": false
+        },
+        {
+          "module": "algorithmmodule:2608.06956:identity_pullback",
+          "key": false
+        }
+      ],
+      "canonicalized": true,
+      "entry_rows": [
+        {
+          "benchmark_id": "benchmark:zinc",
+          "benchmark": "ZINC",
+          "row_index": 0,
+          "model": "GDSS",
+          "metric": "uniqueness",
+          "raw_value": "99.6",
+          "value": 99.6,
+          "unit": ""
+        },
+        {
+          "benchmark_id": "benchmark:zinc",
+          "benchmark": "ZINC",
+          "row_index": 1,
+          "model": "GDSS",
+          "metric": "novelty",
+          "raw_value": "100.0",
+          "value": 100.0,
+          "unit": ""
+        },
+        {
+          "benchmark_id": "benchmark:zinc",
+          "benchmark": "ZINC",
+          "row_index": 2,
+          "model": "GDSS",
+          "metric": "diversity",
+          "raw_value": "0.9026",
+          "value": 0.9026,
+          "unit": ""
+        },
+        {
+          "benchmark_id": "benchmark:zinc",
+          "benchmark": "ZINC",
+          "row_index": 3,
+          "model": "GDSS",
+          "metric": "validity",
+          "raw_value": "100.0",
+          "value": 100.0,
+          "unit": ""
+        },
+        {
+          "benchmark_id": "benchmark:zinc",
+          "benchmark": "ZINC",
+          "row_index": 4,
+          "model": "GDSS",
+          "metric": "frag_ratio",
+          "raw_value": "38.96",
+          "value": 38.96,
+          "unit": ""
+        },
+        {
+          "benchmark_id": "benchmark:zinc",
+          "benchmark": "ZINC",
+          "row_index": 5,
+          "model": "MolMiner",
+          "metric": "validity",
+          "raw_value": "100.0",
+          "value": 100.0,
+          "unit": ""
+        },
+        {
+          "benchmark_id": "benchmark:zinc",
+          "benchmark": "ZINC",
+          "row_index": 6,
+          "model": "MolMiner",
+          "metric": "frag_ratio",
+          "raw_value": "0.00",
+          "value": 0.0,
+          "unit": ""
+        },
+        {
+          "benchmark_id": "benchmark:zinc",
+          "benchmark": "ZINC",
+          "row_index": 7,
+          "model": "MolMiner",
+          "metric": "uniqueness",
+          "raw_value": "98.5",
+          "value": 98.5,
+          "unit": ""
+        },
+        {
+          "benchmark_id": "benchmark:zinc",
+          "benchmark": "ZINC",
+          "row_index": 8,
+          "model": "MolMiner",
+          "metric": "novelty",
+          "raw_value": "99.9",
+          "value": 99.9,
+          "unit": ""
+        },
+        {
+          "benchmark_id": "benchmark:zinc",
+          "benchmark": "ZINC",
+          "row_index": 9,
+          "model": "MolMiner",
+          "metric": "diversity",
+          "raw_value": "0.8919",
+          "value": 0.8919,
+          "unit": ""
+        },
+        {
+          "benchmark_id": "benchmark:zinc",
+          "benchmark": "ZINC",
+          "row_index": 10,
+          "model": "HierVAE",
+          "metric": "validity",
+          "raw_value": "100.0",
+          "value": 100.0,
+          "unit": ""
+        },
+        {
+          "benchmark_id": "benchmark:zinc",
+          "benchmark": "ZINC",
+          "row_index": 11,
+          "model": "HierVAE",
+          "metric": "frag_ratio",
+          "raw_value": "0.00",
+          "value": 0.0,
+          "unit": ""
+        },
+        {
+          "benchmark_id": "benchmark:zinc",
+          "benchmark": "ZINC",
+          "row_index": 12,
+          "model": "HierVAE",
+          "metric": "uniqueness",
+          "raw_value": "100.0",
+          "value": 100.0,
+          "unit": ""
+        },
+        {
+          "benchmark_id": "benchmark:zinc",
+          "benchmark": "ZINC",
+          "row_index": 13,
+          "model": "HierVAE",
+          "metric": "novelty",
+          "raw_value": "99.9",
+          "value": 99.9,
+          "unit": ""
+        },
+        {
+          "benchmark_id": "benchmark:zinc",
+          "benchmark": "ZINC",
+          "row_index": 14,
+          "model": "HierVAE",
+          "metric": "diversity",
+          "raw_value": "0.8759",
+          "value": 0.8759,
+          "unit": ""
+        },
+        {
+          "benchmark_id": "benchmark:zinc",
+          "benchmark": "ZINC",
+          "row_index": 15,
+          "model": "NeVAE",
+          "metric": "property_value_improvement",
+          "raw_value": 121,
+          "value": 121.0,
+          "unit": "%"
+        },
+        {
+          "benchmark_id": "benchmark:unconditional_generation",
+          "benchmark": "Unconditional Generation",
+          "row_index": 0,
+          "model": "GDSS",
+          "metric": "validity",
+          "raw_value": "100.0",
+          "value": 100.0,
+          "unit": ""
+        },
+        {
+          "benchmark_id": "benchmark:unconditional_generation",
+          "benchmark": "Unconditional Generation",
+          "row_index": 1,
+          "model": "GDSS",
+          "metric": "frag_ratio",
+          "raw_value": "38.96",
+          "value": 38.96,
+          "unit": ""
+        },
+        {
+          "benchmark_id": "benchmark:unconditional_generation",
+          "benchmark": "Unconditional Generation",
+          "row_index": 2,
+          "model": "GDSS",
+          "metric": "uniqueness",
+          "raw_value": "99.6",
+          "value": 99.6,
+          "unit": ""
+        },
+        {
+          "benchmark_id": "benchmark:unconditional_generation",
+          "benchmark": "Unconditional Generation",
+          "row_index": 3,
+          "model": "GDSS",
+          "metric": "novelty",
+          "raw_value": "100.0",
+          "value": 100.0,
+          "unit": ""
+        },
+        {
+          "benchmark_id": "benchmark:unconditional_generation",
+          "benchmark": "Unconditional Generation",
+          "row_index": 4,
+          "model": "GDSS",
+          "metric": "diversity",
+          "raw_value": "0.9026",
+          "value": 0.9026,
+          "unit": ""
+        },
+        {
+          "benchmark_id": "benchmark:unconditional_generation",
+          "benchmark": "Unconditional Generation",
+          "row_index": 5,
+          "model": "MolMiner",
+          "metric": "validity",
+          "raw_value": "100.0",
+          "value": 100.0,
+          "unit": ""
+        },
+        {
+          "benchmark_id": "benchmark:unconditional_generation",
+          "benchmark": "Unconditional Generation",
+          "row_index": 6,
+          "model": "MolMiner",
+          "metric": "frag_ratio",
+          "raw_value": "0.00",
+          "value": 0.0,
+          "unit": ""
+        },
+        {
+          "benchmark_id": "benchmark:unconditional_generation",
+          "benchmark": "Unconditional Generation",
+          "row_index": 7,
+          "model": "MolMiner",
+          "metric": "uniqueness",
+          "raw_value": "98.5",
+          "value": 98.5,
+          "unit": ""
+        },
+        {
+          "benchmark_id": "benchmark:unconditional_generation",
+          "benchmark": "Unconditional Generation",
+          "row_index": 8,
+          "model": "MolMiner",
+          "metric": "novelty",
+          "raw_value": "99.9",
+          "value": 99.9,
+          "unit": ""
+        },
+        {
+          "benchmark_id": "benchmark:unconditional_generation",
+          "benchmark": "Unconditional Generation",
+          "row_index": 9,
+          "model": "MolMiner",
+          "metric": "diversity",
+          "raw_value": "0.8919",
+          "value": 0.8919,
+          "unit": ""
+        },
+        {
+          "benchmark_id": "benchmark:unconditional_generation",
+          "benchmark": "Unconditional Generation",
+          "row_index": 10,
+          "model": "HierVAE",
+          "metric": "validity",
+          "raw_value": "100.0",
+          "value": 100.0,
+          "unit": ""
+        },
+        {
+          "benchmark_id": "benchmark:unconditional_generation",
+          "benchmark": "Unconditional Generation",
+          "row_index": 11,
+          "model": "HierVAE",
+          "metric": "frag_ratio",
+          "raw_value": "0.00",
+          "value": 0.0,
+          "unit": ""
+        },
+        {
+          "benchmark_id": "benchmark:unconditional_generation",
+          "benchmark": "Unconditional Generation",
+          "row_index": 12,
+          "model": "HierVAE",
+          "metric": "uniqueness",
+          "raw_value": "100.0",
+          "value": 100.0,
+          "unit": ""
+        },
+        {
+          "benchmark_id": "benchmark:unconditional_generation",
+          "benchmark": "Unconditional Generation",
+          "row_index": 13,
+          "model": "HierVAE",
+          "metric": "novelty",
+          "raw_value": "99.9",
+          "value": 99.9,
+          "unit": ""
+        },
+        {
+          "benchmark_id": "benchmark:unconditional_generation",
+          "benchmark": "Unconditional Generation",
+          "row_index": 14,
+          "model": "HierVAE",
+          "metric": "diversity",
+          "raw_value": "0.8759",
+          "value": 0.8759,
+          "unit": ""
+        }
+      ],
+      "sota": {
+        "benchmark:zinc": {
+          "uniqueness": {
+            "value": 98.5,
+            "model": "MolMiner",
+            "direction": "higher",
+            "ties": [],
+            "n_rows": 3
+          },
+          "novelty": {
+            "value": 99.9,
+            "model": "MolMiner",
+            "direction": "higher",
+            "ties": [
+              "MolMiner"
+            ],
+            "n_rows": 3
+          },
+          "diversity": {
+            "value": 0.9026,
+            "model": "GDSS",
+            "direction": "max",
+            "ties": [],
+            "n_rows": 3
+          },
+          "validity": {
+            "value": 100.0,
+            "model": "GDSS",
+            "direction": "higher",
+            "ties": [
+              "HierVAE",
+              "MolMiner"
+            ],
+            "n_rows": 3
+          },
+          "frag_ratio": {
+            "value": 38.96,
+            "model": "GDSS",
+            "direction": "max",
+            "ties": [],
+            "n_rows": 3
+          },
+          "property_value_improvement": {
+            "value": 121.0,
+            "model": "NeVAE",
+            "direction": "max",
+            "ties": [],
+            "n_rows": 1
+          }
+        },
+        "benchmark:unconditional_generation": {
+          "validity": {
+            "value": 100.0,
+            "model": "GDSS",
+            "direction": "higher",
+            "ties": [
+              "HierVAE",
+              "MolMiner"
+            ],
+            "n_rows": 3
+          },
+          "frag_ratio": {
+            "value": 38.96,
+            "model": "GDSS",
+            "direction": "max",
+            "ties": [],
+            "n_rows": 3
+          },
+          "uniqueness": {
+            "value": 98.5,
+            "model": "MolMiner",
+            "direction": "higher",
+            "ties": [],
+            "n_rows": 3
+          },
+          "novelty": {
+            "value": 99.9,
+            "model": "MolMiner",
+            "direction": "higher",
+            "ties": [
+              "MolMiner"
+            ],
+            "n_rows": 3
+          },
+          "diversity": {
+            "value": 0.9026,
+            "model": "GDSS",
+            "direction": "max",
+            "ties": [],
+            "n_rows": 3
+          }
+        },
+        "benchmark:conditional_generation": {}
+      }
+    }
+  },
+  "n_entry_rows": 31
+}

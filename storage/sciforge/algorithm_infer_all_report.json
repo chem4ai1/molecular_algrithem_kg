@@ -1,0 +1,281 @@
+{
+  "n_todo": 21,
+  "n_ok": 20,
+  "n_failed": 0,
+  "task_conflicts": [
+    {
+      "name": "SO3LR",
+      "family": "geometric_gnn",
+      "llm": "forcefield_simulation",
+      "family_default": "property_prediction"
+    },
+    {
+      "name": "MACE-POLAR-1-M",
+      "family": "geometric_gnn",
+      "llm": "forcefield_simulation",
+      "family_default": "property_prediction"
+    },
+    {
+      "name": "ESM-IF1",
+      "family": "autoregressive",
+      "llm": "sequence_design",
+      "family_default": "instruction_multitask"
+    },
+    {
+      "name": "AbMPNN",
+      "family": "geometric_gnn",
+      "llm": "sequence_design",
+      "family_default": "property_prediction"
+    },
+    {
+      "name": "ProteinMPNN",
+      "family": "geometric_gnn",
+      "llm": "sequence_design",
+      "family_default": "property_prediction"
+    },
+    {
+      "name": "AMP-GPT",
+      "family": "autoregressive",
+      "llm": "sequence_design",
+      "family_default": "instruction_multitask"
+    },
+    {
+      "name": "AMP-Prompt",
+      "family": "instruction_tuning",
+      "llm": "sequence_design",
+      "family_default": "instruction_multitask"
+    },
+    {
+      "name": "AMP-Distillation",
+      "family": "instruction_tuning",
+      "llm": "sequence_design",
+      "family_default": "instruction_multitask"
+    },
+    {
+      "name": "AMP-MIC",
+      "family": "autoregressive",
+      "llm": "property_prediction",
+      "family_default": "instruction_multitask"
+    },
+    {
+      "name": "Condition Token (CT)",
+      "family": "instruction_tuning",
+      "llm": "sequence_design",
+      "family_default": "instruction_multitask"
+    },
+    {
+      "name": "Fine-Tuning (FT)",
+      "family": "instruction_tuning",
+      "llm": "sequence_design",
+      "family_default": "instruction_multitask"
+    },
+    {
+      "name": "Pocket2Mol",
+      "family": "geometric_gnn",
+      "llm": "molecule_generation",
+      "family_default": "property_prediction"
+    },
+    {
+      "name": "LLaMA",
+      "family": "autoregressive",
+      "llm": "molecule_generation",
+      "family_default": "instruction_multitask"
+    },
+    {
+      "name": "SMILES-based PLMs",
+      "family": "autoregressive",
+      "llm": "molecule_generation",
+      "family_default": "instruction_multitask"
+    }
+  ],
+  "no_corpus": [
+    "Huang et al. RNN"
+  ],
+  "seconds": 208.3,
+  "per_algorithm": {
+    "SO3LR": {
+      "ok": true,
+      "task_type": "forcefield_simulation",
+      "attempts": 1,
+      "source": "no_references_section",
+      "evidence_paper": "2611.06237",
+      "inference_basis": "原文依据",
+      "confidence": 0.95
+    },
+    "OPLS4": {
+      "ok": true,
+      "task_type": "forcefield_simulation",
+      "attempts": 1,
+      "source": "no_references_section",
+      "evidence_paper": "2611.06237",
+      "inference_basis": "原文依据",
+      "confidence": 0.95
+    },
+    "GAFF": {
+      "ok": true,
+      "task_type": "forcefield_simulation",
+      "attempts": 1,
+      "source": "no_references_section",
+      "evidence_paper": "2508.10841",
+      "inference_basis": "原文依据",
+      "confidence": 0.95
+    },
+    "MACE-POLAR-1-M": {
+      "ok": true,
+      "task_type": "forcefield_simulation",
+      "attempts": 1,
+      "source": "no_nearby_marker",
+      "evidence_paper": "2608.28100",
+      "inference_basis": "原文依据",
+      "confidence": 0.95
+    },
+    "AIMNet2-2025": {
+      "ok": true,
+      "task_type": "property_prediction",
+      "attempts": 1,
+      "source": "no_references_section",
+      "evidence_paper": "2611.06237",
+      "inference_basis": "原文依据",
+      "confidence": 0.9
+    },
+    "UMA-S-1.2.1": {
+      "ok": true,
+      "task_type": "property_prediction",
+      "attempts": 1,
+      "source": "no_references_section",
+      "evidence_paper": "2611.06237",
+      "inference_basis": "由算法族推断",
+      "confidence": 0.85
+    },
+    "ESM-IF1": {
+      "ok": true,
+      "task_type": "sequence_design",
+      "attempts": 1,
+      "source": "no_references_section",
+      "evidence_paper": "2405.03370",
+      "inference_basis": "原文依据",
+      "confidence": 0.95
+    },
+    "AbMPNN": {
+      "ok": true,
+      "task_type": "sequence_design",
+      "attempts": 1,
+      "source": "no_references_section",
+      "evidence_paper": "2405.03370",
+      "inference_basis": "原文依据",
+      "confidence": 0.95
+    },
+    "ProteinMPNN": {
+      "ok": true,
+      "task_type": "sequence_design",
+      "attempts": 1,
+      "source": "no_references_section",
+      "evidence_paper": "2410.19471",
+      "inference_basis": "原文依据",
+      "confidence": 0.95
+    },
+    "AMP-GPT": {
+      "ok": true,
+      "task_type": "sequence_design",
+      "attempts": 1,
+      "source": "no_references_section",
+      "evidence_paper": "2407.12296",
+      "inference_basis": "原文依据",
+      "confidence": 0.95
+    },
+    "AMP-Prompt": {
+      "ok": true,
+      "task_type": "sequence_design",
+      "attempts": 1,
+      "source": "no_references_section",
+      "evidence_paper": "2407.12296",
+      "inference_basis": "原文依据",
+      "confidence": 0.95
+    },
+    "AMP-Distillation": {
+      "ok": true,
+      "task_type": "sequence_design",
+      "attempts": 1,
+      "source": "no_references_section",
+      "evidence_paper": "2407.12296",
+      "inference_basis": "原文依据",
+      "confidence": 0.95
+    },
+    "AMP-MIC": {
+      "ok": true,
+      "task_type": "property_prediction",
+      "attempts": 1,
+      "source": "no_references_section",
+      "evidence_paper": "2407.12296",
+      "inference_basis": "原文依据",
+      "confidence": 0.95
+    },
+    "Condition Token (CT)": {
+      "ok": true,
+      "task_type": "sequence_design",
+      "attempts": 1,
+      "source": "no_references_section",
+      "evidence_paper": "2407.12296",
+      "inference_basis": "原文依据",
+      "confidence": 0.95
+    },
+    "Fine-Tuning (FT)": {
+      "ok": true,
+      "task_type": "sequence_design",
+      "attempts": 1,
+      "source": "no_references_section",
+      "evidence_paper": "2407.12296",
+      "inference_basis": "原文依据",
+      "confidence": 0.95
+    },
+    "Huang et al. RNN": {
+      "ok": false,
+      "reason": "no_paper_mention"
+    },
+    "Pocket2Mol": {
+      "ok": true,
+      "task_type": "molecule_generation",
+      "attempts": 1,
+      "source": "resolved",
+      "evidence_paper": "2210.13695",
+      "inference_basis": "由算法族推断",
+      "confidence": 0.95
+    },
+    "LLaMA": {
+      "ok": true,
+      "task_type": "molecule_generation",
+      "attempts": 1,
+      "source": "resolved",
+      "evidence_paper": "2503.12602",
+      "inference_basis": "原文依据",
+      "confidence": 0.95
+    },
+    "Stanford Alpaca": {
+      "ok": true,
+      "task_type": "instruction_multitask",
+      "attempts": 1,
+      "source": "no_references_section",
+      "evidence_paper": "2306.08018",
+      "inference_basis": "原文依据",
+      "confidence": 0.95
+    },
+    "GPT4All": {
+      "ok": true,
+      "task_type": "instruction_multitask",
+      "attempts": 1,
+      "source": "no_references_section",
+      "evidence_paper": "2306.08018",
+      "inference_basis": "原文依据",
+      "confidence": 0.9
+    },
+    "SMILES-based PLMs": {
+      "ok": true,
+      "task_type": "molecule_generation",
+      "attempts": 1,
+      "source": "no_references_section",
+      "evidence_paper": "2301.11259",
+      "inference_basis": "原文依据",
+      "confidence": 0.95
+    }
+  }
+}

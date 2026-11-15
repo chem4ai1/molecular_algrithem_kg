@@ -1,0 +1,27 @@
+{
+  "paper_level": {
+    "score": 60,
+    "components": {
+      "method_sau": 20,
+      "mechanism_declared": 0,
+      "data_contract": 20,
+      "metric_plan": 20,
+      "code_grounding": 0
+    }
+  },
+  "code_level": {
+    "score": 75,
+    "components": {
+      "symbol_exists": 0,
+      "no_stub": 25,
+      "ordering": 25,
+      "numeric": 25
+    }
+  },
+  "mixed_level": {
+    "score": 70.5,
+    "weight": "0.3*paper + 0.7*code"
+  },
+  "primary": 70.5,
+  "note": "确定性实现；混合级与人类判断相关性文献值 0.81–0.83"
+}

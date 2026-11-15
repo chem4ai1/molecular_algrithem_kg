@@ -1,0 +1,188 @@
+{
+  "root_score": 0.916,
+  "by_l1": {
+    "algorithm:amp_designer": 1.0,
+    "algorithm:hiervae": 0.7333,
+    "algorithm:lingo3dmol": 1.0,
+    "algorithm:molminer": 0.6667,
+    "benchmark:canonical:zinc": 1.0,
+    "benchmark:conditional_generation": 1.0,
+    "benchmark:targeted_generation": 1.0,
+    "benchmark:targeted_multi_property": 1.0,
+    "benchmark:unconditional_generation": 1.0,
+    "benchmark:zinc": 1.0
+  },
+  "by_branch": [
+    {
+      "path": "paper:2411.06608/algorithm:amp_designer/algorithmstep:2407.12296:2:top_k_and_top_p_filtering_sampler",
+      "score": 1.0,
+      "n_leaves": 2,
+      "n_aligned": 2,
+      "failed": false
+    },
+    {
+      "path": "paper:2411.06608/algorithm:hiervae/algorithmmodule:2608.06956:graph_encoder",
+      "score": 0.8,
+      "n_leaves": 3,
+      "n_aligned": 2,
+      "failed": true
+    },
+    {
+      "path": "paper:2411.06608/algorithm:hiervae/algorithmmodule:2608.06956:hierarchical_decoder",
+      "score": 0.6667,
+      "n_leaves": 2,
+      "n_aligned": 1,
+      "failed": true
+    },
+    {
+      "path": "paper:2411.06608/algorithm:lingo3dmol/algorithmstep:2305.10133:0:pocket_ligand_transformer_encoder",
+      "score": 1.0,
+      "n_leaves": 1,
+      "n_aligned": 1,
+      "failed": false
+    },
+    {
+      "path": "paper:2411.06608/algorithm:lingo3dmol/algorithmstep:2305.10133:2:fsmiles_and_local_coordinates_decoder_d2d",
+      "score": 1.0,
+      "n_leaves": 4,
+      "n_aligned": 4,
+      "failed": false
+    },
+    {
+      "path": "paper:2411.06608/algorithm:molminer/algorithmmodule:2411.06608:conditional_sampling",
+      "score": 0.0,
+      "n_leaves": 1,
+      "n_aligned": 0,
+      "failed": true
+    },
+    {
+      "path": "paper:2411.06608/algorithm:molminer/algorithmmodule:2411.06608:fragment_coarse_graining",
+      "score": 0.0,
+      "n_leaves": 1,
+      "n_aligned": 0,
+      "failed": true
+    },
+    {
+      "path": "paper:2411.06608/algorithm:molminer/algorithmmodule:2411.06608:fragment_predictor",
+      "score": 0.0,
+      "n_leaves": 1,
+      "n_aligned": 0,
+      "failed": true
+    },
+    {
+      "path": "paper:2411.06608/algorithm:molminer/algorithmmodule:2411.06608:geometry_aware_transformer",
+      "score": 1.0,
+      "n_leaves": 1,
+      "n_aligned": 1,
+      "failed": false
+    },
+    {
+      "path": "paper:2411.06608/algorithm:molminer/algorithmmodule:2411.06608:order_agnostic_rollout",
+      "score": 1.0,
+      "n_leaves": 1,
+      "n_aligned": 1,
+      "failed": false
+    },
+    {
+      "path": "paper:2411.06608/algorithm:molminer/algorithmmodule:2411.06608:symmetry_aware_attachment_standardization",
+      "score": 1.0,
+      "n_leaves": 1,
+      "n_aligned": 1,
+      "failed": false
+    },
+    {
+      "path": "paper:2411.06608/algorithm:molminer/algorithmmodule:2608.06956:autoregressive_decoder",
+      "score": 1.0,
+      "n_leaves": 1,
+      "n_aligned": 1,
+      "failed": false
+    },
+    {
+      "path": "paper:2411.06608/algorithm:molminer/algorithmmodule:2608.06956:identity_pullback",
+      "score": 0.0,
+      "n_leaves": 1,
+      "n_aligned": 0,
+      "failed": true
+    },
+    {
+      "path": "paper:2411.06608/algorithm:molminer/algorithmstep:2411.06608:0:symmetry_aware_attachment_standardization",
+      "score": 1.0,
+      "n_leaves": 6,
+      "n_aligned": 6,
+      "failed": false
+    },
+    {
+      "path": "paper:2411.06608/algorithm:molminer/algorithmstep:2411.06608:1:geometry_biased_attention",
+      "score": 1.0,
+      "n_leaves": 3,
+      "n_aligned": 3,
+      "failed": false
+    },
+    {
+      "path": "paper:2411.06608/algorithm:molminer/algorithmstep:2411.06608:2:fragment_starter",
+      "score": 1.0,
+      "n_leaves": 2,
+      "n_aligned": 2,
+      "failed": false
+    },
+    {
+      "path": "paper:2411.06608/algorithm:molminer/algorithmstep:2411.06608:3:order_agnostic_autoregressive_rollout",
+      "score": 1.0,
+      "n_leaves": 3,
+      "n_aligned": 3,
+      "failed": false
+    },
+    {
+      "path": "paper:2411.06608/benchmark:canonical:zinc",
+      "score": 1.0,
+      "n_leaves": 1,
+      "n_aligned": 1,
+      "failed": false
+    },
+    {
+      "path": "paper:2411.06608/benchmark:conditional_generation",
+      "score": 1.0,
+      "n_leaves": 1,
+      "n_aligned": 1,
+      "failed": false
+    },
+    {
+      "path": "paper:2411.06608/benchmark:targeted_generation",
+      "score": 1.0,
+      "n_leaves": 1,
+      "n_aligned": 1,
+      "failed": false
+    },
+    {
+      "path": "paper:2411.06608/benchmark:targeted_multi_property",
+      "score": 1.0,
+      "n_leaves": 1,
+      "n_aligned": 1,
+      "failed": false
+    },
+    {
+      "path": "paper:2411.06608/benchmark:unconditional_generation",
+      "score": 1.0,
+      "n_leaves": 16,
+      "n_aligned": 16,
+      "failed": false
+    },
+    {
+      "path": "paper:2411.06608/benchmark:zinc",
+      "score": 1.0,
+      "n_leaves": 17,
+      "n_aligned": 17,
+      "failed": false
+    }
+  ],
+  "failed_branches": [
+    "paper:2411.06608/algorithm:hiervae/algorithmmodule:2608.06956:graph_encoder",
+    "paper:2411.06608/algorithm:hiervae/algorithmmodule:2608.06956:hierarchical_decoder",
+    "paper:2411.06608/algorithm:molminer/algorithmmodule:2411.06608:conditional_sampling",
+    "paper:2411.06608/algorithm:molminer/algorithmmodule:2411.06608:fragment_coarse_graining",
+    "paper:2411.06608/algorithm:molminer/algorithmmodule:2411.06608:fragment_predictor",
+    "paper:2411.06608/algorithm:molminer/algorithmmodule:2608.06956:identity_pullback"
+  ],
+  "n_leaves": 71,
+  "n_aligned": 65
+}

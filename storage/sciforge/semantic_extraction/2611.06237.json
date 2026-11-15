@@ -1,0 +1,1593 @@
+{
+  "arxiv_id": "2611.06237",
+  "stages": {
+    "E1_paper": {
+      "ok": true,
+      "attempts": 1,
+      "issues": [],
+      "fatal": [],
+      "n_fields": 6,
+      "data": {
+        "research_question": "评估SO3LR-T模型在分子相互作用能、金属有机框架(MOFs)力学性质及反应化学过渡态搜索中的精度与适用性",
+        "problem_category": "forcefield_simulation",
+        "domain_code": "D10",
+        "why_hard": "现有方法如PBE-D3在MOFs压力预测上存在系统性偏差，且MLFF在反应能垒预测中需平衡几何与能量误差",
+        "relation_hints": {
+          "related_papers": [
+            "Bahmanyar et al.",
+            "Huang et al.",
+            "Kozlowski et al."
+          ],
+          "algorithms": [
+            "SO3LR",
+            "UMA-S-1.2.1",
+            "AIMNet2",
+            "MACE-POLAR"
+          ],
+          "benchmarks": [
+            "JSCH-2005",
+            "GlcMal",
+            "MOFSimBench"
+          ]
+        },
+        "evidence": {
+          "research_question": "We evaluate the models in two ways. First, we assess the accuracy of forces and pressures on snapshots of two frameworks. Second, we evaluat",
+          "why_hard": "PBE-D3 overestimates the pressure by 3.2 GPa on average, compared with 0.6 GPa to 1.0 GPa for the models"
+        }
+      }
+    },
+    "E3_benchmark": {
+      "ok": true,
+      "attempts": 1,
+      "issues": [],
+      "fatal": [],
+      "n_fields": 1,
+      "data": {
+        "benchmarks": [
+          {
+            "name": "Drew–Dickerson dodecamer",
+            "input_form": "3D坐标",
+            "output_form": "3D坐标",
+            "n_samples": "15 ns",
+            "scale": "12-mer DNA duplex",
+            "modality": "biomolecular dynamics",
+            "research_object": "B-DNA duplex",
+            "metrics": [
+              {
+                "name": "RMSD",
+                "unit": "Å",
+                "direction": "min"
+              },
+              {
+                "name": "helical twist",
+                "unit": "deg",
+                "direction": ""
+              }
+            ]
+          },
+          {
+            "name": "cis-platin 1,2-d(GpG) crosslink",
+            "input_form": "3D坐标",
+            "output_form": "3D坐标",
+            "n_samples": "10 ns",
+            "scale": "Pt(II) crosslink",
+            "modality": "biomolecular dynamics",
+            "research_object": "Platinum-DNA complex",
+            "metrics": [
+              {
+                "name": "MAE",
+                "unit": "eV Å⁻¹",
+                "direction": "min"
+              },
+              {
+                "name": "r",
+                "unit": "",
+                "direction": "max"
+              }
+            ]
+          },
+          {
+            "name": "POPC bilayer",
+            "input_form": "3D坐标",
+            "output_form": "3D坐标",
+            "n_samples": "",
+            "scale": "lipid bilayer",
+            "modality": "biomolecular dynamics",
+            "research_object": "Lipid membrane",
+            "metrics": [
+              {
+                "name": "RMSD",
+                "unit": "",
+                "direction": "min"
+              },
+              {
+                "name": "DHH",
+                "unit": "Å",
+                "direction": ""
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "E4_values": {
+      "ok": true,
+      "attempts": 1,
+      "issues": [],
+      "fatal": [],
+      "n_fields": 1,
+      "data": {
+        "model_results": []
+      }
+    },
+    "E6_lineage": {
+      "ok": true,
+      "attempts": 1,
+      "issues": [],
+      "fatal": [],
+      "n_fields": 1,
+      "data": {
+        "lineage": []
+      }
+    }
+  },
+  "paper_type": {
+    "paper_type": "dataset_benchmark",
+    "confidence": 1.0,
+    "method": "rule",
+    "scores": {
+      "method": 0,
+      "dataset_benchmark": 1,
+      "theory": 0,
+      "survey": 0,
+      "system_tool": 0,
+      "application": 0
+    },
+    "stages": [
+      "E1_paper",
+      "E3_benchmark",
+      "E4_values",
+      "E6_lineage"
+    ],
+    "focus": "重点抽基准结构、指标与数值；算法模块可空"
+  },
+  "slice_meta": {
+    "source": "blocks.jsonl",
+    "n_blocks": 15,
+    "kinds": {
+      "related_work": 3,
+      "method": 6,
+      "benchmark": 6
+    },
+    "lengths": {
+      "paper": 15629,
+      "algorithm": 16000,
+      "benchmark": 16000,
+      "lineage": 16000
+    }
+  },
+  "n_ast_symbols": 41,
+  "guide_chars": 2467,
+  "domain_calibrated": "D10",
+  "model_results": {
+    "table": 0,
+    "llm_fallback": 0,
+    "deduplicated": 0,
+    "rows": []
+  },
+  "application_hints": {
+    "tools_formulas": [],
+    "note": "节点化留给应用层任务（复现/生成论文时按任务构建）"
+  },
+  "lineage": {
+    "all": [],
+    "subclass_of": [],
+    "compared_only": []
+  },
+  "cross_check": [],
+  "ok": true,
+  "seconds": 115.44,
+  "paradigm": {
+    "ner": {
+      "algorithms": [
+        {
+          "text": "MolMiner",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:molminer"
+        },
+        {
+          "text": "ChemicalVAE",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:chemicalvae"
+        },
+        {
+          "text": "SchNet",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:schnet"
+        },
+        {
+          "text": "SO3LR Tauri",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:so3lr_tauri"
+        },
+        {
+          "text": "SO3LR",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:so3lr"
+        },
+        {
+          "text": "OPLS4",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:opls4"
+        },
+        {
+          "text": "GAFF",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:gaff"
+        },
+        {
+          "text": "MACE-POLAR-1-M",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:mace_polar_1_m"
+        },
+        {
+          "text": "AIMNet2-2025",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:aimnet2_2025"
+        },
+        {
+          "text": "UMA-S-1.2.1",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:uma_s_1_2_1"
+        },
+        {
+          "text": "AntiFold",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:antifold"
+        },
+        {
+          "text": "ESM-IF1",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:esm_if1"
+        },
+        {
+          "text": "AbMPNN",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:abmpnn"
+        },
+        {
+          "text": "ProteinMPNN",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:proteinmpnn"
+        },
+        {
+          "text": "AMP-Designer",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:amp_designer"
+        },
+        {
+          "text": "AMP-GPT",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:amp_gpt"
+        },
+        {
+          "text": "AMP-Prompt",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:amp_prompt"
+        },
+        {
+          "text": "AMP-Distillation",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:amp_distillation"
+        },
+        {
+          "text": "AMP-MIC",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:amp_mic"
+        },
+        {
+          "text": "CLaSS",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:class"
+        },
+        {
+          "text": "CFPS",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:cfps"
+        },
+        {
+          "text": "Condition Token (CT)",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:condition_token_ct"
+        },
+        {
+          "text": "Fine-Tuning (FT)",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:fine_tuning_ft"
+        },
+        {
+          "text": "Huang et al. RNN",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:huang_et_al_rnn"
+        },
+        {
+          "text": "Lingo3DMol",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:lingo3dmol"
+        },
+        {
+          "text": "Pocket2Mol",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:pocket2mol"
+        },
+        {
+          "text": "TargetDiff",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:targetdiff"
+        },
+        {
+          "text": "Mol-Instructions",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:mol_instructions"
+        },
+        {
+          "text": "LLaMA",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:llama"
+        },
+        {
+          "text": "Stanford Alpaca",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:stanford_alpaca"
+        },
+        {
+          "text": "GPT4All",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:gpt4all"
+        },
+        {
+          "text": "MOLGEN",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:molgen"
+        },
+        {
+          "text": "SMILES-based PLMs",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:smiles_based_plms"
+        },
+        {
+          "text": "Langevin Speculative Dynamics",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:langevin_speculative_dynamics"
+        },
+        {
+          "text": "DISCO",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:disco"
+        },
+        {
+          "text": "BART",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:bart"
+        },
+        {
+          "text": "SELFIES",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:selfies"
+        },
+        {
+          "text": "SMILES",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:smiles"
+        },
+        {
+          "text": "self-instruct",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:self_instruct"
+        },
+        {
+          "text": "MMseqs",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:mmseqs"
+        },
+        {
+          "text": "JTNN",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:jtnn"
+        },
+        {
+          "text": "HierVAE",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:hiervae"
+        },
+        {
+          "text": "MoLeR",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:moler"
+        },
+        {
+          "text": "Flow-matching",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:flow_matching"
+        },
+        {
+          "text": "Euclidean conditional flowmatching",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:euclidean_conditional_flowmatching"
+        },
+        {
+          "text": "Discrete Flow Models",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:discrete_flow_models"
+        },
+        {
+          "text": "Transformer",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:transformer"
+        },
+        {
+          "text": "SUBS",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:subs"
+        },
+        {
+          "text": "AlphaFold 2",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:alphafold_2"
+        },
+        {
+          "text": "AF3",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:af3"
+        },
+        {
+          "text": "random remasking",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:random_remasking"
+        },
+        {
+          "text": "Noisy guidance",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:noisy_guidance"
+        },
+        {
+          "text": "reflection-maximal couplings",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:reflection_maximal_couplings"
+        },
+        {
+          "text": "speculative sampling",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:speculative_sampling"
+        },
+        {
+          "text": "Leviathan et al. (2023)",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:leviathan_et_al_2023"
+        },
+        {
+          "text": "TABASCO",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:tabasco"
+        },
+        {
+          "text": "UMA-S-1",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 37,
+          "block": "paper"
+        },
+        {
+          "text": "EAB",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 164,
+          "block": "paper"
+        },
+        {
+          "text": "SO3LR-T-M",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 307,
+          "block": "paper"
+        },
+        {
+          "text": "UMA",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 321,
+          "block": "paper"
+        },
+        {
+          "text": "MACE-POLAR",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 471,
+          "block": "paper"
+        },
+        {
+          "text": "AIMNet2",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 486,
+          "block": "paper"
+        },
+        {
+          "text": "JSCH-2005",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 1175,
+          "block": "paper"
+        },
+        {
+          "text": "CCSD",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 1286,
+          "block": "paper"
+        },
+        {
+          "text": "CBS",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 1294,
+          "block": "paper"
+        },
+        {
+          "text": "MP2",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 1336,
+          "block": "paper"
+        },
+        {
+          "text": "MP2-only",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 1485,
+          "block": "paper"
+        },
+        {
+          "text": "JSCH-11",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 1506,
+          "block": "paper"
+        },
+        {
+          "text": "JSCH-32",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 1522,
+          "block": "paper"
+        },
+        {
+          "text": "MAE",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 1946,
+          "block": "paper"
+        },
+        {
+          "text": "RMSE",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 1950,
+          "block": "paper"
+        },
+        {
+          "text": "GlcMal",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 2515,
+          "block": "paper"
+        },
+        {
+          "text": "DLPNO-CCSD",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 2633,
+          "block": "paper"
+        },
+        {
+          "text": "GLYCAM06",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 2922,
+          "block": "paper"
+        },
+        {
+          "text": "MOFs",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 3087,
+          "block": "paper"
+        },
+        {
+          "text": "SO3LR-T",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 3150,
+          "block": "paper"
+        },
+        {
+          "text": "MOFSimBench",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 3425,
+          "block": "paper"
+        },
+        {
+          "text": "UiO-66",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 3462,
+          "block": "paper"
+        },
+        {
+          "text": "MIL-53",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 3477,
+          "block": "paper"
+        },
+        {
+          "text": "CP2K",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 3516,
+          "block": "paper"
+        }
+      ],
+      "benchmarks": [
+        {
+          "text": "ZINC",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:zinc"
+        },
+        {
+          "text": "SAPT10k",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:sapt10k"
+        },
+        {
+          "text": "QUID",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:quid"
+        },
+        {
+          "text": "JSCH-2005",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:jsch_2005"
+        },
+        {
+          "text": "PLA15",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:pla15"
+        },
+        {
+          "text": "TorsionNet500",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:torsionnet500"
+        },
+        {
+          "text": "GlcMal",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:glcmal"
+        },
+        {
+          "text": "Proline-catalyzed aldol addition",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:proline_catalyzed_aldol_addition"
+        },
+        {
+          "text": "Side-chain pKa of pentapeptides",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:side_chain_pka_of_pentapeptides"
+        },
+        {
+          "text": "Crambin in water",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:crambin_in_water"
+        },
+        {
+          "text": "antibody CDRH3 test set",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:antibody_cdrh3_test_set"
+        },
+        {
+          "text": "UniProt and curated AMP datasets",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:uniprot_and_curated_amp_datasets"
+        },
+        {
+          "text": "UniProt peptide distribution",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:uniprot_peptide_distribution"
+        },
+        {
+          "text": "CAMP, AMP Scanner, and Macrel ensemble",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:camp_amp_scanner_and_macrel_ensemble"
+        },
+        {
+          "text": "Real AMPs sequence database",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:real_amps_sequence_database"
+        },
+        {
+          "text": "Gramapa MIC dataset",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:gramapa_mic_dataset"
+        },
+        {
+          "text": "ESKAPE pathogen panel",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:eskape_pathogen_panel"
+        },
+        {
+          "text": "XDR K. pneumoniae pneumonia mouse model",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:xdr_k_pneumoniae_pneumonia_mouse_model"
+        },
+        {
+          "text": "P. acnes in vitro panel",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:p_acnes_in_vitro_panel"
+        },
+        {
+          "text": "DUD-E",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:dud_e"
+        },
+        {
+          "text": "ZINC-15",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:zinc_15"
+        },
+        {
+          "text": "ZINC-250k",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:zinc_250k"
+        },
+        {
+          "text": "MOSES",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:moses"
+        },
+        {
+          "text": "GuacaMol",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:guacamol"
+        },
+        {
+          "text": "ChEMBL",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:chembl"
+        },
+        {
+          "text": "GEOM-Drugs",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:geom_drugs"
+        },
+        {
+          "text": "GDB-17",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:gdb_17"
+        },
+        {
+          "text": "PubChem",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:pubchem"
+        },
+        {
+          "text": "QM9",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:qm9"
+        },
+        {
+          "text": "ESOL",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:esol"
+        },
+        {
+          "text": "FreeSolv",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:freesolv"
+        },
+        {
+          "text": "Lipophilicity",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:lipophilicity"
+        },
+        {
+          "text": "BBBP",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:bbbp"
+        },
+        {
+          "text": "HIV",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:hiv"
+        },
+        {
+          "text": "Tox21",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:tox21"
+        },
+        {
+          "text": "ClinTox",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:clintox"
+        },
+        {
+          "text": "SIDER",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:sider"
+        },
+        {
+          "text": "TDC-ADMET",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:tdc_admet"
+        },
+        {
+          "text": "AqSolDB",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:aqsoldb"
+        },
+        {
+          "text": "S22x5",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:s22x5"
+        },
+        {
+          "text": "S66x8",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:s66x8"
+        },
+        {
+          "text": "ANI-1x",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:ani_1x"
+        },
+        {
+          "text": "QM7-X",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:qm7_x"
+        },
+        {
+          "text": "MD17",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:md17"
+        },
+        {
+          "text": "ISO17",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:iso17"
+        },
+        {
+          "text": "PDBbind",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:pdbbind"
+        },
+        {
+          "text": "CASF-2016",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:casf_2016"
+        },
+        {
+          "text": "CrossDocked2020",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:crossdocked2020"
+        },
+        {
+          "text": "BindingDB",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:bindingdb"
+        },
+        {
+          "text": "DBAASP",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:dbaasp"
+        },
+        {
+          "text": "CAMP",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:camp"
+        },
+        {
+          "text": "UniProt",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:uniprot"
+        },
+        {
+          "text": "APD3",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:apd3"
+        },
+        {
+          "text": "AMP Scanner ensemble",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:amp_scanner_ensemble"
+        },
+        {
+          "text": "ChEBI-20",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:chebi_20"
+        },
+        {
+          "text": "SMolInstruct",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:smolinstruct"
+        },
+        {
+          "text": "PubChemQC",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:pubchemqc"
+        },
+        {
+          "text": "Mol-Instructions",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:mol_instructions"
+        },
+        {
+          "text": "USPTO-50k",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:uspto_50k"
+        },
+        {
+          "text": "USPTO-MIT",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:uspto_mit"
+        },
+        {
+          "text": "Pistachio",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:pistachio"
+        },
+        {
+          "text": "ORD",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:ord"
+        },
+        {
+          "text": "Unconditional Generation",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:unconditional_generation"
+        },
+        {
+          "text": "Conditional Generation",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:conditional_generation"
+        },
+        {
+          "text": "Targeted Multi-Property",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:targeted_multi_property"
+        },
+        {
+          "text": "D44.1 anti-lysozyme antibody variants",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:d44_1_anti_lysozyme_antibody_variants"
+        },
+        {
+          "text": "Targeted Generation",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:targeted_generation"
+        },
+        {
+          "text": "Drew–Dickerson dodecamer",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:drew_dickerson_dodecamer"
+        },
+        {
+          "text": "cis-platin 1,2-d(GpG) crosslink",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:cis_platin_1_2_d_gpg_crosslink"
+        },
+        {
+          "text": "POPC bilayer",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:popc_bilayer"
+        }
+      ],
+      "code_symbols": [
+        {
+          "text": "_get_all_possible_attachments",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:raulorteg_molminer:molminer_processor_py:get_all_possible_attachments"
+        },
+        {
+          "text": "_compute_possible_remaps",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:raulorteg_molminer:molminer_processor_py:compute_possible_remaps"
+        },
+        {
+          "text": "_get_canonicalization_map",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:raulorteg_molminer:molminer_processor_py:get_canonicalization_map"
+        },
+        {
+          "text": "forward",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:raulorteg_molminer:molminer_models_py:forward"
+        },
+        {
+          "text": "__init__",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:raulorteg_molminer:molminer_models_py:init"
+        },
+        {
+          "text": "_sample",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:raulorteg_molminer:molminer_generator_py:sample"
+        },
+        {
+          "text": "make_so3lr",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:general_molecular_simulations_so3lr:so3lr_base_calculator_py:make_so3lr"
+        },
+        {
+          "text": "kspace_electrostatics_options",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:general_molecular_simulations_so3lr:so3lr_cli_so3lr_cli_py:kspace_electrostatics_options"
+        },
+        {
+          "text": "kspace_dispersion_options",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:general_molecular_simulations_so3lr:so3lr_cli_so3lr_cli_py:kspace_dispersion_options"
+        },
+        {
+          "text": "get_imgt_mask",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:oxpig_antifold:antifold_antiscripts_py:get_imgt_mask"
+        },
+        {
+          "text": "parse_regions",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:oxpig_antifold:antifold_antiscripts_py:parse_regions"
+        },
+        {
+          "text": "get_pdbs_logits",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:oxpig_antifold:antifold_antiscripts_py:get_pdbs_logits"
+        },
+        {
+          "text": "dataset_dataloader_to_predictions_list",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:oxpig_antifold:antifold_antiscripts_py:dataset_dataloader_to_predictions_list"
+        },
+        {
+          "text": "logits_to_seqprobs_list",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:oxpig_antifold:antifold_antiscripts_py:logits_to_seqprobs_list"
+        },
+        {
+          "text": "sample_new_sequences_CDR_HL",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:oxpig_antifold:antifold_antiscripts_py:sample_new_sequences_cdr_hl"
+        },
+        {
+          "text": "sample_from_df_logits_HL",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:oxpig_antifold:antifold_antiscripts_py:sample_from_df_logits_hl"
+        },
+        {
+          "text": "calc_pos_perplexity",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:oxpig_antifold:antifold_antiscripts_py:calc_pos_perplexity"
+        },
+        {
+          "text": "predict",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:jkwang93_amp_designer:amp_gpt_generator_py:predict"
+        },
+        {
+          "text": "top_k_top_p_filtering",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:jkwang93_amp_designer:amp_prompt_generator_py:top_k_top_p_filtering"
+        },
+        {
+          "text": "decode",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:jkwang93_amp_designer:amp_gpt_generator_py:decode"
+        },
+        {
+          "text": "MultiGRU",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:jkwang93_amp_designer:amp_distiilation_py:multigru"
+        },
+        {
+          "text": "RNN",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:jkwang93_amp_designer:amp_distiilation_py:rnn"
+        },
+        {
+          "text": "CombinedModel",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:jkwang93_amp_designer:amp_mic_amp_mic_py:combinedmodel"
+        },
+        {
+          "text": "Encoder",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:stonewiseaidrugdesign_lingo3dmol:model_module_py:encoder"
+        },
+        {
+          "text": "EncoderLayer",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:stonewiseaidrugdesign_lingo3dmol:model_module_py:encoderlayer"
+        },
+        {
+          "text": "DecoderBias",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:stonewiseaidrugdesign_lingo3dmol:model_module_py:decoderbias"
+        },
+        {
+          "text": "DecoderLayerBias",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:stonewiseaidrugdesign_lingo3dmol:model_module_py:decoderlayerbias"
+        },
+        {
+          "text": "Decoder",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:stonewiseaidrugdesign_lingo3dmol:model_module_py:decoder"
+        },
+        {
+          "text": "DecoderLayer",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:stonewiseaidrugdesign_lingo3dmol:model_module_py:decoderlayer"
+        },
+        {
+          "text": "changepos",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:stonewiseaidrugdesign_lingo3dmol:inference_inference_avoid_clash_py:changepos"
+        },
+        {
+          "text": "changepos2",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:stonewiseaidrugdesign_lingo3dmol:inference_inference_avoid_clash_py:changepos2"
+        },
+        {
+          "text": "CollisionCheck",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:stonewiseaidrugdesign_lingo3dmol:inference_cube_collision_check_py:collisioncheck"
+        },
+        {
+          "text": "bonusVSpenalty2",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:stonewiseaidrugdesign_lingo3dmol:inference_inference_avoid_clash_py:bonusvspenalty2"
+        },
+        {
+          "text": "get_grid_file",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:stonewiseaidrugdesign_lingo3dmol:inference_cube_collision_check_py:get_grid_file"
+        },
+        {
+          "text": "BartConfig",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:zjunlp_molgen:molgen_model_bart_configuration_bart_py:bartconfig"
+        },
+        {
+          "text": "get_prompt",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:zjunlp_molgen:molgen_finetune_py:get_prompt"
+        },
+        {
+          "text": "loss_output",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:zjunlp_molgen:molgen_finetune_py:loss_output"
+        },
+        {
+          "text": "update_loss_log",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:zjunlp_molgen:molgen_finetune_py:update_loss_log"
+        },
+        {
+          "text": "generate_molecules",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:zjunlp_molgen:molgen_generate_ds_py:generate_molecules"
+        },
+        {
+          "text": "generate_candidate_selfies",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:zjunlp_molgen:molgen_generate_ds_py:generate_candidate_selfies"
+        }
+      ],
+      "metrics": [
+        {
+          "text": "diversity",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "frag_ratio",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "novelty",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "uniqueness",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "validity",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "mae",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "rmse",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "spearman",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "rmsd",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "Pearson_r",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "accuracy",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "percentage",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "AMP_hit_percent",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "drug-likeness",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "synthetic accessibility",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "pocket binding mode",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "molecule generation speed",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "penalized logP",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "QED",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "PoseBUSTERS",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "JSD",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "Wasserstein distance",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "Mean Absolute Error",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "R2",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "Spearman’s rank correlation",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "Hit rate",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "Fold-enrichment",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "helical twist",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "r",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "DHH",
+          "type": "Metric",
+          "source": "graph_catalog"
+        }
+      ],
+      "tables": []
+    },
+    "canonicalization": {
+      "canonical_map": {
+        "benchmark:Drew–Dickerson dodecamer": {
+          "canonical": "Drew–Dickerson dodecamer",
+          "node_id": "benchmark:drew_dickerson_dodecamer",
+          "match": "exact",
+          "score": 1.0
+        },
+        "benchmark:cis-platin 1,2-d(GpG) crosslink": {
+          "canonical": "cis-platin 1,2-d(GpG) crosslink",
+          "node_id": "benchmark:cis_platin_1_2_d_gpg_crosslink",
+          "match": "exact",
+          "score": 1.0
+        },
+        "benchmark:POPC bilayer": {
+          "canonical": "POPC bilayer",
+          "node_id": "benchmark:popc_bilayer",
+          "match": "exact",
+          "score": 1.0
+        }
+      },
+      "alias_groups": {},
+      "n_exact": 3,
+      "n_fuzzy": 0,
+      "n_new": 0,
+      "n_ungrounded_code": 0
+    },
+    "relations": {
+      "grounded": [],
+      "ungrounded": [],
+      "n": 0
+    },
+    "modules": {
+      "chains": [],
+      "n_algorithms": 0,
+      "n_modules": 0
+    },
+    "slot_audit": {
+      "checks": [
+        {
+          "slot": "Paper.research_question",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "slot": "Paper.problem_category",
+          "ok": true,
+          "detail": "forcefield_simulation"
+        },
+        {
+          "slot": "Benchmark.input_form",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "slot": "Benchmark.output_form",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "slot": "Benchmark.model_results",
+          "ok": false,
+          "detail": ""
+        }
+      ],
+      "n_ok": 4,
+      "n_total": 5,
+      "score": 0.8
+    },
+    "summary": {
+      "n_entity_candidates": 220,
+      "n_grounded_relations": 0,
+      "n_ungrounded_relations": 0,
+      "n_modules_tracked": 0,
+      "slot_score": 0.8
+    }
+  }
+}

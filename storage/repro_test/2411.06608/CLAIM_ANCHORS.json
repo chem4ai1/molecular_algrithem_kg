@@ -1,0 +1,1132 @@
+{
+  "paper_id": "paper:2411.06608",
+  "arxiv_id": "2411.06608",
+  "anchored_at": "2026-11-15T11:01:02",
+  "passed": true,
+  "spec_hash": "sha256:0f1f79f23800ac4e5098d5162ed0760b04cdb00eda6b21380a938250e3aef805",
+  "code_sha": "sha256:d6d8b78757d9d12adfdd",
+  "inputs_sha": "sha256:1a83827c0cd39718592c",
+  "outputs_sha": "sha256:8504774157670d715fea",
+  "double_run_equal": true,
+  "n_claims": 31,
+  "n_three_level": 30,
+  "integrity": true,
+  "claims": [
+    {
+      "claim_id": "C001",
+      "sau_id": "sau:241106608:numeric:000",
+      "level1_claim": {
+        "type": "claim",
+        "sau_id": "sau:241106608:numeric:000",
+        "model": "GDSS",
+        "metric": "uniqueness",
+        "value": "99.6",
+        "value_num": 99.6,
+        "unit": "",
+        "direction": "max",
+        "tolerance": 0.05
+      },
+      "level2_cell": {
+        "type": "cell",
+        "entry_id": "applb:benchmark_zinc:0",
+        "table_ref": "table_extract:1",
+        "row_index": null,
+        "paper_id": "paper:2411.06608"
+      },
+      "level3_graph": {
+        "type": "graph",
+        "benchmark_id": "benchmark:zinc",
+        "entry_id": "applb:benchmark_zinc:0",
+        "metric_id": "appmetric:uniqueness"
+      },
+      "hashes": {
+        "spec": "sha256:0f1f79f23800ac4e5098d5162ed0760b04cdb00eda6b21380a938250e3aef805",
+        "code": "sha256:d6d8b78757d9d12adfdd",
+        "inputs": "sha256:1a83827c0cd39718592c",
+        "outputs": "sha256:8504774157670d715fea"
+      },
+      "three_level": true,
+      "verified": true
+    },
+    {
+      "claim_id": "C002",
+      "sau_id": "sau:241106608:numeric:001",
+      "level1_claim": {
+        "type": "claim",
+        "sau_id": "sau:241106608:numeric:001",
+        "model": "GDSS",
+        "metric": "novelty",
+        "value": "100.0",
+        "value_num": 100.0,
+        "unit": "",
+        "direction": "max",
+        "tolerance": 0.05
+      },
+      "level2_cell": {
+        "type": "cell",
+        "entry_id": "applb:benchmark_zinc:1",
+        "table_ref": "table_extract:1",
+        "row_index": null,
+        "paper_id": "paper:2411.06608"
+      },
+      "level3_graph": {
+        "type": "graph",
+        "benchmark_id": "benchmark:zinc",
+        "entry_id": "applb:benchmark_zinc:1",
+        "metric_id": "appmetric:novelty"
+      },
+      "hashes": {
+        "spec": "sha256:0f1f79f23800ac4e5098d5162ed0760b04cdb00eda6b21380a938250e3aef805",
+        "code": "sha256:d6d8b78757d9d12adfdd",
+        "inputs": "sha256:1a83827c0cd39718592c",
+        "outputs": "sha256:8504774157670d715fea"
+      },
+      "three_level": true,
+      "verified": true
+    },
+    {
+      "claim_id": "C003",
+      "sau_id": "sau:241106608:numeric:002",
+      "level1_claim": {
+        "type": "claim",
+        "sau_id": "sau:241106608:numeric:002",
+        "model": "GDSS",
+        "metric": "diversity",
+        "value": "0.9026",
+        "value_num": 0.9026,
+        "unit": "",
+        "direction": "max",
+        "tolerance": 0.05
+      },
+      "level2_cell": {
+        "type": "cell",
+        "entry_id": "applb:benchmark_zinc:2",
+        "table_ref": "table_extract:1",
+        "row_index": null,
+        "paper_id": "paper:2411.06608"
+      },
+      "level3_graph": {
+        "type": "graph",
+        "benchmark_id": "benchmark:zinc",
+        "entry_id": "applb:benchmark_zinc:2",
+        "metric_id": "appmetric:diversity"
+      },
+      "hashes": {
+        "spec": "sha256:0f1f79f23800ac4e5098d5162ed0760b04cdb00eda6b21380a938250e3aef805",
+        "code": "sha256:d6d8b78757d9d12adfdd",
+        "inputs": "sha256:1a83827c0cd39718592c",
+        "outputs": "sha256:8504774157670d715fea"
+      },
+      "three_level": true,
+      "verified": true
+    },
+    {
+      "claim_id": "C004",
+      "sau_id": "sau:241106608:numeric:003",
+      "level1_claim": {
+        "type": "claim",
+        "sau_id": "sau:241106608:numeric:003",
+        "model": "GDSS",
+        "metric": "validity",
+        "value": "100.0",
+        "value_num": 100.0,
+        "unit": "",
+        "direction": "max",
+        "tolerance": 0.05
+      },
+      "level2_cell": {
+        "type": "cell",
+        "entry_id": "applb:benchmark_zinc:3",
+        "table_ref": "table_extract:1",
+        "row_index": null,
+        "paper_id": "paper:2411.06608"
+      },
+      "level3_graph": {
+        "type": "graph",
+        "benchmark_id": "benchmark:zinc",
+        "entry_id": "applb:benchmark_zinc:3",
+        "metric_id": "appmetric:validity"
+      },
+      "hashes": {
+        "spec": "sha256:0f1f79f23800ac4e5098d5162ed0760b04cdb00eda6b21380a938250e3aef805",
+        "code": "sha256:d6d8b78757d9d12adfdd",
+        "inputs": "sha256:1a83827c0cd39718592c",
+        "outputs": "sha256:8504774157670d715fea"
+      },
+      "three_level": true,
+      "verified": true
+    },
+    {
+      "claim_id": "C005",
+      "sau_id": "sau:241106608:numeric:004",
+      "level1_claim": {
+        "type": "claim",
+        "sau_id": "sau:241106608:numeric:004",
+        "model": "GDSS",
+        "metric": "frag_ratio",
+        "value": "38.96",
+        "value_num": 38.96,
+        "unit": "",
+        "direction": "",
+        "tolerance": 0.05
+      },
+      "level2_cell": {
+        "type": "cell",
+        "entry_id": "applb:benchmark_zinc:4",
+        "table_ref": "table_extract:1",
+        "row_index": null,
+        "paper_id": "paper:2411.06608"
+      },
+      "level3_graph": {
+        "type": "graph",
+        "benchmark_id": "benchmark:zinc",
+        "entry_id": "applb:benchmark_zinc:4",
+        "metric_id": ""
+      },
+      "hashes": {
+        "spec": "sha256:0f1f79f23800ac4e5098d5162ed0760b04cdb00eda6b21380a938250e3aef805",
+        "code": "sha256:d6d8b78757d9d12adfdd",
+        "inputs": "sha256:1a83827c0cd39718592c",
+        "outputs": "sha256:8504774157670d715fea"
+      },
+      "three_level": true,
+      "verified": true
+    },
+    {
+      "claim_id": "C006",
+      "sau_id": "sau:241106608:numeric:005",
+      "level1_claim": {
+        "type": "claim",
+        "sau_id": "sau:241106608:numeric:005",
+        "model": "MolMiner",
+        "metric": "validity",
+        "value": "100.0",
+        "value_num": 100.0,
+        "unit": "",
+        "direction": "max",
+        "tolerance": 0.05
+      },
+      "level2_cell": {
+        "type": "cell",
+        "entry_id": "applb:benchmark_zinc:5",
+        "table_ref": "table_extract:1",
+        "row_index": null,
+        "paper_id": "paper:2411.06608"
+      },
+      "level3_graph": {
+        "type": "graph",
+        "benchmark_id": "benchmark:zinc",
+        "entry_id": "applb:benchmark_zinc:5",
+        "metric_id": "appmetric:validity"
+      },
+      "hashes": {
+        "spec": "sha256:0f1f79f23800ac4e5098d5162ed0760b04cdb00eda6b21380a938250e3aef805",
+        "code": "sha256:d6d8b78757d9d12adfdd",
+        "inputs": "sha256:1a83827c0cd39718592c",
+        "outputs": "sha256:8504774157670d715fea"
+      },
+      "three_level": true,
+      "verified": true
+    },
+    {
+      "claim_id": "C007",
+      "sau_id": "sau:241106608:numeric:006",
+      "level1_claim": {
+        "type": "claim",
+        "sau_id": "sau:241106608:numeric:006",
+        "model": "MolMiner",
+        "metric": "frag_ratio",
+        "value": "0.00",
+        "value_num": 0.0,
+        "unit": "",
+        "direction": "",
+        "tolerance": 0.05
+      },
+      "level2_cell": {
+        "type": "cell",
+        "entry_id": "applb:benchmark_zinc:6",
+        "table_ref": "table_extract:1",
+        "row_index": null,
+        "paper_id": "paper:2411.06608"
+      },
+      "level3_graph": {
+        "type": "graph",
+        "benchmark_id": "benchmark:zinc",
+        "entry_id": "applb:benchmark_zinc:6",
+        "metric_id": ""
+      },
+      "hashes": {
+        "spec": "sha256:0f1f79f23800ac4e5098d5162ed0760b04cdb00eda6b21380a938250e3aef805",
+        "code": "sha256:d6d8b78757d9d12adfdd",
+        "inputs": "sha256:1a83827c0cd39718592c",
+        "outputs": "sha256:8504774157670d715fea"
+      },
+      "three_level": true,
+      "verified": true
+    },
+    {
+      "claim_id": "C008",
+      "sau_id": "sau:241106608:numeric:007",
+      "level1_claim": {
+        "type": "claim",
+        "sau_id": "sau:241106608:numeric:007",
+        "model": "MolMiner",
+        "metric": "uniqueness",
+        "value": "98.5",
+        "value_num": 98.5,
+        "unit": "",
+        "direction": "max",
+        "tolerance": 0.05
+      },
+      "level2_cell": {
+        "type": "cell",
+        "entry_id": "applb:benchmark_zinc:7",
+        "table_ref": "table_extract:1",
+        "row_index": null,
+        "paper_id": "paper:2411.06608"
+      },
+      "level3_graph": {
+        "type": "graph",
+        "benchmark_id": "benchmark:zinc",
+        "entry_id": "applb:benchmark_zinc:7",
+        "metric_id": "appmetric:uniqueness"
+      },
+      "hashes": {
+        "spec": "sha256:0f1f79f23800ac4e5098d5162ed0760b04cdb00eda6b21380a938250e3aef805",
+        "code": "sha256:d6d8b78757d9d12adfdd",
+        "inputs": "sha256:1a83827c0cd39718592c",
+        "outputs": "sha256:8504774157670d715fea"
+      },
+      "three_level": true,
+      "verified": true
+    },
+    {
+      "claim_id": "C009",
+      "sau_id": "sau:241106608:numeric:008",
+      "level1_claim": {
+        "type": "claim",
+        "sau_id": "sau:241106608:numeric:008",
+        "model": "MolMiner",
+        "metric": "novelty",
+        "value": "99.9",
+        "value_num": 99.9,
+        "unit": "",
+        "direction": "max",
+        "tolerance": 0.05
+      },
+      "level2_cell": {
+        "type": "cell",
+        "entry_id": "applb:benchmark_zinc:8",
+        "table_ref": "table_extract:1",
+        "row_index": null,
+        "paper_id": "paper:2411.06608"
+      },
+      "level3_graph": {
+        "type": "graph",
+        "benchmark_id": "benchmark:zinc",
+        "entry_id": "applb:benchmark_zinc:8",
+        "metric_id": "appmetric:novelty"
+      },
+      "hashes": {
+        "spec": "sha256:0f1f79f23800ac4e5098d5162ed0760b04cdb00eda6b21380a938250e3aef805",
+        "code": "sha256:d6d8b78757d9d12adfdd",
+        "inputs": "sha256:1a83827c0cd39718592c",
+        "outputs": "sha256:8504774157670d715fea"
+      },
+      "three_level": true,
+      "verified": true
+    },
+    {
+      "claim_id": "C010",
+      "sau_id": "sau:241106608:numeric:009",
+      "level1_claim": {
+        "type": "claim",
+        "sau_id": "sau:241106608:numeric:009",
+        "model": "MolMiner",
+        "metric": "diversity",
+        "value": "0.8919",
+        "value_num": 0.8919,
+        "unit": "",
+        "direction": "max",
+        "tolerance": 0.05
+      },
+      "level2_cell": {
+        "type": "cell",
+        "entry_id": "applb:benchmark_zinc:9",
+        "table_ref": "table_extract:1",
+        "row_index": null,
+        "paper_id": "paper:2411.06608"
+      },
+      "level3_graph": {
+        "type": "graph",
+        "benchmark_id": "benchmark:zinc",
+        "entry_id": "applb:benchmark_zinc:9",
+        "metric_id": "appmetric:diversity"
+      },
+      "hashes": {
+        "spec": "sha256:0f1f79f23800ac4e5098d5162ed0760b04cdb00eda6b21380a938250e3aef805",
+        "code": "sha256:d6d8b78757d9d12adfdd",
+        "inputs": "sha256:1a83827c0cd39718592c",
+        "outputs": "sha256:8504774157670d715fea"
+      },
+      "three_level": true,
+      "verified": true
+    },
+    {
+      "claim_id": "C011",
+      "sau_id": "sau:241106608:numeric:010",
+      "level1_claim": {
+        "type": "claim",
+        "sau_id": "sau:241106608:numeric:010",
+        "model": "HierVAE",
+        "metric": "validity",
+        "value": "100.0",
+        "value_num": 100.0,
+        "unit": "",
+        "direction": "max",
+        "tolerance": 0.05
+      },
+      "level2_cell": {
+        "type": "cell",
+        "entry_id": "applb:benchmark_zinc:10",
+        "table_ref": "table_extract:1",
+        "row_index": null,
+        "paper_id": "paper:2411.06608"
+      },
+      "level3_graph": {
+        "type": "graph",
+        "benchmark_id": "benchmark:zinc",
+        "entry_id": "applb:benchmark_zinc:10",
+        "metric_id": "appmetric:validity"
+      },
+      "hashes": {
+        "spec": "sha256:0f1f79f23800ac4e5098d5162ed0760b04cdb00eda6b21380a938250e3aef805",
+        "code": "sha256:d6d8b78757d9d12adfdd",
+        "inputs": "sha256:1a83827c0cd39718592c",
+        "outputs": "sha256:8504774157670d715fea"
+      },
+      "three_level": true,
+      "verified": true
+    },
+    {
+      "claim_id": "C012",
+      "sau_id": "sau:241106608:numeric:011",
+      "level1_claim": {
+        "type": "claim",
+        "sau_id": "sau:241106608:numeric:011",
+        "model": "HierVAE",
+        "metric": "frag_ratio",
+        "value": "0.00",
+        "value_num": 0.0,
+        "unit": "",
+        "direction": "",
+        "tolerance": 0.05
+      },
+      "level2_cell": {
+        "type": "cell",
+        "entry_id": "applb:benchmark_zinc:11",
+        "table_ref": "table_extract:1",
+        "row_index": null,
+        "paper_id": "paper:2411.06608"
+      },
+      "level3_graph": {
+        "type": "graph",
+        "benchmark_id": "benchmark:zinc",
+        "entry_id": "applb:benchmark_zinc:11",
+        "metric_id": ""
+      },
+      "hashes": {
+        "spec": "sha256:0f1f79f23800ac4e5098d5162ed0760b04cdb00eda6b21380a938250e3aef805",
+        "code": "sha256:d6d8b78757d9d12adfdd",
+        "inputs": "sha256:1a83827c0cd39718592c",
+        "outputs": "sha256:8504774157670d715fea"
+      },
+      "three_level": true,
+      "verified": true
+    },
+    {
+      "claim_id": "C013",
+      "sau_id": "sau:241106608:numeric:012",
+      "level1_claim": {
+        "type": "claim",
+        "sau_id": "sau:241106608:numeric:012",
+        "model": "HierVAE",
+        "metric": "uniqueness",
+        "value": "100.0",
+        "value_num": 100.0,
+        "unit": "",
+        "direction": "max",
+        "tolerance": 0.05
+      },
+      "level2_cell": {
+        "type": "cell",
+        "entry_id": "applb:benchmark_zinc:12",
+        "table_ref": "table_extract:1",
+        "row_index": null,
+        "paper_id": "paper:2411.06608"
+      },
+      "level3_graph": {
+        "type": "graph",
+        "benchmark_id": "benchmark:zinc",
+        "entry_id": "applb:benchmark_zinc:12",
+        "metric_id": "appmetric:uniqueness"
+      },
+      "hashes": {
+        "spec": "sha256:0f1f79f23800ac4e5098d5162ed0760b04cdb00eda6b21380a938250e3aef805",
+        "code": "sha256:d6d8b78757d9d12adfdd",
+        "inputs": "sha256:1a83827c0cd39718592c",
+        "outputs": "sha256:8504774157670d715fea"
+      },
+      "three_level": true,
+      "verified": true
+    },
+    {
+      "claim_id": "C014",
+      "sau_id": "sau:241106608:numeric:013",
+      "level1_claim": {
+        "type": "claim",
+        "sau_id": "sau:241106608:numeric:013",
+        "model": "HierVAE",
+        "metric": "novelty",
+        "value": "99.9",
+        "value_num": 99.9,
+        "unit": "",
+        "direction": "max",
+        "tolerance": 0.05
+      },
+      "level2_cell": {
+        "type": "cell",
+        "entry_id": "applb:benchmark_zinc:13",
+        "table_ref": "table_extract:1",
+        "row_index": null,
+        "paper_id": "paper:2411.06608"
+      },
+      "level3_graph": {
+        "type": "graph",
+        "benchmark_id": "benchmark:zinc",
+        "entry_id": "applb:benchmark_zinc:13",
+        "metric_id": "appmetric:novelty"
+      },
+      "hashes": {
+        "spec": "sha256:0f1f79f23800ac4e5098d5162ed0760b04cdb00eda6b21380a938250e3aef805",
+        "code": "sha256:d6d8b78757d9d12adfdd",
+        "inputs": "sha256:1a83827c0cd39718592c",
+        "outputs": "sha256:8504774157670d715fea"
+      },
+      "three_level": true,
+      "verified": true
+    },
+    {
+      "claim_id": "C015",
+      "sau_id": "sau:241106608:numeric:014",
+      "level1_claim": {
+        "type": "claim",
+        "sau_id": "sau:241106608:numeric:014",
+        "model": "HierVAE",
+        "metric": "diversity",
+        "value": "0.8759",
+        "value_num": 0.8759,
+        "unit": "",
+        "direction": "max",
+        "tolerance": 0.05
+      },
+      "level2_cell": {
+        "type": "cell",
+        "entry_id": "applb:benchmark_zinc:14",
+        "table_ref": "table_extract:1",
+        "row_index": null,
+        "paper_id": "paper:2411.06608"
+      },
+      "level3_graph": {
+        "type": "graph",
+        "benchmark_id": "benchmark:zinc",
+        "entry_id": "applb:benchmark_zinc:14",
+        "metric_id": "appmetric:diversity"
+      },
+      "hashes": {
+        "spec": "sha256:0f1f79f23800ac4e5098d5162ed0760b04cdb00eda6b21380a938250e3aef805",
+        "code": "sha256:d6d8b78757d9d12adfdd",
+        "inputs": "sha256:1a83827c0cd39718592c",
+        "outputs": "sha256:8504774157670d715fea"
+      },
+      "three_level": true,
+      "verified": true
+    },
+    {
+      "claim_id": "C016",
+      "sau_id": "sau:241106608:numeric:015",
+      "level1_claim": {
+        "type": "claim",
+        "sau_id": "sau:241106608:numeric:015",
+        "model": "NeVAE",
+        "metric": "property_value_improvement",
+        "value": "121",
+        "value_num": 121.0,
+        "unit": "%",
+        "direction": "",
+        "tolerance": 0.05
+      },
+      "level2_cell": {
+        "type": "cell",
+        "entry_id": "applb:benchmark_zinc:120",
+        "table_ref": "",
+        "row_index": null,
+        "paper_id": ""
+      },
+      "level3_graph": {
+        "type": "graph",
+        "benchmark_id": "benchmark:zinc",
+        "entry_id": "applb:benchmark_zinc:120",
+        "metric_id": ""
+      },
+      "hashes": {
+        "spec": "sha256:0f1f79f23800ac4e5098d5162ed0760b04cdb00eda6b21380a938250e3aef805",
+        "code": "sha256:d6d8b78757d9d12adfdd",
+        "inputs": "sha256:1a83827c0cd39718592c",
+        "outputs": "sha256:8504774157670d715fea"
+      },
+      "three_level": false,
+      "verified": true
+    },
+    {
+      "claim_id": "C017",
+      "sau_id": "sau:241106608:numeric:016",
+      "level1_claim": {
+        "type": "claim",
+        "sau_id": "sau:241106608:numeric:016",
+        "model": "GDSS",
+        "metric": "validity",
+        "value": "100.0",
+        "value_num": 100.0,
+        "unit": "",
+        "direction": "max",
+        "tolerance": 0.05
+      },
+      "level2_cell": {
+        "type": "cell",
+        "entry_id": "applb:benchmark_unconditional_generation:0",
+        "table_ref": "table_extract:1",
+        "row_index": null,
+        "paper_id": "paper:2411.06608"
+      },
+      "level3_graph": {
+        "type": "graph",
+        "benchmark_id": "benchmark:unconditional_generation",
+        "entry_id": "applb:benchmark_unconditional_generation:0",
+        "metric_id": "appmetric:validity"
+      },
+      "hashes": {
+        "spec": "sha256:0f1f79f23800ac4e5098d5162ed0760b04cdb00eda6b21380a938250e3aef805",
+        "code": "sha256:d6d8b78757d9d12adfdd",
+        "inputs": "sha256:1a83827c0cd39718592c",
+        "outputs": "sha256:8504774157670d715fea"
+      },
+      "three_level": true,
+      "verified": true
+    },
+    {
+      "claim_id": "C018",
+      "sau_id": "sau:241106608:numeric:017",
+      "level1_claim": {
+        "type": "claim",
+        "sau_id": "sau:241106608:numeric:017",
+        "model": "GDSS",
+        "metric": "frag_ratio",
+        "value": "38.96",
+        "value_num": 38.96,
+        "unit": "",
+        "direction": "",
+        "tolerance": 0.05
+      },
+      "level2_cell": {
+        "type": "cell",
+        "entry_id": "applb:benchmark_unconditional_generation:1",
+        "table_ref": "table_extract:1",
+        "row_index": null,
+        "paper_id": "paper:2411.06608"
+      },
+      "level3_graph": {
+        "type": "graph",
+        "benchmark_id": "benchmark:unconditional_generation",
+        "entry_id": "applb:benchmark_unconditional_generation:1",
+        "metric_id": ""
+      },
+      "hashes": {
+        "spec": "sha256:0f1f79f23800ac4e5098d5162ed0760b04cdb00eda6b21380a938250e3aef805",
+        "code": "sha256:d6d8b78757d9d12adfdd",
+        "inputs": "sha256:1a83827c0cd39718592c",
+        "outputs": "sha256:8504774157670d715fea"
+      },
+      "three_level": true,
+      "verified": true
+    },
+    {
+      "claim_id": "C019",
+      "sau_id": "sau:241106608:numeric:018",
+      "level1_claim": {
+        "type": "claim",
+        "sau_id": "sau:241106608:numeric:018",
+        "model": "GDSS",
+        "metric": "uniqueness",
+        "value": "99.6",
+        "value_num": 99.6,
+        "unit": "",
+        "direction": "max",
+        "tolerance": 0.05
+      },
+      "level2_cell": {
+        "type": "cell",
+        "entry_id": "applb:benchmark_unconditional_generation:2",
+        "table_ref": "table_extract:1",
+        "row_index": null,
+        "paper_id": "paper:2411.06608"
+      },
+      "level3_graph": {
+        "type": "graph",
+        "benchmark_id": "benchmark:unconditional_generation",
+        "entry_id": "applb:benchmark_unconditional_generation:2",
+        "metric_id": "appmetric:uniqueness"
+      },
+      "hashes": {
+        "spec": "sha256:0f1f79f23800ac4e5098d5162ed0760b04cdb00eda6b21380a938250e3aef805",
+        "code": "sha256:d6d8b78757d9d12adfdd",
+        "inputs": "sha256:1a83827c0cd39718592c",
+        "outputs": "sha256:8504774157670d715fea"
+      },
+      "three_level": true,
+      "verified": true
+    },
+    {
+      "claim_id": "C020",
+      "sau_id": "sau:241106608:numeric:019",
+      "level1_claim": {
+        "type": "claim",
+        "sau_id": "sau:241106608:numeric:019",
+        "model": "GDSS",
+        "metric": "novelty",
+        "value": "100.0",
+        "value_num": 100.0,
+        "unit": "",
+        "direction": "max",
+        "tolerance": 0.05
+      },
+      "level2_cell": {
+        "type": "cell",
+        "entry_id": "applb:benchmark_unconditional_generation:3",
+        "table_ref": "table_extract:1",
+        "row_index": null,
+        "paper_id": "paper:2411.06608"
+      },
+      "level3_graph": {
+        "type": "graph",
+        "benchmark_id": "benchmark:unconditional_generation",
+        "entry_id": "applb:benchmark_unconditional_generation:3",
+        "metric_id": "appmetric:novelty"
+      },
+      "hashes": {
+        "spec": "sha256:0f1f79f23800ac4e5098d5162ed0760b04cdb00eda6b21380a938250e3aef805",
+        "code": "sha256:d6d8b78757d9d12adfdd",
+        "inputs": "sha256:1a83827c0cd39718592c",
+        "outputs": "sha256:8504774157670d715fea"
+      },
+      "three_level": true,
+      "verified": true
+    },
+    {
+      "claim_id": "C021",
+      "sau_id": "sau:241106608:numeric:020",
+      "level1_claim": {
+        "type": "claim",
+        "sau_id": "sau:241106608:numeric:020",
+        "model": "GDSS",
+        "metric": "diversity",
+        "value": "0.9026",
+        "value_num": 0.9026,
+        "unit": "",
+        "direction": "max",
+        "tolerance": 0.05
+      },
+      "level2_cell": {
+        "type": "cell",
+        "entry_id": "applb:benchmark_unconditional_generation:4",
+        "table_ref": "table_extract:1",
+        "row_index": null,
+        "paper_id": "paper:2411.06608"
+      },
+      "level3_graph": {
+        "type": "graph",
+        "benchmark_id": "benchmark:unconditional_generation",
+        "entry_id": "applb:benchmark_unconditional_generation:4",
+        "metric_id": "appmetric:diversity"
+      },
+      "hashes": {
+        "spec": "sha256:0f1f79f23800ac4e5098d5162ed0760b04cdb00eda6b21380a938250e3aef805",
+        "code": "sha256:d6d8b78757d9d12adfdd",
+        "inputs": "sha256:1a83827c0cd39718592c",
+        "outputs": "sha256:8504774157670d715fea"
+      },
+      "three_level": true,
+      "verified": true
+    },
+    {
+      "claim_id": "C022",
+      "sau_id": "sau:241106608:numeric:021",
+      "level1_claim": {
+        "type": "claim",
+        "sau_id": "sau:241106608:numeric:021",
+        "model": "MolMiner",
+        "metric": "validity",
+        "value": "100.0",
+        "value_num": 100.0,
+        "unit": "",
+        "direction": "max",
+        "tolerance": 0.05
+      },
+      "level2_cell": {
+        "type": "cell",
+        "entry_id": "applb:benchmark_unconditional_generation:5",
+        "table_ref": "table_extract:1",
+        "row_index": null,
+        "paper_id": "paper:2411.06608"
+      },
+      "level3_graph": {
+        "type": "graph",
+        "benchmark_id": "benchmark:unconditional_generation",
+        "entry_id": "applb:benchmark_unconditional_generation:5",
+        "metric_id": "appmetric:validity"
+      },
+      "hashes": {
+        "spec": "sha256:0f1f79f23800ac4e5098d5162ed0760b04cdb00eda6b21380a938250e3aef805",
+        "code": "sha256:d6d8b78757d9d12adfdd",
+        "inputs": "sha256:1a83827c0cd39718592c",
+        "outputs": "sha256:8504774157670d715fea"
+      },
+      "three_level": true,
+      "verified": true
+    },
+    {
+      "claim_id": "C023",
+      "sau_id": "sau:241106608:numeric:022",
+      "level1_claim": {
+        "type": "claim",
+        "sau_id": "sau:241106608:numeric:022",
+        "model": "MolMiner",
+        "metric": "frag_ratio",
+        "value": "0.00",
+        "value_num": 0.0,
+        "unit": "",
+        "direction": "",
+        "tolerance": 0.05
+      },
+      "level2_cell": {
+        "type": "cell",
+        "entry_id": "applb:benchmark_unconditional_generation:6",
+        "table_ref": "table_extract:1",
+        "row_index": null,
+        "paper_id": "paper:2411.06608"
+      },
+      "level3_graph": {
+        "type": "graph",
+        "benchmark_id": "benchmark:unconditional_generation",
+        "entry_id": "applb:benchmark_unconditional_generation:6",
+        "metric_id": ""
+      },
+      "hashes": {
+        "spec": "sha256:0f1f79f23800ac4e5098d5162ed0760b04cdb00eda6b21380a938250e3aef805",
+        "code": "sha256:d6d8b78757d9d12adfdd",
+        "inputs": "sha256:1a83827c0cd39718592c",
+        "outputs": "sha256:8504774157670d715fea"
+      },
+      "three_level": true,
+      "verified": true
+    },
+    {
+      "claim_id": "C024",
+      "sau_id": "sau:241106608:numeric:023",
+      "level1_claim": {
+        "type": "claim",
+        "sau_id": "sau:241106608:numeric:023",
+        "model": "MolMiner",
+        "metric": "uniqueness",
+        "value": "98.5",
+        "value_num": 98.5,
+        "unit": "",
+        "direction": "max",
+        "tolerance": 0.05
+      },
+      "level2_cell": {
+        "type": "cell",
+        "entry_id": "applb:benchmark_unconditional_generation:7",
+        "table_ref": "table_extract:1",
+        "row_index": null,
+        "paper_id": "paper:2411.06608"
+      },
+      "level3_graph": {
+        "type": "graph",
+        "benchmark_id": "benchmark:unconditional_generation",
+        "entry_id": "applb:benchmark_unconditional_generation:7",
+        "metric_id": "appmetric:uniqueness"
+      },
+      "hashes": {
+        "spec": "sha256:0f1f79f23800ac4e5098d5162ed0760b04cdb00eda6b21380a938250e3aef805",
+        "code": "sha256:d6d8b78757d9d12adfdd",
+        "inputs": "sha256:1a83827c0cd39718592c",
+        "outputs": "sha256:8504774157670d715fea"
+      },
+      "three_level": true,
+      "verified": true
+    },
+    {
+      "claim_id": "C025",
+      "sau_id": "sau:241106608:numeric:024",
+      "level1_claim": {
+        "type": "claim",
+        "sau_id": "sau:241106608:numeric:024",
+        "model": "MolMiner",
+        "metric": "novelty",
+        "value": "99.9",
+        "value_num": 99.9,
+        "unit": "",
+        "direction": "max",
+        "tolerance": 0.05
+      },
+      "level2_cell": {
+        "type": "cell",
+        "entry_id": "applb:benchmark_unconditional_generation:8",
+        "table_ref": "table_extract:1",
+        "row_index": null,
+        "paper_id": "paper:2411.06608"
+      },
+      "level3_graph": {
+        "type": "graph",
+        "benchmark_id": "benchmark:unconditional_generation",
+        "entry_id": "applb:benchmark_unconditional_generation:8",
+        "metric_id": "appmetric:novelty"
+      },
+      "hashes": {
+        "spec": "sha256:0f1f79f23800ac4e5098d5162ed0760b04cdb00eda6b21380a938250e3aef805",
+        "code": "sha256:d6d8b78757d9d12adfdd",
+        "inputs": "sha256:1a83827c0cd39718592c",
+        "outputs": "sha256:8504774157670d715fea"
+      },
+      "three_level": true,
+      "verified": true
+    },
+    {
+      "claim_id": "C026",
+      "sau_id": "sau:241106608:numeric:025",
+      "level1_claim": {
+        "type": "claim",
+        "sau_id": "sau:241106608:numeric:025",
+        "model": "MolMiner",
+        "metric": "diversity",
+        "value": "0.8919",
+        "value_num": 0.8919,
+        "unit": "",
+        "direction": "max",
+        "tolerance": 0.05
+      },
+      "level2_cell": {
+        "type": "cell",
+        "entry_id": "applb:benchmark_unconditional_generation:9",
+        "table_ref": "table_extract:1",
+        "row_index": null,
+        "paper_id": "paper:2411.06608"
+      },
+      "level3_graph": {
+        "type": "graph",
+        "benchmark_id": "benchmark:unconditional_generation",
+        "entry_id": "applb:benchmark_unconditional_generation:9",
+        "metric_id": "appmetric:diversity"
+      },
+      "hashes": {
+        "spec": "sha256:0f1f79f23800ac4e5098d5162ed0760b04cdb00eda6b21380a938250e3aef805",
+        "code": "sha256:d6d8b78757d9d12adfdd",
+        "inputs": "sha256:1a83827c0cd39718592c",
+        "outputs": "sha256:8504774157670d715fea"
+      },
+      "three_level": true,
+      "verified": true
+    },
+    {
+      "claim_id": "C027",
+      "sau_id": "sau:241106608:numeric:026",
+      "level1_claim": {
+        "type": "claim",
+        "sau_id": "sau:241106608:numeric:026",
+        "model": "HierVAE",
+        "metric": "validity",
+        "value": "100.0",
+        "value_num": 100.0,
+        "unit": "",
+        "direction": "max",
+        "tolerance": 0.05
+      },
+      "level2_cell": {
+        "type": "cell",
+        "entry_id": "applb:benchmark_unconditional_generation:10",
+        "table_ref": "table_extract:1",
+        "row_index": null,
+        "paper_id": "paper:2411.06608"
+      },
+      "level3_graph": {
+        "type": "graph",
+        "benchmark_id": "benchmark:unconditional_generation",
+        "entry_id": "applb:benchmark_unconditional_generation:10",
+        "metric_id": "appmetric:validity"
+      },
+      "hashes": {
+        "spec": "sha256:0f1f79f23800ac4e5098d5162ed0760b04cdb00eda6b21380a938250e3aef805",
+        "code": "sha256:d6d8b78757d9d12adfdd",
+        "inputs": "sha256:1a83827c0cd39718592c",
+        "outputs": "sha256:8504774157670d715fea"
+      },
+      "three_level": true,
+      "verified": true
+    },
+    {
+      "claim_id": "C028",
+      "sau_id": "sau:241106608:numeric:027",
+      "level1_claim": {
+        "type": "claim",
+        "sau_id": "sau:241106608:numeric:027",
+        "model": "HierVAE",
+        "metric": "frag_ratio",
+        "value": "0.00",
+        "value_num": 0.0,
+        "unit": "",
+        "direction": "",
+        "tolerance": 0.05
+      },
+      "level2_cell": {
+        "type": "cell",
+        "entry_id": "applb:benchmark_unconditional_generation:11",
+        "table_ref": "table_extract:1",
+        "row_index": null,
+        "paper_id": "paper:2411.06608"
+      },
+      "level3_graph": {
+        "type": "graph",
+        "benchmark_id": "benchmark:unconditional_generation",
+        "entry_id": "applb:benchmark_unconditional_generation:11",
+        "metric_id": ""
+      },
+      "hashes": {
+        "spec": "sha256:0f1f79f23800ac4e5098d5162ed0760b04cdb00eda6b21380a938250e3aef805",
+        "code": "sha256:d6d8b78757d9d12adfdd",
+        "inputs": "sha256:1a83827c0cd39718592c",
+        "outputs": "sha256:8504774157670d715fea"
+      },
+      "three_level": true,
+      "verified": true
+    },
+    {
+      "claim_id": "C029",
+      "sau_id": "sau:241106608:numeric:028",
+      "level1_claim": {
+        "type": "claim",
+        "sau_id": "sau:241106608:numeric:028",
+        "model": "HierVAE",
+        "metric": "uniqueness",
+        "value": "100.0",
+        "value_num": 100.0,
+        "unit": "",
+        "direction": "max",
+        "tolerance": 0.05
+      },
+      "level2_cell": {
+        "type": "cell",
+        "entry_id": "applb:benchmark_unconditional_generation:12",
+        "table_ref": "table_extract:1",
+        "row_index": null,
+        "paper_id": "paper:2411.06608"
+      },
+      "level3_graph": {
+        "type": "graph",
+        "benchmark_id": "benchmark:unconditional_generation",
+        "entry_id": "applb:benchmark_unconditional_generation:12",
+        "metric_id": "appmetric:uniqueness"
+      },
+      "hashes": {
+        "spec": "sha256:0f1f79f23800ac4e5098d5162ed0760b04cdb00eda6b21380a938250e3aef805",
+        "code": "sha256:d6d8b78757d9d12adfdd",
+        "inputs": "sha256:1a83827c0cd39718592c",
+        "outputs": "sha256:8504774157670d715fea"
+      },
+      "three_level": true,
+      "verified": true
+    },
+    {
+      "claim_id": "C030",
+      "sau_id": "sau:241106608:numeric:029",
+      "level1_claim": {
+        "type": "claim",
+        "sau_id": "sau:241106608:numeric:029",
+        "model": "HierVAE",
+        "metric": "novelty",
+        "value": "99.9",
+        "value_num": 99.9,
+        "unit": "",
+        "direction": "max",
+        "tolerance": 0.05
+      },
+      "level2_cell": {
+        "type": "cell",
+        "entry_id": "applb:benchmark_unconditional_generation:13",
+        "table_ref": "table_extract:1",
+        "row_index": null,
+        "paper_id": "paper:2411.06608"
+      },
+      "level3_graph": {
+        "type": "graph",
+        "benchmark_id": "benchmark:unconditional_generation",
+        "entry_id": "applb:benchmark_unconditional_generation:13",
+        "metric_id": "appmetric:novelty"
+      },
+      "hashes": {
+        "spec": "sha256:0f1f79f23800ac4e5098d5162ed0760b04cdb00eda6b21380a938250e3aef805",
+        "code": "sha256:d6d8b78757d9d12adfdd",
+        "inputs": "sha256:1a83827c0cd39718592c",
+        "outputs": "sha256:8504774157670d715fea"
+      },
+      "three_level": true,
+      "verified": true
+    },
+    {
+      "claim_id": "C031",
+      "sau_id": "sau:241106608:numeric:030",
+      "level1_claim": {
+        "type": "claim",
+        "sau_id": "sau:241106608:numeric:030",
+        "model": "HierVAE",
+        "metric": "diversity",
+        "value": "0.8759",
+        "value_num": 0.8759,
+        "unit": "",
+        "direction": "max",
+        "tolerance": 0.05
+      },
+      "level2_cell": {
+        "type": "cell",
+        "entry_id": "applb:benchmark_unconditional_generation:14",
+        "table_ref": "table_extract:1",
+        "row_index": null,
+        "paper_id": "paper:2411.06608"
+      },
+      "level3_graph": {
+        "type": "graph",
+        "benchmark_id": "benchmark:unconditional_generation",
+        "entry_id": "applb:benchmark_unconditional_generation:14",
+        "metric_id": "appmetric:diversity"
+      },
+      "hashes": {
+        "spec": "sha256:0f1f79f23800ac4e5098d5162ed0760b04cdb00eda6b21380a938250e3aef805",
+        "code": "sha256:d6d8b78757d9d12adfdd",
+        "inputs": "sha256:1a83827c0cd39718592c",
+        "outputs": "sha256:8504774157670d715fea"
+      },
+      "three_level": true,
+      "verified": true
+    }
+  ]
+}

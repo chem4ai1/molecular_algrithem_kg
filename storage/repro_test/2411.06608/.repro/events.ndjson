@@ -1,0 +1,39 @@
+{"type": "start", "paper_id": "paper:2411.06608", "inputs_sha": "b89e84fba693b2e2", "effort": "lite"}
+{"type": "script_generated", "ts": 1794711018.327, "path": "storage/repro_test/molminer/REPRO_SCRIPT.py", "sha": "sha256:8886baffe81cd2fd7ddd0f74eea6a861e9be61be88c247e83d2aabd9d642439b"}
+{"type": "exec", "ts": 1794711018.37, "attempt": 0, "ok": true, "rc": 0, "duration": 0.04351496696472168}
+{"type": "exec_ok", "ts": 1794711018.371, "attempt": 0}
+{"type": "results_written", "ts": 1794711018.385, "n_rows": 31, "n_entries": 31, "outputs_sha": "sha256:8504774157670d715fea5728826a176fd79e30cecd9f1f8a5e1c954b5e019f03"}
+{"type": "execution", "ok": true, "status": "PASS", "debug_tries": 0, "ladder": "PASS"}
+{"type": "phase_done", "phase": "R0", "verdict": "PASS", "next": "R1", "gate": "paper_core_present", "reasons": []}
+{"type": "phase_done", "phase": "R1", "verdict": "PARTIAL", "next": "R2", "gate": "method_grounded", "reasons": ["JTNN 缺机理", "MoLeR 缺机理"]}
+{"type": "phase_done", "phase": "R2", "verdict": "PASS", "next": "R3", "gate": "code_located", "reasons": []}
+{"type": "phase_done", "phase": "R3", "verdict": "PASS", "next": "R4", "gate": "data_bound", "reasons": []}
+{"type": "phase_done", "phase": "R4", "verdict": "PASS", "next": "R5", "gate": "metrics_comparable", "reasons": []}
+{"type": "phase_done", "phase": "R5", "verdict": "PASS", "next": "R6", "gate": "verdicts_valid", "reasons": []}
+{"type": "phase_done", "phase": "R6", "verdict": "PASS", "next": "done", "gate": "reproduction_close", "reasons": []}
+{"type": "start", "paper_id": "paper:2411.06608", "inputs_sha": "b89e84fba693b2e2", "effort": "lite"}
+{"type": "script_generated", "ts": 1794711242.178, "path": "storage/repro_test/molminer/REPRO_SCRIPT.py", "sha": "sha256:8886baffe81cd2fd7ddd0f74eea6a861e9be61be88c247e83d2aabd9d642439b"}
+{"type": "exec", "ts": 1794711242.206, "attempt": 0, "ok": true, "rc": 0, "duration": 0.02819061279296875}
+{"type": "exec_ok", "ts": 1794711242.206, "attempt": 0}
+{"type": "results_written", "ts": 1794711242.221, "n_rows": 31, "n_entries": 31, "outputs_sha": "sha256:8504774157670d715fea5728826a176fd79e30cecd9f1f8a5e1c954b5e019f03"}
+{"type": "execution", "ok": true, "status": "PASS", "debug_tries": 0, "ladder": "PASS"}
+{"type": "phase_done", "phase": "R0", "verdict": "PASS", "next": "R1", "gate": "paper_core_present", "reasons": []}
+{"type": "phase_done", "phase": "R1", "verdict": "PARTIAL", "next": "R2", "gate": "method_grounded", "reasons": ["JTNN 缺机理", "MoLeR 缺机理"]}
+{"type": "phase_done", "phase": "R2", "verdict": "PASS", "next": "R3", "gate": "code_located", "reasons": []}
+{"type": "phase_done", "phase": "R3", "verdict": "PASS", "next": "R4", "gate": "data_bound", "reasons": []}
+{"type": "phase_done", "phase": "R4", "verdict": "PASS", "next": "R5", "gate": "metrics_comparable", "reasons": []}
+{"type": "phase_done", "phase": "R5", "verdict": "PASS", "next": "R6", "gate": "verdicts_valid", "reasons": []}
+{"type": "phase_done", "phase": "R6", "verdict": "PASS", "next": "done", "gate": "reproduction_close", "reasons": []}
+{"type": "start", "paper_id": "paper:2411.06608", "inputs_sha": "b89e84fba693b2e2", "effort": "lite"}
+{"type": "script_generated", "ts": 1794711255.854, "path": "storage/repro_test/molminer/REPRO_SCRIPT.py", "sha": "sha256:8886baffe81cd2fd7ddd0f74eea6a861e9be61be88c247e83d2aabd9d642439b"}
+{"type": "exec", "ts": 1794711255.898, "attempt": 0, "ok": true, "rc": 0, "duration": 0.04372286796569824}
+{"type": "exec_ok", "ts": 1794711255.898, "attempt": 0}
+{"type": "results_written", "ts": 1794711255.911, "n_rows": 31, "n_entries": 31, "outputs_sha": "sha256:8504774157670d715fea5728826a176fd79e30cecd9f1f8a5e1c954b5e019f03"}
+{"type": "execution", "ok": true, "status": "PASS", "debug_tries": 0, "ladder": "PASS"}
+{"type": "phase_done", "phase": "R0", "verdict": "PASS", "next": "R1", "gate": "paper_core_present", "reasons": []}
+{"type": "phase_done", "phase": "R1", "verdict": "PARTIAL", "next": "R2", "gate": "method_grounded", "reasons": ["JTNN 缺机理", "MoLeR 缺机理"]}
+{"type": "phase_done", "phase": "R2", "verdict": "PASS", "next": "R3", "gate": "code_located", "reasons": []}
+{"type": "phase_done", "phase": "R3", "verdict": "PASS", "next": "R4", "gate": "data_bound", "reasons": []}
+{"type": "phase_done", "phase": "R4", "verdict": "PASS", "next": "R5", "gate": "metrics_comparable", "reasons": []}
+{"type": "phase_done", "phase": "R5", "verdict": "PASS", "next": "R6", "gate": "verdicts_valid", "reasons": []}
+{"type": "phase_done", "phase": "R6", "verdict": "PASS", "next": "done", "gate": "reproduction_close", "reasons": []}

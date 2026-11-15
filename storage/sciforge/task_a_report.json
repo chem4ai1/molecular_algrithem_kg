@@ -1,0 +1,157 @@
+{
+  "task": "A:gap_to_algorithm_direction",
+  "n_gaps": 6,
+  "gaps": [
+    {
+      "gap_id": "GAP-1",
+      "type": "domain_coverage_gap",
+      "severity": "中",
+      "object": "D10 材料/晶体/分子动力学",
+      "nodes": [],
+      "reason": "",
+      "action": ""
+    },
+    {
+      "gap_id": "GAP-2",
+      "type": "domain_coverage_gap",
+      "severity": "中",
+      "object": "D7 合成与逆合成/反应",
+      "nodes": [],
+      "reason": "",
+      "action": ""
+    },
+    {
+      "gap_id": "GAP-3",
+      "type": "algo_coverage_gap",
+      "severity": "低",
+      "object": "A06 GFlowNet",
+      "nodes": [],
+      "reason": "",
+      "action": ""
+    },
+    {
+      "gap_id": "GAP-4",
+      "type": "algo_coverage_gap",
+      "severity": "低",
+      "object": "A13 多模态/图文分子",
+      "nodes": [],
+      "reason": "",
+      "action": ""
+    },
+    {
+      "gap_id": "GAP-5",
+      "type": "algo_coverage_gap",
+      "severity": "低",
+      "object": "A16 物理信息/神经算子/模拟",
+      "nodes": [],
+      "reason": "",
+      "action": ""
+    },
+    {
+      "gap_id": "GAP-6",
+      "type": "shared_platform_not_independent",
+      "severity": "低",
+      "object": "Chemistry42",
+      "nodes": [],
+      "reason": "",
+      "action": ""
+    }
+  ],
+  "gap_report": "# GAP_REPORT（基于 20 篇论文的 PO 图）\n\nGAP-1: [domain_coverage_gap] D10 材料/晶体/分子动力学 — 未被覆盖/缺少实现（paper:01，20 篇论文统计）。\n\nGAP-2: [domain_coverage_gap] D7 合成与逆合成/反应 — 未被覆盖/缺少实现（paper:01，20 篇论文统计）。\n\nGAP-3: [algo_coverage_gap] A06 GFlowNet — 未被覆盖/缺少实现（paper:01，20 篇论文统计）。\n\nGAP-4: [algo_coverage_gap] A13 多模态/图文分子 — 未被覆盖/缺少实现（paper:01，20 篇论文统计）。\n\nGAP-5: [algo_coverage_gap] A16 物理信息/神经算子/模拟 — 未被覆盖/缺少实现（paper:01，20 篇论文统计）。\n\nGAP-6: [shared_platform_not_independent] Chemistry42 — 未被覆盖/缺少实现（paper:01，20 篇论文统计）。\n",
+  "gap_gate": {
+    "ok": true,
+    "problems": [],
+    "n_gaps": 6,
+    "n_discriminators": 12,
+    "n_citations": 6
+  },
+  "n_ideas": 4,
+  "ideas": [
+    {
+      "idea_id": "IDEA-GAP-1",
+      "gap_id": "GAP-1",
+      "title": "把 自回归/Transformer/LLM 迁移到 材料/晶体/分子动力学 并补可复现基准",
+      "family_codes": [
+        "A01"
+      ],
+      "domain_codes": [
+        "D10"
+      ],
+      "novelty": "unexplored_pair",
+      "evidence": [
+        "GAP-1"
+      ],
+      "family_valid": true,
+      "domain_valid": true
+    },
+    {
+      "idea_id": "IDEA-GAP-3",
+      "gap_id": "GAP-3",
+      "title": "把 GFlowNet 迁移到 分子生成与从头设计 并补可复现基准",
+      "family_codes": [
+        "A06"
+      ],
+      "domain_codes": [
+        "D1"
+      ],
+      "novelty": "unexplored_pair",
+      "evidence": [
+        "GAP-3"
+      ],
+      "family_valid": true,
+      "domain_valid": true
+    },
+    {
+      "idea_id": "IDEA-GAP-4",
+      "gap_id": "GAP-4",
+      "title": "把 多模态/图文分子 迁移到 分子生成与从头设计 并补可复现基准",
+      "family_codes": [
+        "A13"
+      ],
+      "domain_codes": [
+        "D1"
+      ],
+      "novelty": "unexplored_pair",
+      "evidence": [
+        "GAP-4"
+      ],
+      "family_valid": true,
+      "domain_valid": true
+    },
+    {
+      "idea_id": "IDEA-GAP-5",
+      "gap_id": "GAP-5",
+      "title": "把 物理信息/神经算子/模拟 迁移到 分子生成与从头设计 并补可复现基准",
+      "family_codes": [
+        "A16"
+      ],
+      "domain_codes": [
+        "D1"
+      ],
+      "novelty": "unexplored_pair",
+      "evidence": [
+        "GAP-5"
+      ],
+      "family_valid": true,
+      "domain_valid": true
+    }
+  ],
+  "novelty_distribution": {
+    "unexplored_pair": 4
+  },
+  "checks": {
+    "gap_gate": true,
+    "every_idea_anchored": true,
+    "codes_legal": true,
+    "no_hallucinated_refs": true
+  },
+  "verdict": {
+    "verdict": "PASS",
+    "ok": true,
+    "artifacts": [
+      "GAP_REPORT.md",
+      "IDEA_DAG.json"
+    ],
+    "notes": "n_gaps=6 n_ideas=4"
+  }
+}

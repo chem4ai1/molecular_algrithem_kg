@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.1",
+  "source_contract": "CapFactory POGraph（语义层 9 关系 + 应用层 9 关系，唯一真相源 capfactory/reprospec/relations.py）+ relation_index.json 派生链; 只装配不产生新事实",
+  "relation_contract": {
+    "module": "capfactory.reprospec.relations",
+    "note": "reads 里的关系名必须是 SEMANTIC_RELATIONS 或 APP_RELATIONS 的规范名；relation_index[...] 是预计算多跳链，不是 TBox 关系；*.json 是阶段产物",
+    "validator": "validate_phasegraph(phasegraph_dict) -> list[str]"
+  },
+  "comment": "代码复现 DAG。知识留在图谱属性/关系里，控制流在这里；门在阶段边界以代码执行；events.ndjson 是 durable truth，RUNSTATE 是派生快照。P0-1：统一关系名（REALIZED_BY→MODULE_IMPLEMENTED_BY、IMPLEMENTS_MODULE→HAS_MODULE）。",
+  "effort_limits": {
+    "dry": {"wall_clock_seconds_max": 60, "allow_execution": false},
+    "lite": {"wall_clock_seconds_max": 3600, "allow_execution": true},
+    "full": {"wall_clock_seconds_max": 86400, "allow_execution": true}
+  },
+  "phases": [
+    {"id": "R0", "name": "intake-paper", "mode": "MUST", "kernel_native": true,
+     "reads": ["Paper.research_question", "Paper.domain", "Paper.flow_family", "Paper.problem_category"],
+     "produces": ["RUN_BUDGET.json", "PROBLEM_HASH.txt", "REPRO_SPEC.json", "SAU_LIST.json"],
+     "gate": "paper_core_present", "next": "R1"},
+    {"id": "R1", "name": "resolve-method", "mode": "MUST",
+     "reads": ["PROPOSES_METHOD", "HAS_MODULE", "SUBCLASS_OF", "RELATED_TO",
+               "Algorithm.mechanism", "Algorithm.task_type", "Algorithm.problems_solved"],
+     "produces": ["METHOD_CARD.json", "METHOD_LOCK.json", "LINEAGE.json"],
+     "gate": "method_grounded", "next": "R2"},
+    {"id": "R2", "name": "ground-code", "mode": "MUST",
+     "reads": ["HAS_CODE", "HAS_FUNCTION", "MODULE_IMPLEMENTED_BY",
+               "BELONGS_TO_MODULE", "CodeRepository", "CodeFunction"],
+     "produces": ["CODE_PLAN.json", "STATIC_CHECKS.json"], "gate": "code_located", "next": "R3",
+     "loopback": {"id": "L1", "on": "no_code", "target": "R2", "budget": 1}},
+    {"id": "R3", "name": "bind-data", "mode": "MUST",
+     "reads": ["EVALUATED_ON", "HAS_CONTRACT", "RELATED_TO",
+               "Benchmark.input_form", "Benchmark.output_form", "Benchmark.n_samples",
+               "relation_index[data_paper]"],
+     "produces": ["DATA_PLAN.json", "SHAPE_PROBE.json"], "gate": "data_bound", "next": "R4"},
+    {"id": "R4", "name": "fix-metrics", "mode": "MUST",
+     "reads": ["HAS_METRIC", "HAS_ENTRY", "USES_METRIC", "SUPPORTED_BY",
+               "Benchmark.metrics", "Benchmark.sota_by_metric", "MetricDefinition.direction"],
+     "produces": ["METRIC_PLAN.json", "SOTA_BASELINE.json", "ALIGN_RUBRIC.json"],
+     "gate": "metrics_comparable", "next": "R5"},
+    {"id": "R5", "name": "execute", "mode": "MUST",
+     "reads": ["CODE_PLAN.json", "DATA_PLAN.json", "METRIC_PLAN.json", "REPRO_SPEC.json"],
+     "produces": ["RUNSTATE.json", "events.ndjson", "raw_results.json", "S2_LADDER.json"],
+     "gate": "verdicts_valid", "next": "R6"},
+    {"id": "R6", "name": "verify-and-replay", "mode": "MUST",
+     "reads": ["raw_results.json", "SOTA_BASELINE.json", "REPRO_SPEC.json", "kg.result"],
+     "produces": ["REPRO_REPORT.md", "REPRO_VERDICTS.json", "SAU_VERDICTS.json",
+                  "app_repro_runtime.json", "CLAIM_ANCHORS.json"],
+     "auxiliary": {
+       "sau_verdicts": "capfactory.reprospec.verdict.evaluate_sau（dry 可用静态证据）",
+       "runtime_nodes": "capfactory.reprospec.application.materialize_runtime_nodes（独立应用层图）",
+       "note": "辅助证据不参与 reproduction_close 门；dry 下 R6 仍因无实跑值 BLOCKED"
+     },
+     "gate": "reproduction_close", "next": null,
+     "loopback": {"id": "L2", "on": "deviation", "target": "R5", "budget": 1}}
+  ]
+}

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>CapFactory · 主界面</title>
+<link rel="stylesheet" href="/static/app.css" />
+<style>
+  .bar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+  .bar div{background:var(--panel);border:1px solid var(--line);border-radius:11px;
+    padding:10px 14px;font-size:11px;color:var(--muted);min-width:104px}
+  .bar b{display:block;color:var(--accent);font-size:19px;font-weight:600}
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  @media(max-width:1180px){.cards{grid-template-columns:1fr}}
+  .card{background:linear-gradient(180deg,#161e35,#121828);border:1px solid var(--line);
+    border-radius:15px;padding:20px;position:relative;overflow:hidden;transition:.18s;display:flex;
+    flex-direction:column;min-height:280px}
+  .card:hover{border-color:var(--accent);transform:translateY(-2px)}
+  .card .no{font:11px/1 var(--mono);color:var(--muted);letter-spacing:2px}
+  .card h3{margin:10px 0 6px;font-size:19px}
+  .card p{color:var(--muted);font-size:12px;margin:0 0 14px}
+  .card .art{flex:1;display:flex;align-items:center;justify-content:center;margin:6px 0 16px}
+  .card .go{display:inline-flex;align-items:center;gap:7px;font-size:12px;color:var(--accent)}
+  .mini{font:10px/1.5 var(--mono);color:#7d8bb0}
+  .acts{margin-top:18px}
+  .acts .row{display:flex;justify-content:space-between;align-items:center;
+    padding:9px 12px;border-bottom:1px solid var(--line);font-size:12px}
+  .acts .row:last-child{border-bottom:0}
+  .acts .row span{color:var(--muted)}
+  svg{overflow:visible}
+</style>
+</head>
+<body>
+<header>
+  <div><h1>CapFactory</h1>
+    <div class="sub">论文知识图谱 × 复现流水线 · 从数据到 Pipeline</div></div>
+  <div class="crumb"><a class="cur" href="/">主界面</a><a href="/data">数据</a>
+    <a href="/relations">关系</a><a href="/pipeline">Pipeline</a></div>
+</header>
+<main>
+  <div class="bar" id="bar"></div>
+  <div class="cards">
+    <a class="card" href="/data">
+      <div class="no">01</div><h3>数据</h3>
+      <p>论文库 · 算法库 · 数据库<br/>按本体树折叠浏览，点节点看卡片</p>
+      <div class="art" id="art-data"></div>
+      <div class="go">进入数据工作台 →</div>
+    </a>
+    <a class="card" href="/relations">
+      <div class="no">02</div><h3>图谱</h3>
+      <p>论文关系 · 算法关系 · 数据关系<br/>同一张图，三套边视图</p>
+      <div class="art" id="art-graph"></div>
+      <div class="go">查看图谱 →</div>
+    </a>
+    <a class="card" href="/pipeline">
+      <div class="no">03</div><h3>Pipeline</h3>
+      <p>抽取 → 方法锁定 → 代码生成 → 复现 → 主张 → 报告<br/>当前开放「论文抽取」</p>
+      <div class="art" id="art-pipe"></div>
+      <div class="go">进入 Pipeline →</div>
+    </a>
+  </div>
+  <section class="panel acts">
+    <h2>最近活动</h2><p class="hint">已完成抽取的论文 run（按耗时排序）</p>
+    <div id="runs" class="empty">加载中…</div>
+  </section>
+</main>
+<script>
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??'').replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+function artData(n){const k=Math.max(n.paper,1);
+  return `<svg width="180" height="96" viewBox="0 0 180 96">
+  ${[0,1,2].map(i=>`<rect x="${16+i*54}" y="${58-18-((i%2)*14)}" width="38"
+     height="${18+((i%2)*14)}" rx="5" fill="#6ee7c8" opacity=".${55+i*12}"/>`).join('')}
+  <text x="16" y="92" fill="#7d8bb0" font-size="9">论文 ${n.paper} · 算法 ${n.algorithm}</text></svg>`;}
+function artGraph(){
+  const pts=[[30,26],[92,18],[150,40],[52,70],[118,72]];let s='';
+  for(let i=0;i<pts.length;i++)for(let j=i+1;j<pts.length;j++)
+    if((i+j)%2===0)s+=`<line x1="${pts[i][0]}" y1="${pts[i][1]}" x2="${pts[j][0]}" y2="${pts[j][1]}" stroke="#3a4a72"/>`;
+  pts.forEach((p,i)=>{s+=`<circle cx="${p[0]}" cy="${p[1]}" r="${i===0?6:4.4}"
+    fill="${['#6ee7c8','#ffb35c','#f58ac0','#63d9a0','#9c8cff'][i]}"/>`;});
+  return `<svg width="180" height="96" viewBox="0 0 180 96">${s}</svg>`;}
+function artPipe(){
+  return `<svg width="182" height="96" viewBox="0 0 182 96">
+   <line x1="14" y1="48" x2="168" y2="48" stroke="#2a3556" stroke-width="2"/>
+   ${[0,1,2,3,4].map(i=>`<circle cx="${14+i*38}" cy="48" r="${i===0?7:5}"
+     fill="${i===0?'#6ee7c8':'#26314e'}" stroke="${i===0?'#6ee7c8':'#3a4a72'}"/>
+     <text x="${8+i*38}" y="72" fill="#7d8bb0" font-size="8">${['抽取','锁定','生成','复现','报告'][i]}</text>`).join('')}
+  </svg>`;}
+async function boot(){
+  const d=await (await fetch('/api/v6/home/summary')).json();
+  const c=d.counts||{}, g=d.graph||{};
+  $('#bar').innerHTML=[['图节点',g.nodes],['图关系',g.edges],['论文',c.paper],
+    ['算法',c.algorithm],['基准',c.benchmark],['观测',c.observation],['抽取 run',d.n_runs]]
+    .map(([k,v])=>`<div><b>${v??0}</b>${k}</div>`).join('');
+  $('#art-data').innerHTML=artData(c); $('#art-graph').innerHTML=artGraph();
+  $('#art-pipe').innerHTML=artPipe();
+  const rs=d.runs||[];
+  $('#runs').className=rs.length?'':'empty';
+  $('#runs').innerHTML=rs.length?rs.map(r=>`<div class="row">
+    <span><a href="/pipeline/extract?aid=${esc(r.arxiv_id)}">${esc(r.arxiv_id)}</a></span>
+    <span>${r.ok?'<span class="pill done">完成</span>':'<span class="pill bad">失败</span>'}
+      · ${r.seconds??'-'}s · ${r.n_blocks??'-'} 块</span></div>`).join(''):'暂无 run';
+}
+boot();
+</script>
+</body></html>

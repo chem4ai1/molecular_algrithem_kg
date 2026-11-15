@@ -1,0 +1,162 @@
+{
+  "paper_id": "paper:2405.03370",
+  "spec_hash": "sha256:1800f74ed5b5af74c8b87c7ee1c7304516427ea7d812b909b07a4f9de6b33fa9",
+  "method": "mini_batch_runtime",
+  "batch_size": 4,
+  "script_sha": "sha256:bb5ed2465f20e88c5b3711318fab8cc5640b9be865b24890f5f884c526261494",
+  "n_probes": 3,
+  "n_inherited_forms": 2,
+  "inheritance": [
+    {
+      "benchmark": "benchmark:canonical:antibody_cdrh3_test_set",
+      "side": "input_form",
+      "declared": "unknown",
+      "effective": "蛋白口袋+配体",
+      "inherited_from": "benchmark:antibody_cdrh3_test_set",
+      "rule": "exact_label",
+      "paper_declared": false
+    },
+    {
+      "benchmark": "benchmark:canonical:antibody_cdrh3_test_set",
+      "side": "output_form",
+      "declared": "unknown",
+      "effective": "3D 构象/对接分数",
+      "inherited_from": "benchmark:antibody_cdrh3_test_set",
+      "rule": "exact_label",
+      "paper_declared": false
+    }
+  ],
+  "probes": [
+    {
+      "benchmark": "benchmark:antibody_cdrh3_test_set",
+      "label": "antibody CDRH3 test set",
+      "declared_input_form": "蛋白口袋+配体",
+      "declared_output_form": "3D 构象/对接分数",
+      "effective_input_form": "蛋白口袋+配体",
+      "effective_output_form": "3D 构象/对接分数",
+      "vocab_input_shape": "unknown",
+      "vocab_output_shape": "unknown",
+      "input_observed": {
+        "constructed": false,
+        "form": "蛋白口袋+配体",
+        "observed": null,
+        "reason": "form_not_declared_or_unregistered"
+      },
+      "output_observed": {
+        "constructed": false,
+        "form": "3D 构象/对接分数",
+        "observed": null,
+        "reason": "form_not_declared_or_unregistered"
+      },
+      "form_sources": [],
+      "unknown_forms": [
+        "input_form",
+        "output_form"
+      ],
+      "runtime_verified": false,
+      "method": "mini_batch_partial"
+    },
+    {
+      "benchmark": "benchmark:canonical:antibody_cdrh3_test_set",
+      "label": "antibody CDRH3 test set",
+      "declared_input_form": "unknown",
+      "declared_output_form": "unknown",
+      "effective_input_form": "蛋白口袋+配体",
+      "effective_output_form": "3D 构象/对接分数",
+      "vocab_input_shape": "unknown",
+      "vocab_output_shape": "unknown",
+      "input_observed": {
+        "constructed": false,
+        "form": "蛋白口袋+配体",
+        "observed": null,
+        "reason": "form_not_declared_or_unregistered"
+      },
+      "output_observed": {
+        "constructed": false,
+        "form": "3D 构象/对接分数",
+        "observed": null,
+        "reason": "form_not_declared_or_unregistered"
+      },
+      "form_sources": [
+        {
+          "benchmark": "benchmark:canonical:antibody_cdrh3_test_set",
+          "side": "input_form",
+          "declared": "unknown",
+          "effective": "蛋白口袋+配体",
+          "inherited_from": "benchmark:antibody_cdrh3_test_set",
+          "rule": "exact_label",
+          "paper_declared": false
+        },
+        {
+          "benchmark": "benchmark:canonical:antibody_cdrh3_test_set",
+          "side": "output_form",
+          "declared": "unknown",
+          "effective": "3D 构象/对接分数",
+          "inherited_from": "benchmark:antibody_cdrh3_test_set",
+          "rule": "exact_label",
+          "paper_declared": false
+        }
+      ],
+      "unknown_forms": [
+        "input_form",
+        "output_form"
+      ],
+      "runtime_verified": false,
+      "method": "mini_batch_partial"
+    },
+    {
+      "benchmark": "benchmark:d44_1_anti_lysozyme_antibody_variants",
+      "label": "D44.1 anti-lysozyme antibody variants",
+      "declared_input_form": "序列",
+      "declared_output_form": "标量",
+      "effective_input_form": "序列",
+      "effective_output_form": "标量",
+      "vocab_input_shape": "(n, L)",
+      "vocab_output_shape": "()",
+      "input_observed": {
+        "constructed": true,
+        "form": "序列",
+        "observed": {
+          "dims": [
+            4,
+            12
+          ],
+          "dtype": "int",
+          "kind": "array",
+          "n_scalars": 48,
+          "shape": "(4, 12)"
+        },
+        "reason": ""
+      },
+      "output_observed": {
+        "constructed": true,
+        "form": "标量",
+        "observed": {
+          "dims": [
+            4
+          ],
+          "dtype": "float",
+          "kind": "array",
+          "n_scalars": 4,
+          "shape": "(4,)"
+        },
+        "reason": ""
+      },
+      "form_sources": [],
+      "unknown_forms": [],
+      "runtime_verified": true,
+      "method": "mini_batch_runtime"
+    }
+  ],
+  "ok": false,
+  "warnings": [
+    "4 处形式无法构造 mini-batch，已如实保留为 unknown",
+    "2 处表单来自同族继承，非论文原文声明"
+  ],
+  "files": [
+    "MINIBATCH_SCRIPT.py",
+    "OBSERVED_SHAPES.json"
+  ],
+  "n_runtime_verified": 1,
+  "n_unknown_remaining": 4
+}

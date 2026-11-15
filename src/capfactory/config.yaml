@@ -1,0 +1,60 @@
+# CapFactory 运行时配置
+# 优先级：环境变量 > 本文件 > 内置默认值（见 capfactory/config.py）
+
+llm:
+  base_url: "https://openrouter.ai/api/v1"
+  api_key_env: "OPENROUTER_API_KEY"
+  model: "nvidia/nemotron-3.5-super-vl:free"
+  paper_model: "nvidia/nemotron-3.5-super-vl:free"
+  code_model: "nvidia/nemotron-3.5-super-vl:free"
+  temperature: 0.2
+  max_tokens: 6000
+  max_retries: 4
+  timeout: 180
+  max_concurrency: 2
+  offline: false
+
+paths:
+  storage: "storage_cf"
+  kg_dir: "storage_cf/kg"
+  raw_dir: "storage_cf/raw"
+  cache_dir: "storage_cf/cache"
+  workspace: "storage_cf/workspace"
+  reports: "storage_cf/reports"
+  logs: "storage_cf/logs"
+
+ingest:
+  arxiv_max_results: 8
+  arxiv_rate_limit_seconds: 3.0
+  clone_depth: 1
+  max_repo_files: 400
+  max_file_bytes: 200000
+
+kg:
+  dedup_similarity: 0.90
+  embedding_dim: 512
+  top_k_retrieval: 8
+
+replicate:
+  max_candidates: 3
+  max_repair_rounds: 3
+  exec_timeout_seconds: 300
+  stability_repeats: 2
+  min_metric_score: 0.5
+
+domain:
+  name: "天然多肽药物研发（佩德生物）"
+  needs:
+    - "多肽毒性预测"
+    - "抗菌肽活性预测"
+    - "多肽结构与靶点结合预测"
+    - "多肽成药性评估（半衰期/稳定性/免疫原性）"
+    - "多肽虚拟筛选与生成式设计"
+    - "多肽理化性质预测"
+  need_aliases:
+    "多肽毒性预测": "peptide toxicity prediction toxin toxic hemolytic cytotoxicity"
+    "抗菌肽活性预测": "antimicrobial peptide activity prediction AMP minimum inhibitory concentration"
+    "多肽结构与靶点结合预测": "peptide structure prediction binding affinity molecular docking target interaction"
+    "多肽成药性评估（半衰期/稳定性/免疫原性）": "druggability ADMET stability half-life proteolysis immunogenicity permeability"
+    "多肽虚拟筛选与生成式设计": "virtual screening generative design diffusion model language model de novo peptide"
+    "多肽理化性质预测": "physicochemical property prediction charge hydrophobicity isoelectric point solubility"

@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>CapFactory · 数据工作台</title>
+<link rel="stylesheet" href="/static/app.css" />
+<style>
+  main{display:grid;grid-template-columns:330px minmax(0,1fr) 330px;gap:14px;max-width:1640px}
+  @media(max-width:1400px){main{grid-template-columns:310px 1fr}}
+  @media(max-width:1000px){main{grid-template-columns:1fr}}
+  .libs{display:flex;gap:6px;margin-bottom:10px}
+  .libs button{flex:1;font-size:12px;padding:7px 8px}
+  .libs button.cur{border-color:var(--accent);color:var(--accent);background:#16313a}
+  .facets{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:8px}
+  .facets button{font-size:11px;padding:5px 9px;border-radius:7px}
+  .facets button.cur{border-color:var(--accent);color:var(--accent);background:#16313a}
+  .tree{margin-top:10px;max-height:560px;overflow:auto;font-size:12px}
+  .psearch{margin:8px 0}
+  .presults{font-size:11px;margin-top:6px;max-height:220px;overflow-y:auto}
+  .pres{padding:6px 8px;border:1px solid var(--line);border-radius:8px;
+    margin-bottom:5px;cursor:pointer;background:#0f1729}
+  .pres:hover{border-color:var(--accent)}
+  .pres b{color:var(--accent);font-weight:500}
+  .pres .sc{float:right;color:var(--muted);font-size:10px}
+  .pres .pb{display:block;color:var(--muted);font-size:10px;margin-top:3px}
+  .probbox{margin-top:12px;border:1px solid #2a6b62;border-radius:9px;padding:10px}
+  .probbox h4{margin:0 0 7px;font-size:11px;color:var(--accent);font-weight:500}
+  .probbox ol{margin:0 0 8px 16px;padding:0;font-size:11.5px;line-height:1.6}
+  .probbox .mech{font-size:11.5px;line-height:1.7;color:var(--text)}
+  .probbox .inf{font-size:10px;color:#ffb35c;margin-top:5px}
+  .probbox .chips{display:flex;gap:5px;flex-wrap:wrap;margin-top:5px}
+  .probbox .chips span{font-size:10px;background:#0f1830;border:1px solid var(--line);
+    border-radius:6px;padding:2px 7px;color:#cdd8f0}
+  .famsch{margin-top:14px}
+  .famsch .hdr{background:#153a34;border:1px solid #2a6b62;border-radius:9px;
+    padding:9px 11px;margin-bottom:8px;font-size:11.5px}
+  .famsch .hdr b{color:var(--accent);font-size:13px}
+  .famsch .fld{display:flex;flex-wrap:wrap;gap:9px;padding:5px 8px;border-bottom:1px dashed #222c46;
+    font-size:11.5px;align-items:baseline}
+  .famsch .fld:last-child{border-bottom:0}
+  .famsch .fld .k{width:150px;color:var(--muted);flex:0 0 150px}
+  .famsch .fld .v{color:var(--text);flex:1 1 120px;min-width:0;
+    word-break:break-word;overflow-wrap:anywhere}
+  .famsch .fld .t{font-size:9px;color:#7d8bb0;flex:0 0 48px;text-align:right}
+  .famsch .fld.unknown .v{color:#5c6885}
+  .blist{margin-top:12px}
+  .blist h4{margin:0 0 7px;font-size:11.5px;color:var(--accent);font-weight:500}
+  .blist .chips{display:flex;gap:6px;flex-wrap:wrap}
+  .blist .chips span{font-size:10.5px;background:#0f1830;border:1px solid var(--line);
+    border-radius:7px;padding:3px 8px;color:#cdd8f0}
+  .blist table{width:100%;border-collapse:collapse;font-size:11px;margin-top:5px}
+  .blist th,.blist td{border-bottom:1px solid var(--line);padding:4px 7px;text-align:left}
+  .blist th{color:var(--muted);font-weight:500;font-size:10px}
+  .blist tr.ours{background:#153a34}
+  .blist .na{color:var(--muted);font-size:11px;padding:5px 0}
+  .blist table.matrix{font-size:11px;margin-top:6px}
+  .blist table.matrix th{font-size:10px;text-align:center}
+  .blist table.matrix th:first-child{text-align:left}
+  .blist table.matrix th small{display:block;color:#ffd166;font-size:8.5px;font-weight:400}
+  .blist table.matrix td{text-align:center;border-bottom:1px solid var(--line);padding:4px 6px}
+  .blist table.matrix td:first-child{text-align:left}
+  .blist table.matrix td.sota{background:#3a3218;color:#ffd166;font-weight:600}
+  .sotabadge{font-size:9px;background:#3a3218;color:#ffd166;border-radius:6px;padding:1px 5px}
+  .lb{width:100%;border-collapse:collapse;font-size:12px;margin-top:10px}
+  .lb th,.lb td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:right}
+  .lb th:first-child,.lb td:first-child{text-align:left;font-weight:400;
+    position:sticky;left:0;background:var(--panel)}
+  .lb thead th{color:var(--muted);font-weight:500;font-size:11px;
+    border-bottom:1px solid #3a4a72}
+  .lb thead th small{display:block;color:#6f7da4;font-size:9px;font-weight:400}
+  .lb tr.ours{background:#153a34}
+  .lb tr.ours td:first-child{color:var(--accent);font-weight:600}
+  .lb td.na{color:#4a577a}
+  .lb .dir{font-size:9px;color:#7d8bb0;margin-left:3px}
+  .tn{padding:3px 6px;border-radius:6px;cursor:pointer;display:flex;align-items:center;gap:6px}
+  .tn:hover{background:var(--panel2)}
+  .tn.sel{background:#173c42;box-shadow:inset 0 0 0 1px #2a6b62}
+  .tn .tw{width:12px;color:var(--muted);flex:0 0 12px;text-align:center;font-size:10px}
+  .tn .ty{font-size:9px;color:#7d8bb0;margin-left:auto;white-space:nowrap}
+  .tn b{font-weight:400;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .grp{color:var(--muted)}
+  .card h2{font-size:17px;margin:0 0 4px}
+  .viz{margin:14px 0}
+  .bar{display:flex;align-items:center;gap:8px;font-size:11px;color:var(--muted);margin-bottom:5px}
+  .bar span:first-child{width:120px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .bar .b{height:8px;background:linear-gradient(90deg,#2aa88a,#6ee7c8);border-radius:5px;flex:1}
+  .bar b{width:56px;text-align:right;color:var(--text);font-weight:500}
+  .flow{display:flex;flex-wrap:wrap;gap:6px}
+  .flow span{font-size:11px;background:#0f1830;border:1px solid var(--line);border-radius:7px;padding:4px 8px}
+  .rel{max-height:300px;overflow:auto}
+  .rel .r{font-size:11px;padding:5px 0;border-bottom:1px dashed #222c46;cursor:pointer}
+  .rel .r:last-child{border-bottom:0}
+  .rel .r:hover{color:var(--accent)}
+  .rel code{font-family:var(--mono);font-size:10px;color:var(--accent)}
+  details summary{cursor:pointer;color:var(--muted);font-size:12px}
+  .mgsum{font-size:11px;color:var(--muted);margin-bottom:9px}
+  .mg{border:1px solid var(--line);border-radius:9px;padding:9px 11px;margin-bottom:9px;
+    background:#0f1729}
+  .mgh{display:flex;align-items:baseline;gap:7px;font-size:12px;flex-wrap:wrap}
+  .mgh b{color:var(--accent);font-size:13px}
+  .mgh .unit{color:var(--muted);font-size:10px}
+  .mgh .who{color:#aeb9d6;font-size:11px}
+  .mgh .cnt{margin-left:auto;font-size:10px;color:var(--muted);
+    background:#1b2440;border-radius:9px;padding:1px 7px}
+  .mgh .inf{font-size:9px;color:#ffb35c;border:1px solid #6b5228;
+    border-radius:8px;padding:0 5px;font-style:normal}
+  .mgb{margin-top:7px}
+  .vrow{display:flex;align-items:center;gap:7px;font-size:11px;margin-bottom:3px}
+  .vrow .idx{width:20px;color:#7d8bb0;font-family:var(--mono);font-size:10px}
+  .vrow .vb{height:7px;background:linear-gradient(90deg,#2aa88a,#6ee7c8);border-radius:4px}
+  .vrow b{width:52px;text-align:right;color:var(--text);font-weight:500}
+  .mnotes{margin-top:8px;font-size:10.5px;color:#7d8bb0;line-height:1.7}
+  .viz.paper{display:block}
+  .viz.paper .pctitle{font-weight:700;margin-bottom:8px}
+  .pcrow{display:flex;gap:10px;padding:5px 0;border-bottom:1px solid #1d2940}
+  .pcrow span{color:#7d8bb0;min-width:104px;font-size:11px}
+  .pcrow b{font-weight:500;flex:1;word-break:break-word}
+  .pcchain{margin-top:10px}
+  .pcchain em{color:#7d8bb0;font-size:11px;font-style:normal}
+  .chip{display:inline-block;background:#173c42;color:#7ee0c0;border-radius:4px;
+    padding:2px 6px;margin:3px 4px 0 0;font-size:11px}
+</style>
+</head>
+<body>
+<header>
+  <div><h1>数据工作台</h1><div class="sub">论文库 / 算法库 / 数据库 · 按本体树折叠，点节点看卡片</div></div>
+  <div class="crumb"><a href="/">← 主界面</a><a class="cur" href="/data">数据</a>
+    <a href="/relations">关系</a><a href="/pipeline">Pipeline</a></div>
+</header>
+<main>
+  <section class="panel">
+    <div class="libs" id="libs">
+      <button class="cur" data-lib="paper">论文库</button>
+      <button data-lib="algorithm">算法库</button>
+      <button data-lib="dataset">数据库</button>
+    </div>
+    <div class="facets" id="facets"></div>
+    <div class="psearch" id="psearch" style="display:none">
+      <input id="pq" type="text" placeholder="描述你要解决的问题，找可用方法与可对比基线" />
+      <div id="presults"></div>
+    </div>
+    <p class="hint" id="treehint">层级：分类 → 论文 → 问题/方法/基准/代码</p>
+    <input id="q" type="text" placeholder="过滤节点名" />
+    <div class="tree" id="tree"></div>
+  </section>
+  <section class="panel card" id="card">
+    <div class="empty">左侧点一个节点查看卡片</div>
+  </section>
+  <section class="panel">
+    <h2>关联</h2><p class="hint">一阶邻居，点击继续下钻</p>
+    <div class="rel" id="rel"></div>
+  </section>
+</main>
+<script>
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??'').replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+let LIB='paper', TREE=null, SEL=null, OPEN=new Set(), FACET='domain';
+const FACETS={
+  paper:{domain:'所属领域',problem_type:'研究问题',algorithm_family:'算法族'},
+  algorithm:{family:'算法族',role:'论文角色',object:'作用对象',
+             task:'解决问题',modality:'数据模态',code:'代码落地'},
+  dataset:{task:'任务族',object:'研究对象',modality:'数据模态',
+           io:'输入输出',scale:'规模'}};
+const HINT={paper:'分类依据 → 论文 → 问题/方法/基准/代码',
+  algorithm:'分类依据 → 算法 → 步骤 → 公式/工具/代码函数',
+  dataset:'分类依据 → 基准 → 指标 / 榜单值 / 数据契约'};
+const GROUP_PREFIX=['q:','a:','b:','c:','s:','k:','m:','o:','d:'];
+
+async function boot(){
+  document.querySelectorAll('.libs button').forEach(b=>b.onclick=async()=>{
+    LIB=b.dataset.lib; document.querySelectorAll('.libs button')
+      .forEach(x=>x.classList.toggle('cur',x===b));
+    $('#treehint').textContent=HINT[LIB]||''; OPEN=new Set();
+    renderFacets(); await loadTree();
+  });
+  $('#q').oninput=()=>renderTree();
+  await loadTree();
+}
+function renderFacets(){
+  const box=$('#facets');
+  const defs=FACETS[LIB]||{};
+  if(!Object.keys(defs).includes(FACET)) FACET=Object.keys(defs)[0];
+  box.innerHTML=Object.entries(defs).map(([k,v])=>
+    `<button data-f="${k}" class="${k===FACET?'cur':''}">${v}</button>`).join('');
+  document.querySelectorAll('#facets button').forEach(b=>b.onclick=async()=>{
+    FACET=b.dataset.f; OPEN=new Set(); renderFacets(); await loadTree();});
+}
+async function loadTree(){
+  $('#tree').innerHTML='<div class="empty">加载中…</div>';
+  TREE=await (await fetch('/api/v6/data/tree?library='+LIB+
+    '&facet='+FACET)).json();
+  renderFacets();
+  $('#psearch').style.display=(LIB==='algorithm')?'block':'none';
+  (TREE.groups||[]).slice(0,3).forEach(g=>OPEN.add(g.id));
+  renderTree();
+}
+function filt(n,q){
+  if(!q)return true;
+  if((n.label||'').toLowerCase().includes(q))return true;
+  return (n.children||[]).some(c=>filt(c,q));
+}
+function isGroupId(id){return GROUP_PREFIX.some(p=>id.startsWith(p));}
+function renderTree(){
+  const q=($('#q').value||'').toLowerCase();
+  const gs=((TREE&&TREE.groups)||[]).filter(g=>filt(g,q));
+  const out=[];
+  function walk(n,depth){
+    const has=(n.children||[]).length>0, open=OPEN.has(n.id);
+    out.push(`<div class="tn ${n.id===SEL?'sel':''}" data-id="${esc(n.id)}"
+      style="padding-left:${6+depth*13}px">
+      <span class="tw" data-tg="${esc(n.id)}">${has?(open?'▾':'▸'):'·'}</span>
+      <b class="${n.type==='group'?'grp':''}">${esc(n.label||n.id)}</b>
+      <span class="ty">${esc(n.type||'')}</span></div>`);
+    if(has&&open)(n.children||[]).forEach(c=>walk(c,depth+1));
+  }
+  gs.forEach(g=>walk(g,0));
+  $('#tree').innerHTML=out.join('')||'<div class="empty">无节点</div>';
+  document.querySelectorAll('.tn').forEach(e=>{
+    e.onclick=ev=>{
+      const tg=ev.target.dataset.tg;
+      if(tg){OPEN.has(tg)?OPEN.delete(tg):OPEN.add(tg);renderTree();return;}
+      const id=e.dataset.id;
+      if(isGroupId(id)||!id.includes(':')){
+        OPEN.has(id)?OPEN.delete(id):OPEN.add(id);renderTree();return;
+      }
+      SEL=id; renderTree(); loadCard(id);
+    };
+  });
+}
+function vizHTML(v){
+  if(!v||v.kind==='none')return '<div class="empty">该节点暂无可视化，属性与关系见下方 JSON</div>';
+  if(v.kind==='paper_core'){
+    const C=v.core||{}, L={research_question:'研究什么问题',domain:'所属领域',
+      problem_category:'问题类型',flow_family:'算法族',why_hard:'现有方法瓶颈',
+      keywords:'关键词'};
+    let rows='';
+    for(const k of Object.keys(L)){
+      const x=C[k]; if(!x||String(x)==='unknown')continue;
+      const val=Array.isArray(x)?x.join(' · '):String(x);
+      rows+=`<div class="pcrow"><span>${L[k]}</span><b>${esc(val)}</b></div>`;
+    }
+    const chains=(v.chains||[]).map(c=>`<div class="pcchain"><em>${esc(c.label)} · ${c.count}</em>
+      <div>${(c.items||[]).map(i=>`<span class="chip">${esc(i)}</span>`).join('')}</div></div>`).join('');
+    return `<div class="viz paper"><div class="pctitle">论文核心</div>${rows||'<div class="empty">核心属性待补全</div>'}${chains}</div>`;
+  }
+  if(v.kind==='metrics'){
+    const gs=v.groups||[];
+    const head=`<div class="mgsum">${v.n_observations||0} 条观测 · 去重后
+      <b>${gs.length}</b> 组${v.merged?` · 合并 ${v.merged} 条重复`:''}</div>`;
+    const body=gs.map(grp=>{
+      const nums=grp.values.map(x=>Math.abs(Number(x)||0));
+      const mx=Math.max(...nums,1e-9);
+      const rows=grp.values.map((val,i)=>{
+        const w=Math.max(3,Math.abs(Number(val)||0)/mx*100);
+        return `<div class="vrow"><span class="idx">#${i+1}</span>
+          <span class="vb" style="width:${w}%"></span><b>${esc(val)}</b></div>`;
+      }).join('');
+      const who=[grp.subject||'未标注主体',
+        grp.stage?stageCN(grp.stage):'',
+        grp.benchmark||''].filter(Boolean).join(' · ');
+      const flag=(grp.subject_inferred||grp.stage_inferred)
+        ?'<i class="inf" title="由同指标同单位下唯一候选回填">推断</i>':'';
+      return `<div class="mg">
+        <div class="mgh"><b>${esc(grp.label)}</b>
+          <span class="unit">${esc(grp.unit||'')}</span>
+          <span class="who">${esc(who)}</span>${flag}
+          <span class="cnt">${grp.n} 组</span></div>
+        <div class="mgb">${rows}</div></div>`;
+    }).join('');
+    const notes=(v.notes||[]).length
+      ?`<div class="mnotes">${v.notes.map(n=>`<div>· ${esc(n)}</div>`).join('')}</div>`:'';
+    return `<div class="viz">${head}${body}${notes}</div>`;
+  }
+  if(v.kind==='bars'){
+    const max=Math.max(...v.items.map(i=>Math.abs(Number(i.value)||0)),1e-9);
+    return '<div class="viz">'+v.items.map(i=>{
+      const w=Math.max(4,Math.abs(Number(i.value)||0)/max*100);
+      return `<div class="bar"><span>${esc(i.metric||'')}</span>
+        <span class="b" style="width:${w}%"></span><b>${esc(i.value)}</b></div>`;}).join('')+'</div>';
+  }
+  if(v.kind==='pipeline')
+    return '<div class="viz flow">'+v.steps.map((s,i)=>`<span>${i+1}. ${esc(s)}</span>`).join('')+'</div>';
+  if(v.kind==='chips')
+    return '<div class="viz flow">'+v.items.map(s=>`<span>${esc(s)}</span>`).join('')+'</div>';
+  if(v.kind==='scalar')
+    return `<div class="viz"><div class="bar"><span>${esc(v.metric||'')}</span>
+      <span class="b" style="width:100%"></span><b>${esc(v.value)}${esc(v.unit||'')}</b></div></div>`;
+  return '';
+}
+const stageCN=s=>({test:'测试集',simulation:'模拟',in_silico:'计算',
+  ablation:'消融',train:'训练'}[s]||s);
+async function leaderboardHTML(bid){
+  let d;
+  try{
+    const r=await fetch('/api/v6/benchmark/'+encodeURIComponent(bid)+'/leaderboard');
+    if(!r.ok)return '';
+    d=await r.json();
+  }catch(e){return '';}
+  if(!d.models||!d.models.length)return '';
+  const ms=d.metrics||[];
+  const head=`<th>模型 <small>${d.stats.n_models} 行</small></th>`+
+    ms.map(m=>`<th>${esc(m.name)}<small>${esc(m.unit||'')}
+      ${m.direction==='min'?'↓ 越低越好':''}</small></th>`).join('');
+  const body=d.models.map(m=>`<tr class="${m.is_ours?'ours':''}">
+    <td>${esc(m.name)}${m.is_ours?' ★':''}</td>`+
+    ms.map(x=>{const c=(m.cells||{})[x.name];
+      return c?`<td>${esc(c.value)}</td>`:'<td class="na">—</td>';}).join('')+'</tr>').join('');
+  return `<h3 style="margin-top:14px">榜单 · ${esc(d.benchmark.name)}</h3>
+    <div class="hint" style="margin:0 0 4px">行=模型，列=指标；★ 为本论文方法；
+      共 ${d.stats.n_values} 个值</div>
+    <table class="lb"><thead><tr>${head}</tr></thead><tbody>${body}</tbody></table>`;
+}
+async function problemHTML(id){
+  try{
+    const r=await fetch('/api/v8/algorithm/problems/'+encodeURIComponent(id));
+    if(!r.ok)return '';
+    const d=await r.json();
+    const src=(d.source_paper&&d.source_paper.title)
+      ? esc(d.source_paper.title)+(d.source_ref_no?' ['+esc(d.source_ref_no)+']':'')
+      : '未标注（抽取时由引用标号反查）';
+    const pb=(d.problems_solved||[]).map(x=>'<li>'+esc(x)+'</li>').join('')
+      ||'<li>待大模型分析填充</li>';
+    const base=(d.comparable_baselines||[]).map(x=>'<span>'+esc(x)+'</span>').join('')
+      ||'<span>暂无同任务方法</span>';
+    return `<div class="probbox">
+      <h4>任务类型：${esc(d.task_type_label||d.task_type||'-')}</h4>
+      <h4 style="margin-top:6px">能解决什么问题</h4><ol>${pb}</ol>
+      <h4>机理</h4><div class="mech">${esc(d.mechanism||'-')}</div>
+      <h4 style="margin-top:8px">为什么有效</h4><div class="mech">${esc(d.why_it_works||'-')}</div>
+      ${d.filled_by==='llm_inference'?'<div class="inf">此段由大模型分析推断，非原文逐字事实</div>':''}
+      <h4 style="margin-top:8px">原论文</h4><div class="mech">${src}</div>
+      <h4 style="margin-top:8px">可对比基线（同任务类型）</h4>
+      <div class="chips">${base}</div></div>`;
+  }catch(e){return '';}
+}
+async function doProblemSearch(q){
+  const box=$('#presults');
+  if(!q||q.length<2){box.innerHTML='';return;}
+  try{
+    const d=await (await fetch('/api/v8/algorithm/search?q='+encodeURIComponent(q)+'&top_k=8')).json();
+    box.innerHTML=(d.results||[]).map(x=>`<div class="pres" data-id="${esc(x.id)}">
+      <span class="sc">${x.score}</span><b>${esc(x.name)}</b> · ${esc(x.task_type_label||'')}
+      <span class="pb">${esc((x.problems_solved||[])[0]||'').slice(0,70)}</span>
+      <span class="pb">基线：${esc((x.comparable_baselines||[]).slice(0,3).join(' / ')||'暂无')}</span>
+      </div>`).join('')||'<div class="hint">无匹配方法</div>';
+    document.querySelectorAll('.pres').forEach(e=>e.onclick=async()=>{
+      await loadCard(e.dataset.id);});
+  }catch(e){box.innerHTML='<div class="hint">检索失败</div>';}
+}
+async function schemaHTML(id,type){
+  if(type==='Algorithm')return await problemHTML(id);
+  try{
+    const r=await fetch('/api/v8/benchmark/node/'+encodeURIComponent(id));
+    if(!r.ok)return '';
+    const d=await r.json();
+    if(!d.family)return '';
+    return `<div class="famsch"><div class="hdr">
+      <b>${esc(d.schema||d.family)}</b> · 核心属性<br>
+      <span style="color:var(--muted)">${esc((d.description||'').slice(0,90))}</span></div>
+      ${(d.fields||[]).map(f=>`<div class="fld ${f.value==='unknown'?'unknown':''}">
+        <span class="k">${esc(f.key)}</span>
+        <span class="v">${esc(typeof f.value==='object'?JSON.stringify(f.value):f.value)}</span>
+        <span class="t">${Array.isArray(f.value)?'列表':typeof f.value==='object'?'对象':'值'}</span>
+      </div>`).join('')}</div>`;
+  }catch(e){return '';}
+}
+async function benchListsHTML(id){
+  try{
+    const r=await fetch('/api/v8/benchmark/node/'+encodeURIComponent(id));
+    if(!r.ok)return '';
+    const d=await r.json();
+    const mat=d.matrix||{}, ms=mat.metrics||d.metrics||[], rows=mat.models||[];
+    const sota=d.sota_by_metric||{};
+    const src=(d.source_papers||[]).length
+      ? '<div class="na">源论文：'+d.source_papers.map(esc).join(' · ')+'</div>'
+      : '<div class="na">暂无关联源论文（抽取后自动补入）</div>';
+    const mh=ms.length
+      ? '<div class="chips">'+ms.map(m=>'<span>'+esc(m.name)+
+          (m.unit?' · '+esc(m.unit):'')+(m.direction==='min'?' ↓':' ↑')+
+          '<i style="color:#ffd166;font-style:normal"> ★'+esc(m.sota_model||'-')+
+          '</i></span>').join('')+'</div>'
+      : '<div class="na">暂无抽取到的测试指标</div>';
+    let table='';
+    if(rows.length){
+      table='<table class="matrix"><thead><tr><th>模型</th>'+
+        ms.map(m=>'<th>'+esc(m.name)+'<small>'+esc(m.sota_model||'')+'</small></th>').join('')+
+        '</tr></thead><tbody>'+
+        rows.map(row=>'<tr><td><b>'+esc(row.name)+'</b>'+
+          (row.n_sota?' <span class="sotabadge">SOTA ×'+row.n_sota+'</span>':'')+'</td>'+
+          ms.map(m=>{const c=(row.cells||{})[m.name];
+            return c?'<td class="'+(c.is_sota?'sota':'')+'">'+esc(c.value)+
+              (c.is_sota?' ★':'')+'</td>':'<td class="na">—</td>';}).join('')+
+          '</tr>').join('')+'</tbody></table>';
+    }else{
+      table='<div class="na">暂无各模型测试结果（抽取本基准的论文表格后自动新增行）</div>';
+    }
+    return '<div class="blist"><h4>测试指标（'+ms.length+'）</h4>'+mh+src+
+      '<h4 style="margin-top:12px">可更新榜单 · 行=模型 列=指标（'+
+      (mat.stats?mat.stats.n_models:0)+' 模型 / '+
+      (d.model_results||[]).length+' 条）</h4>'+table+
+      '<div class="na">★ 为当前 SOTA，按指标方向从全部已抽取结果动态计算；'+
+      '抽取新论文出现更优值时自动新增行并切换 SOTA。</div></div>';
+  }catch(e){return '';}
+}
+async function loadCard(id){
+  const r=await fetch('/api/v6/data/node/'+encodeURIComponent(id));
+  if(!r.ok){$('#card').innerHTML='<div class="empty">节点不存在</div>';return;}
+  const d=await r.json();
+  const attrs=Object.entries(d.attrs||{}).filter(([k])=>k!=='schema_family');
+  const famsch=(['Algorithm','Benchmark'].includes(d.type))?await schemaHTML(d.id,d.type):'';
+  const blists=(d.type==='Benchmark')?await benchListsHTML(d.id):'';
+  const lb=(d.type==='Benchmark')?await leaderboardHTML(d.id):'';
+  const lbEmpty=(d.type==='Benchmark'&&!lb)
+    ?`<div class="empty" style="margin:10px 0">该基准暂无可展示的「模型 × 指标」数据
+       （可能论文未提供表格数值）。可在 <a href="/pipeline/extract">抽取</a>
+       重跑后自动补入。</div>`:'';
+  $('#card').innerHTML=`
+    <h2>${esc(d.label)}</h2>
+    <p class="hint">${esc(d.type)} · <code>${esc(d.id)}</code></p>
+    <div class="row" style="display:flex;gap:8px;margin:10px 0">
+      <a href="${esc(d.graph_link)}"><button class="ghost">在图谱中展开 →</button></a>
+    </div>
+    ${famsch}
+    ${blists}
+    ${lb}
+    ${lb?'':lbEmpty}
+    ${lb||lbEmpty?'':vizHTML(d.viz)}
+    <h3 style="margin-top:16px">属性（${attrs.length}）</h3>
+    <div class="kv">${attrs.length?attrs.map(([k,v])=>`<span>${esc(k)}</span>
+      <b>${esc(typeof v==='object'?JSON.stringify(v):v).slice(0,260)}</b>`).join('')
+      :'<span>—</span><b>无</b>'}</div>
+    <details style="margin-top:14px"><summary>完整 JSON</summary>
+      <pre>${esc(JSON.stringify(d.attrs,null,2))}</pre></details>`;
+  const rels=[...(d.out||[]).map(x=>({...x,dir:'out'})),
+              ...(d.in||[]).map(x=>({...x,dir:'in'}))];
+  $('#rel').innerHTML=rels.length?rels.slice(0,80).map(x=>`
+    <div class="r" data-id="${esc(x.id)}">
+      <code>${x.dir==='out'?'-'+esc(x.rel)+'→':'←'+esc(x.rel)+'-'}</code>
+      ${esc(x.label||x.id)}<span style="color:#7d8bb0"> · ${esc(x.type)}</span></div>`).join('')
+    :'<div class="empty">无关联</div>';
+  document.querySelectorAll('#rel .r').forEach(e=>e.onclick=()=>{
+    SEL=e.dataset.id; renderTree(); loadCard(SEL);});
+}
+boot();
+</script>
+</body></html>

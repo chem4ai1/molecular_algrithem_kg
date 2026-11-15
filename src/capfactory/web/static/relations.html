@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>CapFactory · 关系浏览器</title>
+<link rel="stylesheet" href="/static/app.css"/>
+<style>
+  main{display:grid;grid-template-columns:340px minmax(0,1fr);gap:14px;
+       max-width:1560px;height:calc(100vh - 92px)}
+  @media(max-width:1000px){main{grid-template-columns:1fr;height:auto}}
+  .left{display:flex;flex-direction:column;min-height:0}
+  .vtabs{display:flex;gap:6px;margin:8px 0}
+  .vtabs button{font-size:11px;padding:6px 10px;border-radius:7px;flex:1}
+  .vtabs button.cur{border-color:var(--accent);color:var(--accent);background:#16313a}
+  .ilist{overflow-y:auto;flex:1;min-height:200px;border:1px solid var(--line);
+         border-radius:10px;margin-top:8px}
+  .iitem{padding:8px 10px;border-bottom:1px solid var(--line);cursor:pointer;font-size:12px}
+  .iitem:hover{background:var(--panel2)}
+  .iitem.sel{background:#173c42;border-left:3px solid var(--accent)}
+  .iitem b{display:block;font-weight:500}
+  .iitem span{color:var(--muted);font-size:10.5px;display:block;
+              white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .right{overflow-y:auto;min-height:0}
+  .summary{background:var(--panel2);border:1px solid var(--line);border-radius:10px;
+           padding:11px;margin-bottom:11px;font-size:12px}
+  .summary h3{margin:0 0 6px;font-size:14px}
+  .summary .kv{display:grid;grid-template-columns:130px 1fr;gap:4px 8px;
+               font-size:11.5px;color:var(--muted)}
+  .summary .kv b{color:var(--text);font-weight:500}
+  .chain{border:1px solid var(--line);border-radius:11px;margin-bottom:11px;
+         overflow:hidden}
+  .chain h4{margin:0;padding:9px 12px;font-size:12px;display:flex;
+            align-items:center;gap:8px;border-bottom:1px solid var(--line)}
+  .chain h4 i{width:9px;height:9px;border-radius:2px;display:inline-block}
+  .chain h4 .n{margin-left:auto;color:var(--muted);font-size:10.5px;font-weight:400}
+  .rel{display:flex;flex-wrap:wrap;gap:9px;align-items:baseline;padding:7px 12px;
+       border-bottom:1px dashed #222c46;font-size:11.5px}
+  .rel:last-child{border-bottom:0}
+  .rel .badge{font-size:9.5px;padding:2px 6px;border-radius:5px;
+              background:#0f1830;color:var(--accent);flex:0 0 auto}
+  .rel .tgt{color:var(--text);flex:1 1 120px;min-width:0;
+          word-break:break-word;overflow-wrap:anywhere}
+  .rel .typ{color:var(--muted);font-size:10px;flex:0 0 auto}
+  .rel .note{color:#7d8bb0;font-size:10px;flex:0 0 100%;margin-top:2px}
+  .rel.clickable{cursor:pointer}
+  .rel.clickable:hover{background:#173c42}
+  .rel .go{color:var(--accent);font-size:10px;flex:0 0 auto;white-space:nowrap}
+  .empty{color:var(--muted);font-size:11.5px;padding:10px 12px}
+</style>
+</head>
+<body>
+<header>
+  <div><h1>关系浏览器</h1>
+    <div class="sub">左选实例 · 右按链类型列出关系；属性放三库，关系只在这里看</div></div>
+  <div class="crumb"><a href="/">← 主界面</a><a href="/data">数据</a>
+    <a class="cur" href="/relations">关系</a><a href="/pipeline">Pipeline</a></div>
+</header>
+<main>
+  <section class="panel left">
+    <h2>实例</h2><p class="hint" id="cnt">加载中…</p>
+    <div class="vtabs" id="vtabs"></div>
+    <input id="q" type="text" placeholder="搜索实例名称 / id"/>
+    <div class="ilist" id="ilist"></div>
+    <div class="btns"><button id="rebuild">重建关系索引</button></div>
+  </section>
+  <section class="right panel" id="right">
+    <div class="empty">左侧选一个实例，查看它与其它实例的各项关系。</div>
+  </section>
+</main>
+<script src="/static/provenance_card.js"></script>
+<script>
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??'').replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+let VIEW='paper', ITEMS=[], SEL=null, VIEWS=[];
+async function loadViews(){
+  const d=await (await fetch('/api/v8/relations/views')).json();
+  VIEWS=d.views||[];
+  $('#vtabs').innerHTML=VIEWS.map(v=>
+    `<button data-v="${v.id}" class="${v.id===VIEW?'cur':''}">${esc(v.label)}</button>`).join('');
+  document.querySelectorAll('#vtabs button').forEach(b=>b.onclick=async()=>{
+    VIEW=b.dataset.v; SEL=null; await loadViews(); await loadInstances();
+    $('#right').innerHTML='<div class="empty">左侧选一个实例。</div>';});
+}
+async function loadInstances(){
+  const q=$('#q').value||'';
+  const d=await (await fetch('/api/v8/relations/instances?view='+VIEW+
+    '&q='+encodeURIComponent(q)+'&limit=200')).json();
+  ITEMS=d.instances||[];
+  $('#cnt').textContent=`${d.label} · ${d.count} 个实例`;
+  $('#ilist').innerHTML=ITEMS.map((x,i)=>`<div class="iitem" data-i="${i}">
+    <b>${esc(x.label)}</b><span>${esc(x.id)}</span>
+    <span>${esc(x.summary||'')}</span></div>`).join('')||'<div class="iitem">无结果</div>';
+  document.querySelectorAll('.iitem[data-i]').forEach(e=>e.onclick=()=>pick(+e.dataset.i));
+}
+async function pick(i){
+  SEL=ITEMS[i];
+  document.querySelectorAll('.iitem').forEach((e,k)=>e.classList.toggle('sel',k===i));
+  const d=await (await fetch('/api/v8/relations/node/'+
+    encodeURIComponent(SEL.id)+'?view='+VIEW)).json();
+  const a=d.attrs||{};
+  const kv=Object.entries(a).map(([k,v])=>
+    `<span>${esc(k)}</span><b>${esc(typeof v==='object'?JSON.stringify(v):v)}</b>`).join('');
+  const summary=`<div class="summary"><h3>${esc(d.label||SEL.label)}</h3>
+    <div class="kv">${kv||'<span>无核心属性</span><b>-</b>'}</div></div>`;
+  const chains=(d.chains||[]).map(c=>`<div class="chain">
+    <h4><i style="background:${c.color}"></i>${esc(c.label)}
+      <span class="n">${c.count} 条</span></h4>
+    ${c.items.length?c.items.map(x=>{
+      const jump=x.target_type==='Paper' && String(x.target_id||'').startsWith('paper:');
+      return `<div class="rel ${jump?'clickable':''}" ${jump?`data-jump="${esc(x.target_id)}"`:''}>
+      <span class="badge">${esc(x.relation_label||x.relation)}</span>
+      <span class="tgt">${esc(x.target_label)}</span>
+      <span class="typ">${esc(x.target_type)}</span>
+      ${jump?'<span class="go">跳转 →</span>':''}
+      ${x.note?`<div class="note">${esc(x.note)}</div>`:''}
+    </div>`;}).join(''):`<div class="empty">${esc(c.empty_hint)}</div>`}</div>`).join('');
+  $('#right').innerHTML=summary+renderProvenance(d.provenance||{})+chains+
+    `<div class="hint" style="margin-top:10px">共 ${d.n_relations} 条关系 ·
+     关系只记录边，属性请到三库查看</div>`;
+  document.querySelectorAll('.rel[data-jump]').forEach(e=>e.onclick=async()=>{
+    const id=e.dataset.jump;
+    VIEW='paper'; await loadViews(); $('#q').value=''; await loadInstances();
+    const k=ITEMS.findIndex(x=>x.id===id);
+    if(k>=0){await pick(k);} else {await pick(0);}
+  });
+}
+$('#q').oninput=()=>loadInstances();
+$('#rebuild').onclick=async()=>{
+  const d=await (await fetch('/api/v8/relations/rebuild',{method:'POST'})).json();
+  $('#cnt').textContent=`重建完成：${d.n_instances} 实例 / ${d.n_relations} 关系`;
+  if(SEL)await pick(ITEMS.findIndex(x=>x.id===SEL.id));
+};
+(async()=>{await loadViews();await loadInstances();})();
+</script>
+</body></html>

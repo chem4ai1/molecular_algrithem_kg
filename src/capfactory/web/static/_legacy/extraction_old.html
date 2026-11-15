@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>CapFactory · 论文多阶段抽取工作台</title>
+<style>
+  :root{--bg:#0b1020;--panel:#141b30;--panel2:#1b2440;--line:#2a3556;--text:#e8ecf8;
+    --muted:#93a0c4;--accent:#6ee7c8;--bad:#ff7c8a;--good:#63d9a0;
+    --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+  *{box-sizing:border-box}
+  body{margin:0;background:radial-gradient(1200px 620px at 12% -12%,#1c2b52 0%,transparent 60%),var(--bg);
+    color:var(--text);font:14px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
+  header{padding:20px 28px 14px;border-bottom:1px solid var(--line);display:flex;
+    justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:12px}
+  h1{margin:0;font-size:20px}.sub{color:var(--muted);font-size:12px;margin-top:5px}
+  .nav{display:flex;gap:10px;flex-wrap:wrap}
+  .nav a{color:var(--muted);border:1px solid var(--line);border-radius:8px;
+    padding:6px 11px;font-size:12px;background:var(--panel)}
+  .nav a.cur{color:var(--accent);border-color:var(--accent)}
+  main{padding:16px 28px 44px;max-width:1680px;margin:0 auto;display:grid;
+    grid-template-columns:330px minmax(0,1fr) 430px;gap:14px}
+  @media(max-width:1380px){main{grid-template-columns:300px 1fr}.right{grid-column:1/-1}}
+  @media(max-width:980px){main{grid-template-columns:1fr}}
+  .panel{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px}
+  h2{margin:0 0 3px;font-size:15px}p.hint{color:var(--muted);font-size:12px;margin:0 0 12px}
+  input,select,button{font:inherit}
+  input[type=text],select{width:100%;background:#0e1528;border:1px solid var(--line);
+    color:var(--text);border-radius:8px;padding:9px 11px;outline:none}
+  input[type=text]:focus,select:focus{border-color:var(--accent)}
+  button{cursor:pointer;border:1px solid var(--line);background:var(--panel2);
+    color:var(--text);border-radius:8px;padding:9px 13px;transition:.15s}
+  button:hover{border-color:var(--accent)}
+  button.primary{background:linear-gradient(120deg,#2aa88a,#1d7f7a);border-color:#38c2a4;font-weight:600}
+  button.primary:disabled{opacity:.5;cursor:not-allowed}
+  button.import{background:linear-gradient(120deg,#b9802f,#8d6325);border-color:#d9a34a}
+  button.import:disabled{opacity:.5;cursor:not-allowed}
+  .row{display:flex;gap:8px;margin-top:10px}.row>*{flex:1}
+  label{display:block;font-size:12px;color:var(--muted);margin:12px 0 5px}
+  .plist{margin-top:10px;max-height:360px;overflow:auto;border:1px solid var(--line);border-radius:9px}
+  .pitem{padding:9px 11px;border-bottom:1px solid var(--line);cursor:pointer;font-size:12px}
+  .pitem:last-child{border-bottom:0}.pitem:hover{background:var(--panel2)}
+  .pitem.sel{background:#173c42;border-left:3px solid var(--accent)}
+  .pitem b{display:block;color:var(--text);font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .pitem span{color:var(--muted)}
+  .tag{display:inline-block;font-size:10px;padding:1px 6px;border-radius:10px;
+    background:#22304f;color:var(--accent);margin-left:5px;font-style:normal}
+  .info{background:#0e1528;border:1px solid var(--line);border-radius:9px;
+    padding:11px;margin-top:12px;font-size:12px;color:var(--muted);word-break:break-all}
+  .info b{color:var(--text)}
+  .stages{display:flex;flex-direction:column;gap:9px}
+  .stage{background:var(--panel2);border:1px solid var(--line);border-radius:10px;
+    padding:11px 13px;cursor:pointer;transition:.15s}
+  .stage:hover{border-color:#4a5a86}.stage.cur{border-color:var(--accent)}
+  .stage .t{display:flex;justify-content:space-between;gap:8px;font-size:13px}
+  .pill{font-size:10px;padding:2px 8px;border-radius:10px;background:#22304f;color:var(--muted)}
+  .pill.done{background:#164036;color:var(--good)}.pill.run{background:#3c341c;color:#ffb35c}
+  .pill.bad{background:#412129;color:var(--bad)}
+  .stage .m{color:var(--muted);font-size:11px;margin-top:5px}
+  .tabs{display:flex;gap:6px;margin:14px 0 10px;flex-wrap:wrap}
+  .tab{font-size:12px;padding:6px 12px;border-radius:8px;background:var(--panel2);
+    border:1px solid var(--line);cursor:pointer;color:var(--muted)}
+  .tab.cur{color:var(--text);border-color:var(--accent);background:#16313a}
+  pre{background:#0b1224;border:1px solid var(--line);border-radius:9px;padding:12px;
+    overflow:auto;max-height:540px;font:12px/1.65 var(--mono);color:#cdd8f0;white-space:pre-wrap}
+  svg{width:100%;height:480px;background:#0b1224;border:1px solid var(--line);border-radius:9px}
+  .legend{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;font-size:11px;color:var(--muted)}
+  .legend i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px}
+  .stat{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+  .stat div{background:var(--panel2);border:1px solid var(--line);border-radius:9px;
+    padding:8px 11px;font-size:11px;color:var(--muted);flex:1;min-width:84px}
+  .stat b{display:block;color:var(--accent);font-size:17px}
+  .msg{margin-top:11px;padding:9px 11px;border-radius:8px;font-size:12px;
+    background:#132b2a;border:1px solid #2a5b52;color:var(--good)}
+  .msg.err{background:#331b22;border-color:#6a303c;color:var(--bad)}
+</style>
+</head>
+<body>
+<header>
+  <div><h1>论文多阶段抽取工作台</h1>
+    <div class="sub">小标题筛选 → 块向量化 → 按块肢解 → 三类出处 · 提示词 / 结果 / 链样式全程可见 · 可导入图谱</div></div>
+  <nav class="nav"><a href="/">总览</a><a href="/po">PO 工作台</a>
+    <a href="/domain">领域</a><a class="cur" href="/extraction">论文抽取</a></nav>
+</header>
+<main>
+  <section class="panel">
+    <h2>1 · 选择论文</h2><p class="hint">链接当前论文库（本地 Markdown + 代码仓库映射）</p>
+    <input id="q" type="text" placeholder="搜索标题 / arXiv id / 仓库" />
+    <div class="row"><select id="mode">
+      <option value="cached">cached · 读已落盘 run（秒级）</option>
+      <option value="live">live · 真跑本地 qwen + polo 兜底</option>
+    </select></div>
+    <label>论文列表 <span id="ptotal"></span></label>
+    <div class="plist" id="plist"></div>
+    <div class="info" id="pinfo">请选择一篇论文</div>
+    <div class="row"><button class="primary" id="start" disabled>开始抽取</button></div>
+    <div class="row"><button class="import" id="import" disabled>导入当前图谱</button></div>
+    <div class="msg" id="msg" style="display:none"></div>
+  </section>
+  <section class="panel">
+    <h2>2 · 抽取过程</h2><p class="hint">点击阶段查看该阶段的提示词、抽取结果与链</p>
+    <div class="stages" id="stages"></div>
+    <div class="tabs" id="tabs">
+      <div class="tab cur" data-t="prompt">提示词</div>
+      <div class="tab" data-t="result">抽取结果</div>
+      <div class="tab" data-t="chain">链样式</div>
+      <div class="tab" data-t="meta">运行信息</div>
+    </div>
+    <div id="content"><pre>选择论文并开始抽取后，这里会显示每个阶段的完整提示词。</pre></div>
+  </section>
+  <section class="panel right">
+    <h2>3 · 建立的链</h2><p class="hint">按样式着色，节点=概念，边=关系；可直接导入图谱</p>
+    <svg id="svg" viewBox="0 0 420 480"></svg>
+    <div class="legend" id="legend"></div>
+    <div class="stat" id="stat"></div>
+  </section>
+</main>
+<script>
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const COLORS={paper:'#6ee7c8',main_chain:'#7aa8ff',block:'#9c8cff',tech_tree:'#ff8f6b',
+  method:'#63d9a0',code:'#5fd0d8',benchmark:'#f58ac0',bottleneck:'#ffb35c',
+  improvement:'#ffd166',taxonomy:'#c792ea',comparison:'#f58ac0'};
+let PAPERS=[], SEL=null, JOB=null, CUR=0, TAB='prompt', TIMER=null, JID=null;
+const esc=s=>String(s??'').replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+const msg=(t,bad=false)=>{const m=$('#msg');m.style.display='block';
+  m.className='msg'+(bad?' err':'');m.textContent=t;};
+
+async function loadPapers(q=''){
+  const r=await fetch('/api/v5/extraction/papers?q='+encodeURIComponent(q)+'&limit=60');
+  const d=await r.json(); PAPERS=d.items||[]; $('#ptotal').textContent='('+d.total+')';
+  $('#plist').innerHTML=PAPERS.map((p,i)=>`<div class="pitem" data-i="${i}">
+    <b>${esc(p.title||p.arxiv_id)}</b><span>${esc(p.arxiv_id)} · ${esc(p.domain||'-')}
+    ${p.repo?'<i class="tag">repo</i>':''}${p.has_cached_run?'<i class="tag">cached</i>':''}</span></div>`).join('')
+    ||'<div class="pitem">无结果</div>';
+  $$('.pitem[data-i]').forEach(e=>e.onclick=()=>select(+e.dataset.i));
+}
+function select(i){ SEL=PAPERS[i];
+  $$('.pitem').forEach((e,k)=>e.classList.toggle('sel',k===i));
+  $('#pinfo').innerHTML=`<b>${esc(SEL.title)}</b><br/>arXiv ${esc(SEL.arxiv_id)} · ${esc(SEL.year)}
+    <br/>代码仓库：<b>${esc(SEL.repo||'（库中未登记）')}</b>
+    <br/>code_urls：${esc(SEL.code_urls||'-')}`;
+  $('#start').disabled=false;
+}
+$('#q').oninput=e=>loadPapers(e.target.value);
+$('#start').onclick=async()=>{
+  if(!SEL)return; $('#start').disabled=true; msg('任务已提交，正在抽取…');
+  const r=await fetch('/api/v5/extraction/jobs',{method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({arxiv_id:SEL.arxiv_id,mode:$('#mode').value,use_polo:true})});
+  const d=await r.json(); JID=d.job_id;
+  if(TIMER)clearInterval(TIMER); TIMER=setInterval(poll,1200); poll();
+};
+async function poll(){
+  if(!JID)return;
+  const r=await fetch('/api/v5/extraction/jobs/'+JID), d=await r.json(); JOB=d;
+  if(d.status!=='running'){if(TIMER)clearInterval(TIMER);TIMER=null;
+    $('#start').disabled=false; $('#import').disabled=d.status!=='done';
+    msg(d.status==='done'?'抽取完成，可查看各阶段并导入图谱':('失败：'+(d.error||'')),d.status!=='done');}
+  renderStages(); renderContent(); renderGraph();
+}
+function metaLine(m){ if(!m)return ''; const b=[];
+  if(m.seconds!=null)b.push(m.seconds+'s'); if(m.source)b.push(m.source);
+  if(m.blocks!=null)b.push(m.blocks+' 块'); if(m.summary)b.push(JSON.stringify(m.summary));
+  return b.join(' · ').slice(0,160);}
+function renderStages(){
+  const ss=(JOB&&JOB.stages)||[];
+  $('#stages').innerHTML=ss.length?ss.map((s,i)=>`<div class="stage ${i===CUR?'cur':''}" data-i="${i}">
+    <div class="t"><span>${esc(s.label)}</span>
+    <span class="pill ${s.status==='done'?'done':s.status==='running'?'run':'bad'}">${esc(s.status)}</span></div>
+    <div class="m">${esc(metaLine(s.meta))}</div></div>`).join('')
+    :'<div class="stage"><div class="t"><span>尚未开始</span></div></div>';
+  $$('.stage[data-i]').forEach(e=>e.onclick=()=>{CUR=+e.dataset.i;renderStages();renderContent();});
+}
+$$('.tab').forEach(t=>t.onclick=()=>{TAB=t.dataset.t;
+  $$('.tab').forEach(x=>x.classList.toggle('cur',x===t)); renderContent();});
+function renderContent(){
+  const s=(JOB&&JOB.stages&&JOB.stages[CUR])||null;
+  if(!s){$('#content').innerHTML='<pre>等待抽取结果…</pre>';return;}
+  let v='';
+  if(TAB==='prompt'){
+    v=s.prompts?Object.entries(s.prompts).map(([k,p])=>`### ${k}\n${p}`)
+        .join('\n\n'+'─'.repeat(60)+'\n\n'):(s.prompt||'');
+  }else if(TAB==='result'){ v=JSON.stringify(s.result,null,2); }
+  else if(TAB==='meta'){ v=JSON.stringify(s.meta,null,2); }
+  else{
+    const ch=(JOB.chains)||{nodes:[],edges:[]}, byStyle={};
+    (ch.edges||[]).forEach(e=>{(byStyle[e.style]=byStyle[e.style]||[]).push(e);});
+    v=Object.entries(byStyle).map(([k,es])=>`### 样式 ${k} · ${es.length} 条边\n`+
+      es.slice(0,40).map(e=>`${e.source}  -${e.rel}->  ${e.target}`+
+        (e.evidence?`\n    证据：${e.evidence}`:'')).join('\n')).join('\n\n')||'暂无链';
+  }
+  $('#content').innerHTML='<pre>'+esc(v)+'</pre>';
+}
+function renderGraph(){
+  const ch=(JOB&&JOB.chains)||{nodes:[],edges:[]}, svg=$('#svg');
+  const ns=ch.nodes||[], es=ch.edges||[];
+  if(!ns.length){svg.innerHTML='<text x="20" y="34" fill="#93a0c4" font-size="12">抽取完成后显示链图</text>';
+    $('#legend').innerHTML='';$('#stat').innerHTML='';return;}
+  const styles=[...new Set(ns.map(n=>n.style))], ci={}; styles.forEach((s,i)=>ci[s]=i);
+  const pos={}; ns.forEach((n,i)=>{
+    const c=ci[n.style]??0, span=390-60;
+    pos[n.id]={x:34+c*(span/Math.max(styles.length-1,1)),
+               y:32+(i%16)*28+Math.floor(i/16)*7};});
+  let out='';
+  es.forEach(e=>{const a=pos[e.source],b=pos[e.target];if(!a||!b)return;
+    out+=`<path d="M${a.x},${a.y} C${a.x+40},${a.y} ${b.x-40},${b.y} ${b.x},${b.y}"
+      stroke="${COLORS[e.style]||'#556'}" fill="none" stroke-width="1" opacity=".5"/>`;});
+  ns.forEach(n=>{const p=pos[n.id],c=COLORS[n.style]||'#889';
+    out+=`<circle cx="${p.x}" cy="${p.y}" r="5" fill="${c}" opacity=".9"/>`;
+    if(ns.length<80)out+=`<text x="${p.x+8}" y="${p.y+3}" fill="#aeb9d6" font-size="8">${esc((n.label||'').slice(0,18))}</text>`;});
+  svg.innerHTML=out;
+  $('#legend').innerHTML=styles.map(s=>`<span><i style="background:${COLORS[s]||'#889'}"></i>${esc(s)}</span>`).join('');
+  const sm=JOB.summary||{};
+  $('#stat').innerHTML=`<div><b>${sm.n_nodes||0}</b>节点</div><div><b>${sm.n_edges||0}</b>边</div>
+    <div><b>${(sm.styles||[]).length}</b>样式</div><div><b>${sm.total_seconds||'-'}</b>秒</div>`;
+}
+$('#import').onclick=async()=>{
+  if(!JID)return;
+  const r=await fetch('/api/v5/extraction/jobs/'+JID+'/import',{method:'POST'}), d=await r.json();
+  if(d.detail){msg('导入失败：'+d.detail,true);return;}
+  msg(`已导入：+${d.added_nodes} 节点 / +${d.added_edges} 边，图 ${d.graph_before.join('/')} → ${d.graph_after.join('/')}`);
+};
+loadPapers('');
+</script>
+</body></html>

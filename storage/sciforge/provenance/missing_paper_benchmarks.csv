@@ -1,0 +1,15 @@
+﻿node_id,label,type,reason,paper_id_attr,report_hits,model_result_sources,suggested_arxiv_id,suggested_title,suggested_similarity,action,priority
+benchmark:kb:gdb_17,GDB-17,Benchmark,预置知识库基准（设计如此）,,,0,,,,待补抽取,low
+benchmark:kb:aqsoldb,AqSolDB,Benchmark,预置知识库基准（设计如此）,,,0,,,,待补抽取,low
+benchmark:kb:s22x5,S22x5,Benchmark,预置知识库基准（设计如此）,,,0,,,,待补抽取,low
+benchmark:kb:s66x8,S66x8,Benchmark,预置知识库基准（设计如此）,,,0,,,,待补抽取,low
+benchmark:kb:ani_1x,ANI-1x,Benchmark,预置知识库基准（设计如此）,,,0,,ANI-1xBB: an ANI based reactive potential,0.2,人工确认建议论文,low
+benchmark:kb:qm7_x,QM7-X,Benchmark,预置知识库基准（设计如此）,,,0,,,,待补抽取,low
+benchmark:kb:iso17,ISO17,Benchmark,预置知识库基准（设计如此）,,,0,,,,待补抽取,low
+benchmark:kb:dbaasp,DBAASP,Benchmark,预置知识库基准（设计如此）,,,0,,,,待补抽取,low
+benchmark:kb:camp,CAMP,Benchmark,预置知识库基准（设计如此）,,,0,,,,待补抽取,low
+benchmark:kb:uniprot,UniProt,Benchmark,预置知识库基准（设计如此）,,,0,,UniProt --- UniProt: the universal protein knowledgebase in 2021,0.167,人工确认建议论文,low
+benchmark:kb:apd3,APD3,Benchmark,预置知识库基准（设计如此）,,,0,,,,待补抽取,low
+benchmark:kb:amp_scanner_ensemble,AMP Scanner ensemble,Benchmark,预置知识库基准（设计如此）,,,0,2609.15077,Ensemble-Conditioned Molecular Design,0.167,人工确认建议论文,low
+benchmark:kb:pubchemqc,PubChemQC,Benchmark,预置知识库基准（设计如此）,,,0,,,,待补抽取,low
+benchmark:kb:uspto_mit,USPTO-MIT,Benchmark,预置知识库基准（设计如此）,,,0,,MIT 6.034 Artificial Intelligence,0.2,人工确认建议论文,low

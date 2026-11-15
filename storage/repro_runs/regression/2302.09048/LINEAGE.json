@@ -1,0 +1,47 @@
+{
+  "paper_id": "paper:2302.09048",
+  "lineage": [
+    {
+      "id": "algorithm:edm",
+      "label": "EDM",
+      "type": "Algorithm",
+      "relation": "SUBCLASS_OF",
+      "source": "algorithm_subclass",
+      "direction": "out",
+      "kind": "improves",
+      "node_type": "Algorithm",
+      "category": "baseline",
+      "quote": "",
+      "arxiv_id": "",
+      "evidence_available": false
+    },
+    {
+      "id": "algorithm:pharmadiff",
+      "label": "PharmaDiff",
+      "type": "Algorithm",
+      "relation": "SUBCLASS_OF",
+      "source": "algorithm_subclass",
+      "direction": "in",
+      "kind": "extends",
+      "node_type": "Algorithm",
+      "category": "baseline",
+      "quote": "",
+      "arxiv_id": "",
+      "evidence_available": false
+    },
+    {
+      "id": "algorithm:open_babel",
+      "label": "Open Babel",
+      "type": "Algorithm",
+      "relation": "SUBCLASS_OF",
+      "source": "algorithm_subclass",
+      "direction": "out",
+      "kind": "replaces",
+      "node_type": "Algorithm",
+      "category": "context",
+      "quote": "",
+      "arxiv_id": "",
+      "evidence_available": false
+    }
+  ]
+}

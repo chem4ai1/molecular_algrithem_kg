@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>CapFactory · 细粒度算法图工作台</title>
+<style>
+  :root{--bg:#0b1020;--panel:#141b30;--panel2:#1b2440;--line:#2a3556;--text:#e8ecf8;
+        --muted:#93a0c4;--accent:#6ee7c8;--accent2:#ffb35c;--bad:#ff7c8a;--good:#63d9a0;
+        --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+  *{box-sizing:border-box}
+  body{margin:0;background:radial-gradient(1200px 600px at 15% -10%,#1c2b52 0%,transparent 60%),var(--bg);
+       color:var(--text);font:14px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
+  a{color:var(--accent);text-decoration:none}
+  header{padding:24px 30px 16px;border-bottom:1px solid var(--line);display:flex;
+         justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:12px}
+  h1{margin:0;font-size:21px} .sub{color:var(--muted);font-size:12px;margin-top:5px}
+  .badge{display:inline-flex;align-items:center;gap:7px;background:var(--panel2);border:1px solid var(--line);
+         border-radius:20px;padding:5px 12px;font-size:12px;color:var(--muted);margin-left:8px}
+  .dot{width:7px;height:7px;border-radius:50%;background:var(--good)} .dot.off{background:var(--bad)}
+  main{padding:18px 30px 48px;max-width:1500px;margin:0 auto;
+       display:grid;grid-template-columns:420px 1fr;gap:16px}
+  @media(max-width:1100px){main{grid-template-columns:1fr}}
+  .panel{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px}
+  h2{margin:0 0 4px;font-size:16px} p.hint{color:var(--muted);font-size:12px;margin:0 0 14px}
+  label{display:block;font-size:12px;color:var(--muted);margin:12px 0 5px}
+  input,select,textarea{width:100%;background:#0d1428;color:var(--text);border:1px solid var(--line);
+        border-radius:8px;padding:9px 11px;font:12px/1.5 var(--mono);outline:none}
+  input:focus,select:focus,textarea:focus{border-color:var(--accent)}
+  textarea{min-height:110px;resize:vertical} textarea.code{min-height:300px;font-size:11px}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  button.go{background:linear-gradient(135deg,#4bd6b0,#39a9c9);color:#06202a;border:0;border-radius:8px;
+       padding:10px 18px;font-weight:700;cursor:pointer;font-size:13px;margin-top:12px}
+  button.ghost{background:transparent;color:var(--accent);border:1px solid var(--line);border-radius:8px;
+       padding:8px 13px;cursor:pointer;font-size:12px;margin-top:10px}
+  nav{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:14px;border-bottom:1px solid var(--line);padding-bottom:10px}
+  nav button{background:transparent;border:1px solid transparent;color:var(--muted);padding:7px 12px;
+       border-radius:7px;cursor:pointer;font-size:12px}
+  nav button.active{background:var(--panel2);border-color:var(--line);color:var(--text)}
+  section{display:none} section.active{display:block}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:11px}
+  .card{background:var(--panel2);border:1px solid var(--line);border-radius:9px;padding:12px}
+  .card h3{margin:0 0 6px;font-size:11px;color:var(--accent);font-weight:600}
+  .kv{display:flex;justify-content:space-between;gap:8px;font-size:11px;color:var(--muted);padding:2px 0}
+  .kv b{color:var(--text);font-weight:500}
+  .big{font-size:21px;font-weight:700;color:var(--text)}
+  pre{background:#0a1022;border:1px solid var(--line);border-radius:9px;padding:12px;overflow:auto;
+      max-height:400px;font:11px/1.55 var(--mono);color:#cfe0ff;white-space:pre-wrap;word-break:break-word}
+  table{width:100%;border-collapse:collapse;font-size:11px;margin-top:8px}
+  th,td{text-align:left;padding:7px 9px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{color:var(--muted);font-weight:500;white-space:nowrap}
+  .pill{display:inline-block;padding:2px 7px;border-radius:20px;font-size:10px;background:#223054;
+        color:#bcd0ff;margin:1px 2px 1px 0}
+  .pill.g{background:#143a2c;color:var(--good)} .pill.b{background:#3a1e26;color:var(--bad)}
+  .pill.o{background:#3a2c15;color:var(--accent2)}
+  .status{font-size:12px;color:var(--muted);margin-top:9px;min-height:18px}
+  .out{margin-top:14px}
+</style>
+</head>
+<body>
+<header>
+  <div><h1>CapFactory · 细粒度算法图工作台</h1>
+    <div class="sub">PKG 函数/块拆解 · Causal 七类本体 · 站点级调用图 · 论文↔代码 Grounding · gate 断言修复定位</div></div>
+  <div><span class="badge" id="health"><span class="dot"></span>检测中…</span>
+    <a class="badge" href="/">主界面</a><a class="badge" href="/domain">能力工作台</a>
+    <a class="badge" href="/docs">API 文档</a></div>
+</header>
+
+<main>
+  <!-- 左：构建 -->
+  <div class="panel">
+    <h2>① 构建 CapabilityVersion</h2>
+    <p class="hint">源码只做 AST 静态解析，<b>不会被执行</b>。构建后自动完成三层图、Grounding 与 gate 绑定。</p>
+    <div class="row">
+      <div><label>capability_id</label><input id="capId" value="cap_toxicity_toxipep" /></div>
+      <div><label>模块名</label><input id="modName" value="toxipep" /></div>
+    </div>
+    <label>Python 源码</label>
+    <textarea id="source" class="code" spellcheck="false"></textarea>
+    <label>论文方法模块（JSON 数组）</label>
+    <textarea id="papers" spellcheck="false" style="min-height:120px"></textarea>
+    <div class="row">
+      <div><label>gate 指标</label><input id="metric" value="roc_auc" /></div>
+      <div><label>阈值</label><input id="threshold" type="number" step="0.05" value="0.6" /></div>
+    </div>
+    <label><input id="blocks" type="checkbox" checked style="width:auto;margin-right:6px" />下钻到代码块级</label>
+    <button class="go" id="build">构建细粒度图</button>
+    <button class="ghost" id="loadDemo">加载 ToxiPep 示例</button>
+    <div class="status" id="buildStatus"></div>
+    <div class="out"><h3 style="font-size:12px;color:var(--accent2)">已构建版本</h3>
+      <div id="versionList" style="font-size:12px;color:var(--muted)">加载中…</div></div>
+  </div>
+
+  <!-- 右：结果 -->
+  <div class="panel">
+    <nav id="nav">
+      <button data-t="overview" class="active">概览</button>
+      <button data-t="schema">Schema</button>
+      <button data-t="grounding">Grounding</button>
+      <button data-t="gaps">复现缺口</button>
+      <button data-t="retrieve">检索 / 修复</button>
+      <button data-t="mermaid">Mermaid</button>
+      <button data-t="graph">图数据</button>
+    </nav>
+
+    <section id="overview" class="active"><h2>构建结果</h2>
+      <p class="hint">选择版本后自动刷新；L1 结构 / L2 语义 / L3 对齐三层正交。</p>
+      <div class="grid" id="stats"></div>
+      <div class="out"><h3 style="font-size:12px;color:var(--accent2)">节点与边分布</h3><pre id="dist">等待构建…</pre></div>
+    </section>
+
+    <section id="schema"><h2>统一 Schema</h2>
+      <p class="hint">13 类节点 / 17 类边 / 8 条不变量；受控词表见 <a href="/api/v3/schema">/api/v3/schema</a>。</p>
+      <div id="schemaBody" class="grid"></div>
+    </section>
+
+    <section id="grounding"><h2>论文 ↔ 代码 Grounding</h2>
+      <p class="hint">代码图为 ground truth；一对一匹配，输出 7 列表（CAD 附录 A）。</p>
+      <div id="groundSummary" class="grid"></div>
+      <div class="out"><div id="groundTable"></div></div>
+    </section>
+
+    <section id="gaps"><h2>论文复现任务清单</h2>
+      <p class="hint">「论文宣称但代码缺失」为最高优先；conceptual / implementation gap 分类指导复刻顺序。</p>
+      <div id="gapBody" class="out">等待构建…</div>
+    </section>
+
+    <section id="retrieve"><h2>粒度检索与失败修复</h2>
+      <div class="row">
+        <div><label>检索 Query</label><input id="rq" value="apply_threshold" /></div>
+        <div><label>粒度</label><select id="gran"><option value="function">function（默认）</option>
+          <option value="block">block（修复下钻）</option></select></div>
+      </div>
+      <button class="go" id="doRetrieve">检索</button>
+      <div class="out"><pre id="retrieveOut">等待运行…</pre></div>
+      <h3 style="font-size:13px;color:var(--accent2);margin-top:20px">gate 失败 → 修复定位</h3>
+      <div class="row">
+        <div><label>指标实际值</label><input id="fval" type="number" step="0.01" value="0.52" /></div>
+        <div><label>失败行（可选）</label><input id="fline" placeholder="留空则按语义定位" /></div>
+      </div>
+      <button class="go" id="doRepair">定位修复单元</button>
+      <div class="out"><pre id="repairOut">等待运行…</pre></div>
+    </section>
+
+    <section id="mermaid"><h2>Mermaid 多分辨率因果图</h2>
+      <p class="hint">micro(12–25) → meso(7–10) → macro(4–7) <b>构造式</b>聚合（CAD §5.3）。</p>
+      <div class="row"><div><label>抽象层级</label><select id="mlevel">
+        <option value="meso">meso</option><option value="micro">micro</option>
+        <option value="macro">macro</option></select></div>
+        <div><label>来源</label><select id="mmod"><option value="code">code</option>
+          <option value="paper">paper</option></select></div></div>
+      <button class="go" id="doMermaid">导出 Mermaid</button>
+      <div class="out"><pre id="mermaidOut">等待运行…</pre></div>
+    </section>
+
+    <section id="graph"><h2>图数据与可达性</h2>
+      <p class="hint">站点级 CALLS 带 resolution；可达性查询同时报告 unresolved_count。</p>
+      <div class="row"><div><label>起始节点 qn（留空取第一个 func_name）</label><input id="rq_n" /></div>
+        <div><label>节点类型过滤</label><input id="gtype" placeholder="如 code_block / causal_node" /></div></div>
+      <button class="go" id="doGraph">加载图</button>
+      <div class="out"><pre id="graphOut">等待运行…</pre></div>
+    </section>
+  </div>
+</main>
+
+<script>
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? '').replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+const fmt = o => JSON.stringify(o,null,2);
+let CURRENT = null, DEMO = null;
+
+async function api(path, opts){
+  const r = await fetch(path, opts);
+  const txt = await r.text();
+  let d; try{d=JSON.parse(txt)}catch(e){d=txt}
+  if(!r.ok) throw new Error((d&&d.detail)||String(d).slice(0,300)||('HTTP '+r.status));
+  return d;
+}
+const post=(p,b)=>api(p,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(b)});
+const vpath=suffix=>'/api/v3/versions/'+encodeURIComponent(CURRENT)+suffix;
+
+document.querySelectorAll('#nav button').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('#nav button').forEach(x=>x.classList.remove('active'));
+  document.querySelectorAll('main section').forEach(x=>x.classList.remove('active'));
+  b.classList.add('active'); $(b.dataset.t).classList.add('active');
+});
+function pills(a,cls){return (a||[]).map(x=>'<span class="pill '+(cls||'')+'">'+esc(x)+'</span>').join('')}
+function card(k,v,extra){return '<div class="card"><h3>'+esc(k)+'</h3><div class="big">'+esc(v)+'</div>'+
+  (extra?'<div style="font-size:10px;color:var(--muted);margin-top:4px">'+esc(extra)+'</div>':'')+'</div>'}
+function table(headers,rows){
+  if(!rows||!rows.length) return '<p class="hint">无结果</p>';
+  return '<table><thead><tr>'+headers.map(h=>'<th>'+esc(h)+'</th>').join('')+'</tr></thead><tbody>'+
+    rows.map(r=>'<tr>'+r.map(c=>'<td>'+c+'</td>').join('')+'</tr>').join('')+'</tbody></table>';
+}
+
+async function loadDemo(){
+  DEMO = await api('/api/v3/demo');
+  $('source').value = DEMO.source;
+  $('papers').value = JSON.stringify(DEMO.paper_modules,null,2);
+  $('capId').value = DEMO.capability_id;
+}
+async function refreshVersions(){
+  try{
+    const d = await api('/api/v3/versions');
+    $('versionList').innerHTML = d.count ? d.items.map(v=>
+      '<div style="padding:5px 0;border-bottom:1px solid var(--line);cursor:pointer" onclick="pickVersion(\''+esc(v.version_id)+'\')">'+
+      esc(v.capability_id)+' <span style="color:var(--muted)">'+v.n_nodes+'节点 · 覆盖'+v.grounding_coverage+'</span></div>').join('')
+      : '暂无版本，点击「构建细粒度图」';
+    if(!CURRENT && d.count){ CURRENT=d.items[d.count-1].version_id; await refreshAll(); }
+  }catch(e){ $('versionList').textContent='加载失败: '+e.message; }
+}
+window.pickVersion = async function(vid){ CURRENT=vid; await refreshAll(); };
+
+async function refreshAll(){
+  if(!CURRENT) return;
+  try{
+    const d = await api(vpath(''));
+    const s=d.stats, g=(d.grounding&&d.grounding.summary)||{};
+    $('stats').innerHTML = [
+      card('节点 / 边', s.n_nodes+' / '+s.n_edges),
+      card('Grounding 覆盖', (g.grounding_coverage??0)),
+      card('函数 / 代码块', (s.nodes_by_type.func_name||0)+' / '+(s.nodes_by_type.code_block||0)),
+      card('micro/meso/macro',
+        (s.abstraction_levels.micro||0)+'/'+(s.abstraction_levels.meso||0)+'/'+(s.abstraction_levels.macro||0)),
+      card('未解析调用', s.unresolved_sites??0, '可达性结论需扣除此项'),
+      card('校验问题', (s.problems||[]).length, '0 表示 8 条不变量全部满足'),
+    ].join('');
+    $('dist').textContent = fmt({nodes_by_type:s.nodes_by_type,edges_by_type:s.edges_by_type,
+      causal_types:s.causal_types,callgraph:s.callgraph_stats||null});
+
+    const gr = await api(vpath('/grounding'));
+    const gs = gr.summary||{};
+    $('groundSummary').innerHTML = [
+      card('匹配 / 代码节点', (gs.matched||0)+' / '+(gs.n_code_nodes||0)),
+      card('概念缺口', (gs.gap_distribution||{}).conceptual||0),
+      card('实现缺口', (gs.gap_distribution||{}).implementation||0),
+      card('论文未匹配', (gs.unmatched_paper_nodes||[]).length),
+    ].join('');
+    $('groundTable').innerHTML = table(['Code Node','Node Type','Paper equivalent','Agreement','Gap Type','Paper-too-abstract'],
+      (gr.rows||[]).map(r=>[esc(r.code_node),esc(r.node_type),esc(r.paper_equivalent),
+        r.agreement?'<span class="pill g">'+esc(r.agreement)+'</span>':'',
+        r.gap_type&&r.gap_type!=='No gap'?'<span class="pill b">'+esc(r.gap_type)+'</span>':'—',
+        esc(r.paper_too_abstract||'—')]));
+
+    const gp = await api(vpath('/gaps'));
+    $('gapBody').innerHTML = '<div class="grid">'+
+      card('最高优先复现任务',(gp.next_actions||[]).length)+'</div>'+
+      table(['任务','目标','原因'],(gp.next_actions||[]).map(a=>
+        [esc(a.action),esc(a.target),esc(a.reason)]))+
+      '<h3 style="font-size:12px;color:var(--accent2);margin-top:16px">代码侧概念缺口</h3>'+pills(gp.conceptual_gaps,'o')+
+      '<h3 style="font-size:12px;color:var(--accent2);margin-top:10px">实现细节缺口</h3>'+pills(gp.implementation_gaps);
+  }catch(e){ $('stats').innerHTML='<div class="card">刷新失败: '+esc(e.message)+'</div>'; }
+}
+
+async function loadSchema(){
+  try{
+    const s=await api('/api/v3/schema');
+    $('schemaBody').innerHTML =
+      '<div class="card"><h3>节点类型 ('+s.node_types.length+')</h3>'+pills(s.node_types)+'</div>'+
+      '<div class="card"><h3>边类型 ('+s.edge_types.length+')</h3>'+pills(s.edge_types)+'</div>'+
+      '<div class="card"><h3>Causal 七类本体</h3>'+pills(s.causal_types,'g')+'</div>'+
+      '<div class="card"><h3>三层抽象</h3>'+pills(s.abstractions,'o')+'</div>'+
+      '<div class="card" style="grid-column:1/-1"><h3>三层架构</h3>'+
+        Object.entries(s.layers).map(([k,v])=>'<div class="kv"><span>'+esc(k)+'</span><b>'+esc(v)+'</b></div>').join('')+'</div>';
+  }catch(e){$('schemaBody').innerHTML='<div class="card">'+esc(e.message)+'</div>'}
+}
+
+$('loadDemo').onclick=async()=>{await loadDemo(); $('buildStatus').textContent='示例已加载'};
+$('build').onclick=async()=>{
+  $('buildStatus').textContent='构建中…';
+  try{
+    let papers=[]; const raw=$('papers').value.trim();
+    if(raw) papers=JSON.parse(raw);
+    const d=await post('/api/v3/build',{
+      capability_id:$('capId').value,
+      sources:{[$('modName').value||'module']:$('source').value},
+      paper_modules:papers,
+      metric_bindings:[{metric_name:$('metric').value,role:'gate',threshold:parseFloat($('threshold').value)}],
+      test_cases:[{id:'tc_gate',assertion:$('metric').value+' >= '+$('threshold').value,
+                   metric_name:$('metric').value,role:'gate'}],
+      include_blocks:$('blocks').checked});
+    CURRENT=d.version_id;
+    $('buildStatus').textContent='构建完成：'+d.stats.n_nodes+' 节点 / '+d.stats.n_edges+' 边，校验问题 '+(d.validation_problems||[]).length;
+    await refreshVersions(); await refreshAll();
+  }catch(e){$('buildStatus').textContent='失败: '+e.message}
+};
+$('doRetrieve').onclick=async()=>{
+  if(!CURRENT){$('retrieveOut').textContent='请先构建版本';return}
+  try{const d=await post(vpath('/retrieve'),{query:$('rq').value,granularity:$('gran').value,context_span:true});
+    $('retrieveOut').textContent=fmt(d.hits.map(h=>({qn:h.qn,score:h.score,type:h.type,
+      block_kind:h.block_kind,precise:h.precise.slice(0,300),has_context:!!h.function_context.implementation})));
+  }catch(e){$('retrieveOut').textContent=e.message}
+};
+$('doRepair').onclick=async()=>{
+  if(!CURRENT){$('repairOut').textContent='请先构建版本';return}
+  try{const line=$('fline').value.trim();
+    const d=await post(vpath('/repair'),{metric:$('metric').value,value:parseFloat($('fval').value),
+      threshold:parseFloat($('threshold').value),...(line?{line:parseInt(line)}:{})});
+    $('repairOut').textContent=fmt({rationale:d.rationale,ranked:d.ranked_candidates,
+      precise_blocks:d.precise_blocks.map(b=>({qn:b.qn,kind:b.block_kind,lines:[b.start_line,b.end_line],
+        content:b.content.slice(0,260)})),function_names:d.function_context.map(c=>c.name)});
+  }catch(e){$('repairOut').textContent=e.message}
+};
+$('doMermaid').onclick=async()=>{
+  if(!CURRENT){$('mermaidOut').textContent='请先构建版本';return}
+  try{const t=await (await fetch(vpath('/mermaid')+'?level='+$('mlevel').value+'&modality='+$('mmod').value)).text();
+    $('mermaidOut').textContent=t;
+  }catch(e){$('mermaidOut').textContent=e.message}
+};
+$('doGraph').onclick=async()=>{
+  if(!CURRENT){$('graphOut').textContent='请先构建版本';return}
+  try{
+    const d=await api(vpath('/graph')+'?limit=60'+(($('gtype').value)?'&type='+encodeURIComponent($('gtype').value):''));
+    let start=$('rq_n').value.trim();
+    if(!start){const fn=d.nodes.find(n=>n.type==='func_name'); start=fn?fn.qn:''}
+    let reach=null;
+    if(start) reach=await api(vpath('/reachability')+'?qn='+encodeURIComponent(start));
+    $('graphOut').textContent=fmt({stats:{n_nodes:d.n_nodes,n_edges:d.n_edges,truncated:d.truncated},
+      sample_nodes:d.nodes.slice(0,8).map(n=>({qn:n.qn,type:n.type,label:n.label})),reachability:reach});
+  }catch(e){$('graphOut').textContent=e.message}
+};
+
+(async function init(){
+  try{const h=await api('/api/v3/health');
+    $('health').innerHTML='<span class="dot"></span>v3 正常 · '+h.n_versions+' 个版本';
+  }catch(e){$('health').innerHTML='<span class="dot off"></span>v3 不可用'}
+  await loadDemo(); await loadSchema(); await refreshVersions();
+})();
+</script>
+</body>
+</html>

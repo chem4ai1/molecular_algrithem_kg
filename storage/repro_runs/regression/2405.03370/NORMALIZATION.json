@@ -1,0 +1,34 @@
+{
+  "paper_id": "paper:2405.03370",
+  "arxiv_id": "2405.03370",
+  "scope": "strict",
+  "source_graph": "storage_cf/sciforge/app_reproduction.json",
+  "n_assertions_before": 10260,
+  "n_assertions_after": 10260,
+  "removed_edges": [],
+  "excluded_modules": [],
+  "excluded_algorithms": [],
+  "added_edges": [],
+  "unresolved_modules": [
+    "algorithmstep:2405.03370:1:coordinate_noise_augmentation",
+    "algorithmstep:2405.03370:2:layer_wise_learning_rate_decay_schedule"
+  ],
+  "candidate_functions": [
+    "codefunction:oxpig_antifold:antifold_antiscripts_py:get_imgt_mask",
+    "codefunction:oxpig_antifold:antifold_antiscripts_py:parse_regions",
+    "codefunction:oxpig_antifold:antifold_antiscripts_py:get_pdbs_logits",
+    "codefunction:oxpig_antifold:antifold_antiscripts_py:dataset_dataloader_to_predictions_list",
+    "codefunction:oxpig_antifold:antifold_antiscripts_py:logits_to_seqprobs_list",
+    "codefunction:oxpig_antifold:antifold_antiscripts_py:sample_new_sequences_cdr_hl",
+    "codefunction:oxpig_antifold:antifold_antiscripts_py:sample_from_df_logits_hl",
+    "codefunction:oxpig_antifold:antifold_antiscripts_py:calc_pos_perplexity"
+  ],
+  "warnings": [
+    "2 个模块无可证据化映射，保持为真实缺口，不伪造落地边"
+  ],
+  "note": "只作用于内存归一化视图；源图文件不变。补边来自 CodeFunction.name/purpose 关键词证据，非 AST 直接落地。",
+  "n_removed_edges": 0,
+  "n_added_edges": 0,
+  "n_excluded_modules": 0,
+  "n_excluded_algorithms": 0
+}

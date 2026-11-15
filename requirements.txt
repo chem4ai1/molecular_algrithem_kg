@@ -1,0 +1,14 @@
+# 知识抽取 → 语义层 → 应用层 → 论文复现 运行依赖（Python >= 3.10）
+# 安装：pip install -r requirements.txt
+fastapi>=0.110
+uvicorn[standard]>=0.27
+pydantic>=2.5
+requests>=2.31
+numpy>=1.24
+PyYAML>=6.0
+python-dotenv>=1.0
+# 可选：全量抽取下的 PDF 解析与表格增强
+# pymupdf>=1.24
+# pymupdf4llm>=0.0.17
+# pandas>=1.5
+# scikit-learn>=1.3

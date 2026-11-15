@@ -1,0 +1,25 @@
+__pycache__/
+*.py[cod]
+.venv*/
+*.egg-info/
+.DS_Store
+.pytest_cache/
+
+# 论文原文与代码仓库（体积大，可用 scripts/fetch_data.sh 重建）
+data/papers/pdf/
+data/repos/
+data/docx/
+data/papers/abstracts/
+
+# 向量索引（可重建）
+storage/semantic/vector/
+
+# 抽取报告：只保留 4 篇样例
+storage/sciforge/semantic_extraction/*.json
+!storage/sciforge/semantic_extraction/2411.06608.json
+!storage/sciforge/semantic_extraction/2405.03370.json
+!storage/sciforge/semantic_extraction/2611.06237.json
+!storage/sciforge/semantic_extraction/2302.09048.json
+
+# 图导出临时文件
+storage/sciforge/exports/
