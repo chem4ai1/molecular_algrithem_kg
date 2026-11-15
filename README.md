@@ -139,6 +139,21 @@ PYTHONPATH=src python -m unittest discover -s tests
 # 69 项：基线 / 词表标准 / 范式层 / rubric 树与运行时图 / MolMiner 复现 E2E
 ```
 
+## 图引擎：自研 POGraph + networkx 适配
+
+图谱**不是**图数据库，也**不是** networkx 存储：
+
+| | 说明 |
+|---|---|
+| 存储 | 自研 `po/store.py::POGraph`（JSON，6001 节点 / 7460 断言），带惰性邻接索引 |
+| 适配 | `po/nx_adapter.py` → `nx.MultiDiGraph`，可往返 |
+| 能力 | 统计（连通分量/密度/度分布）、多跳邻居、最短路、GraphML/GEXF 导出 |
+| API | `/api/v9/graph/nx/{stats,neighbors,shortest,export}` |
+
+实测（语义层）：**260** 个弱连通分量、密度 `2.07e-4`、度均值 2.49、最大 33、**DAG=True**、
+GraphML 导出 9.47MB（可被 Gephi 直接打开）。详见
+[src/capfactory/md/GRAPH_ENGINE.md](src/capfactory/md/GRAPH_ENGINE.md)。
+
 ## 复现控制台：四环节生命周期（`/repro`）
 
 在 SAU 之上把复现拆成**可单环节触发、可校验**的四步（零 LLM）：
