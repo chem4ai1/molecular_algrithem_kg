@@ -75,6 +75,17 @@ APP_CLASSES: Dict[str, Tuple[str, Tuple[Tuple[str, str], ...]]] = {
         ("existence", "optional"), ("metadata_ok", "optional"),
         ("context_ok", "optional"), ("context_quote", "optional"),
         ("cited_in", "optional"), ("recency_ratio", "optional"))),
+    "SectionDraft": ("本次写作的章节实例（按 run 实例化）", (
+        ("run_id", "must"), ("section", "must"), ("section_plan", "optional"),
+        ("claims", "optional"), ("word_budget", "optional"),
+        ("status", "optional"), ("cited", "optional"),
+        ("evidence", "optional"))),
+    "FailureCheck": ("本次自检结果（按 run 实例化）", (
+        ("run_id", "must"), ("status", "must"), ("note", "optional"),
+        ("checked_at", "optional"))),
+    "ConsultedPaper": ("本次查过但未引的论文（按 run 实例化）", (
+        ("run_id", "must"), ("paper_id", "must"), ("reason", "optional"),
+        ("used_in", "optional"))),
     "ResearchGap": ("本次写作要填补的空白（按 run 实例化）", (
         ("run_id", "must"), ("gap_id", "must"), ("gap_type", "must"),
         ("statement", "must"), ("evidence", "optional"),
@@ -113,6 +124,12 @@ APP_RELATIONS: Dict[str, Tuple[str, str, str]] = {
     "ANCHORS": ("ResearchGap", "Contribution", "该空白锚定了哪条贡献"),
     "OUTLINES": ("Paper", "SectionPlan", "论文的章节计划"),
     "CHALLENGED_BY": ("Contribution", "ReviewPoint", "该贡献可能被如何质疑"),
+    "DRAFTS": ("Paper", "SectionDraft", "本次写作的章节实例"),
+    "INSTANCE_OF": ("SectionDraft", "SectionPlan", "实例化的骨架"),
+    "USES_EVIDENCE": ("SectionDraft", "Evidence", "该节用到的证据"),
+    "CONSULTED": ("SectionDraft", "ConsultedPaper", "该节查过的论文"),
+    "CHECKED": ("Paper", "FailureCheck", "本次失败模式自检"),
+    "CHECK_OF": ("FailureCheck", "FailureMode", "检查的是哪条失败模式"),
 }
 
 

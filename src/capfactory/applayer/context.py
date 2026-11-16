@@ -83,6 +83,63 @@ class WritingContext:
             self.g.assert_rel(section_id, nid, "CITES", layer="application")
         return nid
 
+    # -- 章节实例 ----------------------------------------------------------
+    def plan_section(self, *, section: str, section_plan: str = "",
+                     claims: Optional[List[str]] = None,
+                     word_budget: Optional[int] = None) -> str:
+        """登记「本次这一节怎么写」；同 section 复用。"""
+        nid = f"draft:{self.run_id}:{_slug(section)}"
+        self._add(nid, "SectionDraft", section, run_id=self.run_id,
+                  section=section, section_plan=section_plan or "",
+                  claims=list(claims or []), word_budget=word_budget,
+                  status="planned", cited=[], evidence=[])
+        if section_plan and section_plan in self.g.nodes:
+            self.g.assert_rel(nid, section_plan, "INSTANCE_OF", layer="application")
+        return nid
+
+    def use_evidence(self, draft_id: str, evidence_id: str) -> None:
+        if draft_id in self.g.nodes and evidence_id in self.g.nodes:
+            self.g.assert_rel(draft_id, evidence_id, "USES_EVIDENCE",
+                              layer="application")
+
+    # -- 预演与自检 --------------------------------------------------------
+    def review(self, *, contribution_id: str, axis: str, attack: str,
+               severity: str = "high", response: str = "",
+               evidence_gap: str = "") -> str:
+        """登记「本次针对这条贡献预演的一条反驳」。"""
+        nid = f"review:{self.run_id}:{_slug(f'{contribution_id}:{axis}')}"
+        self._add(nid, "ReviewPoint", f"{axis} · {attack[:24]}",
+                  run_id=self.run_id, axis=axis, attack=attack,
+                  response=response, severity=severity,
+                  evidence_gap=evidence_gap)
+        if contribution_id in self.g.nodes:
+            self.g.assert_rel(contribution_id, nid, "CHALLENGED_BY",
+                              layer="application")
+        return nid
+
+    def check(self, *, failure_mode_id: str, status: str,
+              note: str = "") -> str:
+        """登记「本次对某条失败模式的自检结果」。"""
+        nid = f"check:{self.run_id}:{_slug(failure_mode_id)}"
+        self._add(nid, "FailureCheck", failure_mode_id, run_id=self.run_id,
+                  status=status, note=note, checked_at=self._now())
+        if failure_mode_id in self.g.nodes:
+            self.g.assert_rel(nid, failure_mode_id, "CHECK_OF",
+                              layer="application")
+        return nid
+
+    # -- 查阅（未引） ------------------------------------------------------
+    def consult(self, *, paper_id: str, reason: str = "",
+                draft_id: str = "") -> str:
+        """登记「查过但没引」的论文；用于回答「为什么没引它」。"""
+        nid = f"consult:{self.run_id}:{_slug(paper_id)}"
+        self._add(nid, "ConsultedPaper", paper_id, run_id=self.run_id,
+                  paper_id=paper_id, reason=reason,
+                  used_in=[draft_id] if draft_id else [])
+        if draft_id and draft_id in self.g.nodes:
+            self.g.assert_rel(draft_id, nid, "CONSULTED", layer="application")
+        return nid
+
     # -- 关联 --------------------------------------------------------------
     def support(self, gap_id: str, cite_key: str) -> None:
         nid = f"cited:{self.run_id}:{_slug(cite_key)}"

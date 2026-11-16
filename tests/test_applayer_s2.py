@@ -136,6 +136,37 @@ class TestWritingContext(unittest.TestCase):
         b = ctx.seek_gap(statement="缺 3D 控制", gap_type="capability")
         self.assertEqual(a, b)
 
+    def test_section_draft(self):
+        ctx, g = self._ctx()
+        d = ctx.plan_section(section="Results", claims=["main_result"],
+                             word_budget=1600)
+        self.assertTrue(d.startswith("draft:run_a:"))
+        self.assertEqual(g.nodes[d].attrs["word_budget"], 1600)
+
+    def test_review_task_level(self):
+        ctx, g = self._ctx()
+        r = ctx.review(contribution_id="con:1", axis="validity",
+                       attack="涨点在噪声内", evidence_gap="seeds 缺失")
+        self.assertTrue(r.startswith("review:run_a:"))
+        rels = {a.relation for a in g.assertions}
+        self.assertIn("CHALLENGED_BY", rels)
+
+    def test_check_task_level(self):
+        ctx, g = self._ctx()
+        g.node("fm:1", "FailureMode", "data_leakage")
+        c = ctx.check(failure_mode_id="fm:1", status="pass")
+        self.assertTrue(c.startswith("check:run_a:"))
+        rels = {a.relation for a in g.assertions}
+        self.assertIn("CHECK_OF", rels)
+
+    def test_consult_task_level(self):
+        ctx, g = self._ctx()
+        d = ctx.plan_section(section="Results")
+        c = ctx.consult(paper_id="paper:2", reason="未引", draft_id=d)
+        self.assertTrue(c.startswith("consult:run_a:"))
+        rels = {a.relation for a in g.assertions}
+        self.assertIn("CONSULTED", rels)
+
     def test_run_isolation(self):
         from capfactory.applayer.context import WritingContext
         ctx, g = self._ctx()
