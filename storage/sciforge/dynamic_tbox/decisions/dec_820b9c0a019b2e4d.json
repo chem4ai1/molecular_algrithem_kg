@@ -1,0 +1,14 @@
+{
+  "decision_id": "dec:820b9c0a019b2e4d",
+  "choice_id": "choice:5",
+  "stage": "5",
+  "chosen_option_id": "approve_registry",
+  "approver": "human:runner",
+  "ts": "2026-11-15T14:25:19Z",
+  "evidence_ids": [],
+  "reason": "",
+  "supersedes": "",
+  "valid_from": "2026-11-15T14:25:19Z",
+  "valid_to": null,
+  "origin": "human"
+}

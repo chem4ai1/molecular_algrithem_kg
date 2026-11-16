@@ -1,0 +1,57 @@
+refine: R2_experiment_arm
+order: 2
+enabled: true
+target:
+  class: ExperimentArm
+  node_id: "experiment:{arxiv_id}:{kind}:{n}"
+  relation: RUNS
+  parent_class: Paper
+section_hints:
+  - experimental
+  - experiment
+  - setup
+  - baseline
+  - ablation
+signal_words:
+  - we compare
+  - baselines
+  - we ablate
+  - w/o
+  - our variant
+  - we sweep
+  - grid search
+  - runs
+locate:
+  strategy: paragraph
+  max_paragraphs: 8
+  window: 1
+fields:
+  - name: kind
+    required: true
+    type: str
+    enum: [main, baseline, ablation, hyperparam]
+  - name: name
+    required: true
+    type: str
+    max_chars: 60
+  - name: config
+    type: str
+    max_chars: 120
+  - name: n_seeds
+    type: int
+  - name: benchmark
+    type: str
+  - name: evidence
+    required: true
+    type: str
+    max_chars: 120
+template: |
+  任务：抽取论文做过哪些**实验组**（不是数值，是组）。
+  每组标明 kind：main（主实验）/ baseline（对比方法）/ ablation（去掉或替换某组件）/ hyperparam（超参扫描）。
+  baseline 组逐个列出（含 naive：random / majority / identity）。
+  只写原文明确提到的组，不要推断。
+  【已有抽取信息】{existing}
+  【原文段落】{context}
+  输出 JSON：{"arms":[{fields}]}
+  可用字段：{fields}
+merge: append

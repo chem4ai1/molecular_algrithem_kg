@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CapFactory · 论文生成应用层</title>
+<style>
+:root{--bg:#080e18;--pnl:#0c1526;--bd:#1d2940;--tx:#cfe0ff;--mut:#7d8bb0;
+--ok:#3ddc97;--bad:#ff6b6b;--warn:#ffb454;--acc:#8fb4ff;--cur:#173c42}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);
+font:13px/1.6 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+header{padding:14px 20px;border-bottom:1px solid var(--bd);display:flex;gap:16px;
+align-items:center;flex-wrap:wrap;background:var(--pnl)}
+h1{font-size:16px;margin:0;color:var(--acc)}
+.mono{font-family:ui-monospace,monospace;word-break:break-all}
+.sum{display:flex;gap:14px;flex-wrap:wrap;padding:10px 20px;border-bottom:1px solid var(--bd)}
+.sum span{color:var(--mut)}.sum b{color:var(--tx);font-weight:600}
+.frozen{display:none;padding:8px 20px;background:#3a1414;color:#ffd7d7;border-bottom:1px solid var(--bad)}
+.frozen.on{display:block}
+nav{display:flex;gap:2px;padding:8px 20px;border-bottom:1px solid var(--bd);overflow-x:auto}
+[role=tab]{background:transparent;color:var(--mut);border:1px solid transparent;
+padding:6px 14px;cursor:pointer;border-radius:6px 6px 0 0;white-space:nowrap}
+[role=tab][aria-selected=true]{color:var(--acc);border-color:var(--bd);background:var(--pnl)}
+main{padding:16px 20px;max-width:1500px}
+.panel{background:var(--pnl);border:1px solid var(--bd);border-radius:8px;padding:14px;margin-bottom:14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.kv{display:flex;justify-content:space-between;gap:10px;border-bottom:1px dotted var(--bd);padding:3px 0}
+.kv span{color:var(--mut)}
+table{border-collapse:collapse;width:100%;font-size:12px}
+th,td{border-bottom:1px solid var(--bd);padding:5px 7px;text-align:left;vertical-align:top}
+th{color:var(--mut);font-weight:600}
+.st{display:inline-block;padding:1px 7px;border-radius:9px;font-size:11px;border:1px solid}
+.st.PASS,.st.covered,.st.registered{color:var(--ok);border-color:var(--ok)}
+.st.WARN,.st.partial,.st.validated,.st.proposed{color:var(--warn);border-color:var(--warn)}
+.st.BLOCKED,.st.ERROR,.st.FAIL,.st.gap,.st.rejected{color:var(--bad);border-color:var(--bad)}
+.st.NOT_APPLICABLE,.st.deprecated,.st.observed{color:var(--mut);border-color:var(--mut)}
+.gate{outline:1px solid var(--bad)}
+button.action{background:var(--cur);color:var(--tx);border:1px solid var(--bd);
+border-radius:5px;padding:5px 11px;cursor:pointer}
+button.action:disabled{opacity:.45;cursor:not-allowed}
+input,select,textarea{background:#060b14;color:var(--tx);border:1px solid var(--bd);
+border-radius:4px;padding:5px 7px;font:inherit;width:100%}
+label{display:block;color:var(--mut);margin:8px 0 3px}
+.loading{color:var(--mut)}.empty{color:var(--mut);padding:10px}
+.error{color:var(--bad);padding:8px;border:1px solid var(--bad);border-radius:5px}
+#devtools{position:fixed;right:14px;bottom:14px;width:360px;max-height:60vh;overflow:auto;
+background:var(--pnl);border:1px solid var(--bd);border-radius:8px;padding:12px;display:none;z-index:9}
+#devtools.on{display:block}
+.small{font-size:11px;color:var(--mut)}
+</style></head>
+<body>
+<header><h1>论文生成 · 动态应用层</h1>
+<input id="arxiv" placeholder="paper:2411.06608" style="width:220px">
+<select id="runsel" style="width:230px"><option value="">（选择 run）</option></select>
+<button class="action" id="refresh">刷新</button>
+<button class="action" id="run">运行一次</button>
+<button class="action" id="dev">调试面板</button>
+<span class="small" id="hint"></span></header>
+<div class="frozen" id="frozen">语义层指纹与基线不一致：已禁用所有写操作，请立即核查。</div>
+<div class="sum" id="sum"><span>加载中…</span></div>
+<nav role="tablist" id="tabs">
+<button role="tab" data-tab="overview" aria-selected="true">总览</button>
+<button role="tab" data-tab="pipeline" aria-selected="false">编排</button>
+<button role="tab" data-tab="run" aria-selected="false">运行</button>
+<button role="tab" data-tab="cache" aria-selected="false">缓存</button>
+<button role="tab" data-tab="materialize" aria-selected="false">回写</button>
+<button role="tab" data-tab="graph" aria-selected="false">图节点</button>
+<button role="tab" data-tab="human" aria-selected="false">人工决策</button>
+</nav>
+<main id="content"></main>
+<div id="devtools"></div>
+<script>
+const TABS=[["overview","总览"],["pipeline","编排"],["run","运行"],["cache","缓存"],
+            ["materialize","回写"],["graph","图节点"],["human","人工决策"]];
+const API="/api/v10/paperapp";
+const State={tab:"overview",errors:{},overview:null,frozen:false};
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function badge(v){const c=['PASS','WARN','FAIL','BLOCKED','ERROR','NOT_APPLICABLE','covered','partial','gap','registered','validated','proposed','deprecated','rejected','observed'].includes(v)?v:'observed';
+ return `<span class="st ${esc(c)}">${esc(v==null?'未运行':v)}</span>`;}
+function tbl(head,rows){if(!rows||!rows.length)return '<div class="empty">无数据</div>';
+ return `<table><thead><tr>${head.map(h=>`<th>${esc(h)}</th>`).join('')}</tr></thead><tbody>${rows.map(r=>`<tr>${r.map(c=>`<td>${c}</td>`).join('')}</tr>`).join('')}</tbody></table>`;}
+function kv(rows){return rows.map(r=>`<div class="kv"><span>${esc(r[0])}</span><b class="mono">${esc(r[1])}</b></div>`).join('');}
+async function api(path,opt){const r=await fetch(API+path,Object.assign({cache:'no-store'},opt||{}));
+ const t=await r.text();let d;try{d=JSON.parse(t)}catch(e){throw new Error('non-json:'+t.slice(0,120))}
+ if(!r.ok){const e=new Error(d.reason_code||('http '+r.status));e.detail=t.slice(0,200);throw e}
+ return d;}
+function panel(title,body,err){return `<section class="panel"><h3>${esc(title)}</h3>${err?`<div class="error">${esc(err)}</div>`:body}</section>`;}
+function loading(){return '<div class="loading">校验中…</div>';}
+async function settled(items){return Promise.allSettled(items.map(([f,a])=>f(a)));}
+function val(r,fb){return r.status==='fulfilled'?r.value:fb;}
+function err(r){return r.status==='rejected'?(r.reason.message||'unknown'):'';}
+
+async function renderOverview(){
+ const rs=await settled([[()=>api('/overview')],[()=>api('/registry/audit')],
+   [()=>api('/verify-rebuild')],[()=>api('/gates/audit')]]);
+ const o=val(rs[0],{});State.overview=o;
+ const cards=`<div class="grid">${[
+  panel('基线',kv([['semantic_sha',String(o.semantic_sha||'').slice(0,24)+'…'],
+    ['app_sha',String(o.app_sha||'').slice(0,24)+'…'],['动态版本',o.dynamic_tbox_version],
+    ['注册类',o.n_registered_classes],['阶段数',o.n_stages]])),err(rs[0])),
+  panel('注册审计',kv([['ok',val(rs[1],{}).ok],['issues',(val(rs[1],{}).issues||[]).length]]),err(rs[1])),
+  panel('重建等价',kv([['ok',val(rs[2],{}).ok],['reason',val(rs[2],{}).reason_code],
+    ['n_missing',val(rs[2],{}).n_missing],['n_rel_diff',val(rs[2],{}).n_rel_diff]]),err(rs[2])),
+  panel('门审计',kv([['ok',val(rs[3],{}).ok],['missing',(val(rs[3],{}).missing||[]).length],
+    ['blocking',(val(rs[3],{}).blocking||[]).length]]),err(rs[3])),
+  panel('探索信号',kv([['signals',(o.cache||{}).n_signals],
+    ['capture_rate',(o.cache||{}).signal_capture_rate],
+    ['覆盖率',o.mining_coverage_ratio],['待决 gate',o.pending_gate_choices]])),
+ ].join('')}</div>`;
+ return cards;
+}
+async function renderPipeline(){
+ const rs=await settled([[()=>api('/stages')],[()=>api('/mining-coverage')],[()=>api('/spec?arxiv='+encodeURIComponent(document.getElementById('arxiv').value))]]);
+ const s=val(rs[0],{stages:[]}),c=val(rs[1],{}),sp=val(rs[2],{});
+ return panel('26 阶段定义',tbl(['id','mode','gate','next'],(s.stages||[]).map(x=>
+   [esc(x.id),x.optional?'OPTIONAL':esc(x.mode),esc(x.gate),esc((x.next||[]).join(','))])),err(rs[0]))
+  +panel('挖掘覆盖率',kv([['coverage_ratio',c.coverage_ratio],['gap_candidates',c.n_gap_candidates],
+    ['target',c.target],['statuses',(c.statuses||[]).join('/')]]),err(rs[1]))
+  +panel('PaperSpec',kv([['spec_hash',String(sp.spec_hash||'').slice(0,26)+'…'],
+    ['decision_fp',String(sp.decision_fp||'').slice(0,20)+'…'],
+    ['stages',(sp.stage_order||[]).length],['warnings',(sp.warnings||[]).length]]),err(rs[2]));
+}
+async function renderRun(){
+ const rid=document.getElementById('runsel').value;
+ const rs=await settled([[()=>api('/runs')],[()=>api('/runs/stages?id='+encodeURIComponent(rid))],
+   [()=>api('/events?id='+encodeURIComponent(rid)+'&limit=60')],[()=>api('/budget?id='+encodeURIComponent(rid))]]);
+ const runs=val(rs[0],{runs:[]}),st=val(rs[1],{stages:[]}),ev=val(rs[2],{items:[]}),b=val(rs[3],{});
+ if(runs.runs&&runs.runs.length){const sel=document.getElementById('runsel');
+  sel.innerHTML='<option value="">（选择 run）</option>'+runs.runs.map(x=>`<option value="${esc(x.run_id)}" ${x.run_id===rid?'selected':''}>${esc(x.run_id)} ${esc(x.overall)}</option>`).join('');}
+ return panel('runs',tbl(['run','overall','stages','duration_ms'],(runs.runs||[]).map(x=>
+   [esc(x.run_id),badge(x.overall),esc(x.n_stages),esc(x.duration_ms)]),err(rs[0]))
+  +panel('阶段 verdict',tbl(['stage','state','reason'],(st.stages||[]).map(x=>
+   [esc(x.id),badge(x.state||x.verdict),esc(x.reason_code)]),err(rs[1]))
+  +panel('事件流',tbl(['ts','stage','event'],(ev.items||[]).slice(-25).map(x=>
+   [esc(x.ts),esc(x.stage),esc(x.event)]),err(rs[2]))
+  +panel('预算',kv([['wall_clock_ms',b.wall_clock_ms],['ba_rounds',b.ba_rounds_used],
+    ['exploration_regret',b.exploration_regret]]),err(rs[3]));
+}
+async function renderCache(){
+ const rs=await settled([[()=>api('/cache/requests')],[()=>api('/cache/proposals')],
+   [()=>api('/cache/nodes')],[()=>api('/cache/conflicts')],[()=>api('/signals')],[()=>api('/signals/audit')]]);
+ const q=val(rs[0],{}),p=val(rs[1],{items:[]}),n=val(rs[2],{items:[]}),c=val(rs[3],{items:[]}),s=val(rs[4],{items:[]}),a=val(rs[5],{});
+ return panel('L1 请求缓存',kv([['n_requests',q.count],['hit_rate',q.hit_rate]]),err(rs[0]))
+  +panel('L2 提案',tbl(['id','status','class','origin'],(p.items||[]).slice(0,40).map(x=>
+   [esc(x.proposal_id),badge(x.status),esc(x.candidate_class),esc(x.origin)]),err(rs[1]))
+  +panel('L3 注册节点',tbl(['canonical_id','status','use_count'],(n.items||[]).slice(0,40).map(x=>
+   [esc(x.canonical_id),badge(x.status),esc(x.use_count)]),err(rs[2]))
+  +panel('冲突',tbl(['proposal','reason','score'],(c.items||[]).slice(-20).map(x=>
+   [esc(x.proposal_id),esc(x.reason),esc(x.score)]),err(rs[3]))
+  +panel('探索信号',tbl(['id','kind','status','count'],(s.items||[]).slice(0,40).map(x=>
+   [esc(x.signal_id),esc(x.kind),badge(x.status),esc(x.count)]),err(rs[4]))
+  +panel('信号审计',kv([['ok',a.ok],['capture_rate',a.signal_capture_rate],['clusters',a.n_clusters]]),err(rs[5]));
+}
+async function renderMaterialize(){
+ const rid=document.getElementById('runsel').value;
+ const rs=await settled([[()=>api('/materialize/report?run='+encodeURIComponent(rid))],
+   [()=>api('/materialize/diff?run='+encodeURIComponent(rid))],[()=>api('/stale')],
+   [()=>api('/promotions')],[()=>api('/replay')],[()=>api('/reinjection')]]);
+ const r=val(rs[0],{}),d=val(rs[1],{}),s=val(rs[2],{}),p=val(rs[3],{items:[]}),rp=val(rs[4],{}),ri=val(rs[5],{});
+ return panel('回写报告',kv([['n_proposed',r.n_proposed],['n_registered',r.n_registered],
+   ['n_rejected',r.n_rejected],['equivalence',r.rebuild_equivalence],
+   ['files_written',(r.files_written||[]).length]]),err(rs[0]))
+  +panel('节点 diff',tbl(['新增节点'],(d.nodes_added||[]).map(x=>[esc(x)])),err(rs[1]))
+  +panel('stale',kv([['scope',s.scope],['ceiling',s.ceiling]]),err(rs[2]))
+  +panel('晋升日志（append-only）',tbl(['ts','proposal','from→to','approver'],(p.items||[]).slice(-20).map(x=>
+   [esc(x.ts),esc(x.proposal_id),esc(x.from+'→'+x.to),esc(x.approver)]),err(rs[3]))
+  +panel('回放上下文',kv([['avoid',rp.n_hard_excluded],['worked',(rp.what_worked||[]).length]]),err(rs[4]))
+  +panel('约束再注入',tbl(['decision','verbatim'],(ri.decisions||[]).map(x=>
+   [esc(x.decision_id),esc(x.verbatim_text)]),err(rs[5]));
+}
+async function renderGraph(){
+ const rs=await settled([[()=>api('/graph/nodes?limit=120')],[()=>api('/graph/nodes?attribution=llm_proposal&limit=120')]]);
+ const a=val(rs[0],{items:[]}),b=val(rs[1],{items:[]});
+ return panel('应用图节点（前 120）',tbl(['id','type','layer','attribution'],(a.items||[]).map(x=>
+   [esc(x.id),esc(x.type),esc((x.attrs||{}).layer),esc(x.attribution)]),err(rs[0]))
+  +panel('LLM 提案节点',tbl(['id','type','evidence'],(b.items||[]).map(x=>
+   [esc(x.id),esc(x.type),esc((x.evidence_ids||[]).length)]),err(rs[1]));
+}
+async function renderHuman(){
+ const rs=await settled([[()=>api('/choices')],[()=>api('/decisions')],
+   [()=>api('/frontiers')],[()=>api('/reinjection/audit')],[()=>api('/audit-sovereignty')]]);
+ const c=val(rs[0],{items:[]}),d=val(rs[1],{items:[]}),f=val(rs[2],{items:[]}),ra=val(rs[3],{}),sov=val(rs[4],{});
+ const sorted=(c.items||[]).slice().sort((x,y)=>(y.mode==='gate')-(x.mode==='gate'));
+ const choiceCards=sorted.map(x=>`<div class="panel ${x.mode==='gate'?'gate':''}"><b>${esc(x.stage)}</b> ${badge(x.mode)}
+  <div class="small">${esc((x.options||[]).map(o=>o.id).join(' / ')||'自由输入')}</div></div>`).join('')||'<div class="empty">无待决 ChoicePoint</div>';
+ const form=`<section class="panel"><h3>注入人类思路</h3>
+  <label>statement *</label><input id="h_statement">
+  <label>falsifiable_claim *</label><input id="h_claim">
+  <label>gap_anchor（或 exploratory_reason）*</label><input id="h_gap">
+  <label>approver（gate 决定时必填）</label><input id="h_approver">
+  <div style="margin-top:10px"><button class="action" id="h_submit">提交假设</button>
+  <button class="action" id="h_decide">确认当前 gate 首个选项</button></div>
+  <div class="small" id="h_msg"></div></section>`;
+ return `<div class="grid">${panel('主权',kv([['gate_timeout',sov.gate_timeout_policy],
+   ['human_boost_cap',sov.human_boost_cap],['语义层保护',sov.semantic_layer_guard],
+   ['传播率',ra.decision_propagation_rate]]),err(rs[4]))}${form}
+  ${panel('决策历史（append-only）',tbl(['decision','stage','chosen','approver','valid_to'],
+   (d.items||[]).map(x=>[esc(x.decision_id),esc(x.stage),esc(x.chosen_option_id),
+    esc(x.approver),esc(x.valid_to)]),err(rs[1])))}
+  ${panel('失败方向 / frontier',tbl(['direction','status'],(f.items||[]).map(x=>
+   [esc(x.direction),badge(x.status)]),err(rs[2])))}</div>
+  +`<h3>ChoicePoint（gate 优先）</h3>${choiceCards}`;
+}
+const RENDER={overview:renderOverview,pipeline:renderPipeline,run:renderRun,
+ cache:renderCache,materialize:renderMaterialize,graph:renderGraph,human:renderHuman};
+function route(){const p=new URLSearchParams(location.search);State.tab=p.get('tab')||'overview';
+ document.querySelectorAll('[role=tab]').forEach(b=>{
+  b.setAttribute('aria-selected',String(b.dataset.tab===State.tab));
+  b.onclick=()=>{State.tab=b.dataset.tab;history.replaceState({},'',`?tab=${State.tab}`);
+   route();refresh();};});
+}
+async function refresh(){const box=document.getElementById('content');box.innerHTML=loading();
+ try{box.innerHTML=await (RENDER[State.tab]||renderOverview)();bind();}catch(e){box.innerHTML=`<div class="error">${esc(e.message)}</div>`;}
+ const o=State.overview||{};
+ document.getElementById('sum').innerHTML=
+  `<span>semantic <b class="mono">${esc(String(o.semantic_sha||'').slice(0,18))}…</b></span>
+   <span>app <b class="mono">${esc(String(o.app_sha||'').slice(0,18))}…</b></span>
+   <span>版本 <b>${esc(o.dynamic_tbox_version)}</b></span>
+   <span>信号 <b>${esc((o.cache||{}).n_signals)}</b></span>
+   <span>待决 gate <b>${esc(o.pending_gate_choices)}</b></span>
+   <span>覆盖 <b>${esc(o.mining_coverage_ratio)}</b></span>`;
+}
+function bind(){
+ const sub=document.getElementById('h_submit');
+ if(sub)sub.onclick=async()=>{const s=document.getElementById('h_statement').value,
+  c=document.getElementById('h_claim').value,g=document.getElementById('h_gap').value;
+  const m=document.getElementById('h_msg');
+  if(!s||!c||!g){m.textContent='statement / falsifiable_claim / gap_anchor 均为必填';return;}
+  try{const r=await api('/hypotheses',{method:'POST',headers:{'Content-Type':'application/json'},
+   body:JSON.stringify({statement:s,falsifiable_claim:c,gap_anchor:g})});
+   m.textContent=r.ok?'已注入 idea DAG（origin=human）':('拒绝：'+r.reason_code);}catch(e){m.textContent='错误：'+e.message;}};
+ const dec=document.getElementById('h_decide');
+ if(dec)dec.onclick=async()=>{const m=document.getElementById('h_msg');
+  try{const cs=await api('/choices?mode=gate');
+   if(!cs.items||!cs.items.length){m.textContent='无 gate 待决';return;}
+   const x=cs.items[0],opt=(x.options&&x.options[0]||{}).id||'approve_registry';
+   const r=await api('/decide',{method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({stage:x.stage,option:opt,
+     approver:document.getElementById('h_approver').value||''})});
+   m.textContent=r.ok?'已决定 '+r.decision.decision_id:('BLOCKED：'+r.reason_code);}catch(e){m.textContent='错误：'+e.message;}};
+}
+document.getElementById('tabs').addEventListener('click',e=>{e.preventDefault();});
+document.getElementById('refresh').onclick=refresh;
+document.getElementById('run').onclick=async()=>{if(State.frozen)return;
+ const b=document.getElementById('run');b.disabled=true;b.textContent='运行中…';
+ try{await api('/run',{method:'POST',headers:{'Content-Type':'application/json'},
+  body:JSON.stringify({arxiv:document.getElementById('arxiv').value||'paper:demo'})});
+  await refresh();}catch(e){document.getElementById('hint').textContent='运行失败：'+e.message;}
+ b.disabled=false;b.textContent='运行一次';};
+document.getElementById('dev').onclick=async()=>{const d=document.getElementById('devtools');
+ d.classList.toggle('on');if(!d.classList.contains('on'))return;
+ try{const h=await api('/debug/health'),e=await api('/debug/events?tail=20'),r=await api('/debug/replay');
+  d.innerHTML=`<h3>调试面板</h3>${kv([['semantic_graph',h.graphs.semantic],['app_graph',h.graphs.app],
+   ['registry',h.registry],['replay_ok',r.replay_ok],['recent_events',e.count]])}
+   <div class="small">${esc(Object.keys(State.errors).join(', ')||'无页面错误')}</div>
+   <button class="action" id="cpall">复制诊断摘要</button><div id="cpmsg" class="small"></div>`;
+  document.getElementById('cpall').onclick=()=>{navigator.clipboard.writeText(JSON.stringify({h,e,r},null,2));
+   document.getElementById('cpmsg').textContent='已复制';};}
+ catch(e){d.innerHTML=`<div class="error">${esc(e.message)}</div>`;}};
+route();refresh().then(async()=>{try{const s=await api('/status'),
+  a=await api('/overview');State.frozen=!a.api_registration_errors?false:false;
+  document.getElementById('frozen').classList.toggle('on',State.frozen);}catch(e){}});
+</script></body></html>

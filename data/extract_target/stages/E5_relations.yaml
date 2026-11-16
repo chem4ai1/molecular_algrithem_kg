@@ -1,0 +1,28 @@
+stage: E5_relations
+order: 6
+enabled: true
+target:
+  classes:
+  - AlgorithmModule
+  wrapper: null
+  target_desc: Module→Tool / Module→Formula（仅这两类允许 LLM）
+contract:
+  required:
+  - module
+  - kind
+  - target
+  optional:
+  - evidence
+  note: 只能输出 tool / formula 两类关系，不输出科技树。
+  all_fields:
+  - module
+  - kind
+  - target
+  - evidence
+section_slice: algorithm
+slots:
+- paper_text
+template: "任务：为算法模块补「工具」与「公式」两类关系（**只允许这两类**）。\n输出 JSON：\n{\"relations\":[{\"module\":\"模块名\",\"kind\"\
+  :\"tool|formula\",\n  \"target\":\"工具名或公式编号\",\"evidence\":\"逐字引文\"}]}\n规则：\n1. kind 只能是 tool 或 formula；module\
+  \ 必须是上一阶段抽出的模块名。\n2. 其它关系（论文→算法、模块→代码、仓库→函数、算法→基准）全部由规则/AST 建，不要输出。\n3. 科技树链（对比/改进/局限）不属于语义层，不要输出。\n\
+  【方法节】\n{paper_text}\n"

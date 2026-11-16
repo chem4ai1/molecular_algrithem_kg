@@ -1,0 +1,49 @@
+refine: R3_assumption
+order: 3
+enabled: true
+target:
+  class: Assumption
+  node_id: "assumption:{arxiv_id}:{n}"
+  relation: ASSUMES
+  parent_class: Algorithm
+section_hints:
+  - method
+  - approach
+  - limitation
+  - theory
+signal_words:
+  - assume
+  - assumption
+  - we rely on
+  - holds when
+  - provided that
+  - under the condition
+  - we hypothesize
+locate:
+  strategy: paragraph
+  max_paragraphs: 6
+  window: 1
+fields:
+  - name: statement
+    required: true
+    type: str
+    max_chars: 80
+  - name: scope
+    type: str
+    enum: [global, module]
+  - name: applicability
+    type: str
+    max_chars: 60
+  - name: evidence
+    required: true
+    type: str
+    max_chars: 120
+template: |
+  任务：抽取该方法**成立所依赖的前提**（不是局限，是前提）。
+  局限是「做不到什么」，假设是「在什么前提下才对」。
+  只抽原文明确写出的，不要补常识。
+  【已有抽取信息】{existing}
+  【原文段落】{context}
+  输出 JSON：{"assumptions":[{fields}]}
+  可用字段：{fields}
+merge: append

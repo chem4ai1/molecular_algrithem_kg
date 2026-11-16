@@ -13,7 +13,12 @@ import json, time
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
-from .prompts import render, stages
+# 配置优先（data/extract_target/stages/*.yaml）；无配置时自动退化到 prompts.py。
+# 这样新增阶段/字段只改 YAML，不动这里。
+try:
+    from ..extractspec.render import render, stages
+except Exception:  # noqa: BLE001
+    from .prompts import render, stages
 from .validator import validate, fatal, retry_contract, cross_check
 from .guides import classify_paper_type, guide_text
 

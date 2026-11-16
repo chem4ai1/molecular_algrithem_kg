@@ -1,0 +1,424 @@
+{
+  "choices": [
+    {
+      "choice_id": "choice:1b",
+      "stage": "1b",
+      "mode": "option",
+      "options": [
+        {
+          "id": "formal",
+          "rationale": "",
+          "cost": "",
+          "risk": "",
+          "suggested_by": "system"
+        },
+        {
+          "id": "empirical",
+          "rationale": "",
+          "cost": "",
+          "risk": "",
+          "suggested_by": "system"
+        },
+        {
+          "id": "interpretive",
+          "rationale": "",
+          "cost": "",
+          "risk": "",
+          "suggested_by": "system"
+        },
+        {
+          "id": "design",
+          "rationale": "",
+          "cost": "",
+          "risk": "",
+          "suggested_by": "system"
+        }
+      ],
+      "default_option": "empirical",
+      "deadline": null,
+      "status": "pending",
+      "verdict_file": ""
+    },
+    {
+      "choice_id": "choice:4broad",
+      "stage": "4broad",
+      "mode": "option",
+      "options": [
+        {
+          "id": "method_family",
+          "rationale": "",
+          "cost": "",
+          "risk": "",
+          "suggested_by": "system"
+        },
+        {
+          "id": "dataset",
+          "rationale": "",
+          "cost": "",
+          "risk": "",
+          "suggested_by": "system"
+        },
+        {
+          "id": "year_slice",
+          "rationale": "",
+          "cost": "",
+          "risk": "",
+          "suggested_by": "system"
+        }
+      ],
+      "default_option": "method_family",
+      "deadline": null,
+      "status": "pending",
+      "verdict_file": ""
+    },
+    {
+      "choice_id": "choice:2",
+      "stage": "2",
+      "mode": "option",
+      "options": [
+        {
+          "id": "balanced",
+          "rationale": "",
+          "cost": "",
+          "risk": "",
+          "suggested_by": "system"
+        },
+        {
+          "id": "theoretical",
+          "rationale": "",
+          "cost": "",
+          "risk": "",
+          "suggested_by": "system"
+        },
+        {
+          "id": "computational",
+          "rationale": "",
+          "cost": "",
+          "risk": "",
+          "suggested_by": "system"
+        },
+        {
+          "id": "empirical",
+          "rationale": "",
+          "cost": "",
+          "risk": "",
+          "suggested_by": "system"
+        }
+      ],
+      "default_option": "balanced",
+      "deadline": null,
+      "status": "pending",
+      "verdict_file": ""
+    },
+    {
+      "choice_id": "choice:2.5",
+      "stage": "2.5",
+      "mode": "option",
+      "options": [
+        {
+          "id": "domain_failure",
+          "rationale": "",
+          "cost": "",
+          "risk": "",
+          "suggested_by": "system"
+        },
+        {
+          "id": "numeric_counterexample",
+          "rationale": "",
+          "cost": "",
+          "risk": "",
+          "suggested_by": "system"
+        },
+        {
+          "id": "literature_counterexample",
+          "rationale": "",
+          "cost": "",
+          "risk": "",
+          "suggested_by": "system"
+        }
+      ],
+      "default_option": "domain_failure",
+      "deadline": null,
+      "status": "pending",
+      "verdict_file": ""
+    },
+    {
+      "choice_id": "choice:3",
+      "stage": "3",
+      "mode": "gate",
+      "options": [
+        {
+          "id": "survivor_1",
+          "rationale": "",
+          "cost": "",
+          "risk": "",
+          "suggested_by": "system"
+        },
+        {
+          "id": "survivor_2",
+          "rationale": "",
+          "cost": "",
+          "risk": "",
+          "suggested_by": "system"
+        },
+        {
+          "id": "survivor_3",
+          "rationale": "",
+          "cost": "",
+          "risk": "",
+          "suggested_by": "system"
+        }
+      ],
+      "default_option": null,
+      "deadline": null,
+      "status": "pending",
+      "verdict_file": ""
+    },
+    {
+      "choice_id": "choice:4targeted",
+      "stage": "4targeted",
+      "mode": "advisory",
+      "options": [],
+      "default_option": null,
+      "deadline": null,
+      "status": "pending",
+      "verdict_file": ""
+    },
+    {
+      "choice_id": "choice:5",
+      "stage": "5",
+      "mode": "gate",
+      "options": [
+        {
+          "id": "approve_registry",
+          "rationale": "",
+          "cost": "",
+          "risk": "",
+          "suggested_by": "system"
+        },
+        {
+          "id": "revise_registry",
+          "rationale": "",
+          "cost": "",
+          "risk": "",
+          "suggested_by": "system"
+        }
+      ],
+      "default_option": null,
+      "deadline": null,
+      "status": "pending",
+      "verdict_file": ""
+    },
+    {
+      "choice_id": "choice:6",
+      "stage": "6",
+      "mode": "option",
+      "options": [
+        {
+          "id": "experiment-first",
+          "rationale": "",
+          "cost": "",
+          "risk": "",
+          "suggested_by": "system"
+        },
+        {
+          "id": "theory-only",
+          "rationale": "",
+          "cost": "",
+          "risk": "",
+          "suggested_by": "system"
+        },
+        {
+          "id": "hybrid",
+          "rationale": "",
+          "cost": "",
+          "risk": "",
+          "suggested_by": "system"
+        }
+      ],
+      "default_option": "experiment-first",
+      "deadline": null,
+      "status": "pending",
+      "verdict_file": ""
+    },
+    {
+      "choice_id": "choice:6b",
+      "stage": "6b",
+      "mode": "gate",
+      "options": [
+        {
+          "id": "pivot",
+          "rationale": "",
+          "cost": "",
+          "risk": "",
+          "suggested_by": "system"
+        },
+        {
+          "id": "kill",
+          "rationale": "",
+          "cost": "",
+          "risk": "",
+          "suggested_by": "system"
+        }
+      ],
+      "default_option": null,
+      "deadline": null,
+      "status": "pending",
+      "verdict_file": ""
+    },
+    {
+      "choice_id": "choice:10",
+      "stage": "10",
+      "mode": "option",
+      "options": [
+        {
+          "id": "symbolic",
+          "rationale": "",
+          "cost": "",
+          "risk": "",
+          "suggested_by": "system"
+        },
+        {
+          "id": "numerical",
+          "rationale": "",
+          "cost": "",
+          "risk": "",
+          "suggested_by": "system"
+        },
+        {
+          "id": "qualitative",
+          "rationale": "",
+          "cost": "",
+          "risk": "",
+          "suggested_by": "system"
+        }
+      ],
+      "default_option": "numerical",
+      "deadline": null,
+      "status": "pending",
+      "verdict_file": ""
+    },
+    {
+      "choice_id": "choice:11",
+      "stage": "11",
+      "mode": "option",
+      "options": [
+        {
+          "id": "schematic-led",
+          "rationale": "",
+          "cost": "",
+          "risk": "",
+          "suggested_by": "system"
+        },
+        {
+          "id": "quantitative-grid",
+          "rationale": "",
+          "cost": "",
+          "risk": "",
+          "suggested_by": "system"
+        }
+      ],
+      "default_option": "schematic-led",
+      "deadline": null,
+      "status": "pending",
+      "verdict_file": ""
+    },
+    {
+      "choice_id": "choice:12",
+      "stage": "12",
+      "mode": "option",
+      "options": [
+        {
+          "id": "theory",
+          "rationale": "",
+          "cost": "",
+          "risk": "",
+          "suggested_by": "system"
+        },
+        {
+          "id": "experiment",
+          "rationale": "",
+          "cost": "",
+          "risk": "",
+          "suggested_by": "system"
+        },
+        {
+          "id": "computational",
+          "rationale": "",
+          "cost": "",
+          "risk": "",
+          "suggested_by": "system"
+        },
+        {
+          "id": "survey",
+          "rationale": "",
+          "cost": "",
+          "risk": "",
+          "suggested_by": "system"
+        },
+        {
+          "id": "hybrid",
+          "rationale": "",
+          "cost": "",
+          "risk": "",
+          "suggested_by": "system"
+        }
+      ],
+      "default_option": "experiment",
+      "deadline": null,
+      "status": "pending",
+      "verdict_file": ""
+    },
+    {
+      "choice_id": "choice:14",
+      "stage": "14",
+      "mode": "gate",
+      "options": [
+        {
+          "id": "kill_argument_holds",
+          "rationale": "",
+          "cost": "",
+          "risk": "",
+          "suggested_by": "system"
+        },
+        {
+          "id": "reject_kill_argument",
+          "rationale": "",
+          "cost": "",
+          "risk": "",
+          "suggested_by": "system"
+        }
+      ],
+      "default_option": null,
+      "deadline": null,
+      "status": "pending",
+      "verdict_file": ""
+    },
+    {
+      "choice_id": "choice:15.5",
+      "stage": "15.5",
+      "mode": "option",
+      "options": [
+        {
+          "id": "supplement",
+          "rationale": "",
+          "cost": "",
+          "risk": "",
+          "suggested_by": "system"
+        },
+        {
+          "id": "accept",
+          "rationale": "",
+          "cost": "",
+          "risk": "",
+          "suggested_by": "system"
+        }
+      ],
+      "default_option": "accept",
+      "deadline": null,
+      "status": "pending",
+      "verdict_file": ""
+    }
+  ],
+  "n": 14
+}

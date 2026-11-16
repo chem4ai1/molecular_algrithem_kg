@@ -1,0 +1,37 @@
+stage: E3_benchmark
+order: 3
+enabled: true
+target:
+  classes:
+  - Benchmark
+  wrapper: null
+  target_desc: Benchmark 结构
+contract:
+  required:
+  - name
+  - input_form
+  - output_form
+  optional:
+  - n_samples
+  - scale
+  - modality
+  - research_object
+  - metrics
+  note: 禁止输出任何数值；数值走下一阶段。
+  all_fields:
+  - name
+  - input_form
+  - output_form
+  - n_samples
+  - scale
+  - modality
+  - research_object
+  - metrics
+section_slice: benchmark
+slots:
+- paper_text
+template: "任务：抽 Benchmark 的结构字段（**不要输出任何数值**）。\n输出 JSON：\n{\"benchmarks\":[{\"name\":\"明确命名的数据集/基准名\"\
+  ,\n  \"input_form\":\"从 FORM_VOCAB 选\",\"output_form\":\"从 FORM_VOCAB 选\",\n  \"n_samples\":\"样本量描述或空\"\
+  ,\"scale\":\"规模描述或空\",\n  \"modality\":\"数据模态或空\",\"research_object\":\"研究对象或空\",\n  \"metrics\":[{\"\
+  name\":\"指标名\",\"unit\":\"单位或空\",\"direction\":\"min|max|空\"}]}]}\n规则：benchmarks ≤3；metrics ≤4；input/output_form\
+  \ 必须来自封闭词表；\n数值/模型成绩一律不输出（下一阶段由表格解析负责）。\n【实验节】\n{paper_text}\n"

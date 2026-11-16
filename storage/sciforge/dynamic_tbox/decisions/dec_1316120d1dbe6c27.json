@@ -1,0 +1,14 @@
+{
+  "decision_id": "dec:1316120d1dbe6c27",
+  "choice_id": "choice:3",
+  "stage": "3",
+  "chosen_option_id": "survivor_1",
+  "approver": "human:runner",
+  "ts": "2026-11-15T14:25:19Z",
+  "evidence_ids": [],
+  "reason": "",
+  "supersedes": "",
+  "valid_from": "2026-11-15T14:25:19Z",
+  "valid_to": null,
+  "origin": "human"
+}

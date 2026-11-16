@@ -1,0 +1,8 @@
+{"event": "signal_created", "kind": "mining_gap", "paper_id": "", "run_id": "", "signal_id": "sig:af16561bfd388070", "stage": "coverage", "ts": "2026-11-15T14:15:52Z", "value": "why_hard"}
+{"event": "signal_created", "kind": "mining_gap", "paper_id": "", "run_id": "", "signal_id": "sig:671f8ffdb927c113", "stage": "coverage", "ts": "2026-11-15T14:15:52Z", "value": "formula"}
+{"count": 2, "event": "signal_seen", "signal_id": "sig:af16561bfd388070", "ts": "2026-11-15T14:24:33Z"}
+{"count": 2, "event": "signal_seen", "signal_id": "sig:671f8ffdb927c113", "ts": "2026-11-15T14:24:33Z"}
+{"count": 3, "event": "signal_seen", "signal_id": "sig:af16561bfd388070", "ts": "2026-11-15T14:25:19Z"}
+{"count": 3, "event": "signal_seen", "signal_id": "sig:671f8ffdb927c113", "ts": "2026-11-15T14:25:19Z"}
+{"event": "signal_created", "kind": "vocab_out_of_list", "paper_id": "paper:2411.06608", "run_id": "run:demo:s6", "signal_id": "sig:896a444f6206150d", "stage": "E3_benchmark", "ts": "2026-11-15T14:25:19Z", "value": "片段级条件生成描述符"}
+{"event": "signal_created", "kind": "align_unmatched", "paper_id": "paper:2411.06608", "run_id": "run:demo:s6", "signal_id": "sig:91463834f3a8c787", "stage": "2", "ts": "2026-11-15T14:25:19Z", "value": "prop:25a533cbcbe02a93"}

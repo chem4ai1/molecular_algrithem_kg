@@ -37,7 +37,7 @@ register_home_routes(app)
 WEB_API_MODULES = ("data_api", "graph_api", "pg_api", "extract_v7",
                    "algorithm_api", "benchmark_api", "relation_api",
                    "tbox_api", "provenance_api", "repro_api",
-                   "nx_api")
+                   "nx_api", "paperapp_api")
 app.state.api_registration_errors = {}
 for _mod in WEB_API_MODULES:
     try:

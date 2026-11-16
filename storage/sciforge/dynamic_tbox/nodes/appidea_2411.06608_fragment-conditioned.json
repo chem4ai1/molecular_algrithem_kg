@@ -1,0 +1,22 @@
+{
+  "canonical_id": "appidea:2411.06608:fragment-conditioned",
+  "registration_id": "dcls:0003",
+  "proposal_id": "prop:25a533cbcbe02a93",
+  "status": "registered",
+  "layer": "application",
+  "task": "generation",
+  "use_count": 0,
+  "first_seen": "2026-11-15T14:25:19Z",
+  "last_used": "2026-11-15T14:25:19Z",
+  "valid_from": "2026-11-15T14:25:19Z",
+  "valid_to": "",
+  "source_runs": [
+    "run:demo:s6"
+  ],
+  "evidence_ids": [
+    "appev:vocab-bridge"
+  ],
+  "spec_hash": "sha256:04d3f467f8376086ae8ec6ef2cad83af0e1971b5fca482b6fea9f568b0728c45",
+  "supersedes": "",
+  "deprecated_reason": ""
+}

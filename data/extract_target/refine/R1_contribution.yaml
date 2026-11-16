@@ -1,0 +1,55 @@
+refine: R1_contribution
+order: 1
+enabled: true
+target:
+  class: Contribution
+  node_id: "contribution:{arxiv_id}:{n}"
+  relation: DECLARES
+  parent_class: Paper
+section_hints:
+  - introduction
+  - abstract
+  - conclusion
+signal_words:
+  - we propose
+  - we introduce
+  - our contribution
+  - we present
+  - to the best of our knowledge
+  - unlike prior work
+locate:
+  strategy: paragraph
+  max_paragraphs: 6
+  window: 2
+fields:
+  - name: statement
+    required: true
+    type: str
+    max_chars: 80
+  - name: kind
+    required: true
+    type: str
+    enum: [method, data, analysis, system]
+  - name: why_not_before
+    type: list
+    max_items: 3
+    max_chars: 40
+  - name: section
+    type: str
+  - name: claimed_strength
+    type: str
+    enum: [proven, supported, suggests]
+  - name: evidence
+    required: true
+    type: str
+    max_chars: 120
+template: |
+  任务：从下面段落中抽取作者**明确声明的贡献**，每条一个对象。
+  只抽贡献句，不要把「我们做了实验」「我们开源了代码」当成贡献。
+  为什么以前没人做（why_not_before）必须落在三类之一：
+  技术约束 / 理论盲点 / 数据可得性；凑不出就留空，不要编造。
+  【已有抽取信息】{existing}
+  【原文段落】{context}
+  输出 JSON：{"contributions":[{fields}]}
+  可用字段：{fields}
+merge: append

@@ -1,0 +1,704 @@
+{
+  "paper_id": "paper:2411.06608",
+  "arxiv_id": "2411.06608",
+  "semantic_sha": "sha256:2014b7da1dc3ceaae11b0de44d0039ce5305419aaeff237c605751acccde06db",
+  "dynamic_tbox_version": "dyn-1.0.0",
+  "decision_fp": "sha256:e5cf8e54a896f5d20a941e4b6fdd5d209eac60b061ce35596c6f1fb6819c6720",
+  "stage_order": [
+    "0",
+    "1",
+    "1a",
+    "1b",
+    "4broad",
+    "2",
+    "2.5",
+    "2.5b",
+    "3",
+    "4targeted",
+    "5",
+    "6",
+    "6a",
+    "6b",
+    "6c",
+    "7",
+    "8",
+    "9",
+    "10",
+    "11",
+    "12",
+    "13",
+    "14",
+    "15",
+    "15.5",
+    "16"
+  ],
+  "domain_profile": {},
+  "gaps": [],
+  "ideas": [],
+  "frontier": [
+    {
+      "frontier_id": "appfrontier:paper:2411.06608:algorithm:chemicalvae",
+      "paper": "algorithm:chemicalvae",
+      "year": "",
+      "state": "solved",
+      "derived_from": [
+        "paper:2411.06608",
+        "algorithm:chemicalvae"
+      ]
+    },
+    {
+      "frontier_id": "appfrontier:paper:2411.06608:algorithm:schnet",
+      "paper": "algorithm:schnet",
+      "year": "",
+      "state": "solved",
+      "derived_from": [
+        "paper:2411.06608",
+        "algorithm:schnet"
+      ]
+    },
+    {
+      "frontier_id": "appfrontier:paper:2611.06237:algorithm:so3lr",
+      "paper": "algorithm:so3lr",
+      "year": "",
+      "state": "solved",
+      "derived_from": [
+        "paper:2611.06237",
+        "algorithm:so3lr"
+      ]
+    },
+    {
+      "frontier_id": "appfrontier:paper:2611.06237:algorithm:opls4",
+      "paper": "algorithm:opls4",
+      "year": "",
+      "state": "solved",
+      "derived_from": [
+        "paper:2611.06237",
+        "algorithm:opls4"
+      ]
+    },
+    {
+      "frontier_id": "appfrontier:paper:2611.06237:algorithm:gaff",
+      "paper": "algorithm:gaff",
+      "year": "",
+      "state": "solved",
+      "derived_from": [
+        "paper:2611.06237",
+        "algorithm:gaff"
+      ]
+    },
+    {
+      "frontier_id": "appfrontier:paper:2611.06237:algorithm:mace_polar_1_m",
+      "paper": "algorithm:mace_polar_1_m",
+      "year": "",
+      "state": "solved",
+      "derived_from": [
+        "paper:2611.06237",
+        "algorithm:mace_polar_1_m"
+      ]
+    },
+    {
+      "frontier_id": "appfrontier:paper:2611.06237:algorithm:aimnet2_2025",
+      "paper": "algorithm:aimnet2_2025",
+      "year": "",
+      "state": "solved",
+      "derived_from": [
+        "paper:2611.06237",
+        "algorithm:aimnet2_2025"
+      ]
+    },
+    {
+      "frontier_id": "appfrontier:paper:2611.06237:algorithm:uma_s_1_2_1",
+      "paper": "algorithm:uma_s_1_2_1",
+      "year": "",
+      "state": "solved",
+      "derived_from": [
+        "paper:2611.06237",
+        "algorithm:uma_s_1_2_1"
+      ]
+    },
+    {
+      "frontier_id": "appfrontier:paper:2405.03370:algorithm:esm_if1",
+      "paper": "algorithm:esm_if1",
+      "year": "",
+      "state": "solved",
+      "derived_from": [
+        "paper:2405.03370",
+        "algorithm:esm_if1"
+      ]
+    },
+    {
+      "frontier_id": "appfrontier:paper:2405.03370:algorithm:abmpnn",
+      "paper": "algorithm:abmpnn",
+      "year": "",
+      "state": "solved",
+      "derived_from": [
+        "paper:2405.03370",
+        "algorithm:abmpnn"
+      ]
+    },
+    {
+      "frontier_id": "appfrontier:paper:2405.03370:algorithm:proteinmpnn",
+      "paper": "algorithm:proteinmpnn",
+      "year": "",
+      "state": "solved",
+      "derived_from": [
+        "paper:2405.03370",
+        "algorithm:proteinmpnn"
+      ]
+    },
+    {
+      "frontier_id": "appfrontier:paper:2407.12296:algorithm:class",
+      "paper": "algorithm:class",
+      "year": "",
+      "state": "solved",
+      "derived_from": [
+        "paper:2407.12296",
+        "algorithm:class"
+      ]
+    },
+    {
+      "frontier_id": "appfrontier:paper:2407.12296:algorithm:cfps",
+      "paper": "algorithm:cfps",
+      "year": "",
+      "state": "solved",
+      "derived_from": [
+        "paper:2407.12296",
+        "algorithm:cfps"
+      ]
+    },
+    {
+      "frontier_id": "appfrontier:paper:2407.12296:algorithm:condition_token_ct",
+      "paper": "algorithm:condition_token_ct",
+      "year": "",
+      "state": "solved",
+      "derived_from": [
+        "paper:2407.12296",
+        "algorithm:condition_token_ct"
+      ]
+    },
+    {
+      "frontier_id": "appfrontier:paper:2407.12296:algorithm:fine_tuning_ft",
+      "paper": "algorithm:fine_tuning_ft",
+      "year": "",
+      "state": "solved",
+      "derived_from": [
+        "paper:2407.12296",
+        "algorithm:fine_tuning_ft"
+      ]
+    },
+    {
+      "frontier_id": "appfrontier:paper:2407.12296:algorithm:huang_et_al_rnn",
+      "paper": "algorithm:huang_et_al_rnn",
+      "year": "",
+      "state": "solved",
+      "derived_from": [
+        "paper:2407.12296",
+        "algorithm:huang_et_al_rnn"
+      ]
+    },
+    {
+      "frontier_id": "appfrontier:paper:2305.10133:algorithm:pocket2mol",
+      "paper": "algorithm:pocket2mol",
+      "year": "",
+      "state": "solved",
+      "derived_from": [
+        "paper:2305.10133",
+        "algorithm:pocket2mol"
+      ]
+    },
+    {
+      "frontier_id": "appfrontier:paper:2305.10133:algorithm:targetdiff",
+      "paper": "algorithm:targetdiff",
+      "year": "",
+      "state": "solved",
+      "derived_from": [
+        "paper:2305.10133",
+        "algorithm:targetdiff"
+      ]
+    },
+    {
+      "frontier_id": "appfrontier:paper:2306.08018:algorithm:llama",
+      "paper": "algorithm:llama",
+      "year": "",
+      "state": "solved",
+      "derived_from": [
+        "paper:2306.08018",
+        "algorithm:llama"
+      ]
+    },
+    {
+      "frontier_id": "appfrontier:paper:2306.08018:algorithm:stanford_alpaca",
+      "paper": "algorithm:stanford_alpaca",
+      "year": "",
+      "state": "solved",
+      "derived_from": [
+        "paper:2306.08018",
+        "algorithm:stanford_alpaca"
+      ]
+    },
+    {
+      "frontier_id": "appfrontier:paper:2306.08018:algorithm:gpt4all",
+      "paper": "algorithm:gpt4all",
+      "year": "",
+      "state": "solved",
+      "derived_from": [
+        "paper:2306.08018",
+        "algorithm:gpt4all"
+      ]
+    },
+    {
+      "frontier_id": "appfrontier:paper:2301.11259:algorithm:smiles_based_plms",
+      "paper": "algorithm:smiles_based_plms",
+      "year": "",
+      "state": "solved",
+      "derived_from": [
+        "paper:2301.11259",
+        "algorithm:smiles_based_plms"
+      ]
+    },
+    {
+      "frontier_id": "appfrontier:paper:2411.06608:paper:1802.04364",
+      "paper": "paper:1802.04364",
+      "year": "2018",
+      "state": "solved",
+      "derived_from": [
+        "paper:2411.06608",
+        "paper:1802.04364"
+      ]
+    },
+    {
+      "frontier_id": "appfrontier:paper:2507.00899:paper:2302.09048",
+      "paper": "paper:2302.09048",
+      "year": "2023",
+      "state": "solved",
+      "derived_from": [
+        "paper:2507.00899",
+        "paper:2302.09048"
+      ]
+    },
+    {
+      "frontier_id": "appfrontier:paper:2611.06237:paper:src:2611.06237:so3lr_t_m",
+      "paper": "paper:src:2611.06237:so3lr_t_m",
+      "year": "",
+      "state": "solved",
+      "derived_from": [
+        "paper:2611.06237",
+        "paper:src:2611.06237:so3lr_t_m"
+      ]
+    },
+    {
+      "frontier_id": "appfrontier:paper:2611.06237:paper:src:2611.06237:pbe_d3",
+      "paper": "paper:src:2611.06237:pbe_d3",
+      "year": "",
+      "state": "solved",
+      "derived_from": [
+        "paper:2611.06237",
+        "paper:src:2611.06237:pbe_d3"
+      ]
+    },
+    {
+      "frontier_id": "appfrontier:paper:2611.06237:paper:src:2611.06237:so3lr_t_l",
+      "paper": "paper:src:2611.06237:so3lr_t_l",
+      "year": "",
+      "state": "solved",
+      "derived_from": [
+        "paper:2611.06237",
+        "paper:src:2611.06237:so3lr_t_l"
+      ]
+    },
+    {
+      "frontier_id": "appfrontier:paper:2611.06237:paper:src:2611.06237:pbe0_d3_bj",
+      "paper": "paper:src:2611.06237:pbe0_d3_bj",
+      "year": "",
+      "state": "solved",
+      "derived_from": [
+        "paper:2611.06237",
+        "paper:src:2611.06237:pbe0_d3_bj"
+      ]
+    },
+    {
+      "frontier_id": "appfrontier:paper:2306.08018:paper:src:2306.08018:dolly_v2",
+      "paper": "paper:src:2306.08018:dolly_v2",
+      "year": "",
+      "state": "solved",
+      "derived_from": [
+        "paper:2306.08018",
+        "paper:src:2306.08018:dolly_v2"
+      ]
+    },
+    {
+      "frontier_id": "appfrontier:paper:2306.08018:paper:src:2306.08018:instructgpt",
+      "paper": "paper:src:2306.08018:instructgpt",
+      "year": "",
+      "state": "solved",
+      "derived_from": [
+        "paper:2306.08018",
+        "paper:src:2306.08018:instructgpt"
+      ]
+    },
+    {
+      "frontier_id": "appfrontier:paper:2306.08018:paper:src:2306.08018:stanford_alpaca",
+      "paper": "paper:src:2306.08018:stanford_alpaca",
+      "year": "",
+      "state": "solved",
+      "derived_from": [
+        "paper:2306.08018",
+        "paper:src:2306.08018:stanford_alpaca"
+      ]
+    },
+    {
+      "frontier_id": "appfrontier:paper:2306.08018:paper:src:2306.08018:pcdes",
+      "paper": "paper:src:2306.08018:pcdes",
+      "year": "",
+      "state": "solved",
+      "derived_from": [
+        "paper:2306.08018",
+        "paper:src:2306.08018:pcdes"
+      ]
+    },
+    {
+      "frontier_id": "appfrontier:paper:2306.08018:paper:src:2306.08018:chebi_20",
+      "paper": "paper:src:2306.08018:chebi_20",
+      "year": "",
+      "state": "solved",
+      "derived_from": [
+        "paper:2306.08018",
+        "paper:src:2306.08018:chebi_20"
+      ]
+    },
+    {
+      "frontier_id": "appfrontier:paper:2306.08018:paper:src:2306.08018:mol_instructions",
+      "paper": "paper:src:2306.08018:mol_instructions",
+      "year": "",
+      "state": "solved",
+      "derived_from": [
+        "paper:2306.08018",
+        "paper:src:2306.08018:mol_instructions"
+      ]
+    },
+    {
+      "frontier_id": "appfrontier:paper:2411.06608:paper:src:2411.06608:hiervae",
+      "paper": "paper:src:2411.06608:hiervae",
+      "year": "",
+      "state": "solved",
+      "derived_from": [
+        "paper:2411.06608",
+        "paper:src:2411.06608:hiervae"
+      ]
+    },
+    {
+      "frontier_id": "appfrontier:paper:2411.06608:paper:src:2411.06608:g_schnet",
+      "paper": "paper:src:2411.06608:g_schnet",
+      "year": "",
+      "state": "solved",
+      "derived_from": [
+        "paper:2411.06608",
+        "paper:src:2411.06608:g_schnet"
+      ]
+    },
+    {
+      "frontier_id": "appfrontier:paper:2411.06608:paper:src:2411.06608:moler",
+      "paper": "paper:src:2411.06608:moler",
+      "year": "",
+      "state": "solved",
+      "derived_from": [
+        "paper:2411.06608",
+        "paper:src:2411.06608:moler"
+      ]
+    },
+    {
+      "frontier_id": "appfrontier:paper:2507.00899:paper:src:2507.00899:standard_continuous_diffusion_processes",
+      "paper": "paper:src:2507.00899:standard_continuous_diffusion_processes",
+      "year": "",
+      "state": "solved",
+      "derived_from": [
+        "paper:2507.00899",
+        "paper:src:2507.00899:standard_continuous_diffusion_processes"
+      ]
+    },
+    {
+      "frontier_id": "appfrontier:paper:2507.00899:paper:src:2507.00899:score_based_diffusion_models",
+      "paper": "paper:src:2507.00899:score_based_diffusion_models",
+      "year": "",
+      "state": "solved",
+      "derived_from": [
+        "paper:2507.00899",
+        "paper:src:2507.00899:score_based_diffusion_models"
+      ]
+    },
+    {
+      "frontier_id": "appfrontier:paper:2507.00899:paper:src:2507.00899:flow_matching",
+      "paper": "paper:src:2507.00899:flow_matching",
+      "year": "",
+      "state": "solved",
+      "derived_from": [
+        "paper:2507.00899",
+        "paper:src:2507.00899:flow_matching"
+      ]
+    },
+    {
+      "frontier_id": "appfrontier:paper:2507.00899:paper:src:2507.00899:flowmol",
+      "paper": "paper:src:2507.00899:flowmol",
+      "year": "",
+      "state": "solved",
+      "derived_from": [
+        "paper:2507.00899",
+        "paper:src:2507.00899:flowmol"
+      ]
+    },
+    {
+      "frontier_id": "appfrontier:paper:2507.00899:paper:src:2507.00899:semlaflow",
+      "paper": "paper:src:2507.00899:semlaflow",
+      "year": "",
+      "state": "solved",
+      "derived_from": [
+        "paper:2507.00899",
+        "paper:src:2507.00899:semlaflow"
+      ]
+    },
+    {
+      "frontier_id": "appfrontier:paper:2507.00899:paper:src:2507.00899:diffusion_based_approaches",
+      "paper": "paper:src:2507.00899:diffusion_based_approaches",
+      "year": "",
+      "state": "solved",
+      "derived_from": [
+        "paper:2507.00899",
+        "paper:src:2507.00899:diffusion_based_approaches"
+      ]
+    },
+    {
+      "frontier_id": "appfrontier:paper:2606.02455:paper:src:2606.02455:hmc_based_methods",
+      "paper": "paper:src:2606.02455:hmc_based_methods",
+      "year": "",
+      "state": "solved",
+      "derived_from": [
+        "paper:2606.02455",
+        "paper:src:2606.02455:hmc_based_methods"
+      ]
+    },
+    {
+      "frontier_id": "appfrontier:paper:2606.02455:paper:src:2606.02455:lsd",
+      "paper": "paper:src:2606.02455:lsd",
+      "year": "",
+      "state": "solved",
+      "derived_from": [
+        "paper:2606.02455",
+        "paper:src:2606.02455:lsd"
+      ]
+    },
+    {
+      "frontier_id": "appfrontier:paper:2606.02455:paper:src:2606.02455:reusing_embeddings_from_previous_timesteps",
+      "paper": "paper:src:2606.02455:reusing_embeddings_from_previous_timesteps",
+      "year": "",
+      "state": "solved",
+      "derived_from": [
+        "paper:2606.02455",
+        "paper:src:2606.02455:reusing_embeddings_from_previous_timesteps"
+      ]
+    },
+    {
+      "frontier_id": "appfrontier:paper:2606.02455:paper:src:2606.02455:distillation_of_faster_models",
+      "paper": "paper:src:2606.02455:distillation_of_faster_models",
+      "year": "",
+      "state": "solved",
+      "derived_from": [
+        "paper:2606.02455",
+        "paper:src:2606.02455:distillation_of_faster_models"
+      ]
+    },
+    {
+      "frontier_id": "appfrontier:paper:2606.02455:paper:src:2606.02455:hmc",
+      "paper": "paper:src:2606.02455:hmc",
+      "year": "",
+      "state": "solved",
+      "derived_from": [
+        "paper:2606.02455",
+        "paper:src:2606.02455:hmc"
+      ]
+    }
+  ],
+  "human_decisions": [
+    {
+      "decision_id": "dec:1316120d1dbe6c27",
+      "choice_id": "choice:3",
+      "stage": "3",
+      "chosen_option_id": "survivor_1",
+      "approver": "human:runner",
+      "ts": "2026-11-15T14:25:19Z",
+      "evidence_ids": [],
+      "reason": "",
+      "supersedes": "",
+      "valid_from": "2026-11-15T14:25:19Z",
+      "valid_to": null,
+      "origin": "human"
+    },
+    {
+      "decision_id": "dec:69abbb43e7d53fa4",
+      "choice_id": "choice:6b",
+      "stage": "6b",
+      "chosen_option_id": "pivot",
+      "approver": "human:runner",
+      "ts": "2026-11-15T14:24:33Z",
+      "evidence_ids": [],
+      "reason": "",
+      "supersedes": "",
+      "valid_from": "2026-11-15T14:24:33Z",
+      "valid_to": null,
+      "origin": "human"
+    },
+    {
+      "decision_id": "dec:7796b2861cadc8a2",
+      "choice_id": "choice:5",
+      "stage": "5",
+      "chosen_option_id": "approve_registry",
+      "approver": "human:runner",
+      "ts": "2026-11-15T14:24:33Z",
+      "evidence_ids": [],
+      "reason": "",
+      "supersedes": "",
+      "valid_from": "2026-11-15T14:24:33Z",
+      "valid_to": null,
+      "origin": "human"
+    },
+    {
+      "decision_id": "dec:820b9c0a019b2e4d",
+      "choice_id": "choice:5",
+      "stage": "5",
+      "chosen_option_id": "approve_registry",
+      "approver": "human:runner",
+      "ts": "2026-11-15T14:25:19Z",
+      "evidence_ids": [],
+      "reason": "",
+      "supersedes": "",
+      "valid_from": "2026-11-15T14:25:19Z",
+      "valid_to": null,
+      "origin": "human"
+    },
+    {
+      "decision_id": "dec:8b47b67291d0cf2c",
+      "choice_id": "choice:6b",
+      "stage": "6b",
+      "chosen_option_id": "pivot",
+      "approver": "human:runner",
+      "ts": "2026-11-15T14:25:19Z",
+      "evidence_ids": [],
+      "reason": "",
+      "supersedes": "",
+      "valid_from": "2026-11-15T14:25:19Z",
+      "valid_to": null,
+      "origin": "human"
+    },
+    {
+      "decision_id": "dec:991205cab377648d",
+      "choice_id": "choice:3",
+      "stage": "3",
+      "chosen_option_id": "survivor_1",
+      "approver": "human:runner",
+      "ts": "2026-11-15T14:24:33Z",
+      "evidence_ids": [],
+      "reason": "",
+      "supersedes": "",
+      "valid_from": "2026-11-15T14:24:33Z",
+      "valid_to": null,
+      "origin": "human"
+    },
+    {
+      "decision_id": "dec:9dae2b584995ccf5",
+      "choice_id": "choice:14",
+      "stage": "14",
+      "chosen_option_id": "kill_argument_holds",
+      "approver": "human:runner",
+      "ts": "2026-11-15T14:24:33Z",
+      "evidence_ids": [],
+      "reason": "",
+      "supersedes": "",
+      "valid_from": "2026-11-15T14:24:33Z",
+      "valid_to": null,
+      "origin": "human"
+    },
+    {
+      "decision_id": "dec:e5e53cddc7fdbcee",
+      "choice_id": "choice:14",
+      "stage": "14",
+      "chosen_option_id": "kill_argument_holds",
+      "approver": "human:runner",
+      "ts": "2026-11-15T14:25:19Z",
+      "evidence_ids": [],
+      "reason": "",
+      "supersedes": "",
+      "valid_from": "2026-11-15T14:25:19Z",
+      "valid_to": null,
+      "origin": "human"
+    }
+  ],
+  "mining_coverage": {
+    "coverage_ratio": 0.9091,
+    "n_gap_candidates": 2
+  },
+  "signals_summary": {
+    "n_signals": 4,
+    "n_events": 8,
+    "expected_events": 0,
+    "signal_capture_rate": 1.0,
+    "by_kind": {
+      "vocab_out_of_list": 1,
+      "align_unmatched": 1,
+      "gate_failed": 0,
+      "mining_gap": 2,
+      "human_direction_unadopted": 0
+    },
+    "n_dismissed": 0,
+    "dismiss_with_reason_rate": 1.0
+  },
+  "derived": {
+    "D1": {
+      "n": 1225,
+      "miner": "D1:flow_closure"
+    },
+    "D2": {
+      "n": 1011096,
+      "miner": "D2:method_benchmark_matrix"
+    },
+    "D3": {
+      "n": 48,
+      "miner": "D3:lineage_slice"
+    },
+    "D4": {
+      "n": 1,
+      "miner": "D4:capability_cooccurrence"
+    }
+  },
+  "verdicts": {
+    "0": "PASS",
+    "1": "PASS",
+    "1a": "PASS",
+    "1b": "PASS",
+    "4broad": "PASS",
+    "2": "PASS",
+    "2.5": "PASS",
+    "2.5b": "PASS",
+    "3": "PASS",
+    "4targeted": "PASS",
+    "5": "PASS",
+    "6": "PASS",
+    "6a": "PASS",
+    "6b": "PASS",
+    "6c": "PASS",
+    "7": "PASS",
+    "8": "PASS",
+    "9": "PASS",
+    "10": "PASS",
+    "11": "PASS",
+    "12": "PASS",
+    "13": "PASS",
+    "14": "PASS",
+    "15": "PASS",
+    "15.5": "PASS",
+    "16": "PASS"
+  },
+  "warnings": [
+    "no_gap_nodes_in_graph",
+    "no_idea_nodes_in_graph"
+  ],
+  "spec_hash": "sha256:56409b1aa4f70e68cbbe65d84f277ddf5b360951a80e44c5670682cce494434e"
+}

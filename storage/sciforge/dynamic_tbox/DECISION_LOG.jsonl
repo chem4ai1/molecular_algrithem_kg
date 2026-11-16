@@ -1,0 +1,8 @@
+{"approver": "human:runner", "chosen": "survivor_1", "decision_id": "dec:991205cab377648d", "event": "decision_made", "stage": "3", "ts": "2026-11-15T14:24:33Z"}
+{"approver": "human:runner", "chosen": "approve_registry", "decision_id": "dec:7796b2861cadc8a2", "event": "decision_made", "stage": "5", "ts": "2026-11-15T14:24:33Z"}
+{"approver": "human:runner", "chosen": "pivot", "decision_id": "dec:69abbb43e7d53fa4", "event": "decision_made", "stage": "6b", "ts": "2026-11-15T14:24:33Z"}
+{"approver": "human:runner", "chosen": "kill_argument_holds", "decision_id": "dec:9dae2b584995ccf5", "event": "decision_made", "stage": "14", "ts": "2026-11-15T14:24:33Z"}
+{"approver": "human:runner", "chosen": "survivor_1", "decision_id": "dec:1316120d1dbe6c27", "event": "decision_made", "stage": "3", "ts": "2026-11-15T14:25:19Z"}
+{"approver": "human:runner", "chosen": "approve_registry", "decision_id": "dec:820b9c0a019b2e4d", "event": "decision_made", "stage": "5", "ts": "2026-11-15T14:25:19Z"}
+{"approver": "human:runner", "chosen": "pivot", "decision_id": "dec:8b47b67291d0cf2c", "event": "decision_made", "stage": "6b", "ts": "2026-11-15T14:25:19Z"}
+{"approver": "human:runner", "chosen": "kill_argument_holds", "decision_id": "dec:e5e53cddc7fdbcee", "event": "decision_made", "stage": "14", "ts": "2026-11-15T14:25:19Z"}

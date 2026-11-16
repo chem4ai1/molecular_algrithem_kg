@@ -1,0 +1,34 @@
+stage: E4_values
+order: 4
+enabled: true
+target:
+  classes:
+  - Benchmark
+  wrapper: null
+  target_desc: Benchmark.model_results[]
+contract:
+  required:
+  - model
+  - metric
+  - value
+  optional:
+  - unit
+  - benchmark
+  - source
+  - evidence
+  note: 数值写 Benchmark.model_results[]，不建 Observation 节点。
+  all_fields:
+  - model
+  - metric
+  - value
+  - unit
+  - benchmark
+  - source
+  - evidence
+section_slice: benchmark
+slots:
+- paper_text
+template: "任务：兜底抽取**表格之外**明确写出的评测数值。\n输出 JSON：\n{\"model_results\":[{\"model\":\"方法名\",\"metric\":\"指标名\"\
+  ,\n  \"value\":0,\"unit\":\"单位或空\",\"benchmark\":\"基准名\",\n  \"source\":\"table:1|text:段落|空\",\"evidence\"\
+  :\"逐字引文\"}]}\n规则：\n1. 最多 8 条；value 必须是数字（不要字符串）。\n2. 禁止把 表号/年份/epoch/dropout/学习率/引用编号/参数量 当数值。\n3. 表格里的数值由确定性表格解析器抽，你只补正文明确写出的；没有就空数组。\n\
+  【实验节与表格文本】\n{paper_text}\n"

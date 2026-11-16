@@ -1,0 +1,30 @@
+stage: E6_lineage
+order: 5
+enabled: true
+target:
+  classes:
+  - Algorithm
+  wrapper: null
+  target_desc: Algorithm-SUBCLASS_OF->Algorithm（算法-算法改进链）
+contract:
+  required:
+  - from
+  - to
+  - kind
+  optional:
+  - evidence
+  note: 只依据明确的谱系措辞；compared_with 是对比基线不建边。
+  all_fields:
+  - from
+  - to
+  - kind
+  - evidence
+section_slice: lineage
+slots:
+- paper_text
+template: "任务：抽**算法-算法改进链**（本文方法继承自/替换了/改进了哪些已有方法）。\n输出 JSON：\n{\"lineage\":[{\"from\":\"本文方法名\",\"to\"\
+  :\"被继承/替换/改进的方法名\",\n  \"kind\":\"extends|replaces|improves|compared_with\",\"evidence\":\"逐字引文\"}]}\n\
+  规则：\n1. 只依据明确的谱系措辞：builds on / extends / is based on / follows /\n   improves upon / replaces / unlike\
+  \ X we ...（最后一种算 compared_with）。\n2. kind 判定：继承或基于 → extends；换掉机制 → replaces；同维度提升 → improves；\n   只是拿来做对比/基线\
+  \ → compared_with（**这种不会建 SUBCLASS_OF 边**）。\n3. evidence 必须从原文逐字复制（≤120 字）；没有谱系措辞就输出空数组。\n4. 最多 6 条；from\
+  \ 与 to 都必须是算法/方法名，不要写论文标题、作者或数据集。\n【Related Work / Introduction / Method 文本】\n{paper_text}\n"
