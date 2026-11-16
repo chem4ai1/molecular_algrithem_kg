@@ -140,3 +140,39 @@
 | 语义层 +1 | `Paper.gaps[]`（ResearchGap 的抽取来源） |
 | 挖掘器 +2 | `gaps`（按 `gap_type+statement` 跨论文归并）、`cited_papers`（RELATED_TO → CitedPaper） |
 | YAML +1 | `R6_gap.yaml`（Introduction/Related Work 的 however/remains/fails to） |
+
+## 9. 修正：CitedPaper / ResearchGap 是**任务级实例**
+
+原先从全库论文汇总成全局节点，这是错的。二者只在「本次写作」真正使用时才实例化。
+
+| | 改前（错） | 改后（对） |
+|---|---|---|
+| 产出者 | `mine_all`（全量挖掘） | `applayer/context.py::WritingContext`（按需） |
+| id | `appgap:<gap_type>:<slug>` | `gap:<run_id>:<slug>` / `cited:<run_id>:<cite_key>` |
+| 语义 | 「所有论文提过的空白」 | 「这次写作要填的空白」 |
+| 关系 | `Paper -IDENTIFIES-> Gap` | `Gap -SEEKS_FROM-> Paper`（从谁提炼） |
+| 引用 | `Paper -CITES-> CitedPaper` | `SectionPlan -CITES-> CitedPaper`（哪节引用） |
+
+### 用法
+
+```python
+from capfactory.applayer.context import WritingContext
+
+ctx = WritingContext(graph, "run_20261116")
+gid = ctx.seek_gap(statement="现有方法无法控制 3D 几何",
+                   gap_type="capability",
+                   source_papers=["paper:2411.06608"], priority="high")
+cid = ctx.cite(cite_key="ortega2026", title="MolMiner", year="2026",
+               section_id="appsec:2411.06608:0")
+ctx.support(gid, "ortega2026")     # Gap -GAP_SUPPORTED_BY-> CitedPaper
+ctx.anchor(gid, "appcon:2411.06608:0")   # Gap -ANCHORS-> Contribution
+ctx.save()
+```
+
+同一 `run_id` 内同名 gap / 同 cite_key 复用同一节点；不同 run 互不干扰
+（`ctx.gaps()` 只返回本 run 的实例）。
+
+### `mine_all` 的产量变化
+
+`cited_papers` / `gaps` 从挖掘器列表中移除，恒为 0。
+`writing` 任务层因此只产「论文级候选」，任务级实例由 `WritingContext` 补。

@@ -422,41 +422,11 @@ def mine_all(sem_g: Any, *, task: str | None = None,
                    derived_from=[p.id], miner="figures"):
                 n13 += 1
     rep["miners"]["figures"] = n13
-    # 14) 引用核验（每条 RELATED_TO 一条，context 未核验标 unknown）
-    n14 = 0
-    for a in sem_g.assertions:
-        if a.relation != "RELATED_TO":
-            continue
-        t = sem_g.nodes.get(a.target)
-        if not t or t.type != "Paper":
-            continue
-        key = _slug(f"{a.target}")
-        cid = "appcited:" + key
-        if add(cid, "CitedPaper", t.label[:80], cite_key=key,
-               title=t.label, doi=t.attrs.get("doi"),
-               year=t.attrs.get("year"), venue=t.attrs.get("venue"),
-               existence="unknown", metadata_ok="unknown",
-               context_ok="unknown", layers=[],
-               derived_from=[a.target], miner="cited_papers"):
-            rel(a.source, "CITES", cid); n14 += 1
-    rep["miners"]["cited_papers"] = n14
-    # 14b) 研究空白（Paper.gaps → ResearchGap，跨论文按 gap_type+statement 归并）
-    n14b = 0
-    for p in papers:
-        for i, gp in enumerate(p.attrs.get("gaps") or []):
-            if not isinstance(gp, dict) or not gp.get("statement"):
-                continue
-            st = str(gp.get("statement"))[:80]
-            gid = "appgap:" + _slug(f"{gp.get('gap_type') or 'gap'}:{st}")
-            if add(gid, "ResearchGap", st,
-                   gap_id=gid, gap_type=str(gp.get("gap_type") or "unknown"),
-                   statement=st, evidence=gp.get("evidence"),
-                   priority=gp.get("priority"),
-                   derived_from=[p.id], miner="gaps"):
-                n14b += 1
-            if gid in g.nodes:
-                rel(p.id, "IDENTIFIES", gid)
-    rep["miners"]["gaps"] = n14b
+    # 14) 引用与空白：**不在这里建**
+    # CitedPaper / ResearchGap 是任务级实例，由 applayer.context.WritingContext
+    # 在本次写作真正引用时才实例化（见 md/APP_LAYER_S2.md §9）。
+    rep["miners"]["cited_papers"] = 0
+    rep["miners"]["gaps"] = 0
     # 15) 章节计划（按 evidence_type 的内置骨架，不依赖抽取）
     n15 = 0
     for p in papers:

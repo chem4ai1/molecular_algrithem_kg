@@ -67,16 +67,19 @@ APP_CLASSES: Dict[str, Tuple[str, Tuple[Tuple[str, str], ...]]] = {
     "FigureAsset": ("图表资产（08）", (
         ("fig_label", "must"), ("caption", "optional"), ("kind", "optional"),
         ("for_contribution", "optional"), ("placement", "optional"))),
-    "CitedPaper": ("被引论文（引用网络实体，08 三层核验挂在属性上）", (
-        ("cite_key", "must"), ("title", "must"), ("doi", "optional"),
-        ("authors", "optional"), ("year", "optional"), ("venue", "optional"),
-        ("layers", "optional"), ("existence", "optional"),
-        ("metadata_ok", "optional"), ("context_ok", "optional"),
-        ("context_quote", "optional"), ("recency_ratio", "optional"))),
-    "ResearchGap": ("研究空白（为什么以前没人做 / 现有方法缺什么）", (
-        ("gap_id", "must"), ("gap_type", "must"), ("statement", "must"),
-        ("evidence", "optional"), ("priority", "optional"),
-        ("supported_by", "optional"))),
+    # 任务级实例：只在「本次写作」真正引用时才建，不随全量挖掘产出
+    "CitedPaper": ("本次写作实际引用的论文（按 run 实例化）", (
+        ("run_id", "must"), ("cite_key", "must"), ("title", "must"),
+        ("doi", "optional"), ("authors", "optional"), ("year", "optional"),
+        ("venue", "optional"), ("layers", "optional"),
+        ("existence", "optional"), ("metadata_ok", "optional"),
+        ("context_ok", "optional"), ("context_quote", "optional"),
+        ("cited_in", "optional"), ("recency_ratio", "optional"))),
+    "ResearchGap": ("本次写作要填补的空白（按 run 实例化）", (
+        ("run_id", "must"), ("gap_id", "must"), ("gap_type", "must"),
+        ("statement", "must"), ("evidence", "optional"),
+        ("priority", "optional"), ("source_papers", "optional"),
+        ("selected_at", "optional"))),
     "SectionPlan": ("章节计划（06）", (
         ("section", "must"), ("claims", "optional"),
         ("evidence_refs", "optional"), ("word_budget", "optional"))),
@@ -104,8 +107,8 @@ APP_RELATIONS: Dict[str, Tuple[str, str, str]] = {
     "CONFORMS_TO": ("Paper", "EvidenceNorm", "论文遵循的领域证据规范"),
     "APPLIES": ("EvidenceNorm", "FailureMode", "该规范下适用的失败模式"),
     "SHOWN_BY": ("Contribution", "FigureAsset", "该贡献由哪张图表支撑"),
-    "CITES": ("Paper", "CitedPaper", "论文引用了哪篇"),
-    "IDENTIFIES": ("Paper", "ResearchGap", "论文指出的研究空白"),
+    "CITES": ("SectionPlan", "CitedPaper", "该节实际引用了哪篇"),
+    "SEEKS_FROM": ("ResearchGap", "Paper", "该空白从哪些论文的论述中提炼"),
     "GAP_SUPPORTED_BY": ("ResearchGap", "CitedPaper", "该空白由哪些文献支撑"),
     "ANCHORS": ("ResearchGap", "Contribution", "该空白锚定了哪条贡献"),
     "OUTLINES": ("Paper", "SectionPlan", "论文的章节计划"),
