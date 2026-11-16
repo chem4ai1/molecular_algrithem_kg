@@ -26,3 +26,5 @@ storage/sciforge/exports/
 
 # 任务层产物（可由 build_task_layer 重建）
 storage/sciforge/app_writing.json
+# 代码域产物（可由 scan_code.py 重建）
+storage/sciforge/code_graph.json

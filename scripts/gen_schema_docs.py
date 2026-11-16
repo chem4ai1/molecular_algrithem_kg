@@ -116,6 +116,14 @@ USAGE = {
     "FailureCheck": "本次自检结论（能不能回应审稿人）",
     "ConsultedPaper": "回答「为什么没引它」",
     "DataContract": "形状探针输入；数据契约核对",
+    # 代码域
+    "CodeUnit": "定位「改哪个文件」；Type II 假设与失败模式落点",
+    "CodeSymbol": "模块实现定位；指标计算函数",
+    "Dependency": "依赖冲突排查；环境复现",
+    "EntryPoint": "实验组怎么跑；复现入口",
+    "TestUnit": "改完有没有测试兜底",
+    "EnvSpec": "环境复现（python/cuda/packages）",
+    "RunArtifact": "回答「这个数是怎么跑出来的」",
 }
 
 NOTE = {
@@ -129,6 +137,11 @@ NOTE = {
     "ExperimentArm": "「论文做过什么」是事实；「本次复现跑哪些」应进 `METHOD_LOCK.experiment_matrix`。",
     "FailureCheck": "只记本次结论，不改 `FailureMode` 本体。",
     "ConsultedPaper": "查过但未引；与 `CitedPaper` 的差别是「没有 CITES 边」。",
+    "CodeUnit": "与语义层 `CodeRepository` 不同：这里记本地仓库的实际文件，可能论文说开源但本地没 clone。",
+    "CodeSymbol": "粒度停在符号级（类/函数/方法），不做行级与字段级；见 `docs/schema/CODE_DOMAIN.md` §1。",
+    "RunArtifact": "任务级：只在本次执行后产生，带 `run_id`。",
+    "Dependency": "从 AST import + requirements.txt 双向收集，可能含标准库。",
+    "EntryPoint": "由 `if __name__ == '__main__'` 或文件名规则判定，可能把 demo 脚本也纳入。",
 }
 
 

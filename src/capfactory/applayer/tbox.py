@@ -97,6 +97,28 @@ APP_CLASSES: Dict[str, Tuple[str, Tuple[Tuple[str, str], ...]]] = {
     "ReviewPoint": ("审稿关注点（09）", (
         ("axis", "must"), ("attack", "must"), ("response", "optional"),
         ("severity", "optional"))),
+    # ===== 代码域（7 类，见 docs/schema/CODE_DOMAIN.md）=====
+    "CodeUnit": ("代码文件/包（本地仓库实际结构）", (
+        ("path", "must"), ("lang", "optional"),
+        ("role", "optional"), ("loc", "optional"), ("sha256", "optional"))),
+    "CodeSymbol": ("类/函数/方法（符号级）", (
+        ("name", "must"), ("kind", "must"), ("signature", "optional"),
+        ("qualname", "optional"), ("loc", "optional"), ("sha256", "optional"))),
+    "Dependency": ("第三方依赖", (
+        ("name", "must"), ("version", "optional"),
+        ("declared_in", "optional"), ("used_by", "optional"))),
+    "EntryPoint": ("可执行入口", (
+        ("path", "must"), ("cmd", "optional"),
+        ("args", "optional"), ("cwd", "optional"))),
+    "TestUnit": ("测试单元", (
+        ("name", "must"), ("path", "optional"),
+        ("covers", "optional"), ("status", "optional"))),
+    "EnvSpec": ("运行环境", (
+        ("python", "optional"), ("cuda", "optional"),
+        ("packages", "optional"), ("device", "optional"))),
+    "RunArtifact": ("运行产物（按 run 实例化）", (
+        ("run_id", "must"), ("kind", "must"), ("path", "optional"),
+        ("sha256", "optional"), ("produced_by", "optional"))),
 }
 
 APP_RELATIONS: Dict[str, Tuple[str, str, str]] = {
@@ -130,6 +152,25 @@ APP_RELATIONS: Dict[str, Tuple[str, str, str]] = {
     "CONSULTED": ("SectionDraft", "ConsultedPaper", "该节查过的论文"),
     "CHECKED": ("Paper", "FailureCheck", "本次失败模式自检"),
     "CHECK_OF": ("FailureCheck", "FailureMode", "检查的是哪条失败模式"),
+    # ===== 代码域：域内 9 =====
+    "CONTAINS": ("CodeUnit", "CodeSymbol", "文件包含符号"),
+    "IMPORTS": ("CodeUnit", "CodeUnit", "同仓库文件依赖"),
+    "CALLS": ("CodeSymbol", "CodeSymbol", "符号调用"),
+    "INHERITS": ("CodeSymbol", "CodeSymbol", "类继承"),
+    "DEPENDS_ON": ("CodeUnit", "Dependency", "三方依赖"),
+    "IN_UNIT": ("EntryPoint", "CodeUnit", "入口所在文件"),
+    "USES_ENV": ("EntryPoint", "EnvSpec", "入口所需环境"),
+    "COVERS": ("TestUnit", "CodeSymbol", "测试覆盖"),
+    "TEST_IN": ("TestUnit", "CodeUnit", "测试所在文件"),
+    # ===== 代码域：跨域 8 =====
+    "IMPLEMENTED_BY": ("AlgorithmModule", "CodeSymbol", "模块由哪个符号实现（本地）"),
+    "EXECUTED_BY": ("ExperimentArm", "EntryPoint", "实验组靠哪个入口跑"),
+    "PRODUCES": ("ExperimentArm", "RunArtifact", "实验组产出的产物"),
+    "REPRODUCED_BY": ("LeaderboardEntry", "RunArtifact", "数值由哪次运行产生"),
+    "COMPUTED_BY": ("MetricDefinition", "CodeSymbol", "指标由哪个函数算"),
+    "ASSUMED_IN": ("Assumption", "CodeUnit", "假设隐含在代码哪处"),
+    "DETECTABLE_IN": ("FailureMode", "CodeUnit", "该失败模式在代码哪处可检测"),
+    "GROUNDED_IN": ("Evidence", "CodeUnit", "证据来自代码哪处"),
 }
 
 

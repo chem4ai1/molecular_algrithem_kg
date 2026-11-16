@@ -26,6 +26,8 @@
 | 关系 | 目标 | 说明 |
 |---|---|---|
 | `ON` | Benchmark | 实验组跑在哪个基准 |
+| `EXECUTED_BY` | EntryPoint | 实验组靠哪个入口跑 |
+| `PRODUCES` | RunArtifact | 实验组产出的产物 |
 
 **入边**
 

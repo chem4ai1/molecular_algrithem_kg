@@ -26,6 +26,7 @@
 |---|---|---|
 | `USES_METRIC` | MetricDefinition | 该行用哪个指标 |
 | `SUPPORTED_BY` | Evidence | 数值的证据 |
+| `REPRODUCED_BY` | RunArtifact | 数值由哪次运行产生 |
 
 **入边**
 
