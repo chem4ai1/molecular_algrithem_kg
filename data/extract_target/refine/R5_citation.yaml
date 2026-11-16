@@ -2,47 +2,65 @@ refine: R5_citation
 order: 5
 enabled: true
 target:
-  class: CitationCheck
-  node_id: "cite:{arxiv_id}:{n}"
+  class: CitedPaper
+  node_id: cited:{arxiv_id}:{n}
   relation: CITES
   parent_class: Paper
 section_hints:
-  - related work
-  - introduction
-  - background
+- related work
+- introduction
+- background
 signal_words:
-  - "et al."
-  - "proposed by"
-  - "following"
-  - "inspired by"
-  - "compared with"
+- et al.
+- proposed by
+- following
+- inspired by
+- compared with
 locate:
   strategy: paragraph
   max_paragraphs: 8
   window: 1
 fields:
-  - name: doi
-    type: str
-    max_chars: 80
-  - name: venue
-    type: str
-    max_chars: 60
-  - name: year
-    type: str
-    max_chars: 8
-  - name: context
-    required: true
-    type: str
-    max_chars: 120
-  - name: context_ok
-    type: str
-    enum: [yes, no, unknown]
-template: |
-  任务：抽取引用**支撑了哪一句话**（用于第三层「上下文是否匹配」核验）。
+- name: cite_key
+  required: true
+  type: str
+  max_chars: 40
+- name: title
+  required: true
+  type: str
+  max_chars: 120
+- name: authors
+  type: str
+  max_chars: 80
+- name: year
+  type: str
+  max_chars: 8
+- name: venue
+  type: str
+  max_chars: 60
+- name: context_quote
+  required: true
+  type: str
+  max_chars: 120
+- name: context_ok
+  type: str
+  enum:
+  - 'yes'
+  - 'no'
+  - unknown
+template: '任务：抽取引用**支撑了哪一句话**（用于第三层「上下文是否匹配」核验）。
+
   只抽正文里带引用标记的句子；context 必须是该句原文（≤120 字）。
+
   context_ok 你无法判断真伪，一律填 unknown（由外部核验器回填）。
+
   【已有抽取信息】{existing}
+
   【原文段落】{context}
+
   输出 JSON：{"citations":[{fields}]}
+
   可用字段：{fields}
+
+  '
 merge: append

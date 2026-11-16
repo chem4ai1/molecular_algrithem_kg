@@ -21,6 +21,26 @@ _ACCEPTED: Dict[str, List[str]] = {
     "correlational": ["correlation", "r2", "coefficient"],
     "interpretive": ["coherence", "coverage"],
 }
+_NORM: Dict[str, Dict[str, Any]] = {
+    "simulational": {"sample_size": "≥3 seeds, mean±std", "control": "同条件 baseline ≥3（含 naive）",
+                     "effect": "报效应量与 between-seed std", "negative": "失败案例须报告",
+                     "venues": ["NeurIPS", "ICML", "ICLR"]},
+    "experimental": {"sample_size": "power analysis", "control": "随机对照 + 盲法",
+                     "effect": "效应量 + CI", "negative": "阴性结果须报告",
+                     "venues": ["Nature", "Science", "Cell"]},
+    "causal_inference": {"sample_size": "识别所需样本", "control": "识别策略 + 稳健性",
+                         "effect": "ATE + CI", "negative": "placebo/预趋势",
+                         "venues": ["AER", "QJE", "Econometrica"]},
+    "derivational": {"sample_size": "N/A", "control": "假设台账",
+                     "effect": "定理陈述", "negative": "反例搜素",
+                     "venues": ["Annals", "JAMS"]},
+    "correlational": {"sample_size": "样本量 + 缺失处理", "control": "混杂控制",
+                      "effect": "相关系数 + CI", "negative": "幸存者偏差检查",
+                      "venues": ["JF", "RFS"]},
+    "interpretive": {"sample_size": "N/A", "control": "替代解释",
+                     "effect": "论证强度", "negative": "反例讨论",
+                     "venues": ["Critical Inquiry"]},
+}
 _MIN_FID: Dict[str, str] = {
     "simulational": "numerical", "experimental": "numerical",
     "causal_inference": "numerical", "derivational": "symbolic",
@@ -369,6 +389,11 @@ def mine_all(sem_g: Any, *, task: str | None = None,
         if add(nid, "EvidenceNorm", et, evidence_type=et,
                accepted_metrics=_ACCEPTED.get(et, []),
                min_fidelity=_MIN_FID.get(et, "qualitative"),
+               sample_size_norm=_NORM.get(et, {}).get("sample_size"),
+               control_design_norm=_NORM.get(et, {}).get("control"),
+               effect_reporting_norm=_NORM.get(et, {}).get("effect"),
+               negative_result_norm=_NORM.get(et, {}).get("negative"),
+               exemplar_venues=_NORM.get(et, {}).get("venues", []),
                miner="evidence_norms"):
             rel(p.id, "CONFORMS_TO", nid)
         for k, fm in enumerate(_FAILURE_MODES.get(et, [])):
@@ -405,13 +430,33 @@ def mine_all(sem_g: Any, *, task: str | None = None,
         t = sem_g.nodes.get(a.target)
         if not t or t.type != "Paper":
             continue
-        cid = "appcite:" + _slug(f"{a.source}:{a.target}")
-        if add(cid, "CitationCheck", t.label[:80], venue=t.attrs.get("venue"),
-               year=t.attrs.get("year"), existence="unknown",
-               metadata_ok="unknown", context_ok="unknown",
-               derived_from=[a.source, a.target], miner="citations"):
+        key = _slug(f"{a.target}")
+        cid = "appcited:" + key
+        if add(cid, "CitedPaper", t.label[:80], cite_key=key,
+               title=t.label, doi=t.attrs.get("doi"),
+               year=t.attrs.get("year"), venue=t.attrs.get("venue"),
+               existence="unknown", metadata_ok="unknown",
+               context_ok="unknown", layers=[],
+               derived_from=[a.target], miner="cited_papers"):
             rel(a.source, "CITES", cid); n14 += 1
-    rep["miners"]["citations"] = n14
+    rep["miners"]["cited_papers"] = n14
+    # 14b) 研究空白（Paper.gaps → ResearchGap，跨论文按 gap_type+statement 归并）
+    n14b = 0
+    for p in papers:
+        for i, gp in enumerate(p.attrs.get("gaps") or []):
+            if not isinstance(gp, dict) or not gp.get("statement"):
+                continue
+            st = str(gp.get("statement"))[:80]
+            gid = "appgap:" + _slug(f"{gp.get('gap_type') or 'gap'}:{st}")
+            if add(gid, "ResearchGap", st,
+                   gap_id=gid, gap_type=str(gp.get("gap_type") or "unknown"),
+                   statement=st, evidence=gp.get("evidence"),
+                   priority=gp.get("priority"),
+                   derived_from=[p.id], miner="gaps"):
+                n14b += 1
+            if gid in g.nodes:
+                rel(p.id, "IDENTIFIES", gid)
+    rep["miners"]["gaps"] = n14b
     # 15) 章节计划（按 evidence_type 的内置骨架，不依赖抽取）
     n15 = 0
     for p in papers:

@@ -27,6 +27,7 @@ contract:
   - evidence_norm
   - figures
   - section_map
+  - gaps
   aux_fields:
   - domain_code
   - evidence
@@ -43,4 +44,6 @@ template: "任务：抽 Paper 的核心属性（研究什么问题 / 问题类�
   【摘要与引言】\n{paper_text}\n补充字段（写作方法论，来自领域规范）：\n  \"paradigm\":\"formal|empirical|design|interpretive\"\
   ,\n  \"evidence_type\":\"causal_inference|derivational|experimental|simulational|correlational|interpretive\"\
   ,\n  \"evidence_norm\":[\"该领域认可的指标名\"],\n  \"section_map\":[{\"section\":\"章节名\",\"claims\":[\"该节要论证什么\"\
-  ]}]\n注意：paradigm 与 evidence_type 依据**方法节与实验节的写法**判定，不要凭标题猜；\nsection_map 只列论文实际有的章节，没有就空数组。"
+  ]}]\n注意：paradigm 与 evidence_type 依据**方法节与实验节的写法**判定，不要凭标题猜；\nsection_map 只列论文实际有的章节，没有就空数组。\n  \"gaps\"\
+  :[{\"gap_type\":\"capability|scale|data|theory|efficiency\",\n           \"statement\":\"现有方法缺什么（≤80\
+  \ 字）\",\n           \"evidence\":\"逐字引文\"}]\n注意：gaps 是「现有方法的不足」，不是本文贡献；二者要分开写。"

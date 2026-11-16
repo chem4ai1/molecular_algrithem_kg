@@ -111,3 +111,32 @@
 - 旧 `app_generation.json` 保留不删（历史产物），代码不再生成它；新产物为 `app_writing.json`
 - 下一步：按 S1 重抽 4 篇 → 新挖掘器从 0 变为非 0；再用 `refine_run.py --apply` 补 Contribution/ExperimentArm
 - 验收：`tests/test_applayer_s2.py`（9 项）+ 全仓 218 项
+
+## 8. S2.5 补充：从 docs/skills 追加的 2 个节点
+
+读完 `docs/skills`（24 份 / 4404 行，含 `APPLICATION_ONTOLOGY_FRAMEWORK.md` 的 60 个类）后，
+按 `AlgorithmModule` 的五个特征筛：**多属性 + 多关系 + 抽取时建 + 是判定输入 + 跨论文复用**。
+
+| 候选 | 属性数 | 关系数 | 结论 |
+|---|---:|---:|---|
+| `ResearchGap` | 6 | 3 | **加**（缺失，且是 novelty 的另一半） |
+| `CitedPaper` / `VerifiedPaper` | 12 | 3 | **加**（引用网络基座，当前只有 48 条 RELATED_TO） |
+| `ExperimentNode` / `Result` | 3–5 | 2 | 已由 `ExperimentArm` + `model_results[]` 覆盖 |
+| `Claim` | 4 | 2 | 已由 `numeric` SAU + `ClaimAnchor` 覆盖 |
+| `Assumption` | 2 | 1 | 已有（属性 + 节点） |
+| `Tool` / `ToolContract` | 5 | 2 | E5 已抽名字；建节点会与通用库冲突，保持字符串 |
+| `Panel` | 3 | 1 | 复合图子图分解，价值低于前三 |
+| `FalsificationRecord` / `MCTSRound` / `FailedIdea` | 3–6 | 2–3 | 研究**过程**产物，不是论文事实，不进图 |
+| `Gate` / `Verdict` / `LoopBack` / `RunBudget` | 3–5 | 2 | 运行时治理，已有 `gates.py` / `effort_limits` |
+
+### 新增内容
+
+| 项 | 内容 |
+|---|---|
+| `ResearchGap` | `gap_type`（capability/scale/data/theory/efficiency）/ `statement` / `evidence` / `priority` / `supported_by` |
+| `CitedPaper` | `cite_key` / `title` / `doi` / `authors` / `year` / `venue` / `layers[3]` / `existence` / `metadata_ok` / `context_ok` / `context_quote` / `recency_ratio` |
+| 关系 | `Paper -IDENTIFIES-> ResearchGap`；`ResearchGap -GAP_SUPPORTED_BY-> CitedPaper`；`ResearchGap -ANCHORS-> Contribution`；`CITES` 改指向 `CitedPaper` |
+| `EvidenceNorm` +5 | `sample_size_norm` / `control_design_norm` / `effect_reporting_norm` / `negative_result_norm` / `exemplar_venues` |
+| 语义层 +1 | `Paper.gaps[]`（ResearchGap 的抽取来源） |
+| 挖掘器 +2 | `gaps`（按 `gap_type+statement` 跨论文归并）、`cited_papers`（RELATED_TO → CitedPaper） |
+| YAML +1 | `R6_gap.yaml`（Introduction/Related Work 的 however/remains/fails to） |

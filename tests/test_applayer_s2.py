@@ -8,8 +8,8 @@ from capfactory.applayer.tbox import APP_CLASSES, APP_RELATIONS
 from capfactory.po import POGraph
 
 NEW = ("Contribution", "ExperimentArm", "Assumption", "FailureMode",
-       "EvidenceNorm", "FigureAsset", "CitationCheck", "SectionPlan",
-       "ReviewPoint")
+       "EvidenceNorm", "FigureAsset", "CitedPaper", "ResearchGap",
+       "SectionPlan", "ReviewPoint")
 
 
 def _demo() -> POGraph:
@@ -19,6 +19,8 @@ def _demo() -> POGraph:
            contributions=[{"statement": "提出片段化 3D 生成", "kind": "method",
                            "novelty_basis": ["technical_constraint"],
                            "section": "Introduction"}],
+           gaps=[{"gap_type": "capability", "statement": "现有方法无法控制 3D 几何",
+                  "evidence": "existing methods fail to", "priority": "high"}],
            figures=[{"label": "Figure 1", "caption": "主对比", "kind": "main"}],
            section_map=[{"section": "Method", "claims": ["mechanism"]}])
     g.node("algorithm:demo", "Algorithm", "Demo", paper_id="paper:9999.00001",
@@ -42,6 +44,7 @@ class TestRegistry(unittest.TestCase):
     def test_relations_registered(self):
         for r in ("DECLARES", "TESTED_BY", "RUNS", "ON", "ASSUMES",
                   "CONFORMS_TO", "APPLIES", "SHOWN_BY", "CITES",
+                  "IDENTIFIES", "GAP_SUPPORTED_BY", "ANCHORS",
                   "OUTLINES", "CHALLENGED_BY"):
             self.assertIn(r, APP_RELATIONS, r)
 
@@ -63,7 +66,7 @@ class TestMine(unittest.TestCase):
         m = self.r["miners"]
         for k in ("contributions", "experiment_arms", "assumptions",
                   "failure_modes", "evidence_norms", "figures",
-                  "citations", "section_plans", "review_points"):
+                  "cited_papers", "gaps", "section_plans", "review_points"):
             self.assertGreater(m.get(k, 0), 0, k)
 
     def test_failure_modes_from_evidence_type(self):

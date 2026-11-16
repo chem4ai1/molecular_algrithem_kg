@@ -1,0 +1,52 @@
+refine: R6_gap
+order: 6
+enabled: true
+target:
+  class: ResearchGap
+  node_id: "gap:{arxiv_id}:{n}"
+  relation: IDENTIFIES
+  parent_class: Paper
+section_hints:
+  - introduction
+  - related work
+  - background
+  - limitation
+signal_words:
+  - however
+  - remains
+  - fails to
+  - cannot
+  - limited
+  - lack of
+  - no existing
+  - unexplored
+locate:
+  strategy: paragraph
+  max_paragraphs: 8
+  window: 1
+fields:
+  - name: gap_type
+    required: true
+    type: str
+    enum: [capability, scale, data, theory, efficiency]
+  - name: statement
+    required: true
+    type: str
+    max_chars: 80
+  - name: evidence
+    required: true
+    type: str
+    max_chars: 120
+  - name: priority
+    type: str
+    enum: [high, medium, low]
+template: |
+  任务：抽取论文指出的**研究空白**（现有方法缺什么），不是论文自己的贡献。
+  gap_type 五类：capability（做不到）/ scale（规模不够）/ data（缺数据）/
+               theory（缺理论）/ efficiency（太慢太贵）。
+  只抽作者明确陈述的空白，不要把「我们提出 X」当空白。
+  【已有抽取信息】{existing}
+  【原文段落】{context}
+  输出 JSON：{"gaps":[{fields}]}
+  可用字段：{fields}
+merge: append

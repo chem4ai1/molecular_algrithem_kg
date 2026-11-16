@@ -46,6 +46,7 @@ SEMANTIC_CLASSES: Dict[str, Tuple[str, Tuple[Tuple[str, str, str], ...]]] = {
         ("evidence_norm", "optional", "该领域认可的指标与证据规范"),
         ("figures", "optional", "图表清单[{label,caption,kind,for_contribution}]"),
         ("section_map", "optional", "章节→论断映射[{section,claims[]}]"),
+        ("gaps", "optional", "论文指出的研究空白[{gap_type,statement,evidence}]"),
     )),
     "Algorithm": ("算法（论文提出的方法）", (
         ("name", "must", "算法名"),

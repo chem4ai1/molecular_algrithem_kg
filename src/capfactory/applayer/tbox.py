@@ -59,14 +59,24 @@ APP_CLASSES: Dict[str, Tuple[str, Tuple[Tuple[str, str], ...]]] = {
         ("detection", "optional"), ("domain_tags", "optional"))),
     "EvidenceNorm": ("领域证据规范（02/03）", (
         ("evidence_type", "must"), ("accepted_metrics", "optional"),
-        ("min_fidelity", "optional"))),
+        ("min_fidelity", "optional"), ("sample_size_norm", "optional"),
+        ("control_design_norm", "optional"),
+        ("effect_reporting_norm", "optional"),
+        ("negative_result_norm", "optional"),
+        ("exemplar_venues", "optional"))),
     "FigureAsset": ("图表资产（08）", (
         ("fig_label", "must"), ("caption", "optional"), ("kind", "optional"),
         ("for_contribution", "optional"), ("placement", "optional"))),
-    "CitationCheck": ("引用核验（08 三层）", (
-        ("doi", "optional"), ("venue", "optional"), ("year", "optional"),
-        ("existence", "optional"), ("metadata_ok", "optional"),
-        ("context_ok", "optional"))),
+    "CitedPaper": ("被引论文（引用网络实体，08 三层核验挂在属性上）", (
+        ("cite_key", "must"), ("title", "must"), ("doi", "optional"),
+        ("authors", "optional"), ("year", "optional"), ("venue", "optional"),
+        ("layers", "optional"), ("existence", "optional"),
+        ("metadata_ok", "optional"), ("context_ok", "optional"),
+        ("context_quote", "optional"), ("recency_ratio", "optional"))),
+    "ResearchGap": ("研究空白（为什么以前没人做 / 现有方法缺什么）", (
+        ("gap_id", "must"), ("gap_type", "must"), ("statement", "must"),
+        ("evidence", "optional"), ("priority", "optional"),
+        ("supported_by", "optional"))),
     "SectionPlan": ("章节计划（06）", (
         ("section", "must"), ("claims", "optional"),
         ("evidence_refs", "optional"), ("word_budget", "optional"))),
@@ -94,7 +104,10 @@ APP_RELATIONS: Dict[str, Tuple[str, str, str]] = {
     "CONFORMS_TO": ("Paper", "EvidenceNorm", "论文遵循的领域证据规范"),
     "APPLIES": ("EvidenceNorm", "FailureMode", "该规范下适用的失败模式"),
     "SHOWN_BY": ("Contribution", "FigureAsset", "该贡献由哪张图表支撑"),
-    "CITES": ("Paper", "CitationCheck", "论文的引用核验"),
+    "CITES": ("Paper", "CitedPaper", "论文引用了哪篇"),
+    "IDENTIFIES": ("Paper", "ResearchGap", "论文指出的研究空白"),
+    "GAP_SUPPORTED_BY": ("ResearchGap", "CitedPaper", "该空白由哪些文献支撑"),
+    "ANCHORS": ("ResearchGap", "Contribution", "该空白锚定了哪条贡献"),
     "OUTLINES": ("Paper", "SectionPlan", "论文的章节计划"),
     "CHALLENGED_BY": ("Contribution", "ReviewPoint", "该贡献可能被如何质疑"),
 }
