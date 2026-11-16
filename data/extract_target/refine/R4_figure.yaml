@@ -1,0 +1,50 @@
+refine: R4_figure
+order: 4
+enabled: true
+target:
+  class: FigureAsset
+  node_id: "figure:{arxiv_id}:{n}"
+  relation: SHOWN_BY
+  parent_class: Contribution
+section_hints:
+  - figure
+  - fig.
+  - result
+signal_words:
+  - "Figure 1"
+  - "Figure 2"
+  - "Fig."
+  - "we show"
+  - "as shown in"
+locate:
+  strategy: paragraph
+  max_paragraphs: 6
+  window: 1
+fields:
+  - name: label
+    required: true
+    type: str
+    max_chars: 20
+  - name: caption
+    type: str
+    max_chars: 120
+  - name: kind
+    type: str
+    enum: [main, ablation, sensitivity, qualitative, architecture]
+  - name: for_contribution
+    type: str
+    max_chars: 40
+  - name: evidence
+    required: true
+    type: str
+    max_chars: 120
+template: |
+  任务：抽取论文中每张图**支撑了什么结论**。
+  kind：main（主对比）/ ablation（消融）/ sensitivity（敏感度）/
+        qualitative（定性示例）/ architecture（结构图）。
+  placement 由规则判定（main/ablation → 正文，其余可进附录），你不用填。
+  【已有抽取信息】{existing}
+  【原文段落】{context}
+  输出 JSON：{"figures":[{fields}]}
+  可用字段：{fields}
+merge: append

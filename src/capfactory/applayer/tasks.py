@@ -36,30 +36,45 @@ TASK_SPECS: Dict[str, Dict[str, Any]] = {
                     "数据契约", "单元格级证据", "局限清单", "科技树出处"),
         "file": "storage_cf/sciforge/app_reproduction.json",
     },
-    "generation": {
-        "label": "论文生成 / 写作",
-        "goal": "基于已有论文谱系生成新的研究叙述与稿件",
-        "classes": ("ResearchQuestion", "ProblemCategory",
+    "writing": {
+        "label": "论文写作",
+        "goal": "为论文生成提供约束与素材：贡献、实验组、假设、失败模式、"
+                "证据规范、图表、引用、章节、审稿点",
+        "classes": ("Contribution", "ExperimentArm", "Assumption", "FailureMode",
+                    "EvidenceNorm", "FigureAsset", "CitationCheck",
+                    "SectionPlan", "ReviewPoint",
                     "MetricDefinition", "DataContract", "Evidence",
                     "Limitation", "SourcePaper"),
-        "relations": ("FORMULATES", "IN_CATEGORY", "HAS_METRIC",
-                      "HAS_CONTRACT", "SUPPORTED_BY", "HAS_LIMITATION",
-                      "SITUATED_IN"),
-        "miners": ("questions", "categories", "metrics", "contracts",
-                   "evidence", "limitations", "source_papers"),
-        "reads": ("Paper.research_question", "Paper.problem_category",
-                  "Paper.keywords", "Benchmark.metrics[]",
-                  "Algorithm.limitations", "Paper-RELATED_TO->Paper"),
-        "outputs": ("研究问题与类别聚类", "指标与数据契约",
-                    "可引用证据", "局限与相关工作谱系", "章节素材"),
-        "file": "storage_cf/sciforge/app_generation.json",
+        "relations": ("DECLARES", "TESTED_BY", "RUNS", "ON", "ASSUMES",
+                      "CONFORMS_TO", "APPLIES", "SHOWN_BY", "CITES",
+                      "OUTLINES", "CHALLENGED_BY",
+                      "HAS_METRIC", "HAS_CONTRACT", "SUPPORTED_BY",
+                      "HAS_LIMITATION", "SITUATED_IN"),
+        "miners": ("contributions", "experiment_arms", "assumptions",
+                   "failure_modes", "evidence_norms", "figures", "citations",
+                   "section_plans", "review_points",
+                   "metrics", "contracts", "evidence", "limitations",
+                   "source_papers"),
+        "reads": ("Paper.contributions/figures/section_map/evidence_type",
+                  "Algorithm.assumptions/novelty_basis",
+                  "Module.is_novel_component",
+                  "Benchmark.protocol/metrics[].contribution_link",
+                  "Benchmark.model_results[].outcome_class/seeds"),
+        "outputs": ("贡献与验证关系", "实验组矩阵", "方法假设",
+                    "失败模式清单", "领域证据规范", "图表归属",
+                    "引用核验位", "章节计划", "审稿关注点"),
+        "file": "storage_cf/sciforge/app_writing.json",
     },
 }
 
 SEMANTIC_SNAPSHOT = "storage_cf/sciforge/batch10_app_v1.json"
 
 
+ALIASES = {"generation": "writing"}   # 旧名保留，内部统一到 writing
+
+
 def spec(task: str) -> Dict[str, Any]:
+    task = ALIASES.get(task, task)
     if task not in TASK_SPECS:
         raise ValueError("未知应用层任务：" + str(task)
                          + "；可选 " + ", ".join(TASK_SPECS))
@@ -78,4 +93,5 @@ def snapshot() -> Dict[str, Any]:
 
 
 def out_path(task: str | None) -> Path:
+    task = ALIASES.get(task, task) if task else task
     return Path(SEMANTIC_SNAPSHOT if task is None else spec(task)["file"])

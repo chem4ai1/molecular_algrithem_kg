@@ -42,6 +42,37 @@ APP_CLASSES: Dict[str, Tuple[str, Tuple[Tuple[str, str], ...]]] = {
     "SourcePaper": ("出处论文（从 Paper-RELATED_TO->Paper 科技树）", (
         ("title", "must"), ("ref_paper", "optional"),
         ("relation", "optional"), ("resolved", "optional"))),
+    # ===== S2：写作方法论节点（来自 docs/new/01-09）=====
+    "Contribution": ("论文声称的贡献（04/06）", (
+        ("statement", "must"), ("kind", "must"),
+        ("novelty_basis", "optional"), ("section", "optional"),
+        ("claimed_strength", "optional"), ("evidence", "optional"))),
+    "ExperimentArm": ("实验组（05：main/baseline/ablation/hyperparam）", (
+        ("kind", "must"), ("name", "must"), ("config", "optional"),
+        ("n_seeds", "optional"), ("benchmark", "optional"),
+        ("evidence", "optional"))),
+    "Assumption": ("方法成立的前提（07 Type II）", (
+        ("statement", "must"), ("scope", "optional"),
+        ("applicability", "optional"), ("evidence", "optional"))),
+    "FailureMode": ("领域失败模式（07）", (
+        ("name", "must"), ("severity", "must"),
+        ("detection", "optional"), ("domain_tags", "optional"))),
+    "EvidenceNorm": ("领域证据规范（02/03）", (
+        ("evidence_type", "must"), ("accepted_metrics", "optional"),
+        ("min_fidelity", "optional"))),
+    "FigureAsset": ("图表资产（08）", (
+        ("fig_label", "must"), ("caption", "optional"), ("kind", "optional"),
+        ("for_contribution", "optional"), ("placement", "optional"))),
+    "CitationCheck": ("引用核验（08 三层）", (
+        ("doi", "optional"), ("venue", "optional"), ("year", "optional"),
+        ("existence", "optional"), ("metadata_ok", "optional"),
+        ("context_ok", "optional"))),
+    "SectionPlan": ("章节计划（06）", (
+        ("section", "must"), ("claims", "optional"),
+        ("evidence_refs", "optional"), ("word_budget", "optional"))),
+    "ReviewPoint": ("审稿关注点（09）", (
+        ("axis", "must"), ("attack", "must"), ("response", "optional"),
+        ("severity", "optional"))),
 }
 
 APP_RELATIONS: Dict[str, Tuple[str, str, str]] = {
@@ -54,6 +85,18 @@ APP_RELATIONS: Dict[str, Tuple[str, str, str]] = {
     "SUPPORTED_BY": ("LeaderboardEntry", "Evidence", "数值的证据"),
     "HAS_LIMITATION": ("Algorithm", "Limitation", "算法的局限"),
     "SITUATED_IN": ("Paper", "SourcePaper", "论文在科技树中的位置"),
+    # ===== S2 关系 =====
+    "DECLARES": ("Paper", "Contribution", "论文声明贡献"),
+    "TESTED_BY": ("Contribution", "ExperimentArm", "该贡献由哪个实验组验证"),
+    "RUNS": ("Paper", "ExperimentArm", "论文做了哪些实验组"),
+    "ON": ("ExperimentArm", "Benchmark", "实验组跑在哪个基准"),
+    "ASSUMES": ("Algorithm", "Assumption", "算法依赖的前提"),
+    "CONFORMS_TO": ("Paper", "EvidenceNorm", "论文遵循的领域证据规范"),
+    "APPLIES": ("EvidenceNorm", "FailureMode", "该规范下适用的失败模式"),
+    "SHOWN_BY": ("Contribution", "FigureAsset", "该贡献由哪张图表支撑"),
+    "CITES": ("Paper", "CitationCheck", "论文的引用核验"),
+    "OUTLINES": ("Paper", "SectionPlan", "论文的章节计划"),
+    "CHALLENGED_BY": ("Contribution", "ReviewPoint", "该贡献可能被如何质疑"),
 }
 
 

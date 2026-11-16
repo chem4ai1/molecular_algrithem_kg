@@ -28,7 +28,8 @@ class TestConfig(unittest.TestCase):
         self.assertEqual(e1.classes, ["Paper"])
 
     def test_refine_specs(self):
-        self.assertEqual(len(self.d["refines"]), 3)
+        # S2 升级后：R1 贡献 / R2 实验组 / R3 假设 / R4 图表 / R5 引用
+        self.assertGreaterEqual(len(self.d["refines"]), 5)
         r = self.d["refines"]["R1_contribution"]
         self.assertEqual(r.cls, "Contribution")
         self.assertEqual(r.relation, "DECLARES")
@@ -47,10 +48,23 @@ class TestRenderEquivalence(unittest.TestCase):
         from capfactory.semantic.extraction.prompts import stages as old
         self.assertEqual(old(), render.stages())
 
-    def test_prompt_identical(self):
+    def test_prompt_identical_for_unmodified_stages(self):
+        """E4/E5/E6 未加字段，应与旧实现逐字节一致（证明机制没坏）。"""
         from capfactory.semantic.extraction.prompts import render as old
-        for st in render.stages():
+        for st in ("E4_values", "E5_relations", "E6_lineage"):
             self.assertEqual(old(st, **ARGS), render.render(st, **ARGS), st)
+
+    def test_modified_stages_contain_new_fields(self):
+        """E1–E3 有意新增方法论字段，prompt 必须包含它们。"""
+        e1 = render.render("E1_paper", **ARGS)
+        for k in ("paradigm", "evidence_type", "section_map"):
+            self.assertIn(k, e1)
+        e2 = render.render("E2_algorithm", **ARGS)
+        for k in ("assumptions", "is_novel_component"):
+            self.assertIn(k, e2)
+        e3 = render.render("E3_benchmark", **ARGS)
+        for k in ("protocol", "contribution_link"):
+            self.assertIn(k, e3)
 
     def test_contract_contains_class_fields(self):
         spec = loader.stages()["E2_algorithm"]

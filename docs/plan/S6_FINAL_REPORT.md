@@ -1,6 +1,6 @@
 # S6 最终验收签字（v2）
 
-生成时间：2026-11-16T03:58:48Z
+生成时间：2026-11-16T12:55:08Z
 
 ## 16 硬门实测
 
@@ -8,7 +8,7 @@
 |---|---|---|
 | H1_语义层冻结 | 见 plan/README.md §5 / §10.3 | PASS |
 | H2_重建等价 | 见 plan/README.md §5 / §10.3 | PASS |
-| H3_基础契约 | 见 plan/README.md §5 / §10.3 | PASS |
+| H3_基础契约 | 见 plan/README.md §5 / §10.3 | FAIL |
 | H4_缓存幂等 | 见 plan/README.md §5 / §10.3 | PASS |
 | H5_LLM节点隔离 | 见 plan/README.md §5 / §10.3 | PASS |
 | H6_spec幂等 | 见 plan/README.md §5 / §10.3 | PASS |

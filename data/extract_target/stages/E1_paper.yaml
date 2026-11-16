@@ -22,6 +22,11 @@ contract:
   - why_hard
   - relation_hints
   - evidence
+  - paradigm
+  - evidence_type
+  - evidence_norm
+  - figures
+  - section_map
   aux_fields:
   - domain_code
   - evidence
@@ -35,4 +40,7 @@ template: "任务：抽 Paper 的核心属性（研究什么问题 / 问题类�
   \               \"algorithms\":[\"本文提到的算法名\"],\n                    \"benchmarks\":[\"本文提到的数据集/基准名\"\
   ]},\n  \"evidence\":{\"research_question\":\"逐字引文\",\"why_hard\":\"逐字引文\"}}\n注意：research_question 与\
   \ problem_category 是**字符串**，不是数组、不建节点。\n【论文标题】{title}\n【规则层候选信号（problem_category 只能从这里选）】\n{rule_hints}\n\
-  【摘要与引言】\n{paper_text}\n"
+  【摘要与引言】\n{paper_text}\n补充字段（写作方法论，来自领域规范）：\n  \"paradigm\":\"formal|empirical|design|interpretive\"\
+  ,\n  \"evidence_type\":\"causal_inference|derivational|experimental|simulational|correlational|interpretive\"\
+  ,\n  \"evidence_norm\":[\"该领域认可的指标名\"],\n  \"section_map\":[{\"section\":\"章节名\",\"claims\":[\"该节要论证什么\"\
+  ]}]\n注意：paradigm 与 evidence_type 依据**方法节与实验节的写法**判定，不要凭标题猜；\nsection_map 只列论文实际有的章节，没有就空数组。"

@@ -11,6 +11,114 @@ def _slug(s: str) -> str:
     return re.sub(r"[^a-z0-9]+", "_", str(s or "").lower()).strip("_")[:60]
 
 
+# 内置：领域证据规范与失败模式（来自 docs/question_knowledge_skills/new/02、07）
+_ACCEPTED: Dict[str, List[str]] = {
+    "simulational": ["validity", "uniqueness", "novelty", "diversity", "fid",
+                     "convergence", "loss"],
+    "experimental": ["accuracy", "f1", "precision", "recall", "auc", "p_value"],
+    "causal_inference": ["ate", "ci", "robustness", "placebo"],
+    "derivational": ["theorem", "proof", "bound", "complexity"],
+    "correlational": ["correlation", "r2", "coefficient"],
+    "interpretive": ["coherence", "coverage"],
+}
+_MIN_FID: Dict[str, str] = {
+    "simulational": "numerical", "experimental": "numerical",
+    "causal_inference": "numerical", "derivational": "symbolic",
+    "correlational": "numerical", "interpretive": "qualitative",
+}
+_FAILURE_MODES: Dict[str, List[Dict[str, Any]]] = {
+    "simulational": [
+        {"name": "convergence_failure", "severity": "fatal",
+         "detection": "报收敛曲线与多起点", "tags": ["optimization", "ML"]},
+        {"name": "data_leakage", "severity": "fatal",
+         "detection": "检查划分脚本与重复样本", "tags": ["ML"]},
+        {"name": "baseline_misconfiguration", "severity": "fatal",
+         "detection": "同条件、同搜索预算", "tags": ["ML"]},
+        {"name": "metric_mismatch", "severity": "fatal",
+         "detection": "指标与贡献的对应关系", "tags": ["ML"]},
+        {"name": "seed_cherry_picking", "severity": "fatal",
+         "detection": "要求 mean±std 与全部 seed", "tags": ["ML"]},
+        {"name": "toy_overreach", "severity": "high",
+         "detection": "声明「在测试的 regime 内」", "tags": ["ML"]},
+    ],
+    "experimental": [
+        {"name": "underpowered", "severity": "fatal",
+         "detection": "power analysis / 最小可检测效应", "tags": ["bio", "med"]},
+        {"name": "no_blinding", "severity": "high",
+         "detection": "盲法状态", "tags": ["med"]},
+        {"name": "post_hoc_exclusion", "severity": "high",
+         "detection": "排除标准是否事前声明", "tags": ["med"]},
+    ],
+    "derivational": [
+        {"name": "unstated_assumption", "severity": "fatal",
+         "detection": "假设台账", "tags": ["math"]},
+        {"name": "proof_gap", "severity": "fatal",
+         "detection": "逐步机器验证", "tags": ["math"]},
+    ],
+    "causal_inference": [
+        {"name": "omitted_variable", "severity": "fatal",
+         "detection": "识别策略与稳健性", "tags": ["econ"]},
+        {"name": "reverse_causality", "severity": "fatal",
+         "detection": "时序与外生性检验", "tags": ["econ"]},
+    ],
+    "correlational": [
+        {"name": "survivorship_bias", "severity": "fatal",
+         "detection": "纳入失败样本", "tags": ["finance"]},
+    ],
+    "interpretive": [
+        {"name": "selective_citation", "severity": "high",
+         "detection": "替代解释是否讨论", "tags": ["humanities"]},
+    ],
+}
+
+
+_SECTION_PLANS: Dict[str, List[Dict[str, Any]]] = {
+    "simulational": [
+        {"section": "Introduction", "word_budget": 900, "claims": ["problem", "why_hard", "contribution"]},
+        {"section": "Method", "word_budget": 1800, "claims": ["mechanism", "module_roles"]},
+        {"section": "Experimental Setup", "word_budget": 700, "claims": ["protocol", "baselines"]},
+        {"section": "Results", "word_budget": 1600, "claims": ["main_result", "ablation"]},
+        {"section": "Discussion", "word_budget": 700, "claims": ["limitation", "future_work"]},
+    ],
+    "experimental": [
+        {"section": "Introduction", "word_budget": 900, "claims": ["problem", "contribution"]},
+        {"section": "Methods", "word_budget": 1500, "claims": ["protocol", "power_analysis"]},
+        {"section": "Results", "word_budget": 1600, "claims": ["statistical_test"]},
+        {"section": "Discussion", "word_budget": 700, "claims": ["limitation"]},
+    ],
+    "derivational": [
+        {"section": "Introduction", "word_budget": 900, "claims": ["problem", "contribution"]},
+        {"section": "Main Results", "word_budget": 1800, "claims": ["theorem", "lemma"]},
+        {"section": "Proofs", "word_budget": 2000, "claims": ["proof"]},
+    ],
+    "causal_inference": [
+        {"section": "Introduction", "word_budget": 900, "claims": ["problem", "contribution"]},
+        {"section": "Identification Strategy", "word_budget": 1500, "claims": ["assumption", "estimator"]},
+        {"section": "Results", "word_budget": 1500, "claims": ["ate", "ci"]},
+        {"section": "Robustness Checks", "word_budget": 900, "claims": ["placebo", "sensitivity"]},
+    ],
+    "interpretive": [
+        {"section": "Introduction", "word_budget": 900, "claims": ["problem", "claim"]},
+        {"section": "Argument", "word_budget": 2000, "claims": ["claim", "counterargument"]},
+        {"section": "Analysis", "word_budget": 1200, "claims": ["evidence_weighting"]},
+    ],
+}
+_REVIEW_AXES: List[Dict[str, str]] = [
+    {"axis": "novelty", "attack": "这就是 A + B，A 和 B 都是现成的",
+     "response": "给出 why-not-before 的三类理由", "severity": "fatal"},
+    {"axis": "validity", "attack": "涨点可能在 seed 噪声范围内",
+     "response": "报 mean±std 与种子数", "severity": "fatal"},
+    {"axis": "comparability", "attack": "baseline 没调参 / 没复现",
+     "response": "同条件、同搜索预算", "severity": "fatal"},
+    {"axis": "attribution", "attack": "没做消融，不知道是哪部分起作用",
+     "response": "leave-one-component-out", "severity": "high"},
+    {"axis": "generalization", "attack": "只在一个数据集上验证",
+     "response": "补第二个基准或声明 regime", "severity": "high"},
+    {"axis": "clarity", "attack": "前两页没讲清问题与贡献",
+     "response": "摘要五句 + 引言四段", "severity": "medium"},
+]
+
+
 def mine_all(sem_g: Any, *, task: str | None = None,
              out: Path | None = None, persist: bool = True
              ) -> Dict[str, Any]:
@@ -204,6 +312,135 @@ def mine_all(sem_g: Any, *, task: str | None = None,
             derived_from=[a.source, a.target], miner="source_papers")
         rel(a.source, "SITUATED_IN", sid); n8 += 1
     rep["miners"]["source_papers"] = n8
+    # ===== S2：写作方法论节点 =====
+    # 9) 贡献（S1 落库才有；缺失不造）
+    n9 = 0
+    for p in papers:
+        for i, c in enumerate(p.attrs.get("contributions") or []):
+            if not isinstance(c, dict):
+                continue
+            cid = f"appcon:{_slug(p.attrs.get('arxiv_id') or p.id)}:{i}"
+            if add(cid, "Contribution", str(c.get("statement") or "")[:80],
+                   statement=c.get("statement"), kind=c.get("kind"),
+                   novelty_basis=c.get("novelty_basis"),
+                   section=c.get("section"),
+                   claimed_strength=c.get("claimed_strength"),
+                   evidence=c.get("evidence"), paper_id=p.id,
+                   derived_from=[p.id], miner="contributions"):
+                rel(p.id, "DECLARES", cid); n9 += 1
+    rep["miners"]["contributions"] = n9
+    # 10) 实验组（按 outcome_class 分组；无该字段则不建）
+    n10 = 0
+    for b in sem_g.by_type("Benchmark"):
+        groups: Dict[str, list] = collections.defaultdict(list)
+        for r in b.attrs.get("model_results") or []:
+            oc = str(r.get("outcome_class") or "").strip()
+            if oc in ("main", "baseline", "ablation", "hyperparam"):
+                groups[oc].append(r)
+        for kind, rows in groups.items():
+            aid_ = f"apparm:{_slug(b.id)}:{kind}"
+            seeds = [r.get("seeds") for r in rows if r.get("seeds")]
+            if add(aid_, "ExperimentArm", f"{b.label} · {kind}",
+                   kind=kind, name=kind, n_seeds=max(seeds) if seeds else None,
+                   benchmark=b.label, config=f"{len(rows)} 行",
+                   derived_from=[b.id], miner="experiment_arms"):
+                rel(b.id, "ON", aid_) if False else None
+                n10 += 1
+    rep["miners"]["experiment_arms"] = n10
+    # 11) 假设（Algorithm.assumptions 文本提升）
+    n11 = 0
+    for a in sem_g.by_type("Algorithm"):
+        for i, st in enumerate(a.attrs.get("assumptions") or []):
+            st = str(st).strip()
+            if not st:
+                continue
+            sid = f"appasm:{_slug(a.id)}:{i}"
+            if add(sid, "Assumption", st[:80], statement=st, scope="global",
+                   derived_from=[a.id], miner="assumptions"):
+                rel(a.id, "ASSUMES", sid); n11 += 1
+    rep["miners"]["assumptions"] = n11
+    # 12) 证据规范 + 失败模式（内置规则，不依赖抽取）
+    n12 = 0
+    for p in papers:
+        et = str(p.attrs.get("evidence_type") or "").strip()
+        if not et:
+            continue
+        nid = "appnorm:" + _slug(et)
+        if add(nid, "EvidenceNorm", et, evidence_type=et,
+               accepted_metrics=_ACCEPTED.get(et, []),
+               min_fidelity=_MIN_FID.get(et, "qualitative"),
+               miner="evidence_norms"):
+            rel(p.id, "CONFORMS_TO", nid)
+        for k, fm in enumerate(_FAILURE_MODES.get(et, [])):
+            fid = f"appfail:{_slug(et)}:{k}"
+            if add(fid, "FailureMode", fm["name"], name=fm["name"],
+                   severity=fm["severity"], detection=fm["detection"],
+                   domain_tags=fm.get("tags", []), miner="failure_modes"):
+                rel(nid, "APPLIES", fid)
+                rep["miners"]["failure_modes"] = rep["miners"].get(
+                    "failure_modes", 0) + 1
+        n12 += 1
+    rep["miners"]["evidence_norms"] = n12
+    # 13) 图表资产（S1 落库才有）
+    n13 = 0
+    for p in papers:
+        for i, f in enumerate(p.attrs.get("figures") or []):
+            if not isinstance(f, dict):
+                continue
+            fid = f"appfig:{_slug(p.attrs.get('arxiv_id') or p.id)}:{i}"
+            if add(fid, "FigureAsset", str(f.get("caption") or f.get("label"))[:80],
+                   fig_label=f.get("label"), caption=f.get("caption"),
+                   kind=f.get("kind"),
+                   for_contribution=f.get("for_contribution"),
+                   placement="body" if f.get("kind") in
+                   ("main", "ablation") else "appendix",
+                   derived_from=[p.id], miner="figures"):
+                n13 += 1
+    rep["miners"]["figures"] = n13
+    # 14) 引用核验（每条 RELATED_TO 一条，context 未核验标 unknown）
+    n14 = 0
+    for a in sem_g.assertions:
+        if a.relation != "RELATED_TO":
+            continue
+        t = sem_g.nodes.get(a.target)
+        if not t or t.type != "Paper":
+            continue
+        cid = "appcite:" + _slug(f"{a.source}:{a.target}")
+        if add(cid, "CitationCheck", t.label[:80], venue=t.attrs.get("venue"),
+               year=t.attrs.get("year"), existence="unknown",
+               metadata_ok="unknown", context_ok="unknown",
+               derived_from=[a.source, a.target], miner="citations"):
+            rel(a.source, "CITES", cid); n14 += 1
+    rep["miners"]["citations"] = n14
+    # 15) 章节计划（按 evidence_type 的内置骨架，不依赖抽取）
+    n15 = 0
+    for p in papers:
+        et = str(p.attrs.get("evidence_type") or "").strip()
+        if not et:
+            continue
+        for k, sec in enumerate(_SECTION_PLANS.get(et, [])):
+            sid = f"appsec:{_slug(p.attrs.get('arxiv_id') or p.id)}:{k}"
+            if add(sid, "SectionPlan", sec["section"],
+                   section=sec["section"], claims=sec.get("claims", []),
+                   word_budget=sec.get("word_budget"),
+                   derived_from=[p.id], miner="section_plans"):
+                rel(p.id, "OUTLINES", sid); n15 += 1
+    rep["miners"]["section_plans"] = n15
+    # 16) 审稿关注点（6 维 × 每条贡献，内置模板）
+    n16 = 0
+    for p in papers:
+        cons = [x for x in g.nodes.values()
+                if x.type == "Contribution" and x.attrs.get("paper_id") == p.id]
+        for c in cons:
+            for k, rp in enumerate(_REVIEW_AXES):
+                rid = f"apprev:{_slug(c.id)}:{k}"
+                if add(rid, "ReviewPoint", f"{rp['axis']} · {rp['attack'][:24]}",
+                       axis=rp["axis"], attack=rp["attack"],
+                       response=rp.get("response"),
+                       severity=rp.get("severity", "high"),
+                       derived_from=[c.id], miner="review_points"):
+                    rel(c.id, "CHALLENGED_BY", rid); n16 += 1
+    rep["miners"]["review_points"] = n16
     rep["nodes"] = len(g.nodes)
     rep["assertions"] = len(g.assertions)
     rep["n_relations"] = len(g.assertions) - rep["n_semantic_assertions"]

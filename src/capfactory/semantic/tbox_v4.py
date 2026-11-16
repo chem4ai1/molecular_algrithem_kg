@@ -39,6 +39,13 @@ SEMANTIC_CLASSES: Dict[str, Tuple[str, Tuple[Tuple[str, str, str], ...]]] = {
         ("why_hard", "optional", "现有方法瓶颈"),
         ("keywords", "optional", "关键词"),
         ("relation_hints", "optional", "关系线索"),
+        # --- S1：写作方法论属性（来自 docs/new/01-09）---
+        ("paradigm", "should", "研究范式 formal/empirical/design/interpretive"),
+        ("evidence_type", "should", "证据类型 causal_inference/derivational/"
+         "experimental/simulational/correlational/interpretive"),
+        ("evidence_norm", "optional", "该领域认可的指标与证据规范"),
+        ("figures", "optional", "图表清单[{label,caption,kind,for_contribution}]"),
+        ("section_map", "optional", "章节→论断映射[{section,claims[]}]"),
     )),
     "Algorithm": ("算法（论文提出的方法）", (
         ("name", "must", "算法名"),
@@ -49,6 +56,9 @@ SEMANTIC_CLASSES: Dict[str, Tuple[str, Tuple[Tuple[str, str, str], ...]]] = {
         ("why_it_works", "optional", "为什么有效"),
         ("applicable_to", "optional", "适用场景"),
         ("limitations", "optional", "局限（文本，不建节点）"),
+        ("assumptions", "optional", "方法成立的前提[]（Type II 泄露检查用）"),
+        ("novelty_basis", "optional", "新颖性依据[]：technical_constraint/"
+         "theoretical_blind_spot/data_availability"),
     )),
     "AlgorithmModule": ("算法模块（原 AlgorithmStep）", (
         ("name", "must", "模块名"),
@@ -56,6 +66,8 @@ SEMANTIC_CLASSES: Dict[str, Tuple[str, Tuple[Tuple[str, str, str], ...]]] = {
         ("formula", "optional", "公式/方程（文本，不建节点）"),
         ("inputs", "should", "输入"),
         ("outputs", "should", "输出"),
+        ("is_novel_component", "optional", "是否论文声称的创新组件（消融规划用）"),
+        ("component_role", "optional", "backbone/encoder/decoder/loss/sampler/other"),
     )),
     "CodeRepository": ("代码仓库", (
         ("repo_name", "must", "仓库名"),
@@ -84,6 +96,8 @@ SEMANTIC_CLASSES: Dict[str, Tuple[str, Tuple[Tuple[str, str, str], ...]]] = {
         ("model_results", "should", "各模型结果[{model,metric,value,unit,is_sota}]"),
         ("sota_by_metric", "optional", "动态 SOTA"),
         ("is_evaluation", "should", "是否评测基准"),
+        ("protocol", "optional", "实验协议{seeds,split,eval_script,epochs,hardware}"),
+        ("failure_modes", "optional", "适用本基准的失败模式 id[]"),
     )),
 }
 

@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-11-16T03:58:48Z",
+  "generated_at": "2026-11-16T12:55:08Z",
   "metrics": {
-    "generated_at": "2026-11-16T03:58:46Z",
+    "generated_at": "2026-11-16T12:55:05Z",
     "cache_hit_rate": 0.3333,
     "llm_call_reduction": 0.3333,
     "n_new_nodes_per_run": {
@@ -24,7 +24,7 @@
   "hard_gates": {
     "H1_语义层冻结": true,
     "H2_重建等价": true,
-    "H3_基础契约": true,
+    "H3_基础契约": false,
     "H4_缓存幂等": true,
     "H5_LLM节点隔离": true,
     "H6_spec幂等": true,
@@ -40,7 +40,7 @@
     "H16_覆盖率可见": true
   },
   "n_hard_gates": 16,
-  "n_hard_gates_pass": 16,
+  "n_hard_gates_pass": 15,
   "fix_closure": {
     "n": 10,
     "items": [

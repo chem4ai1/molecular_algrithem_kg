@@ -27,6 +27,8 @@ contract:
   - modality
   - research_object
   - metrics
+  - protocol
+  - failure_modes
 section_slice: benchmark
 slots:
 - paper_text
@@ -34,4 +36,8 @@ template: "任务：抽 Benchmark 的结构字段（**不要输出任何数值**
   ,\n  \"input_form\":\"从 FORM_VOCAB 选\",\"output_form\":\"从 FORM_VOCAB 选\",\n  \"n_samples\":\"样本量描述或空\"\
   ,\"scale\":\"规模描述或空\",\n  \"modality\":\"数据模态或空\",\"research_object\":\"研究对象或空\",\n  \"metrics\":[{\"\
   name\":\"指标名\",\"unit\":\"单位或空\",\"direction\":\"min|max|空\"}]}]}\n规则：benchmarks ≤3；metrics ≤4；input/output_form\
-  \ 必须来自封闭词表；\n数值/模型成绩一律不输出（下一阶段由表格解析负责）。\n【实验节】\n{paper_text}\n"
+  \ 必须来自封闭词表；\n数值/模型成绩一律不输出（下一阶段由表格解析负责）。\n【实验节】\n{paper_text}\n每个基准补充：\n  \"protocol\":{\"seeds\":int|null,\"\
+  split\":\"划分描述或 null\",\n              \"eval_script\":\"评测脚本/命令或 null\",\"epochs\":int|null},\n  \"\
+  metrics\":[{\"name\":\"指标名\",\"unit\":\"单位或空\",\"direction\":\"min|max|空\",\n              \"contribution_link\"\
+  :\"该指标度量论文的哪个贡献（≤20 字）\"}]\n注意：原文写 \"we follow the standard split\" 不算 split 值，填 null，不要编造比例；\n    \
+  \  seeds 原文写 \"3 runs\" 才填 3，未提及填 null。"

@@ -23,3 +23,6 @@ storage/sciforge/semantic_extraction/*.json
 
 # 图导出临时文件
 storage/sciforge/exports/
+
+# 任务层产物（可由 build_task_layer 重建）
+storage/sciforge/app_writing.json

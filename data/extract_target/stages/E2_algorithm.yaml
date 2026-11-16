@@ -28,6 +28,10 @@ contract:
   - applicable_to
   - limitations
   - modules
+  - assumptions
+  - novelty_basis
+  - is_novel_component
+  - component_role
 section_slice: algorithm
 slots:
 - code_symbols
@@ -39,4 +43,7 @@ template: "任务：抽 Algorithm 及它的 AlgorithmModule（算法模块）。
   ,\"inputs\":\"输入\",\"outputs\":\"输出\",\n    \"code_symbols\":[\"只能从代码符号清单选\"],\n    \"tools\":[\"方法节真实出现的工具/库/力场\"\
   ]}]}]}\n规则：\n1. modules 3-6 个，按方法逻辑顺序；mechanism 用动宾短语，不照抄标题。\n2. code_symbols 只能从【代码符号清单】选，禁止发明函数/类。\n\
   3. tools 只写方法节真实出现的；formula 必须是原文片段。\n4. flow_family（算法族）不由你判定，规则层会算。\n【方法节】\n{paper_text}\n【代码符号清单】\n\
-  {code_symbols}\n"
+  {code_symbols}\n每个模块补充（消融与前提检查用）：\n  \"is_novel_component\":true|false,      // 是否论文明确声称的新组件\n  \"component_role\"\
+  :\"backbone|encoder|decoder|loss|sampler|other\"\n算法级补充：\n  \"assumptions\":[\"该方法成立所依赖的前提\"],   //\
+  \ 不是局限，是前提\n  \"novelty_basis\":[\"technical_constraint|theoretical_blind_spot|data_availability\"]\n\
+  注意：不要把所有模块都标 is_novel_component=true；assumptions 只写原文明确说出的。"
