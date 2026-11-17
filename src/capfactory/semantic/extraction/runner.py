@@ -137,7 +137,7 @@ def _call_stage(stage: str, *, chat_fn, sl: Dict[str, str],
         if attempt:
             prompt += "\n" + retry_contract(stage)
         try:
-            raw = fn(prompt, max_tokens=1600, timeout=180)
+            raw = fn(prompt, max_tokens=16384, timeout=600)
             out, issues = validate(stage, parse_llm_json(raw),
                                    source_text=text)
         except Exception as exc:  # noqa: BLE001

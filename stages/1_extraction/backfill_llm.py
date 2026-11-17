@@ -26,7 +26,12 @@ def done(aid: str) -> bool:
     try:
         d = json.loads(p.read_text(encoding="utf-8"))
         e1 = (d.get("stages", {}).get("E1_paper") or {}).get("data") or {}
-        return bool(e1.get("evidence_type") or e1.get("paradigm"))
+        keys = ("paradigm", "evidence_type", "gaps", "claims", "authors",
+                "abstract", "open_problems", "delta_claims",
+                "negative_results", "protocol_disclosure",
+                "citation_style", "writing_style")
+        # 至少 8/12 个字段有值才算完成（原文确实没有的字段允许为空）
+        return sum(1 for k in keys if e1.get(k) not in (None, "", [])) >= 8
     except Exception:
         return False
 

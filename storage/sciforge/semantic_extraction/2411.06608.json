@@ -8,12 +8,12 @@
         "warn:evidence_not_verbatim:why_hard"
       ],
       "fatal": [],
-      "n_fields": 16,
+      "n_fields": 22,
       "data": {
         "research_question": "提出MolMiner，一种基于片段、几何感知且顺序无关的自回归模型，用于支持12个理化性质的高维条件控制分子设计。",
         "problem_category": "molecule_generation",
         "domain_code": "D1",
-        "why_hard": "现有自回归模型通常依赖固定展开顺序，且很少在生成过程中整合动态几何信息，导致泛化能力受限。",
+        "why_hard": "现有自回归模型通常依赖固定的展开顺序，且很少在生成过程中整合动态几何信息，导致泛化能力受限。",
         "relation_hints": {
           "related_papers": [
             "JTNN",
@@ -30,12 +30,13 @@
           "research_question": "We introduce MolMiner, a fragment-based, geometry-aware, and order-agnostic autoregressive model for molecular design.",
           "why_hard": ""
         },
-        "paradigm": "empirical",
+        "paradigm": "design",
         "evidence_type": "simulational",
         "evidence_norm": [
           "hit rates",
           "validity",
-          "diversity"
+          "diversity",
+          "conditional control"
         ],
         "authors": [
           "Raul Ortega-Ochoa",
@@ -45,11 +46,11 @@
         "abstract": "We introduce MolMiner, a fragment-based, geometry-aware, and order-agnostic autoregressive model for molecular design. MolMiner supports high-dimensional conditional control over twelve physicochemical and structural properties from partial specifications, constructs molecules via symmetry-aware fragment attachments, and conditions each generation step on force-field-relaxed three-dimensional geometry of the partial structure. Conditional control emerges without auxiliary property losses. On targeted property windows, conditioning lifts hit rates by up to 5.25× over unconditional generation and 3.5× over the training distribution itself — overriding the model’s intrinsic biases — at the cost of a small reduction in unconditional distributional fidelity. MolMiner unifies dynamic geometry, symmetry handling, order-agnostic generation, and scalable multi-property conditioning within a single framework.",
         "claims": [
           {
-            "statement": "MolMiner通过片段组装和动态几何条件，实现了12个性质的高维条件控制，且无需辅助损失。",
+            "statement": "MolMiner通过片段组装和动态几何条件，实现了12个性质的高维条件控制，且无需辅助性质损失。",
             "evidence": "MolMiner supports high-dimensional conditional control over twelve physicochemical and structural properties... Conditio"
           },
           {
-            "statement": "条件生成显著提升了目标性质窗口内的命中率，克服了模型内在偏差。",
+            "statement": "条件生成显著提升了目标性质窗口内的命中率，最高达无条件生成的5.25倍。",
             "evidence": "conditioning lifts hit rates by up to 5.25× over unconditional generation and 3.5× over the training distribution itself"
           }
         ],
@@ -65,28 +66,42 @@
           {
             "section": "Introduction",
             "claims": [
-              "阐述现有生成模型在化学合理性、几何整合及顺序灵活性方面的不足，引出MolMiner的设计动机。"
+              "阐述现有生成模型在化学合理性、多样性及性质控制上的挑战，以及引入片段和几何信息的必要性。"
             ]
           },
           {
             "section": "Related Work",
             "claims": [
-              "对比JTNN、HierVAE、G-SchNet等现有片段或原子级生成方法，指出MolMiner在动态几何和对称性处理上的区别。"
+              "对比JTNN、HierVAE、G-SchNet等现有片段或原子级生成方法，指出MolMiner在动态几何和对称性处理上的差异。"
             ]
           }
         ],
         "gaps": [
           {
             "gap_type": "capability",
-            "statement": "现有自回归框架很少在生成过程中整合动态几何信息，且多依赖固定的展开顺序。",
-            "evidence": "yet few autoregressive frameworks integrate dynamic geometric information during generation"
+            "statement": "大多数自回归模型依赖固定的展开顺序，且很少在生成过程中整合动态几何信息。",
+            "evidence": "many autoregressive models rely on a fixed rollout order... yet few autoregressive frameworks integrate dynamic geometri"
           },
           {
             "gap_type": "capability",
-            "statement": "大多数模型仅支持单目标条件生成，缺乏对多个理化性质的同时控制能力。",
+            "statement": "许多模型仅支持单目标条件生成，缺乏对多个理化性质的同时控制能力。",
             "evidence": "While most models support only single-target conditioning, we enable multi-property control over twelve physicochemical "
           }
-        ]
+        ],
+        "open_problems": [],
+        "delta_claims": [
+          {
+            "statement": "相比无条件生成，条件生成将命中率提升了5.25倍。",
+            "baseline": "unconditional generation",
+            "evidence": "conditioning lifts hit rates by up to 5.25× over unconditional generation"
+          }
+        ],
+        "negative_results": [
+          "at the cost of a small reduction in unconditional distributional fidelity"
+        ],
+        "protocol_disclosure": [],
+        "citation_style": "numeric",
+        "writing_style": "结构化学术写作，强调模型架构创新（片段、几何、顺序无关）与定量性能提升（命中率倍数）。"
       }
     },
     "E2_algorithm": {
@@ -102,22 +117,22 @@
             "task_type": "molecule_generation",
             "problems_solved": [
               "解决分子生成中化学有效性难以保证的问题",
-              "解决固定生成顺序导致的泛化能力不足问题",
-              "解决多属性条件控制下生成偏差难以克服的问题"
+              "解决固定生成顺序导致泛化能力差的问题",
+              "解决多属性条件控制缺失的问题"
             ],
-            "mechanism": "基于片段的自回归生成，结合力场弛豫的3D几何信息与对称感知的片段连接，支持任意顺序的片段组装。",
-            "why_it_works": "片段级操作显式强制化学有效性，动态3D几何提供物理约束，无序生成策略作为数据增强提升泛化。",
+            "mechanism": "基于片段的自回归生成，结合力场弛豫的3D几何信息和对称性感知的连接建模，支持任意顺序的片段组装。",
+            "why_it_works": "片段级操作显式强制化学有效性；动态3D几何提供物理约束；无顺序依赖策略作为数据增强提升泛化。",
             "applicable_to": [
               "高通量筛选中的候选分子生成",
-              "具有特定物理化学性质目标的分子设计"
+              "多属性条件分子设计"
             ],
             "limitations": [
-              "条件生成导致无条件分布保真度略有下降"
+              "条件生成导致无条件分布保真度轻微下降"
             ],
             "modules": [
               {
                 "name": "Fragment-Based Molecular Representation",
-                "mechanism": "分解分子为环和孤立键片段并编码为Canonical SMILES",
+                "mechanism": "分解分子为环和键片段并编码为SMILES",
                 "formula": "",
                 "inputs": "完整分子结构",
                 "outputs": "片段序列及原子索引映射",
@@ -126,16 +141,15 @@
                   "RDKit"
                 ],
                 "is_novel_component": false,
-                "component_role": "encoder"
+                "component_role": "other"
               },
               {
                 "name": "Symmetry-Aware Attachment Modeling",
-                "mechanism": "标准化片段连接点以消除对称性歧义",
+                "mechanism": "标准化片段连接点以处理对称性",
                 "formula": "",
-                "inputs": "片段原子环境及索引映射",
+                "inputs": "片段及其原子环境",
                 "outputs": "对称不变的连接配置",
                 "code_symbols": [
-                  "_compute_possible_remaps",
                   "_get_canonicalization_map"
                 ],
                 "tools": [],
@@ -144,10 +158,10 @@
               },
               {
                 "name": "Order-agnostic Molecular Rollouts",
-                "mechanism": "从任意有效片段开始进行自回归生长",
-                "formula": "p(M) = E_{R\\sim U(R(M))} [\\prod_{i=1}^{|R|} p_\\theta(x^{(R)}_i | x^{(R)}_{<i}, c)]",
-                "inputs": "部分分子结构及目标属性条件",
-                "outputs": "完整分子结构",
+                "mechanism": "从任意有效片段开始进行自回归生成",
+                "formula": "p(M) = E_{R\\sim U(R(M))} [ \\prod_{i=1}^{|R|} p_\\theta(x^{(R)}_i | x^{(R)}_{<i}, c) ]",
+                "inputs": "部分结构及条件信息",
+                "outputs": "完整分子概率",
                 "code_symbols": [
                   "sample"
                 ],
@@ -156,7 +170,7 @@
                 "component_role": "sampler"
               },
               {
-                "name": "Dynamic Geometry Conditioning",
+                "name": "Geometry-Aware Conditioning",
                 "mechanism": "利用力场弛豫后的3D几何信息指导预测",
                 "formula": "",
                 "inputs": "部分分子结构",
@@ -2737,12 +2751,7 @@
           "source": "graph_catalog"
         },
         {
-          "text": "DFT energy",
-          "type": "Metric",
-          "source": "graph_catalog"
-        },
-        {
-          "text": "DFT force",
+          "text": "stable molecules rate",
           "type": "Metric",
           "source": "graph_catalog"
         },
@@ -3045,6 +3054,11 @@
           "text": "designability",
           "type": "Metric",
           "source": "graph_catalog"
+        },
+        {
+          "text": "diversity",
+          "type": "Metric",
+          "source": "graph_catalog"
         }
       ],
       "tables": []
@@ -3057,12 +3071,6 @@
           "match": "exact",
           "score": 1.0
         },
-        "code:_compute_possible_remaps": {
-          "canonical": "_compute_possible_remaps",
-          "match": "grounded",
-          "node_id": "",
-          "score": 1.0
-        },
         "code:_get_canonicalization_map": {
           "canonical": "_get_canonicalization_map",
           "match": "grounded",
@@ -3070,7 +3078,7 @@
           "score": 1.0
         },
         "code:sample": {
-          "canonical": "_sample",
+          "canonical": "sample",
           "match": "grounded",
           "node_id": "",
           "score": 1.0
@@ -3099,7 +3107,7 @@
               "data_flow": "完整分子结构",
               "inputs": "完整分子结构",
               "outputs": "片段序列及原子索引映射",
-              "goal": "分解分子为环和孤立键片段并编码为Canonical SMILES",
+              "goal": "分解分子为环和键片段并编码为SMILES",
               "formula": "",
               "code_symbols": [],
               "code_aligned": [],
@@ -3109,17 +3117,15 @@
               "step_order": 2,
               "name": "Symmetry-Aware Attachment Modeling",
               "depends_on": "Fragment-Based Molecular Representation",
-              "data_flow": "片段序列及原子索引映射 -> 片段原子环境及索引映射",
-              "inputs": "片段原子环境及索引映射",
+              "data_flow": "片段序列及原子索引映射 -> 片段及其原子环境",
+              "inputs": "片段及其原子环境",
               "outputs": "对称不变的连接配置",
-              "goal": "标准化片段连接点以消除对称性歧义",
+              "goal": "标准化片段连接点以处理对称性",
               "formula": "",
               "code_symbols": [
-                "_compute_possible_remaps",
                 "_get_canonicalization_map"
               ],
               "code_aligned": [
-                "_compute_possible_remaps",
                 "_get_canonicalization_map"
               ],
               "code_alignment_rate": 1.0
@@ -3128,11 +3134,11 @@
               "step_order": 3,
               "name": "Order-agnostic Molecular Rollouts",
               "depends_on": "Symmetry-Aware Attachment Modeling",
-              "data_flow": "对称不变的连接配置 -> 部分分子结构及目标属性条件",
-              "inputs": "部分分子结构及目标属性条件",
-              "outputs": "完整分子结构",
-              "goal": "从任意有效片段开始进行自回归生长",
-              "formula": "p(M) = E_{R\\sim U(R(M))} [\\prod_{i=1}^{|R|} p_\\theta(x^{(R)}_i | x^{(R)}_{<i}, c)]",
+              "data_flow": "对称不变的连接配置 -> 部分结构及条件信息",
+              "inputs": "部分结构及条件信息",
+              "outputs": "完整分子概率",
+              "goal": "从任意有效片段开始进行自回归生成",
+              "formula": "p(M) = E_{R\\sim U(R(M))} [ \\prod_{i=1}^{|R|} p_\\theta(x^{(R)}_i | x^{(R)}_{<i}, c) ]",
               "code_symbols": [
                 "sample"
               ],
@@ -3143,9 +3149,9 @@
             },
             {
               "step_order": 4,
-              "name": "Dynamic Geometry Conditioning",
+              "name": "Geometry-Aware Conditioning",
               "depends_on": "Order-agnostic Molecular Rollouts",
-              "data_flow": "完整分子结构 -> 部分分子结构",
+              "data_flow": "完整分子概率 -> 部分分子结构",
               "inputs": "部分分子结构",
               "outputs": "弛豫后的3D坐标",
               "goal": "利用力场弛豫后的3D几何信息指导预测",
@@ -3156,7 +3162,7 @@
             }
           ],
           "n_modules": 4,
-          "pipeline": "Fragment-Based Molecular Representation -> Symmetry-Aware Attachment Modeling -> Order-agnostic Molecular Rollouts -> Dynamic Geometry Conditioning"
+          "pipeline": "Fragment-Based Molecular Representation -> Symmetry-Aware Attachment Modeling -> Order-agnostic Molecular Rollouts -> Geometry-Aware Conditioning"
         }
       ],
       "n_algorithms": 1,
@@ -3213,5 +3219,5 @@
     }
   },
   "ok": true,
-  "seconds": 61.3
+  "seconds": 62.82
 }

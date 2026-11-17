@@ -36,7 +36,7 @@ def _chat(backend: str = "vllm", model: str = ""):
             b = OpenRouterBackend(model=model or DEFAULT_ERNIE)
             if not b.ok:
                 return None
-            return lambda prompt: b.chat(prompt, max_tokens=4000)
+            return lambda prompt: b.chat(prompt, max_tokens=16000)
         from capfactory.llm.backends import chat as _chat  # 与 runner.py 同一入口
         return lambda prompt: _chat(prompt, backend=backend)
     except Exception:  # noqa: BLE001

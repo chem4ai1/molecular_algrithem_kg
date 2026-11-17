@@ -22,12 +22,12 @@ from typing import Any, Callable, Dict, List, Optional
 
 DEFAULTS: Dict[str, Any] = {
     "ollama": {"model": "qwen3.5:latest", "base_url": "http://127.0.0.1:11434",
-               "thinking": False, "timeout": 180, "max_tokens": 2200},
+               "thinking": False, "timeout": 600, "max_tokens": 8192},
     "vllm": {"model": "Qwen3.8-27B", "base_url": "http://127.0.0.1:8000/v1",
              "thinking": False, "timeout": 900, "max_tokens": 32768},
     "openrouter": {"model": "nvidia/nemotron-3.5-super-vl:free",
                    "base_url": "https://openrouter.ai/api/v1",
-                   "thinking": True, "timeout": 300, "max_tokens": 6000},
+                   "thinking": True, "timeout": 600, "max_tokens": 16000},
     "bge": {"model": "bge-m3", "base_url": "http://127.0.0.1:11434"},
 }
 

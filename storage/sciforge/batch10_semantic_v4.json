@@ -4,14 +4,14 @@
     "created_at": "2026-11-13T13:24:29+00:00",
     "source": "问题导向本体与知识图谱架构_20261109",
     "stats": {
-      "graph_id": "po::2026-11-17T16:29:16+00:00",
-      "n_nodes": 6018,
-      "n_assertions": 7490,
+      "graph_id": "po::2026-11-17T17:17:39+00:00",
+      "n_nodes": 6024,
+      "n_assertions": 7499,
       "nodes_by_type": {
         "Paper": 808,
         "CodeRepository": 10,
         "Algorithm": 1674,
-        "AlgorithmModule": 2870,
+        "AlgorithmModule": 2876,
         "CodeFunction": 49,
         "Benchmark": 607
       },
@@ -19,15 +19,15 @@
         "HAS_CODE": 10,
         "PROPOSES_METHOD": 1666,
         "RELATED_TO": 48,
-        "HAS_MODULE": 2876,
-        "MODULE_IMPLEMENTED_BY": 771,
+        "HAS_MODULE": 2882,
+        "MODULE_IMPLEMENTED_BY": 774,
         "EVALUATED_ON": 987,
         "HAS_FUNCTION": 49,
         "SUBCLASS_OF": 1083
       },
       "nodes_by_dimension": {
         "knowledge": 808,
-        "other": 2929,
+        "other": 2935,
         "algorithm_data": 2281
       },
       "problem_categories": 0,
@@ -2964,6 +2964,12 @@
         "[algorithmmodule:2411.06608:symmetry_aware_attachment_modeling] 未知概念类 'AlgorithmModule'",
         "[algorithmmodule:2411.06608:order_agnostic_molecular_rollouts] 未知概念类 'AlgorithmModule'",
         "[algorithmmodule:2411.06608:dynamic_geometry_conditioning] 未知概念类 'AlgorithmModule'",
+        "[algorithmmodule:2411.06608:geometry_aware_conditioning] 未知概念类 'AlgorithmModule'",
+        "[algorithmmodule:1906.00957:focus_point_mechanism] 未知概念类 'AlgorithmModule'",
+        "[algorithmmodule:1906.00957:position_sampling] 未知概念类 'AlgorithmModule'",
+        "[algorithmmodule:1906.00957:schnet_interaction_layers] 未知概念类 'AlgorithmModule'",
+        "[algorithmmodule:1905.12265:gin_backbone] 未知概念类 'AlgorithmModule'",
+        "[algorithmmodule:1911.04738:data_efficiency_metric_dem] 未知概念类 'AlgorithmModule'",
         "[assertion:0001] HAS_CODE 目标类型应为 ('CodeArtifact',)，实际 CodeRepository",
         "[assertion:0002] 未知关系类型 'PROPOSES_METHOD'",
         "[assertion:0003] 未知关系类型 'RELATED_TO'",
@@ -9467,6 +9473,15 @@
         "[assertion:7488] 未知关系类型 'HAS_MODULE'",
         "[assertion:7489] 未知关系类型 'MODULE_IMPLEMENTED_BY'",
         "[assertion:7490] 未知关系类型 'HAS_MODULE'",
+        "[assertion:7491] 未知关系类型 'HAS_MODULE'",
+        "[assertion:7492] 未知关系类型 'HAS_MODULE'",
+        "[assertion:7493] 未知关系类型 'MODULE_IMPLEMENTED_BY'",
+        "[assertion:7494] 未知关系类型 'HAS_MODULE'",
+        "[assertion:7495] 未知关系类型 'MODULE_IMPLEMENTED_BY'",
+        "[assertion:7496] 未知关系类型 'HAS_MODULE'",
+        "[assertion:7497] 未知关系类型 'HAS_MODULE'",
+        "[assertion:7498] 未知关系类型 'HAS_MODULE'",
+        "[assertion:7499] 未知关系类型 'MODULE_IMPLEMENTED_BY'",
         "图中没有任何论文—问题关联边（ADDRESSES/EXPOSES_LIMITATION/ANALYST_RELEVANT_TO）"
       ]
     }
@@ -9483,7 +9498,7 @@
         "problem_category": "molecule_generation",
         "domain": "分子生成与从头设计",
         "flow_family": "片段/结构化生成",
-        "why_hard": "现有自回归模型通常依赖固定展开顺序，且很少在生成过程中整合动态几何信息，导致泛化能力受限。",
+        "why_hard": "现有自回归模型通常依赖固定的展开顺序，且很少在生成过程中整合动态几何信息，导致泛化能力受限。",
         "relation_hints": {
           "related_papers": [
             "JTNN",
@@ -9518,20 +9533,21 @@
         "doi": "10.48550/arXiv.2411.06608",
         "venue": "ARXIV",
         "year": "2025",
-        "paradigm": "empirical",
+        "paradigm": "design",
         "evidence_type": "simulational",
         "evidence_norm": [
           "hit rates",
           "validity",
-          "diversity"
+          "diversity",
+          "conditional control"
         ],
         "claims": [
           {
-            "statement": "MolMiner通过片段组装和动态几何条件，实现了12个性质的高维条件控制，且无需辅助损失。",
+            "statement": "MolMiner通过片段组装和动态几何条件，实现了12个性质的高维条件控制，且无需辅助性质损失。",
             "evidence": "MolMiner supports high-dimensional conditional control over twelve physicochemical and structural properties... Conditio"
           },
           {
-            "statement": "条件生成显著提升了目标性质窗口内的命中率，克服了模型内在偏差。",
+            "statement": "条件生成显著提升了目标性质窗口内的命中率，最高达无条件生成的5.25倍。",
             "evidence": "conditioning lifts hit rates by up to 5.25× over unconditional generation and 3.5× over the training distribution itself"
           }
         ],
@@ -9545,28 +9561,40 @@
           {
             "section": "Introduction",
             "claims": [
-              "阐述现有生成模型在化学合理性、几何整合及顺序灵活性方面的不足，引出MolMiner的设计动机。"
+              "阐述现有生成模型在化学合理性、多样性及性质控制上的挑战，以及引入片段和几何信息的必要性。"
             ]
           },
           {
             "section": "Related Work",
             "claims": [
-              "对比JTNN、HierVAE、G-SchNet等现有片段或原子级生成方法，指出MolMiner在动态几何和对称性处理上的区别。"
+              "对比JTNN、HierVAE、G-SchNet等现有片段或原子级生成方法，指出MolMiner在动态几何和对称性处理上的差异。"
             ]
           }
         ],
         "gaps": [
           {
             "gap_type": "capability",
-            "statement": "现有自回归框架很少在生成过程中整合动态几何信息，且多依赖固定的展开顺序。",
-            "evidence": "yet few autoregressive frameworks integrate dynamic geometric information during generation"
+            "statement": "大多数自回归模型依赖固定的展开顺序，且很少在生成过程中整合动态几何信息。",
+            "evidence": "many autoregressive models rely on a fixed rollout order... yet few autoregressive frameworks integrate dynamic geometri"
           },
           {
             "gap_type": "capability",
-            "statement": "大多数模型仅支持单目标条件生成，缺乏对多个理化性质的同时控制能力。",
+            "statement": "许多模型仅支持单目标条件生成，缺乏对多个理化性质的同时控制能力。",
             "evidence": "While most models support only single-target conditioning, we enable multi-property control over twelve physicochemical "
           }
-        ]
+        ],
+        "delta_claims": [
+          {
+            "statement": "相比无条件生成，条件生成将命中率提升了5.25倍。",
+            "baseline": "unconditional generation",
+            "evidence": "conditioning lifts hit rates by up to 5.25× over unconditional generation"
+          }
+        ],
+        "negative_results": [
+          "at the cost of a small reduction in unconditional distributional fidelity"
+        ],
+        "citation_style": "numeric",
+        "writing_style": "结构化学术写作，强调模型架构创新（片段、几何、顺序无关）与定量性能提升（命中率倍数）。"
       },
       "attribution": "analyst_synthesis",
       "evidence_ids": [],
@@ -9601,17 +9629,17 @@
         "flow_family": "fragment",
         "problems_solved": [
           "解决分子生成中化学有效性难以保证的问题",
-          "解决固定生成顺序导致的泛化能力不足问题",
-          "解决多属性条件控制下生成偏差难以克服的问题"
+          "解决固定生成顺序导致泛化能力差的问题",
+          "解决多属性条件控制缺失的问题"
         ],
-        "mechanism": "基于片段的自回归生成，结合力场弛豫的3D几何信息与对称感知的片段连接，支持任意顺序的片段组装。",
-        "why_it_works": "片段级操作显式强制化学有效性，动态3D几何提供物理约束，无序生成策略作为数据增强提升泛化。",
+        "mechanism": "基于片段的自回归生成，结合力场弛豫的3D几何信息和对称性感知的连接建模，支持任意顺序的片段组装。",
+        "why_it_works": "片段级操作显式强制化学有效性；动态3D几何提供物理约束；无顺序依赖策略作为数据增强提升泛化。",
         "applicable_to": [
           "高通量筛选中的候选分子生成",
-          "具有特定物理化学性质目标的分子设计"
+          "多属性条件分子设计"
         ],
         "limitations": [
-          "条件生成导致无条件分布保真度略有下降"
+          "条件生成导致无条件分布保真度轻微下降"
         ],
         "label": "MolMiner"
       },
@@ -21509,27 +21537,18 @@
       "label": "QM9",
       "attrs": {
         "name": "QM9",
-        "input_form": "SMILES",
-        "output_form": "标量",
+        "input_form": "向量",
+        "output_form": "图",
         "n_samples": "133885",
         "scale": "small organic molecules with up to 9 heavy atoms",
-        "modality": "分子",
+        "modality": "分子图",
         "research_object": "小分子",
         "metrics": [
           {
-            "name": "Validity",
-            "unit": "",
-            "direction": "max"
-          },
-          {
-            "name": "Uniqueness",
-            "unit": "",
-            "direction": "max"
-          },
-          {
-            "name": "Novelty",
-            "unit": "",
-            "direction": "max"
+            "name": "valid compounds",
+            "unit": "%",
+            "direction": "max",
+            "contribution_link": "生成有效化合物能力"
           }
         ],
         "model_results": [
@@ -25651,7 +25670,13 @@
         ],
         "sota_by_metric": {},
         "is_evaluation": true,
-        "label": "QM9"
+        "label": "QM9",
+        "protocol": {
+          "seeds": "",
+          "split": "",
+          "eval_script": "",
+          "epochs": ""
+        }
       },
       "attribution": "analyst_synthesis",
       "evidence_ids": [],
@@ -52606,20 +52631,25 @@
         "arxiv_id": "1805.11973",
         "title": "MolGAN: An implicit generative model for small molecular graphs",
         "label": "MolGAN: An implicit generative model for small molecular graphs",
-        "research_question": "提出MolGAN，一种隐式无似然生成模型，直接在图结构上生成小分子图，避免昂贵图匹配或节点排序，并结合强化学习优化特定化学性质。",
+        "research_question": "提出MolGAN，一种隐式无似然生成模型，直接在图结构上生成小分子图，避免昂贵的图匹配或节点排序启发式，并结合强化学习优化特定化学性质。",
         "problem_category": "molecule_generation",
         "domain_code": "D1",
-        "why_hard": "基于似然的方法需要昂贵的图匹配程序或节点排序启发式，且SMILES表示存在语法和顺序歧义问题。",
+        "why_hard": "基于似然的方法需要昂贵的图匹配程序或节点排序启发式来评估生成分子的似然，且SMILES字符串表示存在语法和顺序歧义问题。",
         "relation_hints": {
           "related_papers": [
             "ORGAN",
-            "Goodfellow et al., 2014",
-            "Kipf & Welling, 2016",
-            "Li et al., 2018b",
-            "Simonovsky & Komodakis, 2018"
+            "Gomez-Bombarelli et al., 2016",
+            "Kusner et al., 2017",
+            "Guimaraes et al., 2017",
+            "Dai et al., 2018",
+            "Kipf & Welling, 2016"
           ],
           "algorithms": [
-            "MolGAN"
+            "MolGAN",
+            "GAN",
+            "Reinforcement Learning",
+            "Graph Convolution Layers",
+            "VAE"
           ],
           "benchmarks": [
             "QM9"
@@ -52640,9 +52670,74 @@
           "Nicola De Cao",
           "Thomas Kipf"
         ],
-        "abstract": "Deep generative models for graph-structured data offer a new angle on the problem of chemical synthesis: by optimizing differentiable models that directly generate molecular graphs, it is possible to side-step expensive search procedures in the discrete and vast space of chemical structures. We introduce MolGAN, an implicit, likelihood-free generative model for small molecular graphs that circumvents the need for expensive graph matching procedures or node ordering heuristics of previous likelihood-based methods. Our method adapts generative adversarial networks (GANs) to operate directly on graph-structured data. We combine our approach with a reinforcement learning objective to encourage the generation of molecules with specific desired chemical properties. In experiments on the QM9 chemical database, we demonstrate that our model is capable of generating close to 100% valid compounds. MolGAN compares favorably both to recent proposals that use string-based (SMILES) representations of molecules and to a likelihood-based method that directly generates graphs, albeit being susceptible to mode collapse. Code at https://github.com/nicola-decao/MolGAN",
+        "abstract": "Deep generative models for graph-structured data offer a new angle on the problem of chemical synthesis: by optimizing differentiable models that directly generate molecular graphs, it is possible to side-step expensive search procedures in the discrete and vast space of chemical structures. We introduce MolGAN, an implicit, likelihoodfree generative model for small molecular graphs that circumvents the need for expensive graph matching procedures or node ordering heuristics of previous likelihood-based methods. Our method adapts generative adversarial networks (GANs) to operate directly on graph-structured data. We combine our approach with a reinforcement learning objective to encourage the generation of molecules with specific desired chemical properties. In experiments on the QM9 chemical database, we demonstrate that our model is capable of generating close to $1 0 0 \\%$ valid compounds. MolGAN compares favorably both to recent proposals that use string-based (SMILES) representations of molecules and to a likelihoodbased method that directly generates graphs, albeit being susceptible to mode collapse.",
         "venue": "ARXIV",
-        "year": "2018"
+        "year": "2018",
+        "paradigm": "empirical",
+        "evidence_type": "experimental",
+        "evidence_norm": [
+          "valid compounds percentage"
+        ],
+        "claims": [
+          {
+            "statement": "MolGAN是一种隐式无似然生成模型，直接在图结构上操作，避免了昂贵的图匹配或节点排序。",
+            "evidence": "We introduce MolGAN, an implicit, likelihoodfree generative model for small molecular graphs that circumvents the need f"
+          },
+          {
+            "statement": "在QM9数据库上，MolGAN能生成接近100%的有效化合物。",
+            "evidence": "In experiments on the QM9 chemical database, we demonstrate that our model is capable of generating close to $1 0 0 \\%$ "
+          }
+        ],
+        "section_map": [
+          {
+            "section": "Abstract",
+            "claims": [
+              "介绍MolGAN模型及其在QM9上的有效性"
+            ]
+          },
+          {
+            "section": "1. Introduction",
+            "claims": [
+              "阐述现有SMILES和似然方法的局限性，提出MolGAN解决图生成中的排序和匹配问题"
+            ]
+          },
+          {
+            "section": "2.2. Implicit vs. likelihood-based metho",
+            "claims": [
+              "对比隐式与似然方法在图结构数据生成中的优劣，强调隐式方法避免节点重排不变性的计算开销"
+            ]
+          }
+        ],
+        "gaps": [
+          {
+            "gap_type": "efficiency",
+            "statement": "基于似然的分子图生成方法需要昂贵的图匹配程序或评估所有可能的节点排列，计算成本极高。",
+            "evidence": "Likelihood-based methods for molecular graph generation (Li et al., 2018b; Simonovsky & Komodakis, 2018) however, either"
+          },
+          {
+            "gap_type": "capability",
+            "statement": "基于字符串（SMILES）的表示方法需要RNN学习语法规则和顺序歧义，且不适用于通用图。",
+            "evidence": "String-based representations of molecules, however, have certain disadvantages: RNNs have to spend capacity on learning "
+          }
+        ],
+        "open_problems": [
+          {
+            "statement": "MolGAN容易受到模式崩溃（mode collapse）的影响。",
+            "evidence": "MolGAN compares favorably both to recent proposals that use string-based (SMILES) representations of molecules and to a "
+          }
+        ],
+        "delta_claims": [
+          {
+            "statement": "MolGAN是第一个在分子合成背景下使用GAN处理图结构数据生成的模型。",
+            "baseline": "Previous likelihood-based methods and SM",
+            "evidence": "Our molecular GAN (MolGAN) model (outlined in Figure 1) is the first to address the generation of graph-structured data "
+          }
+        ],
+        "negative_results": [
+          "MolGAN susceptible to mode collapse"
+        ],
+        "citation_style": "author-year",
+        "writing_style": "标准机器学习论文结构，包含摘要、引言、方法对比和实验结果，强调与现有SMILES和似然方法的对比。"
       },
       "attribution": "analyst_synthesis",
       "evidence_ids": [],
@@ -52658,15 +52753,16 @@
         "label": "MolGAN",
         "task_type": "molecule_generation",
         "problems_solved": [
-          "避免基于似然的方法中昂贵的图匹配或节点排序启发式",
+          "避免基于似然方法中昂贵的图匹配或节点排序启发式",
           "直接在图结构数据上生成分子，无需SMILES字符串表示",
           "通过强化学习优化生成具有特定化学性质的分子"
         ],
-        "mechanism": "将生成对抗网络（GAN）适配到图结构数据，使用置换不变的判别器和奖励网络，结合强化学习目标优化生成过程。",
-        "why_it_works": "隐式生成模型无需显式似然，避免了图节点排序的指数级复杂度；图卷积层保证了置换不变性。",
+        "mechanism": "利用生成对抗网络（GAN）直接在分子图上进行生成，结合图卷积网络构建置换不变的判别器和奖励网络，并使用强化学习优化目标。",
+        "why_it_works": "隐式生成模型无需显式似然计算，避免了节点排序问题；图卷积层保证了模型对节点顺序的不变性。",
         "applicable_to": [
           "小分子图生成",
-          "从头药物设计"
+          "从头药物设计",
+          "具有特定化学性质的分子生成"
         ],
         "limitations": [
           "容易受到模式崩溃（mode collapse）的影响"
@@ -52687,7 +52783,8 @@
         "formula": "",
         "inputs": "先验分布向量 z",
         "outputs": "分子图表示",
-        "label": "Generator"
+        "label": "Generator",
+        "component_role": "decoder"
       },
       "attribution": "analyst_synthesis",
       "evidence_ids": [],
@@ -52703,8 +52800,9 @@
         "mechanism": "基于图卷积层分类分子图来自生成器还是数据集",
         "formula": "",
         "inputs": "分子图表示",
-        "outputs": "真假概率",
-        "label": "Discriminator"
+        "outputs": "真假分类概率",
+        "label": "Discriminator",
+        "component_role": "encoder"
       },
       "attribution": "analyst_synthesis",
       "evidence_ids": [],
@@ -52720,8 +52818,9 @@
         "mechanism": "估计分子化学性质的奖励值",
         "formula": "",
         "inputs": "分子图表示",
-        "outputs": "奖励标量",
-        "label": "Reward Network"
+        "outputs": "奖励值",
+        "label": "Reward Network",
+        "component_role": "other"
       },
       "attribution": "analyst_synthesis",
       "evidence_ids": [],
@@ -52734,11 +52833,12 @@
       "label": "Improved WGAN Loss",
       "attrs": {
         "name": "Improved WGAN Loss",
-        "mechanism": "计算带梯度惩罚的Wasserstein距离损失",
+        "mechanism": "最小化Wasserstein距离并施加梯度惩罚以稳定训练",
         "formula": "L ( x ^ { ( i ) } , G _ { \\theta } ( z ^ { ( i ) } ) ; \\phi ) = - D _ { \\phi } ( x ^ { ( i ) } ) + D _ { \\phi } ( G _ { \\theta } ( z ^ { ( i ) } ) ) + \\alpha ( ",
         "inputs": "真实样本 x, 生成样本 G(z), 超参数 alpha",
-        "outputs": "判别器损失",
-        "label": "Improved WGAN Loss"
+        "outputs": "判别器损失值",
+        "label": "Improved WGAN Loss",
+        "component_role": "loss"
       },
       "attribution": "analyst_synthesis",
       "evidence_ids": [],
@@ -52751,11 +52851,12 @@
       "label": "Reinforcement Learning Objective",
       "attrs": {
         "name": "Reinforcement Learning Objective",
-        "mechanism": "利用确定性策略梯度优化生成器以最大化奖励",
+        "mechanism": "利用确定性策略梯度优化生成过程以最大化化学性质奖励",
         "formula": "",
-        "inputs": "奖励网络输出, 生成器参数",
+        "inputs": "生成器参数, 奖励网络输出",
         "outputs": "更新后的生成器参数",
-        "label": "Reinforcement Learning Objective"
+        "label": "Reinforcement Learning Objective",
+        "component_role": "other"
       },
       "attribution": "analyst_synthesis",
       "evidence_ids": [],
@@ -53000,10 +53101,10 @@
         "arxiv_id": "1905.12265",
         "title": "Published as a conference paper at ICLR 2020",
         "label": "Published as a conference paper at ICLR 2020",
-        "research_question": "开发一种在节点和图层级同时预训练图神经网络（GNN）的策略，以解决图数据中分布外预测和标签稀缺问题，提升下游任务泛化能力。",
+        "research_question": "如何开发一种新的策略和自监督方法，通过在节点和图两个层级预训练图神经网络（GNN），以解决图数据分布差异大且标签稀缺时的迁移学习问题。",
         "problem_category": "representation_pretrain",
         "domain_code": "D8",
-        "why_hard": "现有方法在仅节点级或仅图级预训练时，往往导致负迁移，且难以同时学习有用的局部和全局表示。",
+        "why_hard": "现有方法在仅进行节点级或图级预训练时，往往只能带来有限改进，甚至导致负迁移，限制了预训练模型的适用性和可靠性。",
         "relation_hints": {
           "related_papers": [
             "Xu et al., 2017",
@@ -53037,9 +53138,61 @@
           "Vijay Pande",
           "Jure Leskovec"
         ],
-        "abstract": "Many applications of machine learning require a model to make accurate pre-dictions on test examples that are distributionally different from training ones, while task-specific labels are scarce during training. An effective approach to this challenge is to pre-train a model on related tasks where data is abundant, and then fine-tune it on a downstream task of interest. While pre-training has been effective in many language and vision domains, it remains an open question how to effectively use pre-training on graph datasets. In this paper, we develop a new strategy and self-supervised methods for pre-training Graph Neural Networks (GNNs). The key to the success of our strategy is to pre-train an expressive GNN at the level of individual nodes as well as entire graphs so that the GNN can learn useful local and global representations simultaneously. We systematically study pre-training on multiple graph classification datasets. We find that naive strategies, which pre-train GNNs at the level of either entire graphs or individual nodes, give limited improvement and can even lead to negative transfer on many downstream tasks. In contrast, our strategy avoids negative transfer and improves generalization significantly across downstream tasks, leading up to 9.4% absolute improvements in ROC-AUC over non-pre-trained models and achieving state-of-the-art performance for molecular property prediction and protein function prediction.",
+        "abstract": "Many applications of machine learning require a model to make accurate predictions on test examples that are distributionally different from training ones, while task-specific labels are scarce during training. An effective approach to this challenge is to pre-train a model on related tasks where data is abundant, and then fine-tune it on a downstream task of interest. While pre-training has been effective in many language and vision domains, it remains an open question how to effectively use pre-training on graph datasets. In this paper, we develop a new strategy and self-supervised methods for pre-training Graph Neural Networks (GNNs). The key to the success of our strategy is to pre-train an expressive GNN at the level of individual nodes as well as entire graphs so that the GNN can learn useful local and global representations simultaneously. We systematically study pre-training on multiple graph classification datasets. We find that naïve strategies, which pre-train GNNs at the level of either entire graphs or individual nodes, give limited improvement and can even lead to negative transfer on many downstream tasks. In contrast, our strategy avoids negative transfer and improves generalization significantly across downstream tasks, leading up to 9.4% absolute improvements in ROC-AUC over non-pre-trained models and achieving state-of-the-art performance for molecular property prediction and protein function prediction.",
         "venue": "ICLR",
-        "year": "2020"
+        "year": "2020",
+        "paradigm": "empirical",
+        "evidence_type": "experimental",
+        "evidence_norm": [
+          "ROC-AUC"
+        ],
+        "claims": [
+          {
+            "statement": "联合节点和图层级预训练能避免负迁移，并在下游任务中显著提升泛化能力。",
+            "evidence": "our strategy avoids negative transfer and improves generalization significantly across downstream tasks, leading up to 9"
+          }
+        ],
+        "section_map": [
+          {
+            "section": "ABSTRACT",
+            "claims": [
+              "提出节点和图层级联合预训练策略",
+              "避免负迁移并显著提升泛化能力"
+            ]
+          },
+          {
+            "section": "INTRODUCTION",
+            "claims": [
+              "指出图数据标签稀缺和分布外样本的挑战",
+              "说明现有预训练方法存在负迁移问题"
+            ]
+          }
+        ],
+        "gaps": [
+          {
+            "gap_type": "capability",
+            "statement": "现有预训练策略仅在节点或图单一层级进行，导致表示不可组合或语义缺失，引发负迁移。",
+            "evidence": "naïve strategies, which pre-train GNNs at the level of either entire graphs or individual nodes, give limited improvemen"
+          }
+        ],
+        "open_problems": [
+          {
+            "statement": "如何在图数据集上有效利用预训练仍然是一个开放问题。",
+            "evidence": "it remains an open question how to effectively use pre-training on graph datasets"
+          }
+        ],
+        "delta_claims": [
+          {
+            "statement": "相比未预训练模型，ROC-AUC 绝对提升高达 9.4%。",
+            "baseline": "non-pre-trained models",
+            "evidence": "leading up to 9.4% absolute improvements in ROC-AUC over non-pre-trained models"
+          }
+        ],
+        "negative_results": [
+          "naïve strategies, which pre-train GNNs at the level of either entire graphs or individual nodes, give limited improvement and can even lead to negative transfer"
+        ],
+        "citation_style": "author-year",
+        "writing_style": "标准ICLR会议论文格式，包含摘要、引言、方法分类图示及实验结果讨论，强调实证对比。"
       },
       "attribution": "analyst_synthesis",
       "evidence_ids": [],
@@ -53056,18 +53209,18 @@
         "task_type": "representation_pretrain",
         "problems_solved": [
           "解决图数据中任务特定标签稀缺的问题",
-          "解决测试样本与训练样本分布不同导致的泛化困难",
-          "避免朴素预训练策略导致的负迁移"
+          "解决测试样本与训练样本分布不同（out-of-distribution）导致的泛化差问题",
+          "避免仅使用节点级或图级预训练导致的负迁移"
         ],
-        "mechanism": "在节点级别和图级别同时预训练GNN，结合自监督任务（上下文预测、属性掩码）和监督任务，学习局部和全局表示。",
-        "why_it_works": "同时捕获节点和图的领域特定语义，使节点嵌入具有可组合性，从而生成鲁棒且可迁移的图级表示。",
+        "mechanism": "在节点级别和图级别同时预训练GNN，结合自监督任务（Context Prediction, Attribute Masking）和监督任务，使模型同时学习局部和全局表示。",
+        "why_it_works": "高质量的节点嵌入既区分语义不同的节点，又具有可组合性，从而生成鲁棒且可迁移的图级表示。",
         "applicable_to": [
           "分子性质预测",
           "蛋白质功能预测",
           "图分类任务"
         ],
         "limitations": [
-          "需要构建大规模领域特定预训练数据集",
+          "需要构建大规模领域特定的预训练数据集",
           "现有下游基准数据集太小，无法统计可靠地评估模型"
         ]
       },
@@ -53082,11 +53235,13 @@
       "label": "Context Prediction",
       "attrs": {
         "name": "Context Prediction",
-        "mechanism": "预测节点在图中的上下文结构",
+        "mechanism": "预测节点在图中的结构上下文",
         "formula": "",
         "inputs": "输入图",
-        "outputs": "上下文预测结果",
-        "label": "Context Prediction"
+        "outputs": "节点上下文预测",
+        "label": "Context Prediction",
+        "is_novel_component": true,
+        "component_role": "loss"
       },
       "attribution": "analyst_synthesis",
       "evidence_ids": [],
@@ -53099,11 +53254,13 @@
       "label": "Attribute Masking",
       "attrs": {
         "name": "Attribute Masking",
-        "mechanism": "掩码节点属性并预测被掩码的属性",
+        "mechanism": "掩蔽节点属性并预测被掩蔽的属性",
         "formula": "",
         "inputs": "输入图",
-        "outputs": "属性预测结果",
-        "label": "Attribute Masking"
+        "outputs": "节点属性预测",
+        "label": "Attribute Masking",
+        "is_novel_component": true,
+        "component_role": "loss"
       },
       "attribution": "analyst_synthesis",
       "evidence_ids": [],
@@ -53120,7 +53277,8 @@
         "formula": "",
         "inputs": "图及其标签",
         "outputs": "图级属性预测",
-        "label": "Supervised Attribute Prediction"
+        "label": "Supervised Attribute Prediction",
+        "component_role": "loss"
       },
       "attribution": "analyst_synthesis",
       "evidence_ids": [],
@@ -53193,14 +53351,14 @@
         "research_question": "提出一种尊重旋转不变性的生成神经网络，用于生成3D点集以发现具有特定电子性质（如小HOMO-LUMO间隙）的分子。",
         "problem_category": "molecule_generation",
         "domain_code": "D1",
-        "why_hard": "基于图的模型缺乏空间信息，无法识别空间异构体和非键相互作用，且无法达到基于几何模型的精度。",
+        "why_hard": "基于图的模型缺乏空间信息，无法识别空间异构体和非键相互作用，且穷举化学空间不可行。",
         "relation_hints": {
           "related_papers": [
-            "SchNet"
+            "SchNet",
+            "QM9"
           ],
           "algorithms": [
-            "G-SchNet",
-            "SchNet"
+            "G-SchNet"
           ],
           "benchmarks": [
             "QM9"
@@ -53220,9 +53378,68 @@
           "Michael Gastegger",
           "Kristof T. Schütt"
         ],
-        "abstract": "Deep learning has proven to yield fast and accurate predictions of quantum-chemical properties to accelerate the discovery of novel molecules and materials. As an exhaustive exploration of the vast chemical space is still infeasible, we require generative models that guide our search towards systems with desired properties. While graph-based models have previously been proposed, they are restricted by a lack of spatial information such that they are unable to recognize spatial isomerism and non-bonded interactions. Here, we introduce a generative neural network for 3d point sets that respects the rotational invariance of the targeted structures. We apply it to the generation of molecules and demonstrate its ability to approximate the distribution of equilibrium structures using spatial metrics as well as established measures from chemoinformatics. As our model is able to capture the complex relationship between 3d geometry and electronic properties, we bias the distribution of the generator towards molecules with a small HOMO-LUMO gap - an important property for the design of organic solar cells.",
+        "abstract": "Deep learning has proven to yield fast and accurate predictions of quantum-chemical properties to accelerate the discovery of novel molecules and materials. As an exhaustive exploration of the vast chemical space is still infeasible, we require generative models that guide our search towards systems with desired properties. While graph-based models have previously been proposed, they are restricted by a lack of spatial information such that they are unable to recognize spatial isomerism and non-bonded interactions. Here, we introduce a generative neural network for 3d point sets that respects the rotational invariance of the targeted structures. We apply it to the generation of molecules and demonstrate its ability to approximate the distribution of equilibrium structures using spatial metrics as well as established measures from chemoinformatics. As our model is able to capture the complex relationship between 3d geometry and electronic properties, we bias the distribution of the generator towards molecules with a small HOMO-LUMO gap – an important property for the design of organic solar cells.",
         "venue": "ARXIV",
-        "year": "2019"
+        "year": "2019",
+        "paradigm": "design",
+        "evidence_type": "simulational",
+        "evidence_norm": [
+          "spatial metrics",
+          "chemoinformatics measures",
+          "HOMO-LUMO gap"
+        ],
+        "claims": [
+          {
+            "statement": "G-SchNet能够生成尊重旋转不变性的3D点集，并捕捉3D几何与电子性质之间的复杂关系。",
+            "evidence": "Here, we introduce a generative neural network for 3d point sets that respects the rotational invariance of the targeted"
+          },
+          {
+            "statement": "模型可以偏向生成具有小HOMO-LUMO间隙的分子，这对有机太阳能电池设计很重要。",
+            "evidence": "we bias the distribution of the generator towards molecules with a small HOMO-LUMO gap – an important property for the d"
+          }
+        ],
+        "section_map": [
+          {
+            "section": "Abstract",
+            "claims": [
+              "介绍G-SchNet模型及其在分子生成中的应用"
+            ]
+          },
+          {
+            "section": "Introduction",
+            "claims": [
+              "阐述现有方法的局限性及本文贡献"
+            ]
+          },
+          {
+            "section": "Related work",
+            "claims": [
+              "回顾现有3D结构生成模型和基于键的生成模型"
+            ]
+          }
+        ],
+        "gaps": [
+          {
+            "gap_type": "capability",
+            "statement": "基于图的生成模型缺乏空间信息，无法区分空间异构体和非键相互作用。",
+            "evidence": "While graph-based models have previously been proposed, they are restricted by a lack of spatial information such that t"
+          }
+        ],
+        "open_problems": [
+          {
+            "statement": "穷举广阔的化学空间仍然不可行，需要生成模型引导搜索。",
+            "evidence": "As an exhaustive exploration of the vast chemical space is still infeasible, we require generative models that guide our"
+          }
+        ],
+        "delta_claims": [
+          {
+            "statement": "相比基于图的模型，G-SchNet直接生成原子类型和位置，避免了依赖启发式的抽象概念如键和环。",
+            "baseline": "graph-based models",
+            "evidence": "Note, that we explicitly do not aim to generate molecular graphs, but directly the atomic types and positions, which inc"
+          }
+        ],
+        "citation_style": "numeric",
+        "writing_style": "标准学术论文结构，包含摘要、引言、相关工作等章节，使用数值引用。"
       },
       "attribution": "analyst_synthesis",
       "evidence_ids": [],
@@ -53238,16 +53455,19 @@
         "label": "G-SchNet",
         "task_type": "molecule_generation",
         "problems_solved": [
-          "生成旋转不变的3D点集分子结构",
-          "捕捉空间异构体和非键相互作用",
-          "向具有特定电子性质（如小HOMO-LUMO间隙）的分子偏置分布"
+          "解决基于图模型缺乏空间信息导致无法识别空间异构体和非键相互作用的问题",
+          "解决直接生成3D点集时保持旋转不变性和局部对称性的挑战",
+          "解决向具有特定电子性质（如小HOMO-LUMO间隙）的分子分布进行偏差引导的问题"
         ],
-        "mechanism": "基于SchNet架构，通过自回归方式逐步采样原子类型和位置，利用焦点点和成对距离构建对称适应的条件概率分布。",
-        "why_it_works": "使用成对距离而非绝对坐标保证了旋转等变性，焦点点限制了搜索空间大小，从而提高了可扩展性和对局部结构的捕捉能力。",
+        "mechanism": "利用自回归神经网络，基于SchNet架构的连续滤波器卷积层，通过条件概率分布逐步采样原子类型和位置，并引入焦点点（focus point）限制搜索空间以维持旋转不变性。",
+        "why_it_works": "通过成对距离构建位置分布保证旋转等变性，利用辅助令牌（focus point）将搜索空间限制在固定半径内，从而高效捕捉局部结构和非键相互作用。",
         "applicable_to": [
-          "有机分子生成",
-          "目标导向的分子发现",
-          "3D结构生成"
+          "有机分子的3D结构生成",
+          "具有特定电子性质（如HOMO-LUMO间隙）的分子发现",
+          "需要保留完整原子类型和位置信息的量子化学问题求解"
+        ],
+        "limitations": [
+          "未明确列出具体局限，但指出需避免依赖启发式的键和环概念"
         ]
       },
       "attribution": "analyst_synthesis",
@@ -53265,7 +53485,9 @@
         "formula": "p(R≤n, Z≤n) = ∏ p(rt+i, Zt+i|Rt≤i−1, Zt≤i−1) · p(stop|Rt≤n, Zt≤n)",
         "inputs": "已放置的点集位置和类型",
         "outputs": "下一个点的类型和位置概率",
-        "label": "Symmetry-adapted Factorization"
+        "label": "Symmetry-adapted Factorization",
+        "is_novel_component": true,
+        "component_role": "other"
       },
       "attribution": "analyst_synthesis",
       "evidence_ids": [],
@@ -53295,11 +53517,12 @@
       "label": "Type Sampling",
       "attrs": {
         "name": "Type Sampling",
-        "mechanism": "基于当前上下文采样下一个原子类型",
+        "mechanism": "基于条件概率采样原子类型",
         "formula": "p(Zt+i|Rt≤i−1, Zt≤i−1)",
-        "inputs": "已放置的点集和焦点点",
+        "inputs": "已放置点集及焦点点信息",
         "outputs": "新原子类型",
-        "label": "Type Sampling"
+        "label": "Type Sampling",
+        "component_role": "sampler"
       },
       "attribution": "analyst_synthesis",
       "evidence_ids": [],
@@ -53346,21 +53569,28 @@
         "arxiv_id": "1911.04738",
         "title": "SMILES Transformer: Pre-trained Molecular Fingerprint",
         "label": "SMILES Transformer: Pre-trained Molecular Fingerprint",
-        "research_question": "提出SMILES Transformer，通过无监督预训练学习分子指纹，以解决小数据场景下分子性质预测性能差的问题",
+        "research_question": "提出SMILES Transformer，通过无监督预训练SMILES序列生成分子指纹，以解决小数据场景下分子性质预测性能差的问题。",
         "problem_category": "representation_pretrain",
         "domain_code": "D1",
-        "why_hard": "传统基于规则的指纹在浅层模型或小数据集上表现不佳，且现有预训练方法未在小数据设置中评估性能",
+        "why_hard": "传统规则指纹在浅层模型或小数据集上表现差，而基于图的方法需要大量标注数据，难以在实验验证数据稀缺时应用。",
         "relation_hints": {
           "related_papers": [
             "Gómez-Bombarelli et al. 2018",
             "Xu et al. 2017",
-            "Vaswani et al. 2017"
+            "Kusner, Paige, and Hernández-Lobato 2017",
+            "Goh et al. 2018",
+            "Bjerrum and Sattarov 2018",
+            "Winter et al. 2019"
           ],
           "algorithms": [
             "SMILES Transformer",
-            "Transformer"
+            "Transformer",
+            "seq2seq",
+            "VAE"
           ],
-          "benchmarks": []
+          "benchmarks": [
+            "10 datasets"
+          ]
         },
         "keywords": [
           "smiles",
@@ -53377,9 +53607,70 @@
           "Shoi Shi",
           "Hiroki R. Ueda"
         ],
-        "abstract": "In drug-discovery-related tasks such as virtual screening, machine learning is emerging as a promising way to predict molecular properties. Conventionally, molecular fingerprints (numerical representations of molecules) are calculated through rule-based algorithms that map molecules to a sparse discrete space. However, these algorithms perform poorly for shallow prediction models or small datasets. To address this issue, we present SMILES Transformer. Inspired by Transformer and pre-trained language models from natural language processing, SMILES Transformer learns molecular fingerprints through unsupervised pre-training of the sequence-to-sequence language model using a huge corpus of SMILES, a text representation system for molecules. We performed benchmarks on 10 datasets against existing fingerprints and graph-based methods and demonstrated the superiority of the proposed algorithms in small-data settings where pre-training facilitated good generalization. Moreover, we define a novel metric to concurrently measure model accuracy and data efficiency.",
+        "abstract": "In drug-discovery-related tasks such as virtual screening, machine learning is emerging as a promising way to predict molecular properties. Conventionally, molecular ﬁnger- prints (numerical representations of molecules) are calculated through rule-based algorithms that map molecules to a sparse discrete space. However, these algorithms perform poorly for shallow prediction models or small datasets. To address this issue, we present SMILES Transformer. Inspired by Trans- former and pre-trained language models from natural lan- guage processing, SMILES Transformer learns molecular ﬁn- gerprints through unsupervised pre-training of the sequence- to-sequence language model using a huge corpus of SMILES, a text representation system for molecules. We performed benchmarks on 10 datasets against existing ﬁngerprints and graph-based methods and demonstrated the superiority of the proposed algorithms in small-data settings where pre-training facilitated good generalization. Moreover, we deﬁne a novel metric to concurrently measure model accuracy and data efﬁ- ciency.",
         "venue": "ARXIV",
-        "year": "2019"
+        "year": "2019",
+        "paradigm": "empirical",
+        "evidence_type": "experimental",
+        "evidence_norm": [
+          "model accuracy",
+          "data efficiency"
+        ],
+        "claims": [
+          {
+            "statement": "SMILES Transformer在小数据设置下比现有指纹和图方法表现更优。",
+            "evidence": "demonstrated the superiority of the proposed algorithms in small-data settings where pre-training facilitated good gener"
+          },
+          {
+            "statement": "提出了一种同时衡量模型准确性和数据效率的新标量指标。",
+            "evidence": "we propose a novel scalar metric to evaluate data efﬁciency"
+          }
+        ],
+        "section_map": [
+          {
+            "section": "Abstract",
+            "claims": [
+              "提出SMILES Transformer用于小数据药物发现",
+              "在10个数据集上验证优越性",
+              "定义新指标衡量数据效率"
+            ]
+          },
+          {
+            "section": "Introduction",
+            "claims": [
+              "现有指纹和图方法在小数据下表现不佳",
+              "NLP预训练方法可迁移至化学信息学",
+              "现有化学预训练未评估小数据性能"
+            ]
+          }
+        ],
+        "gaps": [
+          {
+            "gap_type": "data",
+            "statement": "现有基于图的方法需要巨大的标注数据集，难以在实验验证数据稀缺的场景下应用。",
+            "evidence": "the models are designed for large fully-labeled training data settings, which requires huge labeled datasets... it is di"
+          },
+          {
+            "gap_type": "capability",
+            "statement": "现有的化学信息学预训练方法（如RNN/VAE seq2seq）未展示在小数据设置下的性能。",
+            "evidence": "these studies did not demonstrate performance in small data settings. In other words, the performance on small data sett"
+          }
+        ],
+        "open_problems": [
+          {
+            "statement": "化学信息学领域预训练方法在小数据设置下的性能尚未被评估。",
+            "evidence": "the performance on small data settings of pre-training approaches in the cheminformatics ﬁeld has not been evaluated yet"
+          }
+        ],
+        "delta_claims": [
+          {
+            "statement": "相比现有指纹和图方法，SMILES Transformer在小数据设置下具有优越性。",
+            "baseline": "existing ﬁngerprints and graph-based met",
+            "evidence": "demonstrated the superiority of the proposed algorithms in small-data settings"
+          }
+        ],
+        "citation_style": "author-year",
+        "writing_style": "标准机器学习论文结构，强调小数据场景下的泛化能力和数据效率指标。"
       },
       "attribution": "analyst_synthesis",
       "evidence_ids": [],
@@ -53396,19 +53687,19 @@
         "task_type": "representation_pretrain",
         "problems_solved": [
           "解决传统规则指纹在浅层模型或小数据集上表现不佳的问题",
-          "通过无监督预训练学习分子语义表示，提升小数据场景下的泛化能力",
-          "提供数据驱动的连续分子指纹，适用于多种下游预测任务"
+          "解决图基方法需要大量标注数据且难以在小数据场景应用的问题",
+          "提供连续、数据驱动的分子指纹以支持下游预测任务"
         ],
-        "mechanism": "基于Transformer架构构建编码器-解码器网络，利用大规模未标记SMILES语料进行序列到序列的无监督预训练，提取上下文相关的符号级表示并池化为分子级指纹。",
-        "why_it_works": "Transformer能捕捉长序列依赖关系，预训练利用海量无标签数据学习通用分子语义，使模型在小样本微调时具有更好的泛化性能。",
+        "mechanism": "基于Transformer架构构建编码器-解码器网络，利用大规模无标签SMILES语料进行自监督预训练，通过池化操作提取分子级指纹。",
+        "why_it_works": "预训练使模型学习到SMILES序列的语义表示，在小数据设置下通过迁移学习实现良好的泛化能力。",
         "applicable_to": [
-          "小数据集下的分子性质预测",
+          "小数据场景下的分子性质预测",
           "虚拟筛选",
-          "定量构效关系(QSPR)预测"
+          "药物发现中的QSPR预测"
         ],
         "limitations": [
-          "需要大量未标记SMILES数据进行预训练",
-          "指纹提取需要特定的池化策略以匹配基线维度"
+          "需要大量无标签SMILES数据进行预训练",
+          "指纹提取依赖于特定的池化策略"
         ]
       },
       "attribution": "analyst_synthesis",
@@ -53424,9 +53715,10 @@
         "name": "Transformer Encoder-Decoder",
         "mechanism": "构建4层Transformer块组成的编码器-解码器网络，处理SMILES符号序列",
         "formula": "",
-        "inputs": "SMILES符号序列",
-        "outputs": "上下文相关的符号级表示",
-        "label": "Transformer Encoder-Decoder"
+        "inputs": "One-hot encoded SMILES symbols",
+        "outputs": "Contextualized symbol-level representations",
+        "label": "Transformer Encoder-Decoder",
+        "component_role": "backbone"
       },
       "attribution": "analyst_synthesis",
       "evidence_ids": [],
@@ -53439,11 +53731,12 @@
       "label": "Unsupervised Pre-training",
       "attrs": {
         "name": "Unsupervised Pre-training",
-        "mechanism": "使用ChEMBL24中的861,000个未标记SMILES进行自监督训练，最小化交叉熵损失",
+        "mechanism": "使用ChEMBL24中的861,000个无标签SMILES进行序列到序列自监督训练",
         "formula": "",
-        "inputs": "未标记SMILES语料",
-        "outputs": "预训练好的Transformer模型权重",
-        "label": "Unsupervised Pre-training"
+        "inputs": "Unlabeled SMILES corpus",
+        "outputs": "Pre-trained model weights",
+        "label": "Unsupervised Pre-training",
+        "component_role": "other"
       },
       "attribution": "analyst_synthesis",
       "evidence_ids": [],
@@ -53456,11 +53749,13 @@
       "label": "Fingerprint Extraction",
       "attrs": {
         "name": "Fingerprint Extraction",
-        "mechanism": "对Transformer最后一层及倒数第二层的输出进行均值和最大池化，并拼接得到1024维分子指纹",
+        "mechanism": "对Transformer最后一层及倒数第二层的输出进行均值和最大池化并拼接，生成1024维分子指纹",
         "formula": "",
-        "inputs": "Transformer输出的符号级表示序列",
-        "outputs": "1024维分子指纹向量",
-        "label": "Fingerprint Extraction"
+        "inputs": "Symbol-level representations from Transformer layers",
+        "outputs": "1024-dimensional molecular fingerprint",
+        "label": "Fingerprint Extraction",
+        "is_novel_component": true,
+        "component_role": "other"
       },
       "attribution": "analyst_synthesis",
       "evidence_ids": [],
@@ -53474,22 +53769,36 @@
       "attrs": {
         "name": "MoleculeNet",
         "label": "MoleculeNet",
-        "input_form": "SMILES",
+        "input_form": "文本",
         "output_form": "标量",
         "n_samples": "1.5K - 41.1K examples",
-        "scale": "nine benchmarks",
-        "modality": "molecule",
-        "research_object": "molecular property",
+        "scale": "10 datasets",
+        "modality": "molecular",
+        "research_object": "molecular properties",
         "metrics": [
           {
-            "name": "accuracy",
+            "name": "RMSE",
             "unit": "",
-            "direction": "max"
+            "direction": "min",
+            "contribution_link": "regression task eval"
           },
           {
-            "name": "AUC",
+            "name": "ROC-AUC",
             "unit": "",
-            "direction": "max"
+            "direction": "max",
+            "contribution_link": "classification task "
+          },
+          {
+            "name": "PRC-AUC",
+            "unit": "",
+            "direction": "max",
+            "contribution_link": "MUV task evaluation"
+          },
+          {
+            "name": "DEM",
+            "unit": "",
+            "direction": "max",
+            "contribution_link": "data efficiency meas"
           }
         ],
         "model_results": [
@@ -54559,7 +54868,13 @@
             "source": "text:introduction",
             "evidence": "in terms of the mean matching score, we improve the previous best results by $7 . 7 \\%$ and $3 . 6 \\%$"
           }
-        ]
+        ],
+        "protocol": {
+          "seeds": "",
+          "split": "",
+          "eval_script": "",
+          "epochs": ""
+        }
       },
       "attribution": "analyst_synthesis",
       "evidence_ids": [],
@@ -281452,12 +281767,12 @@
       "label": "Fragment-Based Molecular Representation",
       "attrs": {
         "name": "Fragment-Based Molecular Representation",
-        "mechanism": "分解分子为环和孤立键片段并编码为Canonical SMILES",
+        "mechanism": "分解分子为环和键片段并编码为SMILES",
         "formula": "",
         "inputs": "完整分子结构",
         "outputs": "片段序列及原子索引映射",
         "is_novel_component": false,
-        "component_role": "encoder",
+        "component_role": "other",
         "label": "Fragment-Based Molecular Representation"
       },
       "attribution": "analyst_synthesis",
@@ -281471,9 +281786,9 @@
       "label": "Symmetry-Aware Attachment Modeling",
       "attrs": {
         "name": "Symmetry-Aware Attachment Modeling",
-        "mechanism": "标准化片段连接点以消除对称性歧义",
+        "mechanism": "标准化片段连接点以处理对称性",
         "formula": "",
-        "inputs": "片段原子环境及索引映射",
+        "inputs": "片段及其原子环境",
         "outputs": "对称不变的连接配置",
         "is_novel_component": true,
         "component_role": "other",
@@ -281490,10 +281805,10 @@
       "label": "Order-agnostic Molecular Rollouts",
       "attrs": {
         "name": "Order-agnostic Molecular Rollouts",
-        "mechanism": "从任意有效片段开始进行自回归生长",
-        "formula": "p(M) = E_{R\\sim U(R(M))} [\\prod_{i=1}^{|R|} p_\\theta(x^{(R)}_i | x^{(R)}_{<i}, c)]",
-        "inputs": "部分分子结构及目标属性条件",
-        "outputs": "完整分子结构",
+        "mechanism": "从任意有效片段开始进行自回归生成",
+        "formula": "p(M) = E_{R\\sim U(R(M))} [ \\prod_{i=1}^{|R|} p_\\theta(x^{(R)}_i | x^{(R)}_{<i}, c) ]",
+        "inputs": "部分结构及条件信息",
+        "outputs": "完整分子概率",
         "is_novel_component": true,
         "component_role": "sampler",
         "label": "Order-agnostic Molecular Rollouts"
@@ -281516,6 +281831,120 @@
         "is_novel_component": true,
         "component_role": "encoder",
         "label": "Dynamic Geometry Conditioning"
+      },
+      "attribution": "analyst_synthesis",
+      "evidence_ids": [],
+      "source_version": "",
+      "missing_states": {}
+    },
+    {
+      "id": "algorithmmodule:2411.06608:geometry_aware_conditioning",
+      "type": "AlgorithmModule",
+      "label": "Geometry-Aware Conditioning",
+      "attrs": {
+        "name": "Geometry-Aware Conditioning",
+        "mechanism": "利用力场弛豫后的3D几何信息指导预测",
+        "formula": "",
+        "inputs": "部分分子结构",
+        "outputs": "弛豫后的3D坐标",
+        "is_novel_component": true,
+        "component_role": "encoder",
+        "label": "Geometry-Aware Conditioning"
+      },
+      "attribution": "analyst_synthesis",
+      "evidence_ids": [],
+      "source_version": "",
+      "missing_states": {}
+    },
+    {
+      "id": "algorithmmodule:1906.00957:focus_point_mechanism",
+      "type": "AlgorithmModule",
+      "label": "Focus Point Mechanism",
+      "attrs": {
+        "name": "Focus Point Mechanism",
+        "mechanism": "引入辅助焦点点限制新点搜索空间",
+        "formula": "ci = (r1, Z1)",
+        "inputs": "已放置的点集",
+        "outputs": "焦点点位置及邻域约束",
+        "is_novel_component": true,
+        "component_role": "other",
+        "label": "Focus Point Mechanism"
+      },
+      "attribution": "analyst_synthesis",
+      "evidence_ids": [],
+      "source_version": "",
+      "missing_states": {}
+    },
+    {
+      "id": "algorithmmodule:1906.00957:position_sampling",
+      "type": "AlgorithmModule",
+      "label": "Position Sampling",
+      "attrs": {
+        "name": "Position Sampling",
+        "mechanism": "基于成对距离分布采样原子位置",
+        "formula": "p(rt+i|Rt≤i−1, Zt≤i) = 1/α ∏ p(d(t+i)j|Rt≤i−1, Zt≤i)",
+        "inputs": "新原子类型及已放置点集",
+        "outputs": "新原子3D坐标",
+        "is_novel_component": false,
+        "component_role": "sampler",
+        "label": "Position Sampling"
+      },
+      "attribution": "analyst_synthesis",
+      "evidence_ids": [],
+      "source_version": "",
+      "missing_states": {}
+    },
+    {
+      "id": "algorithmmodule:1906.00957:schnet_interaction_layers",
+      "type": "AlgorithmModule",
+      "label": "SchNet Interaction Layers",
+      "attrs": {
+        "name": "SchNet Interaction Layers",
+        "mechanism": "使用连续滤波器卷积层建模点间相互作用",
+        "formula": "",
+        "inputs": "原子嵌入及距离信息",
+        "outputs": "更新后的原子嵌入",
+        "is_novel_component": false,
+        "component_role": "backbone",
+        "label": "SchNet Interaction Layers"
+      },
+      "attribution": "analyst_synthesis",
+      "evidence_ids": [],
+      "source_version": "",
+      "missing_states": {}
+    },
+    {
+      "id": "algorithmmodule:1905.12265:gin_backbone",
+      "type": "AlgorithmModule",
+      "label": "GIN Backbone",
+      "attrs": {
+        "name": "GIN Backbone",
+        "mechanism": "使用图同构网络进行消息传递和表示聚合",
+        "formula": "h(k) v = COMBINE(k) ( h(k−1) v , AGGREGATE(k) { ( h(k−1) v , h(k−1) u , euv ) : u ∈ N(v) } )",
+        "inputs": "节点特征, 边特征",
+        "outputs": "节点嵌入, 图嵌入",
+        "is_novel_component": false,
+        "component_role": "backbone",
+        "label": "GIN Backbone"
+      },
+      "attribution": "analyst_synthesis",
+      "evidence_ids": [],
+      "source_version": "",
+      "missing_states": {}
+    },
+    {
+      "id": "algorithmmodule:1911.04738:data_efficiency_metric_dem",
+      "type": "AlgorithmModule",
+      "label": "Data Efficiency Metric (DEM)",
+      "attrs": {
+        "name": "Data Efficiency Metric (DEM)",
+        "mechanism": "定义标量指标，通过在不同训练数据比例下平均模型性能来衡量数据效率",
+        "formula": "MDE(f, m) = 1/|I| * sum_{i in I} m(fi, Xi, Yi)",
+        "inputs": "Model performance metrics across different training set sizes",
+        "outputs": "Scalar data efficiency score",
+        "is_novel_component": true,
+        "component_role": "other",
+        "label": "Data Efficiency Metric (DEM)"
       },
       "attribution": "analyst_synthesis",
       "evidence_ids": [],
@@ -358019,6 +358448,93 @@
       "attribution": "analyst_synthesis",
       "evidence_ids": [],
       "properties": {}
+    },
+    {
+      "id": "assertion:7491",
+      "source": "algorithm:molminer",
+      "target": "algorithmmodule:2411.06608:geometry_aware_conditioning",
+      "relation": "HAS_MODULE",
+      "attribution": "analyst_synthesis",
+      "evidence_ids": [],
+      "properties": {}
+    },
+    {
+      "id": "assertion:7492",
+      "source": "algorithm:g_schnet",
+      "target": "algorithmmodule:1906.00957:focus_point_mechanism",
+      "relation": "HAS_MODULE",
+      "attribution": "analyst_synthesis",
+      "evidence_ids": [],
+      "properties": {}
+    },
+    {
+      "id": "assertion:7493",
+      "source": "algorithmmodule:1906.00957:type_sampling",
+      "target": "codefunction:raulorteg_molminer:molminer_generator_py:sample",
+      "relation": "MODULE_IMPLEMENTED_BY",
+      "attribution": "analyst_synthesis",
+      "evidence_ids": [],
+      "properties": {
+        "paper_id": "paper:1906.00957"
+      }
+    },
+    {
+      "id": "assertion:7494",
+      "source": "algorithm:g_schnet",
+      "target": "algorithmmodule:1906.00957:position_sampling",
+      "relation": "HAS_MODULE",
+      "attribution": "analyst_synthesis",
+      "evidence_ids": [],
+      "properties": {}
+    },
+    {
+      "id": "assertion:7495",
+      "source": "algorithmmodule:1906.00957:position_sampling",
+      "target": "codefunction:raulorteg_molminer:molminer_generator_py:sample",
+      "relation": "MODULE_IMPLEMENTED_BY",
+      "attribution": "analyst_synthesis",
+      "evidence_ids": [],
+      "properties": {
+        "paper_id": "paper:1906.00957"
+      }
+    },
+    {
+      "id": "assertion:7496",
+      "source": "algorithm:g_schnet",
+      "target": "algorithmmodule:1906.00957:schnet_interaction_layers",
+      "relation": "HAS_MODULE",
+      "attribution": "analyst_synthesis",
+      "evidence_ids": [],
+      "properties": {}
+    },
+    {
+      "id": "assertion:7497",
+      "source": "algorithm:gnn_pre_training_strategy",
+      "target": "algorithmmodule:1905.12265:gin_backbone",
+      "relation": "HAS_MODULE",
+      "attribution": "analyst_synthesis",
+      "evidence_ids": [],
+      "properties": {}
+    },
+    {
+      "id": "assertion:7498",
+      "source": "algorithm:smiles_transformer",
+      "target": "algorithmmodule:1911.04738:data_efficiency_metric_dem",
+      "relation": "HAS_MODULE",
+      "attribution": "analyst_synthesis",
+      "evidence_ids": [],
+      "properties": {}
+    },
+    {
+      "id": "assertion:7499",
+      "source": "algorithmmodule:1805.11973:generator",
+      "target": "codefunction:raulorteg_molminer:molminer_generator_py:sample",
+      "relation": "MODULE_IMPLEMENTED_BY",
+      "attribution": "analyst_synthesis",
+      "evidence_ids": [],
+      "properties": {
+        "paper_id": "paper:1805.11973"
+      }
     }
   ]
 }
