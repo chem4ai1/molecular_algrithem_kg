@@ -1,0 +1,148 @@
+{
+  "phase": "06b_toy_experiment",
+  "title": "Phase 6b toy 实验（生死门）",
+  "phase_output": {
+    "what_to_run": {
+      "subset_construction": "Stratified toy subset: one pilot item per CQ type, all 24 CQ types eligible [C4]. Ceiling n_toy = 24 is a design ceiling derived from the CQ-type count, NOT an observed sample size; CONTEXT gives no per-type item counts.",
+      "arms": [
+        "A: ontology-grounded path, scored by hardOK [C1]",
+        "B: similarity baseline, scored by hardOK [C1]"
+      ],
+      "endpoints": {
+        "primary": "hardOK rate per arm [C1]",
+        "secondary": "end2end hardOK rate per arm [C2]",
+        "guardrail": "SHACL conformance over all emitted edits [C7]",
+        "traceability": "every accepted edit linked to >=1 of the 79 structure evidences across the 7 papers [C6] and to >=1 of the 13 transforms [C5]"
+      },
+      "pilot_only_disclaimer": "0.875/0.5 [C1], 1.0/0.125 [C2], 0.0156/0.0078 [C3] are prior pilot observations used to place thresholds. They are not the toy-gate result and must not be reported as such."
+    },
+    "life_or_death_rule": {
+      "PASS_LIFE": "ALL of R1-R5 hold",
+      "R1": "SHACL conforms=True for 100% of emitted edits [C7]; hard precondition",
+      "R2": "hardOK_A >= 0.75",
+      "R3": "hardOK_A - hardOK_B >= 0.25",
+      "R4": "one-sided exact test p < 0.05 (pilot values 0.0156 and 0.0078 both clear this [C3])",
+      "R5": "end2end hardOK >= 0.75",
+      "threshold_provenance": {
+        "0.75": "placed between pilot similarity 0.5 and pilot ontology 0.875 [C1]",
+        "0.25_margin": "discounted from the derived pilot gap 0.875-0.5 = 0.375 [C1]",
+        "0.75_end2end": "discounted from pilot end2end 1.0, far above pilot baseline 0.125 [C2]",
+        "0.05_alpha": "conventional; both pilot p-values [C3] are below it"
+      }
+    },
+    "fail_conditions": {
+      "F1": "Any edit with SHACL conforms=False [C7]",
+      "F2": "hardOK_A < 0.75 [C1-anchored]",
+      "F3": "Margin < 0.25 or sign reversed (hardOK_B >= hardOK_A) [C1]",
+      "F4": "p >= 0.05 [C3]",
+      "F5": "end2end hardOK < 0.75, or end2end at/below baseline 0.125 (pipeline collapse) [C2]",
+      "F6": "Any of the 13 transforms [C5] emits an edit with no ontology grounding or no link to the 79 structure evidences / 7 papers [C6] - traceability break",
+      "F7": "hardOK_A or hardOK_B undefined for any arm (unscorable subset)"
+    },
+    "warn_conditions": {
+      "W1": "Exactly one of R2-R5 missed, with R1 and F6 clean -> escalate to full pilot, no death sentence",
+      "W2": "Fewer than all 24 CQ types represented [C4] -> gate VOID (unrun), not FAIL",
+      "W3": "p in [0.05, 0.10) -> underpowered, not negative"
+    },
+    "non_claims": [
+      "Cannot establish generality beyond the 24 CQ types [C4]",
+      "Cannot validate the 13 transforms [C5] individually at toy scale",
+      "Cannot confirm which contrast each pilot p-value belongs to [C3]",
+      "Does not replace held-out evaluation on unseen non-synthesizable targets"
+    ],
+    "missing_inputs": [
+      "Sample size n per arm; no counts anywhere in CONTEXT",
+      "Mapping of 0.0156 vs 0.0078 to specific contrasts [C3]",
+      "Statistical test family and multiple-comparison correction",
+      "Per-CQ-type item counts and gold labels across the 24 types [C4]",
+      "Operational definition of the hardOK predicate and annotator instructions [C1]",
+      "Inter-annotator agreement",
+      "Identity, preconditions and postconditions of the 13 transforms [C5]",
+      "Distribution of the 79 structure evidences over the 7 papers [C6]",
+      "Held-out target list and ground-truth definition of 'non-synthesizable'",
+      "Negative controls / decoy targets",
+      "Seeds, compute budget, runtime envelope"
+    ]
+  },
+  "verdict": "WARN",
+  "missing_inputs": [],
+  "full_response": {
+    "qid": "Q-ONT-MOL-001",
+    "phase": "6b_toy_gate_life_or_death",
+    "verdict": "WARN",
+    "verdict_rationale": "Gate design is complete and internally consistent with the pilot numbers, but it is not executable as specified: no sample sizes, no per-CQ-type item counts, no hardOK predicate definition, and no transform-level specs are present in CONTEXT. Thresholds are therefore provisional design parameters, not calibrated ones.",
+    "citations": {
+      "C1": "hardOK ontology 0.875 vs similarity 0.5",
+      "C2": "end2end hardOK 1.0 vs 0.125",
+      "C3": "p=0.0156 / 0.0078",
+      "C4": "24 CQ types",
+      "C5": "13 transforms",
+      "C6": "79 structure evidences / 7 papers",
+      "C7": "SHACL conforms=True"
+    },
+    "phase_output": {
+      "what_to_run": {
+        "subset_construction": "Stratified toy subset: one pilot item per CQ type, all 24 CQ types eligible [C4]. Ceiling n_toy = 24 is a design ceiling derived from the CQ-type count, NOT an observed sample size; CONTEXT gives no per-type item counts.",
+        "arms": [
+          "A: ontology-grounded path, scored by hardOK [C1]",
+          "B: similarity baseline, scored by hardOK [C1]"
+        ],
+        "endpoints": {
+          "primary": "hardOK rate per arm [C1]",
+          "secondary": "end2end hardOK rate per arm [C2]",
+          "guardrail": "SHACL conformance over all emitted edits [C7]",
+          "traceability": "every accepted edit linked to >=1 of the 79 structure evidences across the 7 papers [C6] and to >=1 of the 13 transforms [C5]"
+        },
+        "pilot_only_disclaimer": "0.875/0.5 [C1], 1.0/0.125 [C2], 0.0156/0.0078 [C3] are prior pilot observations used to place thresholds. They are not the toy-gate result and must not be reported as such."
+      },
+      "life_or_death_rule": {
+        "PASS_LIFE": "ALL of R1-R5 hold",
+        "R1": "SHACL conforms=True for 100% of emitted edits [C7]; hard precondition",
+        "R2": "hardOK_A >= 0.75",
+        "R3": "hardOK_A - hardOK_B >= 0.25",
+        "R4": "one-sided exact test p < 0.05 (pilot values 0.0156 and 0.0078 both clear this [C3])",
+        "R5": "end2end hardOK >= 0.75",
+        "threshold_provenance": {
+          "0.75": "placed between pilot similarity 0.5 and pilot ontology 0.875 [C1]",
+          "0.25_margin": "discounted from the derived pilot gap 0.875-0.5 = 0.375 [C1]",
+          "0.75_end2end": "discounted from pilot end2end 1.0, far above pilot baseline 0.125 [C2]",
+          "0.05_alpha": "conventional; both pilot p-values [C3] are below it"
+        }
+      },
+      "fail_conditions": {
+        "F1": "Any edit with SHACL conforms=False [C7]",
+        "F2": "hardOK_A < 0.75 [C1-anchored]",
+        "F3": "Margin < 0.25 or sign reversed (hardOK_B >= hardOK_A) [C1]",
+        "F4": "p >= 0.05 [C3]",
+        "F5": "end2end hardOK < 0.75, or end2end at/below baseline 0.125 (pipeline collapse) [C2]",
+        "F6": "Any of the 13 transforms [C5] emits an edit with no ontology grounding or no link to the 79 structure evidences / 7 papers [C6] - traceability break",
+        "F7": "hardOK_A or hardOK_B undefined for any arm (unscorable subset)"
+      },
+      "warn_conditions": {
+        "W1": "Exactly one of R2-R5 missed, with R1 and F6 clean -> escalate to full pilot, no death sentence",
+        "W2": "Fewer than all 24 CQ types represented [C4] -> gate VOID (unrun), not FAIL",
+        "W3": "p in [0.05, 0.10) -> underpowered, not negative"
+      },
+      "non_claims": [
+        "Cannot establish generality beyond the 24 CQ types [C4]",
+        "Cannot validate the 13 transforms [C5] individually at toy scale",
+        "Cannot confirm which contrast each pilot p-value belongs to [C3]",
+        "Does not replace held-out evaluation on unseen non-synthesizable targets"
+      ],
+      "missing_inputs": [
+        "Sample size n per arm; no counts anywhere in CONTEXT",
+        "Mapping of 0.0156 vs 0.0078 to specific contrasts [C3]",
+        "Statistical test family and multiple-comparison correction",
+        "Per-CQ-type item counts and gold labels across the 24 types [C4]",
+        "Operational definition of the hardOK predicate and annotator instructions [C1]",
+        "Inter-annotator agreement",
+        "Identity, preconditions and postconditions of the 13 transforms [C5]",
+        "Distribution of the 79 structure evidences over the 7 papers [C6]",
+        "Held-out target list and ground-truth definition of 'non-synthesizable'",
+        "Negative controls / decoy targets",
+        "Seeds, compute budget, runtime envelope"
+      ]
+    }
+  },
+  "retry": "compact_prompt"
+}

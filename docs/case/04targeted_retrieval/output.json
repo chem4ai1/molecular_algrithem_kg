@@ -1,0 +1,266 @@
+{
+  "phase": "04targeted_retrieval",
+  "title": "Phase 4targeted 定向检索",
+  "phase_output": {
+    "artifact_type": "source_to_claim_to_experiment_map",
+    "table": [
+      {
+        "wave": 1,
+        "source": "literature.syncraft (arXiv 2512.20333)",
+        "claim_it_supports": "LLM edit-sequence prediction rescues ~28.4% (P2M) / 29.1% (ResGen) at similarity>0.6 with Gemini-2.5-Pro; sets the synthesis-rescue baseline the ontology arm must beat.",
+        "experiment_it_motivates": "Head-to-head end2edit validity + hardOK benchmark against the syncraft arm.",
+        "addresses": [
+          "Q2"
+        ],
+        "citation": "context.literature.syncraft.reported; context.end2edit_validity.syncraft=0.5; context.hardOK_48api"
+      },
+      {
+        "wave": 2,
+        "source": "literature.crux (arXiv 2607.27191)",
+        "claim_it_supports": "Agents do engineering but fail at evidence sufficiency.",
+        "experiment_it_motivates": "Evidence-sufficiency audit: require each proposed edit to be backed by an ontology inference rather than an agent assertion.",
+        "addresses": [
+          "Q2"
+        ],
+        "citation": "context.literature.crux.lesson; context.n_evidence=79"
+      },
+      {
+        "wave": 3,
+        "source": "literature.structure_papers: 5KB3, 5IRU, 5J2M, 5JJK, 5JXG, 5K3S, 5IAR",
+        "claim_it_supports": "These protein structures define the crossdocked binding context against which binding interactions must be preserved during editing.",
+        "experiment_it_motivates": "Crossdock re-scoring / binding-interaction preservation across the 7 PDB targets.",
+        "addresses": [
+          "Q3"
+        ],
+        "citation": "context.literature.structure_papers; context.corpus=2783 crossdocked molecules"
+      },
+      {
+        "wave": 4,
+        "source": "reasoner_inferences (kernel_verify.json; owlrl 10400->23113 triples)",
+        "claim_it_supports": "Ontology reasoner materializes required operations (A21 hasRequiredOperation SET_CHIRAL=115), failure risks (A19 hasFailureRisk=231), protected atoms (A20 hasProtectedAtom=363), ValidatedEditSequence=78, StereocenterPreservingReaction=2, StereocenterAnchor 契约=320 — localizing where/why a structure is problematic and what must not change.",
+        "experiment_it_motivates": "Reasoner-driven edit validation: reject edits violating ProtectedAtom/StereocenterAnchor, require SET_CHIRAL where inferred, accept only ValidatedEditSequence instances.",
+        "addresses": [
+          "Q1",
+          "Q2",
+          "Q3"
+        ],
+        "citation": "context.reasoner_inferences"
+      },
+      {
+        "wave": 5,
+        "source": "hardOK_48api",
+        "claim_it_supports": "Ontology arm reaches 0.875 hard-OK vs 0.5 for similarity and random.",
+        "experiment_it_motivates": "48-API synthesizability hard-constraint evaluation.",
+        "addresses": [
+          "Q2"
+        ],
+        "citation": "context.hardOK_48api"
+      },
+      {
+        "wave": 5,
+        "source": "p_value",
+        "claim_it_supports": "6 wins/0 losses, exact sign test p=0.0156; end2end 7 wins/0 losses p=0.0078.",
+        "experiment_it_motivates": "Sign-test significance confirmation of the survivor across arms.",
+        "addresses": [
+          "Q2"
+        ],
+        "citation": "context.p_value"
+      },
+      {
+        "wave": 5,
+        "source": "end2edit_validity",
+        "claim_it_supports": "ontology=1.0, ontology_lora=1.0 vs syncraft=0.5; source=null.",
+        "experiment_it_motivates": "End-to-end edit validity comparison (baseline source value pending).",
+        "addresses": [
+          "Q2"
+        ],
+        "citation": "context.end2edit_validity"
+      },
+      {
+        "wave": 5,
+        "source": "anchor_violation",
+        "claim_it_supports": "ontology=0.0, ontology_lora=0.0 vs syncraft=0.125; source=null.",
+        "experiment_it_motivates": "Pharmacophoric anchor preservation test (baseline source value pending).",
+        "addresses": [
+          "Q3"
+        ],
+        "citation": "context.anchor_violation"
+      }
+    ],
+    "coverage_by_question": {
+      "Q1_where_problematic": [
+        "reasoner_inferences"
+      ],
+      "Q2_why_not_madeable": [
+        "literature.syncraft",
+        "literature.crux",
+        "reasoner_inferences",
+        "hardOK_48api",
+        "p_value",
+        "end2edit_validity"
+      ],
+      "Q3_what_must_not_be_touched": [
+        "literature.structure_papers",
+        "reasoner_inferences",
+        "anchor_violation"
+      ]
+    }
+  },
+  "verdict": "WARN",
+  "missing_inputs": [
+    "context.end2edit_validity.source = null — baseline source-molecule edit validity not provided.",
+    "context.anchor_violation.source = null — baseline source-molecule anchor-violation rate not provided.",
+    "Only 2 of context.papers=7 are named/titled (syncraft, crux); metadata for the remaining 5 papers is absent, so they cannot be mapped to claims.",
+    "context.literature.structure_papers are PDB IDs only; no per-target resolution or binding-interaction data is provided.",
+    "No retrieval query strings or fetched document sets exist in CONTEXT; this phase maps existing CONTEXT sources rather than reporting newly retrieved documents.",
+    "context.rl_pool=5174 and context.transforms_freed='5/5' have no itemized contents, so they are not mapped to specific claims.",
+    "Count reconciliation not provided: context.n_molecules=3483 vs context.corpus (3272 CQ cases / 14 batches; 2783 crossdocked molecules) — the relationship between these totals is unspecified."
+  ],
+  "full_response": {
+    "phase": "Phase 4 — targeted 定向检索 (targeted retrieval)",
+    "qid": "Q-ONT-MOL-001",
+    "survivor": {
+      "id": "ontology-grounded pipeline (arms: ontology, ontology_lora)",
+      "selection_basis": [
+        {
+          "claim": "Highest hard-OK rate among arms",
+          "citation": "context.hardOK_48api: ontology=0.875 vs similarity=0.5, random=0.5"
+        },
+        {
+          "claim": "Perfect end-to-end edit validity",
+          "citation": "context.end2edit_validity: ontology=1.0, ontology_lora=1.0 vs syncraft=0.5"
+        },
+        {
+          "claim": "Zero pharmacophoric anchor violation",
+          "citation": "context.anchor_violation: ontology=0.0, ontology_lora=0.0 vs syncraft=0.125"
+        },
+        {
+          "claim": "Statistically significant wins over baselines",
+          "citation": "context.p_value: 6 wins/0 losses exact sign test p=0.0156; end2end 7/0 p=0.0078"
+        }
+      ]
+    },
+    "retrieval_plan": {
+      "wave_1_competitor_baseline": "Retrieve the strongest published synthesizability-editing method to fix the comparison bar.",
+      "wave_2_methodological_guardrail": "Retrieve evidence on agent failure modes to justify ontology grounding over free-form agent claims.",
+      "wave_3_structural_binding_evidence": "Retrieve the protein targets that define the binding-interaction constraints edits must preserve.",
+      "wave_4_internal_ontology_evidence": "Retrieve reasoner-materialized axioms that localize the defect and constrain edits.",
+      "wave_5_quantitative_arm_outcomes": "Retrieve the arm-level metrics that decide whether the survivor holds."
+    },
+    "phase_output": {
+      "artifact_type": "source_to_claim_to_experiment_map",
+      "table": [
+        {
+          "wave": 1,
+          "source": "literature.syncraft (arXiv 2512.20333)",
+          "claim_it_supports": "LLM edit-sequence prediction rescues ~28.4% (P2M) / 29.1% (ResGen) at similarity>0.6 with Gemini-2.5-Pro; sets the synthesis-rescue baseline the ontology arm must beat.",
+          "experiment_it_motivates": "Head-to-head end2edit validity + hardOK benchmark against the syncraft arm.",
+          "addresses": [
+            "Q2"
+          ],
+          "citation": "context.literature.syncraft.reported; context.end2edit_validity.syncraft=0.5; context.hardOK_48api"
+        },
+        {
+          "wave": 2,
+          "source": "literature.crux (arXiv 2607.27191)",
+          "claim_it_supports": "Agents do engineering but fail at evidence sufficiency.",
+          "experiment_it_motivates": "Evidence-sufficiency audit: require each proposed edit to be backed by an ontology inference rather than an agent assertion.",
+          "addresses": [
+            "Q2"
+          ],
+          "citation": "context.literature.crux.lesson; context.n_evidence=79"
+        },
+        {
+          "wave": 3,
+          "source": "literature.structure_papers: 5KB3, 5IRU, 5J2M, 5JJK, 5JXG, 5K3S, 5IAR",
+          "claim_it_supports": "These protein structures define the crossdocked binding context against which binding interactions must be preserved during editing.",
+          "experiment_it_motivates": "Crossdock re-scoring / binding-interaction preservation across the 7 PDB targets.",
+          "addresses": [
+            "Q3"
+          ],
+          "citation": "context.literature.structure_papers; context.corpus=2783 crossdocked molecules"
+        },
+        {
+          "wave": 4,
+          "source": "reasoner_inferences (kernel_verify.json; owlrl 10400->23113 triples)",
+          "claim_it_supports": "Ontology reasoner materializes required operations (A21 hasRequiredOperation SET_CHIRAL=115), failure risks (A19 hasFailureRisk=231), protected atoms (A20 hasProtectedAtom=363), ValidatedEditSequence=78, StereocenterPreservingReaction=2, StereocenterAnchor 契约=320 — localizing where/why a structure is problematic and what must not change.",
+          "experiment_it_motivates": "Reasoner-driven edit validation: reject edits violating ProtectedAtom/StereocenterAnchor, require SET_CHIRAL where inferred, accept only ValidatedEditSequence instances.",
+          "addresses": [
+            "Q1",
+            "Q2",
+            "Q3"
+          ],
+          "citation": "context.reasoner_inferences"
+        },
+        {
+          "wave": 5,
+          "source": "hardOK_48api",
+          "claim_it_supports": "Ontology arm reaches 0.875 hard-OK vs 0.5 for similarity and random.",
+          "experiment_it_motivates": "48-API synthesizability hard-constraint evaluation.",
+          "addresses": [
+            "Q2"
+          ],
+          "citation": "context.hardOK_48api"
+        },
+        {
+          "wave": 5,
+          "source": "p_value",
+          "claim_it_supports": "6 wins/0 losses, exact sign test p=0.0156; end2end 7 wins/0 losses p=0.0078.",
+          "experiment_it_motivates": "Sign-test significance confirmation of the survivor across arms.",
+          "addresses": [
+            "Q2"
+          ],
+          "citation": "context.p_value"
+        },
+        {
+          "wave": 5,
+          "source": "end2edit_validity",
+          "claim_it_supports": "ontology=1.0, ontology_lora=1.0 vs syncraft=0.5; source=null.",
+          "experiment_it_motivates": "End-to-end edit validity comparison (baseline source value pending).",
+          "addresses": [
+            "Q2"
+          ],
+          "citation": "context.end2edit_validity"
+        },
+        {
+          "wave": 5,
+          "source": "anchor_violation",
+          "claim_it_supports": "ontology=0.0, ontology_lora=0.0 vs syncraft=0.125; source=null.",
+          "experiment_it_motivates": "Pharmacophoric anchor preservation test (baseline source value pending).",
+          "addresses": [
+            "Q3"
+          ],
+          "citation": "context.anchor_violation"
+        }
+      ],
+      "coverage_by_question": {
+        "Q1_where_problematic": [
+          "reasoner_inferences"
+        ],
+        "Q2_why_not_madeable": [
+          "literature.syncraft",
+          "literature.crux",
+          "reasoner_inferences",
+          "hardOK_48api",
+          "p_value",
+          "end2edit_validity"
+        ],
+        "Q3_what_must_not_be_touched": [
+          "literature.structure_papers",
+          "reasoner_inferences",
+          "anchor_violation"
+        ]
+      }
+    },
+    "missing_inputs": [
+      "context.end2edit_validity.source = null — baseline source-molecule edit validity not provided.",
+      "context.anchor_violation.source = null — baseline source-molecule anchor-violation rate not provided.",
+      "Only 2 of context.papers=7 are named/titled (syncraft, crux); metadata for the remaining 5 papers is absent, so they cannot be mapped to claims.",
+      "context.literature.structure_papers are PDB IDs only; no per-target resolution or binding-interaction data is provided.",
+      "No retrieval query strings or fetched document sets exist in CONTEXT; this phase maps existing CONTEXT sources rather than reporting newly retrieved documents.",
+      "context.rl_pool=5174 and context.transforms_freed='5/5' have no itemized contents, so they are not mapped to specific claims.",
+      "Count reconciliation not provided: context.n_molecules=3483 vs context.corpus (3272 CQ cases / 14 batches; 2783 crossdocked molecules) — the relationship between these totals is unspecified."
+    ],
+    "verdict": "WARN"
+  }
+}

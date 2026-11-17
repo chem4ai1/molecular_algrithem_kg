@@ -32,6 +32,7 @@
 | 关系 | 来源 | 说明 |
 |---|---|---|
 | `CONFORMS_TO` | Paper | 论文遵循的领域证据规范 |
+| `REFINED_BY` | DomainHint | 阶段02 学习后的规范覆盖 hint |
 
 ## 4. 抽取来源
 

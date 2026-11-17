@@ -1,0 +1,322 @@
+{
+  "phase": "07_leakage_audit",
+  "title": "Phase 7 结构泄漏审计",
+  "phase_output": {
+    "checks_performed": [
+      {
+        "check": "sign_test_recomputation",
+        "detail": "Reported '6 wins 0 losses p=0.0156' and 'end2end 7 wins 0 losses p=0.0078' are consistent with a one-sided exact sign test (0.5^6=0.0156; 0.5^7=0.0078) recomputed from the reported counts.",
+        "result": "CONSISTENT",
+        "context_refs": [
+          "p_value"
+        ]
+      },
+      {
+        "check": "internal_endpoint_consistency",
+        "detail": "ontology dominates baselines on both editing endpoints (validity 1.0/1.0 vs syncraft 0.5; anchor_violation 0.0/0.0 vs syncraft 0.125) and on discovery (0.875 vs 0.5/0.5); no numeric contradiction across arms.",
+        "result": "CONSISTENT",
+        "context_refs": [
+          "hardOK_48api",
+          "end2edit_validity",
+          "anchor_violation"
+        ]
+      },
+      {
+        "check": "claim_to_metric_coverage",
+        "detail": "Question requires preserving pharmacophoric anchors, stereochemistry AND binding interactions. Stereochemistry is covered (anchor_violation, StereocenterAnchor 契约=320, A21 SET_CHIRAL=115). Binding interactions have no metric.",
+        "result": "PARTIAL_GAP",
+        "context_refs": [
+          "question",
+          "anchor_violation",
+          "reasoner_inferences",
+          "structure_papers"
+        ]
+      }
+    ],
+    "type_I_findings": [
+      {
+        "id": "T1-1",
+        "severity": "high",
+        "finding": "Binding-interaction preservation is claimed by the question but unmeasured. CONTEXT provides only anchor_violation (scope undefined) and structure_papers PDB IDs (5KB3, 5IRU, 5J2M, 5JJK, 5JXG, 5K3S, 5IAR); no binding-affinity or interaction-fingerprint preservation metric exists. Conclusion 'binding interactions preserved' does not follow from provided evidence.",
+        "context_refs": [
+          "question",
+          "anchor_violation",
+          "structure_papers"
+        ]
+      },
+      {
+        "id": "T1-2",
+        "severity": "high",
+        "finding": "Source (unedited) baseline is null for both editing endpoints (end2edit_validity.source=null, anchor_violation.source=null). Without it, 'edit into a synthesizable analogue' (improvement) and 'preserving anchors' (delta vs source) lack a reference point; 0.0 anchor_violation cannot be interpreted as preservation relative to an unmeasured starting state.",
+        "context_refs": [
+          "end2edit_validity",
+          "anchor_violation"
+        ]
+      },
+      {
+        "id": "T1-3",
+        "severity": "medium",
+        "finding": "Q2 'why it cannot be made' is attributed via A19 hasFailureRisk=231 and A21 hasRequiredOperation SET_CHIRAL=115, but CONTEXT provides no ground-truth synthesis outcomes validating that these ontology failure-risk attributions correspond to real synthesis failures. The causal 'why' is asserted by the reasoner, not empirically confirmed.",
+        "context_refs": [
+          "three_questions",
+          "reasoner_inferences"
+        ]
+      },
+      {
+        "id": "T1-4",
+        "severity": "medium",
+        "finding": "Perfect point estimates (validity 1.0/1.0; anchor_violation 0.0/0.0) are reported with no n, variance, or confidence intervals for the editing experiment; the editing sample size is not stated anywhere in CONTEXT (n_molecules=3483 is the corpus total, not the end2edit n).",
+        "context_refs": [
+          "end2edit_validity",
+          "anchor_violation",
+          "n_molecules"
+        ]
+      },
+      {
+        "id": "T1-5",
+        "severity": "medium",
+        "finding": "Baseline fairness unverified: literature.syncraft reports rescue (P2M 28.4% / ResGen 29.1% at similarity>0.6, Gemini-2.5-Pro), a different metric from the experimental syncraft arm (validity 0.5). CONTEXT does not establish that the experimental syncraft arm is a faithful/strong reproduction, so the ontology-vs-syncraft margin may be biased by baseline weakness.",
+        "context_refs": [
+          "literature.syncraft",
+          "end2edit_validity",
+          "anchor_violation"
+        ]
+      }
+    ],
+    "type_IV_findings": [
+      {
+        "id": "T4-0",
+        "severity": "info",
+        "finding": "No direct empirical escape detected: recomputed sign-test p-values match reported values and endpoints are internally consistent. No measurement in CONTEXT contradicts a stated claim.",
+        "context_refs": [
+          "p_value",
+          "hardOK_48api",
+          "end2edit_validity",
+          "anchor_violation"
+        ]
+      },
+      {
+        "id": "T4-1",
+        "severity": "high",
+        "finding": "STRUCTURAL LEAKAGE (core audit concern) cannot be excluded. CONTEXT contains no train/test split, held-out set, or cross-validation description. The evaluation population (corpus 3272 CQ cases, n_molecules 3483) and the ontology-derived reasoner_inferences (owlrl 10400->23113 triples; A20 hasProtectedAtom=363, etc.) share provenance; if molecules used to build the ontology are reused for evaluation, the perfect 1.0/0.0 editing scores could reflect leakage rather than generalization. This is flagged as unverifiable, not as confirmed leakage. Consistent with literature.crux lesson 'agents do engineering but fail at evidence sufficiency'.",
+        "context_refs": [
+          "corpus",
+          "n_molecules",
+          "reasoner_inferences",
+          "end2edit_validity",
+          "anchor_violation",
+          "literature.crux"
+        ]
+      }
+    ],
+    "positive_findings": [
+      {
+        "finding": "Discovery arm separation is clear and significant: ontology 0.875 vs similarity 0.5 / random 0.5.",
+        "context_refs": [
+          "hardOK_48api",
+          "p_value"
+        ]
+      },
+      {
+        "finding": "Editing validity and anchor preservation both favor ontology/ontology_lora over syncraft, with internally consistent direction.",
+        "context_refs": [
+          "end2edit_validity",
+          "anchor_violation"
+        ]
+      },
+      {
+        "finding": "Ontology reasoning demonstrably expands inference (10400->23113 triples) and encodes protected-atom/stereocenter constructs (StereocenterAnchor 契约=320, A20 hasProtectedAtom=363), supporting Q1/Q3 for stereochemistry and protected atoms.",
+        "context_refs": [
+          "reasoner_inferences"
+        ]
+      }
+    ],
+    "required_to_reach_PASS": [
+      "Provide a binding-interaction / binding-affinity preservation metric, or explicitly narrow the claim to exclude binding interactions.",
+      "Provide source (unedited) baseline values for end2edit_validity and anchor_violation.",
+      "Provide train/test split or held-out evaluation protocol demonstrating the evaluated molecules were not used to construct the ontology (exclude structural leakage).",
+      "Report n, variance, and confidence intervals for the end2edit editing experiment.",
+      "Reconcile 'hardOK_48api' (48) with the sign-test counts (6 and 7 wins) and clarify the effective sample size.",
+      "Provide ground-truth synthesis outcomes validating the 'why non-synthesizable' failure-risk attributions.",
+      "Document that the syncraft baseline is a faithful reproduction for a fair comparison."
+    ]
+  },
+  "verdict": "WARN",
+  "missing_inputs": [
+    "train/test split or held-out evaluation protocol (needed to exclude structural leakage)",
+    "sample size (n) for the end2edit editing experiment",
+    "definition/scope of 'anchor' in anchor_violation (pharmacophoric vs stereochemical vs binding)",
+    "a binding-interaction or binding-affinity preservation metric",
+    "source (unedited) baseline values for end2edit_validity and anchor_violation",
+    "confidence intervals / variance for hardOK_48api and end2edit scores",
+    "reconciliation of 'hardOK_48api' (48) with sign-test win counts (6 / 7)",
+    "ground-truth synthesis outcomes to validate 'why non-synthesizable' attributions",
+    "reproduction details confirming the syncraft baseline is faithful"
+  ],
+  "full_response": {
+    "phase": "Phase 7 结构泄漏审计",
+    "qid": "Q-ONT-MOL-001",
+    "audit_scope": {
+      "type_I_logic_gaps": "conclusion does not follow from stated assumptions/evidence",
+      "type_IV_empirical_escape": "verification/measurement contradicts the claim",
+      "primary_focus": "structural leakage: whether headline scores reflect generalization or reuse of ontology-construction data",
+      "context_refs": [
+        "question",
+        "three_questions"
+      ]
+    },
+    "verdict": "WARN",
+    "verdict_rationale": "Core quantitative claims are internally consistent and the reported significance tests recompute correctly from the stated win/loss counts, so no direct Type IV empirical escape (verification contradicting claim) was found. However, a PASS is blocked because: (1) the question's 'binding interactions' preservation requirement has NO corresponding metric in CONTEXT (Type I gap); (2) the source/unedited baseline is null, removing the reference point needed for 'edit into a synthesizable analogue' and 'preservation' claims; (3) the headline editing scores are perfect (validity 1.0, anchor_violation 0.0) yet CONTEXT contains no train/test split or held-out protocol, so structural leakage cannot be excluded — the central concern of this phase; (4) significance rests on very small n (6 and 7 wins) with an unreconciled '48api' label. These are completeness/robustness-evidence gaps rather than contradictions, hence WARN not FAIL.",
+    "phase_output": {
+      "checks_performed": [
+        {
+          "check": "sign_test_recomputation",
+          "detail": "Reported '6 wins 0 losses p=0.0156' and 'end2end 7 wins 0 losses p=0.0078' are consistent with a one-sided exact sign test (0.5^6=0.0156; 0.5^7=0.0078) recomputed from the reported counts.",
+          "result": "CONSISTENT",
+          "context_refs": [
+            "p_value"
+          ]
+        },
+        {
+          "check": "internal_endpoint_consistency",
+          "detail": "ontology dominates baselines on both editing endpoints (validity 1.0/1.0 vs syncraft 0.5; anchor_violation 0.0/0.0 vs syncraft 0.125) and on discovery (0.875 vs 0.5/0.5); no numeric contradiction across arms.",
+          "result": "CONSISTENT",
+          "context_refs": [
+            "hardOK_48api",
+            "end2edit_validity",
+            "anchor_violation"
+          ]
+        },
+        {
+          "check": "claim_to_metric_coverage",
+          "detail": "Question requires preserving pharmacophoric anchors, stereochemistry AND binding interactions. Stereochemistry is covered (anchor_violation, StereocenterAnchor 契约=320, A21 SET_CHIRAL=115). Binding interactions have no metric.",
+          "result": "PARTIAL_GAP",
+          "context_refs": [
+            "question",
+            "anchor_violation",
+            "reasoner_inferences",
+            "structure_papers"
+          ]
+        }
+      ],
+      "type_I_findings": [
+        {
+          "id": "T1-1",
+          "severity": "high",
+          "finding": "Binding-interaction preservation is claimed by the question but unmeasured. CONTEXT provides only anchor_violation (scope undefined) and structure_papers PDB IDs (5KB3, 5IRU, 5J2M, 5JJK, 5JXG, 5K3S, 5IAR); no binding-affinity or interaction-fingerprint preservation metric exists. Conclusion 'binding interactions preserved' does not follow from provided evidence.",
+          "context_refs": [
+            "question",
+            "anchor_violation",
+            "structure_papers"
+          ]
+        },
+        {
+          "id": "T1-2",
+          "severity": "high",
+          "finding": "Source (unedited) baseline is null for both editing endpoints (end2edit_validity.source=null, anchor_violation.source=null). Without it, 'edit into a synthesizable analogue' (improvement) and 'preserving anchors' (delta vs source) lack a reference point; 0.0 anchor_violation cannot be interpreted as preservation relative to an unmeasured starting state.",
+          "context_refs": [
+            "end2edit_validity",
+            "anchor_violation"
+          ]
+        },
+        {
+          "id": "T1-3",
+          "severity": "medium",
+          "finding": "Q2 'why it cannot be made' is attributed via A19 hasFailureRisk=231 and A21 hasRequiredOperation SET_CHIRAL=115, but CONTEXT provides no ground-truth synthesis outcomes validating that these ontology failure-risk attributions correspond to real synthesis failures. The causal 'why' is asserted by the reasoner, not empirically confirmed.",
+          "context_refs": [
+            "three_questions",
+            "reasoner_inferences"
+          ]
+        },
+        {
+          "id": "T1-4",
+          "severity": "medium",
+          "finding": "Perfect point estimates (validity 1.0/1.0; anchor_violation 0.0/0.0) are reported with no n, variance, or confidence intervals for the editing experiment; the editing sample size is not stated anywhere in CONTEXT (n_molecules=3483 is the corpus total, not the end2edit n).",
+          "context_refs": [
+            "end2edit_validity",
+            "anchor_violation",
+            "n_molecules"
+          ]
+        },
+        {
+          "id": "T1-5",
+          "severity": "medium",
+          "finding": "Baseline fairness unverified: literature.syncraft reports rescue (P2M 28.4% / ResGen 29.1% at similarity>0.6, Gemini-2.5-Pro), a different metric from the experimental syncraft arm (validity 0.5). CONTEXT does not establish that the experimental syncraft arm is a faithful/strong reproduction, so the ontology-vs-syncraft margin may be biased by baseline weakness.",
+          "context_refs": [
+            "literature.syncraft",
+            "end2edit_validity",
+            "anchor_violation"
+          ]
+        }
+      ],
+      "type_IV_findings": [
+        {
+          "id": "T4-0",
+          "severity": "info",
+          "finding": "No direct empirical escape detected: recomputed sign-test p-values match reported values and endpoints are internally consistent. No measurement in CONTEXT contradicts a stated claim.",
+          "context_refs": [
+            "p_value",
+            "hardOK_48api",
+            "end2edit_validity",
+            "anchor_violation"
+          ]
+        },
+        {
+          "id": "T4-1",
+          "severity": "high",
+          "finding": "STRUCTURAL LEAKAGE (core audit concern) cannot be excluded. CONTEXT contains no train/test split, held-out set, or cross-validation description. The evaluation population (corpus 3272 CQ cases, n_molecules 3483) and the ontology-derived reasoner_inferences (owlrl 10400->23113 triples; A20 hasProtectedAtom=363, etc.) share provenance; if molecules used to build the ontology are reused for evaluation, the perfect 1.0/0.0 editing scores could reflect leakage rather than generalization. This is flagged as unverifiable, not as confirmed leakage. Consistent with literature.crux lesson 'agents do engineering but fail at evidence sufficiency'.",
+          "context_refs": [
+            "corpus",
+            "n_molecules",
+            "reasoner_inferences",
+            "end2edit_validity",
+            "anchor_violation",
+            "literature.crux"
+          ]
+        }
+      ],
+      "positive_findings": [
+        {
+          "finding": "Discovery arm separation is clear and significant: ontology 0.875 vs similarity 0.5 / random 0.5.",
+          "context_refs": [
+            "hardOK_48api",
+            "p_value"
+          ]
+        },
+        {
+          "finding": "Editing validity and anchor preservation both favor ontology/ontology_lora over syncraft, with internally consistent direction.",
+          "context_refs": [
+            "end2edit_validity",
+            "anchor_violation"
+          ]
+        },
+        {
+          "finding": "Ontology reasoning demonstrably expands inference (10400->23113 triples) and encodes protected-atom/stereocenter constructs (StereocenterAnchor 契约=320, A20 hasProtectedAtom=363), supporting Q1/Q3 for stereochemistry and protected atoms.",
+          "context_refs": [
+            "reasoner_inferences"
+          ]
+        }
+      ],
+      "required_to_reach_PASS": [
+        "Provide a binding-interaction / binding-affinity preservation metric, or explicitly narrow the claim to exclude binding interactions.",
+        "Provide source (unedited) baseline values for end2edit_validity and anchor_violation.",
+        "Provide train/test split or held-out evaluation protocol demonstrating the evaluated molecules were not used to construct the ontology (exclude structural leakage).",
+        "Report n, variance, and confidence intervals for the end2edit editing experiment.",
+        "Reconcile 'hardOK_48api' (48) with the sign-test counts (6 and 7 wins) and clarify the effective sample size.",
+        "Provide ground-truth synthesis outcomes validating the 'why non-synthesizable' failure-risk attributions.",
+        "Document that the syncraft baseline is a faithful reproduction for a fair comparison."
+      ]
+    },
+    "missing_inputs": [
+      "train/test split or held-out evaluation protocol (needed to exclude structural leakage)",
+      "sample size (n) for the end2edit editing experiment",
+      "definition/scope of 'anchor' in anchor_violation (pharmacophoric vs stereochemical vs binding)",
+      "a binding-interaction or binding-affinity preservation metric",
+      "source (unedited) baseline values for end2edit_validity and anchor_violation",
+      "confidence intervals / variance for hardOK_48api and end2edit scores",
+      "reconciliation of 'hardOK_48api' (48) with sign-test win counts (6 / 7)",
+      "ground-truth synthesis outcomes to validate 'why non-synthesizable' attributions",
+      "reproduction details confirming the syncraft baseline is faithful"
+    ]
+  }
+}

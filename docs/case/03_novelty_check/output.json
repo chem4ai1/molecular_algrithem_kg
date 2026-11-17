@@ -1,10 +1,511 @@
 {
   "phase": "03_novelty_check",
   "title": "Phase 3 新颖性 + 碰撞矩阵",
-  "phase_output": null,
-  "verdict": "ERROR",
+  "phase_output": {
+    "scoring_scale": "0-5 ordinal phase assessment; scores are not new empirical measurements and are justified only by cited CONTEXT fields.",
+    "axis_scores": [
+      {
+        "axis": "novelty",
+        "score": 4,
+        "tier": "HIGH",
+        "evidence": [
+          "CONTEXT.question asks how an ontology-grounded pipeline can identify why a generated molecule is non-synthesizable and edit it while preserving pharmacophoric anchors, stereochemistry and binding interactions.",
+          "CONTEXT.reasoner_inferences includes A21 hasRequiredOperation SET_CHIRAL=115, A19 hasFailureRisk=231, A20 hasProtectedAtom=363, 定义类 ValidatedEditSequence=78, 定义类 StereocenterPreservingReaction=2, and StereocenterAnchor 契约=320.",
+          "CONTEXT.literature.syncraft.title reports edit-sequence prediction for molecular synthesizability optimization, which is adjacent but not identical to ontology-grounded failure explanation and constrained editing."
+        ],
+        "rationale": "The survivor is novel relative to the retrieved literature because CONTEXT.reasoner_inferences supplies explicit failure-risk, protected-atom, chiral-operation, and stereocenter-anchor artifacts, while CONTEXT.literature.syncraft.title reports edit-sequence prediction."
+      },
+      {
+        "axis": "feasibility",
+        "score": 3,
+        "tier": "CONSTRAINED",
+        "evidence": [
+          "CONTEXT.hardOK_48api.ontology=0.875 vs CONTEXT.hardOK_48api.similarity=0.5 and CONTEXT.hardOK_48api.random=0.5.",
+          "CONTEXT.p_value=6 wins 0 losses, exact sign test p=0.0156; end2end 7 wins 0 losses p=0.0078.",
+          "CONTEXT.reasoner_inferences source=kernel_verify.json; owlrl 10400->23113 triples.",
+          "CONTEXT.transforms_freed=5/5.",
+          "CONTEXT.end2edit_validity.ontology=1.0 and CONTEXT.end2edit_validity.ontology_lora=1.0, but CONTEXT.end2edit_validity.source=null.",
+          "CONTEXT.anchor_violation.ontology=0.0 and CONTEXT.anchor_violation.ontology_lora=0.0, but CONTEXT.anchor_violation.source=null."
+        ],
+        "rationale": "Feasibility is supported by ontology hardOK, win-loss tests, reasoner inferences, and transforms_freed, but it is constrained because end2edit validity and anchor violation provenance are missing."
+      },
+      {
+        "axis": "relevance",
+        "score": 5,
+        "tier": "HIGH",
+        "evidence": [
+          "CONTEXT.question directly asks for ontology-grounded identification and editing of non-synthesizable molecules.",
+          "CONTEXT.three_questions maps to Q1 where the structure is problematic, Q2 why it cannot be made, and Q3 what must not be touched during editing.",
+          "CONTEXT.corpus=3272 CQ cases / 14 batches; 2783 crossdocked molecules.",
+          "CONTEXT.n_molecules=3483 and CONTEXT.n_evidence=79."
+        ],
+        "rationale": "The phase artifacts directly address the question and its three sub-questions, with corpus and evidence artifacts present in CONTEXT."
+      },
+      {
+        "axis": "EG",
+        "score": 3,
+        "tier": "CONSTRAINED",
+        "evidence": [
+          "CONTEXT.n_evidence=79 and CONTEXT.papers=7.",
+          "CONTEXT.reasoner_inferences source=kernel_verify.json; owlrl 10400->23113 triples.",
+          "CONTEXT.literature.crux.lesson states agents do engineering but fail at evidence sufficiency.",
+          "CONTEXT.end2edit_validity.source=null and CONTEXT.anchor_violation.source=null."
+        ],
+        "rationale": "Evidence artifacts exist, but EG is constrained because key validation provenance is missing and CONTEXT.literature.crux.lesson warns about evidence sufficiency."
+      }
+    ],
+    "question_alignment": [
+      {
+        "question_id": "Q1",
+        "question": "where the structure is problematic",
+        "evidence": [
+          "CONTEXT.three_questions.Q1",
+          "CONTEXT.reasoner_inferences A19 hasFailureRisk=231",
+          "CONTEXT.reasoner_inferences A20 hasProtectedAtom=363"
+        ],
+        "artifact": "FailureRisk and ProtectedAtom reasoner inferences localize problematic structural regions."
+      },
+      {
+        "question_id": "Q2",
+        "question": "why it cannot be made",
+        "evidence": [
+          "CONTEXT.three_questions.Q2",
+          "CONTEXT.reasoner_inferences A21 hasRequiredOperation SET_CHIRAL=115",
+          "CONTEXT.reasoner_inferences 定义类 ValidatedEditSequence=78"
+        ],
+        "artifact": "RequiredOperation and ValidatedEditSequence artifacts explain required operations and validated edit routes."
+      },
+      {
+        "question_id": "Q3",
+        "question": "what must not be touched during editing",
+        "evidence": [
+          "CONTEXT.three_questions.Q3",
+          "CONTEXT.reasoner_inferences A20 hasProtectedAtom=363",
+          "CONTEXT.reasoner_inferences StereocenterAnchor 契约=320",
+          "CONTEXT.reasoner_inferences 定义类 StereocenterPreservingReaction=2"
+        ],
+        "artifact": "ProtectedAtom, StereocenterAnchor, and StereocenterPreservingReaction artifacts define untouchable anchors."
+      }
+    ],
+    "frontier_advancement": {
+      "summary": "The frontier advances from similarity/random baselines toward ontology-grounded, reasoner-inferred constraints for non-synthesizability editing.",
+      "evidence": [
+        "CONTEXT.hardOK_48api.ontology=0.875",
+        "CONTEXT.hardOK_48api.similarity=0.5",
+        "CONTEXT.hardOK_48api.random=0.5",
+        "CONTEXT.p_value=6 wins 0 losses, exact sign test p=0.0156; end2end 7 wins 0 losses p=0.0078",
+        "CONTEXT.reasoner_inferences includes A21 hasRequiredOperation SET_CHIRAL=115, A19 hasFailureRisk=231, A20 hasProtectedAtom=363, 定义类 ValidatedEditSequence=78, 定义类 StereocenterPreservingReaction=2, StereocenterAnchor 契约=320"
+      ],
+      "advancement_claims": [
+        {
+          "claim": "Ontology grounding outperforms similarity and random baselines in the provided hardOK comparison.",
+          "evidence": [
+            "CONTEXT.hardOK_48api.ontology=0.875",
+            "CONTEXT.hardOK_48api.similarity=0.5",
+            "CONTEXT.hardOK_48api.random=0.5"
+          ]
+        },
+        {
+          "claim": "End-to-end editing has a positive win-loss signal in the provided p_value field.",
+          "evidence": [
+            "CONTEXT.p_value=end2end 7 wins 0 losses p=0.0078"
+          ]
+        },
+        {
+          "claim": "The reasoner materializes constraints needed for Q1, Q2, and Q3.",
+          "evidence": [
+            "CONTEXT.reasoner_inferences A19 hasFailureRisk=231",
+            "CONTEXT.reasoner_inferences A21 hasRequiredOperation SET_CHIRAL=115",
+            "CONTEXT.reasoner_inferences A20 hasProtectedAtom=363",
+            "CONTEXT.reasoner_inferences StereocenterAnchor 契约=320"
+          ]
+        }
+      ],
+      "frontier_gaps": [
+        "CONTEXT.end2edit_validity.source=null leaves end2edit validity provenance unresolved.",
+        "CONTEXT.anchor_violation.source=null leaves anchor violation provenance unresolved.",
+        "No provided CONTEXT field supplies compute, time, expertise, or ethics evidence."
+      ]
+    },
+    "collision_matrix": [
+      {
+        "collision_id": "C1",
+        "literature_field": "CONTEXT.literature.syncraft",
+        "title": "SynCraft: Guiding Large Language Models to Predict Edit Sequences for Molecular Synthesizability Optimization",
+        "arxiv": "2512.20333",
+        "overlap": "Both address molecular synthesizability optimization through edit sequences.",
+        "overlap_evidence": [
+          "CONTEXT.literature.syncraft.title",
+          "CONTEXT.question"
+        ],
+        "differentiation": "The survivor adds ontology-grounded diagnosis of why a molecule is non-synthesizable and explicit preservation of pharmacophoric anchors, stereochemistry, and binding interactions.",
+        "differentiation_evidence": [
+          "CONTEXT.question",
+          "CONTEXT.reasoner_inferences A19 hasFailureRisk=231",
+          "CONTEXT.reasoner_inferences A20 hasProtectedAtom=363",
+          "CONTEXT.reasoner_inferences A21 hasRequiredOperation SET_CHIRAL=115",
+          "CONTEXT.reasoner_inferences StereocenterAnchor 契约=320"
+        ],
+        "collision_risk": "MEDIUM",
+        "risk_rationale": "CONTEXT.literature.syncraft.reported gives P2M 28.4% / ResGen 29.1% rescue at similarity>0.6, so edit-sequence rescue overlap is material; however CONTEXT.literature.syncraft does not state ontology-grounded failure explanation or anchor contracts."
+      },
+      {
+        "collision_id": "C2",
+        "literature_field": "CONTEXT.literature.crux",
+        "title": "Can AI agents conduct open-ended AI research? Early evidence from two case studies",
+        "arxiv": "2607.27191",
+        "overlap": "Both concern AI-agent workflows and evidence sufficiency.",
+        "overlap_evidence": [
+          "CONTEXT.literature.crux.lesson",
+          "CONTEXT.n_evidence=79"
+        ],
+        "differentiation": "The survivor is a domain-specific ontology-grounded molecular editing pipeline, not an open-ended AI research agent case study.",
+        "differentiation_evidence": [
+          "CONTEXT.question",
+          "CONTEXT.reasoner_inferences",
+          "CONTEXT.hardOK_48api.ontology=0.875"
+        ],
+        "collision_risk": "LOW",
+        "risk_rationale": "CONTEXT.literature.crux.lesson warns that agents do engineering but fail at evidence sufficiency, which is a caution rather than a direct method collision."
+      },
+      {
+        "collision_id": "C3",
+        "literature_field": "CONTEXT.literature.structure_papers",
+        "items": [
+          "5KB3",
+          "5IRU",
+          "5J2M",
+          "5JJK",
+          "5JXG",
+          "5K3S",
+          "5IAR"
+        ],
+        "overlap": "They are retrieved structure-paper context; CONTEXT.question mentions binding interactions.",
+        "overlap_evidence": [
+          "CONTEXT.literature.structure_papers",
+          "CONTEXT.question"
+        ],
+        "differentiation": "CONTEXT.literature.structure_papers lists identifiers only and does not state non-synthesizability diagnosis or edit-sequence generation.",
+        "differentiation_evidence": [
+          "CONTEXT.literature.structure_papers"
+        ],
+        "collision_risk": "LOW",
+        "risk_rationale": "No method collision is stated in CONTEXT.literature.structure_papers; they are listed as structure papers."
+      }
+    ],
+    "survivor": {
+      "survivor_id": "S1",
+      "name": "Ontology-grounded non-synthesizability diagnosis and constrained edit pipeline",
+      "retained_because": [
+        "CONTEXT.hardOK_48api.ontology=0.875 exceeds CONTEXT.hardOK_48api.similarity=0.5 and CONTEXT.hardOK_48api.random=0.5.",
+        "CONTEXT.p_value reports 6 wins 0 losses, exact sign test p=0.0156; end2end 7 wins 0 losses p=0.0078.",
+        "CONTEXT.reasoner_inferences provides A19 hasFailureRisk=231, A20 hasProtectedAtom=363, A21 hasRequiredOperation SET_CHIRAL=115, 定义类 ValidatedEditSequence=78, 定义类 StereocenterPreservingReaction=2, and StereocenterAnchor 契约=320.",
+        "CONTEXT.transforms_freed=5/5."
+      ],
+      "demoted_or_killed": [
+        {
+          "item": "similarity-only baseline",
+          "reason": "CONTEXT.hardOK_48api.similarity=0.5 is lower than CONTEXT.hardOK_48api.ontology=0.875."
+        },
+        {
+          "item": "random-only baseline",
+          "reason": "CONTEXT.hardOK_48api.random=0.5 is lower than CONTEXT.hardOK_48api.ontology=0.875."
+        },
+        {
+          "item": "pure edit-sequence prediction without ontology-grounded failure explanation",
+          "reason": "CONTEXT.literature.syncraft.title covers edit-sequence prediction, while CONTEXT.reasoner_inferences adds failure-risk, protected-atom, required-operation, and stereocenter-anchor artifacts."
+        }
+      ],
+      "go_criteria": [
+        "Provide provenance for CONTEXT.end2edit_validity.source and CONTEXT.anchor_violation.source.",
+        "Preserve CONTEXT.reasoner_inferences artifacts for A19 hasFailureRisk, A20 hasProtectedAtom, A21 hasRequiredOperation SET_CHIRAL, and StereocenterAnchor 契约.",
+        "Maintain ontology hardOK advantage over similarity and random baselines as shown by CONTEXT.hardOK_48api."
+      ],
+      "no_go_criteria": [
+        "If CONTEXT.end2edit_validity.source and CONTEXT.anchor_violation.source remain null and no external provenance is supplied.",
+        "If anchor violation or end2edit validity cannot be tied to CONTEXT.reasoner_inferences or CONTEXT.hardOK_48api evidence."
+      ]
+    },
+    "convergence": {
+      "converged": true,
+      "survivor_count": 1,
+      "basis": [
+        "CONTEXT.hardOK_48api.ontology=0.875 vs CONTEXT.hardOK_48api.similarity=0.5 and CONTEXT.hardOK_48api.random=0.5.",
+        "CONTEXT.p_value=6 wins 0 losses, exact sign test p=0.0156; end2end 7 wins 0 losses p=0.0078.",
+        "CONTEXT.reasoner_inferences includes A21 hasRequiredOperation SET_CHIRAL=115, A19 hasFailureRisk=231, A20 hasProtectedAtom=363, 定义类 ValidatedEditSequence=78, 定义类 StereocenterPreservingReaction=2, StereocenterAnchor 契约=320."
+      ],
+      "residual_risks": [
+        "CONTEXT.end2edit_validity.source=null.",
+        "CONTEXT.anchor_violation.source=null.",
+        "CONTEXT.literature.syncraft.reported shows adjacent edit-sequence rescue performance, requiring continued differentiation."
+      ]
+    }
+  },
+  "verdict": "WARN",
   "missing_inputs": [
-    "model_call_failed"
+    "CONTEXT.end2edit_validity.source=null: provenance for end2edit validity values is missing.",
+    "CONTEXT.anchor_violation.source=null: provenance for anchor violation values is missing.",
+    "No provided CONTEXT field supplies compute, time, expertise, or ethics evidence for this phase.",
+    "No provided CONTEXT field supplies full-text literature evidence beyond CONTEXT.literature.syncraft, CONTEXT.literature.crux, and CONTEXT.literature.structure_papers.",
+    "No provided CONTEXT field supplies an explicit novelty search log or inclusion/exclusion criteria beyond CONTEXT.papers=7 and the CONTEXT.literature fields."
   ],
-  "full_response": null
+  "full_response": {
+    "phase": "3 新颖性 + 碰撞矩阵",
+    "qid": "Q-ONT-MOL-001",
+    "task": "4-axis novelty/feasibility/relevance/EG scoring + frontier advancement + collision matrix against retrieved literature; converge to one survivor.",
+    "verdict": "WARN",
+    "verdict_rationale": [
+      "CONTEXT.hardOK_48api.ontology=0.875 is higher than CONTEXT.hardOK_48api.similarity=0.5 and CONTEXT.hardOK_48api.random=0.5, supporting ontology-grounded frontier advancement.",
+      "CONTEXT.p_value reports 6 wins 0 losses, exact sign test p=0.0156; end2end 7 wins 0 losses p=0.0078, supporting a feasibility signal.",
+      "CONTEXT.end2edit_validity.source=null and CONTEXT.anchor_violation.source=null mean validation provenance is missing, preventing an unqualified PASS.",
+      "CONTEXT.literature.syncraft.title shows adjacent edit-sequence synthesizability optimization, so collision risk must remain visible."
+    ],
+    "missing_inputs": [
+      "CONTEXT.end2edit_validity.source=null: provenance for end2edit validity values is missing.",
+      "CONTEXT.anchor_violation.source=null: provenance for anchor violation values is missing.",
+      "No provided CONTEXT field supplies compute, time, expertise, or ethics evidence for this phase.",
+      "No provided CONTEXT field supplies full-text literature evidence beyond CONTEXT.literature.syncraft, CONTEXT.literature.crux, and CONTEXT.literature.structure_papers.",
+      "No provided CONTEXT field supplies an explicit novelty search log or inclusion/exclusion criteria beyond CONTEXT.papers=7 and the CONTEXT.literature fields."
+    ],
+    "phase_output": {
+      "scoring_scale": "0-5 ordinal phase assessment; scores are not new empirical measurements and are justified only by cited CONTEXT fields.",
+      "axis_scores": [
+        {
+          "axis": "novelty",
+          "score": 4,
+          "tier": "HIGH",
+          "evidence": [
+            "CONTEXT.question asks how an ontology-grounded pipeline can identify why a generated molecule is non-synthesizable and edit it while preserving pharmacophoric anchors, stereochemistry and binding interactions.",
+            "CONTEXT.reasoner_inferences includes A21 hasRequiredOperation SET_CHIRAL=115, A19 hasFailureRisk=231, A20 hasProtectedAtom=363, 定义类 ValidatedEditSequence=78, 定义类 StereocenterPreservingReaction=2, and StereocenterAnchor 契约=320.",
+            "CONTEXT.literature.syncraft.title reports edit-sequence prediction for molecular synthesizability optimization, which is adjacent but not identical to ontology-grounded failure explanation and constrained editing."
+          ],
+          "rationale": "The survivor is novel relative to the retrieved literature because CONTEXT.reasoner_inferences supplies explicit failure-risk, protected-atom, chiral-operation, and stereocenter-anchor artifacts, while CONTEXT.literature.syncraft.title reports edit-sequence prediction."
+        },
+        {
+          "axis": "feasibility",
+          "score": 3,
+          "tier": "CONSTRAINED",
+          "evidence": [
+            "CONTEXT.hardOK_48api.ontology=0.875 vs CONTEXT.hardOK_48api.similarity=0.5 and CONTEXT.hardOK_48api.random=0.5.",
+            "CONTEXT.p_value=6 wins 0 losses, exact sign test p=0.0156; end2end 7 wins 0 losses p=0.0078.",
+            "CONTEXT.reasoner_inferences source=kernel_verify.json; owlrl 10400->23113 triples.",
+            "CONTEXT.transforms_freed=5/5.",
+            "CONTEXT.end2edit_validity.ontology=1.0 and CONTEXT.end2edit_validity.ontology_lora=1.0, but CONTEXT.end2edit_validity.source=null.",
+            "CONTEXT.anchor_violation.ontology=0.0 and CONTEXT.anchor_violation.ontology_lora=0.0, but CONTEXT.anchor_violation.source=null."
+          ],
+          "rationale": "Feasibility is supported by ontology hardOK, win-loss tests, reasoner inferences, and transforms_freed, but it is constrained because end2edit validity and anchor violation provenance are missing."
+        },
+        {
+          "axis": "relevance",
+          "score": 5,
+          "tier": "HIGH",
+          "evidence": [
+            "CONTEXT.question directly asks for ontology-grounded identification and editing of non-synthesizable molecules.",
+            "CONTEXT.three_questions maps to Q1 where the structure is problematic, Q2 why it cannot be made, and Q3 what must not be touched during editing.",
+            "CONTEXT.corpus=3272 CQ cases / 14 batches; 2783 crossdocked molecules.",
+            "CONTEXT.n_molecules=3483 and CONTEXT.n_evidence=79."
+          ],
+          "rationale": "The phase artifacts directly address the question and its three sub-questions, with corpus and evidence artifacts present in CONTEXT."
+        },
+        {
+          "axis": "EG",
+          "score": 3,
+          "tier": "CONSTRAINED",
+          "evidence": [
+            "CONTEXT.n_evidence=79 and CONTEXT.papers=7.",
+            "CONTEXT.reasoner_inferences source=kernel_verify.json; owlrl 10400->23113 triples.",
+            "CONTEXT.literature.crux.lesson states agents do engineering but fail at evidence sufficiency.",
+            "CONTEXT.end2edit_validity.source=null and CONTEXT.anchor_violation.source=null."
+          ],
+          "rationale": "Evidence artifacts exist, but EG is constrained because key validation provenance is missing and CONTEXT.literature.crux.lesson warns about evidence sufficiency."
+        }
+      ],
+      "question_alignment": [
+        {
+          "question_id": "Q1",
+          "question": "where the structure is problematic",
+          "evidence": [
+            "CONTEXT.three_questions.Q1",
+            "CONTEXT.reasoner_inferences A19 hasFailureRisk=231",
+            "CONTEXT.reasoner_inferences A20 hasProtectedAtom=363"
+          ],
+          "artifact": "FailureRisk and ProtectedAtom reasoner inferences localize problematic structural regions."
+        },
+        {
+          "question_id": "Q2",
+          "question": "why it cannot be made",
+          "evidence": [
+            "CONTEXT.three_questions.Q2",
+            "CONTEXT.reasoner_inferences A21 hasRequiredOperation SET_CHIRAL=115",
+            "CONTEXT.reasoner_inferences 定义类 ValidatedEditSequence=78"
+          ],
+          "artifact": "RequiredOperation and ValidatedEditSequence artifacts explain required operations and validated edit routes."
+        },
+        {
+          "question_id": "Q3",
+          "question": "what must not be touched during editing",
+          "evidence": [
+            "CONTEXT.three_questions.Q3",
+            "CONTEXT.reasoner_inferences A20 hasProtectedAtom=363",
+            "CONTEXT.reasoner_inferences StereocenterAnchor 契约=320",
+            "CONTEXT.reasoner_inferences 定义类 StereocenterPreservingReaction=2"
+          ],
+          "artifact": "ProtectedAtom, StereocenterAnchor, and StereocenterPreservingReaction artifacts define untouchable anchors."
+        }
+      ],
+      "frontier_advancement": {
+        "summary": "The frontier advances from similarity/random baselines toward ontology-grounded, reasoner-inferred constraints for non-synthesizability editing.",
+        "evidence": [
+          "CONTEXT.hardOK_48api.ontology=0.875",
+          "CONTEXT.hardOK_48api.similarity=0.5",
+          "CONTEXT.hardOK_48api.random=0.5",
+          "CONTEXT.p_value=6 wins 0 losses, exact sign test p=0.0156; end2end 7 wins 0 losses p=0.0078",
+          "CONTEXT.reasoner_inferences includes A21 hasRequiredOperation SET_CHIRAL=115, A19 hasFailureRisk=231, A20 hasProtectedAtom=363, 定义类 ValidatedEditSequence=78, 定义类 StereocenterPreservingReaction=2, StereocenterAnchor 契约=320"
+        ],
+        "advancement_claims": [
+          {
+            "claim": "Ontology grounding outperforms similarity and random baselines in the provided hardOK comparison.",
+            "evidence": [
+              "CONTEXT.hardOK_48api.ontology=0.875",
+              "CONTEXT.hardOK_48api.similarity=0.5",
+              "CONTEXT.hardOK_48api.random=0.5"
+            ]
+          },
+          {
+            "claim": "End-to-end editing has a positive win-loss signal in the provided p_value field.",
+            "evidence": [
+              "CONTEXT.p_value=end2end 7 wins 0 losses p=0.0078"
+            ]
+          },
+          {
+            "claim": "The reasoner materializes constraints needed for Q1, Q2, and Q3.",
+            "evidence": [
+              "CONTEXT.reasoner_inferences A19 hasFailureRisk=231",
+              "CONTEXT.reasoner_inferences A21 hasRequiredOperation SET_CHIRAL=115",
+              "CONTEXT.reasoner_inferences A20 hasProtectedAtom=363",
+              "CONTEXT.reasoner_inferences StereocenterAnchor 契约=320"
+            ]
+          }
+        ],
+        "frontier_gaps": [
+          "CONTEXT.end2edit_validity.source=null leaves end2edit validity provenance unresolved.",
+          "CONTEXT.anchor_violation.source=null leaves anchor violation provenance unresolved.",
+          "No provided CONTEXT field supplies compute, time, expertise, or ethics evidence."
+        ]
+      },
+      "collision_matrix": [
+        {
+          "collision_id": "C1",
+          "literature_field": "CONTEXT.literature.syncraft",
+          "title": "SynCraft: Guiding Large Language Models to Predict Edit Sequences for Molecular Synthesizability Optimization",
+          "arxiv": "2512.20333",
+          "overlap": "Both address molecular synthesizability optimization through edit sequences.",
+          "overlap_evidence": [
+            "CONTEXT.literature.syncraft.title",
+            "CONTEXT.question"
+          ],
+          "differentiation": "The survivor adds ontology-grounded diagnosis of why a molecule is non-synthesizable and explicit preservation of pharmacophoric anchors, stereochemistry, and binding interactions.",
+          "differentiation_evidence": [
+            "CONTEXT.question",
+            "CONTEXT.reasoner_inferences A19 hasFailureRisk=231",
+            "CONTEXT.reasoner_inferences A20 hasProtectedAtom=363",
+            "CONTEXT.reasoner_inferences A21 hasRequiredOperation SET_CHIRAL=115",
+            "CONTEXT.reasoner_inferences StereocenterAnchor 契约=320"
+          ],
+          "collision_risk": "MEDIUM",
+          "risk_rationale": "CONTEXT.literature.syncraft.reported gives P2M 28.4% / ResGen 29.1% rescue at similarity>0.6, so edit-sequence rescue overlap is material; however CONTEXT.literature.syncraft does not state ontology-grounded failure explanation or anchor contracts."
+        },
+        {
+          "collision_id": "C2",
+          "literature_field": "CONTEXT.literature.crux",
+          "title": "Can AI agents conduct open-ended AI research? Early evidence from two case studies",
+          "arxiv": "2607.27191",
+          "overlap": "Both concern AI-agent workflows and evidence sufficiency.",
+          "overlap_evidence": [
+            "CONTEXT.literature.crux.lesson",
+            "CONTEXT.n_evidence=79"
+          ],
+          "differentiation": "The survivor is a domain-specific ontology-grounded molecular editing pipeline, not an open-ended AI research agent case study.",
+          "differentiation_evidence": [
+            "CONTEXT.question",
+            "CONTEXT.reasoner_inferences",
+            "CONTEXT.hardOK_48api.ontology=0.875"
+          ],
+          "collision_risk": "LOW",
+          "risk_rationale": "CONTEXT.literature.crux.lesson warns that agents do engineering but fail at evidence sufficiency, which is a caution rather than a direct method collision."
+        },
+        {
+          "collision_id": "C3",
+          "literature_field": "CONTEXT.literature.structure_papers",
+          "items": [
+            "5KB3",
+            "5IRU",
+            "5J2M",
+            "5JJK",
+            "5JXG",
+            "5K3S",
+            "5IAR"
+          ],
+          "overlap": "They are retrieved structure-paper context; CONTEXT.question mentions binding interactions.",
+          "overlap_evidence": [
+            "CONTEXT.literature.structure_papers",
+            "CONTEXT.question"
+          ],
+          "differentiation": "CONTEXT.literature.structure_papers lists identifiers only and does not state non-synthesizability diagnosis or edit-sequence generation.",
+          "differentiation_evidence": [
+            "CONTEXT.literature.structure_papers"
+          ],
+          "collision_risk": "LOW",
+          "risk_rationale": "No method collision is stated in CONTEXT.literature.structure_papers; they are listed as structure papers."
+        }
+      ],
+      "survivor": {
+        "survivor_id": "S1",
+        "name": "Ontology-grounded non-synthesizability diagnosis and constrained edit pipeline",
+        "retained_because": [
+          "CONTEXT.hardOK_48api.ontology=0.875 exceeds CONTEXT.hardOK_48api.similarity=0.5 and CONTEXT.hardOK_48api.random=0.5.",
+          "CONTEXT.p_value reports 6 wins 0 losses, exact sign test p=0.0156; end2end 7 wins 0 losses p=0.0078.",
+          "CONTEXT.reasoner_inferences provides A19 hasFailureRisk=231, A20 hasProtectedAtom=363, A21 hasRequiredOperation SET_CHIRAL=115, 定义类 ValidatedEditSequence=78, 定义类 StereocenterPreservingReaction=2, and StereocenterAnchor 契约=320.",
+          "CONTEXT.transforms_freed=5/5."
+        ],
+        "demoted_or_killed": [
+          {
+            "item": "similarity-only baseline",
+            "reason": "CONTEXT.hardOK_48api.similarity=0.5 is lower than CONTEXT.hardOK_48api.ontology=0.875."
+          },
+          {
+            "item": "random-only baseline",
+            "reason": "CONTEXT.hardOK_48api.random=0.5 is lower than CONTEXT.hardOK_48api.ontology=0.875."
+          },
+          {
+            "item": "pure edit-sequence prediction without ontology-grounded failure explanation",
+            "reason": "CONTEXT.literature.syncraft.title covers edit-sequence prediction, while CONTEXT.reasoner_inferences adds failure-risk, protected-atom, required-operation, and stereocenter-anchor artifacts."
+          }
+        ],
+        "go_criteria": [
+          "Provide provenance for CONTEXT.end2edit_validity.source and CONTEXT.anchor_violation.source.",
+          "Preserve CONTEXT.reasoner_inferences artifacts for A19 hasFailureRisk, A20 hasProtectedAtom, A21 hasRequiredOperation SET_CHIRAL, and StereocenterAnchor 契约.",
+          "Maintain ontology hardOK advantage over similarity and random baselines as shown by CONTEXT.hardOK_48api."
+        ],
+        "no_go_criteria": [
+          "If CONTEXT.end2edit_validity.source and CONTEXT.anchor_violation.source remain null and no external provenance is supplied.",
+          "If anchor violation or end2edit validity cannot be tied to CONTEXT.reasoner_inferences or CONTEXT.hardOK_48api evidence."
+        ]
+      },
+      "convergence": {
+        "converged": true,
+        "survivor_count": 1,
+        "basis": [
+          "CONTEXT.hardOK_48api.ontology=0.875 vs CONTEXT.hardOK_48api.similarity=0.5 and CONTEXT.hardOK_48api.random=0.5.",
+          "CONTEXT.p_value=6 wins 0 losses, exact sign test p=0.0156; end2end 7 wins 0 losses p=0.0078.",
+          "CONTEXT.reasoner_inferences includes A21 hasRequiredOperation SET_CHIRAL=115, A19 hasFailureRisk=231, A20 hasProtectedAtom=363, 定义类 ValidatedEditSequence=78, 定义类 StereocenterPreservingReaction=2, StereocenterAnchor 契约=320."
+        ],
+        "residual_risks": [
+          "CONTEXT.end2edit_validity.source=null.",
+          "CONTEXT.anchor_violation.source=null.",
+          "CONTEXT.literature.syncraft.reported shows adjacent edit-sequence rescue performance, requiring continued differentiation."
+        ]
+      }
+    }
+  }
 }

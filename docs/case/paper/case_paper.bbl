@@ -1,0 +1,20 @@
+\begin{thebibliography}{2}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Kirgis et~al.(2026)Kirgis, Kapoor, et~al.]{kirgis2026crux}
+Peter Kirgis, Sayash Kapoor, et~al.
+\newblock Can ai agents conduct open-ended ai research? early evidence from two
+  case studies, 2026.
+
+\bibitem[Li and Lai(2026)]{li2026syncraft}
+Junren Li and Luhua Lai.
+\newblock Guiding large language models to predict edit sequences for molecular
+  synthesizability optimization.
+\newblock \emph{Nature Machine Intelligence}, 2026.
+\newblock DOI: 10.1038/s42256-026-01304-x.
+
+\end{thebibliography}

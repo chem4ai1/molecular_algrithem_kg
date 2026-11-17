@@ -1,0 +1,113 @@
+{
+  "phase": "16_final_archive",
+  "title": "Phase 16 归档 + RUN_PREPRINT + LESSONS",
+  "phase_output": {
+    "RUN_PREPRINT": {
+      "problem": "CONTEXT: topic = Ontology-grounded discovery and editing of non-synthesizable molecules.",
+      "gap_ids": [
+        "not provided in supplied facts"
+      ],
+      "selected_idea": "CONTEXT: topic + facts: use ontology-grounded hardOK for discovery/editing; hardOK ontology 0.875 vs similarity 0.5; end2end hardOK 1.0 vs 0.125.",
+      "verdict_trail_summary": "CONTEXT: hardOK ontology 0.875 vs similarity 0.5; end2end hardOK 1.0 vs 0.125; p=0.0156 / 0.0078; SHACL conforms=True.",
+      "unexplored_gaps": [
+        "not provided in supplied facts"
+      ],
+      "failure_notes": [
+        "not provided in supplied facts"
+      ],
+      "evidence_base": [
+        "CONTEXT: 24 CQ types",
+        "CONTEXT: 79 structure evidences / 7 papers",
+        "CONTEXT: 13 transforms",
+        "CONTEXT: SHACL conforms=True"
+      ]
+    },
+    "LESSONS": {
+      "file": "LESSONS.json",
+      "categories": [
+        {
+          "category": "ontology_grounding",
+          "evidence": "CONTEXT: hardOK ontology 0.875 vs similarity 0.5",
+          "lesson": "CONTEXT-derived: ontology-grounded hardOK is higher than similarity in the supplied comparison."
+        },
+        {
+          "category": "end_to_end_editing",
+          "evidence": "CONTEXT: end2end hardOK 1.0 vs 0.125",
+          "lesson": "CONTEXT-derived: end-to-end hardOK is 1.0 versus 0.125 in the supplied comparison."
+        },
+        {
+          "category": "statistical_validation",
+          "evidence": "CONTEXT: p=0.0156 / 0.0078",
+          "lesson": "CONTEXT-derived: the supplied p-values provide quantitative validation evidence."
+        },
+        {
+          "category": "compliance_and_coverage",
+          "evidence": "CONTEXT: 24 CQ types; 79 structure evidences / 7 papers; 13 transforms; SHACL conforms=True",
+          "lesson": "CONTEXT-derived: the supplied artifacts cover CQ types, structure evidence, transforms, and SHACL conformance."
+        }
+      ]
+    }
+  },
+  "verdict": "WARN",
+  "missing_inputs": [
+    "gap_ids",
+    "unexplored_gaps",
+    "failure_notes"
+  ],
+  "full_response": {
+    "phase_output": {
+      "RUN_PREPRINT": {
+        "problem": "CONTEXT: topic = Ontology-grounded discovery and editing of non-synthesizable molecules.",
+        "gap_ids": [
+          "not provided in supplied facts"
+        ],
+        "selected_idea": "CONTEXT: topic + facts: use ontology-grounded hardOK for discovery/editing; hardOK ontology 0.875 vs similarity 0.5; end2end hardOK 1.0 vs 0.125.",
+        "verdict_trail_summary": "CONTEXT: hardOK ontology 0.875 vs similarity 0.5; end2end hardOK 1.0 vs 0.125; p=0.0156 / 0.0078; SHACL conforms=True.",
+        "unexplored_gaps": [
+          "not provided in supplied facts"
+        ],
+        "failure_notes": [
+          "not provided in supplied facts"
+        ],
+        "evidence_base": [
+          "CONTEXT: 24 CQ types",
+          "CONTEXT: 79 structure evidences / 7 papers",
+          "CONTEXT: 13 transforms",
+          "CONTEXT: SHACL conforms=True"
+        ]
+      },
+      "LESSONS": {
+        "file": "LESSONS.json",
+        "categories": [
+          {
+            "category": "ontology_grounding",
+            "evidence": "CONTEXT: hardOK ontology 0.875 vs similarity 0.5",
+            "lesson": "CONTEXT-derived: ontology-grounded hardOK is higher than similarity in the supplied comparison."
+          },
+          {
+            "category": "end_to_end_editing",
+            "evidence": "CONTEXT: end2end hardOK 1.0 vs 0.125",
+            "lesson": "CONTEXT-derived: end-to-end hardOK is 1.0 versus 0.125 in the supplied comparison."
+          },
+          {
+            "category": "statistical_validation",
+            "evidence": "CONTEXT: p=0.0156 / 0.0078",
+            "lesson": "CONTEXT-derived: the supplied p-values provide quantitative validation evidence."
+          },
+          {
+            "category": "compliance_and_coverage",
+            "evidence": "CONTEXT: 24 CQ types; 79 structure evidences / 7 papers; 13 transforms; SHACL conforms=True",
+            "lesson": "CONTEXT-derived: the supplied artifacts cover CQ types, structure evidence, transforms, and SHACL conformance."
+          }
+        ]
+      }
+    },
+    "missing_inputs": [
+      "gap_ids",
+      "unexplored_gaps",
+      "failure_notes"
+    ],
+    "verdict": "WARN"
+  },
+  "retry": "compact_prompt"
+}

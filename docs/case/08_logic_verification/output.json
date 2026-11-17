@@ -1,0 +1,428 @@
+{
+  "phase": "08_logic_verification",
+  "title": "Phase 8 逻辑一致性审计",
+  "phase_output": {
+    "phase": "Phase 8 逻辑一致性审计",
+    "qid": "Q-ONT-MOL-001",
+    "audit_type": "6-dimension logical consistency audit with issue taxonomy",
+    "checks_performed": [
+      {
+        "dimension_id": "D1",
+        "check": "claim_question_alignment",
+        "result": "CONSISTENT",
+        "detail": "The question asks for ontology-grounded identification of why a molecule is non-synthesizable and editing into a synthesizable analogue while preserving pharmacophoric anchors, stereochemistry and binding interactions; three_questions decomposes this into Q1 where the structure is problematic, Q2 why it cannot be made, and Q3 what must not be touched during editing.",
+        "context_refs": [
+          "question",
+          "three_questions"
+        ]
+      },
+      {
+        "dimension_id": "D2",
+        "check": "metric_endpoint_consistency",
+        "result": "CONSISTENT",
+        "detail": "hardOK_48api reports ontology 0.875 versus similarity 0.5 and random 0.5; end2edit_validity reports ontology 1.0 and ontology_lora 1.0 versus syncraft 0.5; anchor_violation reports ontology 0.0 and ontology_lora 0.0 versus syncraft 0.125.",
+        "context_refs": [
+          "hardOK_48api",
+          "end2edit_validity",
+          "anchor_violation"
+        ]
+      },
+      {
+        "dimension_id": "D3",
+        "check": "statistical_inference_consistency",
+        "result": "CONSISTENT",
+        "detail": "p_value reports 6 wins 0 losses with p=0.0156 and end2end 7 wins 0 losses with p=0.0078; no conflicting statistical claim is present in CONTEXT.",
+        "context_refs": [
+          "p_value"
+        ]
+      },
+      {
+        "dimension_id": "D4",
+        "check": "ontology_reasoner_traceability",
+        "result": "CONSISTENT",
+        "detail": "reasoner_inferences provides counts for A21 hasRequiredOperation SET_CHIRAL 115, A19 hasFailureRisk 231, A20 hasProtectedAtom 363, 定义类 ValidatedEditSequence 78, 定义类 StereocenterPreservingReaction 2, and StereocenterAnchor 契约 320, with source kernel_verify.json and owlrl 10400->23113 triples.",
+        "context_refs": [
+          "reasoner_inferences"
+        ]
+      },
+      {
+        "dimension_id": "D5",
+        "check": "requirement_coverage",
+        "result": "PARTIAL_GAP",
+        "detail": "Pharmacophoric anchors and stereochemistry have explicit or metric support via anchor_violation, A21 hasRequiredOperation SET_CHIRAL, and StereocenterAnchor 契约; binding interactions are required by question but no binding-affinity or interaction-fingerprint metric is provided, and structure_papers lists only PDB IDs.",
+        "context_refs": [
+          "question",
+          "anchor_violation",
+          "reasoner_inferences",
+          "structure_papers"
+        ]
+      },
+      {
+        "dimension_id": "D6",
+        "check": "provenance_literature_alignment",
+        "result": "CONSISTENT_WITH_LIMITATION",
+        "detail": "corpus reports 3272 CQ cases / 14 batches and 2783 crossdocked molecules; n_molecules is 3483, n_evidence is 79, papers is 7, transforms_freed is 5/5, and rl_pool is 5174; literature includes SynCraft reported P2M 28.4% / ResGen 29.1% rescue at similarity>0.6 and CRUX lesson that agents do engineering but fail at evidence sufficiency; no direct contradiction is present, but no mapping from these artifacts to the binding-interaction requirement is provided.",
+        "context_refs": [
+          "corpus",
+          "n_molecules",
+          "n_evidence",
+          "papers",
+          "transforms_freed",
+          "rl_pool",
+          "literature"
+        ]
+      }
+    ],
+    "issue_taxonomy": {
+      "source": "phase_task",
+      "levels": {
+        "FATAL": "Core pipeline claim is logically impossible or self-contradictory.",
+        "CRITICAL": "Core claim is unsupported by required evidence or a required endpoint is missing.",
+        "HIGH": "Material gap that can mislead interpretation but does not invalidate all claims.",
+        "MEDIUM": "Ambiguity or traceability gap requiring clarification.",
+        "LOW": "Documentation or presentation issue.",
+        "INFO": "Observation without required remediation."
+      }
+    },
+    "findings": [
+      {
+        "id": "F8-1",
+        "severity": "HIGH",
+        "dimension": "D5",
+        "finding": "Binding-interaction preservation is required by the question but is not measured in CONTEXT; only anchor_violation and structure_papers PDB IDs are available.",
+        "impact": "The claim that edits preserve binding interactions is not fully auditable.",
+        "remediation": "Add an explicit binding-interaction metric or evidence mapping and define how structure_papers support interaction preservation.",
+        "context_refs": [
+          "question",
+          "anchor_violation",
+          "structure_papers"
+        ]
+      },
+      {
+        "id": "F8-2",
+        "severity": "MEDIUM",
+        "dimension": "D2",
+        "finding": "source is null for end2edit_validity and anchor_violation, reducing traceability of key editing endpoints.",
+        "impact": "Endpoint values cannot be traced to source artifacts from CONTEXT alone.",
+        "remediation": "Provide source artifacts or provenance for end2edit_validity and anchor_violation.",
+        "context_refs": [
+          "end2edit_validity",
+          "anchor_violation"
+        ]
+      },
+      {
+        "id": "F8-3",
+        "severity": "MEDIUM",
+        "dimension": "D5",
+        "finding": "anchor_violation is reported numerically but its scope is not defined in CONTEXT.",
+        "impact": "It is unclear whether anchor_violation covers pharmacophoric anchors only or also stereochemistry and binding interactions.",
+        "remediation": "Define anchor_violation scope and its relation to pharmacophoric anchors, stereochemistry, and binding interactions.",
+        "context_refs": [
+          "anchor_violation",
+          "question"
+        ]
+      },
+      {
+        "id": "F8-4",
+        "severity": "LOW",
+        "dimension": "D6",
+        "finding": "SynCraft literature reports rescue at similarity>0.6 while hardOK_48api lists similarity 0.5; CONTEXT does not reconcile these settings.",
+        "impact": "Cross-study comparison may be misinterpreted.",
+        "remediation": "Clarify whether similarity 0.5 and similarity>0.6 refer to different experimental settings.",
+        "context_refs": [
+          "literature",
+          "hardOK_48api"
+        ]
+      }
+    ],
+    "fatal_critical_gate": {
+      "required": "zero FATAL/CRITICAL",
+      "FATAL": 0,
+      "CRITICAL": 0,
+      "status": "SATISFIED"
+    },
+    "max_review_rounds_policy": {
+      "MAX_REVIEW_ROUNDS": 3,
+      "policy": "If any FATAL or CRITICAL issue is found, the audit fails and must be remediated; up to 3 review rounds are allowed for non-fatal issues.",
+      "source": "phase_task"
+    },
+    "audit_conclusion": {
+      "statement": "No FATAL or CRITICAL issues were identified; WARN is issued because binding-interaction preservation is required but unmeasured and several provenance fields are missing.",
+      "context_refs": [
+        "question",
+        "anchor_violation",
+        "end2edit_validity",
+        "structure_papers"
+      ]
+    }
+  },
+  "verdict": "WARN",
+  "missing_inputs": [
+    {
+      "input": "binding_interaction_metric",
+      "status": "missing",
+      "reason": "The question requires preservation of binding interactions, but CONTEXT provides no binding-affinity or interaction-fingerprint metric.",
+      "context_refs": [
+        "question",
+        "anchor_violation",
+        "structure_papers"
+      ]
+    },
+    {
+      "input": "anchor_violation_scope_definition",
+      "status": "missing",
+      "reason": "anchor_violation values are present, but the scope of anchor_violation is not defined in CONTEXT.",
+      "context_refs": [
+        "anchor_violation"
+      ]
+    },
+    {
+      "input": "source_for_end2edit_validity",
+      "status": "missing",
+      "reason": "source is null for end2edit_validity.",
+      "context_refs": [
+        "end2edit_validity"
+      ]
+    },
+    {
+      "input": "source_for_anchor_violation",
+      "status": "missing",
+      "reason": "source is null for anchor_violation.",
+      "context_refs": [
+        "anchor_violation"
+      ]
+    },
+    {
+      "input": "structure_papers_to_binding_interaction_mapping",
+      "status": "missing",
+      "reason": "structure_papers lists PDB IDs only; CONTEXT provides no mapping from those structures to binding-interaction evidence.",
+      "context_refs": [
+        "structure_papers",
+        "question"
+      ]
+    },
+    {
+      "input": "corpus_to_endpoint_mapping",
+      "status": "missing",
+      "reason": "corpus counts are provided, but CONTEXT provides no mapping from corpus items to hardOK_48api or end2edit endpoints.",
+      "context_refs": [
+        "corpus",
+        "hardOK_48api",
+        "end2edit_validity"
+      ]
+    }
+  ],
+  "full_response": {
+    "verdict": "WARN",
+    "missing_inputs": [
+      {
+        "input": "binding_interaction_metric",
+        "status": "missing",
+        "reason": "The question requires preservation of binding interactions, but CONTEXT provides no binding-affinity or interaction-fingerprint metric.",
+        "context_refs": [
+          "question",
+          "anchor_violation",
+          "structure_papers"
+        ]
+      },
+      {
+        "input": "anchor_violation_scope_definition",
+        "status": "missing",
+        "reason": "anchor_violation values are present, but the scope of anchor_violation is not defined in CONTEXT.",
+        "context_refs": [
+          "anchor_violation"
+        ]
+      },
+      {
+        "input": "source_for_end2edit_validity",
+        "status": "missing",
+        "reason": "source is null for end2edit_validity.",
+        "context_refs": [
+          "end2edit_validity"
+        ]
+      },
+      {
+        "input": "source_for_anchor_violation",
+        "status": "missing",
+        "reason": "source is null for anchor_violation.",
+        "context_refs": [
+          "anchor_violation"
+        ]
+      },
+      {
+        "input": "structure_papers_to_binding_interaction_mapping",
+        "status": "missing",
+        "reason": "structure_papers lists PDB IDs only; CONTEXT provides no mapping from those structures to binding-interaction evidence.",
+        "context_refs": [
+          "structure_papers",
+          "question"
+        ]
+      },
+      {
+        "input": "corpus_to_endpoint_mapping",
+        "status": "missing",
+        "reason": "corpus counts are provided, but CONTEXT provides no mapping from corpus items to hardOK_48api or end2edit endpoints.",
+        "context_refs": [
+          "corpus",
+          "hardOK_48api",
+          "end2edit_validity"
+        ]
+      }
+    ],
+    "phase_output": {
+      "phase": "Phase 8 逻辑一致性审计",
+      "qid": "Q-ONT-MOL-001",
+      "audit_type": "6-dimension logical consistency audit with issue taxonomy",
+      "checks_performed": [
+        {
+          "dimension_id": "D1",
+          "check": "claim_question_alignment",
+          "result": "CONSISTENT",
+          "detail": "The question asks for ontology-grounded identification of why a molecule is non-synthesizable and editing into a synthesizable analogue while preserving pharmacophoric anchors, stereochemistry and binding interactions; three_questions decomposes this into Q1 where the structure is problematic, Q2 why it cannot be made, and Q3 what must not be touched during editing.",
+          "context_refs": [
+            "question",
+            "three_questions"
+          ]
+        },
+        {
+          "dimension_id": "D2",
+          "check": "metric_endpoint_consistency",
+          "result": "CONSISTENT",
+          "detail": "hardOK_48api reports ontology 0.875 versus similarity 0.5 and random 0.5; end2edit_validity reports ontology 1.0 and ontology_lora 1.0 versus syncraft 0.5; anchor_violation reports ontology 0.0 and ontology_lora 0.0 versus syncraft 0.125.",
+          "context_refs": [
+            "hardOK_48api",
+            "end2edit_validity",
+            "anchor_violation"
+          ]
+        },
+        {
+          "dimension_id": "D3",
+          "check": "statistical_inference_consistency",
+          "result": "CONSISTENT",
+          "detail": "p_value reports 6 wins 0 losses with p=0.0156 and end2end 7 wins 0 losses with p=0.0078; no conflicting statistical claim is present in CONTEXT.",
+          "context_refs": [
+            "p_value"
+          ]
+        },
+        {
+          "dimension_id": "D4",
+          "check": "ontology_reasoner_traceability",
+          "result": "CONSISTENT",
+          "detail": "reasoner_inferences provides counts for A21 hasRequiredOperation SET_CHIRAL 115, A19 hasFailureRisk 231, A20 hasProtectedAtom 363, 定义类 ValidatedEditSequence 78, 定义类 StereocenterPreservingReaction 2, and StereocenterAnchor 契约 320, with source kernel_verify.json and owlrl 10400->23113 triples.",
+          "context_refs": [
+            "reasoner_inferences"
+          ]
+        },
+        {
+          "dimension_id": "D5",
+          "check": "requirement_coverage",
+          "result": "PARTIAL_GAP",
+          "detail": "Pharmacophoric anchors and stereochemistry have explicit or metric support via anchor_violation, A21 hasRequiredOperation SET_CHIRAL, and StereocenterAnchor 契约; binding interactions are required by question but no binding-affinity or interaction-fingerprint metric is provided, and structure_papers lists only PDB IDs.",
+          "context_refs": [
+            "question",
+            "anchor_violation",
+            "reasoner_inferences",
+            "structure_papers"
+          ]
+        },
+        {
+          "dimension_id": "D6",
+          "check": "provenance_literature_alignment",
+          "result": "CONSISTENT_WITH_LIMITATION",
+          "detail": "corpus reports 3272 CQ cases / 14 batches and 2783 crossdocked molecules; n_molecules is 3483, n_evidence is 79, papers is 7, transforms_freed is 5/5, and rl_pool is 5174; literature includes SynCraft reported P2M 28.4% / ResGen 29.1% rescue at similarity>0.6 and CRUX lesson that agents do engineering but fail at evidence sufficiency; no direct contradiction is present, but no mapping from these artifacts to the binding-interaction requirement is provided.",
+          "context_refs": [
+            "corpus",
+            "n_molecules",
+            "n_evidence",
+            "papers",
+            "transforms_freed",
+            "rl_pool",
+            "literature"
+          ]
+        }
+      ],
+      "issue_taxonomy": {
+        "source": "phase_task",
+        "levels": {
+          "FATAL": "Core pipeline claim is logically impossible or self-contradictory.",
+          "CRITICAL": "Core claim is unsupported by required evidence or a required endpoint is missing.",
+          "HIGH": "Material gap that can mislead interpretation but does not invalidate all claims.",
+          "MEDIUM": "Ambiguity or traceability gap requiring clarification.",
+          "LOW": "Documentation or presentation issue.",
+          "INFO": "Observation without required remediation."
+        }
+      },
+      "findings": [
+        {
+          "id": "F8-1",
+          "severity": "HIGH",
+          "dimension": "D5",
+          "finding": "Binding-interaction preservation is required by the question but is not measured in CONTEXT; only anchor_violation and structure_papers PDB IDs are available.",
+          "impact": "The claim that edits preserve binding interactions is not fully auditable.",
+          "remediation": "Add an explicit binding-interaction metric or evidence mapping and define how structure_papers support interaction preservation.",
+          "context_refs": [
+            "question",
+            "anchor_violation",
+            "structure_papers"
+          ]
+        },
+        {
+          "id": "F8-2",
+          "severity": "MEDIUM",
+          "dimension": "D2",
+          "finding": "source is null for end2edit_validity and anchor_violation, reducing traceability of key editing endpoints.",
+          "impact": "Endpoint values cannot be traced to source artifacts from CONTEXT alone.",
+          "remediation": "Provide source artifacts or provenance for end2edit_validity and anchor_violation.",
+          "context_refs": [
+            "end2edit_validity",
+            "anchor_violation"
+          ]
+        },
+        {
+          "id": "F8-3",
+          "severity": "MEDIUM",
+          "dimension": "D5",
+          "finding": "anchor_violation is reported numerically but its scope is not defined in CONTEXT.",
+          "impact": "It is unclear whether anchor_violation covers pharmacophoric anchors only or also stereochemistry and binding interactions.",
+          "remediation": "Define anchor_violation scope and its relation to pharmacophoric anchors, stereochemistry, and binding interactions.",
+          "context_refs": [
+            "anchor_violation",
+            "question"
+          ]
+        },
+        {
+          "id": "F8-4",
+          "severity": "LOW",
+          "dimension": "D6",
+          "finding": "SynCraft literature reports rescue at similarity>0.6 while hardOK_48api lists similarity 0.5; CONTEXT does not reconcile these settings.",
+          "impact": "Cross-study comparison may be misinterpreted.",
+          "remediation": "Clarify whether similarity 0.5 and similarity>0.6 refer to different experimental settings.",
+          "context_refs": [
+            "literature",
+            "hardOK_48api"
+          ]
+        }
+      ],
+      "fatal_critical_gate": {
+        "required": "zero FATAL/CRITICAL",
+        "FATAL": 0,
+        "CRITICAL": 0,
+        "status": "SATISFIED"
+      },
+      "max_review_rounds_policy": {
+        "MAX_REVIEW_ROUNDS": 3,
+        "policy": "If any FATAL or CRITICAL issue is found, the audit fails and must be remediated; up to 3 review rounds are allowed for non-fatal issues.",
+        "source": "phase_task"
+      },
+      "audit_conclusion": {
+        "statement": "No FATAL or CRITICAL issues were identified; WARN is issued because binding-interaction preservation is required but unmeasured and several provenance fields are missing.",
+        "context_refs": [
+          "question",
+          "anchor_violation",
+          "end2edit_validity",
+          "structure_papers"
+        ]
+      }
+    }
+  }
+}

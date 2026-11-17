@@ -196,6 +196,28 @@ class TestWritingContext(unittest.TestCase):
         rels = {a.relation for a in g.assertions}
         self.assertIn("LED_TO", rels)
 
+    def test_freeze_problem_qid(self):
+        ctx, g = self._ctx()
+        a = ctx.freeze_problem(question="现有 3D 方法无法控制几何")
+        self.assertTrue(a.startswith("anchor:run_a:Q-"))
+        self.assertEqual(len(g.nodes[a].attrs["content_hash"]), 12)
+        self.assertEqual(g.nodes[a].attrs["status"], "frozen")
+
+    def test_freeze_idempotent(self):
+        ctx, g = self._ctx()
+        q = "现有 3D 方法无法控制几何"
+        self.assertEqual(ctx.freeze_problem(question=q),
+                         ctx.freeze_problem(question=q))
+
+    def test_hint_provisional(self):
+        ctx, g = self._ctx()
+        a = ctx.freeze_problem(question="q")
+        h = ctx.hint(anchor_id=a, domain_profile=["chem"], confidence=0.4)
+        self.assertTrue(g.nodes[h].attrs["provisional"])
+        self.assertEqual(g.nodes[h].attrs["confidence"], 0.4)
+        rels = {x.relation for x in g.assertions}
+        self.assertIn("HINTS", rels)
+
     def test_run_isolation(self):
         from capfactory.applayer.context import WritingContext
         ctx, g = self._ctx()

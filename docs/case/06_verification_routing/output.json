@@ -1,0 +1,480 @@
+{
+  "phase": "06_verification_routing",
+  "title": "Phase 6 验证路由",
+  "phase_output": {
+    "phase": "Phase 6 验证路由",
+    "qid": "Q-ONT-MOL-001",
+    "selected_route": "hybrid",
+    "route_citation": [
+      "CONTEXT.question",
+      "CONTEXT.three_questions.Q1",
+      "CONTEXT.three_questions.Q2",
+      "CONTEXT.three_questions.Q3",
+      "CONTEXT.hardOK_48api",
+      "CONTEXT.reasoner_inferences"
+    ],
+    "justification": [
+      {
+        "claim": "The problem requires ontology-grounded explanation of why a generated molecule is non-synthesizable and ontology-constrained editing that preserves anchors, stereochemistry, and binding interactions, so the route must combine formal knowledge representation with empirical validation.",
+        "citation": [
+          "CONTEXT.question",
+          "CONTEXT.three_questions.Q1",
+          "CONTEXT.three_questions.Q2",
+          "CONTEXT.three_questions.Q3"
+        ]
+      },
+      {
+        "claim": "Theory-only routing is insufficient because the pipeline must demonstrate synthesizability rescue, edit validity, and anchor preservation, not only logical consistency.",
+        "citation": [
+          "CONTEXT.question",
+          "CONTEXT.hardOK_48api",
+          "CONTEXT.end2edit_validity",
+          "CONTEXT.anchor_violation"
+        ]
+      },
+      {
+        "claim": "Experiment-first routing is insufficient because the method depends on ontology classes, contracts, and reasoner inferences to identify problematic structure and constrain protected atoms and stereocenters.",
+        "citation": [
+          "CONTEXT.question",
+          "CONTEXT.three_questions.Q1",
+          "CONTEXT.three_questions.Q3",
+          "CONTEXT.reasoner_inferences"
+        ]
+      },
+      {
+        "claim": "Hybrid routing is supported by existing ontology metrics, reasoner inferences, comparative statistics, and end-to-end edit-validity measurements.",
+        "citation": [
+          "CONTEXT.hardOK_48api",
+          "CONTEXT.p_value",
+          "CONTEXT.end2edit_validity",
+          "CONTEXT.anchor_violation",
+          "CONTEXT.reasoner_inferences"
+        ]
+      }
+    ],
+    "rejected_routes": [
+      {
+        "route": "theory-only",
+        "reason": "It would not test synthesizability rescue, edit validity, or anchor violation.",
+        "citation": [
+          "CONTEXT.question",
+          "CONTEXT.end2edit_validity",
+          "CONTEXT.anchor_violation"
+        ]
+      },
+      {
+        "route": "experiment-first",
+        "reason": "It would not provide ontology-grounded explanation of why a structure is problematic or what must not be touched during editing.",
+        "citation": [
+          "CONTEXT.question",
+          "CONTEXT.three_questions.Q1",
+          "CONTEXT.three_questions.Q3",
+          "CONTEXT.reasoner_inferences"
+        ]
+      }
+    ],
+    "routed_phases": [
+      {
+        "id": "R1_ontology_formalization_and_reasoner_validation",
+        "must_run": true,
+        "objective": "Validate ontology classes, contracts, and inferred constraints for failure risk, protected atoms, required operations, valid edit sequences, stereocenter-preserving reactions, and stereocenter anchors.",
+        "evidence": [
+          "CONTEXT.reasoner_inferences.A21 hasRequiredOperation SET_CHIRAL: 115",
+          "CONTEXT.reasoner_inferences.A19 hasFailureRisk: 231",
+          "CONTEXT.reasoner_inferences.A20 hasProtectedAtom: 363",
+          "CONTEXT.reasoner_inferences.定义类 ValidatedEditSequence: 78",
+          "CONTEXT.reasoner_inferences.定义类 StereocenterPreservingReaction: 2",
+          "CONTEXT.reasoner_inferences.StereocenterAnchor 契约: 320",
+          "CONTEXT.reasoner_inferences.source: kernel_verify.json; owlrl 10400->23113 triples"
+        ],
+        "citation": [
+          "CONTEXT.reasoner_inferences",
+          "CONTEXT.three_questions.Q1",
+          "CONTEXT.three_questions.Q3"
+        ]
+      },
+      {
+        "id": "R2_corpus_grounding_and_case_retrieval",
+        "must_run": true,
+        "objective": "Ground discovery and editing in the provided CQ cases, crossdocked molecules, molecule set, and evidence set.",
+        "evidence": [
+          "CONTEXT.corpus: 3272 CQ cases / 14 batches; 2783 crossdocked molecules",
+          "CONTEXT.n_molecules: 3483",
+          "CONTEXT.n_evidence: 79"
+        ],
+        "citation": [
+          "CONTEXT.corpus",
+          "CONTEXT.n_molecules",
+          "CONTEXT.n_evidence"
+        ]
+      },
+      {
+        "id": "R3_comparative_baseline_and_statistical_validation",
+        "must_run": true,
+        "objective": "Compare ontology against similarity and random baselines and record significance for end-to-end wins.",
+        "evidence": [
+          "CONTEXT.hardOK_48api.similarity: 0.5",
+          "CONTEXT.hardOK_48api.random: 0.5",
+          "CONTEXT.hardOK_48api.ontology: 0.875",
+          "CONTEXT.p_value: 6 wins 0 losses, exact sign test p=0.0156; end2end 7 wins 0 losses p=0.0078"
+        ],
+        "citation": [
+          "CONTEXT.hardOK_48api",
+          "CONTEXT.p_value"
+        ]
+      },
+      {
+        "id": "R4_end_to_end_edit_validity_and_anchor_preservation",
+        "must_run": true,
+        "objective": "Measure end-to-end edit validity and anchor violation for Syncraft, ontology, and ontology_lora, and record missing source baselines.",
+        "evidence": [
+          "CONTEXT.end2edit_validity.syncraft: 0.5",
+          "CONTEXT.end2edit_validity.ontology: 1.0",
+          "CONTEXT.end2edit_validity.ontology_lora: 1.0",
+          "CONTEXT.end2edit_validity.source: null",
+          "CONTEXT.anchor_violation.syncraft: 0.125",
+          "CONTEXT.anchor_violation.ontology: 0.0",
+          "CONTEXT.anchor_violation.ontology_lora: 0.0",
+          "CONTEXT.anchor_violation.source: null"
+        ],
+        "citation": [
+          "CONTEXT.end2edit_validity",
+          "CONTEXT.anchor_violation"
+        ]
+      },
+      {
+        "id": "R5_literature_and_structural_benchmark_alignment",
+        "must_run": true,
+        "objective": "Align with reported SynCraft rescue results, the CRUX evidence-sufficiency lesson, and the provided structural papers.",
+        "evidence": [
+          "CONTEXT.literature.syncraft.title: SynCraft: Guiding Large Language Models to Predict Edit Sequences for Molecular Synthesizability Optimization",
+          "CONTEXT.literature.syncraft.arxiv: 2512.20333",
+          "CONTEXT.literature.syncraft.reported: P2M 28.4% / ResGen 29.1% rescue at similarity>0.6 (Gemini-2.5-Pro)",
+          "CONTEXT.literature.crux.lesson: agents do engineering but fail at evidence sufficiency",
+          "CONTEXT.structure_papers: 5KB3, 5IRU, 5J2M, 5JJK, 5JXG, 5K3S, 5IAR",
+          "CONTEXT.papers: 7"
+        ],
+        "citation": [
+          "CONTEXT.literature",
+          "CONTEXT.structure_papers",
+          "CONTEXT.papers"
+        ]
+      },
+      {
+        "id": "R6_prospective_experimental_or_expert_validation",
+        "must_run": true,
+        "objective": "Test whether edited analogues are synthesizable and preserve binding interactions beyond retrospective metrics.",
+        "evidence": [
+          "CONTEXT.question",
+          "CONTEXT.end2edit_validity.source: null",
+          "CONTEXT.anchor_violation.source: null"
+        ],
+        "citation": [
+          "CONTEXT.question",
+          "CONTEXT.end2edit_validity",
+          "CONTEXT.anchor_violation"
+        ]
+      },
+      {
+        "id": "R7_transform_and_rl_pool_coverage_audit",
+        "must_run": true,
+        "objective": "Record released transforms and RL pool size as edit-search coverage inputs.",
+        "evidence": [
+          "CONTEXT.transforms_freed: 5/5",
+          "CONTEXT.rl_pool: 5174"
+        ],
+        "citation": [
+          "CONTEXT.transforms_freed",
+          "CONTEXT.rl_pool"
+        ]
+      }
+    ],
+    "decision": "Run hybrid validation with all routed phases listed in this phase_output; do not use theory-only or experiment-first alone.",
+    "decision_citation": [
+      "CONTEXT.question",
+      "CONTEXT.hardOK_48api",
+      "CONTEXT.reasoner_inferences",
+      "CONTEXT.end2edit_validity",
+      "CONTEXT.anchor_violation"
+    ],
+    "verdict_rationale": {
+      "verdict": "WARN",
+      "reason": "The hybrid route is selected from available artifacts, but prospective experimental validation and source baselines are not present.",
+      "citation": [
+        "CONTEXT.end2edit_validity.source",
+        "CONTEXT.anchor_violation.source"
+      ]
+    }
+  },
+  "verdict": "WARN",
+  "missing_inputs": [
+    {
+      "item": "source baseline values for end2edit_validity",
+      "status": "missing",
+      "citation": [
+        "CONTEXT.end2edit_validity.source"
+      ]
+    },
+    {
+      "item": "source baseline values for anchor_violation",
+      "status": "missing",
+      "citation": [
+        "CONTEXT.anchor_violation.source"
+      ]
+    },
+    {
+      "item": "prospective experimental synthesis or expert validation results",
+      "status": "missing",
+      "citation": [
+        "CONTEXT.end2edit_validity",
+        "CONTEXT.anchor_violation"
+      ]
+    },
+    {
+      "item": "explicit pipeline phase catalog or ROUTED phase identifiers",
+      "status": "not provided in CONTEXT",
+      "citation": [
+        "CONTEXT"
+      ]
+    }
+  ],
+  "full_response": {
+    "phase_output": {
+      "phase": "Phase 6 验证路由",
+      "qid": "Q-ONT-MOL-001",
+      "selected_route": "hybrid",
+      "route_citation": [
+        "CONTEXT.question",
+        "CONTEXT.three_questions.Q1",
+        "CONTEXT.three_questions.Q2",
+        "CONTEXT.three_questions.Q3",
+        "CONTEXT.hardOK_48api",
+        "CONTEXT.reasoner_inferences"
+      ],
+      "justification": [
+        {
+          "claim": "The problem requires ontology-grounded explanation of why a generated molecule is non-synthesizable and ontology-constrained editing that preserves anchors, stereochemistry, and binding interactions, so the route must combine formal knowledge representation with empirical validation.",
+          "citation": [
+            "CONTEXT.question",
+            "CONTEXT.three_questions.Q1",
+            "CONTEXT.three_questions.Q2",
+            "CONTEXT.three_questions.Q3"
+          ]
+        },
+        {
+          "claim": "Theory-only routing is insufficient because the pipeline must demonstrate synthesizability rescue, edit validity, and anchor preservation, not only logical consistency.",
+          "citation": [
+            "CONTEXT.question",
+            "CONTEXT.hardOK_48api",
+            "CONTEXT.end2edit_validity",
+            "CONTEXT.anchor_violation"
+          ]
+        },
+        {
+          "claim": "Experiment-first routing is insufficient because the method depends on ontology classes, contracts, and reasoner inferences to identify problematic structure and constrain protected atoms and stereocenters.",
+          "citation": [
+            "CONTEXT.question",
+            "CONTEXT.three_questions.Q1",
+            "CONTEXT.three_questions.Q3",
+            "CONTEXT.reasoner_inferences"
+          ]
+        },
+        {
+          "claim": "Hybrid routing is supported by existing ontology metrics, reasoner inferences, comparative statistics, and end-to-end edit-validity measurements.",
+          "citation": [
+            "CONTEXT.hardOK_48api",
+            "CONTEXT.p_value",
+            "CONTEXT.end2edit_validity",
+            "CONTEXT.anchor_violation",
+            "CONTEXT.reasoner_inferences"
+          ]
+        }
+      ],
+      "rejected_routes": [
+        {
+          "route": "theory-only",
+          "reason": "It would not test synthesizability rescue, edit validity, or anchor violation.",
+          "citation": [
+            "CONTEXT.question",
+            "CONTEXT.end2edit_validity",
+            "CONTEXT.anchor_violation"
+          ]
+        },
+        {
+          "route": "experiment-first",
+          "reason": "It would not provide ontology-grounded explanation of why a structure is problematic or what must not be touched during editing.",
+          "citation": [
+            "CONTEXT.question",
+            "CONTEXT.three_questions.Q1",
+            "CONTEXT.three_questions.Q3",
+            "CONTEXT.reasoner_inferences"
+          ]
+        }
+      ],
+      "routed_phases": [
+        {
+          "id": "R1_ontology_formalization_and_reasoner_validation",
+          "must_run": true,
+          "objective": "Validate ontology classes, contracts, and inferred constraints for failure risk, protected atoms, required operations, valid edit sequences, stereocenter-preserving reactions, and stereocenter anchors.",
+          "evidence": [
+            "CONTEXT.reasoner_inferences.A21 hasRequiredOperation SET_CHIRAL: 115",
+            "CONTEXT.reasoner_inferences.A19 hasFailureRisk: 231",
+            "CONTEXT.reasoner_inferences.A20 hasProtectedAtom: 363",
+            "CONTEXT.reasoner_inferences.定义类 ValidatedEditSequence: 78",
+            "CONTEXT.reasoner_inferences.定义类 StereocenterPreservingReaction: 2",
+            "CONTEXT.reasoner_inferences.StereocenterAnchor 契约: 320",
+            "CONTEXT.reasoner_inferences.source: kernel_verify.json; owlrl 10400->23113 triples"
+          ],
+          "citation": [
+            "CONTEXT.reasoner_inferences",
+            "CONTEXT.three_questions.Q1",
+            "CONTEXT.three_questions.Q3"
+          ]
+        },
+        {
+          "id": "R2_corpus_grounding_and_case_retrieval",
+          "must_run": true,
+          "objective": "Ground discovery and editing in the provided CQ cases, crossdocked molecules, molecule set, and evidence set.",
+          "evidence": [
+            "CONTEXT.corpus: 3272 CQ cases / 14 batches; 2783 crossdocked molecules",
+            "CONTEXT.n_molecules: 3483",
+            "CONTEXT.n_evidence: 79"
+          ],
+          "citation": [
+            "CONTEXT.corpus",
+            "CONTEXT.n_molecules",
+            "CONTEXT.n_evidence"
+          ]
+        },
+        {
+          "id": "R3_comparative_baseline_and_statistical_validation",
+          "must_run": true,
+          "objective": "Compare ontology against similarity and random baselines and record significance for end-to-end wins.",
+          "evidence": [
+            "CONTEXT.hardOK_48api.similarity: 0.5",
+            "CONTEXT.hardOK_48api.random: 0.5",
+            "CONTEXT.hardOK_48api.ontology: 0.875",
+            "CONTEXT.p_value: 6 wins 0 losses, exact sign test p=0.0156; end2end 7 wins 0 losses p=0.0078"
+          ],
+          "citation": [
+            "CONTEXT.hardOK_48api",
+            "CONTEXT.p_value"
+          ]
+        },
+        {
+          "id": "R4_end_to_end_edit_validity_and_anchor_preservation",
+          "must_run": true,
+          "objective": "Measure end-to-end edit validity and anchor violation for Syncraft, ontology, and ontology_lora, and record missing source baselines.",
+          "evidence": [
+            "CONTEXT.end2edit_validity.syncraft: 0.5",
+            "CONTEXT.end2edit_validity.ontology: 1.0",
+            "CONTEXT.end2edit_validity.ontology_lora: 1.0",
+            "CONTEXT.end2edit_validity.source: null",
+            "CONTEXT.anchor_violation.syncraft: 0.125",
+            "CONTEXT.anchor_violation.ontology: 0.0",
+            "CONTEXT.anchor_violation.ontology_lora: 0.0",
+            "CONTEXT.anchor_violation.source: null"
+          ],
+          "citation": [
+            "CONTEXT.end2edit_validity",
+            "CONTEXT.anchor_violation"
+          ]
+        },
+        {
+          "id": "R5_literature_and_structural_benchmark_alignment",
+          "must_run": true,
+          "objective": "Align with reported SynCraft rescue results, the CRUX evidence-sufficiency lesson, and the provided structural papers.",
+          "evidence": [
+            "CONTEXT.literature.syncraft.title: SynCraft: Guiding Large Language Models to Predict Edit Sequences for Molecular Synthesizability Optimization",
+            "CONTEXT.literature.syncraft.arxiv: 2512.20333",
+            "CONTEXT.literature.syncraft.reported: P2M 28.4% / ResGen 29.1% rescue at similarity>0.6 (Gemini-2.5-Pro)",
+            "CONTEXT.literature.crux.lesson: agents do engineering but fail at evidence sufficiency",
+            "CONTEXT.structure_papers: 5KB3, 5IRU, 5J2M, 5JJK, 5JXG, 5K3S, 5IAR",
+            "CONTEXT.papers: 7"
+          ],
+          "citation": [
+            "CONTEXT.literature",
+            "CONTEXT.structure_papers",
+            "CONTEXT.papers"
+          ]
+        },
+        {
+          "id": "R6_prospective_experimental_or_expert_validation",
+          "must_run": true,
+          "objective": "Test whether edited analogues are synthesizable and preserve binding interactions beyond retrospective metrics.",
+          "evidence": [
+            "CONTEXT.question",
+            "CONTEXT.end2edit_validity.source: null",
+            "CONTEXT.anchor_violation.source: null"
+          ],
+          "citation": [
+            "CONTEXT.question",
+            "CONTEXT.end2edit_validity",
+            "CONTEXT.anchor_violation"
+          ]
+        },
+        {
+          "id": "R7_transform_and_rl_pool_coverage_audit",
+          "must_run": true,
+          "objective": "Record released transforms and RL pool size as edit-search coverage inputs.",
+          "evidence": [
+            "CONTEXT.transforms_freed: 5/5",
+            "CONTEXT.rl_pool: 5174"
+          ],
+          "citation": [
+            "CONTEXT.transforms_freed",
+            "CONTEXT.rl_pool"
+          ]
+        }
+      ],
+      "decision": "Run hybrid validation with all routed phases listed in this phase_output; do not use theory-only or experiment-first alone.",
+      "decision_citation": [
+        "CONTEXT.question",
+        "CONTEXT.hardOK_48api",
+        "CONTEXT.reasoner_inferences",
+        "CONTEXT.end2edit_validity",
+        "CONTEXT.anchor_violation"
+      ],
+      "verdict_rationale": {
+        "verdict": "WARN",
+        "reason": "The hybrid route is selected from available artifacts, but prospective experimental validation and source baselines are not present.",
+        "citation": [
+          "CONTEXT.end2edit_validity.source",
+          "CONTEXT.anchor_violation.source"
+        ]
+      }
+    },
+    "missing_inputs": [
+      {
+        "item": "source baseline values for end2edit_validity",
+        "status": "missing",
+        "citation": [
+          "CONTEXT.end2edit_validity.source"
+        ]
+      },
+      {
+        "item": "source baseline values for anchor_violation",
+        "status": "missing",
+        "citation": [
+          "CONTEXT.anchor_violation.source"
+        ]
+      },
+      {
+        "item": "prospective experimental synthesis or expert validation results",
+        "status": "missing",
+        "citation": [
+          "CONTEXT.end2edit_validity",
+          "CONTEXT.anchor_violation"
+        ]
+      },
+      {
+        "item": "explicit pipeline phase catalog or ROUTED phase identifiers",
+        "status": "not provided in CONTEXT",
+        "citation": [
+          "CONTEXT"
+        ]
+      }
+    ],
+    "verdict": "WARN"
+  }
+}

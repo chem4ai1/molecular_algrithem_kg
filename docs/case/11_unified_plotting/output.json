@@ -1,0 +1,850 @@
+{
+  "phase": "11_unified_plotting",
+  "title": "Phase 11 图表规格",
+  "phase_output": {
+    "figures": [
+      {
+        "figure_id": "FIG1",
+        "title": "Ontology grounding raises hard-OK rate over similarity and random baselines",
+        "type": "bar chart (3 bars, single series)",
+        "data_source": [
+          "hardOK_48api"
+        ],
+        "axes": {
+          "x": "selection condition",
+          "y": "hard-OK rate (fraction, 0-1)"
+        },
+        "series": [
+          {
+            "label": "similarity",
+            "value": 0.5
+          },
+          {
+            "label": "random",
+            "value": 0.5
+          },
+          {
+            "label": "ontology",
+            "value": 0.875
+          }
+        ],
+        "claim_supported": "Ontology-grounded selection attains hardOK 0.875 versus 0.5 for both the similarity and random baselines.",
+        "fidelity_level": "L2_numerical",
+        "cites": [
+          "hardOK_48api"
+        ],
+        "non_decorative_justification": "Encodes the primary quantitative comparison; removing it removes the central evidence for the ontology advantage.",
+        "caveats": [
+          "The token '48api' and its denominator are not defined in CONTEXT.",
+          "No error bars / confidence intervals are provided in CONTEXT."
+        ]
+      },
+      {
+        "figure_id": "FIG2",
+        "title": "End-to-end edit validity by method",
+        "type": "bar chart (3 bars, single series)",
+        "data_source": [
+          "end2edit_validity"
+        ],
+        "axes": {
+          "x": "method",
+          "y": "edit validity (fraction, 0-1)"
+        },
+        "series": [
+          {
+            "label": "syncraft",
+            "value": 0.5
+          },
+          {
+            "label": "ontology",
+            "value": 1.0
+          },
+          {
+            "label": "ontology_lora",
+            "value": 1.0
+          }
+        ],
+        "claim_supported": "Ontology and ontology+LoRA edits reach validity 1.0 versus 0.5 for SynCraft.",
+        "fidelity_level": "L2_numerical",
+        "cites": [
+          "end2edit_validity",
+          "literature.syncraft"
+        ],
+        "non_decorative_justification": "Quantifies the end-to-end editing claim (Q of the pipeline: edit into a synthesizable analogue) against the closest published baseline (SynCraft).",
+        "caveats": [
+          "end2edit_validity.source is null in CONTEXT — provenance for these numbers is missing.",
+          "No error bars / CI provided."
+        ]
+      },
+      {
+        "figure_id": "FIG3",
+        "title": "Anchor violation rate by method (pharmacophore / stereocentre preservation)",
+        "type": "bar chart (3 bars, single series)",
+        "data_source": [
+          "anchor_violation"
+        ],
+        "axes": {
+          "x": "method",
+          "y": "anchor violation rate (fraction, 0-1)"
+        },
+        "series": [
+          {
+            "label": "syncraft",
+            "value": 0.125
+          },
+          {
+            "label": "ontology",
+            "value": 0.0
+          },
+          {
+            "label": "ontology_lora",
+            "value": 0.0
+          }
+        ],
+        "claim_supported": "Ontology-based editing shows 0.0 anchor violation versus 0.125 for SynCraft, evidencing preservation of the anchors that must not be touched (Q3).",
+        "fidelity_level": "L2_numerical",
+        "cites": [
+          "anchor_violation",
+          "three_questions.Q3"
+        ],
+        "non_decorative_justification": "Directly answers sub-question Q3 ('what must not be touched during editing') with a measured quantity.",
+        "caveats": [
+          "anchor_violation.source is null in CONTEXT — provenance missing.",
+          "0.0 values may reflect small sample size; no n or CI provided."
+        ]
+      },
+      {
+        "figure_id": "FIG4",
+        "title": "Reasoner inference census grounding the symbolic claims",
+        "type": "horizontal bar chart of counts (log-scale x recommended given range 2-363); provenance annotation 'owlrl 10400->23113 triples'",
+        "data_source": [
+          "reasoner_inferences"
+        ],
+        "axes": {
+          "x": "assertion / inference count (log scale)",
+          "y": "ontology construct"
+        },
+        "series": [
+          {
+            "label": "A20 hasProtectedAtom",
+            "value": 363
+          },
+          {
+            "label": "StereocenterAnchor 契约 (contract)",
+            "value": 320
+          },
+          {
+            "label": "A19 hasFailureRisk",
+            "value": 231
+          },
+          {
+            "label": "A21 hasRequiredOperation SET_CHIRAL",
+            "value": 115
+          },
+          {
+            "label": "定义类 ValidatedEditSequence",
+            "value": 78
+          },
+          {
+            "label": "定义类 StereocenterPreservingReaction",
+            "value": 2
+          }
+        ],
+        "claim_supported": "The ontology materially defines ValidatedEditSequence (78), StereocenterPreservingReaction (2) and the StereocenterAnchor contract (320), and asserts hasRequiredOperation SET_CHIRAL (115) — grounding symbolic claims SYM1-SYM4 from the previous phase.",
+        "fidelity_level": "L1_symbolic (with L2 counts)",
+        "cites": [
+          "reasoner_inferences"
+        ],
+        "non_decorative_justification": "Provides the machine-checkable evidence that the pipeline's constructs exist and fire, which is the substrate for every downstream numerical claim.",
+        "caveats": [
+          "Counts are assertion/instance counts, not effect sizes.",
+          "owlrl expansion 10400->23113 triples is shown only as a provenance annotation, not as a data series."
+        ]
+      },
+      {
+        "figure_id": "FIG5",
+        "title": "Win/loss record and exact sign-test significance",
+        "type": "two-panel figure: (a) win-loss stacked bars; (b) p-value annotation panel",
+        "data_source": [
+          "p_value"
+        ],
+        "axes": {
+          "panel_a_x": "comparison set",
+          "panel_a_y": "count (wins/losses)",
+          "panel_b": "text/table of p-values"
+        },
+        "series": [
+          {
+            "panel": "a",
+            "label": "hardOK set",
+            "wins": 6,
+            "losses": 0
+          },
+          {
+            "panel": "a",
+            "label": "end2end set",
+            "wins": 7,
+            "losses": 0
+          },
+          {
+            "panel": "b",
+            "label": "hardOK exact sign test",
+            "p": 0.0156
+          },
+          {
+            "panel": "b",
+            "label": "end2end exact sign test",
+            "p": 0.0078
+          }
+        ],
+        "claim_supported": "Ontology wins all paired comparisons (6 wins / 0 losses, p=0.0156; end2end 7 wins / 0 losses, p=0.0078) under an exact sign test.",
+        "fidelity_level": "L2_numerical",
+        "cites": [
+          "p_value"
+        ],
+        "non_decorative_justification": "Supplies the statistical-significance layer that upgrades the raw rates in FIG1-FIG3 from descriptive to inferential.",
+        "caveats": [
+          "The specific paired items behind '6 wins' and '7 wins' are not enumerated in CONTEXT.",
+          "Sign-test n is small (6 and 7)."
+        ]
+      },
+      {
+        "figure_id": "FIG6",
+        "title": "Pipeline schematic: mapping Q1/Q2/Q3 to ontology constructs",
+        "type": "flow / schematic diagram (boxes + arrows) annotated with inference counts",
+        "data_source": [
+          "three_questions",
+          "reasoner_inferences"
+        ],
+        "axes": {
+          "layout": "left-to-right: sub-question -> ontology construct(s) -> edit representation"
+        },
+        "series": [
+          {
+            "node": "Q1 where problematic",
+            "maps_to": [
+              "A20 hasProtectedAtom (363)",
+              "A19 hasFailureRisk (231)"
+            ]
+          },
+          {
+            "node": "Q2 why cannot be made",
+            "maps_to": [
+              "A21 hasRequiredOperation SET_CHIRAL (115)",
+              "A19 hasFailureRisk (231)"
+            ]
+          },
+          {
+            "node": "Q3 what must not be touched",
+            "maps_to": [
+              "StereocenterAnchor 契约 (320)",
+              "定义类 StereocenterPreservingReaction (2)"
+            ]
+          },
+          {
+            "node": "edit representation",
+            "maps_to": [
+              "定义类 ValidatedEditSequence (78)"
+            ]
+          }
+        ],
+        "claim_supported": "The pipeline operationalizes the three sub-questions via distinct ontology constructs, each carrying non-zero reasoner support.",
+        "fidelity_level": "L3_qualitative",
+        "cites": [
+          "three_questions",
+          "reasoner_inferences"
+        ],
+        "non_decorative_justification": "Encodes the mechanism (which construct answers which sub-question) rather than decoration; each arrow is annotated with a CONTEXT count.",
+        "caveats": [
+          "The Q-to-construct mapping is an author interpretation, not asserted verbatim in CONTEXT.",
+          "Arrow semantics are author-defined."
+        ]
+      },
+      {
+        "figure_id": "FIG7",
+        "title": "Evaluation corpus and knowledge-base scale (CONDITIONAL / methods panel)",
+        "type": "summary table-figure (heterogeneous counts; render as table, not a shared-axis bar chart)",
+        "data_source": [
+          "corpus",
+          "n_molecules",
+          "n_evidence",
+          "papers",
+          "rl_pool",
+          "transforms_freed",
+          "literature.structure_papers"
+        ],
+        "axes": {
+          "layout": "catalogue of counts with units"
+        },
+        "series": [
+          {
+            "label": "CQ cases",
+            "value": 3272
+          },
+          {
+            "label": "batches",
+            "value": 14
+          },
+          {
+            "label": "crossdocked molecules",
+            "value": 2783
+          },
+          {
+            "label": "n_molecules",
+            "value": 3483
+          },
+          {
+            "label": "n_evidence",
+            "value": 79
+          },
+          {
+            "label": "papers",
+            "value": 7
+          },
+          {
+            "label": "rl_pool",
+            "value": 5174
+          },
+          {
+            "label": "transforms_freed",
+            "value": "5/5"
+          },
+          {
+            "label": "structure_papers (PDB IDs)",
+            "value": [
+              "5KB3",
+              "5IRU",
+              "5J2M",
+              "5JJK",
+              "5JXG",
+              "5K3S",
+              "5IAR"
+            ]
+          }
+        ],
+        "claim_supported": "Establishes the empirical and knowledge scale (corpus, evidence, literature, RL pool) on which the results rest.",
+        "fidelity_level": "L2_numerical",
+        "cites": [
+          "corpus",
+          "n_molecules",
+          "n_evidence",
+          "papers",
+          "rl_pool",
+          "transforms_freed",
+          "literature.structure_papers"
+        ],
+        "non_decorative_justification": "Included only if a reproducibility/scale claim is made; otherwise omit to honor the no-decorative-figures rule.",
+        "caveats": [
+          "Units are heterogeneous and not comparable on one axis — must be a table, not a bar chart.",
+          "Relationship among 3272 CQ cases / 2783 crossdocked / 3483 molecules is not specified in CONTEXT.",
+          "Borderline decorative; retained as conditional."
+        ]
+      }
+    ],
+    "figure_count": 7,
+    "core_figures": [
+      "FIG1",
+      "FIG2",
+      "FIG3",
+      "FIG4",
+      "FIG5",
+      "FIG6"
+    ],
+    "conditional_figures": [
+      "FIG7"
+    ],
+    "coverage_check": {
+      "Q1_where_problematic": [
+        "FIG4",
+        "FIG6"
+      ],
+      "Q2_why_cannot_be_made": [
+        "FIG4",
+        "FIG6"
+      ],
+      "Q3_what_must_not_be_touched": [
+        "FIG3",
+        "FIG4",
+        "FIG6"
+      ],
+      "overall_pipeline_efficacy": [
+        "FIG1",
+        "FIG2",
+        "FIG5"
+      ],
+      "symbolic_grounding_SYM1_SYM4": [
+        "FIG4"
+      ],
+      "claim_ladder_mapping": {
+        "L1_symbolic": [
+          "FIG4",
+          "FIG6"
+        ],
+        "L2_numerical": [
+          "FIG1",
+          "FIG2",
+          "FIG3",
+          "FIG5",
+          "FIG7"
+        ],
+        "L3_qualitative": [
+          "FIG6"
+        ]
+      }
+    },
+    "design_notes": [
+      "All plotted numbers are restated verbatim from CONTEXT; no arithmetic beyond restating the given fractions/counts is performed.",
+      "Suggested layout: combine FIG1/FIG2/FIG3 as panels (a)/(b)/(c) of a single 'main results' figure; FIG5 can be an inset or panel (d).",
+      "Consistent color convention: baselines (similarity, random, syncraft) in neutral grey; ontology and ontology_lora highlighted.",
+      "FIG4 x-axis should be log-scaled because counts span 2 to 363.",
+      "FIG6 arrows must be visually distinguished as author-defined mapping (e.g., dashed) to avoid implying the mapping is asserted by the ontology.",
+      "FIG7 should be a table if included; do not plot heterogeneous units on a shared axis."
+    ],
+    "provenance_status": {
+      "hardOK_48api": "no source field in CONTEXT",
+      "end2edit_validity": "source = null (missing)",
+      "anchor_violation": "source = null (missing)",
+      "reasoner_inferences": "source = kernel_verify.json; owlrl 10400->23113 triples (present)",
+      "p_value": "no source field in CONTEXT"
+    }
+  },
+  "verdict": "WARN",
+  "missing_inputs": [
+    "end2edit_validity.source is null — no provenance for FIG2 values.",
+    "anchor_violation.source is null — no provenance for FIG3 values.",
+    "No error bars, confidence intervals, standard deviations, or sample sizes (n) for any rate in hardOK_48api, end2edit_validity, or anchor_violation — uncertainty cannot be shown.",
+    "The denominator/meaning of '48api' in hardOK_48api is undefined in CONTEXT.",
+    "Definitions of the 'similarity' and 'random' hardOK baseline conditions are not given.",
+    "The specific paired items underlying '6 wins 0 losses' and '7 wins 0 losses' in p_value are not enumerated.",
+    "No per-batch breakdown is provided despite corpus stating 14 batches — batch-level variance cannot be plotted.",
+    "structure_papers (5KB3, 5IRU, 5J2M, 5JJK, 5JXG, 5K3S, 5IAR) have no resolution/quality/metric data — no structure-quality figure can be built.",
+    "transforms_freed = 5/5 has no itemization of which transforms were freed.",
+    "Relationship/overlap among corpus counts (3272 CQ cases, 2783 crossdocked molecules, n_molecules 3483) is unspecified."
+  ],
+  "full_response": {
+    "phase": "Phase 11 图表规格",
+    "task": "Specify publication figures: figure id, type, data source, and the claim each figure supports; at least one figure; no decorative figures.",
+    "qid": "Q-ONT-MOL-001",
+    "phase_output": {
+      "figures": [
+        {
+          "figure_id": "FIG1",
+          "title": "Ontology grounding raises hard-OK rate over similarity and random baselines",
+          "type": "bar chart (3 bars, single series)",
+          "data_source": [
+            "hardOK_48api"
+          ],
+          "axes": {
+            "x": "selection condition",
+            "y": "hard-OK rate (fraction, 0-1)"
+          },
+          "series": [
+            {
+              "label": "similarity",
+              "value": 0.5
+            },
+            {
+              "label": "random",
+              "value": 0.5
+            },
+            {
+              "label": "ontology",
+              "value": 0.875
+            }
+          ],
+          "claim_supported": "Ontology-grounded selection attains hardOK 0.875 versus 0.5 for both the similarity and random baselines.",
+          "fidelity_level": "L2_numerical",
+          "cites": [
+            "hardOK_48api"
+          ],
+          "non_decorative_justification": "Encodes the primary quantitative comparison; removing it removes the central evidence for the ontology advantage.",
+          "caveats": [
+            "The token '48api' and its denominator are not defined in CONTEXT.",
+            "No error bars / confidence intervals are provided in CONTEXT."
+          ]
+        },
+        {
+          "figure_id": "FIG2",
+          "title": "End-to-end edit validity by method",
+          "type": "bar chart (3 bars, single series)",
+          "data_source": [
+            "end2edit_validity"
+          ],
+          "axes": {
+            "x": "method",
+            "y": "edit validity (fraction, 0-1)"
+          },
+          "series": [
+            {
+              "label": "syncraft",
+              "value": 0.5
+            },
+            {
+              "label": "ontology",
+              "value": 1.0
+            },
+            {
+              "label": "ontology_lora",
+              "value": 1.0
+            }
+          ],
+          "claim_supported": "Ontology and ontology+LoRA edits reach validity 1.0 versus 0.5 for SynCraft.",
+          "fidelity_level": "L2_numerical",
+          "cites": [
+            "end2edit_validity",
+            "literature.syncraft"
+          ],
+          "non_decorative_justification": "Quantifies the end-to-end editing claim (Q of the pipeline: edit into a synthesizable analogue) against the closest published baseline (SynCraft).",
+          "caveats": [
+            "end2edit_validity.source is null in CONTEXT — provenance for these numbers is missing.",
+            "No error bars / CI provided."
+          ]
+        },
+        {
+          "figure_id": "FIG3",
+          "title": "Anchor violation rate by method (pharmacophore / stereocentre preservation)",
+          "type": "bar chart (3 bars, single series)",
+          "data_source": [
+            "anchor_violation"
+          ],
+          "axes": {
+            "x": "method",
+            "y": "anchor violation rate (fraction, 0-1)"
+          },
+          "series": [
+            {
+              "label": "syncraft",
+              "value": 0.125
+            },
+            {
+              "label": "ontology",
+              "value": 0.0
+            },
+            {
+              "label": "ontology_lora",
+              "value": 0.0
+            }
+          ],
+          "claim_supported": "Ontology-based editing shows 0.0 anchor violation versus 0.125 for SynCraft, evidencing preservation of the anchors that must not be touched (Q3).",
+          "fidelity_level": "L2_numerical",
+          "cites": [
+            "anchor_violation",
+            "three_questions.Q3"
+          ],
+          "non_decorative_justification": "Directly answers sub-question Q3 ('what must not be touched during editing') with a measured quantity.",
+          "caveats": [
+            "anchor_violation.source is null in CONTEXT — provenance missing.",
+            "0.0 values may reflect small sample size; no n or CI provided."
+          ]
+        },
+        {
+          "figure_id": "FIG4",
+          "title": "Reasoner inference census grounding the symbolic claims",
+          "type": "horizontal bar chart of counts (log-scale x recommended given range 2-363); provenance annotation 'owlrl 10400->23113 triples'",
+          "data_source": [
+            "reasoner_inferences"
+          ],
+          "axes": {
+            "x": "assertion / inference count (log scale)",
+            "y": "ontology construct"
+          },
+          "series": [
+            {
+              "label": "A20 hasProtectedAtom",
+              "value": 363
+            },
+            {
+              "label": "StereocenterAnchor 契约 (contract)",
+              "value": 320
+            },
+            {
+              "label": "A19 hasFailureRisk",
+              "value": 231
+            },
+            {
+              "label": "A21 hasRequiredOperation SET_CHIRAL",
+              "value": 115
+            },
+            {
+              "label": "定义类 ValidatedEditSequence",
+              "value": 78
+            },
+            {
+              "label": "定义类 StereocenterPreservingReaction",
+              "value": 2
+            }
+          ],
+          "claim_supported": "The ontology materially defines ValidatedEditSequence (78), StereocenterPreservingReaction (2) and the StereocenterAnchor contract (320), and asserts hasRequiredOperation SET_CHIRAL (115) — grounding symbolic claims SYM1-SYM4 from the previous phase.",
+          "fidelity_level": "L1_symbolic (with L2 counts)",
+          "cites": [
+            "reasoner_inferences"
+          ],
+          "non_decorative_justification": "Provides the machine-checkable evidence that the pipeline's constructs exist and fire, which is the substrate for every downstream numerical claim.",
+          "caveats": [
+            "Counts are assertion/instance counts, not effect sizes.",
+            "owlrl expansion 10400->23113 triples is shown only as a provenance annotation, not as a data series."
+          ]
+        },
+        {
+          "figure_id": "FIG5",
+          "title": "Win/loss record and exact sign-test significance",
+          "type": "two-panel figure: (a) win-loss stacked bars; (b) p-value annotation panel",
+          "data_source": [
+            "p_value"
+          ],
+          "axes": {
+            "panel_a_x": "comparison set",
+            "panel_a_y": "count (wins/losses)",
+            "panel_b": "text/table of p-values"
+          },
+          "series": [
+            {
+              "panel": "a",
+              "label": "hardOK set",
+              "wins": 6,
+              "losses": 0
+            },
+            {
+              "panel": "a",
+              "label": "end2end set",
+              "wins": 7,
+              "losses": 0
+            },
+            {
+              "panel": "b",
+              "label": "hardOK exact sign test",
+              "p": 0.0156
+            },
+            {
+              "panel": "b",
+              "label": "end2end exact sign test",
+              "p": 0.0078
+            }
+          ],
+          "claim_supported": "Ontology wins all paired comparisons (6 wins / 0 losses, p=0.0156; end2end 7 wins / 0 losses, p=0.0078) under an exact sign test.",
+          "fidelity_level": "L2_numerical",
+          "cites": [
+            "p_value"
+          ],
+          "non_decorative_justification": "Supplies the statistical-significance layer that upgrades the raw rates in FIG1-FIG3 from descriptive to inferential.",
+          "caveats": [
+            "The specific paired items behind '6 wins' and '7 wins' are not enumerated in CONTEXT.",
+            "Sign-test n is small (6 and 7)."
+          ]
+        },
+        {
+          "figure_id": "FIG6",
+          "title": "Pipeline schematic: mapping Q1/Q2/Q3 to ontology constructs",
+          "type": "flow / schematic diagram (boxes + arrows) annotated with inference counts",
+          "data_source": [
+            "three_questions",
+            "reasoner_inferences"
+          ],
+          "axes": {
+            "layout": "left-to-right: sub-question -> ontology construct(s) -> edit representation"
+          },
+          "series": [
+            {
+              "node": "Q1 where problematic",
+              "maps_to": [
+                "A20 hasProtectedAtom (363)",
+                "A19 hasFailureRisk (231)"
+              ]
+            },
+            {
+              "node": "Q2 why cannot be made",
+              "maps_to": [
+                "A21 hasRequiredOperation SET_CHIRAL (115)",
+                "A19 hasFailureRisk (231)"
+              ]
+            },
+            {
+              "node": "Q3 what must not be touched",
+              "maps_to": [
+                "StereocenterAnchor 契约 (320)",
+                "定义类 StereocenterPreservingReaction (2)"
+              ]
+            },
+            {
+              "node": "edit representation",
+              "maps_to": [
+                "定义类 ValidatedEditSequence (78)"
+              ]
+            }
+          ],
+          "claim_supported": "The pipeline operationalizes the three sub-questions via distinct ontology constructs, each carrying non-zero reasoner support.",
+          "fidelity_level": "L3_qualitative",
+          "cites": [
+            "three_questions",
+            "reasoner_inferences"
+          ],
+          "non_decorative_justification": "Encodes the mechanism (which construct answers which sub-question) rather than decoration; each arrow is annotated with a CONTEXT count.",
+          "caveats": [
+            "The Q-to-construct mapping is an author interpretation, not asserted verbatim in CONTEXT.",
+            "Arrow semantics are author-defined."
+          ]
+        },
+        {
+          "figure_id": "FIG7",
+          "title": "Evaluation corpus and knowledge-base scale (CONDITIONAL / methods panel)",
+          "type": "summary table-figure (heterogeneous counts; render as table, not a shared-axis bar chart)",
+          "data_source": [
+            "corpus",
+            "n_molecules",
+            "n_evidence",
+            "papers",
+            "rl_pool",
+            "transforms_freed",
+            "literature.structure_papers"
+          ],
+          "axes": {
+            "layout": "catalogue of counts with units"
+          },
+          "series": [
+            {
+              "label": "CQ cases",
+              "value": 3272
+            },
+            {
+              "label": "batches",
+              "value": 14
+            },
+            {
+              "label": "crossdocked molecules",
+              "value": 2783
+            },
+            {
+              "label": "n_molecules",
+              "value": 3483
+            },
+            {
+              "label": "n_evidence",
+              "value": 79
+            },
+            {
+              "label": "papers",
+              "value": 7
+            },
+            {
+              "label": "rl_pool",
+              "value": 5174
+            },
+            {
+              "label": "transforms_freed",
+              "value": "5/5"
+            },
+            {
+              "label": "structure_papers (PDB IDs)",
+              "value": [
+                "5KB3",
+                "5IRU",
+                "5J2M",
+                "5JJK",
+                "5JXG",
+                "5K3S",
+                "5IAR"
+              ]
+            }
+          ],
+          "claim_supported": "Establishes the empirical and knowledge scale (corpus, evidence, literature, RL pool) on which the results rest.",
+          "fidelity_level": "L2_numerical",
+          "cites": [
+            "corpus",
+            "n_molecules",
+            "n_evidence",
+            "papers",
+            "rl_pool",
+            "transforms_freed",
+            "literature.structure_papers"
+          ],
+          "non_decorative_justification": "Included only if a reproducibility/scale claim is made; otherwise omit to honor the no-decorative-figures rule.",
+          "caveats": [
+            "Units are heterogeneous and not comparable on one axis — must be a table, not a bar chart.",
+            "Relationship among 3272 CQ cases / 2783 crossdocked / 3483 molecules is not specified in CONTEXT.",
+            "Borderline decorative; retained as conditional."
+          ]
+        }
+      ],
+      "figure_count": 7,
+      "core_figures": [
+        "FIG1",
+        "FIG2",
+        "FIG3",
+        "FIG4",
+        "FIG5",
+        "FIG6"
+      ],
+      "conditional_figures": [
+        "FIG7"
+      ],
+      "coverage_check": {
+        "Q1_where_problematic": [
+          "FIG4",
+          "FIG6"
+        ],
+        "Q2_why_cannot_be_made": [
+          "FIG4",
+          "FIG6"
+        ],
+        "Q3_what_must_not_be_touched": [
+          "FIG3",
+          "FIG4",
+          "FIG6"
+        ],
+        "overall_pipeline_efficacy": [
+          "FIG1",
+          "FIG2",
+          "FIG5"
+        ],
+        "symbolic_grounding_SYM1_SYM4": [
+          "FIG4"
+        ],
+        "claim_ladder_mapping": {
+          "L1_symbolic": [
+            "FIG4",
+            "FIG6"
+          ],
+          "L2_numerical": [
+            "FIG1",
+            "FIG2",
+            "FIG3",
+            "FIG5",
+            "FIG7"
+          ],
+          "L3_qualitative": [
+            "FIG6"
+          ]
+        }
+      },
+      "design_notes": [
+        "All plotted numbers are restated verbatim from CONTEXT; no arithmetic beyond restating the given fractions/counts is performed.",
+        "Suggested layout: combine FIG1/FIG2/FIG3 as panels (a)/(b)/(c) of a single 'main results' figure; FIG5 can be an inset or panel (d).",
+        "Consistent color convention: baselines (similarity, random, syncraft) in neutral grey; ontology and ontology_lora highlighted.",
+        "FIG4 x-axis should be log-scaled because counts span 2 to 363.",
+        "FIG6 arrows must be visually distinguished as author-defined mapping (e.g., dashed) to avoid implying the mapping is asserted by the ontology.",
+        "FIG7 should be a table if included; do not plot heterogeneous units on a shared axis."
+      ],
+      "provenance_status": {
+        "hardOK_48api": "no source field in CONTEXT",
+        "end2edit_validity": "source = null (missing)",
+        "anchor_violation": "source = null (missing)",
+        "reasoner_inferences": "source = kernel_verify.json; owlrl 10400->23113 triples (present)",
+        "p_value": "no source field in CONTEXT"
+      }
+    },
+    "missing_inputs": [
+      "end2edit_validity.source is null — no provenance for FIG2 values.",
+      "anchor_violation.source is null — no provenance for FIG3 values.",
+      "No error bars, confidence intervals, standard deviations, or sample sizes (n) for any rate in hardOK_48api, end2edit_validity, or anchor_violation — uncertainty cannot be shown.",
+      "The denominator/meaning of '48api' in hardOK_48api is undefined in CONTEXT.",
+      "Definitions of the 'similarity' and 'random' hardOK baseline conditions are not given.",
+      "The specific paired items underlying '6 wins 0 losses' and '7 wins 0 losses' in p_value are not enumerated.",
+      "No per-batch breakdown is provided despite corpus stating 14 batches — batch-level variance cannot be plotted.",
+      "structure_papers (5KB3, 5IRU, 5J2M, 5JJK, 5JXG, 5K3S, 5IAR) have no resolution/quality/metric data — no structure-quality figure can be built.",
+      "transforms_freed = 5/5 has no itemization of which transforms were freed.",
+      "Relationship/overlap among corpus counts (3272 CQ cases, 2783 crossdocked molecules, n_molecules 3483) is unspecified."
+    ],
+    "verdict": "WARN",
+    "verdict_rationale": "Six core figures (FIG1-FIG6) are fully specifiable, non-decorative, and grounded in CONTEXT, covering all three sub-questions and the symbolic/numerical/qualitative claim ladder. WARN (not PASS) because two main-result figures (FIG2, FIG3) have null source provenance and no uncertainty quantification (n/CI) exists for any rate; FIG7 is retained only as a conditional methods table to respect the no-decorative-figures rule."
+  }
+}

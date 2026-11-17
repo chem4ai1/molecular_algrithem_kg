@@ -29,6 +29,7 @@
 | `USES_EVIDENCE` | Evidence | 该节用到的证据 |
 | `CONSULTED` | ConsultedPaper | 该节查过的论文 |
 | `RETRIEVED` | RelatedPaper | 该节检索到哪些候选 |
+| `ANCHORED_BY` | ProblemAnchor | 该节回引哪个冻结问题 |
 
 **入边**
 

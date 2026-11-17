@@ -1,0 +1,292 @@
+{
+  "phase": "155_publishability",
+  "title": "Phase 15.5 可发表性评分",
+  "phase_output": {
+    "phase": "Phase 15.5 可发表性评分",
+    "qid": "Q-ONT-MOL-001",
+    "publishability_score": {
+      "scoring_dimensions": [
+        {
+          "dimension": "Novelty and problem framing",
+          "score_tier": "High",
+          "rationale": "The work is framed around an ontology-grounded pipeline that identifies why a generated molecule is non-synthesizable and edits it while preserving pharmacophoric anchors, stereochemistry, and binding interactions.",
+          "citations": [
+            "question",
+            "three_questions.Q1",
+            "three_questions.Q2",
+            "three_questions.Q3",
+            "reasoner_inferences"
+          ]
+        },
+        {
+          "dimension": "Evidence strength",
+          "score_tier": "Medium",
+          "rationale": "Ontology achieves hardOK_48api 0.875 versus 0.5 for similarity and random; exact sign tests report p=0.0156 and p=0.0078; ontology and ontology_lora have end2edit validity 1.0 and anchor violation 0.0, but source fields are null and the reported wins/losses are limited.",
+          "citations": [
+            "hardOK_48api",
+            "p_value",
+            "end2edit_validity",
+            "anchor_violation",
+            "end2edit_validity.source",
+            "anchor_violation.source"
+          ]
+        },
+        {
+          "dimension": "Methodological rigor and ontology grounding",
+          "score_tier": "High",
+          "rationale": "The ontology layer reports reasoner inferences for required operations, failure risks, protected atoms, validated edit sequences, stereocenter-preserving reactions, and stereocenter anchor contracts, with owlrl expansion from 10400 to 23113 triples.",
+          "citations": [
+            "reasoner_inferences",
+            "reasoner_inferences.source"
+          ]
+        },
+        {
+          "dimension": "Reproducibility and source traceability",
+          "score_tier": "Low",
+          "rationale": "Corpus and resource counts are reported, but provenance for key validity and anchor results is missing.",
+          "citations": [
+            "corpus",
+            "n_molecules",
+            "n_evidence",
+            "papers",
+            "transforms_freed",
+            "rl_pool",
+            "end2edit_validity.source",
+            "anchor_violation.source"
+          ]
+        },
+        {
+          "dimension": "Impact and relevance",
+          "score_tier": "High",
+          "rationale": "The task targets non-synthesizable molecules and editing constraints, and the context includes structure papers and SynCraft literature for comparison.",
+          "citations": [
+            "question",
+            "structure_papers",
+            "literature.syncraft"
+          ]
+        },
+        {
+          "dimension": "Clarity and completeness of claims",
+          "score_tier": "Medium",
+          "rationale": "The three questions are explicit, but some result provenance is missing.",
+          "citations": [
+            "three_questions",
+            "end2edit_validity.source",
+            "anchor_violation.source"
+          ]
+        }
+      ],
+      "overall_score_tier": "WARN",
+      "overall_rationale": "The reported results are promising, but the overall tier is WARN because key provenance fields are null and the evidence sufficiency is not yet complete.",
+      "overall_citations": [
+        "hardOK_48api",
+        "p_value",
+        "end2edit_validity",
+        "anchor_violation",
+        "end2edit_validity.source",
+        "anchor_violation.source",
+        "literature.crux.lesson"
+      ]
+    },
+    "weakest_dimension": {
+      "dimension": "Reproducibility and source traceability",
+      "rationale": "The weakest dimension is reproducibility and source traceability because end2edit_validity.source and anchor_violation.source are null, and the CRUX lesson highlights evidence sufficiency as a failure mode.",
+      "citations": [
+        "end2edit_validity.source",
+        "anchor_violation.source",
+        "literature.crux.lesson"
+      ]
+    },
+    "improvement_needed": [
+      {
+        "action": "Populate end2edit_validity.source and anchor_violation.source with concrete artifact identifiers.",
+        "basis_citations": [
+          "end2edit_validity.source",
+          "anchor_violation.source"
+        ]
+      },
+      {
+        "action": "Add explicit code, ontology, and data availability information, because no such availability field is present in CONTEXT.",
+        "basis_citations": [
+          "end2edit_validity.source",
+          "anchor_violation.source"
+        ]
+      },
+      {
+        "action": "Strengthen evidence sufficiency by expanding paired comparisons beyond the reported 6 wins 0 losses and 7 wins 0 losses.",
+        "basis_citations": [
+          "p_value"
+        ]
+      },
+      {
+        "action": "Report effect sizes and confidence intervals, because CONTEXT provides p-values and win/loss counts but no interval estimates.",
+        "basis_citations": [
+          "p_value"
+        ]
+      }
+    ],
+    "verdict_tiers": {
+      "selected": "WARN",
+      "allowed": [
+        "PASS",
+        "WARN",
+        "FAIL",
+        "NOT_APPLICABLE",
+        "BLOCKED",
+        "ERROR"
+      ]
+    }
+  },
+  "verdict": "WARN",
+  "missing_inputs": [
+    "end2edit_validity.source is null in CONTEXT.",
+    "anchor_violation.source is null in CONTEXT.",
+    "No explicit code availability, data availability, or artifact repository field is provided in CONTEXT.",
+    "No confidence intervals or effect-size estimates are provided in CONTEXT."
+  ],
+  "full_response": {
+    "verdict": "WARN",
+    "phase_output": {
+      "phase": "Phase 15.5 可发表性评分",
+      "qid": "Q-ONT-MOL-001",
+      "publishability_score": {
+        "scoring_dimensions": [
+          {
+            "dimension": "Novelty and problem framing",
+            "score_tier": "High",
+            "rationale": "The work is framed around an ontology-grounded pipeline that identifies why a generated molecule is non-synthesizable and edits it while preserving pharmacophoric anchors, stereochemistry, and binding interactions.",
+            "citations": [
+              "question",
+              "three_questions.Q1",
+              "three_questions.Q2",
+              "three_questions.Q3",
+              "reasoner_inferences"
+            ]
+          },
+          {
+            "dimension": "Evidence strength",
+            "score_tier": "Medium",
+            "rationale": "Ontology achieves hardOK_48api 0.875 versus 0.5 for similarity and random; exact sign tests report p=0.0156 and p=0.0078; ontology and ontology_lora have end2edit validity 1.0 and anchor violation 0.0, but source fields are null and the reported wins/losses are limited.",
+            "citations": [
+              "hardOK_48api",
+              "p_value",
+              "end2edit_validity",
+              "anchor_violation",
+              "end2edit_validity.source",
+              "anchor_violation.source"
+            ]
+          },
+          {
+            "dimension": "Methodological rigor and ontology grounding",
+            "score_tier": "High",
+            "rationale": "The ontology layer reports reasoner inferences for required operations, failure risks, protected atoms, validated edit sequences, stereocenter-preserving reactions, and stereocenter anchor contracts, with owlrl expansion from 10400 to 23113 triples.",
+            "citations": [
+              "reasoner_inferences",
+              "reasoner_inferences.source"
+            ]
+          },
+          {
+            "dimension": "Reproducibility and source traceability",
+            "score_tier": "Low",
+            "rationale": "Corpus and resource counts are reported, but provenance for key validity and anchor results is missing.",
+            "citations": [
+              "corpus",
+              "n_molecules",
+              "n_evidence",
+              "papers",
+              "transforms_freed",
+              "rl_pool",
+              "end2edit_validity.source",
+              "anchor_violation.source"
+            ]
+          },
+          {
+            "dimension": "Impact and relevance",
+            "score_tier": "High",
+            "rationale": "The task targets non-synthesizable molecules and editing constraints, and the context includes structure papers and SynCraft literature for comparison.",
+            "citations": [
+              "question",
+              "structure_papers",
+              "literature.syncraft"
+            ]
+          },
+          {
+            "dimension": "Clarity and completeness of claims",
+            "score_tier": "Medium",
+            "rationale": "The three questions are explicit, but some result provenance is missing.",
+            "citations": [
+              "three_questions",
+              "end2edit_validity.source",
+              "anchor_violation.source"
+            ]
+          }
+        ],
+        "overall_score_tier": "WARN",
+        "overall_rationale": "The reported results are promising, but the overall tier is WARN because key provenance fields are null and the evidence sufficiency is not yet complete.",
+        "overall_citations": [
+          "hardOK_48api",
+          "p_value",
+          "end2edit_validity",
+          "anchor_violation",
+          "end2edit_validity.source",
+          "anchor_violation.source",
+          "literature.crux.lesson"
+        ]
+      },
+      "weakest_dimension": {
+        "dimension": "Reproducibility and source traceability",
+        "rationale": "The weakest dimension is reproducibility and source traceability because end2edit_validity.source and anchor_violation.source are null, and the CRUX lesson highlights evidence sufficiency as a failure mode.",
+        "citations": [
+          "end2edit_validity.source",
+          "anchor_violation.source",
+          "literature.crux.lesson"
+        ]
+      },
+      "improvement_needed": [
+        {
+          "action": "Populate end2edit_validity.source and anchor_violation.source with concrete artifact identifiers.",
+          "basis_citations": [
+            "end2edit_validity.source",
+            "anchor_violation.source"
+          ]
+        },
+        {
+          "action": "Add explicit code, ontology, and data availability information, because no such availability field is present in CONTEXT.",
+          "basis_citations": [
+            "end2edit_validity.source",
+            "anchor_violation.source"
+          ]
+        },
+        {
+          "action": "Strengthen evidence sufficiency by expanding paired comparisons beyond the reported 6 wins 0 losses and 7 wins 0 losses.",
+          "basis_citations": [
+            "p_value"
+          ]
+        },
+        {
+          "action": "Report effect sizes and confidence intervals, because CONTEXT provides p-values and win/loss counts but no interval estimates.",
+          "basis_citations": [
+            "p_value"
+          ]
+        }
+      ],
+      "verdict_tiers": {
+        "selected": "WARN",
+        "allowed": [
+          "PASS",
+          "WARN",
+          "FAIL",
+          "NOT_APPLICABLE",
+          "BLOCKED",
+          "ERROR"
+        ]
+      }
+    },
+    "missing_inputs": [
+      "end2edit_validity.source is null in CONTEXT.",
+      "anchor_violation.source is null in CONTEXT.",
+      "No explicit code availability, data availability, or artifact repository field is provided in CONTEXT.",
+      "No confidence intervals or effect-size estimates are provided in CONTEXT."
+    ]
+  }
+}

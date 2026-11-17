@@ -1,0 +1,119 @@
+{
+  "phase": "13_paper_compile",
+  "title": "Phase 13 编译与门禁",
+  "phase_output": {
+    "compile_gate": {
+      "checks": [
+        {
+          "check": "zero_undefined_citation",
+          "status": "NOT_EVALUABLE",
+          "observed": null,
+          "reason": "No undefined-citation count or compilation log is provided in CONTEXT.",
+          "citation": [
+            "qid",
+            "corpus"
+          ]
+        },
+        {
+          "check": "zero_warning",
+          "status": "NOT_EVALUABLE",
+          "observed": null,
+          "reason": "No warning count or compilation log is provided in CONTEXT.",
+          "citation": [
+            "qid",
+            "corpus"
+          ]
+        },
+        {
+          "check": "page_tier",
+          "status": "MISSING",
+          "observed": null,
+          "reason": "No page tier is provided in CONTEXT.",
+          "citation": [
+            "qid",
+            "corpus"
+          ]
+        }
+      ],
+      "compilation_result": {
+        "status": "NOT_PROVIDED",
+        "fabricated": false,
+        "reason": "No actual compilation result is provided in CONTEXT; per instruction, no compilation result is fabricated.",
+        "citation": [
+          "qid",
+          "corpus"
+        ]
+      }
+    },
+    "verdict": "BLOCKED",
+    "verdict_reason": "Compile gate is blocked because required compilation evidence is absent from CONTEXT.",
+    "missing_inputs": [
+      "compilation_log",
+      "undefined_citation_count",
+      "warning_count",
+      "page_tier",
+      "build_status"
+    ]
+  },
+  "verdict": "BLOCKED",
+  "missing_inputs": [],
+  "full_response": {
+    "phase": "Phase 13 编译与门禁",
+    "qid": "Q-ONT-MOL-001",
+    "phase_output": {
+      "compile_gate": {
+        "checks": [
+          {
+            "check": "zero_undefined_citation",
+            "status": "NOT_EVALUABLE",
+            "observed": null,
+            "reason": "No undefined-citation count or compilation log is provided in CONTEXT.",
+            "citation": [
+              "qid",
+              "corpus"
+            ]
+          },
+          {
+            "check": "zero_warning",
+            "status": "NOT_EVALUABLE",
+            "observed": null,
+            "reason": "No warning count or compilation log is provided in CONTEXT.",
+            "citation": [
+              "qid",
+              "corpus"
+            ]
+          },
+          {
+            "check": "page_tier",
+            "status": "MISSING",
+            "observed": null,
+            "reason": "No page tier is provided in CONTEXT.",
+            "citation": [
+              "qid",
+              "corpus"
+            ]
+          }
+        ],
+        "compilation_result": {
+          "status": "NOT_PROVIDED",
+          "fabricated": false,
+          "reason": "No actual compilation result is provided in CONTEXT; per instruction, no compilation result is fabricated.",
+          "citation": [
+            "qid",
+            "corpus"
+          ]
+        }
+      },
+      "verdict": "BLOCKED",
+      "verdict_reason": "Compile gate is blocked because required compilation evidence is absent from CONTEXT.",
+      "missing_inputs": [
+        "compilation_log",
+        "undefined_citation_count",
+        "warning_count",
+        "page_tier",
+        "build_status"
+      ]
+    },
+    "verdict": "BLOCKED"
+  }
+}

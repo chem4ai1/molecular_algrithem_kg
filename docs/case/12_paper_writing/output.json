@@ -1,0 +1,202 @@
+{
+  "phase": "12_paper_writing",
+  "title": "Phase 12 论文写作规划",
+  "phase_output": {
+    "paper_outline": [
+      {
+        "section": "Title",
+        "claim": "Ontology-grounded discovery and editing of non-synthesizable molecules is evaluated with hardOK ontology 0.875 vs similarity 0.5.",
+        "evidence_anchors": [
+          "hardOK ontology 0.875 vs similarity 0.5"
+        ]
+      },
+      {
+        "section": "Abstract",
+        "claim": "The work reports end2end hardOK 1.0 vs 0.125 and SHACL conforms=True.",
+        "evidence_anchors": [
+          "end2end hardOK 1.0 vs 0.125",
+          "SHACL conforms=True"
+        ]
+      },
+      {
+        "section": "Introduction",
+        "claim": "Ontology grounding is evaluated against similarity using hardOK ontology 0.875 vs similarity 0.5.",
+        "evidence_anchors": [
+          "hardOK ontology 0.875 vs similarity 0.5"
+        ]
+      },
+      {
+        "section": "Related Work",
+        "claim": "The evidence base contains 79 structure evidences / 7 papers.",
+        "evidence_anchors": [
+          "79 structure evidences / 7 papers"
+        ]
+      },
+      {
+        "section": "Method",
+        "claim": "The method uses 24 CQ types and 13 transforms.",
+        "evidence_anchors": [
+          "24 CQ types",
+          "13 transforms"
+        ]
+      },
+      {
+        "section": "Experiments",
+        "claim": "The reported p-values are p=0.0156 / 0.0078.",
+        "evidence_anchors": [
+          "p=0.0156 / 0.0078"
+        ]
+      },
+      {
+        "section": "Results",
+        "claim": "End2end hardOK is 1.0 vs 0.125.",
+        "evidence_anchors": [
+          "end2end hardOK 1.0 vs 0.125"
+        ]
+      },
+      {
+        "section": "Validation",
+        "claim": "SHACL validation reports conforms=True.",
+        "evidence_anchors": [
+          "SHACL conforms=True"
+        ]
+      },
+      {
+        "section": "Discussion",
+        "claim": "The reported metrics are hardOK ontology 0.875 vs similarity 0.5, end2end hardOK 1.0 vs 0.125, and p=0.0156 / 0.0078.",
+        "evidence_anchors": [
+          "hardOK ontology 0.875 vs similarity 0.5",
+          "end2end hardOK 1.0 vs 0.125",
+          "p=0.0156 / 0.0078"
+        ]
+      },
+      {
+        "section": "Conclusion",
+        "claim": "The paper is supported by 24 CQ types, 79 structure evidences / 7 papers, 13 transforms, and SHACL conforms=True.",
+        "evidence_anchors": [
+          "24 CQ types",
+          "79 structure evidences / 7 papers",
+          "13 transforms",
+          "SHACL conforms=True"
+        ]
+      }
+    ],
+    "required_evidence_anchors": [
+      "hardOK ontology 0.875 vs similarity 0.5",
+      "end2end hardOK 1.0 vs 0.125",
+      "p=0.0156 / 0.0078",
+      "24 CQ types",
+      "79 structure evidences / 7 papers",
+      "13 transforms",
+      "SHACL conforms=True"
+    ],
+    "anti_ai_voice_constraints": [
+      "State each claim with a bound metric or provided fact.",
+      "Do not use apology language.",
+      "Do not use hedge language without a bound."
+    ],
+    "missing_inputs": []
+  },
+  "verdict": "PASS",
+  "missing_inputs": [],
+  "full_response": {
+    "phase_output": {
+      "paper_outline": [
+        {
+          "section": "Title",
+          "claim": "Ontology-grounded discovery and editing of non-synthesizable molecules is evaluated with hardOK ontology 0.875 vs similarity 0.5.",
+          "evidence_anchors": [
+            "hardOK ontology 0.875 vs similarity 0.5"
+          ]
+        },
+        {
+          "section": "Abstract",
+          "claim": "The work reports end2end hardOK 1.0 vs 0.125 and SHACL conforms=True.",
+          "evidence_anchors": [
+            "end2end hardOK 1.0 vs 0.125",
+            "SHACL conforms=True"
+          ]
+        },
+        {
+          "section": "Introduction",
+          "claim": "Ontology grounding is evaluated against similarity using hardOK ontology 0.875 vs similarity 0.5.",
+          "evidence_anchors": [
+            "hardOK ontology 0.875 vs similarity 0.5"
+          ]
+        },
+        {
+          "section": "Related Work",
+          "claim": "The evidence base contains 79 structure evidences / 7 papers.",
+          "evidence_anchors": [
+            "79 structure evidences / 7 papers"
+          ]
+        },
+        {
+          "section": "Method",
+          "claim": "The method uses 24 CQ types and 13 transforms.",
+          "evidence_anchors": [
+            "24 CQ types",
+            "13 transforms"
+          ]
+        },
+        {
+          "section": "Experiments",
+          "claim": "The reported p-values are p=0.0156 / 0.0078.",
+          "evidence_anchors": [
+            "p=0.0156 / 0.0078"
+          ]
+        },
+        {
+          "section": "Results",
+          "claim": "End2end hardOK is 1.0 vs 0.125.",
+          "evidence_anchors": [
+            "end2end hardOK 1.0 vs 0.125"
+          ]
+        },
+        {
+          "section": "Validation",
+          "claim": "SHACL validation reports conforms=True.",
+          "evidence_anchors": [
+            "SHACL conforms=True"
+          ]
+        },
+        {
+          "section": "Discussion",
+          "claim": "The reported metrics are hardOK ontology 0.875 vs similarity 0.5, end2end hardOK 1.0 vs 0.125, and p=0.0156 / 0.0078.",
+          "evidence_anchors": [
+            "hardOK ontology 0.875 vs similarity 0.5",
+            "end2end hardOK 1.0 vs 0.125",
+            "p=0.0156 / 0.0078"
+          ]
+        },
+        {
+          "section": "Conclusion",
+          "claim": "The paper is supported by 24 CQ types, 79 structure evidences / 7 papers, 13 transforms, and SHACL conforms=True.",
+          "evidence_anchors": [
+            "24 CQ types",
+            "79 structure evidences / 7 papers",
+            "13 transforms",
+            "SHACL conforms=True"
+          ]
+        }
+      ],
+      "required_evidence_anchors": [
+        "hardOK ontology 0.875 vs similarity 0.5",
+        "end2end hardOK 1.0 vs 0.125",
+        "p=0.0156 / 0.0078",
+        "24 CQ types",
+        "79 structure evidences / 7 papers",
+        "13 transforms",
+        "SHACL conforms=True"
+      ],
+      "anti_ai_voice_constraints": [
+        "State each claim with a bound metric or provided fact.",
+        "Do not use apology language.",
+        "Do not use hedge language without a bound."
+      ],
+      "missing_inputs": []
+    },
+    "verdict": "PASS"
+  },
+  "retry": "compact_prompt"
+}

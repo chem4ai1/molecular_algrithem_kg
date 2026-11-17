@@ -1,0 +1,83 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{acl}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{url}
+\title{From Three Questions to One Contract: Ontology-Grounded Discovery and Editing of Non-Synthesizable Molecules}
+\author{Anonymous}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Making a generated molecule synthesizable is not one problem but three overlapping ones: \emph{where the structure is problematic}, \emph{why it cannot be made}, and \emph{what must not be touched}. We present an ontology-grounded pipeline that encodes these three questions as machine-actionable TBox/SHACL artifacts and threads them through a 26-stage research workflow executed by a free-tier LLM. On 3,272 curated cases and 2,783 CrossDocked molecules, structural problem labels cover 97.0\% of molecules without any reasoning text (text-regex baseline: 0\%). A reasoner derives 115 mandatory \texttt{SET\_CHIRAL} contracts and SHACL blocks all violating edit sequences. In generation experiments, hard-constraint success rises from 0.500 to 0.875 (6 wins, 0 losses, exact sign test $p=0.0156$); in end-to-end tool-calling evaluation it rises from 0.125 to 1.000 ($p=0.0078$). We also find a negative result: a medium-size LLM extracts 67 structure evidences from 7 structural-biology papers but assigns problem types at only 9.0\% agreement with an ontology rule, motivating deterministic anchor-to-problem mapping instead of LLM attribution.
+\end{abstract}
+
+\section{Introduction}
+Retrieval-augmented molecular editing~[1] prompts an LLM with five Morgan-similarity neighbours and asks it to emit atom-level edits. Two failures follow. First, structural resemblance is not constraint identity: on 242 queries, retrieved exemplars reach only 0.309 problem-type consistency and 0.311 conflict-signature relevance. Second, the dominant metrics (rescue rate, synthetic-accessibility score) are blind to pharmacophore and stereochemistry loss. In our own walkthrough an edit with a better SA score removed both assigned stereocentres ($2\!\rightarrow\!0$).
+
+We argue that non-synthesizability should be decomposed into three questions that are answered \emph{simultaneously} at every stage: (Q1) where the structure is problematic; (Q2) why it cannot be made; (Q3) what must not be touched. The ontology's role is to convert these into computable features, inferable failure modes, and executable edit contracts.
+
+\section{Ontology Architecture}
+\subsection{Three-question schema}
+The TBox separates perception (structural features) from reusable knowledge (problems, reactions, constraints) through six bridge properties. A structural-feature pattern such as \texttt{SFP\_gem\_diol} implies \texttt{StructuralImpossibility} via \texttt{patternSuggestsFailure}; problem types map to failure modes, constraints, or evaluation protocols. Three property-chain axiom families implement the questions:
+\[
+\text{hasStructuralFeature}\circ\text{patternSuggestsFailure}\circ\text{indicatedByProblemType}
+\;\Rightarrow\; \text{hasDesignProblem}
+\]
+for Q1/Q2, and
+\[
+\text{hasAtomAnchor}\circ\text{requiresEditContract}
+\;\Rightarrow\; \text{hasRequiredOperation}
+\]
+for Q3. A stereocentre anchor therefore \emph{entails} a mandatory \texttt{SET\_CHIRAL} operation; a carbonyl-oxygen anchor forbids atom deletion.
+
+\subsection{Evidence-grounded anchors}
+We extracted 79 structure evidences from seven protein--ligand papers using two LLMs. Evidence types are restricted to six classes (water-bridge, hydrogen-bond, pocket-residue, geometry-distance, reactivity-boundary, prodrug-masking), each carrying a verbatim phrase and a provenance tag. Because LLM problem-type attribution agreed with the anchor-derived rule in only 9.0\% (ernie) and 4.3\% (gemini) of cases, problem types are assigned deterministically from anchor class, and the LLM label is retained only for audit.
+
+\section{Method}
+The pipeline separates three layers: (i) a structure front-end computing SMARTS features, stereocentres, protected atoms and descriptors; (ii) an OWL 2 RL reasoner with SHACL shapes producing solution packs; and (iii) a nine-tool editing environment with explicit terminal actions (\texttt{finalize} or \texttt{abstain}). Tools are exposed to Qwen3.8-27B through vLLM native tool calling. A 26-stage research workflow (problem freeze, domain learning, retrieval, ideation, falsification, method registry, experiment, audits, claim gating, writing, review) was executed with a free-tier LLM; every stage wrote its input, output and machine verdict to a case directory.
+
+\section{Results}
+\subsection{Structural diagnosis without text}
+\midsepenalty
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccc}
+\toprule
+Source & Molecules & L0 cover & L1 cover & Text regex \\
+\midrule
+Golden & 705 & 100\% & 92.8\% & 100\% \\
+CrossDocked & 2,778 & 100\% & 97.0\% & 0\% \\
+\bottomrule
+\end{tabular}
+\caption{Structure-derived problem labels do not depend on reasoning text.}
+\end{table}
+The original five SMARTS covered 34.7\% of CrossDocked molecules; expanding to thirteen transform rules raised coverage to 92.5\% and freed all five previously uneditable probe molecules.
+
+\subsection{Reasoner and generation}
+OWL 2 RL closure grows the graph from 10,400 to 23,113 triples; A21 derives 115 \texttt{SET\_CHIRAL} contracts. SHACL reports \texttt{conforms=False} for violating sequences. In 48 API generations, hardOK rises from 0.500 (both baselines) to 0.875 under ontology constraints (6 wins, 0 losses, $p=0.0156$); chirality preservation rises 0.571$\to$0.917, anchor violation falls 0.188$\to$0, and required-operation emission rises 0.125$\to$0.875. SA score becomes worse ($-0.422\to-0.325$), which we interpret as evidence that the previous metric rewarded deleting protected atoms.
+
+\subsection{End-to-end tool calling}
+On eight held-out molecules, ontology-guided tool calling achieves valid edits 8/8, chirality preservation 8/8, zero anchor violations, and hardOK 1.000 versus 0.125 for the retrieved-exemplar baseline ($p=0.0078$). A LoRA adapter trained on 18 batches of decision data matched base behaviour on the full trajectory: the base model already saturated the tool chain, indicating the bottleneck is coverage and evidence, not policy optimisation.
+
+
+\section{Auditable 26-Stage Execution}
+To make the research process itself inspectable, we ran a 26-node workflow~[2] with the free-tier model. Each stage persisted \texttt{input.json} (the exact context), \texttt{output.json} (the model artifact) and \texttt{meta.json} (model, latency, token count, verdict). All 26 stages completed; 21 on the first call and 5 after a compact-prompt retry necessitated by output-length truncation. Stage verdicts were \texttt{PASS} or \texttt{WARN} except for citation audit, which returned \texttt{BLOCKED} because metadata verification could not be completed offline---an honest failure preserved rather than silently upgraded. The stage log yields three reusable lessons: (i) prompts must carry compact, numerically verified context rather than full dumps; (ii) model-generated class assignments require deterministic post-mapping; (iii) truncation and content filtering make multi-model fallback a practical necessity.
+
+\section{Analysis}
+The 26-stage run exposes a methodological lesson: a free-tier LLM can locate evidence accurately but cannot be trusted to assign ontology classes. Two silent failures were caught only because each stage wrote a machine verdict: an IRI-prefix mismatch that had silently disabled failure scoring, and an exception handler that converted a tool error into a zero reward and produced a false ``no divergence'' conclusion. We therefore recommend that every research pipeline treat self-reported completion as unreliable and require tool-computed verdicts at each boundary.
+
+\section{Limitations}
+Sample sizes remain small (16 molecules in the API study, 8 in end-to-end); the structure evidences are constraints, not edit demonstrations; PDB ligand--molecule mapping is not yet performed; and route-level synthesizability still requires an external retrosynthesis engine.
+
+\section{Conclusion}
+Encoding the three questions of molecular non-synthesizability as ontology axioms makes constraints machine-actionable across diagnosis, schema lookup, edit generation and validation. Hard-constraint success improves significantly while proxy scores may worsen---a trade-off that evaluation protocols should report rather than hide.
+
+\bibliographystyle{plain}
+\bibliography{references}
+
+\end{document}

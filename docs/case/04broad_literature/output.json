@@ -1,10 +1,84 @@
 {
   "phase": "04broad_literature",
   "title": "Phase 4broad 广搜 + GAP_REPORT.md",
-  "phase_output": null,
-  "verdict": "ERROR",
-  "missing_inputs": [
-    "model_call_failed"
-  ],
-  "full_response": null
+  "phase_output": {
+    "phase": "Phase 4 broad search + GAP_REPORT.md",
+    "artifact": "GAP_REPORT.md",
+    "gap_list": [
+      {
+        "id": "GAP-A",
+        "statement": "The context reports hardOK ontology 0.875 vs similarity 0.5 and only 79 structure evidences / 7 papers; a gap remains for broader evidence to validate ontology-grounded discovery.",
+        "evidence_source": "CONTEXT: hardOK ontology 0.875 vs similarity 0.5; 79 structure evidences / 7 papers",
+        "addresses": "Q1"
+      },
+      {
+        "id": "GAP-B",
+        "statement": "The context reports end2end hardOK 1.0 vs 0.125; a gap remains for external validation of the end-to-end result.",
+        "evidence_source": "CONTEXT: end2end hardOK 1.0 vs 0.125",
+        "addresses": "Q1"
+      },
+      {
+        "id": "GAP-C",
+        "statement": "The context reports p=0.0156 / 0.0078; a gap remains for robustness reporting across additional settings.",
+        "evidence_source": "CONTEXT: p=0.0156 / 0.0078",
+        "addresses": "Q1"
+      },
+      {
+        "id": "GAP-D",
+        "statement": "The context reports 24 CQ types and 13 transforms; a gap remains for an explicit CQ-to-transform mapping for editing non-synthesizable molecules.",
+        "evidence_source": "CONTEXT: 24 CQ types; 13 transforms",
+        "addresses": "Q2"
+      },
+      {
+        "id": "GAP-E",
+        "statement": "The context reports SHACL conforms=True; a gap remains for task-level evidence that SHACL-conformant outputs support discovery or editing of non-synthesizable molecules.",
+        "evidence_source": "CONTEXT: SHACL conforms=True",
+        "addresses": "Q3"
+      }
+    ],
+    "missing_inputs": []
+  },
+  "verdict": "PASS",
+  "missing_inputs": [],
+  "full_response": {
+    "phase_output": {
+      "phase": "Phase 4 broad search + GAP_REPORT.md",
+      "artifact": "GAP_REPORT.md",
+      "gap_list": [
+        {
+          "id": "GAP-A",
+          "statement": "The context reports hardOK ontology 0.875 vs similarity 0.5 and only 79 structure evidences / 7 papers; a gap remains for broader evidence to validate ontology-grounded discovery.",
+          "evidence_source": "CONTEXT: hardOK ontology 0.875 vs similarity 0.5; 79 structure evidences / 7 papers",
+          "addresses": "Q1"
+        },
+        {
+          "id": "GAP-B",
+          "statement": "The context reports end2end hardOK 1.0 vs 0.125; a gap remains for external validation of the end-to-end result.",
+          "evidence_source": "CONTEXT: end2end hardOK 1.0 vs 0.125",
+          "addresses": "Q1"
+        },
+        {
+          "id": "GAP-C",
+          "statement": "The context reports p=0.0156 / 0.0078; a gap remains for robustness reporting across additional settings.",
+          "evidence_source": "CONTEXT: p=0.0156 / 0.0078",
+          "addresses": "Q1"
+        },
+        {
+          "id": "GAP-D",
+          "statement": "The context reports 24 CQ types and 13 transforms; a gap remains for an explicit CQ-to-transform mapping for editing non-synthesizable molecules.",
+          "evidence_source": "CONTEXT: 24 CQ types; 13 transforms",
+          "addresses": "Q2"
+        },
+        {
+          "id": "GAP-E",
+          "statement": "The context reports SHACL conforms=True; a gap remains for task-level evidence that SHACL-conformant outputs support discovery or editing of non-synthesizable molecules.",
+          "evidence_source": "CONTEXT: SHACL conforms=True",
+          "addresses": "Q3"
+        }
+      ],
+      "missing_inputs": []
+    },
+    "verdict": "PASS"
+  },
+  "retry": "compact_prompt"
 }

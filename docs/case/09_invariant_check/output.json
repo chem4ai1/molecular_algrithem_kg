@@ -1,0 +1,144 @@
+{
+  "phase": "09_invariant_check",
+  "title": "Phase 9 INV-G1 锚点校验",
+  "phase_output": {
+    "phase": "Phase 9 INV-G1 锚点校验",
+    "qid": "Q-ONT-MOL-001",
+    "artifact_type": "INV-G1 anchor validation report",
+    "qid_anchor": {
+      "expected_qid": "Q-ONT-MOL-001",
+      "observed_qid_in_context": "Q-ONT-MOL-001",
+      "observed_qid_in_previous_phase": "Q-ONT-MOL-001",
+      "status": "MATCH",
+      "context_refs": [
+        "qid",
+        "previous_phase.phase_output.qid"
+      ]
+    },
+    "problem_hash_status": {
+      "present": false,
+      "stable": null,
+      "status": "MISSING",
+      "context_refs": [
+        "qid"
+      ]
+    },
+    "silent_problem_substitution_report": {
+      "detected": false,
+      "confidence": "limited",
+      "reason": "The Q-id and problem statement are consistent in the provided artifacts, but problem_hash is absent.",
+      "context_refs": [
+        "qid",
+        "question",
+        "three_questions",
+        "previous_phase.phase_output.qid"
+      ]
+    },
+    "machine_verdict": "WARN"
+  },
+  "verdict": "WARN",
+  "missing_inputs": [
+    "problem_hash",
+    "prior_problem_hash",
+    "complete artifact manifest for Q-ONT-MOL-001",
+    "all artifact payloads required to verify Q-id reference in every artifact"
+  ],
+  "full_response": {
+    "phase": "Phase 9 INV-G1 锚点校验",
+    "qid": "Q-ONT-MOL-001",
+    "invariant": "INV-G1",
+    "context_refs": [
+      "qid",
+      "question",
+      "three_questions",
+      "previous_phase.phase_output.qid"
+    ],
+    "checks": [
+      {
+        "check_id": "QID_REFERENCE",
+        "requirement": "Q-id referenced in every artifact",
+        "result": "PARTIAL_PASS",
+        "detail": "The provided CONTEXT contains qid Q-ONT-MOL-001, and the provided previous phase output contains the same qid. A complete artifact set is not provided, so exhaustive verification is not possible.",
+        "context_refs": [
+          "qid",
+          "previous_phase.phase_output.qid"
+        ]
+      },
+      {
+        "check_id": "PROBLEM_HASH_STABILITY",
+        "requirement": "problem_hash stable",
+        "result": "NOT_VERIFIABLE",
+        "detail": "No problem_hash or prior problem_hash value is present in the provided CONTEXT or previous phase output.",
+        "context_refs": [
+          "qid",
+          "previous_phase.phase_output.qid"
+        ]
+      },
+      {
+        "check_id": "SILENT_PROBLEM_SUBSTITUTION",
+        "requirement": "Report any silent problem substitution",
+        "result": "NO_EVIDENCE_DETECTED",
+        "detail": "No conflicting Q-id or problem statement is present in the provided artifacts; however, the missing problem_hash prevents conclusive exclusion of silent substitution.",
+        "context_refs": [
+          "qid",
+          "question",
+          "three_questions",
+          "previous_phase.phase_output.qid"
+        ]
+      }
+    ],
+    "silent_problem_substitution": {
+      "detected": false,
+      "status": "NO_EVIDENCE_IN_PROVIDED_ARTIFACTS",
+      "confidence": "limited",
+      "context_refs": [
+        "qid",
+        "question",
+        "three_questions",
+        "previous_phase.phase_output.qid"
+      ]
+    },
+    "missing_inputs": [
+      "problem_hash",
+      "prior_problem_hash",
+      "complete artifact manifest for Q-ONT-MOL-001",
+      "all artifact payloads required to verify Q-id reference in every artifact"
+    ],
+    "verdict": "WARN",
+    "phase_output": {
+      "phase": "Phase 9 INV-G1 锚点校验",
+      "qid": "Q-ONT-MOL-001",
+      "artifact_type": "INV-G1 anchor validation report",
+      "qid_anchor": {
+        "expected_qid": "Q-ONT-MOL-001",
+        "observed_qid_in_context": "Q-ONT-MOL-001",
+        "observed_qid_in_previous_phase": "Q-ONT-MOL-001",
+        "status": "MATCH",
+        "context_refs": [
+          "qid",
+          "previous_phase.phase_output.qid"
+        ]
+      },
+      "problem_hash_status": {
+        "present": false,
+        "stable": null,
+        "status": "MISSING",
+        "context_refs": [
+          "qid"
+        ]
+      },
+      "silent_problem_substitution_report": {
+        "detected": false,
+        "confidence": "limited",
+        "reason": "The Q-id and problem statement are consistent in the provided artifacts, but problem_hash is absent.",
+        "context_refs": [
+          "qid",
+          "question",
+          "three_questions",
+          "previous_phase.phase_output.qid"
+        ]
+      },
+      "machine_verdict": "WARN"
+    }
+  }
+}

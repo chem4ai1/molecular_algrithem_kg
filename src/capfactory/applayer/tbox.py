@@ -86,6 +86,17 @@ APP_CLASSES: Dict[str, Tuple[str, Tuple[Tuple[str, str], ...]]] = {
     "ConsultedPaper": ("本次查过但未引的论文（按 run 实例化）", (
         ("run_id", "must"), ("paper_id", "must"), ("reason", "optional"),
         ("used_in", "optional"))),
+    "ProblemAnchor": ("本次生成任务冻结的问题锚点（INV-G1，全链回引）", (
+        ("run_id", "must"), ("qid", "must"), ("question", "must"),
+        ("content_hash", "must"), ("frozen_at", "optional"),
+        ("source_span", "optional"), ("status", "optional"),
+        ("redirected_from", "optional"))),
+    "DomainHint": ("问题文本规则抽取的领域概率签名（provisional，不是 learned）", (
+        ("run_id", "must"), ("domain_profile", "optional"),
+        ("methodology_profile", "optional"), ("writing_profile", "optional"),
+        ("failure_mode_profile", "optional"), ("data_profile", "optional"),
+        ("confidence", "must"), ("origin", "must"),
+        ("provisional", "must"))),
     "RelatedPaper": ("本次检索召回的候选论文（task-r，不等于最终引用）", (
         ("run_id", "must"), ("paper_id", "must"), ("query", "optional"),
         ("score", "optional"), ("bm25", "optional"), ("vector", "optional"),
@@ -160,6 +171,10 @@ APP_RELATIONS: Dict[str, Tuple[str, str, str]] = {
     "RETRIEVED": ("SectionDraft", "RelatedPaper", "该节检索到哪些候选"),
     "ABOUT": ("RelatedPaper", "Paper", "候选指向库内哪篇论文"),
     "LED_TO": ("RelatedPaper", "CitedPaper", "该候选最终是否被引"),
+    "GROUNDED_IN": ("ProblemAnchor", "RelatedPaper", "问题锚定的种子/依据"),
+    "HINTS": ("DomainHint", "ProblemAnchor", "该签名针对哪个问题"),
+    "ANCHORED_BY": ("SectionDraft", "ProblemAnchor", "该节回引哪个冻结问题"),
+    "REFINED_BY": ("DomainHint", "EvidenceNorm", "阶段02 学习后的规范覆盖 hint"),
     # ===== 代码域：域内 9 =====
     "CONTAINS": ("CodeUnit", "CodeSymbol", "文件包含符号"),
     "IMPORTS": ("CodeUnit", "CodeUnit", "同仓库文件依赖"),

@@ -32,12 +32,12 @@
 
 | 关系 | 来源 | 说明 |
 |---|---|---|
+| `GROUNDED_IN` | Evidence | 证据来自代码哪处 |
 | `IMPORTS` | CodeUnit | 同仓库文件依赖 |
 | `IN_UNIT` | EntryPoint | 入口所在文件 |
 | `TEST_IN` | TestUnit | 测试所在文件 |
 | `ASSUMED_IN` | Assumption | 假设隐含在代码哪处 |
 | `DETECTABLE_IN` | FailureMode | 该失败模式在代码哪处可检测 |
-| `GROUNDED_IN` | Evidence | 证据来自代码哪处 |
 
 ## 4. 抽取来源
 

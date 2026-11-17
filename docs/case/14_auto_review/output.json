@@ -1,0 +1,124 @@
+{
+  "phase": "14_auto_review",
+  "title": "Phase 14 跨模型评审 + kill argument",
+  "phase_output": {
+    "qid": "Q-ONT-MOL-001",
+    "phase": "Phase 14 跨模型评审 + kill argument",
+    "context_used": {
+      "C1": "hardOK ontology 0.875 vs similarity 0.5",
+      "C2": "end2end hardOK 1.0 vs 0.125",
+      "C3": "p=0.0156 / 0.0078",
+      "C4": "24 CQ types",
+      "C5": "79 structure evidences / 7 papers",
+      "C6": "13 transforms",
+      "C7": "SHACL conforms=True"
+    },
+    "reviewers": [
+      {
+        "persona": "Ontology evaluation reviewer",
+        "checks": [
+          "Compare ontology hardOK 0.875 vs similarity 0.5 (C1).",
+          "Verify end2end hardOK 1.0 vs 0.125 (C2).",
+          "Check SHACL conforms=True (C7)."
+        ],
+        "likely_objection": "Gains may reflect benchmark-specific hardOK rather than ontology grounding (C1,C2,C7)."
+      },
+      {
+        "persona": "Statistical validity reviewer",
+        "checks": [
+          "Assess p=0.0156 / 0.0078 (C3).",
+          "Assess coverage of 24 CQ types (C4).",
+          "Assess evidence base 79 structure evidences / 7 papers (C5)."
+        ],
+        "likely_objection": "p-values and limited evidence do not establish generalizable discovery (C3,C4,C5)."
+      },
+      {
+        "persona": "Chemical editing robustness reviewer",
+        "checks": [
+          "Assess 13 transforms (C6).",
+          "Assess 79 structure evidences / 7 papers (C5).",
+          "Assess SHACL conforms=True (C7)."
+        ],
+        "likely_objection": "Limited transforms and evidence may not support robust editing of non-synthesizable molecules (C5,C6,C7)."
+      }
+    ],
+    "kill_argument": "Reject because the supplied evidence does not establish ontology-grounded discovery and editing beyond a narrow benchmark. The ontology hardOK result, 0.875 versus 0.5, and the end-to-end hardOK result, 1.0 versus 0.125, are large, but the provided facts do not include uncertainty, ablations, or baselines isolating ontology grounding from other pipeline choices (C1, C2). The p-values, 0.0156 and 0.0078, indicate statistical separation, but they do not show that the 24 competency-question types cover the claimed discovery space (C3, C4). The evidence base is limited: 79 structure evidences from 7 papers may reflect source curation and may not generalize to non-synthesizable molecules (C5). Thirteen transforms are not enough to demonstrate robust editing unless coverage, failure modes, and negative controls are provided (C6). SHACL conforms=True shows syntactic conformance, not semantic correctness, completeness, or fitness for discovery (C7). Therefore, the central claim remains underdetermined. The system may be optimizing benchmark-specific hardOK rather than reliably discovering and editing non-synthesizable molecules. Without external validation, error analysis, and ontology-independent checks, the contribution should be rejected. The review therefore requires stronger evidence that ontology grounding causes the observed gains, not merely correlates with them, across held-out molecules, transforms, and competency questions before acceptance at scale today in practice.",
+    "response_plan": [
+      "Report uncertainty and multiple-comparison handling for hardOK ontology 0.875 vs 0.5, end2end hardOK 1.0 vs 0.125, and p=0.0156 / 0.0078 (C1,C2,C3).",
+      "Run ablations holding 13 transforms, 24 CQ types, and 79 structure evidences / 7 papers constant to isolate ontology grounding effects (C4,C5,C6).",
+      "Add external validation beyond 7 papers and 79 structure evidences, including held-out non-synthesizable molecules and negative controls (C5).",
+      "Extend transform coverage and report failure modes for 13 transforms, plus semantic validation beyond SHACL conforms=True (C6,C7).",
+      "Map 24 CQ types to discovery and editing tasks to show coverage and novelty beyond benchmark hardOK (C4)."
+    ],
+    "missing_inputs": [
+      "uncertainty estimates for C1-C3",
+      "ablation isolating ontology grounding",
+      "external validation beyond C5",
+      "transform failure modes for C6",
+      "semantic validation beyond C7"
+    ]
+  },
+  "verdict": "WARN",
+  "missing_inputs": [],
+  "full_response": {
+    "phase_output": {
+      "qid": "Q-ONT-MOL-001",
+      "phase": "Phase 14 跨模型评审 + kill argument",
+      "context_used": {
+        "C1": "hardOK ontology 0.875 vs similarity 0.5",
+        "C2": "end2end hardOK 1.0 vs 0.125",
+        "C3": "p=0.0156 / 0.0078",
+        "C4": "24 CQ types",
+        "C5": "79 structure evidences / 7 papers",
+        "C6": "13 transforms",
+        "C7": "SHACL conforms=True"
+      },
+      "reviewers": [
+        {
+          "persona": "Ontology evaluation reviewer",
+          "checks": [
+            "Compare ontology hardOK 0.875 vs similarity 0.5 (C1).",
+            "Verify end2end hardOK 1.0 vs 0.125 (C2).",
+            "Check SHACL conforms=True (C7)."
+          ],
+          "likely_objection": "Gains may reflect benchmark-specific hardOK rather than ontology grounding (C1,C2,C7)."
+        },
+        {
+          "persona": "Statistical validity reviewer",
+          "checks": [
+            "Assess p=0.0156 / 0.0078 (C3).",
+            "Assess coverage of 24 CQ types (C4).",
+            "Assess evidence base 79 structure evidences / 7 papers (C5)."
+          ],
+          "likely_objection": "p-values and limited evidence do not establish generalizable discovery (C3,C4,C5)."
+        },
+        {
+          "persona": "Chemical editing robustness reviewer",
+          "checks": [
+            "Assess 13 transforms (C6).",
+            "Assess 79 structure evidences / 7 papers (C5).",
+            "Assess SHACL conforms=True (C7)."
+          ],
+          "likely_objection": "Limited transforms and evidence may not support robust editing of non-synthesizable molecules (C5,C6,C7)."
+        }
+      ],
+      "kill_argument": "Reject because the supplied evidence does not establish ontology-grounded discovery and editing beyond a narrow benchmark. The ontology hardOK result, 0.875 versus 0.5, and the end-to-end hardOK result, 1.0 versus 0.125, are large, but the provided facts do not include uncertainty, ablations, or baselines isolating ontology grounding from other pipeline choices (C1, C2). The p-values, 0.0156 and 0.0078, indicate statistical separation, but they do not show that the 24 competency-question types cover the claimed discovery space (C3, C4). The evidence base is limited: 79 structure evidences from 7 papers may reflect source curation and may not generalize to non-synthesizable molecules (C5). Thirteen transforms are not enough to demonstrate robust editing unless coverage, failure modes, and negative controls are provided (C6). SHACL conforms=True shows syntactic conformance, not semantic correctness, completeness, or fitness for discovery (C7). Therefore, the central claim remains underdetermined. The system may be optimizing benchmark-specific hardOK rather than reliably discovering and editing non-synthesizable molecules. Without external validation, error analysis, and ontology-independent checks, the contribution should be rejected. The review therefore requires stronger evidence that ontology grounding causes the observed gains, not merely correlates with them, across held-out molecules, transforms, and competency questions before acceptance at scale today in practice.",
+      "response_plan": [
+        "Report uncertainty and multiple-comparison handling for hardOK ontology 0.875 vs 0.5, end2end hardOK 1.0 vs 0.125, and p=0.0156 / 0.0078 (C1,C2,C3).",
+        "Run ablations holding 13 transforms, 24 CQ types, and 79 structure evidences / 7 papers constant to isolate ontology grounding effects (C4,C5,C6).",
+        "Add external validation beyond 7 papers and 79 structure evidences, including held-out non-synthesizable molecules and negative controls (C5).",
+        "Extend transform coverage and report failure modes for 13 transforms, plus semantic validation beyond SHACL conforms=True (C6,C7).",
+        "Map 24 CQ types to discovery and editing tasks to show coverage and novelty beyond benchmark hardOK (C4)."
+      ],
+      "missing_inputs": [
+        "uncertainty estimates for C1-C3",
+        "ablation isolating ontology grounding",
+        "external validation beyond C5",
+        "transform failure modes for C6",
+        "semantic validation beyond C7"
+      ]
+    },
+    "verdict": "WARN"
+  },
+  "retry": "compact_prompt"
+}

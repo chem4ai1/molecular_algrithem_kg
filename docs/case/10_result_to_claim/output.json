@@ -1,0 +1,844 @@
+{
+  "phase": "10_result_to_claim",
+  "title": "Phase 10 结果→声明（3-fidelity + TDAL）",
+  "phase_output": {
+    "claim_ladder": {
+      "fidelity_levels": {
+        "L1_symbolic": "claims about ontology structure, axioms, class/property definitions and inference rules; verifiable by the reasoner without any measured number",
+        "L2_numerical": "claims that assert a specific quantity taken verbatim from CONTEXT; no arithmetic beyond restating exact fractions",
+        "L3_qualitative": "claims about mechanism, adequacy or comparative merit that CONTEXT supports only indirectly; these are the claims most exposed to downgrade"
+      },
+      "L1_symbolic": [
+        {
+          "id": "SYM1",
+          "claim": "The ontology defines the class ValidatedEditSequence, i.e. an edit is representable as a sequence that has passed validation.",
+          "cites": [
+            "reasoner_inferences.定义类 ValidatedEditSequence"
+          ],
+          "status": "supported"
+        },
+        {
+          "id": "SYM2",
+          "claim": "The ontology defines the class StereocenterPreservingReaction, i.e. stereocentre preservation is modelled as a reaction class rather than an ad-hoc filter.",
+          "cites": [
+            "reasoner_inferences.定义类 StereocenterPreservingReaction"
+          ],
+          "status": "supported"
+        },
+        {
+          "id": "SYM3",
+          "claim": "The ontology carries a StereocenterAnchor contract, i.e. stereocentre anchoring is expressed as a contract on the anchor rather than as free text.",
+          "cites": [
+            "reasoner_inferences.StereocenterAnchor 契约"
+          ],
+          "status": "supported"
+        },
+        {
+          "id": "SYM4",
+          "claim": "The ontology exposes the property hasRequiredOperation with SET_CHIRAL as an asserted value, so a required stereochemical operation is machine-readable.",
+          "cites": [
+            "reasoner_inferences.A21 hasRequiredOperation SET_CHIRAL"
+          ],
+          "status": "supported"
+        },
+        {
+          "id": "SYM5",
+          "claim": "The ontology exposes hasFailureRisk, giving a machine-readable slot for the 'why it cannot be made' question (Q2).",
+          "cites": [
+            "reasoner_inferences.A19 hasFailureRisk"
+          ],
+          "status": "supported"
+        },
+        {
+          "id": "SYM6",
+          "claim": "The ontology exposes hasProtectedAtom, giving a machine-readable slot for the 'what must not be touched' question (Q3).",
+          "cites": [
+            "reasoner_inferences.A20 hasProtectedAtom"
+          ],
+          "status": "supported"
+        },
+        {
+          "id": "SYM7",
+          "claim": "An OWL RL reasoner (owlrl) is part of the pipeline and materialises inferences over the ontology, so the symbolic layer is not merely asserted but derived.",
+          "cites": [
+            "reasoner_inferences.source"
+          ],
+          "status": "supported"
+        },
+        {
+          "id": "SYM8",
+          "claim": "The pipeline is ontology-grounded in the sense that an 'ontology' arm exists as a distinct condition alongside similarity and random baselines.",
+          "cites": [
+            "hardOK_48api"
+          ],
+          "status": "supported"
+        },
+        {
+          "id": "SYM9",
+          "claim": "The ontology constructs map onto the three sub-questions as hasFailureRisk→Q2, hasProtectedAtom→Q3, hasRequiredOperation SET_CHIRAL→stereochemistry constraint.",
+          "cites": [
+            "three_questions",
+            "reasoner_inferences"
+          ],
+          "status": "downgraded",
+          "note": "This mapping is an interpretation of this phase, not a statement present in CONTEXT; downgraded from asserted symbolic structure to inferred correspondence (see DOWNGRADE D1)."
+        }
+      ],
+      "L2_numerical": [
+        {
+          "id": "NUM1",
+          "claim": "On hardOK_48api the ontology arm scores 0.875 against 0.5 for similarity and 0.5 for random.",
+          "cites": [
+            "hardOK_48api"
+          ],
+          "status": "supported"
+        },
+        {
+          "id": "NUM2",
+          "claim": "The reported significance is 6 wins 0 losses, exact sign test p=0.0156, and end2end 7 wins 0 losses p=0.0078.",
+          "cites": [
+            "p_value"
+          ],
+          "status": "supported",
+          "derived_check": "Consistent with a one-sided exact sign test: (1/2)^6 = 0.015625 ≈ 0.0156 and (1/2)^7 = 0.0078125 ≈ 0.0078. Two-sided would give 0.03125 and 0.015625. CONTEXT does not state sidedness."
+        },
+        {
+          "id": "NUM3",
+          "claim": "end2edit_validity is 1.0 for ontology, 1.0 for ontology_lora and 0.5 for syncraft, with source=null.",
+          "cites": [
+            "end2edit_validity"
+          ],
+          "status": "supported_with_caveat",
+          "caveat": "No denominator is reported, so 1.0 cannot be read as n/n; source=null means no primary artifact is named."
+        },
+        {
+          "id": "NUM4",
+          "claim": "anchor_violation is 0.0 for ontology, 0.0 for ontology_lora and 0.125 for syncraft, with source=null.",
+          "cites": [
+            "anchor_violation"
+          ],
+          "status": "supported_with_caveat",
+          "caveat": "No denominator is reported; 0.0 cannot be read as 0/n; source=null."
+        },
+        {
+          "id": "NUM5",
+          "claim": "Reasoner inference counts are: A21 hasRequiredOperation SET_CHIRAL 115; A19 hasFailureRisk 231; A20 hasProtectedAtom 363; defined class ValidatedEditSequence 78; defined class StereocenterPreservingReaction 2; StereocenterAnchor contract 320.",
+          "cites": [
+            "reasoner_inferences"
+          ],
+          "status": "supported"
+        },
+        {
+          "id": "NUM6",
+          "claim": "owlrl expands the triple store from 10400 to 23113 triples.",
+          "cites": [
+            "reasoner_inferences.source"
+          ],
+          "status": "supported",
+          "derived_check": "23113 − 10400 = 12713 materialised triples (arithmetic on the two reported figures only)."
+        },
+        {
+          "id": "NUM7",
+          "claim": "Reported scale: 3272 CQ cases across 14 batches; 2783 crossdocked molecules; n_molecules 3483; n_evidence 79; papers 7; transforms_freed 5/5; rl_pool 5174.",
+          "cites": [
+            "corpus",
+            "n_molecules",
+            "n_evidence",
+            "papers",
+            "transforms_freed",
+            "rl_pool"
+          ],
+          "status": "supported"
+        },
+        {
+          "id": "NUM8",
+          "claim": "External literature reference point: SynCraft reports P2M 28.4% / ResGen 29.1% rescue at similarity>0.6 with Gemini-2.5-Pro (arXiv 2512.20333).",
+          "cites": [
+            "literature.syncraft"
+          ],
+          "status": "supported_as_external",
+          "caveat": "This is a third-party reported number, not a measurement of this pipeline, and it is a rescue rate at similarity>0.6 — a different metric and operating point from end2edit_validity."
+        },
+        {
+          "id": "NUM9",
+          "claim": "Seven PDB structure entries are listed: 5KB3, 5IRU, 5J2M, 5JJK, 5JXG, 5K3S, 5IAR.",
+          "cites": [
+            "literature.structure_papers"
+          ],
+          "status": "supported_as_listing",
+          "caveat": "CONTEXT gives the identifiers only; it does not state which claim each structure supports."
+        }
+      ],
+      "L3_qualitative": [
+        {
+          "id": "QL1",
+          "claim": "The ontology arm is directionally stronger than similarity and random baselines on hardOK.",
+          "cites": [
+            "hardOK_48api",
+            "p_value"
+          ],
+          "status": "downgraded",
+          "downgraded_to": "directionally higher in the reported runs; small-n (6 and 7 paired wins)"
+        },
+        {
+          "id": "QL2",
+          "claim": "Ontology-based editing produces valid edits.",
+          "cites": [
+            "end2edit_validity"
+          ],
+          "status": "downgraded",
+          "downgraded_to": "no invalid edits were observed in the reported runs; denominator and provenance not reported"
+        },
+        {
+          "id": "QL3",
+          "claim": "Ontology-based editing preserves anchors.",
+          "cites": [
+            "anchor_violation"
+          ],
+          "status": "downgraded",
+          "downgraded_to": "no anchor violations were observed in the reported runs; denominator and provenance not reported"
+        },
+        {
+          "id": "QL4",
+          "claim": "The pipeline can state WHY a molecule is non-synthesizable.",
+          "cites": [
+            "reasoner_inferences.A19 hasFailureRisk",
+            "three_questions.Q2"
+          ],
+          "status": "downgraded",
+          "downgraded_to": "the pipeline attaches a hasFailureRisk category (231 inferences); the causal/chemical adequacy of that explanation is not evaluated in CONTEXT"
+        },
+        {
+          "id": "QL5",
+          "claim": "The pipeline can state WHAT must not be touched during editing.",
+          "cites": [
+            "reasoner_inferences.A20 hasProtectedAtom",
+            "reasoner_inferences.StereocenterAnchor 契约"
+          ],
+          "status": "downgraded",
+          "downgraded_to": "protected atoms (363) and the StereocenterAnchor contract (320) are represented; correctness of the protected set is not directly evaluated"
+        },
+        {
+          "id": "QL6",
+          "claim": "Stereochemistry is preserved by the edited molecules.",
+          "cites": [
+            "reasoner_inferences.A21 hasRequiredOperation SET_CHIRAL",
+            "reasoner_inferences.定义类 StereocenterPreservingReaction"
+          ],
+          "status": "downgraded",
+          "downgraded_to": "stereochemical constraint is represented (SET_CHIRAL 115) but the dedicated class has only 2 instances; preservation is not measured per molecule"
+        },
+        {
+          "id": "QL7",
+          "claim": "Binding interactions are preserved by the edited molecules.",
+          "cites": [
+            "question (binding interactions)",
+            "literature.structure_papers",
+            "corpus (2783 crossdocked molecules)"
+          ],
+          "status": "unsupported",
+          "downgraded_to": "not claimed — CONTEXT contains no binding-interaction, docking-score or interaction-fingerprint measurement"
+        },
+        {
+          "id": "QL8",
+          "claim": "Pharmacophoric anchors are preserved.",
+          "cites": [
+            "anchor_violation",
+            "question (pharmacophoric anchors)"
+          ],
+          "status": "downgraded",
+          "downgraded_to": "anchor_violation is the only proxy and 'pharmacophoric anchor' is not defined in CONTEXT; preservation is asserted only as absence of observed violations"
+        },
+        {
+          "id": "QL9",
+          "claim": "The ontology pipeline outperforms SynCraft.",
+          "cites": [
+            "end2edit_validity.syncraft",
+            "anchor_violation.syncraft",
+            "literature.syncraft"
+          ],
+          "status": "downgraded",
+          "downgraded_to": "not established — different metrics (validity/violation vs rescue rate), different settings (similarity>0.6, Gemini-2.5-Pro), no head-to-head run"
+        },
+        {
+          "id": "QL10",
+          "claim": "The approach generalises beyond the reported runs.",
+          "cites": [
+            "corpus",
+            "n_molecules",
+            "rl_pool"
+          ],
+          "status": "downgraded",
+          "downgraded_to": "no held-out or external replication is reported; scale figures describe resources, not generalisation"
+        }
+      ]
+    },
+    "downgrades": [
+      {
+        "id": "D1",
+        "claim_id": "SYM9",
+        "from": "L1 symbolic (asserted)",
+        "to": "L3 qualitative (inferred)",
+        "reason": "The Q1/Q2/Q3→ontology-property mapping is not stated in CONTEXT; it is this phase's interpretation."
+      },
+      {
+        "id": "D2",
+        "claim_id": "QL1",
+        "from": "comparative superiority",
+        "to": "directional, small-n",
+        "reason": "6/6 and 7/7 paired wins; no confidence interval; '48api' undefined."
+      },
+      {
+        "id": "D3",
+        "claim_id": "QL2",
+        "from": "validity = 1.0",
+        "to": "no invalid edits observed",
+        "reason": "end2edit_validity.source = null and no denominator reported."
+      },
+      {
+        "id": "D4",
+        "claim_id": "QL3",
+        "from": "anchors preserved",
+        "to": "no anchor violations observed",
+        "reason": "anchor_violation.source = null and no denominator reported."
+      },
+      {
+        "id": "D5",
+        "claim_id": "QL4",
+        "from": "explains why",
+        "to": "assigns a failure-risk category",
+        "reason": "No evaluation of explanation correctness; hasFailureRisk is a category, not a validated causal account."
+      },
+      {
+        "id": "D6",
+        "claim_id": "QL5",
+        "from": "knows what not to touch",
+        "to": "represents protected atoms",
+        "reason": "No ground-truth comparison of the protected set."
+      },
+      {
+        "id": "D7",
+        "claim_id": "QL6",
+        "from": "stereochemistry preserved",
+        "to": "stereochemical constraint represented",
+        "reason": "定义类 StereocenterPreservingReaction has only 2 instances; no per-molecule stereochemical verification reported."
+      },
+      {
+        "id": "D8",
+        "claim_id": "QL7",
+        "from": "binding interactions preserved",
+        "to": "not claimed",
+        "reason": "No binding-interaction metric exists anywhere in CONTEXT."
+      },
+      {
+        "id": "D9",
+        "claim_id": "QL8",
+        "from": "pharmacophoric anchors preserved",
+        "to": "absence of observed anchor violations",
+        "reason": "'pharmacophoric anchor' undefined; anchor_violation is an undefined proxy."
+      },
+      {
+        "id": "D10",
+        "claim_id": "QL9",
+        "from": "outperforms SynCraft",
+        "to": "not established",
+        "reason": "Non-comparable metrics and settings; literature.syncraft is a third-party number at similarity>0.6."
+      },
+      {
+        "id": "D11",
+        "claim_id": "QL10",
+        "from": "generalises",
+        "to": "no generalisation evidence",
+        "reason": "No held-out or external replication reported."
+      }
+    ],
+    "tdal": {
+      "definition_status": "CONTEXT does not define the TDAL dimensions. The operationalisation below is stated explicitly so it can be corrected; all four scores are this phase's judgement anchored to CONTEXT fields, not measurements.",
+      "dimensions": {
+        "T_traceability": {
+          "score": 0.8,
+          "definition": "fraction of ladder claims that cite a named CONTEXT artifact and could be re-derived from it",
+          "justification": "All L1 and L2 claims cite a named field. Deductions: end2edit_validity and anchor_violation carry source=null; literature.structure_papers gives identifiers with no claim linkage; 'transforms_freed' and 'hardOK_48api' are undefined terms; the TDAL definition itself is absent."
+        },
+        "D_determinism_reproducibility": {
+          "score": 0.25,
+          "definition": "extent to which the reported results could be re-run and would reproduce",
+          "justification": "CONTEXT contains no seeds, code, configuration, environment, ontology IRI, per-run variance, confidence intervals or denominators. owlrl expansion (10400→23113) is deterministic in principle but the ontology is not supplied. The only dispersion information is the 6/6 and 7/7 win counts."
+        },
+        "A_adequacy_attribution": {
+          "score": 0.35,
+          "definition": "extent to which the cited evidence is sufficient to support the claim it is attached to, and correctly attributed",
+          "justification": "Headline rates 1.0/1.0/0.0/0.0 lack denominators and provenance; significance rests on 6 and 7 paired wins; no binding-interaction measurement although the question requires it; no ablation separating ontology from ontology_lora; literature.syncraft is correctly attributed as external but is at a different operating point, so no head-to-head attribution is possible."
+        },
+        "L_logical_consistency": {
+          "score": 0.85,
+          "definition": "absence of internal contradiction among ladder claims and between ladder and CONTEXT",
+          "justification": "No contradiction found. The ontology>baseline ordering is consistent across hardOK_48api (0.875 vs 0.5/0.5), end2edit_validity (1.0/1.0 vs 0.5) and anchor_violation (0.0/0.0 vs 0.125). The derived sign-test check is consistent with one-sided exact tests. The only tension is scope: the question's binding-interaction requirement has no corresponding measurement, which is an adequacy gap rather than a contradiction."
+        }
+      },
+      "joint_T_D_A_L": {
+        "computation": "0.80 * 0.25 * 0.35 * 0.85",
+        "value": 0.0595
+      },
+      "weakest_dimension": "D",
+      "weakest_dimension_rationale": "Determinism/Reproducibility is the binding constraint: even a perfectly traceable and internally consistent claim set cannot be re-derived because no denominators, seeds, configuration, ontology artifact or provenance are present for the two headline comparison dicts.",
+      "joint_interpretation": "Multiplicative joint means the weakest dimension dominates; a single low score caps the whole claim set. Remediation priority is therefore D first (publish denominators, source artifacts, seeds/config), then A (add a binding-interaction metric and an ontology-vs-ontology_lora ablation)."
+    },
+    "question_coverage": {
+      "Q1_where_the_structure_is_problematic": "partial — hasFailureRisk (231) and hasProtectedAtom (363) inferences exist; no per-molecule localisation accuracy reported",
+      "Q2_why_it_cannot_be_made": "partial — hasFailureRisk category attached; causal adequacy unvalidated",
+      "Q3_what_must_not_be_touched": "partial — hasProtectedAtom (363) and StereocenterAnchor contract (320) represented; protected-set correctness not evaluated",
+      "binding_interactions": "absent — no measurement in CONTEXT",
+      "stereochemistry": "partial — SET_CHIRAL (115) represented; StereocenterPreservingReaction has 2 instances"
+    },
+    "missing_inputs": [
+      "TDAL dimension definitions (T/D/A/L) — not present in CONTEXT; the operationalisation used here must be confirmed",
+      "Denominators (n) for end2edit_validity and anchor_violation — rates 1.0, 0.0, 0.5, 0.125 are reported without counts",
+      "Provenance for end2edit_validity and anchor_violation — both carry source=null",
+      "Definition of 'hardOK' and of the '48api' label (48 API calls? 48 molecules?)",
+      "Relationship between hardOK_48api and the 6/7 paired-win counts in p_value",
+      "Sidedness of the exact sign test (derived check indicates one-sided)",
+      "Definition of 'transforms_freed' and the identity of the 5 transforms",
+      "Definition of 'anchor' / 'pharmacophoric anchor' and the computation behind anchor_violation",
+      "Any binding-interaction, docking-score or interaction-fingerprint metric — entirely absent although the question requires binding-interaction preservation",
+      "Per-molecule stereochemical verification method and outcomes (only 2 StereocenterPreservingReaction instances reported)",
+      "The ontology artifact itself (IRI, axioms, class/property definitions) — only inference counts are given",
+      "Seeds, code, configuration, environment, per-run variance and confidence intervals",
+      "Ablation isolating ontology vs ontology_lora vs similarity vs random",
+      "Which claim each of the 7 PDB entries (5KB3, 5IRU, 5J2M, 5JJK, 5JXG, 5K3S, 5IAR) supports",
+      "Reconciliation of n_molecules 3483 against 2783 crossdocked molecules (700 difference unexplained)",
+      "Definition of 'CQ cases' and 'batches', and whether the 3272 CQ cases were used for training, evaluation or both (leakage risk)",
+      "Definition of 'validity' in end2edit_validity (synthetic-route validity? valence? downstream synthesizability?)",
+      "Baseline configuration for the syncraft arm (model, prompt, decoding)",
+      "Whether p-values are pre-registered or corrected for multiple comparisons"
+    ],
+    "claims_downgraded_count": 11,
+    "claims_unsupported_count": 1,
+    "claims_supported_symbolic": 8,
+    "claims_supported_numerical": 9
+  },
+  "verdict": "WARN",
+  "missing_inputs": [],
+  "full_response": {
+    "phase": "Phase 10 结果→声明（3-fidelity + TDAL）",
+    "qid": "Q-ONT-MOL-001",
+    "verdict": "WARN",
+    "verdict_rationale": "The symbolic layer is fully traceable: the ontology defines ValidatedEditSequence, StereocenterPreservingReaction and the StereocenterAnchor contract, and owlrl materialises hasFailureRisk, hasProtectedAtom and hasRequiredOperation SET_CHIRAL inferences (reasoner_inferences). The numerical layer is directionally consistent (ontology 0.875 vs similarity/random 0.5 on hardOK_48api; end2edit_validity 1.0/1.0 vs syncraft 0.5; anchor_violation 0.0/0.0 vs syncraft 0.125), but both headline comparison dicts carry source=null and no denominators, so the 1.0/0.0 rates cannot be converted into counts or intervals. The qualitative layer must be downgraded on three fronts: (a) 'binding interactions preserved' has no corresponding measurement anywhere in CONTEXT; (b) 'stereochemistry preserved' rests on a defined class with only 2 instances (定义类 StereocenterPreservingReaction: 2); (c) 'outperforms SynCraft' is not licensed because literature.syncraft reports rescue rates at similarity>0.6 under Gemini-2.5-Pro, a different metric and operating point. Joint TDAL = 0.80*0.25*0.35*0.85 = 0.0595, weakest_dimension = D (Determinism/Reproducibility). Not FAIL because no claim is contradicted and the core ontology-grounding artifacts exist; not PASS because headline rates lack provenance and denominators and the binding-interaction requirement is unmeasured.",
+    "phase_output": {
+      "claim_ladder": {
+        "fidelity_levels": {
+          "L1_symbolic": "claims about ontology structure, axioms, class/property definitions and inference rules; verifiable by the reasoner without any measured number",
+          "L2_numerical": "claims that assert a specific quantity taken verbatim from CONTEXT; no arithmetic beyond restating exact fractions",
+          "L3_qualitative": "claims about mechanism, adequacy or comparative merit that CONTEXT supports only indirectly; these are the claims most exposed to downgrade"
+        },
+        "L1_symbolic": [
+          {
+            "id": "SYM1",
+            "claim": "The ontology defines the class ValidatedEditSequence, i.e. an edit is representable as a sequence that has passed validation.",
+            "cites": [
+              "reasoner_inferences.定义类 ValidatedEditSequence"
+            ],
+            "status": "supported"
+          },
+          {
+            "id": "SYM2",
+            "claim": "The ontology defines the class StereocenterPreservingReaction, i.e. stereocentre preservation is modelled as a reaction class rather than an ad-hoc filter.",
+            "cites": [
+              "reasoner_inferences.定义类 StereocenterPreservingReaction"
+            ],
+            "status": "supported"
+          },
+          {
+            "id": "SYM3",
+            "claim": "The ontology carries a StereocenterAnchor contract, i.e. stereocentre anchoring is expressed as a contract on the anchor rather than as free text.",
+            "cites": [
+              "reasoner_inferences.StereocenterAnchor 契约"
+            ],
+            "status": "supported"
+          },
+          {
+            "id": "SYM4",
+            "claim": "The ontology exposes the property hasRequiredOperation with SET_CHIRAL as an asserted value, so a required stereochemical operation is machine-readable.",
+            "cites": [
+              "reasoner_inferences.A21 hasRequiredOperation SET_CHIRAL"
+            ],
+            "status": "supported"
+          },
+          {
+            "id": "SYM5",
+            "claim": "The ontology exposes hasFailureRisk, giving a machine-readable slot for the 'why it cannot be made' question (Q2).",
+            "cites": [
+              "reasoner_inferences.A19 hasFailureRisk"
+            ],
+            "status": "supported"
+          },
+          {
+            "id": "SYM6",
+            "claim": "The ontology exposes hasProtectedAtom, giving a machine-readable slot for the 'what must not be touched' question (Q3).",
+            "cites": [
+              "reasoner_inferences.A20 hasProtectedAtom"
+            ],
+            "status": "supported"
+          },
+          {
+            "id": "SYM7",
+            "claim": "An OWL RL reasoner (owlrl) is part of the pipeline and materialises inferences over the ontology, so the symbolic layer is not merely asserted but derived.",
+            "cites": [
+              "reasoner_inferences.source"
+            ],
+            "status": "supported"
+          },
+          {
+            "id": "SYM8",
+            "claim": "The pipeline is ontology-grounded in the sense that an 'ontology' arm exists as a distinct condition alongside similarity and random baselines.",
+            "cites": [
+              "hardOK_48api"
+            ],
+            "status": "supported"
+          },
+          {
+            "id": "SYM9",
+            "claim": "The ontology constructs map onto the three sub-questions as hasFailureRisk→Q2, hasProtectedAtom→Q3, hasRequiredOperation SET_CHIRAL→stereochemistry constraint.",
+            "cites": [
+              "three_questions",
+              "reasoner_inferences"
+            ],
+            "status": "downgraded",
+            "note": "This mapping is an interpretation of this phase, not a statement present in CONTEXT; downgraded from asserted symbolic structure to inferred correspondence (see DOWNGRADE D1)."
+          }
+        ],
+        "L2_numerical": [
+          {
+            "id": "NUM1",
+            "claim": "On hardOK_48api the ontology arm scores 0.875 against 0.5 for similarity and 0.5 for random.",
+            "cites": [
+              "hardOK_48api"
+            ],
+            "status": "supported"
+          },
+          {
+            "id": "NUM2",
+            "claim": "The reported significance is 6 wins 0 losses, exact sign test p=0.0156, and end2end 7 wins 0 losses p=0.0078.",
+            "cites": [
+              "p_value"
+            ],
+            "status": "supported",
+            "derived_check": "Consistent with a one-sided exact sign test: (1/2)^6 = 0.015625 ≈ 0.0156 and (1/2)^7 = 0.0078125 ≈ 0.0078. Two-sided would give 0.03125 and 0.015625. CONTEXT does not state sidedness."
+          },
+          {
+            "id": "NUM3",
+            "claim": "end2edit_validity is 1.0 for ontology, 1.0 for ontology_lora and 0.5 for syncraft, with source=null.",
+            "cites": [
+              "end2edit_validity"
+            ],
+            "status": "supported_with_caveat",
+            "caveat": "No denominator is reported, so 1.0 cannot be read as n/n; source=null means no primary artifact is named."
+          },
+          {
+            "id": "NUM4",
+            "claim": "anchor_violation is 0.0 for ontology, 0.0 for ontology_lora and 0.125 for syncraft, with source=null.",
+            "cites": [
+              "anchor_violation"
+            ],
+            "status": "supported_with_caveat",
+            "caveat": "No denominator is reported; 0.0 cannot be read as 0/n; source=null."
+          },
+          {
+            "id": "NUM5",
+            "claim": "Reasoner inference counts are: A21 hasRequiredOperation SET_CHIRAL 115; A19 hasFailureRisk 231; A20 hasProtectedAtom 363; defined class ValidatedEditSequence 78; defined class StereocenterPreservingReaction 2; StereocenterAnchor contract 320.",
+            "cites": [
+              "reasoner_inferences"
+            ],
+            "status": "supported"
+          },
+          {
+            "id": "NUM6",
+            "claim": "owlrl expands the triple store from 10400 to 23113 triples.",
+            "cites": [
+              "reasoner_inferences.source"
+            ],
+            "status": "supported",
+            "derived_check": "23113 − 10400 = 12713 materialised triples (arithmetic on the two reported figures only)."
+          },
+          {
+            "id": "NUM7",
+            "claim": "Reported scale: 3272 CQ cases across 14 batches; 2783 crossdocked molecules; n_molecules 3483; n_evidence 79; papers 7; transforms_freed 5/5; rl_pool 5174.",
+            "cites": [
+              "corpus",
+              "n_molecules",
+              "n_evidence",
+              "papers",
+              "transforms_freed",
+              "rl_pool"
+            ],
+            "status": "supported"
+          },
+          {
+            "id": "NUM8",
+            "claim": "External literature reference point: SynCraft reports P2M 28.4% / ResGen 29.1% rescue at similarity>0.6 with Gemini-2.5-Pro (arXiv 2512.20333).",
+            "cites": [
+              "literature.syncraft"
+            ],
+            "status": "supported_as_external",
+            "caveat": "This is a third-party reported number, not a measurement of this pipeline, and it is a rescue rate at similarity>0.6 — a different metric and operating point from end2edit_validity."
+          },
+          {
+            "id": "NUM9",
+            "claim": "Seven PDB structure entries are listed: 5KB3, 5IRU, 5J2M, 5JJK, 5JXG, 5K3S, 5IAR.",
+            "cites": [
+              "literature.structure_papers"
+            ],
+            "status": "supported_as_listing",
+            "caveat": "CONTEXT gives the identifiers only; it does not state which claim each structure supports."
+          }
+        ],
+        "L3_qualitative": [
+          {
+            "id": "QL1",
+            "claim": "The ontology arm is directionally stronger than similarity and random baselines on hardOK.",
+            "cites": [
+              "hardOK_48api",
+              "p_value"
+            ],
+            "status": "downgraded",
+            "downgraded_to": "directionally higher in the reported runs; small-n (6 and 7 paired wins)"
+          },
+          {
+            "id": "QL2",
+            "claim": "Ontology-based editing produces valid edits.",
+            "cites": [
+              "end2edit_validity"
+            ],
+            "status": "downgraded",
+            "downgraded_to": "no invalid edits were observed in the reported runs; denominator and provenance not reported"
+          },
+          {
+            "id": "QL3",
+            "claim": "Ontology-based editing preserves anchors.",
+            "cites": [
+              "anchor_violation"
+            ],
+            "status": "downgraded",
+            "downgraded_to": "no anchor violations were observed in the reported runs; denominator and provenance not reported"
+          },
+          {
+            "id": "QL4",
+            "claim": "The pipeline can state WHY a molecule is non-synthesizable.",
+            "cites": [
+              "reasoner_inferences.A19 hasFailureRisk",
+              "three_questions.Q2"
+            ],
+            "status": "downgraded",
+            "downgraded_to": "the pipeline attaches a hasFailureRisk category (231 inferences); the causal/chemical adequacy of that explanation is not evaluated in CONTEXT"
+          },
+          {
+            "id": "QL5",
+            "claim": "The pipeline can state WHAT must not be touched during editing.",
+            "cites": [
+              "reasoner_inferences.A20 hasProtectedAtom",
+              "reasoner_inferences.StereocenterAnchor 契约"
+            ],
+            "status": "downgraded",
+            "downgraded_to": "protected atoms (363) and the StereocenterAnchor contract (320) are represented; correctness of the protected set is not directly evaluated"
+          },
+          {
+            "id": "QL6",
+            "claim": "Stereochemistry is preserved by the edited molecules.",
+            "cites": [
+              "reasoner_inferences.A21 hasRequiredOperation SET_CHIRAL",
+              "reasoner_inferences.定义类 StereocenterPreservingReaction"
+            ],
+            "status": "downgraded",
+            "downgraded_to": "stereochemical constraint is represented (SET_CHIRAL 115) but the dedicated class has only 2 instances; preservation is not measured per molecule"
+          },
+          {
+            "id": "QL7",
+            "claim": "Binding interactions are preserved by the edited molecules.",
+            "cites": [
+              "question (binding interactions)",
+              "literature.structure_papers",
+              "corpus (2783 crossdocked molecules)"
+            ],
+            "status": "unsupported",
+            "downgraded_to": "not claimed — CONTEXT contains no binding-interaction, docking-score or interaction-fingerprint measurement"
+          },
+          {
+            "id": "QL8",
+            "claim": "Pharmacophoric anchors are preserved.",
+            "cites": [
+              "anchor_violation",
+              "question (pharmacophoric anchors)"
+            ],
+            "status": "downgraded",
+            "downgraded_to": "anchor_violation is the only proxy and 'pharmacophoric anchor' is not defined in CONTEXT; preservation is asserted only as absence of observed violations"
+          },
+          {
+            "id": "QL9",
+            "claim": "The ontology pipeline outperforms SynCraft.",
+            "cites": [
+              "end2edit_validity.syncraft",
+              "anchor_violation.syncraft",
+              "literature.syncraft"
+            ],
+            "status": "downgraded",
+            "downgraded_to": "not established — different metrics (validity/violation vs rescue rate), different settings (similarity>0.6, Gemini-2.5-Pro), no head-to-head run"
+          },
+          {
+            "id": "QL10",
+            "claim": "The approach generalises beyond the reported runs.",
+            "cites": [
+              "corpus",
+              "n_molecules",
+              "rl_pool"
+            ],
+            "status": "downgraded",
+            "downgraded_to": "no held-out or external replication is reported; scale figures describe resources, not generalisation"
+          }
+        ]
+      },
+      "downgrades": [
+        {
+          "id": "D1",
+          "claim_id": "SYM9",
+          "from": "L1 symbolic (asserted)",
+          "to": "L3 qualitative (inferred)",
+          "reason": "The Q1/Q2/Q3→ontology-property mapping is not stated in CONTEXT; it is this phase's interpretation."
+        },
+        {
+          "id": "D2",
+          "claim_id": "QL1",
+          "from": "comparative superiority",
+          "to": "directional, small-n",
+          "reason": "6/6 and 7/7 paired wins; no confidence interval; '48api' undefined."
+        },
+        {
+          "id": "D3",
+          "claim_id": "QL2",
+          "from": "validity = 1.0",
+          "to": "no invalid edits observed",
+          "reason": "end2edit_validity.source = null and no denominator reported."
+        },
+        {
+          "id": "D4",
+          "claim_id": "QL3",
+          "from": "anchors preserved",
+          "to": "no anchor violations observed",
+          "reason": "anchor_violation.source = null and no denominator reported."
+        },
+        {
+          "id": "D5",
+          "claim_id": "QL4",
+          "from": "explains why",
+          "to": "assigns a failure-risk category",
+          "reason": "No evaluation of explanation correctness; hasFailureRisk is a category, not a validated causal account."
+        },
+        {
+          "id": "D6",
+          "claim_id": "QL5",
+          "from": "knows what not to touch",
+          "to": "represents protected atoms",
+          "reason": "No ground-truth comparison of the protected set."
+        },
+        {
+          "id": "D7",
+          "claim_id": "QL6",
+          "from": "stereochemistry preserved",
+          "to": "stereochemical constraint represented",
+          "reason": "定义类 StereocenterPreservingReaction has only 2 instances; no per-molecule stereochemical verification reported."
+        },
+        {
+          "id": "D8",
+          "claim_id": "QL7",
+          "from": "binding interactions preserved",
+          "to": "not claimed",
+          "reason": "No binding-interaction metric exists anywhere in CONTEXT."
+        },
+        {
+          "id": "D9",
+          "claim_id": "QL8",
+          "from": "pharmacophoric anchors preserved",
+          "to": "absence of observed anchor violations",
+          "reason": "'pharmacophoric anchor' undefined; anchor_violation is an undefined proxy."
+        },
+        {
+          "id": "D10",
+          "claim_id": "QL9",
+          "from": "outperforms SynCraft",
+          "to": "not established",
+          "reason": "Non-comparable metrics and settings; literature.syncraft is a third-party number at similarity>0.6."
+        },
+        {
+          "id": "D11",
+          "claim_id": "QL10",
+          "from": "generalises",
+          "to": "no generalisation evidence",
+          "reason": "No held-out or external replication reported."
+        }
+      ],
+      "tdal": {
+        "definition_status": "CONTEXT does not define the TDAL dimensions. The operationalisation below is stated explicitly so it can be corrected; all four scores are this phase's judgement anchored to CONTEXT fields, not measurements.",
+        "dimensions": {
+          "T_traceability": {
+            "score": 0.8,
+            "definition": "fraction of ladder claims that cite a named CONTEXT artifact and could be re-derived from it",
+            "justification": "All L1 and L2 claims cite a named field. Deductions: end2edit_validity and anchor_violation carry source=null; literature.structure_papers gives identifiers with no claim linkage; 'transforms_freed' and 'hardOK_48api' are undefined terms; the TDAL definition itself is absent."
+          },
+          "D_determinism_reproducibility": {
+            "score": 0.25,
+            "definition": "extent to which the reported results could be re-run and would reproduce",
+            "justification": "CONTEXT contains no seeds, code, configuration, environment, ontology IRI, per-run variance, confidence intervals or denominators. owlrl expansion (10400→23113) is deterministic in principle but the ontology is not supplied. The only dispersion information is the 6/6 and 7/7 win counts."
+          },
+          "A_adequacy_attribution": {
+            "score": 0.35,
+            "definition": "extent to which the cited evidence is sufficient to support the claim it is attached to, and correctly attributed",
+            "justification": "Headline rates 1.0/1.0/0.0/0.0 lack denominators and provenance; significance rests on 6 and 7 paired wins; no binding-interaction measurement although the question requires it; no ablation separating ontology from ontology_lora; literature.syncraft is correctly attributed as external but is at a different operating point, so no head-to-head attribution is possible."
+          },
+          "L_logical_consistency": {
+            "score": 0.85,
+            "definition": "absence of internal contradiction among ladder claims and between ladder and CONTEXT",
+            "justification": "No contradiction found. The ontology>baseline ordering is consistent across hardOK_48api (0.875 vs 0.5/0.5), end2edit_validity (1.0/1.0 vs 0.5) and anchor_violation (0.0/0.0 vs 0.125). The derived sign-test check is consistent with one-sided exact tests. The only tension is scope: the question's binding-interaction requirement has no corresponding measurement, which is an adequacy gap rather than a contradiction."
+          }
+        },
+        "joint_T_D_A_L": {
+          "computation": "0.80 * 0.25 * 0.35 * 0.85",
+          "value": 0.0595
+        },
+        "weakest_dimension": "D",
+        "weakest_dimension_rationale": "Determinism/Reproducibility is the binding constraint: even a perfectly traceable and internally consistent claim set cannot be re-derived because no denominators, seeds, configuration, ontology artifact or provenance are present for the two headline comparison dicts.",
+        "joint_interpretation": "Multiplicative joint means the weakest dimension dominates; a single low score caps the whole claim set. Remediation priority is therefore D first (publish denominators, source artifacts, seeds/config), then A (add a binding-interaction metric and an ontology-vs-ontology_lora ablation)."
+      },
+      "question_coverage": {
+        "Q1_where_the_structure_is_problematic": "partial — hasFailureRisk (231) and hasProtectedAtom (363) inferences exist; no per-molecule localisation accuracy reported",
+        "Q2_why_it_cannot_be_made": "partial — hasFailureRisk category attached; causal adequacy unvalidated",
+        "Q3_what_must_not_be_touched": "partial — hasProtectedAtom (363) and StereocenterAnchor contract (320) represented; protected-set correctness not evaluated",
+        "binding_interactions": "absent — no measurement in CONTEXT",
+        "stereochemistry": "partial — SET_CHIRAL (115) represented; StereocenterPreservingReaction has 2 instances"
+      },
+      "missing_inputs": [
+        "TDAL dimension definitions (T/D/A/L) — not present in CONTEXT; the operationalisation used here must be confirmed",
+        "Denominators (n) for end2edit_validity and anchor_violation — rates 1.0, 0.0, 0.5, 0.125 are reported without counts",
+        "Provenance for end2edit_validity and anchor_violation — both carry source=null",
+        "Definition of 'hardOK' and of the '48api' label (48 API calls? 48 molecules?)",
+        "Relationship between hardOK_48api and the 6/7 paired-win counts in p_value",
+        "Sidedness of the exact sign test (derived check indicates one-sided)",
+        "Definition of 'transforms_freed' and the identity of the 5 transforms",
+        "Definition of 'anchor' / 'pharmacophoric anchor' and the computation behind anchor_violation",
+        "Any binding-interaction, docking-score or interaction-fingerprint metric — entirely absent although the question requires binding-interaction preservation",
+        "Per-molecule stereochemical verification method and outcomes (only 2 StereocenterPreservingReaction instances reported)",
+        "The ontology artifact itself (IRI, axioms, class/property definitions) — only inference counts are given",
+        "Seeds, code, configuration, environment, per-run variance and confidence intervals",
+        "Ablation isolating ontology vs ontology_lora vs similarity vs random",
+        "Which claim each of the 7 PDB entries (5KB3, 5IRU, 5J2M, 5JJK, 5JXG, 5K3S, 5IAR) supports",
+        "Reconciliation of n_molecules 3483 against 2783 crossdocked molecules (700 difference unexplained)",
+        "Definition of 'CQ cases' and 'batches', and whether the 3272 CQ cases were used for training, evaluation or both (leakage risk)",
+        "Definition of 'validity' in end2edit_validity (synthetic-route validity? valence? downstream synthesizability?)",
+        "Baseline configuration for the syncraft arm (model, prompt, decoding)",
+        "Whether p-values are pre-registered or corrected for multiple comparisons"
+      ],
+      "claims_downgraded_count": 11,
+      "claims_unsupported_count": 1,
+      "claims_supported_symbolic": 8,
+      "claims_supported_numerical": 9
+    }
+  }
+}

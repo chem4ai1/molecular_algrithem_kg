@@ -1,0 +1,757 @@
+{
+  "phase": "06a_theory_derivation",
+  "title": "Phase 6a 理论推导（ROUTED）",
+  "phase_output": {
+    "key_claim": {
+      "statement": "Ontology-grounded editing preserves constraints if an edit is accepted only when it belongs to an ontology-validated edit sequence, protects designated atoms and stereocenters, satisfies required operations, mitigates failure risk, and leaves pharmacophoric anchors unchanged; binding-interaction preservation is treated as a conjectured consequence of anchor and protected-atom preservation.",
+      "citation": [
+        "CONTEXT.question",
+        "CONTEXT.three_questions.Q1",
+        "CONTEXT.three_questions.Q2",
+        "CONTEXT.three_questions.Q3",
+        "CONTEXT.reasoner_inferences"
+      ]
+    },
+    "symbols": [
+      {
+        "symbol": "M",
+        "definition": "Generated molecule whose synthesizability is to be assessed.",
+        "citation": [
+          "CONTEXT.question"
+        ]
+      },
+      {
+        "symbol": "O",
+        "definition": "Ontology containing classes, properties, contracts, and reasoner inferences used to ground the edit.",
+        "citation": [
+          "CONTEXT.reasoner_inferences"
+        ]
+      },
+      {
+        "symbol": "E",
+        "definition": "Candidate edit or edit sequence transforming M into M'.",
+        "citation": [
+          "CONTEXT.question",
+          "CONTEXT.reasoner_inferences"
+        ]
+      },
+      {
+        "symbol": "M'",
+        "definition": "Edited molecule after applying E.",
+        "citation": [
+          "CONTEXT.question"
+        ]
+      },
+      {
+        "symbol": "A",
+        "definition": "Set of pharmacophoric anchors that must be preserved.",
+        "citation": [
+          "CONTEXT.question",
+          "CONTEXT.three_questions.Q3"
+        ]
+      },
+      {
+        "symbol": "S",
+        "definition": "Set of stereocenters whose configuration must be preserved.",
+        "citation": [
+          "CONTEXT.question",
+          "CONTEXT.reasoner_inferences"
+        ]
+      },
+      {
+        "symbol": "B",
+        "definition": "Set of binding interactions that must be preserved.",
+        "citation": [
+          "CONTEXT.question"
+        ]
+      },
+      {
+        "symbol": "P",
+        "definition": "Set of protected atoms identified by ontology property A20 hasProtectedAtom.",
+        "citation": [
+          "CONTEXT.reasoner_inferences"
+        ]
+      },
+      {
+        "symbol": "F",
+        "definition": "Failure risk identified by ontology property A19 hasFailureRisk.",
+        "citation": [
+          "CONTEXT.reasoner_inferences"
+        ]
+      },
+      {
+        "symbol": "R_req",
+        "definition": "Required operation identified by ontology property A21 hasRequiredOperation, including SET_CHIRAL.",
+        "citation": [
+          "CONTEXT.reasoner_inferences"
+        ]
+      },
+      {
+        "symbol": "V",
+        "definition": "Class ValidatedEditSequence defined in the ontology.",
+        "citation": [
+          "CONTEXT.reasoner_inferences"
+        ]
+      },
+      {
+        "symbol": "T_chiral",
+        "definition": "Class or contract StereocenterPreservingReaction and StereocenterAnchor contract used for stereochemical preservation.",
+        "citation": [
+          "CONTEXT.reasoner_inferences"
+        ]
+      },
+      {
+        "symbol": "N",
+        "definition": "Predicate NonSynthesizable(M), true when O identifies failure risk F or missing required operation R_req for M.",
+        "citation": [
+          "CONTEXT.three_questions.Q2",
+          "CONTEXT.reasoner_inferences"
+        ]
+      },
+      {
+        "symbol": "Cpres",
+        "definition": "Predicate ConstraintsPreserved(M'), true when M' preserves anchors A, stereocenters S, protected atoms P, and binding interactions B.",
+        "citation": [
+          "CONTEXT.question",
+          "CONTEXT.three_questions.Q3"
+        ]
+      }
+    ],
+    "assumptions": [
+      {
+        "assumption": "The ontology can identify the problematic part of M relevant to non-synthesizability.",
+        "citation": [
+          "CONTEXT.three_questions.Q1",
+          "CONTEXT.reasoner_inferences"
+        ]
+      },
+      {
+        "assumption": "The ontology can explain why M cannot be made by exposing failure risk or missing required operations.",
+        "citation": [
+          "CONTEXT.three_questions.Q2",
+          "CONTEXT.reasoner_inferences"
+        ]
+      },
+      {
+        "assumption": "The ontology can specify what must not be touched during editing, including protected atoms, stereocenters, and anchors.",
+        "citation": [
+          "CONTEXT.three_questions.Q3",
+          "CONTEXT.reasoner_inferences"
+        ]
+      },
+      {
+        "assumption": "An edit is admissible only if it is a member of ValidatedEditSequence or satisfies equivalent ontology constraints.",
+        "citation": [
+          "CONTEXT.reasoner_inferences"
+        ]
+      },
+      {
+        "assumption": "Anchor preservation can be operationalized as zero anchor violation.",
+        "citation": [
+          "CONTEXT.anchor_violation",
+          "CONTEXT.question"
+        ]
+      },
+      {
+        "assumption": "Stereochemical preservation can be operationalized through stereocenter contracts and stereocenter-preserving reactions.",
+        "citation": [
+          "CONTEXT.reasoner_inferences",
+          "CONTEXT.question"
+        ]
+      }
+    ],
+    "derivation_steps": [
+      {
+        "step": 1,
+        "claim": "Identify the problematic structure by querying O for A19 hasFailureRisk, A20 hasProtectedAtom, and A21 hasRequiredOperation on M.",
+        "citation": [
+          "CONTEXT.three_questions.Q1",
+          "CONTEXT.reasoner_inferences"
+        ]
+      },
+      {
+        "step": 2,
+        "claim": "Explain non-synthesizability as the presence of failure risk F or absence of required operation R_req needed to make M.",
+        "citation": [
+          "CONTEXT.three_questions.Q2",
+          "CONTEXT.reasoner_inferences"
+        ]
+      },
+      {
+        "step": 3,
+        "claim": "Define the protected set as the union of pharmacophoric anchors A, stereocenters S, protected atoms P, and binding-interaction determinants B.",
+        "citation": [
+          "CONTEXT.question",
+          "CONTEXT.three_questions.Q3",
+          "CONTEXT.reasoner_inferences"
+        ]
+      },
+      {
+        "step": 4,
+        "claim": "Generate candidate edits E that reduce F or add R_req while respecting O constraints.",
+        "citation": [
+          "CONTEXT.question",
+          "CONTEXT.reasoner_inferences"
+        ]
+      },
+      {
+        "step": 5,
+        "claim": "Accept E only if E is in ValidatedEditSequence V or satisfies the same ontology validation conditions.",
+        "citation": [
+          "CONTEXT.reasoner_inferences"
+        ]
+      },
+      {
+        "step": 6,
+        "claim": "Require that E does not alter protected atoms P, as indicated by A20 hasProtectedAtom.",
+        "citation": [
+          "CONTEXT.reasoner_inferences"
+        ]
+      },
+      {
+        "step": 7,
+        "claim": "Require that E preserves stereocenters S through StereocenterPreservingReaction or StereocenterAnchor contract, and satisfies SET_CHIRAL when required by A21 hasRequiredOperation.",
+        "citation": [
+          "CONTEXT.reasoner_inferences"
+        ]
+      },
+      {
+        "step": 8,
+        "claim": "Require that E leaves pharmacophoric anchors A unchanged, corresponding to zero anchor violation.",
+        "citation": [
+          "CONTEXT.question",
+          "CONTEXT.anchor_violation"
+        ]
+      },
+      {
+        "step": 9,
+        "claim": "Conjecture that if A and P are preserved and stereochemical contracts hold, binding interactions B are preserved because the key interaction determinants remain unchanged.",
+        "citation": [
+          "CONTEXT.question",
+          "CONTEXT.reasoner_inferences"
+        ]
+      },
+      {
+        "step": 10,
+        "claim": "Conclude that the edited molecule M' is a synthesizable analogue that preserves the required constraints, conditional on the ontology validation and the conjecture in step 9.",
+        "citation": [
+          "CONTEXT.question",
+          "CONTEXT.reasoner_inferences",
+          "CONTEXT.end2edit_validity"
+        ]
+      }
+    ],
+    "formal_schema": {
+      "statement": "If O entails ValidatedEditSequence(E) and ProtectedAtomsPreserved(E,P) and StereocentersPreserved(E,S) and RequiredOperationsSatisfied(E,R_req) and FailureRiskMitigated(E,F) and AnchorsPreserved(E,A), then ConstraintsPreserved(E,M').",
+      "citation": [
+        "CONTEXT.reasoner_inferences",
+        "CONTEXT.question",
+        "CONTEXT.anchor_violation"
+      ],
+      "status": "conjecture"
+    },
+    "unverifiable_steps_marked_as_conjecture": [
+      {
+        "id": "C1",
+        "claim": "Binding-interaction preservation follows from anchor and protected-atom preservation.",
+        "citation": [
+          "CONTEXT.question",
+          "CONTEXT.reasoner_inferences"
+        ],
+        "status": "conjecture"
+      },
+      {
+        "id": "C2",
+        "claim": "The ontology classes and contracts are sufficient to guarantee preservation of all relevant constraints.",
+        "citation": [
+          "CONTEXT.reasoner_inferences"
+        ],
+        "status": "conjecture"
+      },
+      {
+        "id": "C3",
+        "claim": "ValidatedEditSequence and StereocenterPreservingReaction enforce the necessary synthesis and stereochemical constraints.",
+        "citation": [
+          "CONTEXT.reasoner_inferences"
+        ],
+        "status": "conjecture"
+      },
+      {
+        "id": "C4",
+        "claim": "The reported end-to-end validity and anchor-violation results generalize beyond the provided cases.",
+        "citation": [
+          "CONTEXT.end2edit_validity",
+          "CONTEXT.anchor_violation",
+          "CONTEXT.p_value"
+        ],
+        "status": "conjecture"
+      }
+    ],
+    "empirical_consistency_checks": [
+      {
+        "claim": "Ontology-based hardOK performance is reported as 0.875, higher than similarity and random baselines at 0.5.",
+        "citation": [
+          "CONTEXT.hardOK_48api"
+        ]
+      },
+      {
+        "claim": "End-to-end edit validity is reported as 1.0 for ontology and ontology_lora, versus 0.5 for syncraft.",
+        "citation": [
+          "CONTEXT.end2edit_validity"
+        ]
+      },
+      {
+        "claim": "Anchor violation is reported as 0.0 for ontology and ontology_lora, versus 0.125 for syncraft.",
+        "citation": [
+          "CONTEXT.anchor_violation"
+        ]
+      },
+      {
+        "claim": "The reported sign-test results are 6 wins and 0 losses with p=0.0156, and end2end 7 wins and 0 losses with p=0.0078.",
+        "citation": [
+          "CONTEXT.p_value"
+        ]
+      },
+      {
+        "claim": "Reasoner inferences include 115 A21 hasRequiredOperation SET_CHIRAL, 231 A19 hasFailureRisk, 363 A20 hasProtectedAtom, 78 ValidatedEditSequence, 2 StereocenterPreservingReaction, and 320 StereocenterAnchor contract.",
+        "citation": [
+          "CONTEXT.reasoner_inferences"
+        ]
+      }
+    ]
+  },
+  "verdict": "WARN",
+  "missing_inputs": [
+    {
+      "item": "Source provenance for end2edit_validity",
+      "status": "missing",
+      "evidence": "CONTEXT.end2edit_validity.source is null",
+      "citation": [
+        "CONTEXT.end2edit_validity"
+      ]
+    },
+    {
+      "item": "Source provenance for anchor_violation",
+      "status": "missing",
+      "evidence": "CONTEXT.anchor_violation.source is null",
+      "citation": [
+        "CONTEXT.anchor_violation"
+      ]
+    },
+    {
+      "item": "Direct binding-interaction preservation metric",
+      "status": "missing",
+      "evidence": "The context requires preserving binding interactions but does not provide a binding-interaction measurement.",
+      "citation": [
+        "CONTEXT.question"
+      ]
+    },
+    {
+      "item": "Full ontology axioms and reaction templates",
+      "status": "missing",
+      "evidence": "Only reasoner inference counts and class or contract names are provided.",
+      "citation": [
+        "CONTEXT.reasoner_inferences"
+      ]
+    },
+    {
+      "item": "Detailed stereochemistry validation criteria beyond contract names and counts",
+      "status": "missing",
+      "evidence": "The context provides StereocenterAnchor contract and StereocenterPreservingReaction counts but not detailed validation criteria.",
+      "citation": [
+        "CONTEXT.reasoner_inferences"
+      ]
+    }
+  ],
+  "full_response": {
+    "phase": "Phase 6a 理论推导（ROUTED）",
+    "qid": "Q-ONT-MOL-001",
+    "verdict": "WARN",
+    "verdict_rationale": [
+      {
+        "claim": "A theoretical derivation is required because the question asks how an ontology-grounded pipeline can identify why a molecule is non-synthesizable and edit it while preserving pharmacophoric anchors, stereochemistry, and binding interactions.",
+        "citation": [
+          "CONTEXT.question",
+          "CONTEXT.three_questions.Q1",
+          "CONTEXT.three_questions.Q2",
+          "CONTEXT.three_questions.Q3"
+        ]
+      },
+      {
+        "claim": "The derivation can be grounded in ontology reasoner inferences for failure risk, protected atoms, required operations, validated edit sequences, and stereocenter contracts.",
+        "citation": [
+          "CONTEXT.reasoner_inferences"
+        ]
+      },
+      {
+        "claim": "The verdict is WARN rather than PASS because source provenance for end-to-end edit validity and anchor violation is null, and binding-interaction preservation is not directly measured in the provided context.",
+        "citation": [
+          "CONTEXT.end2edit_validity.source",
+          "CONTEXT.anchor_violation.source",
+          "CONTEXT.question"
+        ]
+      }
+    ],
+    "phase_output": {
+      "key_claim": {
+        "statement": "Ontology-grounded editing preserves constraints if an edit is accepted only when it belongs to an ontology-validated edit sequence, protects designated atoms and stereocenters, satisfies required operations, mitigates failure risk, and leaves pharmacophoric anchors unchanged; binding-interaction preservation is treated as a conjectured consequence of anchor and protected-atom preservation.",
+        "citation": [
+          "CONTEXT.question",
+          "CONTEXT.three_questions.Q1",
+          "CONTEXT.three_questions.Q2",
+          "CONTEXT.three_questions.Q3",
+          "CONTEXT.reasoner_inferences"
+        ]
+      },
+      "symbols": [
+        {
+          "symbol": "M",
+          "definition": "Generated molecule whose synthesizability is to be assessed.",
+          "citation": [
+            "CONTEXT.question"
+          ]
+        },
+        {
+          "symbol": "O",
+          "definition": "Ontology containing classes, properties, contracts, and reasoner inferences used to ground the edit.",
+          "citation": [
+            "CONTEXT.reasoner_inferences"
+          ]
+        },
+        {
+          "symbol": "E",
+          "definition": "Candidate edit or edit sequence transforming M into M'.",
+          "citation": [
+            "CONTEXT.question",
+            "CONTEXT.reasoner_inferences"
+          ]
+        },
+        {
+          "symbol": "M'",
+          "definition": "Edited molecule after applying E.",
+          "citation": [
+            "CONTEXT.question"
+          ]
+        },
+        {
+          "symbol": "A",
+          "definition": "Set of pharmacophoric anchors that must be preserved.",
+          "citation": [
+            "CONTEXT.question",
+            "CONTEXT.three_questions.Q3"
+          ]
+        },
+        {
+          "symbol": "S",
+          "definition": "Set of stereocenters whose configuration must be preserved.",
+          "citation": [
+            "CONTEXT.question",
+            "CONTEXT.reasoner_inferences"
+          ]
+        },
+        {
+          "symbol": "B",
+          "definition": "Set of binding interactions that must be preserved.",
+          "citation": [
+            "CONTEXT.question"
+          ]
+        },
+        {
+          "symbol": "P",
+          "definition": "Set of protected atoms identified by ontology property A20 hasProtectedAtom.",
+          "citation": [
+            "CONTEXT.reasoner_inferences"
+          ]
+        },
+        {
+          "symbol": "F",
+          "definition": "Failure risk identified by ontology property A19 hasFailureRisk.",
+          "citation": [
+            "CONTEXT.reasoner_inferences"
+          ]
+        },
+        {
+          "symbol": "R_req",
+          "definition": "Required operation identified by ontology property A21 hasRequiredOperation, including SET_CHIRAL.",
+          "citation": [
+            "CONTEXT.reasoner_inferences"
+          ]
+        },
+        {
+          "symbol": "V",
+          "definition": "Class ValidatedEditSequence defined in the ontology.",
+          "citation": [
+            "CONTEXT.reasoner_inferences"
+          ]
+        },
+        {
+          "symbol": "T_chiral",
+          "definition": "Class or contract StereocenterPreservingReaction and StereocenterAnchor contract used for stereochemical preservation.",
+          "citation": [
+            "CONTEXT.reasoner_inferences"
+          ]
+        },
+        {
+          "symbol": "N",
+          "definition": "Predicate NonSynthesizable(M), true when O identifies failure risk F or missing required operation R_req for M.",
+          "citation": [
+            "CONTEXT.three_questions.Q2",
+            "CONTEXT.reasoner_inferences"
+          ]
+        },
+        {
+          "symbol": "Cpres",
+          "definition": "Predicate ConstraintsPreserved(M'), true when M' preserves anchors A, stereocenters S, protected atoms P, and binding interactions B.",
+          "citation": [
+            "CONTEXT.question",
+            "CONTEXT.three_questions.Q3"
+          ]
+        }
+      ],
+      "assumptions": [
+        {
+          "assumption": "The ontology can identify the problematic part of M relevant to non-synthesizability.",
+          "citation": [
+            "CONTEXT.three_questions.Q1",
+            "CONTEXT.reasoner_inferences"
+          ]
+        },
+        {
+          "assumption": "The ontology can explain why M cannot be made by exposing failure risk or missing required operations.",
+          "citation": [
+            "CONTEXT.three_questions.Q2",
+            "CONTEXT.reasoner_inferences"
+          ]
+        },
+        {
+          "assumption": "The ontology can specify what must not be touched during editing, including protected atoms, stereocenters, and anchors.",
+          "citation": [
+            "CONTEXT.three_questions.Q3",
+            "CONTEXT.reasoner_inferences"
+          ]
+        },
+        {
+          "assumption": "An edit is admissible only if it is a member of ValidatedEditSequence or satisfies equivalent ontology constraints.",
+          "citation": [
+            "CONTEXT.reasoner_inferences"
+          ]
+        },
+        {
+          "assumption": "Anchor preservation can be operationalized as zero anchor violation.",
+          "citation": [
+            "CONTEXT.anchor_violation",
+            "CONTEXT.question"
+          ]
+        },
+        {
+          "assumption": "Stereochemical preservation can be operationalized through stereocenter contracts and stereocenter-preserving reactions.",
+          "citation": [
+            "CONTEXT.reasoner_inferences",
+            "CONTEXT.question"
+          ]
+        }
+      ],
+      "derivation_steps": [
+        {
+          "step": 1,
+          "claim": "Identify the problematic structure by querying O for A19 hasFailureRisk, A20 hasProtectedAtom, and A21 hasRequiredOperation on M.",
+          "citation": [
+            "CONTEXT.three_questions.Q1",
+            "CONTEXT.reasoner_inferences"
+          ]
+        },
+        {
+          "step": 2,
+          "claim": "Explain non-synthesizability as the presence of failure risk F or absence of required operation R_req needed to make M.",
+          "citation": [
+            "CONTEXT.three_questions.Q2",
+            "CONTEXT.reasoner_inferences"
+          ]
+        },
+        {
+          "step": 3,
+          "claim": "Define the protected set as the union of pharmacophoric anchors A, stereocenters S, protected atoms P, and binding-interaction determinants B.",
+          "citation": [
+            "CONTEXT.question",
+            "CONTEXT.three_questions.Q3",
+            "CONTEXT.reasoner_inferences"
+          ]
+        },
+        {
+          "step": 4,
+          "claim": "Generate candidate edits E that reduce F or add R_req while respecting O constraints.",
+          "citation": [
+            "CONTEXT.question",
+            "CONTEXT.reasoner_inferences"
+          ]
+        },
+        {
+          "step": 5,
+          "claim": "Accept E only if E is in ValidatedEditSequence V or satisfies the same ontology validation conditions.",
+          "citation": [
+            "CONTEXT.reasoner_inferences"
+          ]
+        },
+        {
+          "step": 6,
+          "claim": "Require that E does not alter protected atoms P, as indicated by A20 hasProtectedAtom.",
+          "citation": [
+            "CONTEXT.reasoner_inferences"
+          ]
+        },
+        {
+          "step": 7,
+          "claim": "Require that E preserves stereocenters S through StereocenterPreservingReaction or StereocenterAnchor contract, and satisfies SET_CHIRAL when required by A21 hasRequiredOperation.",
+          "citation": [
+            "CONTEXT.reasoner_inferences"
+          ]
+        },
+        {
+          "step": 8,
+          "claim": "Require that E leaves pharmacophoric anchors A unchanged, corresponding to zero anchor violation.",
+          "citation": [
+            "CONTEXT.question",
+            "CONTEXT.anchor_violation"
+          ]
+        },
+        {
+          "step": 9,
+          "claim": "Conjecture that if A and P are preserved and stereochemical contracts hold, binding interactions B are preserved because the key interaction determinants remain unchanged.",
+          "citation": [
+            "CONTEXT.question",
+            "CONTEXT.reasoner_inferences"
+          ]
+        },
+        {
+          "step": 10,
+          "claim": "Conclude that the edited molecule M' is a synthesizable analogue that preserves the required constraints, conditional on the ontology validation and the conjecture in step 9.",
+          "citation": [
+            "CONTEXT.question",
+            "CONTEXT.reasoner_inferences",
+            "CONTEXT.end2edit_validity"
+          ]
+        }
+      ],
+      "formal_schema": {
+        "statement": "If O entails ValidatedEditSequence(E) and ProtectedAtomsPreserved(E,P) and StereocentersPreserved(E,S) and RequiredOperationsSatisfied(E,R_req) and FailureRiskMitigated(E,F) and AnchorsPreserved(E,A), then ConstraintsPreserved(E,M').",
+        "citation": [
+          "CONTEXT.reasoner_inferences",
+          "CONTEXT.question",
+          "CONTEXT.anchor_violation"
+        ],
+        "status": "conjecture"
+      },
+      "unverifiable_steps_marked_as_conjecture": [
+        {
+          "id": "C1",
+          "claim": "Binding-interaction preservation follows from anchor and protected-atom preservation.",
+          "citation": [
+            "CONTEXT.question",
+            "CONTEXT.reasoner_inferences"
+          ],
+          "status": "conjecture"
+        },
+        {
+          "id": "C2",
+          "claim": "The ontology classes and contracts are sufficient to guarantee preservation of all relevant constraints.",
+          "citation": [
+            "CONTEXT.reasoner_inferences"
+          ],
+          "status": "conjecture"
+        },
+        {
+          "id": "C3",
+          "claim": "ValidatedEditSequence and StereocenterPreservingReaction enforce the necessary synthesis and stereochemical constraints.",
+          "citation": [
+            "CONTEXT.reasoner_inferences"
+          ],
+          "status": "conjecture"
+        },
+        {
+          "id": "C4",
+          "claim": "The reported end-to-end validity and anchor-violation results generalize beyond the provided cases.",
+          "citation": [
+            "CONTEXT.end2edit_validity",
+            "CONTEXT.anchor_violation",
+            "CONTEXT.p_value"
+          ],
+          "status": "conjecture"
+        }
+      ],
+      "empirical_consistency_checks": [
+        {
+          "claim": "Ontology-based hardOK performance is reported as 0.875, higher than similarity and random baselines at 0.5.",
+          "citation": [
+            "CONTEXT.hardOK_48api"
+          ]
+        },
+        {
+          "claim": "End-to-end edit validity is reported as 1.0 for ontology and ontology_lora, versus 0.5 for syncraft.",
+          "citation": [
+            "CONTEXT.end2edit_validity"
+          ]
+        },
+        {
+          "claim": "Anchor violation is reported as 0.0 for ontology and ontology_lora, versus 0.125 for syncraft.",
+          "citation": [
+            "CONTEXT.anchor_violation"
+          ]
+        },
+        {
+          "claim": "The reported sign-test results are 6 wins and 0 losses with p=0.0156, and end2end 7 wins and 0 losses with p=0.0078.",
+          "citation": [
+            "CONTEXT.p_value"
+          ]
+        },
+        {
+          "claim": "Reasoner inferences include 115 A21 hasRequiredOperation SET_CHIRAL, 231 A19 hasFailureRisk, 363 A20 hasProtectedAtom, 78 ValidatedEditSequence, 2 StereocenterPreservingReaction, and 320 StereocenterAnchor contract.",
+          "citation": [
+            "CONTEXT.reasoner_inferences"
+          ]
+        }
+      ]
+    },
+    "missing_inputs": [
+      {
+        "item": "Source provenance for end2edit_validity",
+        "status": "missing",
+        "evidence": "CONTEXT.end2edit_validity.source is null",
+        "citation": [
+          "CONTEXT.end2edit_validity"
+        ]
+      },
+      {
+        "item": "Source provenance for anchor_violation",
+        "status": "missing",
+        "evidence": "CONTEXT.anchor_violation.source is null",
+        "citation": [
+          "CONTEXT.anchor_violation"
+        ]
+      },
+      {
+        "item": "Direct binding-interaction preservation metric",
+        "status": "missing",
+        "evidence": "The context requires preserving binding interactions but does not provide a binding-interaction measurement.",
+        "citation": [
+          "CONTEXT.question"
+        ]
+      },
+      {
+        "item": "Full ontology axioms and reaction templates",
+        "status": "missing",
+        "evidence": "Only reasoner inference counts and class or contract names are provided.",
+        "citation": [
+          "CONTEXT.reasoner_inferences"
+        ]
+      },
+      {
+        "item": "Detailed stereochemistry validation criteria beyond contract names and counts",
+        "status": "missing",
+        "evidence": "The context provides StereocenterAnchor contract and StereocenterPreservingReaction counts but not detailed validation criteria.",
+        "citation": [
+          "CONTEXT.reasoner_inferences"
+        ]
+      }
+    ]
+  }
+}

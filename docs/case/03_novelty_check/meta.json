@@ -1,8 +1,8 @@
 {
   "model": "baidu/ernie-5.5-flash-preview:free",
-  "seconds": 39.0,
-  "tokens": 15233,
+  "seconds": 51.4,
+  "tokens": 13863,
   "cost": 0,
-  "finish": "length",
-  "ok": false
+  "finish": "stop",
+  "ok": true
 }

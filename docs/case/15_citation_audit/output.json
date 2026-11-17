@@ -1,0 +1,88 @@
+{
+  "phase": "15_citation_audit",
+  "title": "Phase 15 三层引用审计",
+  "phase_output": {
+    "qid": "Q-ONT-MOL-001",
+    "phase": "Phase 15 三层引用审计",
+    "audit_plan": {
+      "EXISTENCE": {
+        "check": "Verify that each key citation listed in CONTEXT.literature exists as a resolvable source.",
+        "status": "BLOCKED",
+        "reason": "CONTEXT.literature is missing."
+      },
+      "METADATA": {
+        "check": "Verify citation metadata such as title, authors, year, venue, and identifier.",
+        "status": "BLOCKED",
+        "reason": "No citation metadata is provided."
+      },
+      "CONTEXT": {
+        "check": "Verify that each citation supports the sentence or claim it is attached to.",
+        "status": "BLOCKED",
+        "reason": "No citations or target sentences are provided."
+      }
+    },
+    "key_citation_results": [],
+    "flags": [],
+    "missing_inputs": [
+      "CONTEXT.literature",
+      "target sentences requiring citation support"
+    ],
+    "provided_facts": {
+      "hardOK_ontology_vs_similarity": "0.875 vs 0.5",
+      "end2end_hardOK": "1.0 vs 0.125",
+      "p_values": [
+        "0.0156",
+        "0.0078"
+      ],
+      "CQ_types": 24,
+      "structure_evidences": "79 structure evidences / 7 papers",
+      "transforms": 13,
+      "SHACL_conforms": true
+    }
+  },
+  "verdict": "BLOCKED",
+  "missing_inputs": [],
+  "full_response": {
+    "phase_output": {
+      "qid": "Q-ONT-MOL-001",
+      "phase": "Phase 15 三层引用审计",
+      "audit_plan": {
+        "EXISTENCE": {
+          "check": "Verify that each key citation listed in CONTEXT.literature exists as a resolvable source.",
+          "status": "BLOCKED",
+          "reason": "CONTEXT.literature is missing."
+        },
+        "METADATA": {
+          "check": "Verify citation metadata such as title, authors, year, venue, and identifier.",
+          "status": "BLOCKED",
+          "reason": "No citation metadata is provided."
+        },
+        "CONTEXT": {
+          "check": "Verify that each citation supports the sentence or claim it is attached to.",
+          "status": "BLOCKED",
+          "reason": "No citations or target sentences are provided."
+        }
+      },
+      "key_citation_results": [],
+      "flags": [],
+      "missing_inputs": [
+        "CONTEXT.literature",
+        "target sentences requiring citation support"
+      ],
+      "provided_facts": {
+        "hardOK_ontology_vs_similarity": "0.875 vs 0.5",
+        "end2end_hardOK": "1.0 vs 0.125",
+        "p_values": [
+          "0.0156",
+          "0.0078"
+        ],
+        "CQ_types": 24,
+        "structure_evidences": "79 structure evidences / 7 papers",
+        "transforms": 13,
+        "SHACL_conforms": true
+      }
+    },
+    "verdict": "BLOCKED"
+  },
+  "retry": "compact_prompt"
+}

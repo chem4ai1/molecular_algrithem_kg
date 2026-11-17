@@ -665,11 +665,256 @@
   "previous_phase_output": {
     "phase": "025b_engineering_grounding",
     "title": "Phase 2.5b EG 8 维可行性",
-    "phase_output": null,
-    "verdict": "ERROR",
-    "missing_inputs": [
-      "model_call_failed"
-    ],
-    "full_response": null
+    "phase_output": {
+      "phase": "2.5b EG 8维可行性",
+      "qid": "Q-ONT-MOL-001",
+      "overall_tier": "CONSTRAINED",
+      "overall_rationale": "CONTEXT shows ontology-grounded signals: CONTEXT.hardOK_48api.ontology=0.875 vs CONTEXT.hardOK_48api.similarity=0.5 and CONTEXT.hardOK_48api.random=0.5; CONTEXT.p_value=6 wins 0 losses, exact sign test p=0.0156; end2end 7 wins 0 losses p=0.0078; CONTEXT.reasoner_inferences includes A19 hasFailureRisk=231, A20 hasProtectedAtom=363, A21 hasRequiredOperation SET_CHIRAL=115, StereocenterAnchor 契约=320, ValidatedEditSequence=78. However, CONTEXT.end2edit_validity.source=null and CONTEXT.anchor_violation.source=null, and no CONTEXT fields provide compute, time, expertise, or ethics evidence.",
+      "dimension_scores": [
+        {
+          "dimension": "data",
+          "score": 5,
+          "tier": "CONSTRAINED",
+          "evidence": [
+            "CONTEXT.corpus=3272 CQ cases / 14 batches; 2783 crossdocked molecules",
+            "CONTEXT.n_molecules=3483",
+            "CONTEXT.n_evidence=79",
+            "CONTEXT.papers=7",
+            "CONTEXT.structure_papers=[5KB3, 5IRU, 5J2M, 5JJK, 5JXG, 5K3S, 5IAR]",
+            "CONTEXT.end2edit_validity.source=null",
+            "CONTEXT.anchor_violation.source=null"
+          ],
+          "rationale": "Corpus and evidence artifacts exist per CONTEXT.corpus, CONTEXT.n_molecules, CONTEXT.n_evidence, and CONTEXT.papers, but validation provenance is missing per CONTEXT.end2edit_validity.source=null and CONTEXT.anchor_violation.source=null."
+        },
+        {
+          "dimension": "compute",
+          "score": 3,
+          "tier": "CONSTRAINED",
+          "evidence": [],
+          "rationale": "Compute feasibility cannot be grounded from CONTEXT because no CONTEXT field provides compute budget, hardware, runtime, or scheduling evidence."
+        },
+        {
+          "dimension": "tooling",
+          "score": 5,
+          "tier": "CONSTRAINED",
+          "evidence": [
+            "CONTEXT.reasoner_inferences.source=kernel_verify.json; owlrl 10400->23113 triples",
+            "CONTEXT.transforms_freed=5/5",
+            "CONTEXT.rl_pool=5174",
+            "CONTEXT.reasoner_inferences: 定义类 ValidatedEditSequence=78",
+            "CONTEXT.reasoner_inferences: 定义类 StereocenterPreservingReaction=2"
+          ],
+          "rationale": "Tooling artifacts exist per CONTEXT.reasoner_inferences.source, CONTEXT.transforms_freed, and CONTEXT.rl_pool, but coverage is constrained by CONTEXT.reasoner_inferences 定义类 StereocenterPreservingReaction=2 relative to A21 hasRequiredOperation SET_CHIRAL=115."
+        },
+        {
+          "dimension": "expertise",
+          "score": 3,
+          "tier": "CONSTRAINED",
+          "evidence": [],
+          "rationale": "Expertise feasibility cannot be grounded from CONTEXT because no CONTEXT field provides staffing, domain review, or expert validation evidence."
+        },
+        {
+          "dimension": "time",
+          "score": 3,
+          "tier": "CONSTRAINED",
+          "evidence": [],
+          "rationale": "Time feasibility cannot be grounded from CONTEXT because no CONTEXT field provides schedule, latency, runtime, or milestone evidence."
+        },
+        {
+          "dimension": "integration",
+          "score": 5,
+          "tier": "CONSTRAINED",
+          "evidence": [
+            "CONTEXT.p_value=6 wins 0 losses, exact sign test p=0.0156; end2end 7 wins 0 losses p=0.0078",
+            "CONTEXT.hardOK_48api.ontology=0.875",
+            "CONTEXT.end2edit_validity.ontology=1.0",
+            "CONTEXT.anchor_violation.ontology=0.0",
+            "CONTEXT.end2edit_validity.source=null",
+            "CONTEXT.anchor_violation.source=null"
+          ],
+          "rationale": "Integration signals exist per CONTEXT.p_value, CONTEXT.hardOK_48api.ontology, CONTEXT.end2edit_validity.ontology, and CONTEXT.anchor_violation.ontology, but integration grounding is constrained by CONTEXT.end2edit_validity.source=null and CONTEXT.anchor_violation.source=null."
+        },
+        {
+          "dimension": "robustness",
+          "score": 5,
+          "tier": "CONSTRAINED",
+          "evidence": [
+            "CONTEXT.hardOK_48api.ontology=0.875 vs CONTEXT.hardOK_48api.similarity=0.5 and CONTEXT.hardOK_48api.random=0.5",
+            "CONTEXT.p_value=6 wins 0 losses, exact sign test p=0.0156; end2end 7 wins 0 losses p=0.0078",
+            "CONTEXT.reasoner_inferences: A19 hasFailureRisk=231",
+            "CONTEXT.reasoner_inferences: A20 hasProtectedAtom=363",
+            "CONTEXT.reasoner_inferences: A21 hasRequiredOperation SET_CHIRAL=115",
+            "CONTEXT.reasoner_inferences: StereocenterAnchor 契约=320",
+            "CONTEXT.end2edit_validity.source=null",
+            "CONTEXT.anchor_violation.source=null"
+          ],
+          "rationale": "Robustness signals exist per CONTEXT.hardOK_48api, CONTEXT.p_value, and CONTEXT.reasoner_inferences, but robustness claims remain constrained by CONTEXT.end2edit_validity.source=null and CONTEXT.anchor_violation.source=null."
+        },
+        {
+          "dimension": "ethics",
+          "score": 3,
+          "tier": "CONSTRAINED",
+          "evidence": [],
+          "rationale": "Ethics feasibility cannot be grounded from CONTEXT because no CONTEXT field provides ethics, safety, governance, or responsible-use evidence."
+        }
+      ],
+      "missing_inputs": [
+        "Provenance and denominators for CONTEXT.end2edit_validity, because CONTEXT.end2edit_validity.source=null.",
+        "Provenance and denominators for CONTEXT.anchor_violation, because CONTEXT.anchor_violation.source=null.",
+        "Compute budget, hardware, runtime, and scheduling evidence; no CONTEXT field provides these.",
+        "Expertise, staffing, and domain-review evidence; no CONTEXT field provides these.",
+        "Time estimates, milestones, and latency evidence; no CONTEXT field provides these.",
+        "Ethics, safety, and governance evidence; no CONTEXT field provides these.",
+        "Ground-truth synthesis outcomes linking CONTEXT.reasoner_inferences A19 hasFailureRisk=231 and A20 hasProtectedAtom=363 to real synthesis results.",
+        "Characterization of non-passing cases behind CONTEXT.hardOK_48api.ontology=0.875."
+      ],
+      "risk_flags": [
+        "CONTEXT.end2edit_validity.source=null and CONTEXT.anchor_violation.source=null prevent fully provenance-grounded robustness claims.",
+        "CONTEXT.reasoner_inferences 定义类 StereocenterPreservingReaction=2 may be insufficient relative to CONTEXT.reasoner_inferences A21 hasRequiredOperation SET_CHIRAL=115.",
+        "No CONTEXT compute, time, expertise, or ethics evidence is available for engineering grounding."
+      ],
+      "recommended_actions": [
+        "Obtain denominators and provenance for CONTEXT.end2edit_validity and CONTEXT.anchor_violation.",
+        "Provide compute, time, expertise, and ethics evidence before treating the pipeline as engineering-ready.",
+        "Expand or justify CONTEXT.reasoner_inferences 定义类 StereocenterPreservingReaction=2 against CONTEXT.reasoner_inferences A21 hasRequiredOperation SET_CHIRAL=115.",
+        "Validate CONTEXT.reasoner_inferences A19 hasFailureRisk=231 and A20 hasProtectedAtom=363 against real synthesis outcomes.",
+        "Characterize the cases behind CONTEXT.hardOK_48api.ontology=0.875 to bound failure modes."
+      ],
+      "decision": {
+        "status": "CONDITIONAL",
+        "conditions": [
+          "Do not treat CONTEXT.end2edit_validity.ontology=1.0 or CONTEXT.anchor_violation.ontology=0.0 as fully grounded until CONTEXT.end2edit_validity.source and CONTEXT.anchor_violation.source are provided.",
+          "Proceed only with explicit compute, time, expertise, and ethics inputs, because these are absent from CONTEXT."
+        ]
+      }
+    },
+    "verdict": "WARN",
+    "missing_inputs": [],
+    "full_response": {
+      "verdict": "WARN",
+      "phase_output": {
+        "phase": "2.5b EG 8维可行性",
+        "qid": "Q-ONT-MOL-001",
+        "overall_tier": "CONSTRAINED",
+        "overall_rationale": "CONTEXT shows ontology-grounded signals: CONTEXT.hardOK_48api.ontology=0.875 vs CONTEXT.hardOK_48api.similarity=0.5 and CONTEXT.hardOK_48api.random=0.5; CONTEXT.p_value=6 wins 0 losses, exact sign test p=0.0156; end2end 7 wins 0 losses p=0.0078; CONTEXT.reasoner_inferences includes A19 hasFailureRisk=231, A20 hasProtectedAtom=363, A21 hasRequiredOperation SET_CHIRAL=115, StereocenterAnchor 契约=320, ValidatedEditSequence=78. However, CONTEXT.end2edit_validity.source=null and CONTEXT.anchor_violation.source=null, and no CONTEXT fields provide compute, time, expertise, or ethics evidence.",
+        "dimension_scores": [
+          {
+            "dimension": "data",
+            "score": 5,
+            "tier": "CONSTRAINED",
+            "evidence": [
+              "CONTEXT.corpus=3272 CQ cases / 14 batches; 2783 crossdocked molecules",
+              "CONTEXT.n_molecules=3483",
+              "CONTEXT.n_evidence=79",
+              "CONTEXT.papers=7",
+              "CONTEXT.structure_papers=[5KB3, 5IRU, 5J2M, 5JJK, 5JXG, 5K3S, 5IAR]",
+              "CONTEXT.end2edit_validity.source=null",
+              "CONTEXT.anchor_violation.source=null"
+            ],
+            "rationale": "Corpus and evidence artifacts exist per CONTEXT.corpus, CONTEXT.n_molecules, CONTEXT.n_evidence, and CONTEXT.papers, but validation provenance is missing per CONTEXT.end2edit_validity.source=null and CONTEXT.anchor_violation.source=null."
+          },
+          {
+            "dimension": "compute",
+            "score": 3,
+            "tier": "CONSTRAINED",
+            "evidence": [],
+            "rationale": "Compute feasibility cannot be grounded from CONTEXT because no CONTEXT field provides compute budget, hardware, runtime, or scheduling evidence."
+          },
+          {
+            "dimension": "tooling",
+            "score": 5,
+            "tier": "CONSTRAINED",
+            "evidence": [
+              "CONTEXT.reasoner_inferences.source=kernel_verify.json; owlrl 10400->23113 triples",
+              "CONTEXT.transforms_freed=5/5",
+              "CONTEXT.rl_pool=5174",
+              "CONTEXT.reasoner_inferences: 定义类 ValidatedEditSequence=78",
+              "CONTEXT.reasoner_inferences: 定义类 StereocenterPreservingReaction=2"
+            ],
+            "rationale": "Tooling artifacts exist per CONTEXT.reasoner_inferences.source, CONTEXT.transforms_freed, and CONTEXT.rl_pool, but coverage is constrained by CONTEXT.reasoner_inferences 定义类 StereocenterPreservingReaction=2 relative to A21 hasRequiredOperation SET_CHIRAL=115."
+          },
+          {
+            "dimension": "expertise",
+            "score": 3,
+            "tier": "CONSTRAINED",
+            "evidence": [],
+            "rationale": "Expertise feasibility cannot be grounded from CONTEXT because no CONTEXT field provides staffing, domain review, or expert validation evidence."
+          },
+          {
+            "dimension": "time",
+            "score": 3,
+            "tier": "CONSTRAINED",
+            "evidence": [],
+            "rationale": "Time feasibility cannot be grounded from CONTEXT because no CONTEXT field provides schedule, latency, runtime, or milestone evidence."
+          },
+          {
+            "dimension": "integration",
+            "score": 5,
+            "tier": "CONSTRAINED",
+            "evidence": [
+              "CONTEXT.p_value=6 wins 0 losses, exact sign test p=0.0156; end2end 7 wins 0 losses p=0.0078",
+              "CONTEXT.hardOK_48api.ontology=0.875",
+              "CONTEXT.end2edit_validity.ontology=1.0",
+              "CONTEXT.anchor_violation.ontology=0.0",
+              "CONTEXT.end2edit_validity.source=null",
+              "CONTEXT.anchor_violation.source=null"
+            ],
+            "rationale": "Integration signals exist per CONTEXT.p_value, CONTEXT.hardOK_48api.ontology, CONTEXT.end2edit_validity.ontology, and CONTEXT.anchor_violation.ontology, but integration grounding is constrained by CONTEXT.end2edit_validity.source=null and CONTEXT.anchor_violation.source=null."
+          },
+          {
+            "dimension": "robustness",
+            "score": 5,
+            "tier": "CONSTRAINED",
+            "evidence": [
+              "CONTEXT.hardOK_48api.ontology=0.875 vs CONTEXT.hardOK_48api.similarity=0.5 and CONTEXT.hardOK_48api.random=0.5",
+              "CONTEXT.p_value=6 wins 0 losses, exact sign test p=0.0156; end2end 7 wins 0 losses p=0.0078",
+              "CONTEXT.reasoner_inferences: A19 hasFailureRisk=231",
+              "CONTEXT.reasoner_inferences: A20 hasProtectedAtom=363",
+              "CONTEXT.reasoner_inferences: A21 hasRequiredOperation SET_CHIRAL=115",
+              "CONTEXT.reasoner_inferences: StereocenterAnchor 契约=320",
+              "CONTEXT.end2edit_validity.source=null",
+              "CONTEXT.anchor_violation.source=null"
+            ],
+            "rationale": "Robustness signals exist per CONTEXT.hardOK_48api, CONTEXT.p_value, and CONTEXT.reasoner_inferences, but robustness claims remain constrained by CONTEXT.end2edit_validity.source=null and CONTEXT.anchor_violation.source=null."
+          },
+          {
+            "dimension": "ethics",
+            "score": 3,
+            "tier": "CONSTRAINED",
+            "evidence": [],
+            "rationale": "Ethics feasibility cannot be grounded from CONTEXT because no CONTEXT field provides ethics, safety, governance, or responsible-use evidence."
+          }
+        ],
+        "missing_inputs": [
+          "Provenance and denominators for CONTEXT.end2edit_validity, because CONTEXT.end2edit_validity.source=null.",
+          "Provenance and denominators for CONTEXT.anchor_violation, because CONTEXT.anchor_violation.source=null.",
+          "Compute budget, hardware, runtime, and scheduling evidence; no CONTEXT field provides these.",
+          "Expertise, staffing, and domain-review evidence; no CONTEXT field provides these.",
+          "Time estimates, milestones, and latency evidence; no CONTEXT field provides these.",
+          "Ethics, safety, and governance evidence; no CONTEXT field provides these.",
+          "Ground-truth synthesis outcomes linking CONTEXT.reasoner_inferences A19 hasFailureRisk=231 and A20 hasProtectedAtom=363 to real synthesis results.",
+          "Characterization of non-passing cases behind CONTEXT.hardOK_48api.ontology=0.875."
+        ],
+        "risk_flags": [
+          "CONTEXT.end2edit_validity.source=null and CONTEXT.anchor_violation.source=null prevent fully provenance-grounded robustness claims.",
+          "CONTEXT.reasoner_inferences 定义类 StereocenterPreservingReaction=2 may be insufficient relative to CONTEXT.reasoner_inferences A21 hasRequiredOperation SET_CHIRAL=115.",
+          "No CONTEXT compute, time, expertise, or ethics evidence is available for engineering grounding."
+        ],
+        "recommended_actions": [
+          "Obtain denominators and provenance for CONTEXT.end2edit_validity and CONTEXT.anchor_violation.",
+          "Provide compute, time, expertise, and ethics evidence before treating the pipeline as engineering-ready.",
+          "Expand or justify CONTEXT.reasoner_inferences 定义类 StereocenterPreservingReaction=2 against CONTEXT.reasoner_inferences A21 hasRequiredOperation SET_CHIRAL=115.",
+          "Validate CONTEXT.reasoner_inferences A19 hasFailureRisk=231 and A20 hasProtectedAtom=363 against real synthesis outcomes.",
+          "Characterize the cases behind CONTEXT.hardOK_48api.ontology=0.875 to bound failure modes."
+        ],
+        "decision": {
+          "status": "CONDITIONAL",
+          "conditions": [
+            "Do not treat CONTEXT.end2edit_validity.ontology=1.0 or CONTEXT.anchor_violation.ontology=0.0 as fully grounded until CONTEXT.end2edit_validity.source and CONTEXT.anchor_violation.source are provided.",
+            "Proceed only with explicit compute, time, expertise, and ethics inputs, because these are absent from CONTEXT."
+          ]
+        }
+      }
+    }
   }
 }

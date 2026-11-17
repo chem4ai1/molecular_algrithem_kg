@@ -46,6 +46,60 @@ class WritingContext:
                     miner="writing_context", **attrs)
         return nid
 
+    # -- 阶段01：问题锚定 --------------------------------------------------
+    def freeze_problem(self, *, question: str,
+               seed_ids: Optional[List[str]] = None,
+               source_span: str = "") -> str:
+        """冻结问题锚点（INV-G1）：qid = Q-<sha256前12>。
+
+        同一 run 重复调用返回同一节点；问题文本变了会记 redirected_from。
+        """
+        import hashlib
+        q = str(question or "").strip()
+        h = hashlib.sha256(q.encode("utf-8")).hexdigest()[:12]
+        qid = f"Q-{h}"
+        nid = f"anchor:{self.run_id}:{qid}"
+        old = self.g.nodes.get(nid)
+        if old is not None:
+            if old.attrs.get("content_hash") != h:
+                old.attrs["redirected_from"] = old.attrs.get("content_hash", "")
+                old.attrs["content_hash"] = h
+                old.attrs["status"] = "redirected"
+            return nid
+        self.g.node(nid, "ProblemAnchor", q[:80], layer="application",
+                    task="writing", miner="writing_context",
+                    run_id=self.run_id, qid=qid, question=q,
+                    content_hash=h, frozen_at=self._now(),
+                    source_span=source_span, status="frozen")
+        for sid in seed_ids or []:
+            if sid in self.g.nodes:
+                self.g.assert_rel(nid, sid, "GROUNDED_IN", layer="application")
+        return nid
+
+    def hint(self, *, anchor_id: str,
+             domain_profile: Optional[List[str]] = None,
+             methodology_profile: Optional[List[str]] = None,
+             writing_profile: Optional[List[str]] = None,
+             failure_mode_profile: Optional[List[str]] = None,
+             data_profile: Optional[List[str]] = None,
+             confidence: float = 0.0, origin: str = "rule") -> str:
+        """登记 provisional 领域签名（阶段01 OPTIONAL hint）。
+
+        confidence < 0.5 时下游应回落 general；hint 永不冒充 learned profile。
+        """
+        nid = f"hint:{self.run_id}:{_slug(anchor_id)}"
+        self._add(nid, "DomainHint", f"hint:{confidence:.2f}",
+                  run_id=self.run_id, domain_profile=list(domain_profile or []),
+                  methodology_profile=list(methodology_profile or []),
+                  writing_profile=list(writing_profile or []),
+                  failure_mode_profile=list(failure_mode_profile or []),
+                  data_profile=list(data_profile or []),
+                  confidence=float(confidence), origin=origin,
+                  provisional=True)
+        if anchor_id in self.g.nodes:
+            self.g.assert_rel(nid, anchor_id, "HINTS", layer="application")
+        return nid
+
     # -- 空白 --------------------------------------------------------------
     def seek_gap(self, *, statement: str, gap_type: str,
                  source_papers: Optional[List[str]] = None,

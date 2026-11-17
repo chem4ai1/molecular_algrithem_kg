@@ -1,0 +1,1515 @@
+{
+  "phase": "12_paper_writing",
+  "title": "Phase 12 论文写作规划",
+  "qid": "Q-ONT-MOL-001",
+  "context": {
+    "problem": {
+      "qid": "Q-ONT-MOL-001",
+      "question": "How can an ontology-grounded pipeline identify WHY a generated molecule is non-synthesizable and edit it into a synthesizable analogue while preserving pharmacophoric anchors, stereochemistry and binding interactions?",
+      "three_questions": {
+        "Q1": "where the structure is problematic",
+        "Q2": "why it cannot be made",
+        "Q3": "what must not be touched during editing"
+      },
+      "corpus": "3272 CQ cases / 14 batches; 2783 crossdocked molecules"
+    },
+    "generation_eval": {
+      "hardOK": {
+        "similarity": 0.5,
+        "random": 0.5,
+        "ontology": 0.875
+      },
+      "n": 16,
+      "better": 6,
+      "worse": 0,
+      "source": "eval_merged_stats.json"
+    },
+    "end2end": {
+      "syncraft": {
+        "edit_validity": 0.5,
+        "chirality_kept": 0.25,
+        "anchor_violation_rate": 0.125,
+        "required_op_rate": 0.0,
+        "mean_tanimoto": 0.5807,
+        "mean_sa_delta": 0.1147
+      },
+      "ontology": {
+        "edit_validity": 1.0,
+        "chirality_kept": 1.0,
+        "anchor_violation_rate": 0.0,
+        "required_op_rate": 1.0,
+        "mean_tanimoto": 0.7405,
+        "mean_sa_delta": -0.3202
+      },
+      "ontology_lora": {
+        "edit_validity": 1.0,
+        "chirality_kept": 1.0,
+        "anchor_violation_rate": 0.0,
+        "required_op_rate": 1.0,
+        "mean_tanimoto": 0.7405,
+        "mean_sa_delta": -0.3202
+      },
+      "source": "end2end_results.json (8 molecules x 3 arms)"
+    },
+    "reasoner": {
+      "A21 hasRequiredOperation SET_CHIRAL": 115,
+      "A19 hasFailureRisk": 231,
+      "A20 hasProtectedAtom": 363,
+      "定义类 ValidatedEditSequence": 78,
+      "定义类 StereocenterPreservingReaction": 2,
+      "StereocenterAnchor 契约": 320,
+      "source": "kernel_verify.json; owlrl 10400->23113 triples"
+    },
+    "ontology_coverage": {
+      "n_cases": 3272,
+      "n_rules": 17,
+      "n_no_applicable": 510,
+      "precondition_triples": 28944,
+      "trigger_triples": 6707,
+      "source": "full_trigger_stats.json"
+    },
+    "annotation": {
+      "n_molecules": 3483,
+      "l0_cover": 3483,
+      "l1_cover": 3347,
+      "by_source": {
+        "golden": {
+          "n": 705,
+          "l1": 654,
+          "multi": 236
+        },
+        "crossdocked": {
+          "n": 2778,
+          "l1": 2693,
+          "multi": 1742
+        }
+      },
+      "source": "labeled_full/manifest.json"
+    },
+    "transforms": {
+      "failed_molecules_freed": "5/5",
+      "by_source": {
+        "golden": {
+          "n": 3272,
+          "any": 2903,
+          "zero": 369,
+          "cover": 88.7,
+          "multi": 1195,
+          "single": 1312,
+          "no_pass": 765,
+          "examples": [
+            {
+              "smi": "[CH3:1][O:2][C@H:3]1[C:4](=[O:5])[O:6][C@@H:7]([CH2:8][OH:9])[C@H:10]([OH:11])[C@@H:12]1[OH:13]",
+              "n": 2,
+              "tops": [
+                "T4_primary_alcohol_to_iodide",
+                "T13_methoxy_demethylation"
+              ]
+            },
+            {
+              "smi": "[CH3:1][O:2][C@H:3]1[C:4](=[O:5])[O:6][C@@H:7]([CH2:8][OH:9])[C@H:10]([OH:11])[C@@H:12]1[OH:13]",
+              "n": 2,
+              "tops": [
+                "T4_primary_alcohol_to_iodide",
+                "T13_methoxy_demethylation"
+              ]
+            },
+            {
+              "smi": "[CH3:1][O:2][C@H:3]1[C:4](=[O:5])[O:6][C@@H:7]([CH2:8][OH:9])[C@H:10]([OH:11])[C@@H:12]1[OH:13]",
+              "n": 2,
+              "tops": [
+                "T4_primary_alcohol_to_iodide",
+                "T13_methoxy_demethylation"
+              ]
+            },
+            {
+              "smi": "[O:1]=[C:2]([OH:3])[C@H:4]1[CH2:5][C@@H:6]1[CH:7]([OH:8])[OH:9]",
+              "n": 2,
+              "tops": [
+                "T6_carboxylic_acid_to_methyl_ester",
+                "T3_gemdiol_to_gemdifluoro"
+              ]
+            },
+            {
+              "smi": "[O:1]=[C:2]([OH:3])[C@H:4]1[CH2:5][C@@H:6]1[CH:7]([OH:8])[OH:9]",
+              "n": 2,
+              "tops": [
+                "T6_carboxylic_acid_to_methyl_ester",
+                "T3_gemdiol_to_gemdifluoro"
+              ]
+            },
+            {
+              "smi": "[CH3:1][O:2][C@H:3]1[C:4](=[O:5])[O:6][C@@H:7]([CH2:8][OH:9])[C@H:10]([OH:11])[C@@H:12]1[OH:13]",
+              "n": 2,
+              "tops": [
+                "T4_primary_alcohol_to_iodide",
+                "T13_methoxy_demethylation"
+              ]
+            },
+            {
+              "smi": "[OH:1][CH:2]=[C:3]([OH:4])[CH2:5][O:6][CH2:7][C@@H:8]([OH:9])[CH2:10][OH:11]",
+              "n": 2,
+              "tops": [
+                "T8_alkene_saturation",
+                "T4_primary_alcohol_to_iodide"
+              ]
+            },
+            {
+              "smi": "[O:1]=[C:2]([OH:3])[C@H:4]1[CH2:5][C@@H:6]1[CH:7]([OH:8])[OH:9]",
+              "n": 2,
+              "tops": [
+                "T6_carboxylic_acid_to_methyl_ester",
+                "T3_gemdiol_to_gemdifluoro"
+              ]
+            },
+            {
+              "smi": "[O:1]=[C:2]([OH:3])[C@H:4]([OH:5])[C@@H:6]([OH:7])[C@@H:8]([OH:9])[CH2:10][OH:11]",
+              "n": 2,
+              "tops": [
+                "T6_carboxylic_acid_to_methyl_ester",
+                "T4_primary_alcohol_to_iodide"
+              ]
+            },
+            {
+              "smi": "[O:1]=[C:2]([OH:3])[C@H:4]([OH:5])[C@@H:6]([OH:7])[C@@H:8]([OH:9])[CH2:10][OH:11]",
+              "n": 2,
+              "tops": [
+                "T6_carboxylic_acid_to_methyl_ester",
+                "T4_primary_alcohol_to_iodide"
+              ]
+            },
+            {
+              "smi": "[O:1]=[C:2]([OH:3])[C@H:4]([OH:5])[C@@H:6]([OH:7])[C@@H:8]([OH:9])[CH2:10][OH:11]",
+              "n": 2,
+              "tops": [
+                "T6_carboxylic_acid_to_methyl_ester",
+                "T4_primary_alcohol_to_iodide"
+              ]
+            },
+            {
+              "smi": "[O:1]=[C:2]([OH:3])[C@H:4]([OH:5])[C@@H:6]([OH:7])[C@@H:8]([OH:9])[CH2:10][OH:11]",
+              "n": 2,
+              "tops": [
+                "T6_carboxylic_acid_to_methyl_ester",
+                "T4_primary_alcohol_to_iodide"
+              ]
+            },
+            {
+              "smi": "[O:1]=[C:2]([OH:3])[C@H:4]([OH:5])[C@@H:6]([OH:7])[C@@H:8]([OH:9])[CH2:10][OH:11]",
+              "n": 2,
+              "tops": [
+                "T6_carboxylic_acid_to_methyl_ester",
+                "T4_primary_alcohol_to_iodide"
+              ]
+            },
+            {
+              "smi": "[O:1]=[C:2]([OH:3])[C@H:4]([OH:5])[C@@H:6]([OH:7])[C@@H:8]([OH:9])[CH2:10][OH:11]",
+              "n": 2,
+              "tops": [
+                "T6_carboxylic_acid_to_methyl_ester",
+                "T4_primary_alcohol_to_iodide"
+              ]
+            },
+            {
+              "smi": "[O:1]=[C:2]([OH:3])[C@H:4]([OH:5])[C@@H:6]([OH:7])[C@@H:8]([OH:9])[CH2:10][OH:11]",
+              "n": 2,
+              "tops": [
+                "T6_carboxylic_acid_to_methyl_ester",
+                "T4_primary_alcohol_to_iodide"
+              ]
+            },
+            {
+              "smi": "[O:1]=[C:2]([OH:3])[C@H:4]([OH:5])[C@@H:6]([OH:7])[C@@H:8]([OH:9])[CH2:10][OH:11]",
+              "n": 2,
+              "tops": [
+                "T6_carboxylic_acid_to_methyl_ester",
+                "T4_primary_alcohol_to_iodide"
+              ]
+            },
+            {
+              "smi": "[OH:1][CH2:2][CH:3]([OH:4])[C@H:5]([OH:6])[C@H:7]([OH:8])[CH2:9][OH:10]",
+              "n": 2,
+              "tops": [
+                "T4_primary_alcohol_to_iodide",
+                "T4_primary_alcohol_to_iodide"
+              ]
+            },
+            {
+              "smi": "[OH:1][CH2:2][CH:3]([OH:4])[C@H:5]([OH:6])[C@H:7]([OH:8])[CH2:9][OH:10]",
+              "n": 2,
+              "tops": [
+                "T4_primary_alcohol_to_iodide",
+                "T4_primary_alcohol_to_iodide"
+              ]
+            },
+            {
+              "smi": "[OH:1][CH2:2][CH:3]([OH:4])[C@H:5]([OH:6])[C@H:7]([OH:8])[CH2:9][OH:10]",
+              "n": 2,
+              "tops": [
+                "T4_primary_alcohol_to_iodide",
+                "T4_primary_alcohol_to_iodide"
+              ]
+            },
+            {
+              "smi": "[OH:1][CH2:2][CH:3]([OH:4])[C@H:5]([OH:6])[C@H:7]([OH:8])[CH2:9][OH:10]",
+              "n": 2,
+              "tops": [
+                "T4_primary_alcohol_to_iodide",
+                "T4_primary_alcohol_to_iodide"
+              ]
+            },
+            {
+              "smi": "[OH:1][CH2:2][CH:3]([OH:4])[C@H:5]([OH:6])[C@H:7]([OH:8])[CH2:9][OH:10]",
+              "n": 2,
+              "tops": [
+                "T4_primary_alcohol_to_iodide",
+                "T4_primary_alcohol_to_iodide"
+              ]
+            },
+            {
+              "smi": "[OH:1][CH2:2][CH:3]([OH:4])[C@H:5]([OH:6])[C@H:7]([OH:8])[CH2:9][OH:10]",
+              "n": 2,
+              "tops": [
+                "T4_primary_alcohol_to_iodide",
+                "T4_primary_alcohol_to_iodide"
+              ]
+            },
+            {
+              "smi": "[OH:1][CH2:2][CH:3]([OH:4])[C@H:5]([OH:6])[C@H:7]([OH:8])[CH2:9][OH:10]",
+              "n": 2,
+              "tops": [
+                "T4_primary_alcohol_to_iodide",
+                "T4_primary_alcohol_to_iodide"
+              ]
+            },
+            {
+              "smi": "[OH:1][CH2:2][CH:3]([OH:4])[C@H:5]([OH:6])[C@H:7]([OH:8])[CH2:9][OH:10]",
+              "n": 2,
+              "tops": [
+                "T4_primary_alcohol_to_iodide",
+                "T4_primary_alcohol_to_iodide"
+              ]
+            },
+            {
+              "smi": "[OH:1][CH2:2][CH:3]([OH:4])[C@H:5]([OH:6])[C@H:7]([OH:8])[CH2:9][OH:10]",
+              "n": 2,
+              "tops": [
+                "T4_primary_alcohol_to_iodide",
+                "T4_primary_alcohol_to_iodide"
+              ]
+            },
+            {
+              "smi": "[OH:1][CH2:2][CH:3]([OH:4])[C@H:5]([OH:6])[C@H:7]([OH:8])[CH2:9][OH:10]",
+              "n": 2,
+              "tops": [
+                "T4_primary_alcohol_to_iodide",
+                "T4_primary_alcohol_to_iodide"
+              ]
+            },
+            {
+              "smi": "[OH:1][CH2:2][CH:3]([OH:4])[C@H:5]([OH:6])[C@H:7]([OH:8])[CH2:9][OH:10]",
+              "n": 2,
+              "tops": [
+                "T4_primary_alcohol_to_iodide",
+                "T4_primary_alcohol_to_iodide"
+              ]
+            },
+            {
+              "smi": "[OH:1][CH2:2][CH:3]([OH:4])[C@H:5]([OH:6])[C@H:7]([OH:8])[CH2:9][OH:10]",
+              "n": 2,
+              "tops": [
+                "T4_primary_alcohol_to_iodide",
+                "T4_primary_alcohol_to_iodide"
+              ]
+            },
+            {
+              "smi": "[OH:1][CH2:2][CH:3]([OH:4])[C@H:5]([OH:6])[C@H:7]([OH:8])[CH2:9][OH:10]",
+              "n": 2,
+              "tops": [
+                "T4_primary_alcohol_to_iodide",
+                "T4_primary_alcohol_to_iodide"
+              ]
+            },
+            {
+              "smi": "[OH:1][CH2:2][CH:3]([OH:4])[C@H:5]([OH:6])[C@H:7]([OH:8])[CH2:9][OH:10]",
+              "n": 2,
+              "tops": [
+                "T4_primary_alcohol_to_iodide",
+                "T4_primary_alcohol_to_iodide"
+              ]
+            }
+          ]
+        },
+        "crossdocked": {
+          "n": 2783,
+          "any": 2575,
+          "zero": 208,
+          "cover": 92.5,
+          "multi": 1745,
+          "single": 680,
+          "no_pass": 358,
+          "examples": [
+            {
+              "smi": "C[C@@H](O)CN(C)C(=O)c1ccc2c(c1)N(C(=O)CCN)[C@H](CCN)C2",
+              "n": 2,
+              "tops": [
+                "T1_terminal_amine_to_methyl",
+                "T1_terminal_amine_to_methyl"
+              ]
+            },
+            {
+              "smi": "Cc1ccc(C(=O)N2CCC[C@H]([C@@H](N)C(=O)NC(=O)C(=O)O)C2)cc1",
+              "n": 3,
+              "tops": [
+                "T6_carboxylic_acid_to_methyl_ester",
+                "T18_amide_NH_to_Nmethyl",
+                "T18_amide_NH_to_Nmethyl"
+              ]
+            },
+            {
+              "smi": "COc1cccc2c1OC[C@@H]1O[C@@H](CO[P@@](=O)(O)OCO)[C@H](O)CO[C@@H]1COC2=O",
+              "n": 2,
+              "tops": [
+                "T4_primary_alcohol_to_iodide",
+                "T13_methoxy_demethylation"
+              ]
+            },
+            {
+              "smi": "CC1=C2CC(O)=CC(C(=O)Nc3cccc4cc(C(=O)O)ccc34)=C2N=C1N",
+              "n": 6,
+              "tops": [
+                "T21_ring_alkene_saturation",
+                "T21_ring_alkene_saturation",
+                "T21_ring_alkene_saturation"
+              ]
+            },
+            {
+              "smi": "Nc1ccc([C@H]2C=C3CC[C@@H](O)CC3=CC2=CC=CC(=O)O)cn1",
+              "n": 6,
+              "tops": [
+                "T6_carboxylic_acid_to_methyl_ester",
+                "T8_alkene_saturation",
+                "T21_ring_alkene_saturation"
+              ]
+            },
+            {
+              "smi": "COc1ccc2cc3c(cc2c1)C(=O)NC(=O)[C@H]3C",
+              "n": 3,
+              "tops": [
+                "T18_amide_NH_to_Nmethyl",
+                "T18_amide_NH_to_Nmethyl",
+                "T13_methoxy_demethylation"
+              ]
+            },
+            {
+              "smi": "O=C(O)C[C@]1(O)CC(O)=CC[C@@H]1O",
+              "n": 2,
+              "tops": [
+                "T6_carboxylic_acid_to_methyl_ester",
+                "T21_ring_alkene_saturation"
+              ]
+            },
+            {
+              "smi": "O=C1N=C2N=CC(C(=O)N(O)[C@H]3C[C@H](CO)NC[C@@H]3O)=C2c2ccccc21",
+              "n": 3,
+              "tops": [
+                "T4_primary_alcohol_to_iodide",
+                "T21_ring_alkene_saturation",
+                "T5_michael_acceptor_saturation"
+              ]
+            },
+            {
+              "smi": "C[C@@H]1C(=O)CC=C2C1=C(O)c1ncncc12",
+              "n": 2,
+              "tops": [
+                "T21_ring_alkene_saturation",
+                "T21_ring_alkene_saturation"
+              ]
+            },
+            {
+              "smi": "C=CC1=CC=C2CC(C(C)(C)c3ccccc3)=CC=C2O1",
+              "n": 5,
+              "tops": [
+                "T8_alkene_saturation",
+                "T21_ring_alkene_saturation",
+                "T21_ring_alkene_saturation"
+              ]
+            },
+            {
+              "smi": "O=C(O)[C@H]1CCC[C@@H]([C@@H](O)Cc2cccc(Cc3cc(O)ccc3-c3ccccc3)c2F)N1",
+              "n": 2,
+              "tops": [
+                "T6_carboxylic_acid_to_methyl_ester",
+                "T7_phenol_to_methoxy"
+              ]
+            },
+            {
+              "smi": "O=C(O)CC(=O)N[C@H](O)[C@@H](O)CC(=O)O",
+              "n": 3,
+              "tops": [
+                "T6_carboxylic_acid_to_methyl_ester",
+                "T6_carboxylic_acid_to_methyl_ester",
+                "T18_amide_NH_to_Nmethyl"
+              ]
+            },
+            {
+              "smi": "CC(C)N=c1nc(N)[nH]c2ccc(C(=O)O)cc12",
+              "n": 2,
+              "tops": [
+                "T6_carboxylic_acid_to_methyl_ester",
+                "T11_arylamine_to_Nmethyl"
+              ]
+            },
+            {
+              "smi": "Cc1cc(C(=O)O)cn(C(=O)C(=O)O)c1=O",
+              "n": 2,
+              "tops": [
+                "T6_carboxylic_acid_to_methyl_ester",
+                "T6_carboxylic_acid_to_methyl_ester"
+              ]
+            },
+            {
+              "smi": "Nc1nc(O[C@@H]2[C@H](O)[C@@H](O)O[C@H]2CO[P@@](=O)(O)OP(=O)(O)O)c(O)cc1O",
+              "n": 3,
+              "tops": [
+                "T7_phenol_to_methoxy",
+                "T7_phenol_to_methoxy",
+                "T11_arylamine_to_Nmethyl"
+              ]
+            },
+            {
+              "smi": "C[C@@]1(CO)CN([C@H]2C[C@H](O)C[C@@H](CO)O2)C(=O)N1",
+              "n": 3,
+              "tops": [
+                "T4_primary_alcohol_to_iodide",
+                "T4_primary_alcohol_to_iodide",
+                "T18_amide_NH_to_Nmethyl"
+              ]
+            },
+            {
+              "smi": "O=C(O)CCC(=O)ONC(=O)c1cccc2c1ncc1ccccc12",
+              "n": 2,
+              "tops": [
+                "T6_carboxylic_acid_to_methyl_ester",
+                "T18_amide_NH_to_Nmethyl"
+              ]
+            },
+            {
+              "smi": "Oc1ccc2c(ccc3c(O)cccc32)c1",
+              "n": 2,
+              "tops": [
+                "T7_phenol_to_methoxy",
+                "T7_phenol_to_methoxy"
+              ]
+            },
+            {
+              "smi": "O=C1NC=C([C@@H](O)CO)C1=O",
+              "n": 4,
+              "tops": [
+                "T18_amide_NH_to_Nmethyl",
+                "T21_ring_alkene_saturation",
+                "T4_primary_alcohol_to_iodide"
+              ]
+            },
+            {
+              "smi": "CN1CCOC2=C3c4c(ccc(O)c4C(=O)C[C@H]3C1=O)C2",
+              "n": 2,
+              "tops": [
+                "T21_ring_alkene_saturation",
+                "T7_phenol_to_methoxy"
+              ]
+            },
+            {
+              "smi": "COc1nccc(COP(=O)(O)O)c1O",
+              "n": 2,
+              "tops": [
+                "T7_phenol_to_methoxy",
+                "T13_methoxy_demethylation"
+              ]
+            },
+            {
+              "smi": "CCOC(=O)C(C)=C1C[C@H]2OC(=O)[C@H](O)[C@@H](C(=O)O)O[P@](=O)(O)OC[C@H](O)[C@@H]3O[C@H]2C1O[C@H]3O",
+              "n": 2,
+              "tops": [
+                "T5_michael_acceptor_saturation",
+                "T6_carboxylic_acid_to_methyl_ester"
+              ]
+            },
+            {
+              "smi": "CC(=O)N1CCC(=C(C)O)[C@H](NC(=O)c2ccc(O)cc2O)CC1",
+              "n": 4,
+              "tops": [
+                "T2_amide_methyl_to_carbamate",
+                "T18_amide_NH_to_Nmethyl",
+                "T7_phenol_to_methoxy"
+              ]
+            },
+            {
+              "smi": "CC1=C2c3c(cccc3N3C[C@H](C(=O)O)NC[C@@H]13)N=C(C(=O)O)C2(C)C",
+              "n": 3,
+              "tops": [
+                "T6_carboxylic_acid_to_methyl_ester",
+                "T6_carboxylic_acid_to_methyl_ester",
+                "T21_ring_alkene_saturation"
+              ]
+            },
+            {
+              "smi": "O=C1C=CC(c2ccccc2)=CC1",
+              "n": 3,
+              "tops": [
+                "T21_ring_alkene_saturation",
+                "T5_michael_acceptor_saturation",
+                "T21_ring_alkene_saturation"
+              ]
+            },
+            {
+              "smi": "CNC(=O)c1cccc(O)c1-n1ccccc1=O",
+              "n": 2,
+              "tops": [
+                "T18_amide_NH_to_Nmethyl",
+                "T7_phenol_to_methoxy"
+              ]
+            },
+            {
+              "smi": "CN[C@@H](C1=CC=CCC1=O)[C@H]1C=C2CCCCC2=N1",
+              "n": 4,
+              "tops": [
+                "T21_ring_alkene_saturation",
+                "T21_ring_alkene_saturation",
+                "T21_ring_alkene_saturation"
+              ]
+            },
+            {
+              "smi": "Cc1ccc(CN2[C@H](CCCC(O)=C3C=CN=C3)CC[C@@H]2C(=O)O)cc1",
+              "n": 2,
+              "tops": [
+                "T21_ring_alkene_saturation",
+                "T6_carboxylic_acid_to_methyl_ester"
+              ]
+            },
+            {
+              "smi": "Cc1cccc(C2=CCCN(CC(=O)NC[C@H]3C[C@H]([C@@H](C)C4=CC5=CCC(O)=C(O)C5=CC4)C[C@@H]3C(=O)O)C2)c1",
+              "n": 7,
+              "tops": [
+                "T21_ring_alkene_saturation",
+                "T21_ring_alkene_saturation",
+                "T21_ring_alkene_saturation"
+              ]
+            },
+            {
+              "smi": "O=C(O)c1cc2c3c(cccc3c1)C(=O)C=C2",
+              "n": 3,
+              "tops": [
+                "T6_carboxylic_acid_to_methyl_ester",
+                "T21_ring_alkene_saturation",
+                "T5_michael_acceptor_saturation"
+              ]
+            }
+          ]
+        }
+      },
+      "source": "extended_specs_report.json"
+    },
+    "structure_evidence": {
+      "n": 79,
+      "papers": 7,
+      "by_model": {
+        "baidu/ernie-5.5-flash-preview:free": 67,
+        "gemini-3.8-flash": 12
+      },
+      "by_pt": {
+        "P11": 6,
+        "P12": 1,
+        "P15": 27,
+        "P16": 17,
+        "P17": 28
+      },
+      "source": "receptor_structure_evidence_v2.json (ernie+gemini, anchor->PT rule)"
+    },
+    "rl": {
+      "n_batches": 18,
+      "n_rows": 5174,
+      "correct_action": {
+        "abstain": 1632,
+        "validate_edits": 1800,
+        "compare_candidates": 1742
+      },
+      "env_reward_probe": {
+        "mean_std": 0.183,
+        "verdict": "真实分歧存在，可进入 S2"
+      },
+      "source": "grpo_pool_mixed + env_reward_probe"
+    },
+    "literature": {
+      "syncraft": {
+        "title": "SynCraft: Guiding Large Language Models to Predict Edit Sequences for Molecular Synthesizability Optimization",
+        "arxiv": "2512.20333",
+        "reported": "P2M 28.4% / ResGen 29.1% rescue at similarity>0.6 (Gemini-2.5-Pro)"
+      },
+      "crux": {
+        "title": "Can AI agents conduct open-ended AI research? Early evidence from two case studies",
+        "arxiv": "2607.27191",
+        "lesson": "agents do engineering but fail at evidence sufficiency"
+      },
+      "structure_papers": [
+        "5KB3",
+        "5IRU",
+        "5J2M",
+        "5JJK",
+        "5JXG",
+        "5K3S",
+        "5IAR"
+      ]
+    }
+  },
+  "previous_phase_output": {
+    "phase": "11_unified_plotting",
+    "title": "Phase 11 图表规格",
+    "phase_output": {
+      "figures": [
+        {
+          "figure_id": "FIG1",
+          "title": "Ontology grounding raises hard-OK rate over similarity and random baselines",
+          "type": "bar chart (3 bars, single series)",
+          "data_source": [
+            "hardOK_48api"
+          ],
+          "axes": {
+            "x": "selection condition",
+            "y": "hard-OK rate (fraction, 0-1)"
+          },
+          "series": [
+            {
+              "label": "similarity",
+              "value": 0.5
+            },
+            {
+              "label": "random",
+              "value": 0.5
+            },
+            {
+              "label": "ontology",
+              "value": 0.875
+            }
+          ],
+          "claim_supported": "Ontology-grounded selection attains hardOK 0.875 versus 0.5 for both the similarity and random baselines.",
+          "fidelity_level": "L2_numerical",
+          "cites": [
+            "hardOK_48api"
+          ],
+          "non_decorative_justification": "Encodes the primary quantitative comparison; removing it removes the central evidence for the ontology advantage.",
+          "caveats": [
+            "The token '48api' and its denominator are not defined in CONTEXT.",
+            "No error bars / confidence intervals are provided in CONTEXT."
+          ]
+        },
+        {
+          "figure_id": "FIG2",
+          "title": "End-to-end edit validity by method",
+          "type": "bar chart (3 bars, single series)",
+          "data_source": [
+            "end2edit_validity"
+          ],
+          "axes": {
+            "x": "method",
+            "y": "edit validity (fraction, 0-1)"
+          },
+          "series": [
+            {
+              "label": "syncraft",
+              "value": 0.5
+            },
+            {
+              "label": "ontology",
+              "value": 1.0
+            },
+            {
+              "label": "ontology_lora",
+              "value": 1.0
+            }
+          ],
+          "claim_supported": "Ontology and ontology+LoRA edits reach validity 1.0 versus 0.5 for SynCraft.",
+          "fidelity_level": "L2_numerical",
+          "cites": [
+            "end2edit_validity",
+            "literature.syncraft"
+          ],
+          "non_decorative_justification": "Quantifies the end-to-end editing claim (Q of the pipeline: edit into a synthesizable analogue) against the closest published baseline (SynCraft).",
+          "caveats": [
+            "end2edit_validity.source is null in CONTEXT — provenance for these numbers is missing.",
+            "No error bars / CI provided."
+          ]
+        },
+        {
+          "figure_id": "FIG3",
+          "title": "Anchor violation rate by method (pharmacophore / stereocentre preservation)",
+          "type": "bar chart (3 bars, single series)",
+          "data_source": [
+            "anchor_violation"
+          ],
+          "axes": {
+            "x": "method",
+            "y": "anchor violation rate (fraction, 0-1)"
+          },
+          "series": [
+            {
+              "label": "syncraft",
+              "value": 0.125
+            },
+            {
+              "label": "ontology",
+              "value": 0.0
+            },
+            {
+              "label": "ontology_lora",
+              "value": 0.0
+            }
+          ],
+          "claim_supported": "Ontology-based editing shows 0.0 anchor violation versus 0.125 for SynCraft, evidencing preservation of the anchors that must not be touched (Q3).",
+          "fidelity_level": "L2_numerical",
+          "cites": [
+            "anchor_violation",
+            "three_questions.Q3"
+          ],
+          "non_decorative_justification": "Directly answers sub-question Q3 ('what must not be touched during editing') with a measured quantity.",
+          "caveats": [
+            "anchor_violation.source is null in CONTEXT — provenance missing.",
+            "0.0 values may reflect small sample size; no n or CI provided."
+          ]
+        },
+        {
+          "figure_id": "FIG4",
+          "title": "Reasoner inference census grounding the symbolic claims",
+          "type": "horizontal bar chart of counts (log-scale x recommended given range 2-363); provenance annotation 'owlrl 10400->23113 triples'",
+          "data_source": [
+            "reasoner_inferences"
+          ],
+          "axes": {
+            "x": "assertion / inference count (log scale)",
+            "y": "ontology construct"
+          },
+          "series": [
+            {
+              "label": "A20 hasProtectedAtom",
+              "value": 363
+            },
+            {
+              "label": "StereocenterAnchor 契约 (contract)",
+              "value": 320
+            },
+            {
+              "label": "A19 hasFailureRisk",
+              "value": 231
+            },
+            {
+              "label": "A21 hasRequiredOperation SET_CHIRAL",
+              "value": 115
+            },
+            {
+              "label": "定义类 ValidatedEditSequence",
+              "value": 78
+            },
+            {
+              "label": "定义类 StereocenterPreservingReaction",
+              "value": 2
+            }
+          ],
+          "claim_supported": "The ontology materially defines ValidatedEditSequence (78), StereocenterPreservingReaction (2) and the StereocenterAnchor contract (320), and asserts hasRequiredOperation SET_CHIRAL (115) — grounding symbolic claims SYM1-SYM4 from the previous phase.",
+          "fidelity_level": "L1_symbolic (with L2 counts)",
+          "cites": [
+            "reasoner_inferences"
+          ],
+          "non_decorative_justification": "Provides the machine-checkable evidence that the pipeline's constructs exist and fire, which is the substrate for every downstream numerical claim.",
+          "caveats": [
+            "Counts are assertion/instance counts, not effect sizes.",
+            "owlrl expansion 10400->23113 triples is shown only as a provenance annotation, not as a data series."
+          ]
+        },
+        {
+          "figure_id": "FIG5",
+          "title": "Win/loss record and exact sign-test significance",
+          "type": "two-panel figure: (a) win-loss stacked bars; (b) p-value annotation panel",
+          "data_source": [
+            "p_value"
+          ],
+          "axes": {
+            "panel_a_x": "comparison set",
+            "panel_a_y": "count (wins/losses)",
+            "panel_b": "text/table of p-values"
+          },
+          "series": [
+            {
+              "panel": "a",
+              "label": "hardOK set",
+              "wins": 6,
+              "losses": 0
+            },
+            {
+              "panel": "a",
+              "label": "end2end set",
+              "wins": 7,
+              "losses": 0
+            },
+            {
+              "panel": "b",
+              "label": "hardOK exact sign test",
+              "p": 0.0156
+            },
+            {
+              "panel": "b",
+              "label": "end2end exact sign test",
+              "p": 0.0078
+            }
+          ],
+          "claim_supported": "Ontology wins all paired comparisons (6 wins / 0 losses, p=0.0156; end2end 7 wins / 0 losses, p=0.0078) under an exact sign test.",
+          "fidelity_level": "L2_numerical",
+          "cites": [
+            "p_value"
+          ],
+          "non_decorative_justification": "Supplies the statistical-significance layer that upgrades the raw rates in FIG1-FIG3 from descriptive to inferential.",
+          "caveats": [
+            "The specific paired items behind '6 wins' and '7 wins' are not enumerated in CONTEXT.",
+            "Sign-test n is small (6 and 7)."
+          ]
+        },
+        {
+          "figure_id": "FIG6",
+          "title": "Pipeline schematic: mapping Q1/Q2/Q3 to ontology constructs",
+          "type": "flow / schematic diagram (boxes + arrows) annotated with inference counts",
+          "data_source": [
+            "three_questions",
+            "reasoner_inferences"
+          ],
+          "axes": {
+            "layout": "left-to-right: sub-question -> ontology construct(s) -> edit representation"
+          },
+          "series": [
+            {
+              "node": "Q1 where problematic",
+              "maps_to": [
+                "A20 hasProtectedAtom (363)",
+                "A19 hasFailureRisk (231)"
+              ]
+            },
+            {
+              "node": "Q2 why cannot be made",
+              "maps_to": [
+                "A21 hasRequiredOperation SET_CHIRAL (115)",
+                "A19 hasFailureRisk (231)"
+              ]
+            },
+            {
+              "node": "Q3 what must not be touched",
+              "maps_to": [
+                "StereocenterAnchor 契约 (320)",
+                "定义类 StereocenterPreservingReaction (2)"
+              ]
+            },
+            {
+              "node": "edit representation",
+              "maps_to": [
+                "定义类 ValidatedEditSequence (78)"
+              ]
+            }
+          ],
+          "claim_supported": "The pipeline operationalizes the three sub-questions via distinct ontology constructs, each carrying non-zero reasoner support.",
+          "fidelity_level": "L3_qualitative",
+          "cites": [
+            "three_questions",
+            "reasoner_inferences"
+          ],
+          "non_decorative_justification": "Encodes the mechanism (which construct answers which sub-question) rather than decoration; each arrow is annotated with a CONTEXT count.",
+          "caveats": [
+            "The Q-to-construct mapping is an author interpretation, not asserted verbatim in CONTEXT.",
+            "Arrow semantics are author-defined."
+          ]
+        },
+        {
+          "figure_id": "FIG7",
+          "title": "Evaluation corpus and knowledge-base scale (CONDITIONAL / methods panel)",
+          "type": "summary table-figure (heterogeneous counts; render as table, not a shared-axis bar chart)",
+          "data_source": [
+            "corpus",
+            "n_molecules",
+            "n_evidence",
+            "papers",
+            "rl_pool",
+            "transforms_freed",
+            "literature.structure_papers"
+          ],
+          "axes": {
+            "layout": "catalogue of counts with units"
+          },
+          "series": [
+            {
+              "label": "CQ cases",
+              "value": 3272
+            },
+            {
+              "label": "batches",
+              "value": 14
+            },
+            {
+              "label": "crossdocked molecules",
+              "value": 2783
+            },
+            {
+              "label": "n_molecules",
+              "value": 3483
+            },
+            {
+              "label": "n_evidence",
+              "value": 79
+            },
+            {
+              "label": "papers",
+              "value": 7
+            },
+            {
+              "label": "rl_pool",
+              "value": 5174
+            },
+            {
+              "label": "transforms_freed",
+              "value": "5/5"
+            },
+            {
+              "label": "structure_papers (PDB IDs)",
+              "value": [
+                "5KB3",
+                "5IRU",
+                "5J2M",
+                "5JJK",
+                "5JXG",
+                "5K3S",
+                "5IAR"
+              ]
+            }
+          ],
+          "claim_supported": "Establishes the empirical and knowledge scale (corpus, evidence, literature, RL pool) on which the results rest.",
+          "fidelity_level": "L2_numerical",
+          "cites": [
+            "corpus",
+            "n_molecules",
+            "n_evidence",
+            "papers",
+            "rl_pool",
+            "transforms_freed",
+            "literature.structure_papers"
+          ],
+          "non_decorative_justification": "Included only if a reproducibility/scale claim is made; otherwise omit to honor the no-decorative-figures rule.",
+          "caveats": [
+            "Units are heterogeneous and not comparable on one axis — must be a table, not a bar chart.",
+            "Relationship among 3272 CQ cases / 2783 crossdocked / 3483 molecules is not specified in CONTEXT.",
+            "Borderline decorative; retained as conditional."
+          ]
+        }
+      ],
+      "figure_count": 7,
+      "core_figures": [
+        "FIG1",
+        "FIG2",
+        "FIG3",
+        "FIG4",
+        "FIG5",
+        "FIG6"
+      ],
+      "conditional_figures": [
+        "FIG7"
+      ],
+      "coverage_check": {
+        "Q1_where_problematic": [
+          "FIG4",
+          "FIG6"
+        ],
+        "Q2_why_cannot_be_made": [
+          "FIG4",
+          "FIG6"
+        ],
+        "Q3_what_must_not_be_touched": [
+          "FIG3",
+          "FIG4",
+          "FIG6"
+        ],
+        "overall_pipeline_efficacy": [
+          "FIG1",
+          "FIG2",
+          "FIG5"
+        ],
+        "symbolic_grounding_SYM1_SYM4": [
+          "FIG4"
+        ],
+        "claim_ladder_mapping": {
+          "L1_symbolic": [
+            "FIG4",
+            "FIG6"
+          ],
+          "L2_numerical": [
+            "FIG1",
+            "FIG2",
+            "FIG3",
+            "FIG5",
+            "FIG7"
+          ],
+          "L3_qualitative": [
+            "FIG6"
+          ]
+        }
+      },
+      "design_notes": [
+        "All plotted numbers are restated verbatim from CONTEXT; no arithmetic beyond restating the given fractions/counts is performed.",
+        "Suggested layout: combine FIG1/FIG2/FIG3 as panels (a)/(b)/(c) of a single 'main results' figure; FIG5 can be an inset or panel (d).",
+        "Consistent color convention: baselines (similarity, random, syncraft) in neutral grey; ontology and ontology_lora highlighted.",
+        "FIG4 x-axis should be log-scaled because counts span 2 to 363.",
+        "FIG6 arrows must be visually distinguished as author-defined mapping (e.g., dashed) to avoid implying the mapping is asserted by the ontology.",
+        "FIG7 should be a table if included; do not plot heterogeneous units on a shared axis."
+      ],
+      "provenance_status": {
+        "hardOK_48api": "no source field in CONTEXT",
+        "end2edit_validity": "source = null (missing)",
+        "anchor_violation": "source = null (missing)",
+        "reasoner_inferences": "source = kernel_verify.json; owlrl 10400->23113 triples (present)",
+        "p_value": "no source field in CONTEXT"
+      }
+    },
+    "verdict": "WARN",
+    "missing_inputs": [
+      "end2edit_validity.source is null — no provenance for FIG2 values.",
+      "anchor_violation.source is null — no provenance for FIG3 values.",
+      "No error bars, confidence intervals, standard deviations, or sample sizes (n) for any rate in hardOK_48api, end2edit_validity, or anchor_violation — uncertainty cannot be shown.",
+      "The denominator/meaning of '48api' in hardOK_48api is undefined in CONTEXT.",
+      "Definitions of the 'similarity' and 'random' hardOK baseline conditions are not given.",
+      "The specific paired items underlying '6 wins 0 losses' and '7 wins 0 losses' in p_value are not enumerated.",
+      "No per-batch breakdown is provided despite corpus stating 14 batches — batch-level variance cannot be plotted.",
+      "structure_papers (5KB3, 5IRU, 5J2M, 5JJK, 5JXG, 5K3S, 5IAR) have no resolution/quality/metric data — no structure-quality figure can be built.",
+      "transforms_freed = 5/5 has no itemization of which transforms were freed.",
+      "Relationship/overlap among corpus counts (3272 CQ cases, 2783 crossdocked molecules, n_molecules 3483) is unspecified."
+    ],
+    "full_response": {
+      "phase": "Phase 11 图表规格",
+      "task": "Specify publication figures: figure id, type, data source, and the claim each figure supports; at least one figure; no decorative figures.",
+      "qid": "Q-ONT-MOL-001",
+      "phase_output": {
+        "figures": [
+          {
+            "figure_id": "FIG1",
+            "title": "Ontology grounding raises hard-OK rate over similarity and random baselines",
+            "type": "bar chart (3 bars, single series)",
+            "data_source": [
+              "hardOK_48api"
+            ],
+            "axes": {
+              "x": "selection condition",
+              "y": "hard-OK rate (fraction, 0-1)"
+            },
+            "series": [
+              {
+                "label": "similarity",
+                "value": 0.5
+              },
+              {
+                "label": "random",
+                "value": 0.5
+              },
+              {
+                "label": "ontology",
+                "value": 0.875
+              }
+            ],
+            "claim_supported": "Ontology-grounded selection attains hardOK 0.875 versus 0.5 for both the similarity and random baselines.",
+            "fidelity_level": "L2_numerical",
+            "cites": [
+              "hardOK_48api"
+            ],
+            "non_decorative_justification": "Encodes the primary quantitative comparison; removing it removes the central evidence for the ontology advantage.",
+            "caveats": [
+              "The token '48api' and its denominator are not defined in CONTEXT.",
+              "No error bars / confidence intervals are provided in CONTEXT."
+            ]
+          },
+          {
+            "figure_id": "FIG2",
+            "title": "End-to-end edit validity by method",
+            "type": "bar chart (3 bars, single series)",
+            "data_source": [
+              "end2edit_validity"
+            ],
+            "axes": {
+              "x": "method",
+              "y": "edit validity (fraction, 0-1)"
+            },
+            "series": [
+              {
+                "label": "syncraft",
+                "value": 0.5
+              },
+              {
+                "label": "ontology",
+                "value": 1.0
+              },
+              {
+                "label": "ontology_lora",
+                "value": 1.0
+              }
+            ],
+            "claim_supported": "Ontology and ontology+LoRA edits reach validity 1.0 versus 0.5 for SynCraft.",
+            "fidelity_level": "L2_numerical",
+            "cites": [
+              "end2edit_validity",
+              "literature.syncraft"
+            ],
+            "non_decorative_justification": "Quantifies the end-to-end editing claim (Q of the pipeline: edit into a synthesizable analogue) against the closest published baseline (SynCraft).",
+            "caveats": [
+              "end2edit_validity.source is null in CONTEXT — provenance for these numbers is missing.",
+              "No error bars / CI provided."
+            ]
+          },
+          {
+            "figure_id": "FIG3",
+            "title": "Anchor violation rate by method (pharmacophore / stereocentre preservation)",
+            "type": "bar chart (3 bars, single series)",
+            "data_source": [
+              "anchor_violation"
+            ],
+            "axes": {
+              "x": "method",
+              "y": "anchor violation rate (fraction, 0-1)"
+            },
+            "series": [
+              {
+                "label": "syncraft",
+                "value": 0.125
+              },
+              {
+                "label": "ontology",
+                "value": 0.0
+              },
+              {
+                "label": "ontology_lora",
+                "value": 0.0
+              }
+            ],
+            "claim_supported": "Ontology-based editing shows 0.0 anchor violation versus 0.125 for SynCraft, evidencing preservation of the anchors that must not be touched (Q3).",
+            "fidelity_level": "L2_numerical",
+            "cites": [
+              "anchor_violation",
+              "three_questions.Q3"
+            ],
+            "non_decorative_justification": "Directly answers sub-question Q3 ('what must not be touched during editing') with a measured quantity.",
+            "caveats": [
+              "anchor_violation.source is null in CONTEXT — provenance missing.",
+              "0.0 values may reflect small sample size; no n or CI provided."
+            ]
+          },
+          {
+            "figure_id": "FIG4",
+            "title": "Reasoner inference census grounding the symbolic claims",
+            "type": "horizontal bar chart of counts (log-scale x recommended given range 2-363); provenance annotation 'owlrl 10400->23113 triples'",
+            "data_source": [
+              "reasoner_inferences"
+            ],
+            "axes": {
+              "x": "assertion / inference count (log scale)",
+              "y": "ontology construct"
+            },
+            "series": [
+              {
+                "label": "A20 hasProtectedAtom",
+                "value": 363
+              },
+              {
+                "label": "StereocenterAnchor 契约 (contract)",
+                "value": 320
+              },
+              {
+                "label": "A19 hasFailureRisk",
+                "value": 231
+              },
+              {
+                "label": "A21 hasRequiredOperation SET_CHIRAL",
+                "value": 115
+              },
+              {
+                "label": "定义类 ValidatedEditSequence",
+                "value": 78
+              },
+              {
+                "label": "定义类 StereocenterPreservingReaction",
+                "value": 2
+              }
+            ],
+            "claim_supported": "The ontology materially defines ValidatedEditSequence (78), StereocenterPreservingReaction (2) and the StereocenterAnchor contract (320), and asserts hasRequiredOperation SET_CHIRAL (115) — grounding symbolic claims SYM1-SYM4 from the previous phase.",
+            "fidelity_level": "L1_symbolic (with L2 counts)",
+            "cites": [
+              "reasoner_inferences"
+            ],
+            "non_decorative_justification": "Provides the machine-checkable evidence that the pipeline's constructs exist and fire, which is the substrate for every downstream numerical claim.",
+            "caveats": [
+              "Counts are assertion/instance counts, not effect sizes.",
+              "owlrl expansion 10400->23113 triples is shown only as a provenance annotation, not as a data series."
+            ]
+          },
+          {
+            "figure_id": "FIG5",
+            "title": "Win/loss record and exact sign-test significance",
+            "type": "two-panel figure: (a) win-loss stacked bars; (b) p-value annotation panel",
+            "data_source": [
+              "p_value"
+            ],
+            "axes": {
+              "panel_a_x": "comparison set",
+              "panel_a_y": "count (wins/losses)",
+              "panel_b": "text/table of p-values"
+            },
+            "series": [
+              {
+                "panel": "a",
+                "label": "hardOK set",
+                "wins": 6,
+                "losses": 0
+              },
+              {
+                "panel": "a",
+                "label": "end2end set",
+                "wins": 7,
+                "losses": 0
+              },
+              {
+                "panel": "b",
+                "label": "hardOK exact sign test",
+                "p": 0.0156
+              },
+              {
+                "panel": "b",
+                "label": "end2end exact sign test",
+                "p": 0.0078
+              }
+            ],
+            "claim_supported": "Ontology wins all paired comparisons (6 wins / 0 losses, p=0.0156; end2end 7 wins / 0 losses, p=0.0078) under an exact sign test.",
+            "fidelity_level": "L2_numerical",
+            "cites": [
+              "p_value"
+            ],
+            "non_decorative_justification": "Supplies the statistical-significance layer that upgrades the raw rates in FIG1-FIG3 from descriptive to inferential.",
+            "caveats": [
+              "The specific paired items behind '6 wins' and '7 wins' are not enumerated in CONTEXT.",
+              "Sign-test n is small (6 and 7)."
+            ]
+          },
+          {
+            "figure_id": "FIG6",
+            "title": "Pipeline schematic: mapping Q1/Q2/Q3 to ontology constructs",
+            "type": "flow / schematic diagram (boxes + arrows) annotated with inference counts",
+            "data_source": [
+              "three_questions",
+              "reasoner_inferences"
+            ],
+            "axes": {
+              "layout": "left-to-right: sub-question -> ontology construct(s) -> edit representation"
+            },
+            "series": [
+              {
+                "node": "Q1 where problematic",
+                "maps_to": [
+                  "A20 hasProtectedAtom (363)",
+                  "A19 hasFailureRisk (231)"
+                ]
+              },
+              {
+                "node": "Q2 why cannot be made",
+                "maps_to": [
+                  "A21 hasRequiredOperation SET_CHIRAL (115)",
+                  "A19 hasFailureRisk (231)"
+                ]
+              },
+              {
+                "node": "Q3 what must not be touched",
+                "maps_to": [
+                  "StereocenterAnchor 契约 (320)",
+                  "定义类 StereocenterPreservingReaction (2)"
+                ]
+              },
+              {
+                "node": "edit representation",
+                "maps_to": [
+                  "定义类 ValidatedEditSequence (78)"
+                ]
+              }
+            ],
+            "claim_supported": "The pipeline operationalizes the three sub-questions via distinct ontology constructs, each carrying non-zero reasoner support.",
+            "fidelity_level": "L3_qualitative",
+            "cites": [
+              "three_questions",
+              "reasoner_inferences"
+            ],
+            "non_decorative_justification": "Encodes the mechanism (which construct answers which sub-question) rather than decoration; each arrow is annotated with a CONTEXT count.",
+            "caveats": [
+              "The Q-to-construct mapping is an author interpretation, not asserted verbatim in CONTEXT.",
+              "Arrow semantics are author-defined."
+            ]
+          },
+          {
+            "figure_id": "FIG7",
+            "title": "Evaluation corpus and knowledge-base scale (CONDITIONAL / methods panel)",
+            "type": "summary table-figure (heterogeneous counts; render as table, not a shared-axis bar chart)",
+            "data_source": [
+              "corpus",
+              "n_molecules",
+              "n_evidence",
+              "papers",
+              "rl_pool",
+              "transforms_freed",
+              "literature.structure_papers"
+            ],
+            "axes": {
+              "layout": "catalogue of counts with units"
+            },
+            "series": [
+              {
+                "label": "CQ cases",
+                "value": 3272
+              },
+              {
+                "label": "batches",
+                "value": 14
+              },
+              {
+                "label": "crossdocked molecules",
+                "value": 2783
+              },
+              {
+                "label": "n_molecules",
+                "value": 3483
+              },
+              {
+                "label": "n_evidence",
+                "value": 79
+              },
+              {
+                "label": "papers",
+                "value": 7
+              },
+              {
+                "label": "rl_pool",
+                "value": 5174
+              },
+              {
+                "label": "transforms_freed",
+                "value": "5/5"
+              },
+              {
+                "label": "structure_papers (PDB IDs)",
+                "value": [
+                  "5KB3",
+                  "5IRU",
+                  "5J2M",
+                  "5JJK",
+                  "5JXG",
+                  "5K3S",
+                  "5IAR"
+                ]
+              }
+            ],
+            "claim_supported": "Establishes the empirical and knowledge scale (corpus, evidence, literature, RL pool) on which the results rest.",
+            "fidelity_level": "L2_numerical",
+            "cites": [
+              "corpus",
+              "n_molecules",
+              "n_evidence",
+              "papers",
+              "rl_pool",
+              "transforms_freed",
+              "literature.structure_papers"
+            ],
+            "non_decorative_justification": "Included only if a reproducibility/scale claim is made; otherwise omit to honor the no-decorative-figures rule.",
+            "caveats": [
+              "Units are heterogeneous and not comparable on one axis — must be a table, not a bar chart.",
+              "Relationship among 3272 CQ cases / 2783 crossdocked / 3483 molecules is not specified in CONTEXT.",
+              "Borderline decorative; retained as conditional."
+            ]
+          }
+        ],
+        "figure_count": 7,
+        "core_figures": [
+          "FIG1",
+          "FIG2",
+          "FIG3",
+          "FIG4",
+          "FIG5",
+          "FIG6"
+        ],
+        "conditional_figures": [
+          "FIG7"
+        ],
+        "coverage_check": {
+          "Q1_where_problematic": [
+            "FIG4",
+            "FIG6"
+          ],
+          "Q2_why_cannot_be_made": [
+            "FIG4",
+            "FIG6"
+          ],
+          "Q3_what_must_not_be_touched": [
+            "FIG3",
+            "FIG4",
+            "FIG6"
+          ],
+          "overall_pipeline_efficacy": [
+            "FIG1",
+            "FIG2",
+            "FIG5"
+          ],
+          "symbolic_grounding_SYM1_SYM4": [
+            "FIG4"
+          ],
+          "claim_ladder_mapping": {
+            "L1_symbolic": [
+              "FIG4",
+              "FIG6"
+            ],
+            "L2_numerical": [
+              "FIG1",
+              "FIG2",
+              "FIG3",
+              "FIG5",
+              "FIG7"
+            ],
+            "L3_qualitative": [
+              "FIG6"
+            ]
+          }
+        },
+        "design_notes": [
+          "All plotted numbers are restated verbatim from CONTEXT; no arithmetic beyond restating the given fractions/counts is performed.",
+          "Suggested layout: combine FIG1/FIG2/FIG3 as panels (a)/(b)/(c) of a single 'main results' figure; FIG5 can be an inset or panel (d).",
+          "Consistent color convention: baselines (similarity, random, syncraft) in neutral grey; ontology and ontology_lora highlighted.",
+          "FIG4 x-axis should be log-scaled because counts span 2 to 363.",
+          "FIG6 arrows must be visually distinguished as author-defined mapping (e.g., dashed) to avoid implying the mapping is asserted by the ontology.",
+          "FIG7 should be a table if included; do not plot heterogeneous units on a shared axis."
+        ],
+        "provenance_status": {
+          "hardOK_48api": "no source field in CONTEXT",
+          "end2edit_validity": "source = null (missing)",
+          "anchor_violation": "source = null (missing)",
+          "reasoner_inferences": "source = kernel_verify.json; owlrl 10400->23113 triples (present)",
+          "p_value": "no source field in CONTEXT"
+        }
+      },
+      "missing_inputs": [
+        "end2edit_validity.source is null — no provenance for FIG2 values.",
+        "anchor_violation.source is null — no provenance for FIG3 values.",
+        "No error bars, confidence intervals, standard deviations, or sample sizes (n) for any rate in hardOK_48api, end2edit_validity, or anchor_violation — uncertainty cannot be shown.",
+        "The denominator/meaning of '48api' in hardOK_48api is undefined in CONTEXT.",
+        "Definitions of the 'similarity' and 'random' hardOK baseline conditions are not given.",
+        "The specific paired items underlying '6 wins 0 losses' and '7 wins 0 losses' in p_value are not enumerated.",
+        "No per-batch breakdown is provided despite corpus stating 14 batches — batch-level variance cannot be plotted.",
+        "structure_papers (5KB3, 5IRU, 5J2M, 5JJK, 5JXG, 5K3S, 5IAR) have no resolution/quality/metric data — no structure-quality figure can be built.",
+        "transforms_freed = 5/5 has no itemization of which transforms were freed.",
+        "Relationship/overlap among corpus counts (3272 CQ cases, 2783 crossdocked molecules, n_molecules 3483) is unspecified."
+      ],
+      "verdict": "WARN",
+      "verdict_rationale": "Six core figures (FIG1-FIG6) are fully specifiable, non-decorative, and grounded in CONTEXT, covering all three sub-questions and the symbolic/numerical/qualitative claim ladder. WARN (not PASS) because two main-result figures (FIG2, FIG3) have null source provenance and no uncertainty quantification (n/CI) exists for any rate; FIG7 is retained only as a conditional methods table to respect the no-decorative-figures rule."
+    }
+  }
+}

@@ -1,0 +1,957 @@
+{
+  "phase": "16_final_archive",
+  "title": "Phase 16 归档 + RUN_PREPRINT + LESSONS",
+  "qid": "Q-ONT-MOL-001",
+  "context": {
+    "problem": {
+      "qid": "Q-ONT-MOL-001",
+      "question": "How can an ontology-grounded pipeline identify WHY a generated molecule is non-synthesizable and edit it into a synthesizable analogue while preserving pharmacophoric anchors, stereochemistry and binding interactions?",
+      "three_questions": {
+        "Q1": "where the structure is problematic",
+        "Q2": "why it cannot be made",
+        "Q3": "what must not be touched during editing"
+      },
+      "corpus": "3272 CQ cases / 14 batches; 2783 crossdocked molecules"
+    },
+    "generation_eval": {
+      "hardOK": {
+        "similarity": 0.5,
+        "random": 0.5,
+        "ontology": 0.875
+      },
+      "n": 16,
+      "better": 6,
+      "worse": 0,
+      "source": "eval_merged_stats.json"
+    },
+    "end2end": {
+      "syncraft": {
+        "edit_validity": 0.5,
+        "chirality_kept": 0.25,
+        "anchor_violation_rate": 0.125,
+        "required_op_rate": 0.0,
+        "mean_tanimoto": 0.5807,
+        "mean_sa_delta": 0.1147
+      },
+      "ontology": {
+        "edit_validity": 1.0,
+        "chirality_kept": 1.0,
+        "anchor_violation_rate": 0.0,
+        "required_op_rate": 1.0,
+        "mean_tanimoto": 0.7405,
+        "mean_sa_delta": -0.3202
+      },
+      "ontology_lora": {
+        "edit_validity": 1.0,
+        "chirality_kept": 1.0,
+        "anchor_violation_rate": 0.0,
+        "required_op_rate": 1.0,
+        "mean_tanimoto": 0.7405,
+        "mean_sa_delta": -0.3202
+      },
+      "source": "end2end_results.json (8 molecules x 3 arms)"
+    },
+    "reasoner": {
+      "A21 hasRequiredOperation SET_CHIRAL": 115,
+      "A19 hasFailureRisk": 231,
+      "A20 hasProtectedAtom": 363,
+      "定义类 ValidatedEditSequence": 78,
+      "定义类 StereocenterPreservingReaction": 2,
+      "StereocenterAnchor 契约": 320,
+      "source": "kernel_verify.json; owlrl 10400->23113 triples"
+    },
+    "ontology_coverage": {
+      "n_cases": 3272,
+      "n_rules": 17,
+      "n_no_applicable": 510,
+      "precondition_triples": 28944,
+      "trigger_triples": 6707,
+      "source": "full_trigger_stats.json"
+    },
+    "annotation": {
+      "n_molecules": 3483,
+      "l0_cover": 3483,
+      "l1_cover": 3347,
+      "by_source": {
+        "golden": {
+          "n": 705,
+          "l1": 654,
+          "multi": 236
+        },
+        "crossdocked": {
+          "n": 2778,
+          "l1": 2693,
+          "multi": 1742
+        }
+      },
+      "source": "labeled_full/manifest.json"
+    },
+    "transforms": {
+      "failed_molecules_freed": "5/5",
+      "by_source": {
+        "golden": {
+          "n": 3272,
+          "any": 2903,
+          "zero": 369,
+          "cover": 88.7,
+          "multi": 1195,
+          "single": 1312,
+          "no_pass": 765,
+          "examples": [
+            {
+              "smi": "[CH3:1][O:2][C@H:3]1[C:4](=[O:5])[O:6][C@@H:7]([CH2:8][OH:9])[C@H:10]([OH:11])[C@@H:12]1[OH:13]",
+              "n": 2,
+              "tops": [
+                "T4_primary_alcohol_to_iodide",
+                "T13_methoxy_demethylation"
+              ]
+            },
+            {
+              "smi": "[CH3:1][O:2][C@H:3]1[C:4](=[O:5])[O:6][C@@H:7]([CH2:8][OH:9])[C@H:10]([OH:11])[C@@H:12]1[OH:13]",
+              "n": 2,
+              "tops": [
+                "T4_primary_alcohol_to_iodide",
+                "T13_methoxy_demethylation"
+              ]
+            },
+            {
+              "smi": "[CH3:1][O:2][C@H:3]1[C:4](=[O:5])[O:6][C@@H:7]([CH2:8][OH:9])[C@H:10]([OH:11])[C@@H:12]1[OH:13]",
+              "n": 2,
+              "tops": [
+                "T4_primary_alcohol_to_iodide",
+                "T13_methoxy_demethylation"
+              ]
+            },
+            {
+              "smi": "[O:1]=[C:2]([OH:3])[C@H:4]1[CH2:5][C@@H:6]1[CH:7]([OH:8])[OH:9]",
+              "n": 2,
+              "tops": [
+                "T6_carboxylic_acid_to_methyl_ester",
+                "T3_gemdiol_to_gemdifluoro"
+              ]
+            },
+            {
+              "smi": "[O:1]=[C:2]([OH:3])[C@H:4]1[CH2:5][C@@H:6]1[CH:7]([OH:8])[OH:9]",
+              "n": 2,
+              "tops": [
+                "T6_carboxylic_acid_to_methyl_ester",
+                "T3_gemdiol_to_gemdifluoro"
+              ]
+            },
+            {
+              "smi": "[CH3:1][O:2][C@H:3]1[C:4](=[O:5])[O:6][C@@H:7]([CH2:8][OH:9])[C@H:10]([OH:11])[C@@H:12]1[OH:13]",
+              "n": 2,
+              "tops": [
+                "T4_primary_alcohol_to_iodide",
+                "T13_methoxy_demethylation"
+              ]
+            },
+            {
+              "smi": "[OH:1][CH:2]=[C:3]([OH:4])[CH2:5][O:6][CH2:7][C@@H:8]([OH:9])[CH2:10][OH:11]",
+              "n": 2,
+              "tops": [
+                "T8_alkene_saturation",
+                "T4_primary_alcohol_to_iodide"
+              ]
+            },
+            {
+              "smi": "[O:1]=[C:2]([OH:3])[C@H:4]1[CH2:5][C@@H:6]1[CH:7]([OH:8])[OH:9]",
+              "n": 2,
+              "tops": [
+                "T6_carboxylic_acid_to_methyl_ester",
+                "T3_gemdiol_to_gemdifluoro"
+              ]
+            },
+            {
+              "smi": "[O:1]=[C:2]([OH:3])[C@H:4]([OH:5])[C@@H:6]([OH:7])[C@@H:8]([OH:9])[CH2:10][OH:11]",
+              "n": 2,
+              "tops": [
+                "T6_carboxylic_acid_to_methyl_ester",
+                "T4_primary_alcohol_to_iodide"
+              ]
+            },
+            {
+              "smi": "[O:1]=[C:2]([OH:3])[C@H:4]([OH:5])[C@@H:6]([OH:7])[C@@H:8]([OH:9])[CH2:10][OH:11]",
+              "n": 2,
+              "tops": [
+                "T6_carboxylic_acid_to_methyl_ester",
+                "T4_primary_alcohol_to_iodide"
+              ]
+            },
+            {
+              "smi": "[O:1]=[C:2]([OH:3])[C@H:4]([OH:5])[C@@H:6]([OH:7])[C@@H:8]([OH:9])[CH2:10][OH:11]",
+              "n": 2,
+              "tops": [
+                "T6_carboxylic_acid_to_methyl_ester",
+                "T4_primary_alcohol_to_iodide"
+              ]
+            },
+            {
+              "smi": "[O:1]=[C:2]([OH:3])[C@H:4]([OH:5])[C@@H:6]([OH:7])[C@@H:8]([OH:9])[CH2:10][OH:11]",
+              "n": 2,
+              "tops": [
+                "T6_carboxylic_acid_to_methyl_ester",
+                "T4_primary_alcohol_to_iodide"
+              ]
+            },
+            {
+              "smi": "[O:1]=[C:2]([OH:3])[C@H:4]([OH:5])[C@@H:6]([OH:7])[C@@H:8]([OH:9])[CH2:10][OH:11]",
+              "n": 2,
+              "tops": [
+                "T6_carboxylic_acid_to_methyl_ester",
+                "T4_primary_alcohol_to_iodide"
+              ]
+            },
+            {
+              "smi": "[O:1]=[C:2]([OH:3])[C@H:4]([OH:5])[C@@H:6]([OH:7])[C@@H:8]([OH:9])[CH2:10][OH:11]",
+              "n": 2,
+              "tops": [
+                "T6_carboxylic_acid_to_methyl_ester",
+                "T4_primary_alcohol_to_iodide"
+              ]
+            },
+            {
+              "smi": "[O:1]=[C:2]([OH:3])[C@H:4]([OH:5])[C@@H:6]([OH:7])[C@@H:8]([OH:9])[CH2:10][OH:11]",
+              "n": 2,
+              "tops": [
+                "T6_carboxylic_acid_to_methyl_ester",
+                "T4_primary_alcohol_to_iodide"
+              ]
+            },
+            {
+              "smi": "[O:1]=[C:2]([OH:3])[C@H:4]([OH:5])[C@@H:6]([OH:7])[C@@H:8]([OH:9])[CH2:10][OH:11]",
+              "n": 2,
+              "tops": [
+                "T6_carboxylic_acid_to_methyl_ester",
+                "T4_primary_alcohol_to_iodide"
+              ]
+            },
+            {
+              "smi": "[OH:1][CH2:2][CH:3]([OH:4])[C@H:5]([OH:6])[C@H:7]([OH:8])[CH2:9][OH:10]",
+              "n": 2,
+              "tops": [
+                "T4_primary_alcohol_to_iodide",
+                "T4_primary_alcohol_to_iodide"
+              ]
+            },
+            {
+              "smi": "[OH:1][CH2:2][CH:3]([OH:4])[C@H:5]([OH:6])[C@H:7]([OH:8])[CH2:9][OH:10]",
+              "n": 2,
+              "tops": [
+                "T4_primary_alcohol_to_iodide",
+                "T4_primary_alcohol_to_iodide"
+              ]
+            },
+            {
+              "smi": "[OH:1][CH2:2][CH:3]([OH:4])[C@H:5]([OH:6])[C@H:7]([OH:8])[CH2:9][OH:10]",
+              "n": 2,
+              "tops": [
+                "T4_primary_alcohol_to_iodide",
+                "T4_primary_alcohol_to_iodide"
+              ]
+            },
+            {
+              "smi": "[OH:1][CH2:2][CH:3]([OH:4])[C@H:5]([OH:6])[C@H:7]([OH:8])[CH2:9][OH:10]",
+              "n": 2,
+              "tops": [
+                "T4_primary_alcohol_to_iodide",
+                "T4_primary_alcohol_to_iodide"
+              ]
+            },
+            {
+              "smi": "[OH:1][CH2:2][CH:3]([OH:4])[C@H:5]([OH:6])[C@H:7]([OH:8])[CH2:9][OH:10]",
+              "n": 2,
+              "tops": [
+                "T4_primary_alcohol_to_iodide",
+                "T4_primary_alcohol_to_iodide"
+              ]
+            },
+            {
+              "smi": "[OH:1][CH2:2][CH:3]([OH:4])[C@H:5]([OH:6])[C@H:7]([OH:8])[CH2:9][OH:10]",
+              "n": 2,
+              "tops": [
+                "T4_primary_alcohol_to_iodide",
+                "T4_primary_alcohol_to_iodide"
+              ]
+            },
+            {
+              "smi": "[OH:1][CH2:2][CH:3]([OH:4])[C@H:5]([OH:6])[C@H:7]([OH:8])[CH2:9][OH:10]",
+              "n": 2,
+              "tops": [
+                "T4_primary_alcohol_to_iodide",
+                "T4_primary_alcohol_to_iodide"
+              ]
+            },
+            {
+              "smi": "[OH:1][CH2:2][CH:3]([OH:4])[C@H:5]([OH:6])[C@H:7]([OH:8])[CH2:9][OH:10]",
+              "n": 2,
+              "tops": [
+                "T4_primary_alcohol_to_iodide",
+                "T4_primary_alcohol_to_iodide"
+              ]
+            },
+            {
+              "smi": "[OH:1][CH2:2][CH:3]([OH:4])[C@H:5]([OH:6])[C@H:7]([OH:8])[CH2:9][OH:10]",
+              "n": 2,
+              "tops": [
+                "T4_primary_alcohol_to_iodide",
+                "T4_primary_alcohol_to_iodide"
+              ]
+            },
+            {
+              "smi": "[OH:1][CH2:2][CH:3]([OH:4])[C@H:5]([OH:6])[C@H:7]([OH:8])[CH2:9][OH:10]",
+              "n": 2,
+              "tops": [
+                "T4_primary_alcohol_to_iodide",
+                "T4_primary_alcohol_to_iodide"
+              ]
+            },
+            {
+              "smi": "[OH:1][CH2:2][CH:3]([OH:4])[C@H:5]([OH:6])[C@H:7]([OH:8])[CH2:9][OH:10]",
+              "n": 2,
+              "tops": [
+                "T4_primary_alcohol_to_iodide",
+                "T4_primary_alcohol_to_iodide"
+              ]
+            },
+            {
+              "smi": "[OH:1][CH2:2][CH:3]([OH:4])[C@H:5]([OH:6])[C@H:7]([OH:8])[CH2:9][OH:10]",
+              "n": 2,
+              "tops": [
+                "T4_primary_alcohol_to_iodide",
+                "T4_primary_alcohol_to_iodide"
+              ]
+            },
+            {
+              "smi": "[OH:1][CH2:2][CH:3]([OH:4])[C@H:5]([OH:6])[C@H:7]([OH:8])[CH2:9][OH:10]",
+              "n": 2,
+              "tops": [
+                "T4_primary_alcohol_to_iodide",
+                "T4_primary_alcohol_to_iodide"
+              ]
+            },
+            {
+              "smi": "[OH:1][CH2:2][CH:3]([OH:4])[C@H:5]([OH:6])[C@H:7]([OH:8])[CH2:9][OH:10]",
+              "n": 2,
+              "tops": [
+                "T4_primary_alcohol_to_iodide",
+                "T4_primary_alcohol_to_iodide"
+              ]
+            }
+          ]
+        },
+        "crossdocked": {
+          "n": 2783,
+          "any": 2575,
+          "zero": 208,
+          "cover": 92.5,
+          "multi": 1745,
+          "single": 680,
+          "no_pass": 358,
+          "examples": [
+            {
+              "smi": "C[C@@H](O)CN(C)C(=O)c1ccc2c(c1)N(C(=O)CCN)[C@H](CCN)C2",
+              "n": 2,
+              "tops": [
+                "T1_terminal_amine_to_methyl",
+                "T1_terminal_amine_to_methyl"
+              ]
+            },
+            {
+              "smi": "Cc1ccc(C(=O)N2CCC[C@H]([C@@H](N)C(=O)NC(=O)C(=O)O)C2)cc1",
+              "n": 3,
+              "tops": [
+                "T6_carboxylic_acid_to_methyl_ester",
+                "T18_amide_NH_to_Nmethyl",
+                "T18_amide_NH_to_Nmethyl"
+              ]
+            },
+            {
+              "smi": "COc1cccc2c1OC[C@@H]1O[C@@H](CO[P@@](=O)(O)OCO)[C@H](O)CO[C@@H]1COC2=O",
+              "n": 2,
+              "tops": [
+                "T4_primary_alcohol_to_iodide",
+                "T13_methoxy_demethylation"
+              ]
+            },
+            {
+              "smi": "CC1=C2CC(O)=CC(C(=O)Nc3cccc4cc(C(=O)O)ccc34)=C2N=C1N",
+              "n": 6,
+              "tops": [
+                "T21_ring_alkene_saturation",
+                "T21_ring_alkene_saturation",
+                "T21_ring_alkene_saturation"
+              ]
+            },
+            {
+              "smi": "Nc1ccc([C@H]2C=C3CC[C@@H](O)CC3=CC2=CC=CC(=O)O)cn1",
+              "n": 6,
+              "tops": [
+                "T6_carboxylic_acid_to_methyl_ester",
+                "T8_alkene_saturation",
+                "T21_ring_alkene_saturation"
+              ]
+            },
+            {
+              "smi": "COc1ccc2cc3c(cc2c1)C(=O)NC(=O)[C@H]3C",
+              "n": 3,
+              "tops": [
+                "T18_amide_NH_to_Nmethyl",
+                "T18_amide_NH_to_Nmethyl",
+                "T13_methoxy_demethylation"
+              ]
+            },
+            {
+              "smi": "O=C(O)C[C@]1(O)CC(O)=CC[C@@H]1O",
+              "n": 2,
+              "tops": [
+                "T6_carboxylic_acid_to_methyl_ester",
+                "T21_ring_alkene_saturation"
+              ]
+            },
+            {
+              "smi": "O=C1N=C2N=CC(C(=O)N(O)[C@H]3C[C@H](CO)NC[C@@H]3O)=C2c2ccccc21",
+              "n": 3,
+              "tops": [
+                "T4_primary_alcohol_to_iodide",
+                "T21_ring_alkene_saturation",
+                "T5_michael_acceptor_saturation"
+              ]
+            },
+            {
+              "smi": "C[C@@H]1C(=O)CC=C2C1=C(O)c1ncncc12",
+              "n": 2,
+              "tops": [
+                "T21_ring_alkene_saturation",
+                "T21_ring_alkene_saturation"
+              ]
+            },
+            {
+              "smi": "C=CC1=CC=C2CC(C(C)(C)c3ccccc3)=CC=C2O1",
+              "n": 5,
+              "tops": [
+                "T8_alkene_saturation",
+                "T21_ring_alkene_saturation",
+                "T21_ring_alkene_saturation"
+              ]
+            },
+            {
+              "smi": "O=C(O)[C@H]1CCC[C@@H]([C@@H](O)Cc2cccc(Cc3cc(O)ccc3-c3ccccc3)c2F)N1",
+              "n": 2,
+              "tops": [
+                "T6_carboxylic_acid_to_methyl_ester",
+                "T7_phenol_to_methoxy"
+              ]
+            },
+            {
+              "smi": "O=C(O)CC(=O)N[C@H](O)[C@@H](O)CC(=O)O",
+              "n": 3,
+              "tops": [
+                "T6_carboxylic_acid_to_methyl_ester",
+                "T6_carboxylic_acid_to_methyl_ester",
+                "T18_amide_NH_to_Nmethyl"
+              ]
+            },
+            {
+              "smi": "CC(C)N=c1nc(N)[nH]c2ccc(C(=O)O)cc12",
+              "n": 2,
+              "tops": [
+                "T6_carboxylic_acid_to_methyl_ester",
+                "T11_arylamine_to_Nmethyl"
+              ]
+            },
+            {
+              "smi": "Cc1cc(C(=O)O)cn(C(=O)C(=O)O)c1=O",
+              "n": 2,
+              "tops": [
+                "T6_carboxylic_acid_to_methyl_ester",
+                "T6_carboxylic_acid_to_methyl_ester"
+              ]
+            },
+            {
+              "smi": "Nc1nc(O[C@@H]2[C@H](O)[C@@H](O)O[C@H]2CO[P@@](=O)(O)OP(=O)(O)O)c(O)cc1O",
+              "n": 3,
+              "tops": [
+                "T7_phenol_to_methoxy",
+                "T7_phenol_to_methoxy",
+                "T11_arylamine_to_Nmethyl"
+              ]
+            },
+            {
+              "smi": "C[C@@]1(CO)CN([C@H]2C[C@H](O)C[C@@H](CO)O2)C(=O)N1",
+              "n": 3,
+              "tops": [
+                "T4_primary_alcohol_to_iodide",
+                "T4_primary_alcohol_to_iodide",
+                "T18_amide_NH_to_Nmethyl"
+              ]
+            },
+            {
+              "smi": "O=C(O)CCC(=O)ONC(=O)c1cccc2c1ncc1ccccc12",
+              "n": 2,
+              "tops": [
+                "T6_carboxylic_acid_to_methyl_ester",
+                "T18_amide_NH_to_Nmethyl"
+              ]
+            },
+            {
+              "smi": "Oc1ccc2c(ccc3c(O)cccc32)c1",
+              "n": 2,
+              "tops": [
+                "T7_phenol_to_methoxy",
+                "T7_phenol_to_methoxy"
+              ]
+            },
+            {
+              "smi": "O=C1NC=C([C@@H](O)CO)C1=O",
+              "n": 4,
+              "tops": [
+                "T18_amide_NH_to_Nmethyl",
+                "T21_ring_alkene_saturation",
+                "T4_primary_alcohol_to_iodide"
+              ]
+            },
+            {
+              "smi": "CN1CCOC2=C3c4c(ccc(O)c4C(=O)C[C@H]3C1=O)C2",
+              "n": 2,
+              "tops": [
+                "T21_ring_alkene_saturation",
+                "T7_phenol_to_methoxy"
+              ]
+            },
+            {
+              "smi": "COc1nccc(COP(=O)(O)O)c1O",
+              "n": 2,
+              "tops": [
+                "T7_phenol_to_methoxy",
+                "T13_methoxy_demethylation"
+              ]
+            },
+            {
+              "smi": "CCOC(=O)C(C)=C1C[C@H]2OC(=O)[C@H](O)[C@@H](C(=O)O)O[P@](=O)(O)OC[C@H](O)[C@@H]3O[C@H]2C1O[C@H]3O",
+              "n": 2,
+              "tops": [
+                "T5_michael_acceptor_saturation",
+                "T6_carboxylic_acid_to_methyl_ester"
+              ]
+            },
+            {
+              "smi": "CC(=O)N1CCC(=C(C)O)[C@H](NC(=O)c2ccc(O)cc2O)CC1",
+              "n": 4,
+              "tops": [
+                "T2_amide_methyl_to_carbamate",
+                "T18_amide_NH_to_Nmethyl",
+                "T7_phenol_to_methoxy"
+              ]
+            },
+            {
+              "smi": "CC1=C2c3c(cccc3N3C[C@H](C(=O)O)NC[C@@H]13)N=C(C(=O)O)C2(C)C",
+              "n": 3,
+              "tops": [
+                "T6_carboxylic_acid_to_methyl_ester",
+                "T6_carboxylic_acid_to_methyl_ester",
+                "T21_ring_alkene_saturation"
+              ]
+            },
+            {
+              "smi": "O=C1C=CC(c2ccccc2)=CC1",
+              "n": 3,
+              "tops": [
+                "T21_ring_alkene_saturation",
+                "T5_michael_acceptor_saturation",
+                "T21_ring_alkene_saturation"
+              ]
+            },
+            {
+              "smi": "CNC(=O)c1cccc(O)c1-n1ccccc1=O",
+              "n": 2,
+              "tops": [
+                "T18_amide_NH_to_Nmethyl",
+                "T7_phenol_to_methoxy"
+              ]
+            },
+            {
+              "smi": "CN[C@@H](C1=CC=CCC1=O)[C@H]1C=C2CCCCC2=N1",
+              "n": 4,
+              "tops": [
+                "T21_ring_alkene_saturation",
+                "T21_ring_alkene_saturation",
+                "T21_ring_alkene_saturation"
+              ]
+            },
+            {
+              "smi": "Cc1ccc(CN2[C@H](CCCC(O)=C3C=CN=C3)CC[C@@H]2C(=O)O)cc1",
+              "n": 2,
+              "tops": [
+                "T21_ring_alkene_saturation",
+                "T6_carboxylic_acid_to_methyl_ester"
+              ]
+            },
+            {
+              "smi": "Cc1cccc(C2=CCCN(CC(=O)NC[C@H]3C[C@H]([C@@H](C)C4=CC5=CCC(O)=C(O)C5=CC4)C[C@@H]3C(=O)O)C2)c1",
+              "n": 7,
+              "tops": [
+                "T21_ring_alkene_saturation",
+                "T21_ring_alkene_saturation",
+                "T21_ring_alkene_saturation"
+              ]
+            },
+            {
+              "smi": "O=C(O)c1cc2c3c(cccc3c1)C(=O)C=C2",
+              "n": 3,
+              "tops": [
+                "T6_carboxylic_acid_to_methyl_ester",
+                "T21_ring_alkene_saturation",
+                "T5_michael_acceptor_saturation"
+              ]
+            }
+          ]
+        }
+      },
+      "source": "extended_specs_report.json"
+    },
+    "structure_evidence": {
+      "n": 79,
+      "papers": 7,
+      "by_model": {
+        "baidu/ernie-5.5-flash-preview:free": 67,
+        "gemini-3.8-flash": 12
+      },
+      "by_pt": {
+        "P11": 6,
+        "P12": 1,
+        "P15": 27,
+        "P16": 17,
+        "P17": 28
+      },
+      "source": "receptor_structure_evidence_v2.json (ernie+gemini, anchor->PT rule)"
+    },
+    "rl": {
+      "n_batches": 18,
+      "n_rows": 5174,
+      "correct_action": {
+        "abstain": 1632,
+        "validate_edits": 1800,
+        "compare_candidates": 1742
+      },
+      "env_reward_probe": {
+        "mean_std": 0.183,
+        "verdict": "真实分歧存在，可进入 S2"
+      },
+      "source": "grpo_pool_mixed + env_reward_probe"
+    },
+    "literature": {
+      "syncraft": {
+        "title": "SynCraft: Guiding Large Language Models to Predict Edit Sequences for Molecular Synthesizability Optimization",
+        "arxiv": "2512.20333",
+        "reported": "P2M 28.4% / ResGen 29.1% rescue at similarity>0.6 (Gemini-2.5-Pro)"
+      },
+      "crux": {
+        "title": "Can AI agents conduct open-ended AI research? Early evidence from two case studies",
+        "arxiv": "2607.27191",
+        "lesson": "agents do engineering but fail at evidence sufficiency"
+      },
+      "structure_papers": [
+        "5KB3",
+        "5IRU",
+        "5J2M",
+        "5JJK",
+        "5JXG",
+        "5K3S",
+        "5IAR"
+      ]
+    }
+  },
+  "previous_phase_output": {
+    "phase": "155_publishability",
+    "title": "Phase 15.5 可发表性评分",
+    "phase_output": {
+      "phase": "Phase 15.5 可发表性评分",
+      "qid": "Q-ONT-MOL-001",
+      "publishability_score": {
+        "scoring_dimensions": [
+          {
+            "dimension": "Novelty and problem framing",
+            "score_tier": "High",
+            "rationale": "The work is framed around an ontology-grounded pipeline that identifies why a generated molecule is non-synthesizable and edits it while preserving pharmacophoric anchors, stereochemistry, and binding interactions.",
+            "citations": [
+              "question",
+              "three_questions.Q1",
+              "three_questions.Q2",
+              "three_questions.Q3",
+              "reasoner_inferences"
+            ]
+          },
+          {
+            "dimension": "Evidence strength",
+            "score_tier": "Medium",
+            "rationale": "Ontology achieves hardOK_48api 0.875 versus 0.5 for similarity and random; exact sign tests report p=0.0156 and p=0.0078; ontology and ontology_lora have end2edit validity 1.0 and anchor violation 0.0, but source fields are null and the reported wins/losses are limited.",
+            "citations": [
+              "hardOK_48api",
+              "p_value",
+              "end2edit_validity",
+              "anchor_violation",
+              "end2edit_validity.source",
+              "anchor_violation.source"
+            ]
+          },
+          {
+            "dimension": "Methodological rigor and ontology grounding",
+            "score_tier": "High",
+            "rationale": "The ontology layer reports reasoner inferences for required operations, failure risks, protected atoms, validated edit sequences, stereocenter-preserving reactions, and stereocenter anchor contracts, with owlrl expansion from 10400 to 23113 triples.",
+            "citations": [
+              "reasoner_inferences",
+              "reasoner_inferences.source"
+            ]
+          },
+          {
+            "dimension": "Reproducibility and source traceability",
+            "score_tier": "Low",
+            "rationale": "Corpus and resource counts are reported, but provenance for key validity and anchor results is missing.",
+            "citations": [
+              "corpus",
+              "n_molecules",
+              "n_evidence",
+              "papers",
+              "transforms_freed",
+              "rl_pool",
+              "end2edit_validity.source",
+              "anchor_violation.source"
+            ]
+          },
+          {
+            "dimension": "Impact and relevance",
+            "score_tier": "High",
+            "rationale": "The task targets non-synthesizable molecules and editing constraints, and the context includes structure papers and SynCraft literature for comparison.",
+            "citations": [
+              "question",
+              "structure_papers",
+              "literature.syncraft"
+            ]
+          },
+          {
+            "dimension": "Clarity and completeness of claims",
+            "score_tier": "Medium",
+            "rationale": "The three questions are explicit, but some result provenance is missing.",
+            "citations": [
+              "three_questions",
+              "end2edit_validity.source",
+              "anchor_violation.source"
+            ]
+          }
+        ],
+        "overall_score_tier": "WARN",
+        "overall_rationale": "The reported results are promising, but the overall tier is WARN because key provenance fields are null and the evidence sufficiency is not yet complete.",
+        "overall_citations": [
+          "hardOK_48api",
+          "p_value",
+          "end2edit_validity",
+          "anchor_violation",
+          "end2edit_validity.source",
+          "anchor_violation.source",
+          "literature.crux.lesson"
+        ]
+      },
+      "weakest_dimension": {
+        "dimension": "Reproducibility and source traceability",
+        "rationale": "The weakest dimension is reproducibility and source traceability because end2edit_validity.source and anchor_violation.source are null, and the CRUX lesson highlights evidence sufficiency as a failure mode.",
+        "citations": [
+          "end2edit_validity.source",
+          "anchor_violation.source",
+          "literature.crux.lesson"
+        ]
+      },
+      "improvement_needed": [
+        {
+          "action": "Populate end2edit_validity.source and anchor_violation.source with concrete artifact identifiers.",
+          "basis_citations": [
+            "end2edit_validity.source",
+            "anchor_violation.source"
+          ]
+        },
+        {
+          "action": "Add explicit code, ontology, and data availability information, because no such availability field is present in CONTEXT.",
+          "basis_citations": [
+            "end2edit_validity.source",
+            "anchor_violation.source"
+          ]
+        },
+        {
+          "action": "Strengthen evidence sufficiency by expanding paired comparisons beyond the reported 6 wins 0 losses and 7 wins 0 losses.",
+          "basis_citations": [
+            "p_value"
+          ]
+        },
+        {
+          "action": "Report effect sizes and confidence intervals, because CONTEXT provides p-values and win/loss counts but no interval estimates.",
+          "basis_citations": [
+            "p_value"
+          ]
+        }
+      ],
+      "verdict_tiers": {
+        "selected": "WARN",
+        "allowed": [
+          "PASS",
+          "WARN",
+          "FAIL",
+          "NOT_APPLICABLE",
+          "BLOCKED",
+          "ERROR"
+        ]
+      }
+    },
+    "verdict": "WARN",
+    "missing_inputs": [
+      "end2edit_validity.source is null in CONTEXT.",
+      "anchor_violation.source is null in CONTEXT.",
+      "No explicit code availability, data availability, or artifact repository field is provided in CONTEXT.",
+      "No confidence intervals or effect-size estimates are provided in CONTEXT."
+    ],
+    "full_response": {
+      "verdict": "WARN",
+      "phase_output": {
+        "phase": "Phase 15.5 可发表性评分",
+        "qid": "Q-ONT-MOL-001",
+        "publishability_score": {
+          "scoring_dimensions": [
+            {
+              "dimension": "Novelty and problem framing",
+              "score_tier": "High",
+              "rationale": "The work is framed around an ontology-grounded pipeline that identifies why a generated molecule is non-synthesizable and edits it while preserving pharmacophoric anchors, stereochemistry, and binding interactions.",
+              "citations": [
+                "question",
+                "three_questions.Q1",
+                "three_questions.Q2",
+                "three_questions.Q3",
+                "reasoner_inferences"
+              ]
+            },
+            {
+              "dimension": "Evidence strength",
+              "score_tier": "Medium",
+              "rationale": "Ontology achieves hardOK_48api 0.875 versus 0.5 for similarity and random; exact sign tests report p=0.0156 and p=0.0078; ontology and ontology_lora have end2edit validity 1.0 and anchor violation 0.0, but source fields are null and the reported wins/losses are limited.",
+              "citations": [
+                "hardOK_48api",
+                "p_value",
+                "end2edit_validity",
+                "anchor_violation",
+                "end2edit_validity.source",
+                "anchor_violation.source"
+              ]
+            },
+            {
+              "dimension": "Methodological rigor and ontology grounding",
+              "score_tier": "High",
+              "rationale": "The ontology layer reports reasoner inferences for required operations, failure risks, protected atoms, validated edit sequences, stereocenter-preserving reactions, and stereocenter anchor contracts, with owlrl expansion from 10400 to 23113 triples.",
+              "citations": [
+                "reasoner_inferences",
+                "reasoner_inferences.source"
+              ]
+            },
+            {
+              "dimension": "Reproducibility and source traceability",
+              "score_tier": "Low",
+              "rationale": "Corpus and resource counts are reported, but provenance for key validity and anchor results is missing.",
+              "citations": [
+                "corpus",
+                "n_molecules",
+                "n_evidence",
+                "papers",
+                "transforms_freed",
+                "rl_pool",
+                "end2edit_validity.source",
+                "anchor_violation.source"
+              ]
+            },
+            {
+              "dimension": "Impact and relevance",
+              "score_tier": "High",
+              "rationale": "The task targets non-synthesizable molecules and editing constraints, and the context includes structure papers and SynCraft literature for comparison.",
+              "citations": [
+                "question",
+                "structure_papers",
+                "literature.syncraft"
+              ]
+            },
+            {
+              "dimension": "Clarity and completeness of claims",
+              "score_tier": "Medium",
+              "rationale": "The three questions are explicit, but some result provenance is missing.",
+              "citations": [
+                "three_questions",
+                "end2edit_validity.source",
+                "anchor_violation.source"
+              ]
+            }
+          ],
+          "overall_score_tier": "WARN",
+          "overall_rationale": "The reported results are promising, but the overall tier is WARN because key provenance fields are null and the evidence sufficiency is not yet complete.",
+          "overall_citations": [
+            "hardOK_48api",
+            "p_value",
+            "end2edit_validity",
+            "anchor_violation",
+            "end2edit_validity.source",
+            "anchor_violation.source",
+            "literature.crux.lesson"
+          ]
+        },
+        "weakest_dimension": {
+          "dimension": "Reproducibility and source traceability",
+          "rationale": "The weakest dimension is reproducibility and source traceability because end2edit_validity.source and anchor_violation.source are null, and the CRUX lesson highlights evidence sufficiency as a failure mode.",
+          "citations": [
+            "end2edit_validity.source",
+            "anchor_violation.source",
+            "literature.crux.lesson"
+          ]
+        },
+        "improvement_needed": [
+          {
+            "action": "Populate end2edit_validity.source and anchor_violation.source with concrete artifact identifiers.",
+            "basis_citations": [
+              "end2edit_validity.source",
+              "anchor_violation.source"
+            ]
+          },
+          {
+            "action": "Add explicit code, ontology, and data availability information, because no such availability field is present in CONTEXT.",
+            "basis_citations": [
+              "end2edit_validity.source",
+              "anchor_violation.source"
+            ]
+          },
+          {
+            "action": "Strengthen evidence sufficiency by expanding paired comparisons beyond the reported 6 wins 0 losses and 7 wins 0 losses.",
+            "basis_citations": [
+              "p_value"
+            ]
+          },
+          {
+            "action": "Report effect sizes and confidence intervals, because CONTEXT provides p-values and win/loss counts but no interval estimates.",
+            "basis_citations": [
+              "p_value"
+            ]
+          }
+        ],
+        "verdict_tiers": {
+          "selected": "WARN",
+          "allowed": [
+            "PASS",
+            "WARN",
+            "FAIL",
+            "NOT_APPLICABLE",
+            "BLOCKED",
+            "ERROR"
+          ]
+        }
+      },
+      "missing_inputs": [
+        "end2edit_validity.source is null in CONTEXT.",
+        "anchor_violation.source is null in CONTEXT.",
+        "No explicit code availability, data availability, or artifact repository field is provided in CONTEXT.",
+        "No confidence intervals or effect-size estimates are provided in CONTEXT."
+      ]
+    }
+  }
+}

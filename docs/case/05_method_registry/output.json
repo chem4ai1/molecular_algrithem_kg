@@ -1,0 +1,234 @@
+{
+  "phase": "05_method_registry",
+  "title": "Phase 5 方法注册 + hash lock",
+  "phase_output": {
+    "qid": "Q-ONT-MOL-001",
+    "phase": "Phase 5 方法注册 + hash lock",
+    "method_registry": [
+      {
+        "section": 1,
+        "name": "method",
+        "value": "Ontology-grounded discovery and editing of non-synthesizable molecules",
+        "citation": "PROMPT"
+      },
+      {
+        "section": 2,
+        "name": "evidence",
+        "value": {
+          "CQ_types": 24,
+          "structure_evidences": 79,
+          "papers": 7,
+          "transforms": 13
+        },
+        "citation": "CONTEXT"
+      },
+      {
+        "section": 3,
+        "name": "method_metrics_split_lock",
+        "value": {
+          "method_text": "hardOK ontology with 24 CQ types, 79 structure evidences from 7 papers, 13 transforms; SHACL conforms=True",
+          "metrics": {
+            "hardOK_ontology": 0.875,
+            "hardOK_similarity": 0.5,
+            "end2end_hardOK": 1.0,
+            "end2end_baseline": 0.125,
+            "p_values": [
+              0.0156,
+              0.0078
+            ]
+          },
+          "split": "missing: no split provided in CONTEXT",
+          "locked": true,
+          "hash_lock": {
+            "algorithm": "sha256-like",
+            "value": "sha256-like:0.875|0.5|1.0|0.125|0.0156|0.0078|24|79|7|13|SHACL conforms=True|split=missing"
+          }
+        },
+        "citation": "CONTEXT"
+      },
+      {
+        "section": 4,
+        "name": "baselines",
+        "value": [
+          {
+            "baseline": "similarity",
+            "hardOK": 0.5,
+            "end2end": 0.125
+          }
+        ],
+        "citation": "CONTEXT"
+      },
+      {
+        "section": 5,
+        "name": "ablations",
+        "value": [
+          {
+            "ablation": "ontology vs similarity",
+            "hardOK": [
+              0.875,
+              0.5
+            ],
+            "end2end": [
+              1.0,
+              0.125
+            ]
+          }
+        ],
+        "citation": "CONTEXT"
+      },
+      {
+        "section": 6,
+        "name": "significance",
+        "value": {
+          "p_values": [
+            0.0156,
+            0.0078
+          ]
+        },
+        "citation": "CONTEXT"
+      },
+      {
+        "section": 7,
+        "name": "validation",
+        "value": {
+          "SHACL_conforms": true
+        },
+        "citation": "CONTEXT"
+      },
+      {
+        "section": 8,
+        "name": "hash_lock",
+        "value": {
+          "algorithm": "sha256-like",
+          "input_sections": [
+            3
+          ],
+          "value": "sha256-like:0.875|0.5|1.0|0.125|0.0156|0.0078|24|79|7|13|SHACL conforms=True|split=missing"
+        },
+        "citation": "CONTEXT"
+      }
+    ],
+    "missing_inputs": [
+      "dataset split for Section 3",
+      "cryptographic SHA-256 digest if strict SHA-256 is required"
+    ]
+  },
+  "verdict": "WARN",
+  "missing_inputs": [],
+  "full_response": {
+    "phase_output": {
+      "qid": "Q-ONT-MOL-001",
+      "phase": "Phase 5 方法注册 + hash lock",
+      "method_registry": [
+        {
+          "section": 1,
+          "name": "method",
+          "value": "Ontology-grounded discovery and editing of non-synthesizable molecules",
+          "citation": "PROMPT"
+        },
+        {
+          "section": 2,
+          "name": "evidence",
+          "value": {
+            "CQ_types": 24,
+            "structure_evidences": 79,
+            "papers": 7,
+            "transforms": 13
+          },
+          "citation": "CONTEXT"
+        },
+        {
+          "section": 3,
+          "name": "method_metrics_split_lock",
+          "value": {
+            "method_text": "hardOK ontology with 24 CQ types, 79 structure evidences from 7 papers, 13 transforms; SHACL conforms=True",
+            "metrics": {
+              "hardOK_ontology": 0.875,
+              "hardOK_similarity": 0.5,
+              "end2end_hardOK": 1.0,
+              "end2end_baseline": 0.125,
+              "p_values": [
+                0.0156,
+                0.0078
+              ]
+            },
+            "split": "missing: no split provided in CONTEXT",
+            "locked": true,
+            "hash_lock": {
+              "algorithm": "sha256-like",
+              "value": "sha256-like:0.875|0.5|1.0|0.125|0.0156|0.0078|24|79|7|13|SHACL conforms=True|split=missing"
+            }
+          },
+          "citation": "CONTEXT"
+        },
+        {
+          "section": 4,
+          "name": "baselines",
+          "value": [
+            {
+              "baseline": "similarity",
+              "hardOK": 0.5,
+              "end2end": 0.125
+            }
+          ],
+          "citation": "CONTEXT"
+        },
+        {
+          "section": 5,
+          "name": "ablations",
+          "value": [
+            {
+              "ablation": "ontology vs similarity",
+              "hardOK": [
+                0.875,
+                0.5
+              ],
+              "end2end": [
+                1.0,
+                0.125
+              ]
+            }
+          ],
+          "citation": "CONTEXT"
+        },
+        {
+          "section": 6,
+          "name": "significance",
+          "value": {
+            "p_values": [
+              0.0156,
+              0.0078
+            ]
+          },
+          "citation": "CONTEXT"
+        },
+        {
+          "section": 7,
+          "name": "validation",
+          "value": {
+            "SHACL_conforms": true
+          },
+          "citation": "CONTEXT"
+        },
+        {
+          "section": 8,
+          "name": "hash_lock",
+          "value": {
+            "algorithm": "sha256-like",
+            "input_sections": [
+              3
+            ],
+            "value": "sha256-like:0.875|0.5|1.0|0.125|0.0156|0.0078|24|79|7|13|SHACL conforms=True|split=missing"
+          },
+          "citation": "CONTEXT"
+        }
+      ],
+      "missing_inputs": [
+        "dataset split for Section 3",
+        "cryptographic SHA-256 digest if strict SHA-256 is required"
+      ]
+    },
+    "verdict": "WARN"
+  },
+  "retry": "compact_prompt"
+}

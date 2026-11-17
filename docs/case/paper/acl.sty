@@ -1,0 +1,22 @@
+%% Minimal ACL-compatible style (self-contained, so this paper compiles standalone).
+%% For official submission, replace this file with the ACL Anthology template's acl.sty.
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{acl}[2026/11/07 minimal ACL-compatible style]
+\RequirePackage{geometry}
+\geometry{a4paper,twocolumn,total={17.0cm,24.5cm},columnsep=0.75cm,top=2.2cm,
+          left=2.0cm,right=2.0cm,bottom=2.4cm}
+\RequirePackage{times}
+\RequirePackage{natbib}
+\DeclareOption{review}{\newcommand{\aclreviewmode}{1}}
+\DeclareOption{final}{\newcommand{\aclfinalcopy}{1}}
+\ProcessOptions\relax
+\providecommand{\aclfinalcopy}{}
+\setlength{\parindent}{0.45cm}
+\setlength{\parskip}{0pt}
+\renewcommand{\baselinestretch}{0.97}
+\setlength{\textfloatsep}{8pt plus 2pt minus 2pt}
+\setlength{\floatsep}{8pt plus 2pt minus 2pt}
+\setlength{\intextsep}{8pt plus 2pt minus 2pt}
+\setlength{\abovecaptionskip}{4pt}
+\setlength{\belowcaptionskip}{2pt}
+\endinput

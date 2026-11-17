@@ -125,6 +125,8 @@ USAGE = {
     "EnvSpec": "环境复现（python/cuda/packages）",
     "RunArtifact": "回答「这个数是怎么跑出来的」",
     "RelatedPaper": "任务级检索候选：本次召回谁、排第几、最终引没引",
+    "ProblemAnchor": "阶段01 冻结的 Q-id，下游每个任务节点都要回引（INV-G1）",
+    "DomainHint": "阶段01 的 provisional 概率签名；阶段02 learned profile 才可覆盖",
 }
 
 NOTE = {
@@ -143,6 +145,11 @@ NOTE = {
     "RunArtifact": "任务级：只在本次执行后产生，带 `run_id`。",
     "Dependency": "从 AST import + requirements.txt 双向收集，可能含标准库。",
     "EntryPoint": "由 `if __name__ == '__main__'` 或文件名规则判定，可能把 demo 脚本也纳入。",
+    "ProblemAnchor": "问题文本改一个字，content_hash 就变并记 redirected_from；"
+                     "同一 run 重复冻结返回同一节点。与 global 的 ResearchQuestion 不同："
+                     "后者是「论文问了什么」，前者是「本次要解什么」。",
+    "DomainHint": "hint 永不作为最终签名（sole writer 是阶段02 learner）；"
+                  "confidence < 0.5 时下游应回落 general。",
     "RelatedPaper": "domain_hint 只是检索线索，不参与相似度、不推导 evidence_type；"
                     "与 CitedPaper（最终引用）/ ConsultedPaper（查过未引）/ "
                     "SourcePaper（全库科技树）四种角色互不替代。",

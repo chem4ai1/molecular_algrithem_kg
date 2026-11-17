@@ -1,0 +1,710 @@
+{
+  "phase": "06c_full_experiment",
+  "title": "Phase 6c full 实验矩阵",
+  "phase_output": {
+    "phase": "Phase 6c full 实验矩阵",
+    "qid": "Q-ONT-MOL-001",
+    "question_alignment": {
+      "Q1": "where the structure is problematic",
+      "Q2": "why it cannot be made",
+      "Q3": "what must not be touched during editing",
+      "context_refs": [
+        "three_questions"
+      ]
+    },
+    "experimental_population": {
+      "cq_cases": "3272 CQ cases / 14 batches",
+      "crossdocked_molecules": 2783,
+      "n_molecules": 3483,
+      "n_evidence": 79,
+      "papers": 7,
+      "structure_papers": [
+        "5KB3",
+        "5IRU",
+        "5J2M",
+        "5JJK",
+        "5JXG",
+        "5K3S",
+        "5IAR"
+      ],
+      "context_refs": [
+        "corpus",
+        "n_molecules",
+        "n_evidence",
+        "papers",
+        "structure_papers"
+      ]
+    },
+    "arms": {
+      "discovery_three_arm": {
+        "name": "hardOK_48api",
+        "arms": [
+          "similarity",
+          "random",
+          "ontology"
+        ],
+        "reported_scores": {
+          "similarity": 0.5,
+          "random": 0.5,
+          "ontology": 0.875
+        },
+        "context_refs": [
+          "hardOK_48api"
+        ]
+      },
+      "editing_three_arm": {
+        "name": "end2edit",
+        "arms": [
+          "syncraft",
+          "ontology",
+          "ontology_lora",
+          "source"
+        ],
+        "reported_end2edit_validity": {
+          "syncraft": 0.5,
+          "ontology": 1.0,
+          "ontology_lora": 1.0,
+          "source": null
+        },
+        "reported_anchor_violation": {
+          "syncraft": 0.125,
+          "ontology": 0.0,
+          "ontology_lora": 0.0,
+          "source": null
+        },
+        "context_refs": [
+          "end2edit_validity",
+          "anchor_violation",
+          "literature.syncraft"
+        ]
+      },
+      "supporting_resources": {
+        "transforms_freed": "5/5",
+        "rl_pool": 5174,
+        "context_refs": [
+          "transforms_freed",
+          "rl_pool"
+        ]
+      }
+    },
+    "three_arm_comparison": {
+      "primary": {
+        "comparison": "similarity vs random vs ontology",
+        "endpoint": "hardOK_48api",
+        "context_refs": [
+          "hardOK_48api"
+        ]
+      },
+      "secondary": {
+        "comparison": "syncraft vs ontology vs ontology_lora",
+        "endpoints": [
+          "end2edit_validity",
+          "anchor_violation"
+        ],
+        "source_arm": "source is present as an arm but source values are null",
+        "context_refs": [
+          "end2edit_validity",
+          "anchor_violation"
+        ]
+      }
+    },
+    "ablation_ladder": [
+      {
+        "level": "full_ontology_grounded_pipeline",
+        "description": "Ontology-grounded pipeline with reasoner inferences, protected atoms, chiral requirements, stereocenter contracts, anchor protection, and binding-interaction preservation requirement.",
+        "metrics": [
+          "hardOK_48api",
+          "end2edit_validity",
+          "anchor_violation",
+          "reasoner_inferences"
+        ],
+        "context_refs": [
+          "question",
+          "reasoner_inferences",
+          "hardOK_48api",
+          "end2edit_validity",
+          "anchor_violation"
+        ]
+      },
+      {
+        "level": "without_reasoner_inferences",
+        "description": "Remove reasoner inference layer including A19 hasFailureRisk, A20 hasProtectedAtom, A21 hasRequiredOperation SET_CHIRAL, ValidatedEditSequence, StereocenterPreservingReaction, and StereocenterAnchor contract.",
+        "metrics": [
+          "end2edit_validity",
+          "anchor_violation",
+          "reasoner_inferences"
+        ],
+        "context_refs": [
+          "reasoner_inferences"
+        ]
+      },
+      {
+        "level": "without_failure_risk_and_protected_atom",
+        "description": "Remove A19 hasFailureRisk and A20 hasProtectedAtom constraints.",
+        "metrics": [
+          "end2edit_validity",
+          "anchor_violation",
+          "reasoner_inferences"
+        ],
+        "context_refs": [
+          "reasoner_inferences"
+        ]
+      },
+      {
+        "level": "without_chiral_stereocenter_contract",
+        "description": "Remove A21 hasRequiredOperation SET_CHIRAL, StereocenterPreservingReaction, and StereocenterAnchor contract constraints.",
+        "metrics": [
+          "end2edit_validity",
+          "anchor_violation",
+          "reasoner_inferences"
+        ],
+        "context_refs": [
+          "reasoner_inferences",
+          "question"
+        ]
+      },
+      {
+        "level": "without_anchor_violation_control",
+        "description": "Remove anchor-protection control and evaluate anchor_violation as a diagnostic.",
+        "metrics": [
+          "end2edit_validity",
+          "anchor_violation"
+        ],
+        "context_refs": [
+          "anchor_violation",
+          "question"
+        ]
+      },
+      {
+        "level": "without_ontology_grounding",
+        "description": "Replace ontology arm with similarity and random baselines.",
+        "metrics": [
+          "hardOK_48api",
+          "end2edit_validity",
+          "anchor_violation"
+        ],
+        "context_refs": [
+          "hardOK_48api",
+          "end2edit_validity",
+          "anchor_violation"
+        ]
+      }
+    ],
+    "metrics": {
+      "discovery": {
+        "hardOK_48api": {
+          "similarity": 0.5,
+          "random": 0.5,
+          "ontology": 0.875
+        },
+        "context_refs": [
+          "hardOK_48api"
+        ]
+      },
+      "editing": {
+        "end2edit_validity": {
+          "syncraft": 0.5,
+          "ontology": 1.0,
+          "ontology_lora": 1.0,
+          "source": null
+        },
+        "anchor_violation": {
+          "syncraft": 0.125,
+          "ontology": 0.0,
+          "ontology_lora": 0.0,
+          "source": null
+        },
+        "context_refs": [
+          "end2edit_validity",
+          "anchor_violation"
+        ]
+      },
+      "reasoner_coverage": {
+        "A21 hasRequiredOperation SET_CHIRAL": 115,
+        "A19 hasFailureRisk": 231,
+        "A20 hasProtectedAtom": 363,
+        "定义类 ValidatedEditSequence": 78,
+        "定义类 StereocenterPreservingReaction": 2,
+        "StereocenterAnchor 契约": 320,
+        "source": "kernel_verify.json; owlrl 10400->23113 triples",
+        "context_refs": [
+          "reasoner_inferences"
+        ]
+      },
+      "statistical": {
+        "reported": "6 wins 0 losses, exact sign test p=0.0156; end2end 7 wins 0 losses p=0.0078",
+        "context_refs": [
+          "p_value"
+        ]
+      },
+      "resource": {
+        "transforms_freed": "5/5",
+        "rl_pool": 5174,
+        "context_refs": [
+          "transforms_freed",
+          "rl_pool"
+        ]
+      }
+    },
+    "seeds": {
+      "status": "missing",
+      "policy": "Seed values must be taken from run configuration and reported per arm; no seed values are provided in CONTEXT.",
+      "context_refs": []
+    },
+    "splits": {
+      "available_units": {
+        "cq_cases": "3272 CQ cases / 14 batches",
+        "crossdocked_molecules": 2783,
+        "n_molecules": 3483,
+        "context_refs": [
+          "corpus",
+          "n_molecules"
+        ]
+      },
+      "proposed_scheme": "Use CQ batch as the held-out unit and crossdocked molecules as molecule-level checks.",
+      "status": "partial",
+      "missing": "Exact train/validation/test assignments, batch folds, and molecule partitions are not provided in CONTEXT.",
+      "context_refs": [
+        "corpus"
+      ]
+    },
+    "fairness_controls": [
+      {
+        "control": "shared_evaluation_population",
+        "description": "Evaluate all arms on the same CQ cases and molecules.",
+        "context_refs": [
+          "corpus",
+          "n_molecules"
+        ]
+      },
+      {
+        "control": "baseline_inclusion",
+        "description": "Include similarity and random arms with ontology arm.",
+        "context_refs": [
+          "hardOK_48api"
+        ]
+      },
+      {
+        "control": "null_source_handling",
+        "description": "Do not interpret source arm because source values are null.",
+        "context_refs": [
+          "end2edit_validity",
+          "anchor_violation"
+        ]
+      },
+      {
+        "control": "anchor_and_stereo_control",
+        "description": "Track anchor_violation and reasoner stereocenter contracts across arms.",
+        "context_refs": [
+          "anchor_violation",
+          "reasoner_inferences",
+          "question"
+        ]
+      },
+      {
+        "control": "threshold_separation",
+        "description": "Keep CONTEXT hardOK similarity 0.5 separate from SynCraft literature similarity>0.6.",
+        "context_refs": [
+          "hardOK_48api",
+          "literature.syncraft"
+        ]
+      },
+      {
+        "control": "binding_interaction_control",
+        "description": "Require binding-interaction preservation assessment; metric is not provided, and structure_papers are available as structural references.",
+        "context_refs": [
+          "question",
+          "structure_papers"
+        ]
+      },
+      {
+        "control": "batch_control",
+        "description": "Use CQ batch as split unit because corpus reports 14 batches.",
+        "context_refs": [
+          "corpus"
+        ]
+      },
+      {
+        "control": "evidence_sufficiency_audit",
+        "description": "Audit evidence sufficiency because CRUX lesson reports agents do engineering but fail at evidence sufficiency; CONTEXT provides n_evidence and papers.",
+        "context_refs": [
+          "literature.crux",
+          "n_evidence",
+          "papers"
+        ]
+      }
+    ],
+    "statistical_plan": {
+      "test": "exact sign test for win/loss comparisons",
+      "reported_results": "6 wins 0 losses, exact sign test p=0.0156; end2end 7 wins 0 losses p=0.0078",
+      "missing": "Significance threshold and correction method are not provided in CONTEXT.",
+      "context_refs": [
+        "p_value"
+      ]
+    }
+  },
+  "verdict": "WARN",
+  "missing_inputs": [
+    "Seed values for stochastic arms are not provided in CONTEXT.",
+    "Exact train/validation/test splits, batch folds, and molecule partitions are not provided in CONTEXT.",
+    "Source arm values are null in CONTEXT for end2edit_validity and anchor_violation.",
+    "A binding-interaction preservation metric is not provided in CONTEXT.",
+    "A formal definition of hardOK_48api is not provided in CONTEXT.",
+    "Per-arm reasoner inference counts and compute budgets are not provided in CONTEXT.",
+    "Significance threshold and multiple-comparison correction are not provided in CONTEXT."
+  ],
+  "full_response": {
+    "verdict": "WARN",
+    "phase_output": {
+      "phase": "Phase 6c full 实验矩阵",
+      "qid": "Q-ONT-MOL-001",
+      "question_alignment": {
+        "Q1": "where the structure is problematic",
+        "Q2": "why it cannot be made",
+        "Q3": "what must not be touched during editing",
+        "context_refs": [
+          "three_questions"
+        ]
+      },
+      "experimental_population": {
+        "cq_cases": "3272 CQ cases / 14 batches",
+        "crossdocked_molecules": 2783,
+        "n_molecules": 3483,
+        "n_evidence": 79,
+        "papers": 7,
+        "structure_papers": [
+          "5KB3",
+          "5IRU",
+          "5J2M",
+          "5JJK",
+          "5JXG",
+          "5K3S",
+          "5IAR"
+        ],
+        "context_refs": [
+          "corpus",
+          "n_molecules",
+          "n_evidence",
+          "papers",
+          "structure_papers"
+        ]
+      },
+      "arms": {
+        "discovery_three_arm": {
+          "name": "hardOK_48api",
+          "arms": [
+            "similarity",
+            "random",
+            "ontology"
+          ],
+          "reported_scores": {
+            "similarity": 0.5,
+            "random": 0.5,
+            "ontology": 0.875
+          },
+          "context_refs": [
+            "hardOK_48api"
+          ]
+        },
+        "editing_three_arm": {
+          "name": "end2edit",
+          "arms": [
+            "syncraft",
+            "ontology",
+            "ontology_lora",
+            "source"
+          ],
+          "reported_end2edit_validity": {
+            "syncraft": 0.5,
+            "ontology": 1.0,
+            "ontology_lora": 1.0,
+            "source": null
+          },
+          "reported_anchor_violation": {
+            "syncraft": 0.125,
+            "ontology": 0.0,
+            "ontology_lora": 0.0,
+            "source": null
+          },
+          "context_refs": [
+            "end2edit_validity",
+            "anchor_violation",
+            "literature.syncraft"
+          ]
+        },
+        "supporting_resources": {
+          "transforms_freed": "5/5",
+          "rl_pool": 5174,
+          "context_refs": [
+            "transforms_freed",
+            "rl_pool"
+          ]
+        }
+      },
+      "three_arm_comparison": {
+        "primary": {
+          "comparison": "similarity vs random vs ontology",
+          "endpoint": "hardOK_48api",
+          "context_refs": [
+            "hardOK_48api"
+          ]
+        },
+        "secondary": {
+          "comparison": "syncraft vs ontology vs ontology_lora",
+          "endpoints": [
+            "end2edit_validity",
+            "anchor_violation"
+          ],
+          "source_arm": "source is present as an arm but source values are null",
+          "context_refs": [
+            "end2edit_validity",
+            "anchor_violation"
+          ]
+        }
+      },
+      "ablation_ladder": [
+        {
+          "level": "full_ontology_grounded_pipeline",
+          "description": "Ontology-grounded pipeline with reasoner inferences, protected atoms, chiral requirements, stereocenter contracts, anchor protection, and binding-interaction preservation requirement.",
+          "metrics": [
+            "hardOK_48api",
+            "end2edit_validity",
+            "anchor_violation",
+            "reasoner_inferences"
+          ],
+          "context_refs": [
+            "question",
+            "reasoner_inferences",
+            "hardOK_48api",
+            "end2edit_validity",
+            "anchor_violation"
+          ]
+        },
+        {
+          "level": "without_reasoner_inferences",
+          "description": "Remove reasoner inference layer including A19 hasFailureRisk, A20 hasProtectedAtom, A21 hasRequiredOperation SET_CHIRAL, ValidatedEditSequence, StereocenterPreservingReaction, and StereocenterAnchor contract.",
+          "metrics": [
+            "end2edit_validity",
+            "anchor_violation",
+            "reasoner_inferences"
+          ],
+          "context_refs": [
+            "reasoner_inferences"
+          ]
+        },
+        {
+          "level": "without_failure_risk_and_protected_atom",
+          "description": "Remove A19 hasFailureRisk and A20 hasProtectedAtom constraints.",
+          "metrics": [
+            "end2edit_validity",
+            "anchor_violation",
+            "reasoner_inferences"
+          ],
+          "context_refs": [
+            "reasoner_inferences"
+          ]
+        },
+        {
+          "level": "without_chiral_stereocenter_contract",
+          "description": "Remove A21 hasRequiredOperation SET_CHIRAL, StereocenterPreservingReaction, and StereocenterAnchor contract constraints.",
+          "metrics": [
+            "end2edit_validity",
+            "anchor_violation",
+            "reasoner_inferences"
+          ],
+          "context_refs": [
+            "reasoner_inferences",
+            "question"
+          ]
+        },
+        {
+          "level": "without_anchor_violation_control",
+          "description": "Remove anchor-protection control and evaluate anchor_violation as a diagnostic.",
+          "metrics": [
+            "end2edit_validity",
+            "anchor_violation"
+          ],
+          "context_refs": [
+            "anchor_violation",
+            "question"
+          ]
+        },
+        {
+          "level": "without_ontology_grounding",
+          "description": "Replace ontology arm with similarity and random baselines.",
+          "metrics": [
+            "hardOK_48api",
+            "end2edit_validity",
+            "anchor_violation"
+          ],
+          "context_refs": [
+            "hardOK_48api",
+            "end2edit_validity",
+            "anchor_violation"
+          ]
+        }
+      ],
+      "metrics": {
+        "discovery": {
+          "hardOK_48api": {
+            "similarity": 0.5,
+            "random": 0.5,
+            "ontology": 0.875
+          },
+          "context_refs": [
+            "hardOK_48api"
+          ]
+        },
+        "editing": {
+          "end2edit_validity": {
+            "syncraft": 0.5,
+            "ontology": 1.0,
+            "ontology_lora": 1.0,
+            "source": null
+          },
+          "anchor_violation": {
+            "syncraft": 0.125,
+            "ontology": 0.0,
+            "ontology_lora": 0.0,
+            "source": null
+          },
+          "context_refs": [
+            "end2edit_validity",
+            "anchor_violation"
+          ]
+        },
+        "reasoner_coverage": {
+          "A21 hasRequiredOperation SET_CHIRAL": 115,
+          "A19 hasFailureRisk": 231,
+          "A20 hasProtectedAtom": 363,
+          "定义类 ValidatedEditSequence": 78,
+          "定义类 StereocenterPreservingReaction": 2,
+          "StereocenterAnchor 契约": 320,
+          "source": "kernel_verify.json; owlrl 10400->23113 triples",
+          "context_refs": [
+            "reasoner_inferences"
+          ]
+        },
+        "statistical": {
+          "reported": "6 wins 0 losses, exact sign test p=0.0156; end2end 7 wins 0 losses p=0.0078",
+          "context_refs": [
+            "p_value"
+          ]
+        },
+        "resource": {
+          "transforms_freed": "5/5",
+          "rl_pool": 5174,
+          "context_refs": [
+            "transforms_freed",
+            "rl_pool"
+          ]
+        }
+      },
+      "seeds": {
+        "status": "missing",
+        "policy": "Seed values must be taken from run configuration and reported per arm; no seed values are provided in CONTEXT.",
+        "context_refs": []
+      },
+      "splits": {
+        "available_units": {
+          "cq_cases": "3272 CQ cases / 14 batches",
+          "crossdocked_molecules": 2783,
+          "n_molecules": 3483,
+          "context_refs": [
+            "corpus",
+            "n_molecules"
+          ]
+        },
+        "proposed_scheme": "Use CQ batch as the held-out unit and crossdocked molecules as molecule-level checks.",
+        "status": "partial",
+        "missing": "Exact train/validation/test assignments, batch folds, and molecule partitions are not provided in CONTEXT.",
+        "context_refs": [
+          "corpus"
+        ]
+      },
+      "fairness_controls": [
+        {
+          "control": "shared_evaluation_population",
+          "description": "Evaluate all arms on the same CQ cases and molecules.",
+          "context_refs": [
+            "corpus",
+            "n_molecules"
+          ]
+        },
+        {
+          "control": "baseline_inclusion",
+          "description": "Include similarity and random arms with ontology arm.",
+          "context_refs": [
+            "hardOK_48api"
+          ]
+        },
+        {
+          "control": "null_source_handling",
+          "description": "Do not interpret source arm because source values are null.",
+          "context_refs": [
+            "end2edit_validity",
+            "anchor_violation"
+          ]
+        },
+        {
+          "control": "anchor_and_stereo_control",
+          "description": "Track anchor_violation and reasoner stereocenter contracts across arms.",
+          "context_refs": [
+            "anchor_violation",
+            "reasoner_inferences",
+            "question"
+          ]
+        },
+        {
+          "control": "threshold_separation",
+          "description": "Keep CONTEXT hardOK similarity 0.5 separate from SynCraft literature similarity>0.6.",
+          "context_refs": [
+            "hardOK_48api",
+            "literature.syncraft"
+          ]
+        },
+        {
+          "control": "binding_interaction_control",
+          "description": "Require binding-interaction preservation assessment; metric is not provided, and structure_papers are available as structural references.",
+          "context_refs": [
+            "question",
+            "structure_papers"
+          ]
+        },
+        {
+          "control": "batch_control",
+          "description": "Use CQ batch as split unit because corpus reports 14 batches.",
+          "context_refs": [
+            "corpus"
+          ]
+        },
+        {
+          "control": "evidence_sufficiency_audit",
+          "description": "Audit evidence sufficiency because CRUX lesson reports agents do engineering but fail at evidence sufficiency; CONTEXT provides n_evidence and papers.",
+          "context_refs": [
+            "literature.crux",
+            "n_evidence",
+            "papers"
+          ]
+        }
+      ],
+      "statistical_plan": {
+        "test": "exact sign test for win/loss comparisons",
+        "reported_results": "6 wins 0 losses, exact sign test p=0.0156; end2end 7 wins 0 losses p=0.0078",
+        "missing": "Significance threshold and correction method are not provided in CONTEXT.",
+        "context_refs": [
+          "p_value"
+        ]
+      }
+    },
+    "missing_inputs": [
+      "Seed values for stochastic arms are not provided in CONTEXT.",
+      "Exact train/validation/test splits, batch folds, and molecule partitions are not provided in CONTEXT.",
+      "Source arm values are null in CONTEXT for end2edit_validity and anchor_violation.",
+      "A binding-interaction preservation metric is not provided in CONTEXT.",
+      "A formal definition of hardOK_48api is not provided in CONTEXT.",
+      "Per-arm reasoner inference counts and compute budgets are not provided in CONTEXT.",
+      "Significance threshold and multiple-comparison correction are not provided in CONTEXT."
+    ]
+  }
+}
