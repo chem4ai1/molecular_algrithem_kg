@@ -1,0 +1,30 @@
+{
+  "ok": true,
+  "refine": "R6_gap",
+  "target": "ResearchGap",
+  "n_paragraphs": 3,
+  "paragraph_lines": [
+    1,
+    104,
+    975
+  ],
+  "prompt_chars": 4186,
+  "dry_run": false,
+  "items": [
+    {
+      "gap_type": "capability",
+      "statement": "现有逆折叠工具在抗体序列恢复和零样本亲和力预测方面表现不佳，且无法处理抗体特有的结构约束。",
+      "evidence": "AntiFold outperforms existing inverse folding tools on sequence recovery across comple... significantly improves upon CD",
+      "priority": "high"
+    }
+  ],
+  "issues": [],
+  "applied": {
+    "nodes": 1,
+    "relations": 1,
+    "parent": "paper:2405.03370",
+    "ids": [
+      "gap:2405.03370:1"
+    ]
+  }
+}

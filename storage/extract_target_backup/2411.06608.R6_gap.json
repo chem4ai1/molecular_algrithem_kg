@@ -1,0 +1,47 @@
+{
+  "ok": true,
+  "refine": "R6_gap",
+  "target": "ResearchGap",
+  "n_paragraphs": 6,
+  "paragraph_lines": [
+    1,
+    43,
+    817,
+    138,
+    509,
+    1812
+  ],
+  "prompt_chars": 7839,
+  "dry_run": false,
+  "items": [
+    {
+      "gap_type": "capability",
+      "statement": "现有自回归框架在生成过程中很少整合动态几何信息，导致难以处理结构依赖属性。",
+      "evidence": "When structure-dependent properties are targeted, incorporating three-dimensional geometry is essential—yet few autoregr",
+      "priority": "high"
+    },
+    {
+      "gap_type": "capability",
+      "statement": "多数自回归模型依赖固定的展开顺序，无法从任意有效片段生长，限制了分子结构的灵活表达。",
+      "evidence": "In addition, many autoregressive models rely on a fixed rollout order, typically growing molecules from a predefined ato",
+      "priority": "medium"
+    },
+    {
+      "gap_type": "capability",
+      "statement": "大多数现有模型仅支持单目标条件生成，缺乏对多个理化性质同时进行条件控制的能力。",
+      "evidence": "While most models support only single-target conditioning, we enable multi-p",
+      "priority": "high"
+    }
+  ],
+  "issues": [],
+  "applied": {
+    "nodes": 3,
+    "relations": 3,
+    "parent": "paper:2411.06608",
+    "ids": [
+      "gap:2411.06608:1",
+      "gap:2411.06608:2",
+      "gap:2411.06608:3"
+    ]
+  }
+}

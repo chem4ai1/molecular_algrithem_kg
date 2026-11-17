@@ -19,7 +19,8 @@ sys.path.insert(0, str(ROOT / "src"))
 from capfactory.po import POGraph                       # noqa: E402
 from capfactory.semantic.extractspec import loader, run_refine  # noqa: E402
 
-GRAPH = ROOT / "storage_cf/sciforge/batch10_semantic_v4.json"
+GRAPH = ROOT / "storage_cf/sciforge/batch10_semantic_v4.json"   # 只读：语义层事实
+OUT = ROOT / "storage_cf/sciforge/app_refine.json"              # 写入：二次抽取产物
 MD = ROOT / "data/docx"
 BACKUP = ROOT / "storage/extract_target_backup"
 
@@ -27,8 +28,8 @@ BACKUP = ROOT / "storage/extract_target_backup"
 def _chat():
     """按项目既有配置取聊天函数；不可用时返回 None（退化为 dry-run）。"""
     try:
-        from capfactory.llm.client import chat_fn  # type: ignore
-        return chat_fn
+        from capfactory.llm.backends import chat as _chat  # 与 runner.py 同一入口
+        return lambda prompt: _chat(prompt, backend="vllm")
     except Exception:  # noqa: BLE001
         return None
 
@@ -61,15 +62,17 @@ def main() -> int:
     if not (a.paper and a.target):
         ap.print_help()
         return 2
-    g = POGraph.load(str(GRAPH))
+    # 在已有二次抽取图上累积；没有则从语义层快照起步
+    base = OUT if OUT.exists() else GRAPH
+    g = POGraph.load(str(base))
     out = run_refine(g, a.paper, a.target, chat_fn=_chat() if a.apply else None,
                      md_dir=MD, dry_run=not a.apply)
     if a.apply and out.get("applied", {}).get("nodes"):
         BACKUP.mkdir(parents=True, exist_ok=True)
         (BACKUP / f"{a.paper}.{a.target}.json").write_text(
             json.dumps(out, ensure_ascii=False, indent=2), encoding="utf-8")
-        g.save(str(GRAPH))
-        print(f"已写回图：+{out['applied']['nodes']} 节点")
+        g.save(str(OUT))
+        print(f"已写回 {OUT.name}：+{out['applied']['nodes']} 节点（语义层图未改动）")
     print(json.dumps({k: v for k, v in out.items() if k != "prompt"},
                      ensure_ascii=False, indent=2, default=str))
     if out.get("prompt"):

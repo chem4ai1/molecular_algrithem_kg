@@ -1,0 +1,50 @@
+{
+  "ok": true,
+  "refine": "R4_figure",
+  "target": "FigureAsset",
+  "n_paragraphs": 6,
+  "paragraph_lines": [
+    104,
+    1121,
+    279,
+    705,
+    975,
+    1149
+  ],
+  "prompt_chars": 7780,
+  "dry_run": false,
+  "items": [
+    {
+      "label": "AntiFold 工作流程",
+      "caption": "展示 AntiFold 输入抗体 PDB 结构和 IMGT 区域，输出结构容忍度、残基概率及保持折叠的设计序列。",
+      "kind": "architecture",
+      "for_contribution": "说明 AntiFold 的结构约束抗体设计功能与输入输出定义。",
+      "evidence": "AntiFold outputs for each residue position in the PDB: i) structural tolerance to mutations without altering the backbon"
+    },
+    {
+      "label": "AntiFold 训练策略",
+      "caption": "概述 AntiFold 基于 ESM-IF1 微调的训练流程，使用 SAbDab 实验结构和 OAS 预测结构进行抗体逆折叠训练。",
+      "kind": "architecture",
+      "for_contribution": "解释 AntiFold 的数据来源及从通用模型到抗体特异性模型的微调过程。",
+      "evidence": "AntiFold is initialized with weights from ESM-IF1 [Hsu et al., 2022], then fine-tuned on antibody variable domain struct"
+    },
+    {
+      "label": "序列恢复与困惑度",
+      "caption": "对比 AntiFold 与其他模型在 CDR 区域的氨基酸恢复率、CDRH3 困惑度及实验结构替换后的恢复率变化。",
+      "kind": "main",
+      "for_contribution": "证明 AntiFold 在 CDR 序列恢复和预测准确性上优于 ProteinM",
+      "evidence": "AntiFold demonstrates improved amino acid recovery and perplexity. (A) Mean amino acid recovery (AAR) across CDRs for an"
+    }
+  ],
+  "issues": [],
+  "applied": {
+    "nodes": 3,
+    "relations": 3,
+    "parent": "contribution:2405.03370:1",
+    "ids": [
+      "figure:2405.03370:1",
+      "figure:2405.03370:2",
+      "figure:2405.03370:3"
+    ]
+  }
+}

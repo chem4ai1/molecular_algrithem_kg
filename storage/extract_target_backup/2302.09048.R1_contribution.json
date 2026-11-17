@@ -1,0 +1,43 @@
+{
+  "ok": true,
+  "refine": "R1_contribution",
+  "target": "Contribution",
+  "n_paragraphs": 4,
+  "paragraph_lines": [
+    1,
+    731,
+    34,
+    308
+  ],
+  "prompt_chars": 5493,
+  "dry_run": false,
+  "items": [
+    {
+      "statement": "提出MiDi模型，端到端联合生成分子图及其3D原子排列，无需预定义规则。",
+      "kind": "method",
+      "why_not_before": [
+        "技术约束"
+      ],
+      "section": "Abstract",
+      "claimed_strength": "proven",
+      "evidence": "This work introduces MiDi, a novel diffusion model for jointly generating molecular graphs and their corresponding 3D ar"
+    },
+    {
+      "statement": "在GEOM-DRUGS数据集上，MiDi生成92%稳定分子，显著优于EDM的6%。",
+      "kind": "analysis",
+      "section": "Abstract",
+      "claimed_strength": "proven",
+      "evidence": "On the challenging GEOM-DRUGS dataset, MiDi generates 92% of stable molecules, against 6% for the previous EDM model"
+    }
+  ],
+  "issues": [],
+  "applied": {
+    "nodes": 2,
+    "relations": 2,
+    "parent": "paper:2302.09048",
+    "ids": [
+      "contribution:2302.09048:1",
+      "contribution:2302.09048:2"
+    ]
+  }
+}

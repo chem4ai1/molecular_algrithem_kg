@@ -1,0 +1,36 @@
+{
+  "ok": true,
+  "refine": "R5_citation",
+  "target": "CitedPaper",
+  "n_paragraphs": 6,
+  "paragraph_lines": [
+    43,
+    531,
+    1,
+    817,
+    1195,
+    1236
+  ],
+  "prompt_chars": 7851,
+  "dry_run": false,
+  "items": [
+    {
+      "cite_key": "Jin2020",
+      "title": "Hierarchical generation of molecular graphs using structural motifs",
+      "authors": "Wengong Jin, Regina Barzilay, Tommi Jaakkola",
+      "year": "2020",
+      "venue": "ICML",
+      "context_quote": "incorporating three-dimensional geometry is essential—yet few autoregressive frameworks integrate dynamic geometric info",
+      "context_ok": "unknown"
+    }
+  ],
+  "issues": [],
+  "applied": {
+    "nodes": 1,
+    "relations": 1,
+    "parent": "paper:2411.06608",
+    "ids": [
+      "cited:2411.06608:1"
+    ]
+  }
+}

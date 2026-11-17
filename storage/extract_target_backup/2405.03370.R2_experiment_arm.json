@@ -1,0 +1,73 @@
+{
+  "ok": true,
+  "refine": "R2_experiment_arm",
+  "target": "ExperimentArm",
+  "n_paragraphs": 8,
+  "paragraph_lines": [
+    104,
+    279,
+    705,
+    888,
+    1121,
+    1149,
+    1316,
+    1478
+  ],
+  "prompt_chars": 10163,
+  "dry_run": false,
+  "items": [
+    {
+      "kind": "main",
+      "name": "AntiFold",
+      "config": "Fine-tuned from ESM-IF1 on antibody structures",
+      "n_seeds": 1,
+      "benchmark": "AbMPNN test-set, Warszawski DMS, Hie affinity maturation",
+      "evidence": "Here, we present AntiFold, an antibody-specific inverse folding model fine-tuned from ESM-IF1"
+    },
+    {
+      "kind": "baseline",
+      "name": "ProteinMPNN",
+      "config": "Default settings, --sampling temp 0.20, --num seq per target 20, --seed 37",
+      "n_seeds": 1,
+      "benchmark": "AbMPNN test-set, Warszawski DMS, Hie affinity maturation",
+      "evidence": "ProteinMPNN [Dauparas et al., 2022] and AbMPNN [Dreyer et al., 2023] were run with default settings"
+    },
+    {
+      "kind": "baseline",
+      "name": "ESM-IF1",
+      "config": "Default settings, --sampling temp 0.20, --num seq per target 20, --seed 37",
+      "n_seeds": 1,
+      "benchmark": "AbMPNN test-set, Warszawski DMS, Hie affinity maturation",
+      "evidence": "ProteinMPNN [Dauparas et al., 2022] and AbMPNN [Dreyer et al., 2023] were run with default settings"
+    },
+    {
+      "kind": "baseline",
+      "name": "AbMPNN",
+      "config": "Default settings, --sampling temp 0.20, --num seq per target 20, --seed 37",
+      "n_seeds": 1,
+      "benchmark": "AbMPNN test-set, Warszawski DMS, Hie affinity maturation",
+      "evidence": "ProteinMPNN [Dauparas et al., 2022] and AbMPNN [Dreyer et al., 2023] were run with default settings"
+    },
+    {
+      "kind": "baseline",
+      "name": "Native sequences",
+      "config": "Original sequences from PDB structures",
+      "n_seeds": 1,
+      "benchmark": "AbMPNN test-set",
+      "evidence": "AntiFold generated sequences with high structural similarity to the original backbone... versus... native RMSD"
+    }
+  ],
+  "issues": [],
+  "applied": {
+    "nodes": 5,
+    "relations": 5,
+    "parent": "paper:2405.03370",
+    "ids": [
+      "experiment:2405.03370:main:1",
+      "experiment:2405.03370:baseline:2",
+      "experiment:2405.03370:baseline:3",
+      "experiment:2405.03370:baseline:4",
+      "experiment:2405.03370:baseline:5"
+    ]
+  }
+}

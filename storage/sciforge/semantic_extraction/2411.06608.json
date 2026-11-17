@@ -8,12 +8,12 @@
         "warn:evidence_not_verbatim:why_hard"
       ],
       "fatal": [],
-      "n_fields": 6,
+      "n_fields": 16,
       "data": {
-        "research_question": "提出MolMiner，一种基于片段、几何感知且顺序无关的自回归模型，支持对12个理化性质的高维条件控制分子设计。",
+        "research_question": "提出MolMiner，一种基于片段、几何感知且顺序无关的自回归模型，用于支持12个理化性质的高维条件控制分子设计。",
         "problem_category": "molecule_generation",
         "domain_code": "D1",
-        "why_hard": "现有自回归模型通常依赖固定展开顺序，且很少有框架在生成过程中整合动态几何信息，导致泛化能力受限。",
+        "why_hard": "现有自回归模型通常依赖固定展开顺序，且很少在生成过程中整合动态几何信息，导致泛化能力受限。",
         "relation_hints": {
           "related_papers": [
             "JTNN",
@@ -24,15 +24,69 @@
           "algorithms": [
             "MolMiner"
           ],
-          "benchmarks": [
-            "Conditional Generation",
-            "Unconditional Generation"
-          ]
+          "benchmarks": []
         },
         "evidence": {
-          "research_question": "We introduce MolMiner, a fragment-based, geometry-aware, and order-agnostic autoregressive model for molecular design. MolMiner supports hig",
+          "research_question": "We introduce MolMiner, a fragment-based, geometry-aware, and order-agnostic autoregressive model for molecular design.",
           "why_hard": ""
-        }
+        },
+        "paradigm": "empirical",
+        "evidence_type": "simulational",
+        "evidence_norm": [
+          "hit rates",
+          "validity",
+          "diversity"
+        ],
+        "authors": [
+          "Raul Ortega-Ochoa",
+          "Tejs Vegge",
+          "Jes Frellsen"
+        ],
+        "abstract": "We introduce MolMiner, a fragment-based, geometry-aware, and order-agnostic autoregressive model for molecular design. MolMiner supports high-dimensional conditional control over twelve physicochemical and structural properties from partial specifications, constructs molecules via symmetry-aware fragment attachments, and conditions each generation step on force-field-relaxed three-dimensional geometry of the partial structure. Conditional control emerges without auxiliary property losses. On targeted property windows, conditioning lifts hit rates by up to 5.25× over unconditional generation and 3.5× over the training distribution itself — overriding the model’s intrinsic biases — at the cost of a small reduction in unconditional distributional fidelity. MolMiner unifies dynamic geometry, symmetry handling, order-agnostic generation, and scalable multi-property conditioning within a single framework.",
+        "claims": [
+          {
+            "statement": "MolMiner通过片段组装和动态几何条件，实现了12个性质的高维条件控制，且无需辅助损失。",
+            "evidence": "MolMiner supports high-dimensional conditional control over twelve physicochemical and structural properties... Conditio"
+          },
+          {
+            "statement": "条件生成显著提升了目标性质窗口内的命中率，克服了模型内在偏差。",
+            "evidence": "conditioning lifts hit rates by up to 5.25× over unconditional generation and 3.5× over the training distribution itself"
+          }
+        ],
+        "references": [],
+        "figures": [],
+        "section_map": [
+          {
+            "section": "Abstract",
+            "claims": [
+              "介绍MolMiner模型及其在条件控制、几何感知和顺序无关生成方面的特性。"
+            ]
+          },
+          {
+            "section": "Introduction",
+            "claims": [
+              "阐述现有生成模型在化学合理性、几何整合及顺序灵活性方面的不足，引出MolMiner的设计动机。"
+            ]
+          },
+          {
+            "section": "Related Work",
+            "claims": [
+              "对比JTNN、HierVAE、G-SchNet等现有片段或原子级生成方法，指出MolMiner在动态几何和对称性处理上的区别。"
+            ]
+          }
+        ],
+        "gaps": [
+          {
+            "gap_type": "capability",
+            "statement": "现有自回归框架很少在生成过程中整合动态几何信息，且多依赖固定的展开顺序。",
+            "evidence": "yet few autoregressive frameworks integrate dynamic geometric information during generation"
+          },
+          {
+            "gap_type": "capability",
+            "statement": "大多数模型仅支持单目标条件生成，缺乏对多个理化性质的同时控制能力。",
+            "evidence": "While most models support only single-target conditioning, we enable multi-property control over twelve physicochemical "
+          }
+        ]
       }
     },
     "E2_algorithm": {
@@ -47,87 +101,76 @@
             "name": "MolMiner",
             "task_type": "molecule_generation",
             "problems_solved": [
-              "解决分子生成中固定遍历顺序导致的偏差问题",
-              "解决片段连接点因原子索引不同导致的对称性歧义问题",
-              "实现基于目标性质的条件分子生成"
+              "解决分子生成中化学有效性难以保证的问题",
+              "解决固定生成顺序导致的泛化能力不足问题",
+              "解决多属性条件控制下生成偏差难以克服的问题"
             ],
-            "mechanism": "将分子分解为环和孤立键片段，通过无顺序依赖的自回归 rollout 策略逐步连接片段，并利用力场弛豫后的几何信息作为注意力偏置。",
-            "why_it_works": "无顺序依赖策略避免了预定义顺序偏差，几何注意力偏置使模型感知三维结构且对全局平移旋转不变，隐式条件化允许模型从数据分布中学习性质对齐。",
+            "mechanism": "基于片段的自回归生成，结合力场弛豫的3D几何信息与对称感知的片段连接，支持任意顺序的片段组装。",
+            "why_it_works": "片段级操作显式强制化学有效性，动态3D几何提供物理约束，无序生成策略作为数据增强提升泛化。",
             "applicable_to": [
-              "条件分子生成",
-              "基于片段的分子构建"
+              "高通量筛选中的候选分子生成",
+              "具有特定物理化学性质目标的分子设计"
             ],
             "limitations": [
-              "生成过程中需要逐步进行力场弛豫，计算成本较高"
+              "条件生成导致无条件分布保真度略有下降"
             ],
             "modules": [
               {
-                "name": "Fragment Coarse-Graining",
-                "mechanism": "分解分子为环和孤立键片段",
+                "name": "Fragment-Based Molecular Representation",
+                "mechanism": "分解分子为环和孤立键片段并编码为Canonical SMILES",
                 "formula": "",
                 "inputs": "完整分子结构",
-                "outputs": "片段集合及其原子索引映射",
+                "outputs": "片段序列及原子索引映射",
                 "code_symbols": [],
                 "tools": [
                   "RDKit"
-                ]
+                ],
+                "is_novel_component": false,
+                "component_role": "encoder"
               },
               {
-                "name": "Symmetry-Aware Attachment Standardization",
+                "name": "Symmetry-Aware Attachment Modeling",
                 "mechanism": "标准化片段连接点以消除对称性歧义",
                 "formula": "",
                 "inputs": "片段原子环境及索引映射",
-                "outputs": "确定性连接点映射",
+                "outputs": "对称不变的连接配置",
                 "code_symbols": [
                   "_compute_possible_remaps",
                   "_get_canonicalization_map"
                 ],
-                "tools": []
+                "tools": [],
+                "is_novel_component": true,
+                "component_role": "other"
               },
               {
-                "name": "Order-Agnostic Rollout",
-                "mechanism": "从开放连接点均匀采样并预测片段连接或终止",
-                "formula": "L(θ | M) = log E_{R∼U(R(M))} [ ∏_{i=1}^{|R|} p_θ(x^{(R)}_i | x^{(R)}_{<i}, c) ]",
-                "inputs": "当前部分结构及目标性质",
-                "outputs": "片段连接动作序列",
+                "name": "Order-agnostic Molecular Rollouts",
+                "mechanism": "从任意有效片段开始进行自回归生长",
+                "formula": "p(M) = E_{R\\sim U(R(M))} [\\prod_{i=1}^{|R|} p_\\theta(x^{(R)}_i | x^{(R)}_{<i}, c)]",
+                "inputs": "部分分子结构及目标属性条件",
+                "outputs": "完整分子结构",
                 "code_symbols": [
                   "sample"
                 ],
-                "tools": []
+                "tools": [],
+                "is_novel_component": true,
+                "component_role": "sampler"
               },
               {
-                "name": "Geometry-Aware Transformer",
-                "mechanism": "利用片段质心距离计算高斯衰减核以调制注意力分数",
-                "formula": "α_{ij} = \\frac{e^{g(h_i,h_j)+\\theta \\cdot D_{ij}}}{\\sum_{k=1}^{N} e^{g(h_i,h_k)+\\theta \\cdot D_{ik}}}, D_{ij} = e^{-\\frac{\\|x_i-x_j\\|^2}{2\\sigma^2}}",
-                "inputs": "片段嵌入及力场弛豫后的三维坐标",
-                "outputs": "上下文向量",
-                "code_symbols": [
-                  "Decoder",
-                  "DecoderLayer"
-                ],
-                "tools": []
-              },
-              {
-                "name": "Fragment Predictor",
-                "mechanism": "预测起始片段以初始化生成过程",
+                "name": "Dynamic Geometry Conditioning",
+                "mechanism": "利用力场弛豫后的3D几何信息指导预测",
                 "formula": "",
-                "inputs": "目标性质",
-                "outputs": "起始片段概率分布",
-                "code_symbols": [],
-                "tools": []
-              },
-              {
-                "name": "Conditional Sampling",
-                "mechanism": "使用高斯混合模型补全缺失的目标性质",
-                "formula": "",
-                "inputs": "部分目标性质",
-                "outputs": "完整条件向量",
+                "inputs": "部分分子结构",
+                "outputs": "弛豫后的3D坐标",
                 "code_symbols": [],
                 "tools": [
-                  "Gaussian Mixture Model"
-                ]
+                  "UFF"
+                ],
+                "is_novel_component": true,
+                "component_role": "encoder"
               }
-            ]
+            ],
+            "assumptions": [],
+            "novelty_basis": []
           }
         ]
       }
@@ -135,189 +178,27 @@
     "E3_benchmark": {
       "ok": true,
       "attempts": 1,
-      "issues": [],
+      "issues": [
+        "warn:no_benchmark"
+      ],
       "fatal": [],
       "n_fields": 1,
       "data": {
-        "benchmarks": [
-          {
-            "name": "Unconditional Generation",
-            "input_form": "向量",
-            "output_form": "SMILES",
-            "n_samples": "N ≈5,000",
-            "scale": "",
-            "modality": "molecular",
-            "research_object": "molecule",
-            "metrics": [
-              {
-                "name": "Wasserstein distance",
-                "unit": "",
-                "direction": "min"
-              },
-              {
-                "name": "Validity",
-                "unit": "%",
-                "direction": "max"
-              },
-              {
-                "name": "Uniqueness",
-                "unit": "%",
-                "direction": "max"
-              },
-              {
-                "name": "Novelty",
-                "unit": "%",
-                "direction": "max"
-              }
-            ]
-          },
-          {
-            "name": "Conditional Generation",
-            "input_form": "向量",
-            "output_form": "SMILES",
-            "n_samples": "30 times per target value",
-            "scale": "",
-            "modality": "molecular",
-            "research_object": "molecule",
-            "metrics": [
-              {
-                "name": "Mean Absolute Error",
-                "unit": "",
-                "direction": "min"
-              },
-              {
-                "name": "R2",
-                "unit": "",
-                "direction": "max"
-              }
-            ]
-          },
-          {
-            "name": "Targeted Generation",
-            "input_form": "向量",
-            "output_form": "SMILES",
-            "n_samples": "N ≈5,000",
-            "scale": "",
-            "modality": "molecular",
-            "research_object": "molecule",
-            "metrics": [
-              {
-                "name": "Hit rate",
-                "unit": "%",
-                "direction": "max"
-              },
-              {
-                "name": "Fold-enrichment",
-                "unit": "x",
-                "direction": "max"
-              }
-            ]
-          }
-        ]
-      }
-    },
-    "E4_values": {
-      "ok": true,
-      "attempts": 1,
-      "issues": [],
-      "fatal": [],
-      "n_fields": 1,
-      "data": {
-        "model_results": []
-      }
-    },
-    "E6_lineage": {
-      "ok": true,
-      "attempts": 1,
-      "issues": [],
-      "fatal": [],
-      "n_fields": 1,
-      "data": {
-        "lineage": [
-          {
-            "from": "MolMiner",
-            "to": "JTNN",
-            "kind": "extends",
-            "evidence": "Our work builds on fragment-based molecular generation approaches such as JTNN [13] and HierVAE [14]"
-          },
-          {
-            "from": "MolMiner",
-            "to": "HierVAE",
-            "kind": "extends",
-            "evidence": "Our work builds on fragment-based molecular generation approaches such as JTNN [13] and HierVAE [14]"
-          },
-          {
-            "from": "MolMiner",
-            "to": "G-SchNet",
-            "kind": "compared_with",
-            "evidence": "Additionally, unlike G-SchNet, we allow the geometry of the partial molecule to remain dynamic during generation"
-          },
-          {
-            "from": "MolMiner",
-            "to": "MoLeR",
-            "kind": "improves",
-            "evidence": "We also explicitly introduce a systematic method to handle fragment symmetries during attachment, an aspect not clearly detailed in earlier "
-          }
-        ]
-      }
-    },
-    "E5_relations": {
-      "ok": true,
-      "attempts": 1,
-      "issues": [],
-      "fatal": [],
-      "n_fields": 1,
-      "data": {
-        "relations": [
-          {
-            "module": "Coarse-graining Procedure",
-            "kind": "tool",
-            "target": "RDKit",
-            "evidence": "identified via RDKit’s Smallest Set of Smallest Rings (SSSR) [20]"
-          },
-          {
-            "module": "Coarse-graining Procedure",
-            "kind": "tool",
-            "target": "RDKit",
-            "evidence": "computed using RDKit’s implementation [20]"
-          },
-          {
-            "module": "Symmetry-aware Attachment Standardization",
-            "kind": "tool",
-            "target": "RDKit",
-            "evidence": "Throughout this work, all SMILES are generated using RDKit to ensure consistency and reproducibility."
-          },
-          {
-            "module": "Geometry-aware Attention Mechanism",
-            "kind": "formula",
-            "target": "Eq. 2",
-            "evidence": "αij = eg(hi,hj)+θ·Dij / PN k=1 eg(hi,hk)+θ·Dik , Dij = e− ∥xi−xj∥2 2σ2 , g(hi, hj) = hih⊤ j √dh , (2)"
-          },
-          {
-            "module": "Order-agnostic Rollout Training",
-            "kind": "formula",
-            "target": "Eq. 3",
-            "evidence": "L(θ | M) = log ER∼U(R(M)) [ |R| Y i=1 pθ (x(R) i |x(R) <i , c) ] ≥ ER∼U(R(M)) [ |R| X i=1 log pθ (x(R) i |x(R) <i , c) ] (3)"
-          },
-          {
-            "module": "Conditioning Vector Completion",
-            "kind": "tool",
-            "target": "Gaussian Mixture Model",
-            "evidence": "Missing properties are sampled from the empirical joint distribution of training properties using a Gaussian Mixture Model (GMM) [29]."
-          }
-        ]
+        "benchmarks": []
       }
     }
   },
   "paper_type": {
     "paper_type": "method",
-    "confidence": 0.0,
-    "method": "rule",
+    "confidence": 0.75,
+    "method": "llm",
+    "margin": 0,
+    "uncertain": true,
     "scores": {
       "method": 0,
       "dataset_benchmark": 0,
       "theory": 0,
-      "survey": 0,
+      "survey": 0.0,
       "system_tool": 0,
       "application": 0
     },
@@ -332,22 +213,12 @@
     "focus": "重点抽算法模块与机理；基准只抽本文实际评测的"
   },
   "slice_meta": {
-    "source": "blocks.jsonl",
-    "n_blocks": 12,
-    "kinds": {
-      "related_work": 1,
-      "method": 6,
-      "benchmark": 5
-    },
-    "lengths": {
-      "paper": 7118,
-      "algorithm": 10713,
-      "benchmark": 16000,
-      "lineage": 11831
-    }
+    "source": "fallback",
+    "n_blocks": 0,
+    "kinds": {}
   },
   "n_ast_symbols": 41,
-  "guide_chars": 2509,
+  "guide_chars": 1438,
   "domain_calibrated": "D1",
   "model_results": {
     "table": 120,
@@ -1557,112 +1428,15 @@
     ]
   },
   "application_hints": {
-    "tools_formulas": [
-      {
-        "module": "Coarse-graining Procedure",
-        "kind": "tool",
-        "target": "RDKit",
-        "evidence": "identified via RDKit’s Smallest Set of Smallest Rings (SSSR) [20]"
-      },
-      {
-        "module": "Coarse-graining Procedure",
-        "kind": "tool",
-        "target": "RDKit",
-        "evidence": "computed using RDKit’s implementation [20]"
-      },
-      {
-        "module": "Symmetry-aware Attachment Standardization",
-        "kind": "tool",
-        "target": "RDKit",
-        "evidence": "Throughout this work, all SMILES are generated using RDKit to ensure consistency and reproducibility."
-      },
-      {
-        "module": "Geometry-aware Attention Mechanism",
-        "kind": "formula",
-        "target": "Eq. 2",
-        "evidence": "αij = eg(hi,hj)+θ·Dij / PN k=1 eg(hi,hk)+θ·Dik , Dij = e− ∥xi−xj∥2 2σ2 , g(hi, hj) = hih⊤ j √dh , (2)"
-      },
-      {
-        "module": "Order-agnostic Rollout Training",
-        "kind": "formula",
-        "target": "Eq. 3",
-        "evidence": "L(θ | M) = log ER∼U(R(M)) [ |R| Y i=1 pθ (x(R) i |x(R) <i , c) ] ≥ ER∼U(R(M)) [ |R| X i=1 log pθ (x(R) i |x(R) <i , c) ] (3)"
-      },
-      {
-        "module": "Conditioning Vector Completion",
-        "kind": "tool",
-        "target": "Gaussian Mixture Model",
-        "evidence": "Missing properties are sampled from the empirical joint distribution of training properties using a Gaussian Mixture Model (GMM) [29]."
-      }
-    ],
+    "tools_formulas": [],
     "note": "节点化留给应用层任务（复现/生成论文时按任务构建）"
   },
   "lineage": {
-    "all": [
-      {
-        "from": "MolMiner",
-        "to": "JTNN",
-        "kind": "extends",
-        "evidence": "Our work builds on fragment-based molecular generation approaches such as JTNN [13] and HierVAE [14]"
-      },
-      {
-        "from": "MolMiner",
-        "to": "HierVAE",
-        "kind": "extends",
-        "evidence": "Our work builds on fragment-based molecular generation approaches such as JTNN [13] and HierVAE [14]"
-      },
-      {
-        "from": "MolMiner",
-        "to": "G-SchNet",
-        "kind": "compared_with",
-        "evidence": "Additionally, unlike G-SchNet, we allow the geometry of the partial molecule to remain dynamic during generation"
-      },
-      {
-        "from": "MolMiner",
-        "to": "MoLeR",
-        "kind": "improves",
-        "evidence": "We also explicitly introduce a systematic method to handle fragment symmetries during attachment, an aspect not clearly detailed in earlier "
-      }
-    ],
-    "subclass_of": [
-      {
-        "from": "MolMiner",
-        "to": "JTNN",
-        "kind": "extends",
-        "evidence": "Our work builds on fragment-based molecular generation approaches such as JTNN [13] and HierVAE [14]"
-      },
-      {
-        "from": "MolMiner",
-        "to": "HierVAE",
-        "kind": "extends",
-        "evidence": "Our work builds on fragment-based molecular generation approaches such as JTNN [13] and HierVAE [14]"
-      },
-      {
-        "from": "MolMiner",
-        "to": "MoLeR",
-        "kind": "improves",
-        "evidence": "We also explicitly introduce a systematic method to handle fragment symmetries during attachment, an aspect not clearly detailed in earlier "
-      }
-    ],
-    "compared_only": [
-      {
-        "from": "MolMiner",
-        "to": "G-SchNet",
-        "kind": "compared_with",
-        "evidence": "Additionally, unlike G-SchNet, we allow the geometry of the partial molecule to remain dynamic during generation"
-      }
-    ]
+    "all": [],
+    "subclass_of": [],
+    "compared_only": []
   },
-  "cross_check": [
-    "unknown_module:Coarse-graining Procedure",
-    "unknown_module:Coarse-graining Procedure",
-    "unknown_module:Symmetry-aware Attachment Standardization",
-    "unknown_module:Geometry-aware Attention Mechanism",
-    "unknown_module:Order-agnostic Rollout Training",
-    "unknown_module:Conditioning Vector Completion"
-  ],
-  "ok": true,
-  "seconds": 174.58,
+  "cross_check": [],
   "paradigm": {
     "ner": {
       "algorithms": [
@@ -2003,172 +1777,148 @@
           "node_id": "algorithm:tabasco"
         },
         {
-          "text": "Fragment-Based",
-          "type": "MethodCandidate",
-          "source": "surface_pattern",
-          "offset": 41,
-          "block": "paper"
+          "text": "Neural Graph Fingerprints",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:neural_graph_fingerprints"
         },
         {
-          "text": "Ortega-Ochoa",
-          "type": "MethodCandidate",
-          "source": "surface_pattern",
-          "offset": 78,
-          "block": "paper"
+          "text": "Circular fingerprints",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:circular_fingerprints"
         },
         {
-          "text": "DK-2800",
-          "type": "MethodCandidate",
-          "source": "surface_pattern",
-          "offset": 208,
-          "block": "paper"
+          "text": "ChemTS",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:chemts"
         },
         {
-          "text": "P2X",
-          "type": "MethodCandidate",
-          "source": "surface_pattern",
-          "offset": 276,
-          "block": "paper"
+          "text": "MCTS",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:mcts"
         },
         {
-          "text": "HTS",
-          "type": "MethodCandidate",
-          "source": "surface_pattern",
-          "offset": 1515,
-          "block": "paper"
+          "text": "RNN",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:rnn"
         },
         {
-          "text": "VAEs",
-          "type": "MethodCandidate",
-          "source": "surface_pattern",
-          "offset": 1930,
-          "block": "paper"
+          "text": "NeVAE",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:nevae"
+        },
+        {
+          "text": "variational autoencoders",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:variational_autoencoders"
+        },
+        {
+          "text": "inductive graph representation learning",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:inductive_graph_representation_learning"
+        },
+        {
+          "text": "Bayesian optimization",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:bayesian_optimization"
+        },
+        {
+          "text": "reinforcement learning",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:reinforcement_learning"
+        },
+        {
+          "text": "MolGAN",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:molgan"
+        },
+        {
+          "text": "GAN",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:gan"
+        },
+        {
+          "text": "ORGAN",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:organ"
+        },
+        {
+          "text": "Likelihood-based methods",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:likelihood_based_methods"
+        },
+        {
+          "text": "GCPN",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:gcpn"
+        },
+        {
+          "text": "graph representation",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:graph_representation"
+        },
+        {
+          "text": "adversarial training",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:adversarial_training"
+        },
+        {
+          "text": "GNN Pre-training Strategy",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:gnn_pre_training_strategy"
         },
         {
           "text": "G-SchNet",
-          "type": "MethodCandidate",
-          "source": "surface_pattern",
-          "offset": 5326,
-          "block": "paper"
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:g_schnet"
         },
         {
-          "text": "RDKit",
-          "type": "MethodCandidate",
-          "source": "surface_pattern",
-          "offset": 260,
-          "block": "algorithm"
+          "text": "3d isomer generation",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:3d_isomer_generation"
         },
         {
-          "text": "SSSR",
-          "type": "MethodCandidate",
-          "source": "surface_pattern",
-          "offset": 300,
-          "block": "algorithm"
+          "text": "SMILES Transformer",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:smiles_transformer"
         },
         {
-          "text": "NLP",
-          "type": "MethodCandidate",
-          "source": "surface_pattern",
-          "offset": 1323,
-          "block": "algorithm"
+          "text": "GraphAF",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:graphaf"
         },
         {
-          "text": "OpenBabel",
-          "type": "MethodCandidate",
-          "source": "surface_pattern",
-          "offset": 3435,
-          "block": "algorithm"
+          "text": "MOLGYM",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:molgym"
         },
         {
-          "text": "GMM",
-          "type": "MethodCandidate",
-          "source": "surface_pattern",
-          "offset": 9737,
-          "block": "algorithm"
-        },
-        {
-          "text": "GDSS",
-          "type": "MethodCandidate",
-          "source": "surface_pattern",
-          "offset": 1189,
-          "block": "benchmark"
-        },
-        {
-          "text": "MARS",
-          "type": "MethodCandidate",
-          "source": "surface_pattern",
-          "offset": 1257,
-          "block": "benchmark"
-        },
-        {
-          "text": "MCMC-based",
-          "type": "MethodCandidate",
-          "source": "surface_pattern",
-          "offset": 1318,
-          "block": "benchmark"
-        },
-        {
-          "text": "TPSA",
-          "type": "MethodCandidate",
-          "source": "surface_pattern",
-          "offset": 1759,
-          "block": "benchmark"
-        },
-        {
-          "text": "InChIKey",
-          "type": "MethodCandidate",
-          "source": "surface_pattern",
-          "offset": 2794,
-          "block": "benchmark"
-        },
-        {
-          "text": "KDE",
-          "type": "MethodCandidate",
-          "source": "surface_pattern",
-          "offset": 5934,
-          "block": "benchmark"
-        },
-        {
-          "text": "MAE",
-          "type": "MethodCandidate",
-          "source": "surface_pattern",
-          "offset": 6704,
-          "block": "benchmark"
-        },
-        {
-          "text": "QED",
-          "type": "MethodCandidate",
-          "source": "surface_pattern",
-          "offset": 8279,
-          "block": "benchmark"
-        },
-        {
-          "text": "MolMiner-logP",
-          "type": "MethodCandidate",
-          "source": "surface_pattern",
-          "offset": 9260,
-          "block": "benchmark"
-        },
-        {
-          "text": "SAS",
-          "type": "MethodCandidate",
-          "source": "surface_pattern",
-          "offset": 9593,
-          "block": "benchmark"
-        },
-        {
-          "text": "FractionCSP3",
-          "type": "MethodCandidate",
-          "source": "surface_pattern",
-          "offset": 9627,
-          "block": "benchmark"
-        },
-        {
-          "text": "HBD",
-          "type": "MethodCandidate",
-          "source": "surface_pattern",
-          "offset": 11651,
-          "block": "benchmark"
+          "text": "graph-based RL methods",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:graph_based_rl_methods"
         }
       ],
       "benchmarks": [
@@ -2591,6 +2341,66 @@
           "type": "Benchmark",
           "source": "graph_catalog",
           "node_id": "benchmark:popc_bilayer"
+        },
+        {
+          "text": "solubility dataset",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:solubility_dataset"
+        },
+        {
+          "text": "chemistry dataset",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:chemistry_dataset"
+        },
+        {
+          "text": "biology dataset",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:biology_dataset"
+        },
+        {
+          "text": "MoleculeNet",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:moleculenet"
+        },
+        {
+          "text": "MOLGYM",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:molgym"
+        },
+        {
+          "text": "ChEMBL20",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:chembl20"
+        },
+        {
+          "text": "SidechainNet",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:sidechainnet"
+        },
+        {
+          "text": "ProteinNet",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:proteinnet"
+        },
+        {
+          "text": "RDKit benchmarking platform",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:rdkit_benchmarking_platform"
+        },
+        {
+          "text": "DW4",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:dw4"
         }
       ],
       "code_symbols": [
@@ -2837,27 +2647,12 @@
       ],
       "metrics": [
         {
-          "text": "diversity",
-          "type": "Metric",
-          "source": "graph_catalog"
-        },
-        {
-          "text": "frag_ratio",
+          "text": "validity",
           "type": "Metric",
           "source": "graph_catalog"
         },
         {
           "text": "novelty",
-          "type": "Metric",
-          "source": "graph_catalog"
-        },
-        {
-          "text": "uniqueness",
-          "type": "Metric",
-          "source": "graph_catalog"
-        },
-        {
-          "text": "validity",
           "type": "Metric",
           "source": "graph_catalog"
         },
@@ -2868,6 +2663,11 @@
         },
         {
           "text": "rmse",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "energy_error",
           "type": "Metric",
           "source": "graph_catalog"
         },
@@ -2902,27 +2702,152 @@
           "source": "graph_catalog"
         },
         {
-          "text": "drug-likeness",
+          "text": "uniqueness",
           "type": "Metric",
           "source": "graph_catalog"
         },
         {
-          "text": "synthetic accessibility",
+          "text": "docking scores",
           "type": "Metric",
           "source": "graph_catalog"
         },
         {
-          "text": "pocket binding mode",
+          "text": "exact reconstruction rate",
           "type": "Metric",
           "source": "graph_catalog"
         },
         {
-          "text": "molecule generation speed",
+          "text": "mean sequence length",
           "type": "Metric",
           "source": "graph_catalog"
         },
         {
-          "text": "penalized logP",
+          "text": "objective value",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "sample efficiency",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "similarity",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "DFT energy",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "DFT force",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "PIC",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "collision count",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "ROC-AUC",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "Valid Rate",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "AUC",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "Molecular Weight",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "SA Score",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "LogP",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "TDC performance",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "Brier score",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "90% interval score",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "speed",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "PB-valid",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "docking",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "scoring",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "ranking",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "screening",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "PoseBusters pass rate",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "Vina Score",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "Vina Min",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "Vina Dock",
           "type": "Metric",
           "source": "graph_catalog"
         },
@@ -2932,12 +2857,37 @@
           "source": "graph_catalog"
         },
         {
-          "text": "PoseBUSTERS",
+          "text": "MW",
           "type": "Metric",
           "source": "graph_catalog"
         },
         {
-          "text": "JSD",
+          "text": "Exact Match",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "BLEU",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "BERTScore",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "rank-1 prediction passed RDKit structura",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "rank-1 prediction passed adversarial LLM",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "reproduced the reference precursors",
           "type": "Metric",
           "source": "graph_catalog"
         },
@@ -2947,12 +2897,12 @@
           "source": "graph_catalog"
         },
         {
-          "text": "Mean Absolute Error",
+          "text": "controllability",
           "type": "Metric",
           "source": "graph_catalog"
         },
         {
-          "text": "R2",
+          "text": "fidelity",
           "type": "Metric",
           "source": "graph_catalog"
         },
@@ -2985,31 +2935,119 @@
           "text": "DHH",
           "type": "Metric",
           "source": "graph_catalog"
+        },
+        {
+          "text": "energy",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "AUPRC",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "AUROC",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "BEDROC20",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "log-likelihood",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "R2",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "MSE",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "fitness",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "inference speed",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "PCC",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "HOMO-LUMO gap",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "test accuracy",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "mean matching score",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "binding affinity",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "drugability",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "TM-Score",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "amino acid recovery",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "improvement percentage",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "root mean square deviation",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "sequence recovery rate",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "molecular properties",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "designability",
+          "type": "Metric",
+          "source": "graph_catalog"
         }
       ],
-      "tables": [
-        {
-          "text": "Table 1",
-          "type": "TableRef",
-          "source": "surface_pattern",
-          "offset": 2895,
-          "block": "benchmark"
-        },
-        {
-          "text": "Table 2",
-          "type": "TableRef",
-          "source": "surface_pattern",
-          "offset": 11127,
-          "block": "benchmark"
-        },
-        {
-          "text": "Table 3",
-          "type": "TableRef",
-          "source": "surface_pattern",
-          "offset": 13019,
-          "block": "benchmark"
-        }
-      ]
+      "tables": []
     },
     "canonicalization": {
       "canonical_map": {
@@ -3032,126 +3070,22 @@
           "score": 1.0
         },
         "code:sample": {
-          "canonical": "sample",
+          "canonical": "_sample",
           "match": "grounded",
           "node_id": "",
-          "score": 1.0
-        },
-        "code:Decoder": {
-          "canonical": "Decoder",
-          "match": "grounded",
-          "node_id": "",
-          "score": 1.0
-        },
-        "code:DecoderLayer": {
-          "canonical": "DecoderLayer",
-          "match": "grounded",
-          "node_id": "",
-          "score": 1.0
-        },
-        "benchmark:Unconditional Generation": {
-          "canonical": "Unconditional Generation",
-          "node_id": "benchmark:unconditional_generation",
-          "match": "exact",
-          "score": 1.0
-        },
-        "benchmark:Conditional Generation": {
-          "canonical": "Conditional Generation",
-          "node_id": "benchmark:conditional_generation",
-          "match": "exact",
-          "score": 1.0
-        },
-        "benchmark:Targeted Generation": {
-          "canonical": "Targeted Generation",
-          "node_id": "benchmark:targeted_generation",
-          "match": "exact",
           "score": 1.0
         }
       },
       "alias_groups": {},
-      "n_exact": 4,
+      "n_exact": 1,
       "n_fuzzy": 0,
       "n_new": 0,
       "n_ungrounded_code": 0
     },
     "relations": {
-      "grounded": [
-        {
-          "from": "MolMiner",
-          "to": "JTNN",
-          "kind": "extends",
-          "char_offset": 4975,
-          "evidence": "Our work builds on fragment-based molecular generation approaches such as JTNN [13] and HierVAE [14]"
-        },
-        {
-          "from": "MolMiner",
-          "to": "HierVAE",
-          "kind": "extends",
-          "char_offset": 4975,
-          "evidence": "Our work builds on fragment-based molecular generation approaches such as JTNN [13] and HierVAE [14]"
-        },
-        {
-          "from": "MolMiner",
-          "to": "G-SchNet",
-          "kind": "compared_with",
-          "char_offset": 5512,
-          "evidence": "Additionally, unlike G-SchNet, we allow the geometry of the partial molecule to remain dynamic during generation"
-        },
-        {
-          "from": "MolMiner",
-          "to": "MoLeR",
-          "kind": "improves",
-          "char_offset": 5675,
-          "evidence": "We also explicitly introduce a systematic method to handle fragment symmetries during attachment, an aspect not clearly "
-        },
-        {
-          "from": "Coarse-graining Procedure",
-          "to": "RDKit",
-          "kind": "tool",
-          "char_offset": 8877,
-          "evidence": "identified via RDKit’s Smallest Set of Smallest Rings (SSSR) [20]"
-        },
-        {
-          "from": "Coarse-graining Procedure",
-          "to": "RDKit",
-          "kind": "tool",
-          "char_offset": 9239,
-          "evidence": "computed using RDKit’s implementation [20]"
-        },
-        {
-          "from": "Symmetry-aware Attachment Standardization",
-          "to": "RDKit",
-          "kind": "tool",
-          "char_offset": 12212,
-          "evidence": "Throughout this work, all SMILES are generated using RDKit to ensure consistency and reproducibility."
-        },
-        {
-          "from": "Conditioning Vector Completion",
-          "to": "Gaussian Mixture Model",
-          "kind": "tool",
-          "char_offset": 18350,
-          "evidence": "Missing properties are sampled from the empirical joint distribution of training properties using a Gaussian Mixture Mod"
-        }
-      ],
-      "ungrounded": [
-        {
-          "from": "Geometry-aware Attention Mechanism",
-          "to": "Eq. 2",
-          "kind": "formula",
-          "char_offset": -1,
-          "evidence": "αij = eg(hi,hj)+θ·Dij / PN k=1 eg(hi,hk)+θ·Dik , Dij = e− ∥xi−xj∥2 2σ2 , g(hi, hj) = hih⊤ j √dh , (2)",
-          "reason": "evidence_not_in_source"
-        },
-        {
-          "from": "Order-agnostic Rollout Training",
-          "to": "Eq. 3",
-          "kind": "formula",
-          "char_offset": -1,
-          "evidence": "L(θ | M) = log ER∼U(R(M)) [ |R| Y i=1 pθ (x(R) i |x(R) <i , c) ] ≥ ER∼U(R(M)) [ |R| X i=1 log pθ (x(R) i |x(R) <i , c) ]",
-          "reason": "evidence_not_in_source"
-        }
-      ],
-      "n": 10
+      "grounded": [],
+      "ungrounded": [],
+      "n": 0
     },
     "modules": {
       "chains": [
@@ -3160,12 +3094,12 @@
           "modules": [
             {
               "step_order": 1,
-              "name": "Fragment Coarse-Graining",
+              "name": "Fragment-Based Molecular Representation",
               "depends_on": "",
               "data_flow": "完整分子结构",
               "inputs": "完整分子结构",
-              "outputs": "片段集合及其原子索引映射",
-              "goal": "分解分子为环和孤立键片段",
+              "outputs": "片段序列及原子索引映射",
+              "goal": "分解分子为环和孤立键片段并编码为Canonical SMILES",
               "formula": "",
               "code_symbols": [],
               "code_aligned": [],
@@ -3173,11 +3107,11 @@
             },
             {
               "step_order": 2,
-              "name": "Symmetry-Aware Attachment Standardization",
-              "depends_on": "Fragment Coarse-Graining",
-              "data_flow": "片段集合及其原子索引映射 -> 片段原子环境及索引映射",
+              "name": "Symmetry-Aware Attachment Modeling",
+              "depends_on": "Fragment-Based Molecular Representation",
+              "data_flow": "片段序列及原子索引映射 -> 片段原子环境及索引映射",
               "inputs": "片段原子环境及索引映射",
-              "outputs": "确定性连接点映射",
+              "outputs": "对称不变的连接配置",
               "goal": "标准化片段连接点以消除对称性歧义",
               "formula": "",
               "code_symbols": [
@@ -3192,13 +3126,13 @@
             },
             {
               "step_order": 3,
-              "name": "Order-Agnostic Rollout",
-              "depends_on": "Symmetry-Aware Attachment Standardization",
-              "data_flow": "确定性连接点映射 -> 当前部分结构及目标性质",
-              "inputs": "当前部分结构及目标性质",
-              "outputs": "片段连接动作序列",
-              "goal": "从开放连接点均匀采样并预测片段连接或终止",
-              "formula": "L(θ | M) = log E_{R∼U(R(M))} [ ∏_{i=1}^{|R|} p_θ(x^{(R)}_i | x^{(R)}_{<i}, c) ]",
+              "name": "Order-agnostic Molecular Rollouts",
+              "depends_on": "Symmetry-Aware Attachment Modeling",
+              "data_flow": "对称不变的连接配置 -> 部分分子结构及目标属性条件",
+              "inputs": "部分分子结构及目标属性条件",
+              "outputs": "完整分子结构",
+              "goal": "从任意有效片段开始进行自回归生长",
+              "formula": "p(M) = E_{R\\sim U(R(M))} [\\prod_{i=1}^{|R|} p_\\theta(x^{(R)}_i | x^{(R)}_{<i}, c)]",
               "code_symbols": [
                 "sample"
               ],
@@ -3209,56 +3143,24 @@
             },
             {
               "step_order": 4,
-              "name": "Geometry-Aware Transformer",
-              "depends_on": "Order-Agnostic Rollout",
-              "data_flow": "片段连接动作序列 -> 片段嵌入及力场弛豫后的三维坐标",
-              "inputs": "片段嵌入及力场弛豫后的三维坐标",
-              "outputs": "上下文向量",
-              "goal": "利用片段质心距离计算高斯衰减核以调制注意力分数",
-              "formula": "α_{ij} = \\frac{e^{g(h_i,h_j)+\\theta \\cdot D_{ij}}}{\\sum_{k=1}^{N} e^{g(h_i,h_k)+\\theta \\cdot D_{ik}}}, D_{ij} = e^{-\\frac{\\|x_i-x_j\\|^2}{2\\sigma^2}}",
-              "code_symbols": [
-                "Decoder",
-                "DecoderLayer"
-              ],
-              "code_aligned": [
-                "Decoder",
-                "DecoderLayer"
-              ],
-              "code_alignment_rate": 1.0
-            },
-            {
-              "step_order": 5,
-              "name": "Fragment Predictor",
-              "depends_on": "Geometry-Aware Transformer",
-              "data_flow": "上下文向量 -> 目标性质",
-              "inputs": "目标性质",
-              "outputs": "起始片段概率分布",
-              "goal": "预测起始片段以初始化生成过程",
-              "formula": "",
-              "code_symbols": [],
-              "code_aligned": [],
-              "code_alignment_rate": 0.0
-            },
-            {
-              "step_order": 6,
-              "name": "Conditional Sampling",
-              "depends_on": "Fragment Predictor",
-              "data_flow": "起始片段概率分布 -> 部分目标性质",
-              "inputs": "部分目标性质",
-              "outputs": "完整条件向量",
-              "goal": "使用高斯混合模型补全缺失的目标性质",
+              "name": "Dynamic Geometry Conditioning",
+              "depends_on": "Order-agnostic Molecular Rollouts",
+              "data_flow": "完整分子结构 -> 部分分子结构",
+              "inputs": "部分分子结构",
+              "outputs": "弛豫后的3D坐标",
+              "goal": "利用力场弛豫后的3D几何信息指导预测",
               "formula": "",
               "code_symbols": [],
               "code_aligned": [],
               "code_alignment_rate": 0.0
             }
           ],
-          "n_modules": 6,
-          "pipeline": "Fragment Coarse-Graining -> Symmetry-Aware Attachment Standardization -> Order-Agnostic Rollout -> Geometry-Aware Transformer -> Fragment Predictor -> Conditional Sampling"
+          "n_modules": 4,
+          "pipeline": "Fragment-Based Molecular Representation -> Symmetry-Aware Attachment Modeling -> Order-agnostic Molecular Rollouts -> Dynamic Geometry Conditioning"
         }
       ],
       "n_algorithms": 1,
-      "n_modules": 6
+      "n_modules": 4
     },
     "slot_audit": {
       "checks": [
@@ -3289,30 +3191,27 @@
         },
         {
           "slot": "Benchmark.input_form",
-          "ok": true,
+          "ok": false,
           "detail": ""
         },
         {
           "slot": "Benchmark.output_form",
-          "ok": true,
-          "detail": ""
-        },
-        {
-          "slot": "Benchmark.model_results",
-          "ok": true,
+          "ok": false,
           "detail": ""
         }
       ],
-      "n_ok": 8,
-      "n_total": 8,
-      "score": 1.0
+      "n_ok": 5,
+      "n_total": 7,
+      "score": 0.714
     },
     "summary": {
-      "n_entity_candidates": 223,
-      "n_grounded_relations": 8,
-      "n_ungrounded_relations": 2,
-      "n_modules_tracked": 6,
-      "slot_score": 1.0
+      "n_entity_candidates": 280,
+      "n_grounded_relations": 0,
+      "n_ungrounded_relations": 0,
+      "n_modules_tracked": 4,
+      "slot_score": 0.714
     }
-  }
+  },
+  "ok": true,
+  "seconds": 61.3
 }

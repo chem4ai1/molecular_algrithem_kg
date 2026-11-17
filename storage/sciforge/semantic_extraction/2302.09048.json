@@ -6,12 +6,12 @@
       "attempts": 1,
       "issues": [],
       "fatal": [],
-      "n_fields": 6,
+      "n_fields": 16,
       "data": {
-        "research_question": "提出MiDi模型，通过混合图与3D去噪扩散，端到端联合生成分子图及其对应的3D原子排列，解决现有方法依赖预定义规则预测化学键导致不可微的问题。",
+        "research_question": "提出MiDi模型，通过混合图与3D去噪扩散联合生成分子图及其对应的3D原子排列，实现端到端可微分生成。",
         "problem_category": "molecule_generation",
         "domain_code": "D1",
-        "why_hard": "现有3D分子生成模型仅训练生成构象而忽略键信息，依赖后续步骤预测2D结构，导致模型非端到端可微，限制了其在下游任务中的优化潜力。",
+        "why_hard": "现有3D分子生成模型仅生成构象，依赖后续步骤预测2D结构，导致非端到端可微分，限制下游任务优化。",
         "relation_hints": {
           "related_papers": [
             "EDM",
@@ -19,8 +19,8 @@
           ],
           "algorithms": [
             "MiDi",
-            "Transformer",
-            "rEGNN"
+            "rEGNN",
+            "EGNN"
           ],
           "benchmarks": [
             "GEOM-DRUGS"
@@ -28,8 +28,54 @@
         },
         "evidence": {
           "research_question": "This work introduces MiDi, a novel diffusion model for jointly generating molecular graphs and their corresponding 3D arrangement of atoms.",
-          "why_hard": "These models rely on a subsequent step that predicts the 2D structure using either interatomic distances [16, 37] or chemical software such "
-        }
+          "why_hard": "As a result, these models are not end-to-end differentiable, which hampers their ability to be fully optimized for various downstream tasks."
+        },
+        "paradigm": "empirical",
+        "evidence_type": "experimental",
+        "evidence_norm": [
+          "stable molecule rate"
+        ],
+        "authors": [
+          "Clément Vignac",
+          "Nagham Osman",
+          "Laura Toni",
+          "Pascal Frossard"
+        ],
+        "abstract": "This work introduces MiDi, a novel diffusion model for jointly generating molecular graphs and their corresponding 3D arrangement of atoms. Unlike existing methods that rely on predefined rules to determine molecular bonds based on the 3D conformation, MiDi offers an end-to-end differentiable approach that streamlines the molecule generation process. Our experimental results demonstrate the effectiveness of this approach. On the challenging GEOM-DRUGS dataset, MiDi generates 92% of stable molecules, against 6% for the previous EDM model that uses interatomic distances for bond prediction, and 40% using EDM followed by an algorithm that directly optimize bond orders for validity. Our code is available at github.com/cvignac/MiDi.",
+        "claims": [
+          {
+            "statement": "MiDi在GEOM-DRUGS上生成92%稳定分子，优于EDM的6%和40%。",
+            "evidence": "On the challenging GEOM-DRUGS dataset, MiDi generates 92% of stable molecules, against 6% for the previous EDM model"
+          },
+          {
+            "statement": "MiDi提供端到端可微分的分子生成方法。",
+            "evidence": "MiDi offers an end-to-end differentiable approach that streamlines the molecule generation process."
+          }
+        ],
+        "references": [],
+        "figures": [],
+        "section_map": [
+          {
+            "section": "Introduction",
+            "claims": [
+              "现有模型无法同时生成2D图和3D构象且不可微分",
+              "MiDi通过混合噪声实现端到端联合生成"
+            ]
+          },
+          {
+            "section": "Related Work",
+            "claims": [
+              "对比同期工作的2D+3D扩散模型差异"
+            ]
+          }
+        ],
+        "gaps": [
+          {
+            "gap_type": "capability",
+            "statement": "现有3D生成模型忽略键信息，依赖后处理预测2D结构，导致非端到端可微分。",
+            "evidence": "current 3D molecule generation are on the contrary only trained to generate conformers, thus ignoring bond information."
+          }
+        ]
       }
     },
     "E2_algorithm": {
@@ -44,47 +90,69 @@
             "name": "MiDi",
             "task_type": "molecule_generation",
             "problems_solved": [
-              "同时生成分子图及其对应的3D原子排列",
-              "解决现有模型依赖预定义规则预测化学键导致非端到端可微的问题",
-              "提高生成稳定分子的比例，特别是在GEOM-DRUGS数据集上"
+              "解决现有3D分子生成模型无法端到端可微地同时生成分子图与3D构象的问题",
+              "克服依赖后处理规则（如OpenBabel）预测化学键导致的稳定性低和可微性差的问题"
             ],
-            "mechanism": "使用混合去噪扩散模型，对3D坐标应用高斯噪声，对图结构（原子类型、形式电荷、键类型）应用离散扩散，通过Transformer架构中的rEGNN层进行去噪。",
-            "why_it_works": "混合噪声模型尊重数据的连续和离散特性，rEGNN层利用非平移不变特征，且模型在零质心子空间中对平移和旋转等变，确保了生成结构的一致性和稳定性。",
+            "mechanism": "采用混合去噪扩散模型，对3D坐标使用高斯噪声，对图结构（原子类型、电荷、键类型）使用离散扩散，通过Transformer网络联合去噪生成一致的分子图与3D构象。",
+            "why_it_works": "混合噪声模型尊重数据的连续与离散特性，且通过调整噪声调度让网络先生成合理的3D构象和键类型，再细化原子类型，从而生成稳定的分子。",
             "applicable_to": [
               "无条件分子生成",
-              "药物发现任务",
-              "口袋条件生成"
+              "药物发现中的口袋条件生成",
+              "需要端到端可微的下游任务"
             ],
             "limitations": [],
             "modules": [
               {
                 "name": "Mixed Noise Schedule",
-                "mechanism": "调整噪声参数以区分不同组件，对原子类型和形式电荷施加比坐标和键类型更快的噪声速率",
+                "mechanism": "为不同数据模态配置差异化噪声注入速率",
                 "formula": "q(zt|zt−1) ∼N(αtzt, σ2t I)",
-                "inputs": "分子图节点特征、边特征、3D坐标",
-                "outputs": "加噪后的分子表示",
+                "inputs": "分子图节点/边特征, 3D坐标",
+                "outputs": "带噪数据 zt",
                 "code_symbols": [],
-                "tools": []
+                "tools": [],
+                "is_novel_component": true,
+                "component_role": "other"
               },
               {
                 "name": "rEGNN Layer",
-                "mechanism": "改进EGNN层，利用非平移不变特征增强去噪网络能力",
+                "mechanism": "利用非平移不变特征增强图消息传递",
                 "formula": "",
-                "inputs": "加噪的分子图与坐标",
-                "outputs": "去噪后的分子图与坐标预测",
+                "inputs": "带噪分子图与坐标",
+                "outputs": "更新后的节点/边特征",
                 "code_symbols": [],
-                "tools": []
+                "tools": [],
+                "is_novel_component": true,
+                "component_role": "encoder"
               },
               {
                 "name": "Transformer Denoising Network",
-                "mechanism": "整合rEGNN层，从噪声输入中预测干净数据",
+                "mechanism": "预测干净数据以逆转扩散轨迹",
                 "formula": "pθ(zt−1|zt) = ∫x pθ(zt−1 | x, zt) dpθ(x|zt)",
-                "inputs": "噪声数据 zt",
-                "outputs": "干净数据 x 的预测",
-                "code_symbols": [],
-                "tools": []
+                "inputs": "带噪数据 zt",
+                "outputs": "预测的干净数据 x 或噪声",
+                "code_symbols": [
+                  "predict"
+                ],
+                "tools": [],
+                "is_novel_component": false,
+                "component_role": "decoder"
+              },
+              {
+                "name": "Joint Sampling Process",
+                "mechanism": "从纯噪声迭代去噪生成分子",
+                "formula": "",
+                "inputs": "纯噪声",
+                "outputs": "生成的分子图与3D坐标",
+                "code_symbols": [
+                  "sample"
+                ],
+                "tools": [],
+                "is_novel_component": false,
+                "component_role": "sampler"
               }
-            ]
+            ],
+            "assumptions": [],
+            "novelty_basis": []
           }
         ]
       }
@@ -98,84 +166,28 @@
       "data": {
         "benchmarks": [
           {
-            "name": "GEOM-Drugs",
-            "input_form": "3D坐标",
+            "name": "GEOM-DRUGS",
+            "input_form": "文本",
             "output_form": "图",
             "n_samples": "",
             "scale": "",
-            "modality": "分子",
+            "modality": "分子图与3D坐标",
             "research_object": "药物分子",
+            "protocol": {
+              "seeds": "",
+              "split": "",
+              "eval_script": "",
+              "epochs": ""
+            },
+            "failure_modes": [],
             "metrics": [
               {
-                "name": "stable molecules",
+                "name": "stable molecules rate",
                 "unit": "%",
-                "direction": "max"
+                "direction": "max",
+                "contribution_link": "验证端到端生成稳定性"
               }
             ]
-          }
-        ]
-      }
-    },
-    "E4_values": {
-      "ok": true,
-      "attempts": 1,
-      "issues": [],
-      "fatal": [],
-      "n_fields": 1,
-      "data": {
-        "model_results": []
-      }
-    },
-    "E6_lineage": {
-      "ok": true,
-      "attempts": 1,
-      "issues": [
-        "warn:evidence_not_verbatim"
-      ],
-      "fatal": [],
-      "n_fields": 1,
-      "data": {
-        "lineage": [
-          {
-            "from": "MiDi",
-            "to": "EDM",
-            "kind": "improves",
-            "evidence": "On the challenging GEOM-DRUGS dataset, MiDi generates 92% of stable molecules, against 6% for the previous EDM model that uses interatomic d"
-          },
-          {
-            "from": "rEGNN",
-            "to": "EGNN",
-            "kind": "improves",
-            "evidence": "the Transformer architecture we propose incorporates a novel rEGNN layer, which improves upon the popular EGNN layers [39] by leveraging fea"
-          },
-          {
-            "from": "MiDi",
-            "to": "Open Babel",
-            "kind": "replaces",
-            "evidence": ""
-          }
-        ]
-      }
-    },
-    "E5_relations": {
-      "ok": true,
-      "attempts": 1,
-      "issues": [],
-      "fatal": [],
-      "n_fields": 1,
-      "data": {
-        "relations": [
-          {
-            "module": "Transformer",
-            "kind": "tool",
-            "target": "rEGNN",
-            "evidence": "the Transformer architecture we propose incorporates a novel rEGNN layer"
-          },
-          {
-            "module": "Transformer",
-            "kind": "tool",
-            "target": "EGNN",
-            "evidence": "improves upon the popular EGNN layers [39]"
           }
         ]
       }
@@ -183,13 +195,15 @@
   },
   "paper_type": {
     "paper_type": "method",
-    "confidence": 0.8,
-    "method": "rule",
+    "confidence": 0.75,
+    "method": "llm",
+    "margin": 1,
+    "uncertain": true,
     "scores": {
-      "method": 4,
+      "method": 0,
       "dataset_benchmark": 1,
       "theory": 0,
-      "survey": 0,
+      "survey": 0.0,
       "system_tool": 0,
       "application": 0
     },
@@ -209,7 +223,7 @@
     "kinds": {}
   },
   "n_ast_symbols": 41,
-  "guide_chars": 2631,
+  "guide_chars": 1535,
   "domain_calibrated": "D1",
   "model_results": {
     "table": 38,
@@ -599,69 +613,15 @@
     ]
   },
   "application_hints": {
-    "tools_formulas": [
-      {
-        "module": "Transformer",
-        "kind": "tool",
-        "target": "rEGNN",
-        "evidence": "the Transformer architecture we propose incorporates a novel rEGNN layer"
-      },
-      {
-        "module": "Transformer",
-        "kind": "tool",
-        "target": "EGNN",
-        "evidence": "improves upon the popular EGNN layers [39]"
-      }
-    ],
+    "tools_formulas": [],
     "note": "节点化留给应用层任务（复现/生成论文时按任务构建）"
   },
   "lineage": {
-    "all": [
-      {
-        "from": "MiDi",
-        "to": "EDM",
-        "kind": "improves",
-        "evidence": "On the challenging GEOM-DRUGS dataset, MiDi generates 92% of stable molecules, against 6% for the previous EDM model that uses interatomic d"
-      },
-      {
-        "from": "rEGNN",
-        "to": "EGNN",
-        "kind": "improves",
-        "evidence": "the Transformer architecture we propose incorporates a novel rEGNN layer, which improves upon the popular EGNN layers [39] by leveraging fea"
-      },
-      {
-        "from": "MiDi",
-        "to": "Open Babel",
-        "kind": "replaces",
-        "evidence": ""
-      }
-    ],
-    "subclass_of": [
-      {
-        "from": "MiDi",
-        "to": "EDM",
-        "kind": "improves",
-        "evidence": "On the challenging GEOM-DRUGS dataset, MiDi generates 92% of stable molecules, against 6% for the previous EDM model that uses interatomic d"
-      },
-      {
-        "from": "rEGNN",
-        "to": "EGNN",
-        "kind": "improves",
-        "evidence": "the Transformer architecture we propose incorporates a novel rEGNN layer, which improves upon the popular EGNN layers [39] by leveraging fea"
-      },
-      {
-        "from": "MiDi",
-        "to": "Open Babel",
-        "kind": "replaces",
-        "evidence": ""
-      }
-    ],
+    "all": [],
+    "subclass_of": [],
     "compared_only": []
   },
-  "cross_check": [
-    "unknown_module:Transformer",
-    "unknown_module:Transformer"
-  ],
+  "cross_check": [],
   "paradigm": {
     "ner": {
       "algorithms": [
@@ -1002,67 +962,148 @@
           "node_id": "algorithm:tabasco"
         },
         {
-          "text": "MiDi",
-          "type": "MethodCandidate",
-          "source": "surface_pattern",
-          "offset": 0,
-          "block": "paper"
+          "text": "Neural Graph Fingerprints",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:neural_graph_fingerprints"
         },
         {
-          "text": "LTS4",
-          "type": "MethodCandidate",
-          "source": "surface_pattern",
-          "offset": 139,
-          "block": "paper"
+          "text": "Circular fingerprints",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:circular_fingerprints"
         },
         {
-          "text": "EPFL",
-          "type": "MethodCandidate",
-          "source": "surface_pattern",
-          "offset": 145,
-          "block": "paper"
+          "text": "ChemTS",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:chemts"
         },
         {
-          "text": "EEE",
-          "type": "MethodCandidate",
-          "source": "surface_pattern",
-          "offset": 175,
-          "block": "paper"
+          "text": "MCTS",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:mcts"
         },
         {
-          "text": "GEOM-DRUGS",
-          "type": "MethodCandidate",
-          "source": "surface_pattern",
-          "offset": 691,
-          "block": "paper"
+          "text": "RNN",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:rnn"
         },
         {
-          "text": "EDM",
-          "type": "MethodCandidate",
-          "source": "surface_pattern",
-          "offset": 779,
-          "block": "paper"
+          "text": "NeVAE",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:nevae"
         },
         {
-          "text": "OpenBabel",
-          "type": "MethodCandidate",
-          "source": "surface_pattern",
-          "offset": 2587,
-          "block": "paper"
+          "text": "variational autoencoders",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:variational_autoencoders"
         },
         {
-          "text": "EGNN",
-          "type": "MethodCandidate",
-          "source": "surface_pattern",
-          "offset": 4575,
-          "block": "paper"
+          "text": "inductive graph representation learning",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:inductive_graph_representation_learning"
         },
         {
-          "text": "GSchNet",
-          "type": "MethodCandidate",
-          "source": "surface_pattern",
-          "offset": 6429,
-          "block": "algorithm"
+          "text": "Bayesian optimization",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:bayesian_optimization"
+        },
+        {
+          "text": "reinforcement learning",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:reinforcement_learning"
+        },
+        {
+          "text": "MolGAN",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:molgan"
+        },
+        {
+          "text": "GAN",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:gan"
+        },
+        {
+          "text": "ORGAN",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:organ"
+        },
+        {
+          "text": "Likelihood-based methods",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:likelihood_based_methods"
+        },
+        {
+          "text": "GCPN",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:gcpn"
+        },
+        {
+          "text": "graph representation",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:graph_representation"
+        },
+        {
+          "text": "adversarial training",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:adversarial_training"
+        },
+        {
+          "text": "GNN Pre-training Strategy",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:gnn_pre_training_strategy"
+        },
+        {
+          "text": "G-SchNet",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:g_schnet"
+        },
+        {
+          "text": "3d isomer generation",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:3d_isomer_generation"
+        },
+        {
+          "text": "SMILES Transformer",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:smiles_transformer"
+        },
+        {
+          "text": "GraphAF",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:graphaf"
+        },
+        {
+          "text": "MOLGYM",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:molgym"
+        },
+        {
+          "text": "graph-based RL methods",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:graph_based_rl_methods"
         }
       ],
       "benchmarks": [
@@ -1485,6 +1526,66 @@
           "type": "Benchmark",
           "source": "graph_catalog",
           "node_id": "benchmark:popc_bilayer"
+        },
+        {
+          "text": "solubility dataset",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:solubility_dataset"
+        },
+        {
+          "text": "chemistry dataset",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:chemistry_dataset"
+        },
+        {
+          "text": "biology dataset",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:biology_dataset"
+        },
+        {
+          "text": "MoleculeNet",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:moleculenet"
+        },
+        {
+          "text": "MOLGYM",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:molgym"
+        },
+        {
+          "text": "ChEMBL20",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:chembl20"
+        },
+        {
+          "text": "SidechainNet",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:sidechainnet"
+        },
+        {
+          "text": "ProteinNet",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:proteinnet"
+        },
+        {
+          "text": "RDKit benchmarking platform",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:rdkit_benchmarking_platform"
+        },
+        {
+          "text": "DW4",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:dw4"
         }
       ],
       "code_symbols": [
@@ -1731,27 +1832,12 @@
       ],
       "metrics": [
         {
-          "text": "diversity",
-          "type": "Metric",
-          "source": "graph_catalog"
-        },
-        {
-          "text": "frag_ratio",
+          "text": "validity",
           "type": "Metric",
           "source": "graph_catalog"
         },
         {
           "text": "novelty",
-          "type": "Metric",
-          "source": "graph_catalog"
-        },
-        {
-          "text": "uniqueness",
-          "type": "Metric",
-          "source": "graph_catalog"
-        },
-        {
-          "text": "validity",
           "type": "Metric",
           "source": "graph_catalog"
         },
@@ -1762,6 +1848,11 @@
         },
         {
           "text": "rmse",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "energy_error",
           "type": "Metric",
           "source": "graph_catalog"
         },
@@ -1796,27 +1887,152 @@
           "source": "graph_catalog"
         },
         {
-          "text": "drug-likeness",
+          "text": "uniqueness",
           "type": "Metric",
           "source": "graph_catalog"
         },
         {
-          "text": "synthetic accessibility",
+          "text": "docking scores",
           "type": "Metric",
           "source": "graph_catalog"
         },
         {
-          "text": "pocket binding mode",
+          "text": "exact reconstruction rate",
           "type": "Metric",
           "source": "graph_catalog"
         },
         {
-          "text": "molecule generation speed",
+          "text": "mean sequence length",
           "type": "Metric",
           "source": "graph_catalog"
         },
         {
-          "text": "penalized logP",
+          "text": "objective value",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "sample efficiency",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "similarity",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "DFT energy",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "DFT force",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "PIC",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "collision count",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "ROC-AUC",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "Valid Rate",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "AUC",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "Molecular Weight",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "SA Score",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "LogP",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "TDC performance",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "Brier score",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "90% interval score",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "speed",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "PB-valid",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "docking",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "scoring",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "ranking",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "screening",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "PoseBusters pass rate",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "Vina Score",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "Vina Min",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "Vina Dock",
           "type": "Metric",
           "source": "graph_catalog"
         },
@@ -1826,12 +2042,37 @@
           "source": "graph_catalog"
         },
         {
-          "text": "PoseBUSTERS",
+          "text": "MW",
           "type": "Metric",
           "source": "graph_catalog"
         },
         {
-          "text": "JSD",
+          "text": "Exact Match",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "BLEU",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "BERTScore",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "rank-1 prediction passed RDKit structura",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "rank-1 prediction passed adversarial LLM",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "reproduced the reference precursors",
           "type": "Metric",
           "source": "graph_catalog"
         },
@@ -1841,12 +2082,12 @@
           "source": "graph_catalog"
         },
         {
-          "text": "Mean Absolute Error",
+          "text": "controllability",
           "type": "Metric",
           "source": "graph_catalog"
         },
         {
-          "text": "R2",
+          "text": "fidelity",
           "type": "Metric",
           "source": "graph_catalog"
         },
@@ -1879,6 +2120,116 @@
           "text": "DHH",
           "type": "Metric",
           "source": "graph_catalog"
+        },
+        {
+          "text": "energy",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "AUPRC",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "AUROC",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "BEDROC20",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "log-likelihood",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "R2",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "MSE",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "fitness",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "inference speed",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "PCC",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "HOMO-LUMO gap",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "test accuracy",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "mean matching score",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "binding affinity",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "drugability",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "TM-Score",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "amino acid recovery",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "improvement percentage",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "root mean square deviation",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "sequence recovery rate",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "molecular properties",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "designability",
+          "type": "Metric",
+          "source": "graph_catalog"
         }
       ],
       "tables": [
@@ -1895,12 +2246,23 @@
       "canonical_map": {
         "algorithm:MiDi": {
           "canonical": "MiDi",
-          "node_id": "",
-          "match": "new",
-          "score": 0.0,
-          "type": "Algorithm"
+          "node_id": "algorithm:midi",
+          "match": "exact",
+          "score": 1.0
         },
-        "benchmark:GEOM-Drugs": {
+        "code:predict": {
+          "canonical": "predict",
+          "match": "grounded",
+          "node_id": "",
+          "score": 1.0
+        },
+        "code:sample": {
+          "canonical": "_sample",
+          "match": "grounded",
+          "node_id": "",
+          "score": 1.0
+        },
+        "benchmark:GEOM-DRUGS": {
           "canonical": "GEOM-Drugs",
           "node_id": "benchmark:kb:geom_drugs",
           "match": "exact",
@@ -1908,53 +2270,15 @@
         }
       },
       "alias_groups": {},
-      "n_exact": 1,
+      "n_exact": 2,
       "n_fuzzy": 0,
-      "n_new": 1,
+      "n_new": 0,
       "n_ungrounded_code": 0
     },
     "relations": {
-      "grounded": [
-        {
-          "from": "MiDi",
-          "to": "EDM",
-          "kind": "improves",
-          "char_offset": 670,
-          "evidence": "On the challenging GEOM-DRUGS dataset, MiDi generates 92% of stable molecules, against 6% for the previous EDM model tha"
-        },
-        {
-          "from": "rEGNN",
-          "to": "EGNN",
-          "kind": "improves",
-          "char_offset": 4463,
-          "evidence": "the Transformer architecture we propose incorporates a novel rEGNN layer, which improves upon the popular EGNN layers [3"
-        },
-        {
-          "from": "Transformer",
-          "to": "rEGNN",
-          "kind": "tool",
-          "char_offset": 4463,
-          "evidence": "the Transformer architecture we propose incorporates a novel rEGNN layer"
-        },
-        {
-          "from": "Transformer",
-          "to": "EGNN",
-          "kind": "tool",
-          "char_offset": 4543,
-          "evidence": "improves upon the popular EGNN layers [39]"
-        }
-      ],
-      "ungrounded": [
-        {
-          "from": "MiDi",
-          "to": "Open Babel",
-          "kind": "replaces",
-          "char_offset": -1,
-          "evidence": "",
-          "reason": "no_verbatim_evidence"
-        }
-      ],
-      "n": 5
+      "grounded": [],
+      "ungrounded": [],
+      "n": 0
     },
     "modules": {
       "chains": [
@@ -1965,10 +2289,10 @@
               "step_order": 1,
               "name": "Mixed Noise Schedule",
               "depends_on": "",
-              "data_flow": "分子图节点特征、边特征、3D坐标",
-              "inputs": "分子图节点特征、边特征、3D坐标",
-              "outputs": "加噪后的分子表示",
-              "goal": "调整噪声参数以区分不同组件，对原子类型和形式电荷施加比坐标和键类型更快的噪声速率",
+              "data_flow": "分子图节点/边特征, 3D坐标",
+              "inputs": "分子图节点/边特征, 3D坐标",
+              "outputs": "带噪数据 zt",
+              "goal": "为不同数据模态配置差异化噪声注入速率",
               "formula": "q(zt|zt−1) ∼N(αtzt, σ2t I)",
               "code_symbols": [],
               "code_aligned": [],
@@ -1978,10 +2302,10 @@
               "step_order": 2,
               "name": "rEGNN Layer",
               "depends_on": "Mixed Noise Schedule",
-              "data_flow": "加噪后的分子表示 -> 加噪的分子图与坐标",
-              "inputs": "加噪的分子图与坐标",
-              "outputs": "去噪后的分子图与坐标预测",
-              "goal": "改进EGNN层，利用非平移不变特征增强去噪网络能力",
+              "data_flow": "带噪数据 zt -> 带噪分子图与坐标",
+              "inputs": "带噪分子图与坐标",
+              "outputs": "更新后的节点/边特征",
+              "goal": "利用非平移不变特征增强图消息传递",
               "formula": "",
               "code_symbols": [],
               "code_aligned": [],
@@ -1991,22 +2315,43 @@
               "step_order": 3,
               "name": "Transformer Denoising Network",
               "depends_on": "rEGNN Layer",
-              "data_flow": "去噪后的分子图与坐标预测 -> 噪声数据 zt",
-              "inputs": "噪声数据 zt",
-              "outputs": "干净数据 x 的预测",
-              "goal": "整合rEGNN层，从噪声输入中预测干净数据",
+              "data_flow": "更新后的节点/边特征 -> 带噪数据 zt",
+              "inputs": "带噪数据 zt",
+              "outputs": "预测的干净数据 x 或噪声",
+              "goal": "预测干净数据以逆转扩散轨迹",
               "formula": "pθ(zt−1|zt) = ∫x pθ(zt−1 | x, zt) dpθ(x|zt)",
-              "code_symbols": [],
-              "code_aligned": [],
-              "code_alignment_rate": 0.0
+              "code_symbols": [
+                "predict"
+              ],
+              "code_aligned": [
+                "predict"
+              ],
+              "code_alignment_rate": 1.0
+            },
+            {
+              "step_order": 4,
+              "name": "Joint Sampling Process",
+              "depends_on": "Transformer Denoising Network",
+              "data_flow": "预测的干净数据 x 或噪声 -> 纯噪声",
+              "inputs": "纯噪声",
+              "outputs": "生成的分子图与3D坐标",
+              "goal": "从纯噪声迭代去噪生成分子",
+              "formula": "",
+              "code_symbols": [
+                "sample"
+              ],
+              "code_aligned": [
+                "sample"
+              ],
+              "code_alignment_rate": 1.0
             }
           ],
-          "n_modules": 3,
-          "pipeline": "Mixed Noise Schedule -> rEGNN Layer -> Transformer Denoising Network"
+          "n_modules": 4,
+          "pipeline": "Mixed Noise Schedule -> rEGNN Layer -> Transformer Denoising Network -> Joint Sampling Process"
         }
       ],
       "n_algorithms": 1,
-      "n_modules": 3
+      "n_modules": 4
     },
     "slot_audit": {
       "checks": [
@@ -2044,25 +2389,20 @@
           "slot": "Benchmark.output_form",
           "ok": true,
           "detail": ""
-        },
-        {
-          "slot": "Benchmark.model_results",
-          "ok": true,
-          "detail": ""
         }
       ],
-      "n_ok": 8,
-      "n_total": 8,
+      "n_ok": 7,
+      "n_total": 7,
       "score": 1.0
     },
     "summary": {
-      "n_entity_candidates": 206,
-      "n_grounded_relations": 4,
-      "n_ungrounded_relations": 1,
-      "n_modules_tracked": 3,
+      "n_entity_candidates": 281,
+      "n_grounded_relations": 0,
+      "n_ungrounded_relations": 0,
+      "n_modules_tracked": 4,
       "slot_score": 1.0
     }
   },
   "ok": true,
-  "seconds": 120.54
+  "seconds": 82.6
 }

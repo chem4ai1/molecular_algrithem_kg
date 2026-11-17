@@ -1,0 +1,40 @@
+{
+  "ok": true,
+  "refine": "R3_assumption",
+  "target": "Assumption",
+  "n_paragraphs": 6,
+  "paragraph_lines": [
+    34,
+    1,
+    572,
+    128,
+    83,
+    383
+  ],
+  "prompt_chars": 7662,
+  "dry_run": false,
+  "items": [
+    {
+      "statement": "分子可被表示为嵌入在3D空间中的图，包含节点特征（原子类型、电荷）和边特征（键类型）。",
+      "scope": "global",
+      "applicability": "MiDi模型的数据表示与生成目标",
+      "evidence": "MiDi represents molecules as graphs embedded in 3D that contain node features (atom types and formal charges, treated to"
+    },
+    {
+      "statement": "3D坐标和图结构（原子类型、键类型、电荷）的噪声调度参数需根据数据集特性进行特定配置。",
+      "scope": "module",
+      "applicability": "噪声调度策略的选择",
+      "evidence": "On the QM9 dataset, we use νr = 2.5, νy = 1.5, νx = νc = 1, while GEOM-DRUGS uses νr = 2."
+    }
+  ],
+  "issues": [],
+  "applied": {
+    "nodes": 2,
+    "relations": 2,
+    "parent": "algorithm:regnn",
+    "ids": [
+      "assumption:2302.09048:1",
+      "assumption:2302.09048:2"
+    ]
+  }
+}

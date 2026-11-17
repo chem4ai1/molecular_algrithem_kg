@@ -153,6 +153,14 @@ def apply_to_graph(graph: Any, spec: RefineSpec, aid: str,
                    items: List[Dict[str, Any]]) -> Dict[str, Any]:
     parents = [n for n in graph.by_type(spec.parent_class)
                if _paper_of(graph, n) == aid]
+    if not parents and spec.parent_class == "Algorithm":
+        # 算法跨论文共享 id（algorithm:molminer 无 paper_id），
+        # 通过 Paper -PROPOSES_METHOD-> Algorithm 反查父节点
+        pid = f"paper:{aid}"
+        if pid in graph.nodes:
+            parents = [graph.nodes[a.target] for a in graph.outgoing(pid, "PROPOSES_METHOD")
+                       if a.target in graph.nodes
+                       and graph.nodes[a.target].type == "Algorithm"]
     if not parents:
         return {"nodes": 0, "relations": 0, "error": "no_parent"}
     parent = parents[0]

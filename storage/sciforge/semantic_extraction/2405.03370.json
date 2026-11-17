@@ -4,28 +4,89 @@
     "E1_paper": {
       "ok": true,
       "attempts": 1,
-      "issues": [],
+      "issues": [
+        "warn:evidence_not_verbatim:why_hard"
+      ],
       "fatal": [],
-      "n_fields": 6,
+      "n_fields": 16,
       "data": {
-        "research_question": "利用AntiFold模型对蛋白质语言模型推荐的抗体变体进行反向折叠评分，以筛选出结合亲和力降低的变体",
+        "research_question": "提出AntiFold，一个基于ESM-IF1微调的抗体特异性逆折叠模型，旨在保持结构完整性的同时优化抗体序列设计。",
         "problem_category": "sequence_design",
         "domain_code": "D6",
-        "why_hard": "蛋白质语言模型推荐的变体中混杂了结合亲和力降低的变体，需要有效的去筛选机制",
+        "why_hard": "现有逆折叠工具在互补决定区（CDR）的序列恢复能力有限，且ProteinMPNN类工具存在链重排或插入等不兼容抗体结构的问题。",
         "relation_hints": {
           "related_papers": [
-            "Hie et al. [2023]"
+            "ESM-IF1",
+            "AbMPNN",
+            "IgMPNN",
+            "ProteinMPNN"
           ],
           "algorithms": [
-            "AbMPNN",
-            "AntiFold"
+            "AntiFold",
+            "AbMPNN"
           ],
           "benchmarks": []
         },
         "evidence": {
-          "research_question": "AntiFold enables de-selection of protein language model-suggested variants. Model rank-scoring performance across 124 variants of 7 antibodi",
-          "why_hard": "Variants are separated into lower (fold-change <0.75), maintained (fold-change 0.75-1.25) and higher (fold-change >1.25) binding affinity gr"
-        }
+          "research_question": "Here, we present AntiFold, an antibody-specific inverse folding model, fine-tuned from ESM-IF1 on solved and predicted antibody structures.",
+          "why_hard": ""
+        },
+        "paradigm": "empirical",
+        "evidence_type": "experimental",
+        "evidence_norm": [
+          "sequence recovery",
+          "structural similarity",
+          "binding affinity correlation"
+        ],
+        "authors": [
+          "Magnus Haraldson Høie",
+          "Alissa Hummer",
+          "Tobias H. Olsen",
+          "Broncio Aguilar-Sanjuan",
+          "Morten Nielsen",
+          "Charlotte M. Deane"
+        ],
+        "abstract": "Summary: The design and optimization of antibodies requires an intricate balance across multiple properties. Protein inverse folding models, capable of generating diverse sequences folding into the same structure, are promising tools for maintaining structural integrity during antibody design. Here, we present AntiFold, an antibody-specific inverse folding model, fine-tuned from ESM-IF1 on solved and predicted antibody structures. AntiFold outperforms existing inverse folding tools on sequence recovery across complementarity-determining regions, with designed sequences showing high structural similarity to their solved counterpart. It additionally achieves stronger correlations when predicting antibody-antigen binding affinity in a zero-shot manner, while performance is augmented further when including antigen information. AntiFold assigns low probabilities to mutations that disrupt antigen binding, synergizing with protein language model residue probabilities, and demonstrates promise for guiding antibody optimization while retaining structure-related properties.",
+        "claims": [
+          {
+            "statement": "AntiFold在互补决定区的序列恢复方面优于现有的逆折叠工具。",
+            "evidence": "AntiFold outperforms existing inverse folding tools on sequence recovery across complementarity-determining regions"
+          },
+          {
+            "statement": "AntiFold在零样本预测抗体-抗原结合亲和力时表现出更强的相关性。",
+            "evidence": "It additionally achieves stronger correlations when predicting antibody-antigen binding affinity in a zero-shot manner"
+          }
+        ],
+        "references": [],
+        "figures": [],
+        "section_map": [
+          {
+            "section": "Abstract",
+            "claims": [
+              "AntiFold在CDR序列恢复上优于现有工具",
+              "AntiFold在零样本亲和力预测中表现更强"
+            ]
+          },
+          {
+            "section": "Introduction",
+            "claims": [
+              "抗体设计需要平衡多种性质",
+              "现有逆折叠工具在CDR区域表现有限"
+            ]
+          }
+        ],
+        "gaps": [
+          {
+            "gap_type": "capability",
+            "statement": "现有逆折叠工具在抗体互补决定区（CDR）的序列恢复能力有限。",
+            "evidence": "However, the sequence recovery of existing tools for the CDR regions has been limited."
+          },
+          {
+            "gap_type": "capability",
+            "statement": "基于ProteinMPNN的工具存在抗体链重排、CDRH3插入或IMGT编号间隙等问题，与抗体结构不兼容。",
+            "evidence": "ProteinMPNN-based tools have features such as the occasional re-ordering of antibody chains or CDRH3 position 112 insert"
+          }
+        ]
       }
     },
     "E2_algorithm": {
@@ -40,88 +101,93 @@
             "name": "AntiFold",
             "task_type": "sequence_design",
             "problems_solved": [
-              "生成保持输入结构折叠的多样化抗体序列",
-              "预测抗体-抗原结合亲和力",
-              "在亲和力成熟实验中筛选高亲和力变体"
+              "现有抗体逆折叠工具在CDR区域序列恢复率低",
+              "ProteinMPNN基工具存在链重排或IMGT编号间隙等结构兼容性问题",
+              "需要在保持骨架结构不变的前提下优化抗体序列"
             ],
-            "mechanism": "基于ESM-IF1预训练权重，在抗体可变域结构上微调，利用逆折叠概率预测序列并评估结合亲和力。",
-            "why_it_works": "预训练权重显著提升了性能，包含预测结构并向单个CDR残基加权掩码进一步提高了性能。",
+            "mechanism": "基于ESM-IF1预训练模型，在已解决和预测的抗体结构上进行微调，采用跨度掩码、随机残基掩码及CDR加权策略提升CDRH3恢复率。",
+            "why_it_works": "利用ESM-IF1的大规模预训练数据基础，结合抗体特异性数据微调，显著提高了CDR区域的氨基酸恢复率和零样本亲和力预测相关性。",
             "applicable_to": [
-              "抗体序列设计",
-              "抗体亲和力成熟",
-              "抗体-抗原结合亲和力预测"
+              "抗体结构约束下的序列设计",
+              "抗体亲和力成熟指导",
+              "维持骨架结构的抗体优化"
             ],
             "limitations": [
-              "主要驱动于对结合丧失变体的去选择",
-              "框架残基的性能在包含抗原链时基本不变"
+              "未直接与IgMPNN比较，因其模型权重和训练数据不可用"
             ],
             "modules": [
               {
-                "name": "ESM-IF1 Initialization",
-                "mechanism": "加载通用蛋白质逆折叠模型权重",
+                "name": "ESM-IF1 Pre-training Base",
+                "mechanism": "加载ESM-IF1预训练权重作为基础模型",
                 "formula": "",
-                "inputs": "ESM-IF1 weights",
-                "outputs": "Initialized model parameters",
-                "code_symbols": [
-                  "CombinedModel"
-                ],
+                "inputs": "ESM-IF1预训练模型",
+                "outputs": "初始化模型参数",
+                "code_symbols": [],
                 "tools": [
                   "ESM-IF1"
-                ]
+                ],
+                "is_novel_component": false,
+                "component_role": "backbone"
               },
               {
-                "name": "Antibody Fine-tuning",
-                "mechanism": "在抗体可变域结构上微调模型",
+                "name": "Antibody-Specific Fine-tuning",
+                "mechanism": "在SAbDab和OAS抗体结构数据上微调模型",
                 "formula": "",
-                "inputs": "Antibody variable domain structures",
-                "outputs": "Fine-tuned AntiFold model",
-                "code_symbols": [
-                  "Encoder",
-                  "Decoder"
-                ],
+                "inputs": "SAbDab复合物, OAS预测结构",
+                "outputs": "微调后的AntiFold模型",
+                "code_symbols": [],
                 "tools": [
                   "SAbDab",
-                  "OAS"
-                ]
+                  "OAS",
+                  "ABodyBuilder2"
+                ],
+                "is_novel_component": true,
+                "component_role": "backbone"
               },
               {
-                "name": "CDR Masking Strategy",
-                "mechanism": "向单个CDR残基加权掩码",
+                "name": "CDR-Weighted Masking Strategy",
+                "mechanism": "应用跨度掩码、随机残基掩码及CDR 3:1加权掩码",
                 "formula": "",
-                "inputs": "Antibody structure with CDR regions",
-                "outputs": "Masked sequence for training",
+                "inputs": "抗体序列",
+                "outputs": "掩码后的训练样本",
                 "code_symbols": [
-                  "get_imgt_mask",
-                  "parse_regions"
+                  "get_imgt_mask"
                 ],
-                "tools": [
-                  "IMGT"
-                ]
+                "tools": [],
+                "is_novel_component": true,
+                "component_role": "other"
               },
               {
-                "name": "Inverse Folding Prediction",
-                "mechanism": "计算序列的逆折叠概率",
+                "name": "Residue Probability Output",
+                "mechanism": "计算每个残基位置的突变容忍度（困惑度）和氨基酸概率",
                 "formula": "",
-                "inputs": "Antibody structure (with/without antigen)",
-                "outputs": "Sequence log-likelihoods",
+                "inputs": "抗体PDB结构",
+                "outputs": "残基概率, 结构容忍度",
                 "code_symbols": [
-                  "predict",
-                  "forward"
+                  "logits_to_seqprobs_list",
+                  "calc_pos_perplexity"
                 ],
-                "tools": []
+                "tools": [],
+                "is_novel_component": false,
+                "component_role": "decoder"
               },
               {
-                "name": "Affinity Ranking",
-                "mechanism": "对变体分数进行排名归一化以评估结合亲和力",
+                "name": "Sequence Sampling Module",
+                "mechanism": "根据指定IMGT区域和温度参数采样新序列",
                 "formula": "",
-                "inputs": "Variant log-likelihoods",
-                "outputs": "Rank-normalized scores",
+                "inputs": "残基概率, 温度参数, 目标区域",
+                "outputs": "设计序列列表",
                 "code_symbols": [
-                  "logits_to_seqprobs_list"
+                  "sample_new_sequences_CDR_HL",
+                  "top_k_top_p_filtering"
                 ],
-                "tools": []
+                "tools": [],
+                "is_novel_component": false,
+                "component_role": "sampler"
               }
-            ]
+            ],
+            "assumptions": [],
+            "novelty_basis": []
           }
         ]
       }
@@ -135,100 +201,82 @@
       "data": {
         "benchmarks": [
           {
-            "name": "D44.1 anti-lysozyme antibody variants",
-            "input_form": "序列",
-            "output_form": "标量",
-            "n_samples": "2209",
+            "name": "AbMPNN test-set",
+            "input_form": "3D坐标",
+            "output_form": "序列",
+            "n_samples": "",
             "scale": "",
-            "modality": "抗体序列",
-            "research_object": "抗体-抗原结合亲和力",
+            "modality": "protein structure",
+            "research_object": "antibody CDR sequence recovery",
+            "protocol": {
+              "seeds": "",
+              "split": "90% concatenated CDR sequence identity cutoff (80/10/10 train/validation/test)",
+              "eval_script": "",
+              "epochs": ""
+            },
+            "failure_modes": [],
             "metrics": [
               {
-                "name": "Spearman’s rank correlation",
-                "unit": "",
-                "direction": "max"
+                "name": "Amino acid recovery",
+                "unit": "%",
+                "direction": "max",
+                "contribution_link": "CDR sequence recover"
+              },
+              {
+                "name": "RMSD",
+                "unit": "Å",
+                "direction": "min",
+                "contribution_link": "structural similarit"
               }
             ]
-          }
-        ]
-      }
-    },
-    "E4_values": {
-      "ok": true,
-      "attempts": 1,
-      "issues": [],
-      "fatal": [],
-      "n_fields": 1,
-      "data": {
-        "model_results": []
-      }
-    },
-    "E6_lineage": {
-      "ok": true,
-      "attempts": 1,
-      "issues": [],
-      "fatal": [],
-      "n_fields": 1,
-      "data": {
-        "lineage": [
-          {
-            "from": "AntiFold",
-            "to": "ESM-IF1",
-            "kind": "extends",
-            "evidence": "AntiFold is initialized with weights from ESM-IF1 [Hsu et al., 2022], then fine-tuned on antibody variable domain structures."
           },
           {
-            "from": "AntiFold",
-            "to": "ESM-IF1",
-            "kind": "improves",
-            "evidence": "AntiFold, fine-tuned from the general protein inverse folding ESM-IF1, achieves state-of-the-art performance on antibody sequence recovery"
+            "name": "Warszawski, anti-lysozyme DMS",
+            "input_form": "序列",
+            "output_form": "标量",
+            "n_samples": "",
+            "scale": "",
+            "modality": "antibody-antigen binding",
+            "research_object": "binding affinity prediction",
+            "protocol": {
+              "seeds": "",
+              "split": "",
+              "eval_script": "",
+              "epochs": ""
+            },
+            "failure_modes": [],
+            "metrics": [
+              {
+                "name": "Spearman's rank correlation",
+                "unit": "",
+                "direction": "max",
+                "contribution_link": "affinity prediction "
+              }
+            ]
           },
           {
-            "from": "AntiFold",
-            "to": "ProteinMPNN",
-            "kind": "compared_with",
-            "evidence": "AntiFold significantly outperformed the other models with a Spearman’s rank correlation of 0.418, versus ESM-IF1 (0.334), AbMPNN (0.322), Pr"
-          },
-          {
-            "from": "AntiFold",
-            "to": "AbMPNN",
-            "kind": "compared_with",
-            "evidence": "AntiFold significantly outperformed the other models with a Spearman’s rank correlation of 0.418, versus ESM-IF1 (0.334), AbMPNN (0.322), Pr"
-          },
-          {
-            "from": "AntiFold",
-            "to": "ESM-2",
-            "kind": "compared_with",
-            "evidence": "As a sequence-only baseline, we included the sequence-based ESM-2 model (650M parameters)."
-          }
-        ]
-      }
-    },
-    "E5_relations": {
-      "ok": true,
-      "attempts": 1,
-      "issues": [],
-      "fatal": [],
-      "n_fields": 1,
-      "data": {
-        "relations": [
-          {
-            "module": "AntiFold",
-            "kind": "tool",
-            "target": "ABodyBuilder2",
-            "evidence": "structures of antibody sequences from OAS [Kovaltsuk et al., 2018, Olsen et al., 2022b] modeled with ABodyBuilder2 [Abanades et al., 2023]"
-          },
-          {
-            "module": "AntiFold",
-            "kind": "tool",
-            "target": "ESM-IF1",
-            "evidence": "AntiFold is initialized with weights from ESM-IF1 [Hsu et al., 2022], then fine-tuned on antibody variable domain structures."
-          },
-          {
-            "module": "AntiFold",
-            "kind": "tool",
-            "target": "ESM-2",
-            "evidence": "As a sequence-only baseline, we included the sequence-based ESM-2 model (650M parameters)."
+            "name": "Hie, 7x Ab affinity-maturation",
+            "input_form": "序列",
+            "output_form": "标量",
+            "n_samples": "",
+            "scale": "",
+            "modality": "antibody-antigen binding",
+            "research_object": "affinity maturation variant ranking",
+            "protocol": {
+              "seeds": "",
+              "split": "",
+              "eval_script": "",
+              "epochs": ""
+            },
+            "failure_modes": [],
+            "metrics": [
+              {
+                "name": "Rank %",
+                "unit": "%",
+                "direction": "max",
+                "contribution_link": "improved variant sep"
+              }
+            ]
           }
         ]
       }
@@ -236,13 +284,15 @@
   },
   "paper_type": {
     "paper_type": "method",
-    "confidence": 0.0,
+    "confidence": 1.0,
     "method": "rule",
+    "margin": 2,
+    "uncertain": false,
     "scores": {
-      "method": 0,
+      "method": 2,
       "dataset_benchmark": 0,
       "theory": 0,
-      "survey": 0,
+      "survey": 0.0,
       "system_tool": 0,
       "application": 0
     },
@@ -257,22 +307,12 @@
     "focus": "重点抽算法模块与机理；基准只抽本文实际评测的"
   },
   "slice_meta": {
-    "source": "blocks.jsonl",
-    "n_blocks": 12,
-    "kinds": {
-      "related_work": 2,
-      "method": 3,
-      "benchmark": 7
-    },
-    "lengths": {
-      "paper": 3118,
-      "algorithm": 15011,
-      "benchmark": 4143,
-      "lineage": 16000
-    }
+    "source": "fallback",
+    "n_blocks": 0,
+    "kinds": {}
   },
   "n_ast_symbols": 41,
-  "guide_chars": 2406,
+  "guide_chars": 1680,
   "domain_calibrated": "D6",
   "model_results": {
     "table": 0,
@@ -281,103 +321,15 @@
     "rows": []
   },
   "application_hints": {
-    "tools_formulas": [
-      {
-        "module": "AntiFold",
-        "kind": "tool",
-        "target": "ABodyBuilder2",
-        "evidence": "structures of antibody sequences from OAS [Kovaltsuk et al., 2018, Olsen et al., 2022b] modeled with ABodyBuilder2 [Abanades et al., 2023]"
-      },
-      {
-        "module": "AntiFold",
-        "kind": "tool",
-        "target": "ESM-IF1",
-        "evidence": "AntiFold is initialized with weights from ESM-IF1 [Hsu et al., 2022], then fine-tuned on antibody variable domain structures."
-      },
-      {
-        "module": "AntiFold",
-        "kind": "tool",
-        "target": "ESM-2",
-        "evidence": "As a sequence-only baseline, we included the sequence-based ESM-2 model (650M parameters)."
-      }
-    ],
+    "tools_formulas": [],
     "note": "节点化留给应用层任务（复现/生成论文时按任务构建）"
   },
   "lineage": {
-    "all": [
-      {
-        "from": "AntiFold",
-        "to": "ESM-IF1",
-        "kind": "extends",
-        "evidence": "AntiFold is initialized with weights from ESM-IF1 [Hsu et al., 2022], then fine-tuned on antibody variable domain structures."
-      },
-      {
-        "from": "AntiFold",
-        "to": "ESM-IF1",
-        "kind": "improves",
-        "evidence": "AntiFold, fine-tuned from the general protein inverse folding ESM-IF1, achieves state-of-the-art performance on antibody sequence recovery"
-      },
-      {
-        "from": "AntiFold",
-        "to": "ProteinMPNN",
-        "kind": "compared_with",
-        "evidence": "AntiFold significantly outperformed the other models with a Spearman’s rank correlation of 0.418, versus ESM-IF1 (0.334), AbMPNN (0.322), Pr"
-      },
-      {
-        "from": "AntiFold",
-        "to": "AbMPNN",
-        "kind": "compared_with",
-        "evidence": "AntiFold significantly outperformed the other models with a Spearman’s rank correlation of 0.418, versus ESM-IF1 (0.334), AbMPNN (0.322), Pr"
-      },
-      {
-        "from": "AntiFold",
-        "to": "ESM-2",
-        "kind": "compared_with",
-        "evidence": "As a sequence-only baseline, we included the sequence-based ESM-2 model (650M parameters)."
-      }
-    ],
-    "subclass_of": [
-      {
-        "from": "AntiFold",
-        "to": "ESM-IF1",
-        "kind": "extends",
-        "evidence": "AntiFold is initialized with weights from ESM-IF1 [Hsu et al., 2022], then fine-tuned on antibody variable domain structures."
-      },
-      {
-        "from": "AntiFold",
-        "to": "ESM-IF1",
-        "kind": "improves",
-        "evidence": "AntiFold, fine-tuned from the general protein inverse folding ESM-IF1, achieves state-of-the-art performance on antibody sequence recovery"
-      }
-    ],
-    "compared_only": [
-      {
-        "from": "AntiFold",
-        "to": "ProteinMPNN",
-        "kind": "compared_with",
-        "evidence": "AntiFold significantly outperformed the other models with a Spearman’s rank correlation of 0.418, versus ESM-IF1 (0.334), AbMPNN (0.322), Pr"
-      },
-      {
-        "from": "AntiFold",
-        "to": "AbMPNN",
-        "kind": "compared_with",
-        "evidence": "AntiFold significantly outperformed the other models with a Spearman’s rank correlation of 0.418, versus ESM-IF1 (0.334), AbMPNN (0.322), Pr"
-      },
-      {
-        "from": "AntiFold",
-        "to": "ESM-2",
-        "kind": "compared_with",
-        "evidence": "As a sequence-only baseline, we included the sequence-based ESM-2 model (650M parameters)."
-      }
-    ]
+    "all": [],
+    "subclass_of": [],
+    "compared_only": []
   },
-  "cross_check": [
-    "unknown_module:AntiFold",
-    "unknown_module:AntiFold",
-    "unknown_module:AntiFold"
-  ],
-  "ok": true,
-  "seconds": 146.66,
+  "cross_check": [],
   "paradigm": {
     "ner": {
       "algorithms": [
@@ -718,172 +670,148 @@
           "node_id": "algorithm:tabasco"
         },
         {
-          "text": "Mann-Whitney",
-          "type": "MethodCandidate",
-          "source": "surface_pattern",
-          "offset": 726,
-          "block": "paper"
+          "text": "Neural Graph Fingerprints",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:neural_graph_fingerprints"
         },
         {
-          "text": "CDRH3",
-          "type": "MethodCandidate",
-          "source": "surface_pattern",
-          "offset": 2976,
-          "block": "paper"
+          "text": "Circular fingerprints",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:circular_fingerprints"
         },
         {
-          "text": "CDR3",
-          "type": "MethodCandidate",
-          "source": "surface_pattern",
-          "offset": 3069,
-          "block": "paper"
+          "text": "ChemTS",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:chemts"
         },
         {
-          "text": "IMGT",
-          "type": "MethodCandidate",
-          "source": "surface_pattern",
-          "offset": 3097,
-          "block": "paper"
+          "text": "MCTS",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:mcts"
         },
         {
-          "text": "SAbDab",
-          "type": "MethodCandidate",
-          "source": "surface_pattern",
-          "offset": 146,
-          "block": "algorithm"
+          "text": "RNN",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:rnn"
         },
         {
-          "text": "OAS",
-          "type": "MethodCandidate",
-          "source": "surface_pattern",
-          "offset": 241,
-          "block": "algorithm"
+          "text": "NeVAE",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:nevae"
         },
         {
-          "text": "ABodyBuilder2",
-          "type": "MethodCandidate",
-          "source": "surface_pattern",
-          "offset": 304,
-          "block": "algorithm"
+          "text": "variational autoencoders",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:variational_autoencoders"
         },
         {
-          "text": "CDRs",
-          "type": "MethodCandidate",
-          "source": "surface_pattern",
-          "offset": 482,
-          "block": "algorithm"
+          "text": "inductive graph representation learning",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:inductive_graph_representation_learning"
         },
         {
-          "text": "PDB",
-          "type": "MethodCandidate",
-          "source": "surface_pattern",
-          "offset": 878,
-          "block": "algorithm"
+          "text": "Bayesian optimization",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:bayesian_optimization"
         },
         {
-          "text": "CDRL1",
-          "type": "MethodCandidate",
-          "source": "surface_pattern",
-          "offset": 1020,
-          "block": "algorithm"
+          "text": "reinforcement learning",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:reinforcement_learning"
         },
         {
-          "text": "CDRL2",
-          "type": "MethodCandidate",
-          "source": "surface_pattern",
-          "offset": 1026,
-          "block": "algorithm"
+          "text": "MolGAN",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:molgan"
         },
         {
-          "text": "CDRL3",
-          "type": "MethodCandidate",
-          "source": "surface_pattern",
-          "offset": 1032,
-          "block": "algorithm"
+          "text": "GAN",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:gan"
         },
         {
-          "text": "CDRH1",
-          "type": "MethodCandidate",
-          "source": "surface_pattern",
-          "offset": 1038,
-          "block": "algorithm"
+          "text": "ORGAN",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:organ"
         },
         {
-          "text": "CDRH2",
-          "type": "MethodCandidate",
-          "source": "surface_pattern",
-          "offset": 1044,
-          "block": "algorithm"
+          "text": "Likelihood-based methods",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:likelihood_based_methods"
         },
         {
-          "text": "CDR",
-          "type": "MethodCandidate",
-          "source": "surface_pattern",
-          "offset": 1056,
-          "block": "algorithm"
+          "text": "GCPN",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:gcpn"
         },
         {
-          "text": "IF1",
-          "type": "MethodCandidate",
-          "source": "surface_pattern",
-          "offset": 1126,
-          "block": "algorithm"
+          "text": "graph representation",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:graph_representation"
         },
         {
-          "text": "RMSD",
-          "type": "MethodCandidate",
-          "source": "surface_pattern",
-          "offset": 1454,
-          "block": "algorithm"
+          "text": "adversarial training",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:adversarial_training"
         },
         {
-          "text": "ESM-2",
-          "type": "MethodCandidate",
-          "source": "surface_pattern",
-          "offset": 1984,
-          "block": "algorithm"
+          "text": "GNN Pre-training Strategy",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:gnn_pre_training_strategy"
         },
         {
-          "text": "CDR2",
-          "type": "MethodCandidate",
-          "source": "surface_pattern",
-          "offset": 2535,
-          "block": "algorithm"
+          "text": "G-SchNet",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:g_schnet"
         },
         {
-          "text": "Sino-Danish",
-          "type": "MethodCandidate",
-          "source": "surface_pattern",
-          "offset": 5190,
-          "block": "algorithm"
+          "text": "3d isomer generation",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:3d_isomer_generation"
         },
         {
-          "text": "GlaxoSmithKline",
-          "type": "MethodCandidate",
-          "source": "surface_pattern",
-          "offset": 5417,
-          "block": "algorithm"
+          "text": "SMILES Transformer",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:smiles_transformer"
         },
         {
-          "text": "ImmuneBuilder",
-          "type": "MethodCandidate",
-          "source": "surface_pattern",
-          "offset": 5527,
-          "block": "algorithm"
+          "text": "GraphAF",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:graphaf"
         },
         {
-          "text": "Deep-Learning",
-          "type": "MethodCandidate",
-          "source": "surface_pattern",
-          "offset": 5542,
-          "block": "algorithm"
+          "text": "MOLGYM",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:molgym"
         },
         {
-          "text": "ISSN",
-          "type": "MethodCandidate",
-          "source": "surface_pattern",
-          "offset": 5653,
-          "block": "algorithm"
+          "text": "graph-based RL methods",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:graph_based_rl_methods"
         }
       ],
       "benchmarks": [
@@ -1306,6 +1234,66 @@
           "type": "Benchmark",
           "source": "graph_catalog",
           "node_id": "benchmark:popc_bilayer"
+        },
+        {
+          "text": "solubility dataset",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:solubility_dataset"
+        },
+        {
+          "text": "chemistry dataset",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:chemistry_dataset"
+        },
+        {
+          "text": "biology dataset",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:biology_dataset"
+        },
+        {
+          "text": "MoleculeNet",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:moleculenet"
+        },
+        {
+          "text": "MOLGYM",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:molgym"
+        },
+        {
+          "text": "ChEMBL20",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:chembl20"
+        },
+        {
+          "text": "SidechainNet",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:sidechainnet"
+        },
+        {
+          "text": "ProteinNet",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:proteinnet"
+        },
+        {
+          "text": "RDKit benchmarking platform",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:rdkit_benchmarking_platform"
+        },
+        {
+          "text": "DW4",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:dw4"
         }
       ],
       "code_symbols": [
@@ -1552,27 +1540,12 @@
       ],
       "metrics": [
         {
-          "text": "diversity",
-          "type": "Metric",
-          "source": "graph_catalog"
-        },
-        {
-          "text": "frag_ratio",
+          "text": "validity",
           "type": "Metric",
           "source": "graph_catalog"
         },
         {
           "text": "novelty",
-          "type": "Metric",
-          "source": "graph_catalog"
-        },
-        {
-          "text": "uniqueness",
-          "type": "Metric",
-          "source": "graph_catalog"
-        },
-        {
-          "text": "validity",
           "type": "Metric",
           "source": "graph_catalog"
         },
@@ -1583,6 +1556,11 @@
         },
         {
           "text": "rmse",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "energy_error",
           "type": "Metric",
           "source": "graph_catalog"
         },
@@ -1617,27 +1595,152 @@
           "source": "graph_catalog"
         },
         {
-          "text": "drug-likeness",
+          "text": "uniqueness",
           "type": "Metric",
           "source": "graph_catalog"
         },
         {
-          "text": "synthetic accessibility",
+          "text": "docking scores",
           "type": "Metric",
           "source": "graph_catalog"
         },
         {
-          "text": "pocket binding mode",
+          "text": "exact reconstruction rate",
           "type": "Metric",
           "source": "graph_catalog"
         },
         {
-          "text": "molecule generation speed",
+          "text": "mean sequence length",
           "type": "Metric",
           "source": "graph_catalog"
         },
         {
-          "text": "penalized logP",
+          "text": "objective value",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "sample efficiency",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "similarity",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "DFT energy",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "DFT force",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "PIC",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "collision count",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "ROC-AUC",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "Valid Rate",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "AUC",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "Molecular Weight",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "SA Score",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "LogP",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "TDC performance",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "Brier score",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "90% interval score",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "speed",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "PB-valid",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "docking",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "scoring",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "ranking",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "screening",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "PoseBusters pass rate",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "Vina Score",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "Vina Min",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "Vina Dock",
           "type": "Metric",
           "source": "graph_catalog"
         },
@@ -1647,12 +1750,37 @@
           "source": "graph_catalog"
         },
         {
-          "text": "PoseBUSTERS",
+          "text": "MW",
           "type": "Metric",
           "source": "graph_catalog"
         },
         {
-          "text": "JSD",
+          "text": "Exact Match",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "BLEU",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "BERTScore",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "rank-1 prediction passed RDKit structura",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "rank-1 prediction passed adversarial LLM",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "reproduced the reference precursors",
           "type": "Metric",
           "source": "graph_catalog"
         },
@@ -1662,12 +1790,12 @@
           "source": "graph_catalog"
         },
         {
-          "text": "Mean Absolute Error",
+          "text": "controllability",
           "type": "Metric",
           "source": "graph_catalog"
         },
         {
-          "text": "R2",
+          "text": "fidelity",
           "type": "Metric",
           "source": "graph_catalog"
         },
@@ -1700,9 +1828,127 @@
           "text": "DHH",
           "type": "Metric",
           "source": "graph_catalog"
+        },
+        {
+          "text": "energy",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "AUPRC",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "AUROC",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "BEDROC20",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "log-likelihood",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "R2",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "MSE",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "fitness",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "inference speed",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "PCC",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "HOMO-LUMO gap",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "test accuracy",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "mean matching score",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "binding affinity",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "drugability",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "TM-Score",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "amino acid recovery",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "improvement percentage",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "root mean square deviation",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "sequence recovery rate",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "molecular properties",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "designability",
+          "type": "Metric",
+          "source": "graph_catalog"
         }
       ],
-      "tables": []
+      "tables": [
+        {
+          "text": "Table 1",
+          "type": "TableRef",
+          "source": "surface_pattern",
+          "offset": 8547,
+          "block": "algorithm"
+        }
+      ]
     },
     "canonicalization": {
       "canonical_map": {
@@ -1712,44 +1958,8 @@
           "match": "exact",
           "score": 1.0
         },
-        "code:CombinedModel": {
-          "canonical": "CombinedModel",
-          "match": "grounded",
-          "node_id": "",
-          "score": 1.0
-        },
-        "code:Encoder": {
-          "canonical": "Encoder",
-          "match": "grounded",
-          "node_id": "",
-          "score": 1.0
-        },
-        "code:Decoder": {
-          "canonical": "Decoder",
-          "match": "grounded",
-          "node_id": "",
-          "score": 1.0
-        },
         "code:get_imgt_mask": {
           "canonical": "get_imgt_mask",
-          "match": "grounded",
-          "node_id": "",
-          "score": 1.0
-        },
-        "code:parse_regions": {
-          "canonical": "parse_regions",
-          "match": "grounded",
-          "node_id": "",
-          "score": 1.0
-        },
-        "code:predict": {
-          "canonical": "predict",
-          "match": "grounded",
-          "node_id": "",
-          "score": 1.0
-        },
-        "code:forward": {
-          "canonical": "forward",
           "match": "grounded",
           "node_id": "",
           "score": 1.0
@@ -1760,80 +1970,57 @@
           "node_id": "",
           "score": 1.0
         },
-        "benchmark:D44.1 anti-lysozyme antibody variants": {
-          "canonical": "D44.1 anti-lysozyme antibody variants",
-          "node_id": "benchmark:d44_1_anti_lysozyme_antibody_variants",
-          "match": "exact",
+        "code:calc_pos_perplexity": {
+          "canonical": "calc_pos_perplexity",
+          "match": "grounded",
+          "node_id": "",
           "score": 1.0
+        },
+        "code:sample_new_sequences_CDR_HL": {
+          "canonical": "sample_new_sequences_CDR_HL",
+          "match": "grounded",
+          "node_id": "",
+          "score": 1.0
+        },
+        "code:top_k_top_p_filtering": {
+          "canonical": "top_k_top_p_filtering",
+          "match": "grounded",
+          "node_id": "",
+          "score": 1.0
+        },
+        "benchmark:AbMPNN test-set": {
+          "canonical": "test set",
+          "node_id": "benchmark:test_set",
+          "match": "fuzzy",
+          "score": 0.909
+        },
+        "benchmark:Warszawski, anti-lysozyme DMS": {
+          "canonical": "Warszawski, anti-lysozyme DMS",
+          "node_id": "",
+          "match": "new",
+          "score": 0.0,
+          "type": "Benchmark"
+        },
+        "benchmark:Hie, 7x Ab affinity-maturation": {
+          "canonical": "Hie, 7x Ab affinity-maturation",
+          "node_id": "",
+          "match": "new",
+          "score": 0.0,
+          "type": "Benchmark"
         }
       },
-      "alias_groups": {},
-      "n_exact": 2,
-      "n_fuzzy": 0,
-      "n_new": 0,
+      "alias_groups": {
+        "AbMPNN test-set": "test set"
+      },
+      "n_exact": 1,
+      "n_fuzzy": 1,
+      "n_new": 2,
       "n_ungrounded_code": 0
     },
     "relations": {
-      "grounded": [
-        {
-          "from": "AntiFold",
-          "to": "ESM-IF1",
-          "kind": "extends",
-          "char_offset": 36674,
-          "evidence": "AntiFold is initialized with weights from ESM-IF1 [Hsu et al., 2022], then fine-tuned on antibody variable domain struct"
-        },
-        {
-          "from": "AntiFold",
-          "to": "ESM-IF1",
-          "kind": "improves",
-          "char_offset": 13642,
-          "evidence": "AntiFold, fine-tuned from the general protein inverse folding ESM-IF1, achieves state-of-the-art performance on antibody"
-        },
-        {
-          "from": "AntiFold",
-          "to": "ProteinMPNN",
-          "kind": "compared_with",
-          "char_offset": 11704,
-          "evidence": "AntiFold significantly outperformed the other models with a Spearman’s rank correlation of 0.418, versus ESM-IF1 (0.334)"
-        },
-        {
-          "from": "AntiFold",
-          "to": "AbMPNN",
-          "kind": "compared_with",
-          "char_offset": 11704,
-          "evidence": "AntiFold significantly outperformed the other models with a Spearman’s rank correlation of 0.418, versus ESM-IF1 (0.334)"
-        },
-        {
-          "from": "AntiFold",
-          "to": "ESM-2",
-          "kind": "compared_with",
-          "char_offset": 11613,
-          "evidence": "As a sequence-only baseline, we included the sequence-based ESM-2 model (650M parameters)."
-        },
-        {
-          "from": "AntiFold",
-          "to": "ABodyBuilder2",
-          "kind": "tool",
-          "char_offset": 36286,
-          "evidence": "structures of antibody sequences from OAS [Kovaltsuk et al., 2018, Olsen et al., 2022b] modeled with ABodyBuilder2 [Aban"
-        },
-        {
-          "from": "AntiFold",
-          "to": "ESM-IF1",
-          "kind": "tool",
-          "char_offset": 36674,
-          "evidence": "AntiFold is initialized with weights from ESM-IF1 [Hsu et al., 2022], then fine-tuned on antibody variable domain struct"
-        },
-        {
-          "from": "AntiFold",
-          "to": "ESM-2",
-          "kind": "tool",
-          "char_offset": 11613,
-          "evidence": "As a sequence-only baseline, we included the sequence-based ESM-2 model (650M parameters)."
-        }
-      ],
+      "grounded": [],
       "ungrounded": [],
-      "n": 8
+      "n": 0
     },
     "modules": {
       "chains": [
@@ -1842,98 +2029,88 @@
           "modules": [
             {
               "step_order": 1,
-              "name": "ESM-IF1 Initialization",
+              "name": "ESM-IF1 Pre-training Base",
               "depends_on": "",
-              "data_flow": "ESM-IF1 weights",
-              "inputs": "ESM-IF1 weights",
-              "outputs": "Initialized model parameters",
-              "goal": "加载通用蛋白质逆折叠模型权重",
+              "data_flow": "ESM-IF1预训练模型",
+              "inputs": "ESM-IF1预训练模型",
+              "outputs": "初始化模型参数",
+              "goal": "加载ESM-IF1预训练权重作为基础模型",
               "formula": "",
-              "code_symbols": [
-                "CombinedModel"
-              ],
-              "code_aligned": [
-                "CombinedModel"
-              ],
-              "code_alignment_rate": 1.0
+              "code_symbols": [],
+              "code_aligned": [],
+              "code_alignment_rate": 0.0
             },
             {
               "step_order": 2,
-              "name": "Antibody Fine-tuning",
-              "depends_on": "ESM-IF1 Initialization",
-              "data_flow": "Initialized model parameters -> Antibody variable domain structures",
-              "inputs": "Antibody variable domain structures",
-              "outputs": "Fine-tuned AntiFold model",
-              "goal": "在抗体可变域结构上微调模型",
+              "name": "Antibody-Specific Fine-tuning",
+              "depends_on": "ESM-IF1 Pre-training Base",
+              "data_flow": "初始化模型参数 -> SAbDab复合物, OAS预测结构",
+              "inputs": "SAbDab复合物, OAS预测结构",
+              "outputs": "微调后的AntiFold模型",
+              "goal": "在SAbDab和OAS抗体结构数据上微调模型",
               "formula": "",
-              "code_symbols": [
-                "Encoder",
-                "Decoder"
-              ],
-              "code_aligned": [
-                "Encoder",
-                "Decoder"
-              ],
-              "code_alignment_rate": 1.0
+              "code_symbols": [],
+              "code_aligned": [],
+              "code_alignment_rate": 0.0
             },
             {
               "step_order": 3,
-              "name": "CDR Masking Strategy",
-              "depends_on": "Antibody Fine-tuning",
-              "data_flow": "Fine-tuned AntiFold model -> Antibody structure with CDR regions",
-              "inputs": "Antibody structure with CDR regions",
-              "outputs": "Masked sequence for training",
-              "goal": "向单个CDR残基加权掩码",
+              "name": "CDR-Weighted Masking Strategy",
+              "depends_on": "Antibody-Specific Fine-tuning",
+              "data_flow": "微调后的AntiFold模型 -> 抗体序列",
+              "inputs": "抗体序列",
+              "outputs": "掩码后的训练样本",
+              "goal": "应用跨度掩码、随机残基掩码及CDR 3:1加权掩码",
               "formula": "",
               "code_symbols": [
-                "get_imgt_mask",
-                "parse_regions"
+                "get_imgt_mask"
               ],
               "code_aligned": [
-                "get_imgt_mask",
-                "parse_regions"
+                "get_imgt_mask"
               ],
               "code_alignment_rate": 1.0
             },
             {
               "step_order": 4,
-              "name": "Inverse Folding Prediction",
-              "depends_on": "CDR Masking Strategy",
-              "data_flow": "Masked sequence for training -> Antibody structure (with/without antigen)",
-              "inputs": "Antibody structure (with/without antigen)",
-              "outputs": "Sequence log-likelihoods",
-              "goal": "计算序列的逆折叠概率",
+              "name": "Residue Probability Output",
+              "depends_on": "CDR-Weighted Masking Strategy",
+              "data_flow": "掩码后的训练样本 -> 抗体PDB结构",
+              "inputs": "抗体PDB结构",
+              "outputs": "残基概率, 结构容忍度",
+              "goal": "计算每个残基位置的突变容忍度（困惑度）和氨基酸概率",
               "formula": "",
               "code_symbols": [
-                "predict",
-                "forward"
+                "logits_to_seqprobs_list",
+                "calc_pos_perplexity"
               ],
               "code_aligned": [
-                "predict",
-                "forward"
+                "logits_to_seqprobs_list",
+                "calc_pos_perplexity"
               ],
               "code_alignment_rate": 1.0
             },
             {
               "step_order": 5,
-              "name": "Affinity Ranking",
-              "depends_on": "Inverse Folding Prediction",
-              "data_flow": "Sequence log-likelihoods -> Variant log-likelihoods",
-              "inputs": "Variant log-likelihoods",
-              "outputs": "Rank-normalized scores",
-              "goal": "对变体分数进行排名归一化以评估结合亲和力",
+              "name": "Sequence Sampling Module",
+              "depends_on": "Residue Probability Output",
+              "data_flow": "残基概率, 结构容忍度 -> 残基概率, 温度参数, 目标区域",
+              "inputs": "残基概率, 温度参数, 目标区域",
+              "outputs": "设计序列列表",
+              "goal": "根据指定IMGT区域和温度参数采样新序列",
               "formula": "",
               "code_symbols": [
-                "logits_to_seqprobs_list"
+                "sample_new_sequences_CDR_HL",
+                "top_k_top_p_filtering"
               ],
               "code_aligned": [
-                "logits_to_seqprobs_list"
+                "sample_new_sequences_CDR_HL",
+                "top_k_top_p_filtering"
               ],
               "code_alignment_rate": 1.0
             }
           ],
           "n_modules": 5,
-          "pipeline": "ESM-IF1 Initialization -> Antibody Fine-tuning -> CDR Masking Strategy -> Inverse Folding Prediction -> Affinity Ranking"
+          "pipeline": "ESM-IF1 Pre-training Base -> Antibody-Specific Fine-tuning -> CDR-Weighted Masking Strategy -> Residue Probability Output -> Sequence Sampling Module"
         }
       ],
       "n_algorithms": 1,
@@ -1975,23 +2152,20 @@
           "slot": "Benchmark.output_form",
           "ok": true,
           "detail": ""
-        },
-        {
-          "slot": "Benchmark.model_results",
-          "ok": false,
-          "detail": ""
         }
       ],
       "n_ok": 7,
-      "n_total": 8,
-      "score": 0.875
+      "n_total": 7,
+      "score": 1.0
     },
     "summary": {
-      "n_entity_candidates": 220,
-      "n_grounded_relations": 8,
+      "n_entity_candidates": 281,
+      "n_grounded_relations": 0,
       "n_ungrounded_relations": 0,
       "n_modules_tracked": 5,
-      "slot_score": 0.875
+      "slot_score": 1.0
     }
-  }
+  },
+  "ok": true,
+  "seconds": 98.72
 }

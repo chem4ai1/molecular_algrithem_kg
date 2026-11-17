@@ -1,0 +1,48 @@
+{
+  "ok": true,
+  "refine": "R5_citation",
+  "target": "CitedPaper",
+  "n_paragraphs": 8,
+  "paragraph_lines": [
+    128,
+    383,
+    572,
+    1,
+    83,
+    34,
+    255,
+    459
+  ],
+  "prompt_chars": 10242,
+  "dry_run": false,
+  "items": [
+    {
+      "cite_key": "39",
+      "title": "Equivariant Graph Neural Networks",
+      "authors": "Satoru Matsunaga, et al.",
+      "year": "2021",
+      "venue": "ICML",
+      "context_quote": "As a result, many generative models for molecules [15, 19, 20, 40] use the more affordable EGNN layers [39].",
+      "context_ok": "unknown"
+    },
+    {
+      "cite_key": "11",
+      "title": "SchNet: A continuous-filter convolutional neural network for modeling quantum interactions",
+      "authors": "Kristof Schütt, et al.",
+      "year": "2017",
+      "venue": "NeurIPS",
+      "context_quote": "These models rely on a subsequent step that predicts the 2D structure using either interatomic distances [16, 37] or che",
+      "context_ok": "unknown"
+    }
+  ],
+  "issues": [],
+  "applied": {
+    "nodes": 2,
+    "relations": 2,
+    "parent": "paper:2302.09048",
+    "ids": [
+      "cited:2302.09048:1",
+      "cited:2302.09048:2"
+    ]
+  }
+}

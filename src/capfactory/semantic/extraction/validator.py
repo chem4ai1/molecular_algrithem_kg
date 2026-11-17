@@ -81,6 +81,32 @@ def _e1(data, source_text, issues):
     ev = data.get("evidence") if isinstance(data.get("evidence"), dict) else {}
     out["evidence"] = {k: _str(ev.get(k))[:140] for k in
                        ("research_question", "why_hard")}
+    # 可复用输入 / 写作方法论字段（供阶段02-12 检索）
+    out["paradigm"] = _str(data.get("paradigm"))
+    out["evidence_type"] = _str(data.get("evidence_type"))
+    out["evidence_norm"] = _list(data.get("evidence_norm"))[:8]
+    out["authors"] = _list(data.get("authors"))[:12]
+    out["abstract"] = _str(data.get("abstract"))[:2000]
+    out["claims"] = [{"statement": _str(c.get("statement"))[:80],
+                      "evidence": _str(c.get("evidence"))[:120]}
+                     for c in _list(data.get("claims"))[:6]
+                     if isinstance(c, dict)]
+    out["references"] = _list(data.get("references"))[:20]
+    out["figures"] = [{"label": _str(f.get("label"))[:20],
+                       "caption": _str(f.get("caption"))[:160],
+                       "kind": _str(f.get("kind")),
+                       "for_contribution": _str(f.get("for_contribution"))[:40]}
+                      for f in _list(data.get("figures"))[:12]
+                      if isinstance(f, dict)]
+    out["section_map"] = [{"section": _str(x.get("section"))[:40],
+                           "claims": _list(x.get("claims"))[:6]}
+                          for x in _list(data.get("section_map"))[:20]
+                          if isinstance(x, dict)]
+    out["gaps"] = [{"gap_type": _str(g.get("gap_type")),
+                    "statement": _str(g.get("statement"))[:80],
+                    "evidence": _str(g.get("evidence"))[:120]}
+                   for g in _list(data.get("gaps"))[:6]
+                   if isinstance(g, dict)]
     if not out["research_question"]:
         issues.append("missing:research_question")
     out["problem_category"] = _vocab_or_other(
@@ -119,11 +145,18 @@ def _e2(data, issues):
                 "inputs": _str(m.get("inputs"))[:120],
                 "outputs": _str(m.get("outputs"))[:120],
                 "code_symbols": _list(m.get("code_symbols"))[:8],
-                "tools": _list(m.get("tools"))[:6]})
+                "tools": _list(m.get("tools"))[:6],
+                "is_novel_component": bool(m.get("is_novel_component", False)),
+                "component_role": _str(m.get("component_role"))})
         if item["name"] and item["mechanism"]:
             clean.append(item)
     if not clean:
         issues.append("missing:algorithm_core")
+    for a in clean:
+        a["assumptions"] = _list(data.get("assumptions"))[:6] \
+            if not a.get("assumptions") else _list(a.get("assumptions"))[:6]
+        a["novelty_basis"] = _list(data.get("novelty_basis"))[:6] \
+            if not a.get("novelty_basis") else _list(a.get("novelty_basis"))[:6]
     return {"algorithms": clean}
 
 
@@ -139,6 +172,11 @@ def _e3(data, issues):
                 "scale": _str(b.get("scale"))[:60],
                 "modality": _str(b.get("modality"))[:60],
                 "research_object": _str(b.get("research_object"))[:60],
+                "protocol": {k: (int(v) if k == "seeds" and str(v).isdigit()
+                                 else _str(v)[:80])
+                             for k, v in (b.get("protocol") or {}).items()
+                             if k in ("seeds", "split", "eval_script", "epochs", "hardware")},
+                "failure_modes": _list(b.get("failure_modes"))[:10],
                 "metrics": []}
         for k in ("input_form", "output_form"):
             item[k] = _vocab_or_other("form", item[k], b, issues)
@@ -147,7 +185,8 @@ def _e3(data, issues):
             if isinstance(m, dict):
                 md = {"name": _str(m.get("name"))[:40],
                       "unit": _str(m.get("unit"))[:20],
-                      "direction": _str(m.get("direction"))}
+                      "direction": _str(m.get("direction")),
+                      "contribution_link": _str(m.get("contribution_link"))[:20]}
             elif isinstance(m, str):
                 md["name"] = m[:40]
             if md["direction"] not in ("min", "max"):

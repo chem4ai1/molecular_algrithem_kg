@@ -1,0 +1,90 @@
+{
+  "ok": true,
+  "refine": "R1_contribution",
+  "target": "Contribution",
+  "n_paragraphs": 4,
+  "paragraph_lines": [
+    1,
+    43,
+    138,
+    817
+  ],
+  "prompt_chars": 5506,
+  "dry_run": false,
+  "items": [
+    {
+      "statement": "提出MolMiner，一种基于片段、几何感知且顺序无关的自回归分子设计模型。",
+      "kind": "method",
+      "why_not_before": [
+        "理论盲点"
+      ],
+      "section": "Abstract",
+      "claimed_strength": "proven",
+      "evidence": "We introduce MolMiner, a fragment-based, geometry-aware, and order-agnostic autoregressive model for molecular design."
+    },
+    {
+      "statement": "支持从部分规格对十二个理化及结构属性进行高维条件控制。",
+      "kind": "method",
+      "why_not_before": [
+        "技术约束"
+      ],
+      "section": "Abstract",
+      "claimed_strength": "proven",
+      "evidence": "MolMiner supports high-dimensional conditional control over twelve physicochemical and structural properties from partia"
+    },
+    {
+      "statement": "通过对称感知片段连接构建分子，并在生成步骤中条件化于力场弛豫的3D几何。",
+      "kind": "method",
+      "why_not_before": [
+        "技术约束"
+      ],
+      "section": "Abstract",
+      "claimed_strength": "proven",
+      "evidence": "constructs molecules via symmetry-aware fragment attachments, and conditions each generation step on force-field-relaxed"
+    },
+    {
+      "statement": "无需辅助属性损失即可实现条件控制，显著提升命中率。",
+      "kind": "analysis",
+      "why_not_before": [
+        "技术约束"
+      ],
+      "section": "Abstract",
+      "claimed_strength": "proven",
+      "evidence": "Conditional control emerges without auxiliary property losses. On targeted property windows, conditioning lifts hit rate"
+    },
+    {
+      "statement": "多步片段生成允许灵活控制分子大小，并显式强制化学有效性。",
+      "kind": "method",
+      "why_not_before": [
+        "技术约束"
+      ],
+      "section": "Introduction",
+      "claimed_strength": "proven",
+      "evidence": "Multi-step fragment-based generation enables flexible control over molecular size and allows chemical validity to be exp"
+    },
+    {
+      "statement": "提出顺序无关的回滚策略，作为数据增强和正则化形式以改善泛化。",
+      "kind": "method",
+      "why_not_before": [
+        "理论盲点"
+      ],
+      "section": "Introduction",
+      "claimed_strength": "supported",
+      "evidence": "An order-agnostic rollout strategy... better reflects molecular structure and acts as an effective form of data augmenta"
+    }
+  ],
+  "issues": [],
+  "applied": {
+    "nodes": 6,
+    "relations": 6,
+    "parent": "paper:2411.06608",
+    "ids": [
+      "contribution:2411.06608:1",
+      "contribution:2411.06608:2",
+      "contribution:2411.06608:3",
+      "contribution:2411.06608:4",
+      "contribution:2411.06608:5",
+      "contribution:2411.06608:6"
+    ]
+  }
+}

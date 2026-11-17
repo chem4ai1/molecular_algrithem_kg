@@ -88,7 +88,9 @@ def apply_one(g, rep) -> Dict[str, Any]:
     e1 = (rep["stages"].get("E1_paper") or {}).get("data") or {}
     if paper and e1:
         for k in ("research_question", "problem_category", "domain_code",
-                  "why_hard", "relation_hints"):
+                  "why_hard", "relation_hints", "paradigm", "evidence_type",
+                  "evidence_norm", "authors", "abstract", "claims",
+                  "references", "figures", "section_map", "gaps"):
             if e1.get(k):
                 paper.attrs[k] = e1[k]
         if rep.get("domain_calibrated"):
@@ -111,7 +113,8 @@ def apply_one(g, rep) -> Dict[str, Any]:
             alg = g.nodes["algorithm:" + _slug(name)]
             n_alg += 1
         for k in ("task_type", "problems_solved", "mechanism",
-                  "why_it_works", "applicable_to", "limitations"):
+                  "why_it_works", "applicable_to", "limitations",
+                  "assumptions", "novelty_basis"):
             if a.get(k):
                 alg.attrs[k] = a[k]
         if paper and check_domain_range("Paper", "PROPOSES_METHOD", "Algorithm"):
@@ -127,10 +130,13 @@ def apply_one(g, rep) -> Dict[str, Any]:
                        mechanism=m.get("mechanism") or "",
                        formula=m.get("formula") or "",
                        inputs=m.get("inputs") or "",
-                       outputs=m.get("outputs") or "")
+                       outputs=m.get("outputs") or "",
+                       is_novel_component=bool(m.get("is_novel_component", False)),
+                       component_role=m.get("component_role") or "")
                 n_mod += 1
             else:
-                for k in ("mechanism", "formula", "inputs", "outputs"):
+                for k in ("mechanism", "formula", "inputs", "outputs",
+                          "is_novel_component", "component_role"):
                     if m.get(k):
                         g.nodes[mid].attrs[k] = m[k]
             if check_domain_range("Algorithm", "HAS_MODULE",
@@ -163,7 +169,8 @@ def apply_one(g, rep) -> Dict[str, Any]:
             bm = g.nodes[bid]
             n_bm += 1
         for k in ("input_form", "output_form", "n_samples", "scale",
-                  "modality", "research_object", "metrics"):
+                  "modality", "research_object", "metrics",
+                  "protocol", "failure_modes"):
             if b.get(k):
                 bm.attrs[k] = b[k]
         if paper and check_domain_range("Paper", "EVALUATED_ON", "Benchmark"):

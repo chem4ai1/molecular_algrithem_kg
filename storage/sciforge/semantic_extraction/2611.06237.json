@@ -6,34 +6,179 @@
       "attempts": 1,
       "issues": [],
       "fatal": [],
-      "n_fields": 6,
+      "n_fields": 16,
       "data": {
-        "research_question": "评估SO3LR-T模型在分子相互作用能、金属有机框架(MOFs)力学性质及反应化学过渡态搜索中的精度与适用性",
+        "research_question": "开发覆盖周期表85种元素、具备量子力学精度的通用机器学习力场，以统一描述生物分子结构、动力学及反应路径。",
         "problem_category": "forcefield_simulation",
         "domain_code": "D10",
-        "why_hard": "现有方法如PBE-D3在MOFs压力预测上存在系统性偏差，且MLFF在反应能垒预测中需平衡几何与能量误差",
+        "why_hard": "经典力场需针对每类生物分子单独拟合参数，且独立开发的参数集未设计为协同使用，导致多类分子联合模拟困难。",
         "relation_hints": {
           "related_papers": [
-            "Bahmanyar et al.",
-            "Huang et al.",
-            "Kozlowski et al."
+            "SO3LR",
+            "QCML",
+            "QCell",
+            "OMol25",
+            "OPoly26"
           ],
           "algorithms": [
-            "SO3LR",
-            "UMA-S-1.2.1",
-            "AIMNet2",
-            "MACE-POLAR"
+            "SO3LR Tauri",
+            "SO3krates",
+            "NLH potentials"
           ],
-          "benchmarks": [
-            "JSCH-2005",
-            "GlcMal",
-            "MOFSimBench"
-          ]
+          "benchmarks": []
         },
         "evidence": {
-          "research_question": "We evaluate the models in two ways. First, we assess the accuracy of forces and pressures on snapshots of two frameworks. Second, we evaluat",
-          "why_hard": "PBE-D3 overestimates the pressure by 3.2 GPa on average, compared with 0.6 GPa to 1.0 GPa for the models"
-        }
+          "research_question": "We present SO3LR Tauri, a family of MLFFs developed toward this goal, coupling a fast SO3krates network to explicit, physics-based interacti",
+          "why_hard": "Simulating several classes of biomolecules together therefore requires combining independently developed parameters [10], which were not des"
+        },
+        "paradigm": "empirical",
+        "evidence_type": "simulational",
+        "evidence_norm": [
+          "MAE",
+          "RMSD",
+          "density",
+          "pKa"
+        ],
+        "authors": [
+          "Adil Kabylda",
+          "Florian N. Brünig",
+          "Miguel Gallegos",
+          "J. Thorben Frank",
+          "Evgeny Moerman",
+          "Oliver T. Unke",
+          "Stefan Chmiela",
+          "Klaus-Robert Müller",
+          "Alexandre Tkatchenko"
+        ],
+        "abstract": "Machine-learned force fields (MLFFs) aim to create a unified model that describes all major classes of (bio)molecules at quantum-mechanical accuracy. We present SO3LR Tauri, a family of MLFFs developed toward this goal, coupling a fast SO3krates network to explicit, physics-based interaction modules: pair-specific short-range repulsion, environment-dependent dispersion, and electrostatics, each improved beyond its original formulation. The models are trained on 148 million structures spanning 85 elements, drawn from several quantum-chemical datasets. Against coupled-cluster references, the models accurately reproduce nucleobase-pair and charged protein–ligand interactions, carbohydrate conformer ordering, and molecular dipoles. They also resolve the transition pathways of organic and enzymatic reactions. Dynamical simulations recover experimental densities of water and organic solvents, the hydration structure of mono- and divalent ions, the pKa values of amino-acid side chains, and the structure and dynamics of proteins, membranes, nucleic acids, glycoproteins, and metal-containing biomolecules, all without system-specific fitting. Released in three sizes, the models reach 0.7–3.2 µs/atom and scale to 27–84 million atoms on a single GPU. Much work remains to be done: achieving predictive accuracy for static and dynamic liquid properties, reaction barriers, coverage of chemical and conformational space, and the sampling and inference speed needed to describe biomolecular processes.",
+        "claims": [
+          {
+            "statement": "SO3LR Tauri 通过结合 SO3krates 网络与显式物理相互作用模块，实现了覆盖85种元素的通用力场。",
+            "evidence": "We present SO3LR Tauri, a family of MLFFs developed toward this goal, coupling a fast SO3krates network to explicit, phy"
+          },
+          {
+            "statement": "模型在无需系统特定拟合的情况下，准确再现了蛋白质、膜、核酸等生物大分子的结构与动力学。",
+            "evidence": "Dynamical simulations recover experimental densities of water and organic solvents, the hydration structure of mono- and"
+          }
+        ],
+        "references": [],
+        "figures": [],
+        "section_map": [
+          {
+            "section": "INTRODUCTION",
+            "claims": [
+              "经典力场参数独立开发，难以联合模拟多类生物分子",
+              "MLFF有望以单一模型统一描述各类生物分子"
+            ]
+          }
+        ],
+        "gaps": [
+          {
+            "gap_type": "capability",
+            "statement": "现有通用模型通常基于单一理论层级条件化预测，难以同时兼顾主族热化学与长程多体色散相互作用的精度。",
+            "evidence": "Unlike recent general-purpose models, which condition each prediction on one level of theory [29, 30], we first train se"
+          },
+          {
+            "gap_type": "data",
+            "statement": "参考数据集中原子间近距离接触罕见，导致学习到的短程排斥项约束不足，难以准确描述压缩态或紧密堆积。",
+            "evidence": "Close interatomic contacts are rare in reference datasets, which leaves a learned repulsion poorly constrained."
+          }
+        ]
+      }
+    },
+    "E2_algorithm": {
+      "ok": true,
+      "attempts": 1,
+      "issues": [],
+      "fatal": [],
+      "n_fields": 1,
+      "data": {
+        "algorithms": [
+          {
+            "name": "SO3LR Tauri",
+            "task_type": "forcefield_simulation",
+            "problems_solved": [
+              "解决经典力场需针对每类生物分子单独拟合参数的问题",
+              "解决纯神经网络力场在长程相互作用和极端条件下物理行为不准确的问题",
+              "解决单一量子化学数据集无法覆盖生物相关元素及成键的问题"
+            ],
+            "mechanism": "耦合SO3krates消息传递骨干网络与显式物理相互作用模块（短程排斥、静电、色散），通过多任务头结合不同理论水平的训练数据。",
+            "why_it_works": "显式物理模块保证了正确的渐近衰减行为（1/r和1/r6），避免了深层消息传递网络在长程效应学习上的不足，同时NLH势函数确保了短程排斥的物理正确性。",
+            "applicable_to": [
+              "生物分子动力学模拟",
+              "反应性分子模拟",
+              "覆盖周期表85种元素的通用模拟"
+            ],
+            "limitations": [
+              "静态和动态液体性质的预测精度仍有待提高",
+              "反应势垒的预测精度不足",
+              "化学和构象空间的覆盖范围有限",
+              "采样和推理速度尚不足以描述所有生物分子过程"
+            ],
+            "modules": [
+              {
+                "name": "SO3krates Backbone",
+                "mechanism": "预测原子能量、部分电荷、极化率比和色散系数比",
+                "formula": "Ei, qi, hi, rC6_i = SO3krates(R, Z, Q, S)",
+                "inputs": "原子位置R, 原子序数Z, 总电荷Q, 自旋多重度S",
+                "outputs": "原子能量Ei, 部分电荷qi, 极化率比hi, 色散系数比rC6_i",
+                "code_symbols": [
+                  "make_so3lr"
+                ],
+                "tools": [
+                  "SO3krates"
+                ],
+                "is_novel_component": false,
+                "component_role": "encoder"
+              },
+              {
+                "name": "NLH Short-Range Repulsion",
+                "mechanism": "计算基于Nordlund-Lehtola-Hobler势函数的短程排斥能",
+                "formula": "Erep = \\sum_{i<j} \\frac{ke ZiZj}{rij} \\phi_{ZiZj}(rij) s(rij)",
+                "inputs": "原子序数Zi, Zj, 原子间距rij",
+                "outputs": "短程排斥能Erep",
+                "code_symbols": [],
+                "tools": [
+                  "NLH potentials"
+                ],
+                "is_novel_component": true,
+                "component_role": "other"
+              },
+              {
+                "name": "Electrostatics Module",
+                "mechanism": "利用粒子网格Ewald求和计算长程静电相互作用",
+                "formula": "",
+                "inputs": "部分电荷qi, 原子位置R",
+                "outputs": "静电能Eelec",
+                "code_symbols": [
+                  "kspace_electrostatics_options"
+                ],
+                "tools": [
+                  "particle-mesh Ewald summation"
+                ],
+                "is_novel_component": false,
+                "component_role": "other"
+              },
+              {
+                "name": "Dispersion Module",
+                "mechanism": "利用粒子网格Ewald求和计算环境依赖的长程色散相互作用",
+                "formula": "",
+                "inputs": "极化率比hi, 色散系数比rC6_i, 原子位置R",
+                "outputs": "色散能Edisp",
+                "code_symbols": [
+                  "kspace_dispersion_options"
+                ],
+                "tools": [
+                  "particle-mesh Ewald summation"
+                ],
+                "is_novel_component": false,
+                "component_role": "other"
+              }
+            ],
+            "assumptions": [],
+            "novelty_basis": []
+          }
+        ]
       }
     },
     "E3_benchmark": {
@@ -45,129 +190,64 @@
       "data": {
         "benchmarks": [
           {
-            "name": "Drew–Dickerson dodecamer",
+            "name": "QUID",
             "input_form": "3D坐标",
-            "output_form": "3D坐标",
-            "n_samples": "15 ns",
-            "scale": "12-mer DNA duplex",
-            "modality": "biomolecular dynamics",
-            "research_object": "B-DNA duplex",
-            "metrics": [
-              {
-                "name": "RMSD",
-                "unit": "Å",
-                "direction": "min"
-              },
-              {
-                "name": "helical twist",
-                "unit": "deg",
-                "direction": ""
-              }
-            ]
-          },
-          {
-            "name": "cis-platin 1,2-d(GpG) crosslink",
-            "input_form": "3D坐标",
-            "output_form": "3D坐标",
-            "n_samples": "10 ns",
-            "scale": "Pt(II) crosslink",
-            "modality": "biomolecular dynamics",
-            "research_object": "Platinum-DNA complex",
+            "output_form": "标量",
+            "n_samples": "",
+            "scale": "",
+            "modality": "分子结构",
+            "research_object": "相互作用能",
+            "protocol": {
+              "seeds": "",
+              "split": "",
+              "eval_script": "",
+              "epochs": ""
+            },
+            "failure_modes": [],
             "metrics": [
               {
                 "name": "MAE",
-                "unit": "eV Å⁻¹",
-                "direction": "min"
-              },
-              {
-                "name": "r",
-                "unit": "",
-                "direction": "max"
-              }
-            ]
-          },
-          {
-            "name": "POPC bilayer",
-            "input_form": "3D坐标",
-            "output_form": "3D坐标",
-            "n_samples": "",
-            "scale": "lipid bilayer",
-            "modality": "biomolecular dynamics",
-            "research_object": "Lipid membrane",
-            "metrics": [
-              {
-                "name": "RMSD",
-                "unit": "",
-                "direction": "min"
-              },
-              {
-                "name": "DHH",
-                "unit": "Å",
-                "direction": ""
+                "unit": "kcal/mol",
+                "direction": "min",
+                "contribution_link": "评估模型精度"
               }
             ]
           }
         ]
       }
-    },
-    "E4_values": {
-      "ok": true,
-      "attempts": 1,
-      "issues": [],
-      "fatal": [],
-      "n_fields": 1,
-      "data": {
-        "model_results": []
-      }
-    },
-    "E6_lineage": {
-      "ok": true,
-      "attempts": 1,
-      "issues": [],
-      "fatal": [],
-      "n_fields": 1,
-      "data": {
-        "lineage": []
-      }
     }
   },
   "paper_type": {
-    "paper_type": "dataset_benchmark",
+    "paper_type": "method",
     "confidence": 1.0,
     "method": "rule",
+    "margin": 2,
+    "uncertain": false,
     "scores": {
-      "method": 0,
-      "dataset_benchmark": 1,
+      "method": 2,
+      "dataset_benchmark": 0,
       "theory": 0,
-      "survey": 0,
+      "survey": 0.0,
       "system_tool": 0,
       "application": 0
     },
     "stages": [
       "E1_paper",
+      "E2_algorithm",
       "E3_benchmark",
       "E4_values",
+      "E5_relations",
       "E6_lineage"
     ],
-    "focus": "重点抽基准结构、指标与数值；算法模块可空"
+    "focus": "重点抽算法模块与机理；基准只抽本文实际评测的"
   },
   "slice_meta": {
-    "source": "blocks.jsonl",
-    "n_blocks": 15,
-    "kinds": {
-      "related_work": 3,
-      "method": 6,
-      "benchmark": 6
-    },
-    "lengths": {
-      "paper": 15629,
-      "algorithm": 16000,
-      "benchmark": 16000,
-      "lineage": 16000
-    }
+    "source": "fallback",
+    "n_blocks": 0,
+    "kinds": {}
   },
   "n_ast_symbols": 41,
-  "guide_chars": 2467,
+  "guide_chars": 1558,
   "domain_calibrated": "D10",
   "model_results": {
     "table": 0,
@@ -185,8 +265,6 @@
     "compared_only": []
   },
   "cross_check": [],
-  "ok": true,
-  "seconds": 115.44,
   "paradigm": {
     "ner": {
       "algorithms": [
@@ -527,172 +605,148 @@
           "node_id": "algorithm:tabasco"
         },
         {
-          "text": "UMA-S-1",
-          "type": "MethodCandidate",
-          "source": "surface_pattern",
-          "offset": 37,
-          "block": "paper"
+          "text": "Neural Graph Fingerprints",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:neural_graph_fingerprints"
         },
         {
-          "text": "EAB",
-          "type": "MethodCandidate",
-          "source": "surface_pattern",
-          "offset": 164,
-          "block": "paper"
+          "text": "Circular fingerprints",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:circular_fingerprints"
         },
         {
-          "text": "SO3LR-T-M",
-          "type": "MethodCandidate",
-          "source": "surface_pattern",
-          "offset": 307,
-          "block": "paper"
+          "text": "ChemTS",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:chemts"
         },
         {
-          "text": "UMA",
-          "type": "MethodCandidate",
-          "source": "surface_pattern",
-          "offset": 321,
-          "block": "paper"
+          "text": "MCTS",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:mcts"
         },
         {
-          "text": "MACE-POLAR",
-          "type": "MethodCandidate",
-          "source": "surface_pattern",
-          "offset": 471,
-          "block": "paper"
+          "text": "RNN",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:rnn"
         },
         {
-          "text": "AIMNet2",
-          "type": "MethodCandidate",
-          "source": "surface_pattern",
-          "offset": 486,
-          "block": "paper"
+          "text": "NeVAE",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:nevae"
         },
         {
-          "text": "JSCH-2005",
-          "type": "MethodCandidate",
-          "source": "surface_pattern",
-          "offset": 1175,
-          "block": "paper"
+          "text": "variational autoencoders",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:variational_autoencoders"
         },
         {
-          "text": "CCSD",
-          "type": "MethodCandidate",
-          "source": "surface_pattern",
-          "offset": 1286,
-          "block": "paper"
+          "text": "inductive graph representation learning",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:inductive_graph_representation_learning"
         },
         {
-          "text": "CBS",
-          "type": "MethodCandidate",
-          "source": "surface_pattern",
-          "offset": 1294,
-          "block": "paper"
+          "text": "Bayesian optimization",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:bayesian_optimization"
         },
         {
-          "text": "MP2",
-          "type": "MethodCandidate",
-          "source": "surface_pattern",
-          "offset": 1336,
-          "block": "paper"
+          "text": "reinforcement learning",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:reinforcement_learning"
         },
         {
-          "text": "MP2-only",
-          "type": "MethodCandidate",
-          "source": "surface_pattern",
-          "offset": 1485,
-          "block": "paper"
+          "text": "MolGAN",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:molgan"
         },
         {
-          "text": "JSCH-11",
-          "type": "MethodCandidate",
-          "source": "surface_pattern",
-          "offset": 1506,
-          "block": "paper"
+          "text": "GAN",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:gan"
         },
         {
-          "text": "JSCH-32",
-          "type": "MethodCandidate",
-          "source": "surface_pattern",
-          "offset": 1522,
-          "block": "paper"
+          "text": "ORGAN",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:organ"
         },
         {
-          "text": "MAE",
-          "type": "MethodCandidate",
-          "source": "surface_pattern",
-          "offset": 1946,
-          "block": "paper"
+          "text": "Likelihood-based methods",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:likelihood_based_methods"
         },
         {
-          "text": "RMSE",
-          "type": "MethodCandidate",
-          "source": "surface_pattern",
-          "offset": 1950,
-          "block": "paper"
+          "text": "GCPN",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:gcpn"
         },
         {
-          "text": "GlcMal",
-          "type": "MethodCandidate",
-          "source": "surface_pattern",
-          "offset": 2515,
-          "block": "paper"
+          "text": "graph representation",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:graph_representation"
         },
         {
-          "text": "DLPNO-CCSD",
-          "type": "MethodCandidate",
-          "source": "surface_pattern",
-          "offset": 2633,
-          "block": "paper"
+          "text": "adversarial training",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:adversarial_training"
         },
         {
-          "text": "GLYCAM06",
-          "type": "MethodCandidate",
-          "source": "surface_pattern",
-          "offset": 2922,
-          "block": "paper"
+          "text": "GNN Pre-training Strategy",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:gnn_pre_training_strategy"
         },
         {
-          "text": "MOFs",
-          "type": "MethodCandidate",
-          "source": "surface_pattern",
-          "offset": 3087,
-          "block": "paper"
+          "text": "G-SchNet",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:g_schnet"
         },
         {
-          "text": "SO3LR-T",
-          "type": "MethodCandidate",
-          "source": "surface_pattern",
-          "offset": 3150,
-          "block": "paper"
+          "text": "3d isomer generation",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:3d_isomer_generation"
         },
         {
-          "text": "MOFSimBench",
-          "type": "MethodCandidate",
-          "source": "surface_pattern",
-          "offset": 3425,
-          "block": "paper"
+          "text": "SMILES Transformer",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:smiles_transformer"
         },
         {
-          "text": "UiO-66",
-          "type": "MethodCandidate",
-          "source": "surface_pattern",
-          "offset": 3462,
-          "block": "paper"
+          "text": "GraphAF",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:graphaf"
         },
         {
-          "text": "MIL-53",
-          "type": "MethodCandidate",
-          "source": "surface_pattern",
-          "offset": 3477,
-          "block": "paper"
+          "text": "MOLGYM",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:molgym"
         },
         {
-          "text": "CP2K",
-          "type": "MethodCandidate",
-          "source": "surface_pattern",
-          "offset": 3516,
-          "block": "paper"
+          "text": "graph-based RL methods",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:graph_based_rl_methods"
         }
       ],
       "benchmarks": [
@@ -1115,6 +1169,66 @@
           "type": "Benchmark",
           "source": "graph_catalog",
           "node_id": "benchmark:popc_bilayer"
+        },
+        {
+          "text": "solubility dataset",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:solubility_dataset"
+        },
+        {
+          "text": "chemistry dataset",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:chemistry_dataset"
+        },
+        {
+          "text": "biology dataset",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:biology_dataset"
+        },
+        {
+          "text": "MoleculeNet",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:moleculenet"
+        },
+        {
+          "text": "MOLGYM",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:molgym"
+        },
+        {
+          "text": "ChEMBL20",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:chembl20"
+        },
+        {
+          "text": "SidechainNet",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:sidechainnet"
+        },
+        {
+          "text": "ProteinNet",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:proteinnet"
+        },
+        {
+          "text": "RDKit benchmarking platform",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:rdkit_benchmarking_platform"
+        },
+        {
+          "text": "DW4",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:dw4"
         }
       ],
       "code_symbols": [
@@ -1361,27 +1475,12 @@
       ],
       "metrics": [
         {
-          "text": "diversity",
-          "type": "Metric",
-          "source": "graph_catalog"
-        },
-        {
-          "text": "frag_ratio",
+          "text": "validity",
           "type": "Metric",
           "source": "graph_catalog"
         },
         {
           "text": "novelty",
-          "type": "Metric",
-          "source": "graph_catalog"
-        },
-        {
-          "text": "uniqueness",
-          "type": "Metric",
-          "source": "graph_catalog"
-        },
-        {
-          "text": "validity",
           "type": "Metric",
           "source": "graph_catalog"
         },
@@ -1392,6 +1491,11 @@
         },
         {
           "text": "rmse",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "energy_error",
           "type": "Metric",
           "source": "graph_catalog"
         },
@@ -1426,27 +1530,152 @@
           "source": "graph_catalog"
         },
         {
-          "text": "drug-likeness",
+          "text": "uniqueness",
           "type": "Metric",
           "source": "graph_catalog"
         },
         {
-          "text": "synthetic accessibility",
+          "text": "docking scores",
           "type": "Metric",
           "source": "graph_catalog"
         },
         {
-          "text": "pocket binding mode",
+          "text": "exact reconstruction rate",
           "type": "Metric",
           "source": "graph_catalog"
         },
         {
-          "text": "molecule generation speed",
+          "text": "mean sequence length",
           "type": "Metric",
           "source": "graph_catalog"
         },
         {
-          "text": "penalized logP",
+          "text": "objective value",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "sample efficiency",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "similarity",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "DFT energy",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "DFT force",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "PIC",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "collision count",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "ROC-AUC",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "Valid Rate",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "AUC",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "Molecular Weight",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "SA Score",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "LogP",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "TDC performance",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "Brier score",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "90% interval score",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "speed",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "PB-valid",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "docking",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "scoring",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "ranking",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "screening",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "PoseBusters pass rate",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "Vina Score",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "Vina Min",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "Vina Dock",
           "type": "Metric",
           "source": "graph_catalog"
         },
@@ -1456,12 +1685,37 @@
           "source": "graph_catalog"
         },
         {
-          "text": "PoseBUSTERS",
+          "text": "MW",
           "type": "Metric",
           "source": "graph_catalog"
         },
         {
-          "text": "JSD",
+          "text": "Exact Match",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "BLEU",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "BERTScore",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "rank-1 prediction passed RDKit structura",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "rank-1 prediction passed adversarial LLM",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "reproduced the reference precursors",
           "type": "Metric",
           "source": "graph_catalog"
         },
@@ -1471,12 +1725,12 @@
           "source": "graph_catalog"
         },
         {
-          "text": "Mean Absolute Error",
+          "text": "controllability",
           "type": "Metric",
           "source": "graph_catalog"
         },
         {
-          "text": "R2",
+          "text": "fidelity",
           "type": "Metric",
           "source": "graph_catalog"
         },
@@ -1509,33 +1763,155 @@
           "text": "DHH",
           "type": "Metric",
           "source": "graph_catalog"
+        },
+        {
+          "text": "energy",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "AUPRC",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "AUROC",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "BEDROC20",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "log-likelihood",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "R2",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "MSE",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "fitness",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "inference speed",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "PCC",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "HOMO-LUMO gap",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "test accuracy",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "mean matching score",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "binding affinity",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "drugability",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "TM-Score",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "amino acid recovery",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "improvement percentage",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "root mean square deviation",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "sequence recovery rate",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "molecular properties",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "designability",
+          "type": "Metric",
+          "source": "graph_catalog"
         }
       ],
       "tables": []
     },
     "canonicalization": {
       "canonical_map": {
-        "benchmark:Drew–Dickerson dodecamer": {
-          "canonical": "Drew–Dickerson dodecamer",
-          "node_id": "benchmark:drew_dickerson_dodecamer",
+        "algorithm:SO3LR Tauri": {
+          "canonical": "SO3LR Tauri",
+          "node_id": "algorithm:so3lr_tauri",
           "match": "exact",
           "score": 1.0
         },
-        "benchmark:cis-platin 1,2-d(GpG) crosslink": {
-          "canonical": "cis-platin 1,2-d(GpG) crosslink",
-          "node_id": "benchmark:cis_platin_1_2_d_gpg_crosslink",
-          "match": "exact",
+        "code:make_so3lr": {
+          "canonical": "make_so3lr",
+          "match": "grounded",
+          "node_id": "",
           "score": 1.0
         },
-        "benchmark:POPC bilayer": {
-          "canonical": "POPC bilayer",
-          "node_id": "benchmark:popc_bilayer",
+        "code:kspace_electrostatics_options": {
+          "canonical": "kspace_electrostatics_options",
+          "match": "grounded",
+          "node_id": "",
+          "score": 1.0
+        },
+        "code:kspace_dispersion_options": {
+          "canonical": "kspace_dispersion_options",
+          "match": "grounded",
+          "node_id": "",
+          "score": 1.0
+        },
+        "benchmark:QUID": {
+          "canonical": "QUID",
+          "node_id": "benchmark:quid",
           "match": "exact",
           "score": 1.0
         }
       },
       "alias_groups": {},
-      "n_exact": 3,
+      "n_exact": 2,
       "n_fuzzy": 0,
       "n_new": 0,
       "n_ungrounded_code": 0
@@ -1546,9 +1922,81 @@
       "n": 0
     },
     "modules": {
-      "chains": [],
-      "n_algorithms": 0,
-      "n_modules": 0
+      "chains": [
+        {
+          "algorithm": "SO3LR Tauri",
+          "modules": [
+            {
+              "step_order": 1,
+              "name": "SO3krates Backbone",
+              "depends_on": "",
+              "data_flow": "原子位置R, 原子序数Z, 总电荷Q, 自旋多重度S",
+              "inputs": "原子位置R, 原子序数Z, 总电荷Q, 自旋多重度S",
+              "outputs": "原子能量Ei, 部分电荷qi, 极化率比hi, 色散系数比rC6_i",
+              "goal": "预测原子能量、部分电荷、极化率比和色散系数比",
+              "formula": "Ei, qi, hi, rC6_i = SO3krates(R, Z, Q, S)",
+              "code_symbols": [
+                "make_so3lr"
+              ],
+              "code_aligned": [
+                "make_so3lr"
+              ],
+              "code_alignment_rate": 1.0
+            },
+            {
+              "step_order": 2,
+              "name": "NLH Short-Range Repulsion",
+              "depends_on": "SO3krates Backbone",
+              "data_flow": "原子能量Ei, 部分电荷qi, 极化率比hi, 色散系数比rC6_i -> 原子序数Zi, Zj, 原子间距rij",
+              "inputs": "原子序数Zi, Zj, 原子间距rij",
+              "outputs": "短程排斥能Erep",
+              "goal": "计算基于Nordlund-Lehtola-Hobler势函数的短程排斥能",
+              "formula": "Erep = \\sum_{i<j} \\frac{ke ZiZj}{rij} \\phi_{ZiZj}(rij) s(rij)",
+              "code_symbols": [],
+              "code_aligned": [],
+              "code_alignment_rate": 0.0
+            },
+            {
+              "step_order": 3,
+              "name": "Electrostatics Module",
+              "depends_on": "NLH Short-Range Repulsion",
+              "data_flow": "短程排斥能Erep -> 部分电荷qi, 原子位置R",
+              "inputs": "部分电荷qi, 原子位置R",
+              "outputs": "静电能Eelec",
+              "goal": "利用粒子网格Ewald求和计算长程静电相互作用",
+              "formula": "",
+              "code_symbols": [
+                "kspace_electrostatics_options"
+              ],
+              "code_aligned": [
+                "kspace_electrostatics_options"
+              ],
+              "code_alignment_rate": 1.0
+            },
+            {
+              "step_order": 4,
+              "name": "Dispersion Module",
+              "depends_on": "Electrostatics Module",
+              "data_flow": "静电能Eelec -> 极化率比hi, 色散系数比rC6_i, 原子位置R",
+              "inputs": "极化率比hi, 色散系数比rC6_i, 原子位置R",
+              "outputs": "色散能Edisp",
+              "goal": "利用粒子网格Ewald求和计算环境依赖的长程色散相互作用",
+              "formula": "",
+              "code_symbols": [
+                "kspace_dispersion_options"
+              ],
+              "code_aligned": [
+                "kspace_dispersion_options"
+              ],
+              "code_alignment_rate": 1.0
+            }
+          ],
+          "n_modules": 4,
+          "pipeline": "SO3krates Backbone -> NLH Short-Range Repulsion -> Electrostatics Module -> Dispersion Module"
+        }
+      ],
+      "n_algorithms": 1,
+      "n_modules": 4
     },
     "slot_audit": {
       "checks": [
@@ -1563,6 +2011,21 @@
           "detail": "forcefield_simulation"
         },
         {
+          "slot": "Algorithm.mechanism",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "slot": "AlgorithmModule.inputs",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "slot": "AlgorithmModule.outputs",
+          "ok": true,
+          "detail": ""
+        },
+        {
           "slot": "Benchmark.input_form",
           "ok": true,
           "detail": ""
@@ -1571,23 +2034,20 @@
           "slot": "Benchmark.output_form",
           "ok": true,
           "detail": ""
-        },
-        {
-          "slot": "Benchmark.model_results",
-          "ok": false,
-          "detail": ""
         }
       ],
-      "n_ok": 4,
-      "n_total": 5,
-      "score": 0.8
+      "n_ok": 7,
+      "n_total": 7,
+      "score": 1.0
     },
     "summary": {
-      "n_entity_candidates": 220,
+      "n_entity_candidates": 280,
       "n_grounded_relations": 0,
       "n_ungrounded_relations": 0,
-      "n_modules_tracked": 0,
-      "slot_score": 0.8
+      "n_modules_tracked": 4,
+      "slot_score": 1.0
     }
-  }
+  },
+  "ok": true,
+  "seconds": 104.51
 }

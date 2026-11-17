@@ -1,0 +1,48 @@
+{
+  "ok": true,
+  "refine": "R2_experiment_arm",
+  "target": "ExperimentArm",
+  "n_paragraphs": 4,
+  "paragraph_lines": [
+    1,
+    308,
+    434,
+    523
+  ],
+  "prompt_chars": 5439,
+  "dry_run": false,
+  "items": [
+    {
+      "kind": "main",
+      "name": "MiDi",
+      "config": "Jointly generates molecular graphs and 3D coordinates end-to-end",
+      "benchmark": "GEOM-DRUGS",
+      "evidence": "MiDi generates 92% of stable molecules"
+    },
+    {
+      "kind": "baseline",
+      "name": "EDM + lookup table",
+      "config": "EDM model using interatomic distances for bond prediction via lookup table",
+      "benchmark": "GEOM-DRUGS",
+      "evidence": "6% for the previous EDM model that uses interatomic distances for bond prediction"
+    },
+    {
+      "kind": "baseline",
+      "name": "EDM + OpenBabel",
+      "config": "EDM followed by an algorithm that directly optimize bond orders for validity",
+      "benchmark": "GEOM-DRUGS",
+      "evidence": "40% using EDM followed by an algorithm that directly optimize bond orders for validity"
+    }
+  ],
+  "issues": [],
+  "applied": {
+    "nodes": 3,
+    "relations": 3,
+    "parent": "paper:2302.09048",
+    "ids": [
+      "experiment:2302.09048:main:1",
+      "experiment:2302.09048:baseline:2",
+      "experiment:2302.09048:baseline:3"
+    ]
+  }
+}

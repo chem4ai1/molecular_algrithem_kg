@@ -1,0 +1,47 @@
+{
+  "ok": true,
+  "refine": "R3_assumption",
+  "target": "Assumption",
+  "n_paragraphs": 6,
+  "paragraph_lines": [
+    423,
+    705,
+    1,
+    104,
+    279,
+    663
+  ],
+  "prompt_chars": 7628,
+  "dry_run": false,
+  "items": [
+    {
+      "statement": "输入必须为抗体可变结构域（VH/VL）的PDB结构文件",
+      "scope": "module",
+      "applicability": "AntiFold模型推理输入",
+      "evidence": "The user inputs an antibody variable domain PDB structure (heavy and light chain)"
+    },
+    {
+      "statement": "用户需指定基于IMGT编号方案的设计区域",
+      "scope": "module",
+      "applicability": "AntiFold模型推理输入",
+      "evidence": "and specifies an IMGT region to design"
+    },
+    {
+      "statement": "实验抗体结构需满足分辨率小于5Å且经过冗余过滤",
+      "scope": "module",
+      "applicability": "AbMPNN数据集构建",
+      "evidence": "after filtering for redundancy and experimental resolution <5 ˚ A"
+    }
+  ],
+  "issues": [],
+  "applied": {
+    "nodes": 3,
+    "relations": 3,
+    "parent": "algorithm:antifold",
+    "ids": [
+      "assumption:2405.03370:1",
+      "assumption:2405.03370:2",
+      "assumption:2405.03370:3"
+    ]
+  }
+}

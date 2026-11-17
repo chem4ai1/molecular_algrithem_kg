@@ -1,0 +1,61 @@
+{
+  "ok": true,
+  "refine": "R2_experiment_arm",
+  "target": "ExperimentArm",
+  "n_paragraphs": 8,
+  "paragraph_lines": [
+    986,
+    5271,
+    5758,
+    5829,
+    1,
+    730,
+    791,
+    867
+  ],
+  "prompt_chars": 10213,
+  "dry_run": false,
+  "items": [
+    {
+      "kind": "main",
+      "name": "SO3LR-T-M",
+      "config": "SO3LR network with T-M training scheme",
+      "n_seeds": 4,
+      "benchmark": "Water density and self-diffusion",
+      "evidence": "SO3LR-T-M gives a density of 0.990±0.006 g/cm3 (standard error over four replicas; Table S18)."
+    },
+    {
+      "kind": "baseline",
+      "name": "PBE0",
+      "config": "Reference functional",
+      "benchmark": "Water density",
+      "evidence": "We observe that PBE0 over-structures the hydrogen-bond network into an ice-like liquid near 0.94 g/cm3"
+    },
+    {
+      "kind": "baseline",
+      "name": "ωB97M-V",
+      "config": "Reference functional",
+      "benchmark": "Water density",
+      "evidence": "whereas ωB97M-V under-structures it toward 1.1–1.2 g/cm3 [63]"
+    },
+    {
+      "kind": "baseline",
+      "name": "Experiment",
+      "config": "Experimental data",
+      "benchmark": "Water density and self-diffusion",
+      "evidence": "against the experimental 2.58 (Fig. S11), and it also affects the dynamics, with water diffusing at 119 Å2/ns against th"
+    }
+  ],
+  "issues": [],
+  "applied": {
+    "nodes": 4,
+    "relations": 4,
+    "parent": "paper:2611.06237",
+    "ids": [
+      "experiment:2611.06237:main:1",
+      "experiment:2611.06237:baseline:2",
+      "experiment:2611.06237:baseline:3",
+      "experiment:2611.06237:baseline:4"
+    ]
+  }
+}

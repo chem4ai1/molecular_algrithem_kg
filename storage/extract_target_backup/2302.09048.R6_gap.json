@@ -1,0 +1,56 @@
+{
+  "ok": true,
+  "refine": "R6_gap",
+  "target": "ResearchGap",
+  "n_paragraphs": 8,
+  "paragraph_lines": [
+    83,
+    128,
+    572,
+    1,
+    34,
+    255,
+    383,
+    459
+  ],
+  "prompt_chars": 10230,
+  "dry_run": false,
+  "items": [
+    {
+      "gap_type": "capability",
+      "statement": "现有3D分子生成模型仅生成构象，忽略键信息，依赖后续步骤预测2D结构，导致非端到端可微，限制下游任务优化。",
+      "evidence": "current 3D molecule generation are on the contrary only trained to generate conformers, thus ignoring bond information..",
+      "priority": "high"
+    },
+    {
+      "gap_type": "capability",
+      "statement": "现有模型无法处理形式电荷，且未在包含显式氢原子的复杂GEOM-DRUGS数据集上展示结果。",
+      "evidence": "MiDi is the only model that improves upon the standard EGNN layers, and that is capable of handling formal charges. It i",
+      "priority": "medium"
+    },
+    {
+      "gap_type": "scale",
+      "statement": "现有分子扩散模型仅能处理中等大小分子（最多180个原子），无法扩展到更大结构。",
+      "evidence": "While existing diffusion models for molecules operate on molecules of moderate size (up to 180 atoms), recent diffusion ",
+      "priority": "medium"
+    },
+    {
+      "gap_type": "efficiency",
+      "statement": "基于球谐函数的网络计算成本高昂，导致许多生成模型转而使用更廉价的EGNN层。",
+      "evidence": "However, these networks can be computationally expensive due to their manipulation of spherical harmonics. As a result, ",
+      "priority": "low"
+    }
+  ],
+  "issues": [],
+  "applied": {
+    "nodes": 4,
+    "relations": 4,
+    "parent": "paper:2302.09048",
+    "ids": [
+      "gap:2302.09048:1",
+      "gap:2302.09048:2",
+      "gap:2302.09048:3",
+      "gap:2302.09048:4"
+    ]
+  }
+}

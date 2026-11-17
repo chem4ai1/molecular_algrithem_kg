@@ -1,0 +1,58 @@
+{
+  "ok": true,
+  "refine": "R4_figure",
+  "target": "FigureAsset",
+  "n_paragraphs": 6,
+  "paragraph_lines": [
+    325,
+    1153,
+    531,
+    1177,
+    1195,
+    43
+  ],
+  "prompt_chars": 7877,
+  "dry_run": false,
+  "items": [
+    {
+      "label": "Figure S2",
+      "caption": "Reconstruction fidelity of 1 missing property given all others using q-q plots and Wasserstein distance.",
+      "kind": "qualitative",
+      "for_contribution": "验证模型对缺失属性的重构保真度及条件分布匹配能力",
+      "evidence": "we can validate that the reconstruction of the missing property using the GMM resembles the true underlying conditional "
+    },
+    {
+      "label": "Figure S3",
+      "caption": "Training and validation curves for models with and without geometric information.",
+      "kind": "ablation",
+      "for_contribution": "证明几何信息对模型性能的重要性",
+      "evidence": "Models incorporating geometric information (not null, blue) consistently outperform those without, highlighting the impo"
+    },
+    {
+      "label": "Figure S4",
+      "caption": "Training and validation curves for models with trainable geometric weighting factor, initialized with values ranging fro",
+      "kind": "sensitivity",
+      "for_contribution": "确定几何权重因子的最佳初始化值",
+      "evidence": "The best results were obtained with moderate positive initializations, with +1 yielding the strongest performance."
+    },
+    {
+      "label": "Figure S5",
+      "caption": "Training and validation loss curves for all hyperparameter configurations, with the selected final model highlighted in ",
+      "kind": "sensitivity",
+      "for_contribution": "展示超参数搜索过程及最佳模型选择",
+      "evidence": "Figure S5 presents the training and validation loss curves for all runs, with the final selected model highlighted in bl"
+    }
+  ],
+  "issues": [],
+  "applied": {
+    "nodes": 4,
+    "relations": 4,
+    "parent": "contribution:2411.06608:1",
+    "ids": [
+      "figure:2411.06608:1",
+      "figure:2411.06608:2",
+      "figure:2411.06608:3",
+      "figure:2411.06608:4"
+    ]
+  }
+}
