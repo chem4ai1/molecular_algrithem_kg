@@ -35,6 +35,7 @@
 |---|---|---|
 | `CITES` | SectionPlan | 该节实际引用了哪篇 |
 | `GAP_SUPPORTED_BY` | ResearchGap | 该空白由哪些文献支撑 |
+| `LED_TO` | RelatedPaper | 该候选最终是否被引 |
 
 ## 4. 抽取来源
 

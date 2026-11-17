@@ -124,6 +124,7 @@ USAGE = {
     "TestUnit": "改完有没有测试兜底",
     "EnvSpec": "环境复现（python/cuda/packages）",
     "RunArtifact": "回答「这个数是怎么跑出来的」",
+    "RelatedPaper": "任务级检索候选：本次召回谁、排第几、最终引没引",
 }
 
 NOTE = {
@@ -142,6 +143,9 @@ NOTE = {
     "RunArtifact": "任务级：只在本次执行后产生，带 `run_id`。",
     "Dependency": "从 AST import + requirements.txt 双向收集，可能含标准库。",
     "EntryPoint": "由 `if __name__ == '__main__'` 或文件名规则判定，可能把 demo 脚本也纳入。",
+    "RelatedPaper": "domain_hint 只是检索线索，不参与相似度、不推导 evidence_type；"
+                    "与 CitedPaper（最终引用）/ ConsultedPaper（查过未引）/ "
+                    "SourcePaper（全库科技树）四种角色互不替代。",
 }
 
 

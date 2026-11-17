@@ -167,6 +167,35 @@ class TestWritingContext(unittest.TestCase):
         rels = {a.relation for a in g.assertions}
         self.assertIn("CONSULTED", rels)
 
+    def test_retrieved_hint_not_evidence_norm(self):
+        ctx, g = self._ctx()
+        g.node("paper:1", "Paper", "P1", domain="分子生成与从头设计")
+        nid = ctx.retrieved(paper_id="paper:1", query="3D", score=0.9,
+                            domain_hint="分子生成与从头设计")
+        self.assertEqual(g.nodes[nid].attrs["domain_hint"], "分子生成与从头设计")
+        self.assertNotIn("evidence_type", g.nodes[nid].attrs)
+        rels = {a.relation for a in g.assertions}
+        self.assertIn("ABOUT", rels)
+
+    def test_retrieve_with_injected_searcher(self):
+        ctx, g = self._ctx()
+        g.node("paper:1", "Paper", "P1", domain="D")
+        def fake(q, *, types=None, k=8):
+            return [{"id": "paper:1", "score": 0.8}]
+        ids = ctx.retrieve("q", searcher=fake)
+        self.assertEqual(len(ids), 1)
+        self.assertEqual(g.nodes[ids[0]].attrs["score"], 0.8)
+
+    def test_decide_cited(self):
+        ctx, g = self._ctx()
+        g.node("paper:1", "Paper", "P1")
+        rid = ctx.retrieved(paper_id="paper:1", query="q")
+        cid = ctx.cite(cite_key="k", title="P1")
+        ctx.decide(rid, "cited", cited_id=cid)
+        self.assertEqual(g.nodes[rid].attrs["decision"], "cited")
+        rels = {a.relation for a in g.assertions}
+        self.assertIn("LED_TO", rels)
+
     def test_run_isolation(self):
         from capfactory.applayer.context import WritingContext
         ctx, g = self._ctx()

@@ -1,0 +1,415 @@
+{
+  "phase": "01a_domain_signature",
+  "title": "Phase 1a 领域签名 hint（OPTIONAL 快路径）",
+  "phase_output": {
+    "artifact_type": {
+      "value": "OPTIONAL hint signature",
+      "citations": [
+        "context.question"
+      ]
+    },
+    "artifact_status": {
+      "value": "prior_only_not_final",
+      "citations": [
+        "context.question"
+      ]
+    },
+    "qid": {
+      "value": "Q-ONT-MOL-001",
+      "citations": [
+        "context.qid"
+      ]
+    },
+    "domain_signature": {
+      "domain": {
+        "value": "Ontology-grounded discovery and editing of non-synthesizable molecules",
+        "citations": [
+          "context.question"
+        ]
+      },
+      "evidence_type": {
+        "value": "Ontology reasoner inferences, CQ corpus, crossdocked molecules, literature benchmarks, edit validity, anchor violation, and structure papers",
+        "citations": [
+          "context.reasoner_inferences",
+          "context.corpus",
+          "context.literature",
+          "context.end2edit_validity",
+          "context.anchor_violation",
+          "context.literature.structure_papers"
+        ]
+      },
+      "paradigm": {
+        "value": "Rule-based ontology-grounded constrained editing with explicit failure-risk, protected-atom, stereocenter, and anchor constraints",
+        "citations": [
+          "context.question",
+          "context.reasoner_inferences"
+        ]
+      },
+      "likely_methods": [
+        {
+          "value": "OWL reasoner inference to derive failure risks, protected atoms, required operations, and edit-sequence classes",
+          "citations": [
+            "context.reasoner_inferences"
+          ]
+        },
+        {
+          "value": "Failure-risk localization for Q1 using A19 hasFailureRisk",
+          "citations": [
+            "context.three_questions.Q1",
+            "context.reasoner_inferences.A19 hasFailureRisk"
+          ]
+        },
+        {
+          "value": "Synthesizability rationale for Q2 using hasFailureRisk and required operation SET_CHIRAL",
+          "citations": [
+            "context.three_questions.Q2",
+            "context.reasoner_inferences.A19 hasFailureRisk",
+            "context.reasoner_inferences.A21 hasRequiredOperation SET_CHIRAL"
+          ]
+        },
+        {
+          "value": "Protected-atom and anchor preservation for Q3 using A20 hasProtectedAtom and StereocenterAnchor contract",
+          "citations": [
+            "context.three_questions.Q3",
+            "context.reasoner_inferences.A20 hasProtectedAtom",
+            "context.reasoner_inferences.StereocenterAnchor 契约"
+          ]
+        },
+        {
+          "value": "Validated edit sequence generation using ValidatedEditSequence and StereocenterPreservingReaction",
+          "citations": [
+            "context.reasoner_inferences.定义类 ValidatedEditSequence",
+            "context.reasoner_inferences.定义类 StereocenterPreservingReaction"
+          ]
+        },
+        {
+          "value": "Benchmark comparison against SynCraft and similarity/random/ontology baselines",
+          "citations": [
+            "context.literature.syncraft",
+            "context.hardOK_48api"
+          ]
+        },
+        {
+          "value": "Structure-based binding interaction checks using provided structure papers",
+          "citations": [
+            "context.question",
+            "context.literature.structure_papers"
+          ]
+        }
+      ]
+    },
+    "rule_hints": [
+      {
+        "rule": "If A19 hasFailureRisk is present, flag the corresponding substructure as problematic for Q1 and Q2.",
+        "citations": [
+          "context.three_questions.Q1",
+          "context.three_questions.Q2",
+          "context.reasoner_inferences.A19 hasFailureRisk"
+        ]
+      },
+      {
+        "rule": "If A20 hasProtectedAtom is present, treat the corresponding atoms as protected during editing for Q3.",
+        "citations": [
+          "context.three_questions.Q3",
+          "context.reasoner_inferences.A20 hasProtectedAtom"
+        ]
+      },
+      {
+        "rule": "If A21 hasRequiredOperation SET_CHIRAL is inferred, require a stereochemical operation in the edit plan.",
+        "citations": [
+          "context.reasoner_inferences.A21 hasRequiredOperation SET_CHIRAL",
+          "context.question"
+        ]
+      },
+      {
+        "rule": "If a candidate edit is represented as ValidatedEditSequence or StereocenterPreservingReaction, prefer it as a constrained edit hypothesis.",
+        "citations": [
+          "context.reasoner_inferences.定义类 ValidatedEditSequence",
+          "context.reasoner_inferences.定义类 StereocenterPreservingReaction"
+        ]
+      },
+      {
+        "rule": "Use end2edit_validity and anchor_violation as prior quality checks for edited analogues.",
+        "citations": [
+          "context.end2edit_validity",
+          "context.anchor_violation"
+        ]
+      }
+    ],
+    "prior_signals": {
+      "corpus_scale": {
+        "value": "3272 CQ cases / 14 batches; 2783 crossdocked molecules",
+        "citations": [
+          "context.corpus"
+        ]
+      },
+      "molecule_evidence_counts": {
+        "value": "n_molecules = 3483; n_evidence = 79; papers = 7",
+        "citations": [
+          "context.n_molecules",
+          "context.n_evidence",
+          "context.papers"
+        ]
+      },
+      "reasoner_scale": {
+        "value": "owlrl 10400->23113 triples",
+        "citations": [
+          "context.reasoner_inferences.source"
+        ]
+      },
+      "performance_hint": {
+        "value": "ontology hardOK = 0.875 vs similarity/random = 0.5; exact sign test p=0.0156; end2end p=0.0078",
+        "citations": [
+          "context.hardOK_48api",
+          "context.p_value"
+        ]
+      },
+      "edit_validity_hint": {
+        "value": "ontology and ontology_lora end2edit validity = 1.0 vs syncraft = 0.5",
+        "citations": [
+          "context.end2edit_validity"
+        ]
+      },
+      "anchor_violation_hint": {
+        "value": "ontology and ontology_lora anchor violation = 0.0 vs syncraft = 0.125",
+        "citations": [
+          "context.anchor_violation"
+        ]
+      },
+      "transforms_freed": {
+        "value": "5/5",
+        "citations": [
+          "context.transforms_freed"
+        ]
+      },
+      "rl_pool": {
+        "value": 5174,
+        "citations": [
+          "context.rl_pool"
+        ]
+      }
+    },
+    "missing_inputs": [
+      {
+        "value": "source for end2edit_validity is null",
+        "citations": [
+          "context.end2edit_validity.source"
+        ]
+      },
+      {
+        "value": "source for anchor_violation is null",
+        "citations": [
+          "context.anchor_violation.source"
+        ]
+      }
+    ]
+  },
+  "verdict": "PASS",
+  "missing_inputs": [],
+  "full_response": {
+    "verdict": "PASS",
+    "phase_output": {
+      "artifact_type": {
+        "value": "OPTIONAL hint signature",
+        "citations": [
+          "context.question"
+        ]
+      },
+      "artifact_status": {
+        "value": "prior_only_not_final",
+        "citations": [
+          "context.question"
+        ]
+      },
+      "qid": {
+        "value": "Q-ONT-MOL-001",
+        "citations": [
+          "context.qid"
+        ]
+      },
+      "domain_signature": {
+        "domain": {
+          "value": "Ontology-grounded discovery and editing of non-synthesizable molecules",
+          "citations": [
+            "context.question"
+          ]
+        },
+        "evidence_type": {
+          "value": "Ontology reasoner inferences, CQ corpus, crossdocked molecules, literature benchmarks, edit validity, anchor violation, and structure papers",
+          "citations": [
+            "context.reasoner_inferences",
+            "context.corpus",
+            "context.literature",
+            "context.end2edit_validity",
+            "context.anchor_violation",
+            "context.literature.structure_papers"
+          ]
+        },
+        "paradigm": {
+          "value": "Rule-based ontology-grounded constrained editing with explicit failure-risk, protected-atom, stereocenter, and anchor constraints",
+          "citations": [
+            "context.question",
+            "context.reasoner_inferences"
+          ]
+        },
+        "likely_methods": [
+          {
+            "value": "OWL reasoner inference to derive failure risks, protected atoms, required operations, and edit-sequence classes",
+            "citations": [
+              "context.reasoner_inferences"
+            ]
+          },
+          {
+            "value": "Failure-risk localization for Q1 using A19 hasFailureRisk",
+            "citations": [
+              "context.three_questions.Q1",
+              "context.reasoner_inferences.A19 hasFailureRisk"
+            ]
+          },
+          {
+            "value": "Synthesizability rationale for Q2 using hasFailureRisk and required operation SET_CHIRAL",
+            "citations": [
+              "context.three_questions.Q2",
+              "context.reasoner_inferences.A19 hasFailureRisk",
+              "context.reasoner_inferences.A21 hasRequiredOperation SET_CHIRAL"
+            ]
+          },
+          {
+            "value": "Protected-atom and anchor preservation for Q3 using A20 hasProtectedAtom and StereocenterAnchor contract",
+            "citations": [
+              "context.three_questions.Q3",
+              "context.reasoner_inferences.A20 hasProtectedAtom",
+              "context.reasoner_inferences.StereocenterAnchor 契约"
+            ]
+          },
+          {
+            "value": "Validated edit sequence generation using ValidatedEditSequence and StereocenterPreservingReaction",
+            "citations": [
+              "context.reasoner_inferences.定义类 ValidatedEditSequence",
+              "context.reasoner_inferences.定义类 StereocenterPreservingReaction"
+            ]
+          },
+          {
+            "value": "Benchmark comparison against SynCraft and similarity/random/ontology baselines",
+            "citations": [
+              "context.literature.syncraft",
+              "context.hardOK_48api"
+            ]
+          },
+          {
+            "value": "Structure-based binding interaction checks using provided structure papers",
+            "citations": [
+              "context.question",
+              "context.literature.structure_papers"
+            ]
+          }
+        ]
+      },
+      "rule_hints": [
+        {
+          "rule": "If A19 hasFailureRisk is present, flag the corresponding substructure as problematic for Q1 and Q2.",
+          "citations": [
+            "context.three_questions.Q1",
+            "context.three_questions.Q2",
+            "context.reasoner_inferences.A19 hasFailureRisk"
+          ]
+        },
+        {
+          "rule": "If A20 hasProtectedAtom is present, treat the corresponding atoms as protected during editing for Q3.",
+          "citations": [
+            "context.three_questions.Q3",
+            "context.reasoner_inferences.A20 hasProtectedAtom"
+          ]
+        },
+        {
+          "rule": "If A21 hasRequiredOperation SET_CHIRAL is inferred, require a stereochemical operation in the edit plan.",
+          "citations": [
+            "context.reasoner_inferences.A21 hasRequiredOperation SET_CHIRAL",
+            "context.question"
+          ]
+        },
+        {
+          "rule": "If a candidate edit is represented as ValidatedEditSequence or StereocenterPreservingReaction, prefer it as a constrained edit hypothesis.",
+          "citations": [
+            "context.reasoner_inferences.定义类 ValidatedEditSequence",
+            "context.reasoner_inferences.定义类 StereocenterPreservingReaction"
+          ]
+        },
+        {
+          "rule": "Use end2edit_validity and anchor_violation as prior quality checks for edited analogues.",
+          "citations": [
+            "context.end2edit_validity",
+            "context.anchor_violation"
+          ]
+        }
+      ],
+      "prior_signals": {
+        "corpus_scale": {
+          "value": "3272 CQ cases / 14 batches; 2783 crossdocked molecules",
+          "citations": [
+            "context.corpus"
+          ]
+        },
+        "molecule_evidence_counts": {
+          "value": "n_molecules = 3483; n_evidence = 79; papers = 7",
+          "citations": [
+            "context.n_molecules",
+            "context.n_evidence",
+            "context.papers"
+          ]
+        },
+        "reasoner_scale": {
+          "value": "owlrl 10400->23113 triples",
+          "citations": [
+            "context.reasoner_inferences.source"
+          ]
+        },
+        "performance_hint": {
+          "value": "ontology hardOK = 0.875 vs similarity/random = 0.5; exact sign test p=0.0156; end2end p=0.0078",
+          "citations": [
+            "context.hardOK_48api",
+            "context.p_value"
+          ]
+        },
+        "edit_validity_hint": {
+          "value": "ontology and ontology_lora end2edit validity = 1.0 vs syncraft = 0.5",
+          "citations": [
+            "context.end2edit_validity"
+          ]
+        },
+        "anchor_violation_hint": {
+          "value": "ontology and ontology_lora anchor violation = 0.0 vs syncraft = 0.125",
+          "citations": [
+            "context.anchor_violation"
+          ]
+        },
+        "transforms_freed": {
+          "value": "5/5",
+          "citations": [
+            "context.transforms_freed"
+          ]
+        },
+        "rl_pool": {
+          "value": 5174,
+          "citations": [
+            "context.rl_pool"
+          ]
+        }
+      },
+      "missing_inputs": [
+        {
+          "value": "source for end2edit_validity is null",
+          "citations": [
+            "context.end2edit_validity.source"
+          ]
+        },
+        {
+          "value": "source for anchor_violation is null",
+          "citations": [
+            "context.anchor_violation.source"
+          ]
+        }
+      ]
+    }
+  }
+}

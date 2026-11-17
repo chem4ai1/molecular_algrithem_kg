@@ -1,0 +1,908 @@
+{
+  "phase": "025b_engineering_grounding",
+  "title": "Phase 2.5b EG 8 维可行性",
+  "qid": "Q-ONT-MOL-001",
+  "context": {
+    "problem": {
+      "qid": "Q-ONT-MOL-001",
+      "question": "How can an ontology-grounded pipeline identify WHY a generated molecule is non-synthesizable and edit it into a synthesizable analogue while preserving pharmacophoric anchors, stereochemistry and binding interactions?",
+      "three_questions": {
+        "Q1": "where the structure is problematic",
+        "Q2": "why it cannot be made",
+        "Q3": "what must not be touched during editing"
+      },
+      "corpus": "3272 CQ cases / 14 batches; 2783 crossdocked molecules"
+    },
+    "generation_eval": {
+      "hardOK": {
+        "similarity": 0.5,
+        "random": 0.5,
+        "ontology": 0.875
+      },
+      "n": 16,
+      "better": 6,
+      "worse": 0,
+      "source": "eval_merged_stats.json"
+    },
+    "end2end": {
+      "syncraft": {
+        "edit_validity": 0.5,
+        "chirality_kept": 0.25,
+        "anchor_violation_rate": 0.125,
+        "required_op_rate": 0.0,
+        "mean_tanimoto": 0.5807,
+        "mean_sa_delta": 0.1147
+      },
+      "ontology": {
+        "edit_validity": 1.0,
+        "chirality_kept": 1.0,
+        "anchor_violation_rate": 0.0,
+        "required_op_rate": 1.0,
+        "mean_tanimoto": 0.7405,
+        "mean_sa_delta": -0.3202
+      },
+      "ontology_lora": {
+        "edit_validity": 1.0,
+        "chirality_kept": 1.0,
+        "anchor_violation_rate": 0.0,
+        "required_op_rate": 1.0,
+        "mean_tanimoto": 0.7405,
+        "mean_sa_delta": -0.3202
+      },
+      "source": "end2end_results.json (8 molecules x 3 arms)"
+    },
+    "reasoner": {
+      "A21 hasRequiredOperation SET_CHIRAL": 115,
+      "A19 hasFailureRisk": 231,
+      "A20 hasProtectedAtom": 363,
+      "定义类 ValidatedEditSequence": 78,
+      "定义类 StereocenterPreservingReaction": 2,
+      "StereocenterAnchor 契约": 320,
+      "source": "kernel_verify.json; owlrl 10400->23113 triples"
+    },
+    "ontology_coverage": {
+      "n_cases": 3272,
+      "n_rules": 17,
+      "n_no_applicable": 510,
+      "precondition_triples": 28944,
+      "trigger_triples": 6707,
+      "source": "full_trigger_stats.json"
+    },
+    "annotation": {
+      "n_molecules": 3483,
+      "l0_cover": 3483,
+      "l1_cover": 3347,
+      "by_source": {
+        "golden": {
+          "n": 705,
+          "l1": 654,
+          "multi": 236
+        },
+        "crossdocked": {
+          "n": 2778,
+          "l1": 2693,
+          "multi": 1742
+        }
+      },
+      "source": "labeled_full/manifest.json"
+    },
+    "transforms": {
+      "failed_molecules_freed": "5/5",
+      "by_source": {
+        "golden": {
+          "n": 3272,
+          "any": 2903,
+          "zero": 369,
+          "cover": 88.7,
+          "multi": 1195,
+          "single": 1312,
+          "no_pass": 765,
+          "examples": [
+            {
+              "smi": "[CH3:1][O:2][C@H:3]1[C:4](=[O:5])[O:6][C@@H:7]([CH2:8][OH:9])[C@H:10]([OH:11])[C@@H:12]1[OH:13]",
+              "n": 2,
+              "tops": [
+                "T4_primary_alcohol_to_iodide",
+                "T13_methoxy_demethylation"
+              ]
+            },
+            {
+              "smi": "[CH3:1][O:2][C@H:3]1[C:4](=[O:5])[O:6][C@@H:7]([CH2:8][OH:9])[C@H:10]([OH:11])[C@@H:12]1[OH:13]",
+              "n": 2,
+              "tops": [
+                "T4_primary_alcohol_to_iodide",
+                "T13_methoxy_demethylation"
+              ]
+            },
+            {
+              "smi": "[CH3:1][O:2][C@H:3]1[C:4](=[O:5])[O:6][C@@H:7]([CH2:8][OH:9])[C@H:10]([OH:11])[C@@H:12]1[OH:13]",
+              "n": 2,
+              "tops": [
+                "T4_primary_alcohol_to_iodide",
+                "T13_methoxy_demethylation"
+              ]
+            },
+            {
+              "smi": "[O:1]=[C:2]([OH:3])[C@H:4]1[CH2:5][C@@H:6]1[CH:7]([OH:8])[OH:9]",
+              "n": 2,
+              "tops": [
+                "T6_carboxylic_acid_to_methyl_ester",
+                "T3_gemdiol_to_gemdifluoro"
+              ]
+            },
+            {
+              "smi": "[O:1]=[C:2]([OH:3])[C@H:4]1[CH2:5][C@@H:6]1[CH:7]([OH:8])[OH:9]",
+              "n": 2,
+              "tops": [
+                "T6_carboxylic_acid_to_methyl_ester",
+                "T3_gemdiol_to_gemdifluoro"
+              ]
+            },
+            {
+              "smi": "[CH3:1][O:2][C@H:3]1[C:4](=[O:5])[O:6][C@@H:7]([CH2:8][OH:9])[C@H:10]([OH:11])[C@@H:12]1[OH:13]",
+              "n": 2,
+              "tops": [
+                "T4_primary_alcohol_to_iodide",
+                "T13_methoxy_demethylation"
+              ]
+            },
+            {
+              "smi": "[OH:1][CH:2]=[C:3]([OH:4])[CH2:5][O:6][CH2:7][C@@H:8]([OH:9])[CH2:10][OH:11]",
+              "n": 2,
+              "tops": [
+                "T8_alkene_saturation",
+                "T4_primary_alcohol_to_iodide"
+              ]
+            },
+            {
+              "smi": "[O:1]=[C:2]([OH:3])[C@H:4]1[CH2:5][C@@H:6]1[CH:7]([OH:8])[OH:9]",
+              "n": 2,
+              "tops": [
+                "T6_carboxylic_acid_to_methyl_ester",
+                "T3_gemdiol_to_gemdifluoro"
+              ]
+            },
+            {
+              "smi": "[O:1]=[C:2]([OH:3])[C@H:4]([OH:5])[C@@H:6]([OH:7])[C@@H:8]([OH:9])[CH2:10][OH:11]",
+              "n": 2,
+              "tops": [
+                "T6_carboxylic_acid_to_methyl_ester",
+                "T4_primary_alcohol_to_iodide"
+              ]
+            },
+            {
+              "smi": "[O:1]=[C:2]([OH:3])[C@H:4]([OH:5])[C@@H:6]([OH:7])[C@@H:8]([OH:9])[CH2:10][OH:11]",
+              "n": 2,
+              "tops": [
+                "T6_carboxylic_acid_to_methyl_ester",
+                "T4_primary_alcohol_to_iodide"
+              ]
+            },
+            {
+              "smi": "[O:1]=[C:2]([OH:3])[C@H:4]([OH:5])[C@@H:6]([OH:7])[C@@H:8]([OH:9])[CH2:10][OH:11]",
+              "n": 2,
+              "tops": [
+                "T6_carboxylic_acid_to_methyl_ester",
+                "T4_primary_alcohol_to_iodide"
+              ]
+            },
+            {
+              "smi": "[O:1]=[C:2]([OH:3])[C@H:4]([OH:5])[C@@H:6]([OH:7])[C@@H:8]([OH:9])[CH2:10][OH:11]",
+              "n": 2,
+              "tops": [
+                "T6_carboxylic_acid_to_methyl_ester",
+                "T4_primary_alcohol_to_iodide"
+              ]
+            },
+            {
+              "smi": "[O:1]=[C:2]([OH:3])[C@H:4]([OH:5])[C@@H:6]([OH:7])[C@@H:8]([OH:9])[CH2:10][OH:11]",
+              "n": 2,
+              "tops": [
+                "T6_carboxylic_acid_to_methyl_ester",
+                "T4_primary_alcohol_to_iodide"
+              ]
+            },
+            {
+              "smi": "[O:1]=[C:2]([OH:3])[C@H:4]([OH:5])[C@@H:6]([OH:7])[C@@H:8]([OH:9])[CH2:10][OH:11]",
+              "n": 2,
+              "tops": [
+                "T6_carboxylic_acid_to_methyl_ester",
+                "T4_primary_alcohol_to_iodide"
+              ]
+            },
+            {
+              "smi": "[O:1]=[C:2]([OH:3])[C@H:4]([OH:5])[C@@H:6]([OH:7])[C@@H:8]([OH:9])[CH2:10][OH:11]",
+              "n": 2,
+              "tops": [
+                "T6_carboxylic_acid_to_methyl_ester",
+                "T4_primary_alcohol_to_iodide"
+              ]
+            },
+            {
+              "smi": "[O:1]=[C:2]([OH:3])[C@H:4]([OH:5])[C@@H:6]([OH:7])[C@@H:8]([OH:9])[CH2:10][OH:11]",
+              "n": 2,
+              "tops": [
+                "T6_carboxylic_acid_to_methyl_ester",
+                "T4_primary_alcohol_to_iodide"
+              ]
+            },
+            {
+              "smi": "[OH:1][CH2:2][CH:3]([OH:4])[C@H:5]([OH:6])[C@H:7]([OH:8])[CH2:9][OH:10]",
+              "n": 2,
+              "tops": [
+                "T4_primary_alcohol_to_iodide",
+                "T4_primary_alcohol_to_iodide"
+              ]
+            },
+            {
+              "smi": "[OH:1][CH2:2][CH:3]([OH:4])[C@H:5]([OH:6])[C@H:7]([OH:8])[CH2:9][OH:10]",
+              "n": 2,
+              "tops": [
+                "T4_primary_alcohol_to_iodide",
+                "T4_primary_alcohol_to_iodide"
+              ]
+            },
+            {
+              "smi": "[OH:1][CH2:2][CH:3]([OH:4])[C@H:5]([OH:6])[C@H:7]([OH:8])[CH2:9][OH:10]",
+              "n": 2,
+              "tops": [
+                "T4_primary_alcohol_to_iodide",
+                "T4_primary_alcohol_to_iodide"
+              ]
+            },
+            {
+              "smi": "[OH:1][CH2:2][CH:3]([OH:4])[C@H:5]([OH:6])[C@H:7]([OH:8])[CH2:9][OH:10]",
+              "n": 2,
+              "tops": [
+                "T4_primary_alcohol_to_iodide",
+                "T4_primary_alcohol_to_iodide"
+              ]
+            },
+            {
+              "smi": "[OH:1][CH2:2][CH:3]([OH:4])[C@H:5]([OH:6])[C@H:7]([OH:8])[CH2:9][OH:10]",
+              "n": 2,
+              "tops": [
+                "T4_primary_alcohol_to_iodide",
+                "T4_primary_alcohol_to_iodide"
+              ]
+            },
+            {
+              "smi": "[OH:1][CH2:2][CH:3]([OH:4])[C@H:5]([OH:6])[C@H:7]([OH:8])[CH2:9][OH:10]",
+              "n": 2,
+              "tops": [
+                "T4_primary_alcohol_to_iodide",
+                "T4_primary_alcohol_to_iodide"
+              ]
+            },
+            {
+              "smi": "[OH:1][CH2:2][CH:3]([OH:4])[C@H:5]([OH:6])[C@H:7]([OH:8])[CH2:9][OH:10]",
+              "n": 2,
+              "tops": [
+                "T4_primary_alcohol_to_iodide",
+                "T4_primary_alcohol_to_iodide"
+              ]
+            },
+            {
+              "smi": "[OH:1][CH2:2][CH:3]([OH:4])[C@H:5]([OH:6])[C@H:7]([OH:8])[CH2:9][OH:10]",
+              "n": 2,
+              "tops": [
+                "T4_primary_alcohol_to_iodide",
+                "T4_primary_alcohol_to_iodide"
+              ]
+            },
+            {
+              "smi": "[OH:1][CH2:2][CH:3]([OH:4])[C@H:5]([OH:6])[C@H:7]([OH:8])[CH2:9][OH:10]",
+              "n": 2,
+              "tops": [
+                "T4_primary_alcohol_to_iodide",
+                "T4_primary_alcohol_to_iodide"
+              ]
+            },
+            {
+              "smi": "[OH:1][CH2:2][CH:3]([OH:4])[C@H:5]([OH:6])[C@H:7]([OH:8])[CH2:9][OH:10]",
+              "n": 2,
+              "tops": [
+                "T4_primary_alcohol_to_iodide",
+                "T4_primary_alcohol_to_iodide"
+              ]
+            },
+            {
+              "smi": "[OH:1][CH2:2][CH:3]([OH:4])[C@H:5]([OH:6])[C@H:7]([OH:8])[CH2:9][OH:10]",
+              "n": 2,
+              "tops": [
+                "T4_primary_alcohol_to_iodide",
+                "T4_primary_alcohol_to_iodide"
+              ]
+            },
+            {
+              "smi": "[OH:1][CH2:2][CH:3]([OH:4])[C@H:5]([OH:6])[C@H:7]([OH:8])[CH2:9][OH:10]",
+              "n": 2,
+              "tops": [
+                "T4_primary_alcohol_to_iodide",
+                "T4_primary_alcohol_to_iodide"
+              ]
+            },
+            {
+              "smi": "[OH:1][CH2:2][CH:3]([OH:4])[C@H:5]([OH:6])[C@H:7]([OH:8])[CH2:9][OH:10]",
+              "n": 2,
+              "tops": [
+                "T4_primary_alcohol_to_iodide",
+                "T4_primary_alcohol_to_iodide"
+              ]
+            },
+            {
+              "smi": "[OH:1][CH2:2][CH:3]([OH:4])[C@H:5]([OH:6])[C@H:7]([OH:8])[CH2:9][OH:10]",
+              "n": 2,
+              "tops": [
+                "T4_primary_alcohol_to_iodide",
+                "T4_primary_alcohol_to_iodide"
+              ]
+            }
+          ]
+        },
+        "crossdocked": {
+          "n": 2783,
+          "any": 2575,
+          "zero": 208,
+          "cover": 92.5,
+          "multi": 1745,
+          "single": 680,
+          "no_pass": 358,
+          "examples": [
+            {
+              "smi": "C[C@@H](O)CN(C)C(=O)c1ccc2c(c1)N(C(=O)CCN)[C@H](CCN)C2",
+              "n": 2,
+              "tops": [
+                "T1_terminal_amine_to_methyl",
+                "T1_terminal_amine_to_methyl"
+              ]
+            },
+            {
+              "smi": "Cc1ccc(C(=O)N2CCC[C@H]([C@@H](N)C(=O)NC(=O)C(=O)O)C2)cc1",
+              "n": 3,
+              "tops": [
+                "T6_carboxylic_acid_to_methyl_ester",
+                "T18_amide_NH_to_Nmethyl",
+                "T18_amide_NH_to_Nmethyl"
+              ]
+            },
+            {
+              "smi": "COc1cccc2c1OC[C@@H]1O[C@@H](CO[P@@](=O)(O)OCO)[C@H](O)CO[C@@H]1COC2=O",
+              "n": 2,
+              "tops": [
+                "T4_primary_alcohol_to_iodide",
+                "T13_methoxy_demethylation"
+              ]
+            },
+            {
+              "smi": "CC1=C2CC(O)=CC(C(=O)Nc3cccc4cc(C(=O)O)ccc34)=C2N=C1N",
+              "n": 6,
+              "tops": [
+                "T21_ring_alkene_saturation",
+                "T21_ring_alkene_saturation",
+                "T21_ring_alkene_saturation"
+              ]
+            },
+            {
+              "smi": "Nc1ccc([C@H]2C=C3CC[C@@H](O)CC3=CC2=CC=CC(=O)O)cn1",
+              "n": 6,
+              "tops": [
+                "T6_carboxylic_acid_to_methyl_ester",
+                "T8_alkene_saturation",
+                "T21_ring_alkene_saturation"
+              ]
+            },
+            {
+              "smi": "COc1ccc2cc3c(cc2c1)C(=O)NC(=O)[C@H]3C",
+              "n": 3,
+              "tops": [
+                "T18_amide_NH_to_Nmethyl",
+                "T18_amide_NH_to_Nmethyl",
+                "T13_methoxy_demethylation"
+              ]
+            },
+            {
+              "smi": "O=C(O)C[C@]1(O)CC(O)=CC[C@@H]1O",
+              "n": 2,
+              "tops": [
+                "T6_carboxylic_acid_to_methyl_ester",
+                "T21_ring_alkene_saturation"
+              ]
+            },
+            {
+              "smi": "O=C1N=C2N=CC(C(=O)N(O)[C@H]3C[C@H](CO)NC[C@@H]3O)=C2c2ccccc21",
+              "n": 3,
+              "tops": [
+                "T4_primary_alcohol_to_iodide",
+                "T21_ring_alkene_saturation",
+                "T5_michael_acceptor_saturation"
+              ]
+            },
+            {
+              "smi": "C[C@@H]1C(=O)CC=C2C1=C(O)c1ncncc12",
+              "n": 2,
+              "tops": [
+                "T21_ring_alkene_saturation",
+                "T21_ring_alkene_saturation"
+              ]
+            },
+            {
+              "smi": "C=CC1=CC=C2CC(C(C)(C)c3ccccc3)=CC=C2O1",
+              "n": 5,
+              "tops": [
+                "T8_alkene_saturation",
+                "T21_ring_alkene_saturation",
+                "T21_ring_alkene_saturation"
+              ]
+            },
+            {
+              "smi": "O=C(O)[C@H]1CCC[C@@H]([C@@H](O)Cc2cccc(Cc3cc(O)ccc3-c3ccccc3)c2F)N1",
+              "n": 2,
+              "tops": [
+                "T6_carboxylic_acid_to_methyl_ester",
+                "T7_phenol_to_methoxy"
+              ]
+            },
+            {
+              "smi": "O=C(O)CC(=O)N[C@H](O)[C@@H](O)CC(=O)O",
+              "n": 3,
+              "tops": [
+                "T6_carboxylic_acid_to_methyl_ester",
+                "T6_carboxylic_acid_to_methyl_ester",
+                "T18_amide_NH_to_Nmethyl"
+              ]
+            },
+            {
+              "smi": "CC(C)N=c1nc(N)[nH]c2ccc(C(=O)O)cc12",
+              "n": 2,
+              "tops": [
+                "T6_carboxylic_acid_to_methyl_ester",
+                "T11_arylamine_to_Nmethyl"
+              ]
+            },
+            {
+              "smi": "Cc1cc(C(=O)O)cn(C(=O)C(=O)O)c1=O",
+              "n": 2,
+              "tops": [
+                "T6_carboxylic_acid_to_methyl_ester",
+                "T6_carboxylic_acid_to_methyl_ester"
+              ]
+            },
+            {
+              "smi": "Nc1nc(O[C@@H]2[C@H](O)[C@@H](O)O[C@H]2CO[P@@](=O)(O)OP(=O)(O)O)c(O)cc1O",
+              "n": 3,
+              "tops": [
+                "T7_phenol_to_methoxy",
+                "T7_phenol_to_methoxy",
+                "T11_arylamine_to_Nmethyl"
+              ]
+            },
+            {
+              "smi": "C[C@@]1(CO)CN([C@H]2C[C@H](O)C[C@@H](CO)O2)C(=O)N1",
+              "n": 3,
+              "tops": [
+                "T4_primary_alcohol_to_iodide",
+                "T4_primary_alcohol_to_iodide",
+                "T18_amide_NH_to_Nmethyl"
+              ]
+            },
+            {
+              "smi": "O=C(O)CCC(=O)ONC(=O)c1cccc2c1ncc1ccccc12",
+              "n": 2,
+              "tops": [
+                "T6_carboxylic_acid_to_methyl_ester",
+                "T18_amide_NH_to_Nmethyl"
+              ]
+            },
+            {
+              "smi": "Oc1ccc2c(ccc3c(O)cccc32)c1",
+              "n": 2,
+              "tops": [
+                "T7_phenol_to_methoxy",
+                "T7_phenol_to_methoxy"
+              ]
+            },
+            {
+              "smi": "O=C1NC=C([C@@H](O)CO)C1=O",
+              "n": 4,
+              "tops": [
+                "T18_amide_NH_to_Nmethyl",
+                "T21_ring_alkene_saturation",
+                "T4_primary_alcohol_to_iodide"
+              ]
+            },
+            {
+              "smi": "CN1CCOC2=C3c4c(ccc(O)c4C(=O)C[C@H]3C1=O)C2",
+              "n": 2,
+              "tops": [
+                "T21_ring_alkene_saturation",
+                "T7_phenol_to_methoxy"
+              ]
+            },
+            {
+              "smi": "COc1nccc(COP(=O)(O)O)c1O",
+              "n": 2,
+              "tops": [
+                "T7_phenol_to_methoxy",
+                "T13_methoxy_demethylation"
+              ]
+            },
+            {
+              "smi": "CCOC(=O)C(C)=C1C[C@H]2OC(=O)[C@H](O)[C@@H](C(=O)O)O[P@](=O)(O)OC[C@H](O)[C@@H]3O[C@H]2C1O[C@H]3O",
+              "n": 2,
+              "tops": [
+                "T5_michael_acceptor_saturation",
+                "T6_carboxylic_acid_to_methyl_ester"
+              ]
+            },
+            {
+              "smi": "CC(=O)N1CCC(=C(C)O)[C@H](NC(=O)c2ccc(O)cc2O)CC1",
+              "n": 4,
+              "tops": [
+                "T2_amide_methyl_to_carbamate",
+                "T18_amide_NH_to_Nmethyl",
+                "T7_phenol_to_methoxy"
+              ]
+            },
+            {
+              "smi": "CC1=C2c3c(cccc3N3C[C@H](C(=O)O)NC[C@@H]13)N=C(C(=O)O)C2(C)C",
+              "n": 3,
+              "tops": [
+                "T6_carboxylic_acid_to_methyl_ester",
+                "T6_carboxylic_acid_to_methyl_ester",
+                "T21_ring_alkene_saturation"
+              ]
+            },
+            {
+              "smi": "O=C1C=CC(c2ccccc2)=CC1",
+              "n": 3,
+              "tops": [
+                "T21_ring_alkene_saturation",
+                "T5_michael_acceptor_saturation",
+                "T21_ring_alkene_saturation"
+              ]
+            },
+            {
+              "smi": "CNC(=O)c1cccc(O)c1-n1ccccc1=O",
+              "n": 2,
+              "tops": [
+                "T18_amide_NH_to_Nmethyl",
+                "T7_phenol_to_methoxy"
+              ]
+            },
+            {
+              "smi": "CN[C@@H](C1=CC=CCC1=O)[C@H]1C=C2CCCCC2=N1",
+              "n": 4,
+              "tops": [
+                "T21_ring_alkene_saturation",
+                "T21_ring_alkene_saturation",
+                "T21_ring_alkene_saturation"
+              ]
+            },
+            {
+              "smi": "Cc1ccc(CN2[C@H](CCCC(O)=C3C=CN=C3)CC[C@@H]2C(=O)O)cc1",
+              "n": 2,
+              "tops": [
+                "T21_ring_alkene_saturation",
+                "T6_carboxylic_acid_to_methyl_ester"
+              ]
+            },
+            {
+              "smi": "Cc1cccc(C2=CCCN(CC(=O)NC[C@H]3C[C@H]([C@@H](C)C4=CC5=CCC(O)=C(O)C5=CC4)C[C@@H]3C(=O)O)C2)c1",
+              "n": 7,
+              "tops": [
+                "T21_ring_alkene_saturation",
+                "T21_ring_alkene_saturation",
+                "T21_ring_alkene_saturation"
+              ]
+            },
+            {
+              "smi": "O=C(O)c1cc2c3c(cccc3c1)C(=O)C=C2",
+              "n": 3,
+              "tops": [
+                "T6_carboxylic_acid_to_methyl_ester",
+                "T21_ring_alkene_saturation",
+                "T5_michael_acceptor_saturation"
+              ]
+            }
+          ]
+        }
+      },
+      "source": "extended_specs_report.json"
+    },
+    "structure_evidence": {
+      "n": 79,
+      "papers": 7,
+      "by_model": {
+        "baidu/ernie-5.5-flash-preview:free": 67,
+        "gemini-3.8-flash": 12
+      },
+      "by_pt": {
+        "P11": 6,
+        "P12": 1,
+        "P15": 27,
+        "P16": 17,
+        "P17": 28
+      },
+      "source": "receptor_structure_evidence_v2.json (ernie+gemini, anchor->PT rule)"
+    },
+    "rl": {
+      "n_batches": 18,
+      "n_rows": 5174,
+      "correct_action": {
+        "abstain": 1632,
+        "validate_edits": 1800,
+        "compare_candidates": 1742
+      },
+      "env_reward_probe": {
+        "mean_std": 0.183,
+        "verdict": "真实分歧存在，可进入 S2"
+      },
+      "source": "grpo_pool_mixed + env_reward_probe"
+    },
+    "literature": {
+      "syncraft": {
+        "title": "SynCraft: Guiding Large Language Models to Predict Edit Sequences for Molecular Synthesizability Optimization",
+        "arxiv": "2512.20333",
+        "reported": "P2M 28.4% / ResGen 29.1% rescue at similarity>0.6 (Gemini-2.5-Pro)"
+      },
+      "crux": {
+        "title": "Can AI agents conduct open-ended AI research? Early evidence from two case studies",
+        "arxiv": "2607.27191",
+        "lesson": "agents do engineering but fail at evidence sufficiency"
+      },
+      "structure_papers": [
+        "5KB3",
+        "5IRU",
+        "5J2M",
+        "5JJK",
+        "5JXG",
+        "5K3S",
+        "5IAR"
+      ]
+    }
+  },
+  "previous_phase_output": {
+    "phase": "025_adversarial_falsification",
+    "title": "Phase 2.5 强制证伪",
+    "phase_output": {
+      "phase": "2.5 强制证伪",
+      "assumptions_tested": 6,
+      "fatal_assumptions": [
+        "A1",
+        "A2",
+        "A3"
+      ],
+      "severe_assumptions": [
+        "A4",
+        "A5",
+        "A6"
+      ],
+      "verdict_tally": {
+        "SURVIVE": 1,
+        "WEAKENED": 5,
+        "FALSIFIED": 0
+      },
+      "falsified_assumptions": [],
+      "survive_assumptions": [
+        "A4"
+      ],
+      "weakened_assumptions": [
+        "A1",
+        "A2",
+        "A3",
+        "A5",
+        "A6"
+      ],
+      "key_evidence_cited": [
+        "CONTEXT.end2edit_validity.ontology=1.0 (source=null)",
+        "CONTEXT.anchor_violation.ontology=0.0 (source=null)",
+        "CONTEXT.hardOK_48api.ontology=0.875 vs similarity=0.5 / random=0.5",
+        "CONTEXT.p_value: 6W/0L sign test p=0.0156; end2end 7W/0L p=0.0078",
+        "CONTEXT.reasoner_inferences: A19=231, A20=363, A21 SET_CHIRAL=115, StereocenterPreservingReaction=2, StereocenterAnchor=320, ValidatedEditSequence=78",
+        "CONTEXT.n_evidence=79, papers=7, corpus=3272 CQ / 2783 crossdocked",
+        "CONTEXT.literature.crux.lesson (evidence sufficiency)",
+        "CONTEXT.literature.syncraft.reported (P2M 28.4% / ResGen 29.1% at similarity>0.6)"
+      ],
+      "recommended_next_actions": [
+        "Obtain denominators and provenance for end2edit_validity and anchor_violation (currently source=null) to test A2.",
+        "Provide ground-truth validation linking A19/A20 annotations to real synthesis outcomes to test A1.",
+        "Expand or justify the 2 StereocenterPreservingReaction classes against the 115 SET_CHIRAL requirements to test A3.",
+        "Characterize the ~6 non-passing hardOK_48api cases to bound Q2 resolution (A4).",
+        "Run a metric-matched, same-test-set ontology-vs-SynCraft comparison to test A6."
+      ]
+    },
+    "verdict": "WARN",
+    "missing_inputs": [
+      "Denominator/sample size and provenance for end2edit_validity and anchor_violation (both source=null in CONTEXT).",
+      "Ground-truth validation linking A19 hasFailureRisk / A20 hasProtectedAtom annotations to actual synthesis success/failure.",
+      "Identity and characterization of the ~6 non-passing hardOK_48api cases (derived from 0.875 of the 48-API set; not itemized in CONTEXT).",
+      "Coverage analysis of the 2 defined StereocenterPreservingReaction classes versus the 115 A21 SET_CHIRAL requirements.",
+      "Prior-phase gap-ids (previous phase marked linkage as missing; Q1/Q2/Q3 used as provisional proxies).",
+      "A head-to-head ontology-vs-SynCraft comparison on an identical metric and test set.",
+      "Explicit definition of the 'hardOK' threshold and composition of the 48-API evaluation set."
+    ],
+    "full_response": {
+      "phase": "2.5 强制证伪 (forced falsification)",
+      "qid": "Q-ONT-MOL-001",
+      "selected_idea": {
+        "idea_id": "IDEA_ALPHA",
+        "title": "Ontology failure-risk localization and protected-atom edit planner",
+        "falsifiable_claim": "For molecules flagged by A19 hasFailureRisk and A20 hasProtectedAtom, an ontology-grounded edit planner emitting ValidatedEditSequence and respecting StereocenterAnchor preserves end2edit_validity=1.0 and anchor_violation=0.0 while maintaining hardOK_48api ontology success=0.875.",
+        "stated_falsification_condition": "Falsified if any such edit has end2edit_validity<1.0, anchor_violation>0.0, or hardOK_48api ontology<0.875."
+      },
+      "scoring_methodology": {
+        "reasonability_scale": "0.0-1.0, analyst-assigned subjective judgment (1.0 = strongly supported by CONTEXT, 0.0 = unsupported/contradicted).",
+        "score_type": "analyst_assigned_subjective",
+        "note": "These scores are meta-assessments produced by this phase, NOT empirical values measured in CONTEXT. No empirical numbers are invented; every empirical figure below is quoted from CONTEXT or is explicit arithmetic on a CONTEXT figure and is labeled as such."
+      },
+      "assumptions": [
+        {
+          "assumption_id": "A1",
+          "severity": "fatal",
+          "statement": "Ontology annotations A19 hasFailureRisk and A20 hasProtectedAtom correctly and completely localize the synthesis problem (Q1/Q2) and the atoms that must not be touched (Q3).",
+          "citations": [
+            "CONTEXT.reasoner_inferences['A19 hasFailureRisk']=231",
+            "CONTEXT.reasoner_inferences['A20 hasProtectedAtom']=363",
+            "CONTEXT.reasoner_inferences.source='kernel_verify.json; owlrl 10400->23113 triples'"
+          ],
+          "reasonability_score": 0.55,
+          "counterexamples": [
+            "CONTEXT.hardOK_48api.ontology=0.875 (<1.0) implies residual non-synthesizable cases remain despite the ontology pipeline; CONTEXT does not disambiguate whether A19/A20 mis-localized the problem or the edit failed."
+          ],
+          "verdict": "WEAKENED",
+          "rationale": "The inference mechanism exists and fires at scale (owlrl expanded 10400->23113 triples; 231 failure-risk and 363 protected-atom inferences), but CONTEXT provides no ground-truth linkage proving these annotations correspond to real synthesis failures."
+        },
+        {
+          "assumption_id": "A2",
+          "severity": "fatal",
+          "statement": "end2edit_validity=1.0 and anchor_violation=0.0 generalize beyond the evaluated sample.",
+          "citations": [
+            "CONTEXT.end2edit_validity.ontology=1.0 (source=null)",
+            "CONTEXT.anchor_violation.ontology=0.0 (source=null)",
+            "CONTEXT.p_value='end2end 7 wins 0 losses p=0.0078'"
+          ],
+          "reasonability_score": 0.45,
+          "counterexamples": [
+            "No CONTEXT observation contradicts the perfect scores (no violation observed), so not falsified; however source=null and the only sample-size hint (end2end n=7) is small, so robustness is unconfirmed rather than refuted."
+          ],
+          "verdict": "WEAKENED",
+          "rationale": "Perfect scores with null provenance and a possibly tiny denominator are fragile; the claim is not contradicted but is not established as generalizable."
+        },
+        {
+          "assumption_id": "A3",
+          "severity": "fatal",
+          "statement": "The defined reaction/anchor vocabulary is sufficient to preserve stereochemistry and pharmacophoric anchors across the required edit space.",
+          "citations": [
+            "CONTEXT.reasoner_inferences['定义类 StereocenterPreservingReaction']=2",
+            "CONTEXT.reasoner_inferences['A21 hasRequiredOperation SET_CHIRAL']=115",
+            "CONTEXT.reasoner_inferences['StereocenterAnchor 契约']=320",
+            "CONTEXT.reasoner_inferences['定义类 ValidatedEditSequence']=78",
+            "CONTEXT.transforms_freed='5/5'"
+          ],
+          "reasonability_score": 0.3,
+          "counterexamples": [
+            "Only 2 StereocenterPreservingReaction classes are defined against 115 A21 SET_CHIRAL requirements and 320 StereocenterAnchor contracts; any required stereocenter-preserving edit outside those 2 templates could push anchor_violation above 0.0. CONTEXT shows 0.0 within the tested set, so coverage beyond the tested set is unverified, not refuted."
+          ],
+          "verdict": "WEAKENED",
+          "rationale": "Severe coverage gap: 2 reaction templates vs 115 chiral-set requirements. The tested anchor_violation=0.0 holds, but generalization of stereochemistry preservation is unsupported by the vocabulary size."
+        },
+        {
+          "assumption_id": "A4",
+          "severity": "severe",
+          "statement": "hardOK_48api.ontology=0.875 constitutes adequate resolution of Q2 (why it cannot be made) and Q3 (what must not be touched).",
+          "citations": [
+            "CONTEXT.hardOK_48api.ontology=0.875",
+            "CONTEXT.hardOK_48api.similarity=0.5",
+            "CONTEXT.hardOK_48api.random=0.5",
+            "CONTEXT.question.three_questions Q2/Q3"
+          ],
+          "reasonability_score": 0.6,
+          "counterexamples": [
+            "Arithmetic on the metric name hardOK_48api: 0.875 = 42/48, implying ~6 of 48 cases do not pass hardOK. These residual cases are counterexamples to any universal-synthesizability reading, but the falsifiable claim only requires maintaining 0.875, so IDEA_ALPHA as written is not falsified. Exact failing-case identities are not in CONTEXT."
+          ],
+          "verdict": "SURVIVE",
+          "rationale": "Ontology (0.875) clearly beats similarity/random baselines (0.5), a cited improvement, and the claim only asserts maintaining 0.875, which holds. Residual ~6/48 failures are noted as an unresolved Q2 tail, not a falsification."
+        },
+        {
+          "assumption_id": "A5",
+          "severity": "severe",
+          "statement": "The evidence base is sufficient to support the causal WHY-claims (Q2).",
+          "citations": [
+            "CONTEXT.n_evidence=79",
+            "CONTEXT.papers=7",
+            "CONTEXT.corpus='3272 CQ cases / 14 batches; 2783 crossdocked molecules'",
+            "CONTEXT.literature.crux.lesson='agents do engineering but fail at evidence sufficiency'"
+          ],
+          "reasonability_score": 0.5,
+          "counterexamples": [
+            "CONTEXT.literature.crux documents the failure mode where agent pipelines produce engineering artifacts that fail evidence sufficiency; with n_evidence=79 and papers=7 this risk is directly applicable."
+          ],
+          "verdict": "WEAKENED",
+          "rationale": "Corpus is large (3272 CQ, 2783 crossdocked) but the supporting evidence count (79) and paper count (7) are modest, and CRUX explicitly flags evidence-insufficiency as a known agent failure mode."
+        },
+        {
+          "assumption_id": "A6",
+          "severity": "severe",
+          "statement": "Comparative superiority over SynCraft is established on a fair, identical metric and test set.",
+          "citations": [
+            "CONTEXT.literature.syncraft.reported='P2M 28.4% / ResGen 29.1% rescue at similarity>0.6 (Gemini-2.5-Pro)'",
+            "CONTEXT.hardOK_48api.ontology=0.875",
+            "CONTEXT.p_value='6 wins 0 losses, exact sign test p=0.0156'"
+          ],
+          "reasonability_score": 0.4,
+          "counterexamples": [
+            "SynCraft reports P2M/ResGen rescue rates at similarity>0.6, whereas CONTEXT's ontology figure is hardOK_48api; these are different metrics on possibly different test sets. The significant sign test (p=0.0156) is against 'similarity'/'random' baselines (0.5), not against SynCraft, so no apples-to-apples SynCraft comparison exists in CONTEXT."
+          ],
+          "verdict": "WEAKENED",
+          "rationale": "Within-study significance is real (ontology vs similarity/random), but the cross-study comparison to SynCraft is not metric-matched in CONTEXT and cannot be treated as established."
+        }
+      ],
+      "counterexamples_summary": [
+        "hardOK_48api.ontology=0.875 implies ~6/48 residual non-synthesizable cases (arithmetic on metric name), bounding the achievable resolution of Q2.",
+        "Only 2 StereocenterPreservingReaction classes vs 115 A21 SET_CHIRAL requirements bounds stereochemistry-preservation coverage.",
+        "CRUX lesson supplies a documented counterexample-class (agents fail at evidence sufficiency) directly relevant to n_evidence=79 / papers=7.",
+        "No CONTEXT counterexample directly contradicts end2edit_validity=1.0 or anchor_violation=0.0; these remain un-falsified but unproven for generalization (source=null)."
+      ],
+      "overall_idea_verdict": "WEAKENED",
+      "overall_rationale": "No CONTEXT artifact directly falsifies the falsifiable claim: the cited figures hold (end2edit_validity.ontology=1.0, anchor_violation.ontology=0.0, hardOK_48api.ontology=0.875, sign test p=0.0156, end2end p=0.0078). However, three fatal assumptions (A1 correctness of annotations, A2 generalization of perfect scores, A3 reaction-vocabulary coverage) and three severe assumptions (A4 residual failures, A5 evidence sufficiency, A6 non-matched SynCraft comparison) rest on null provenance, small reaction vocabulary, and modest evidence counts. Hence WEAKENED rather than SURVIVE, and not FALSIFIED.",
+      "phase_output": {
+        "phase": "2.5 强制证伪",
+        "assumptions_tested": 6,
+        "fatal_assumptions": [
+          "A1",
+          "A2",
+          "A3"
+        ],
+        "severe_assumptions": [
+          "A4",
+          "A5",
+          "A6"
+        ],
+        "verdict_tally": {
+          "SURVIVE": 1,
+          "WEAKENED": 5,
+          "FALSIFIED": 0
+        },
+        "falsified_assumptions": [],
+        "survive_assumptions": [
+          "A4"
+        ],
+        "weakened_assumptions": [
+          "A1",
+          "A2",
+          "A3",
+          "A5",
+          "A6"
+        ],
+        "key_evidence_cited": [
+          "CONTEXT.end2edit_validity.ontology=1.0 (source=null)",
+          "CONTEXT.anchor_violation.ontology=0.0 (source=null)",
+          "CONTEXT.hardOK_48api.ontology=0.875 vs similarity=0.5 / random=0.5",
+          "CONTEXT.p_value: 6W/0L sign test p=0.0156; end2end 7W/0L p=0.0078",
+          "CONTEXT.reasoner_inferences: A19=231, A20=363, A21 SET_CHIRAL=115, StereocenterPreservingReaction=2, StereocenterAnchor=320, ValidatedEditSequence=78",
+          "CONTEXT.n_evidence=79, papers=7, corpus=3272 CQ / 2783 crossdocked",
+          "CONTEXT.literature.crux.lesson (evidence sufficiency)",
+          "CONTEXT.literature.syncraft.reported (P2M 28.4% / ResGen 29.1% at similarity>0.6)"
+        ],
+        "recommended_next_actions": [
+          "Obtain denominators and provenance for end2edit_validity and anchor_violation (currently source=null) to test A2.",
+          "Provide ground-truth validation linking A19/A20 annotations to real synthesis outcomes to test A1.",
+          "Expand or justify the 2 StereocenterPreservingReaction classes against the 115 SET_CHIRAL requirements to test A3.",
+          "Characterize the ~6 non-passing hardOK_48api cases to bound Q2 resolution (A4).",
+          "Run a metric-matched, same-test-set ontology-vs-SynCraft comparison to test A6."
+        ]
+      },
+      "missing_inputs": [
+        "Denominator/sample size and provenance for end2edit_validity and anchor_violation (both source=null in CONTEXT).",
+        "Ground-truth validation linking A19 hasFailureRisk / A20 hasProtectedAtom annotations to actual synthesis success/failure.",
+        "Identity and characterization of the ~6 non-passing hardOK_48api cases (derived from 0.875 of the 48-API set; not itemized in CONTEXT).",
+        "Coverage analysis of the 2 defined StereocenterPreservingReaction classes versus the 115 A21 SET_CHIRAL requirements.",
+        "Prior-phase gap-ids (previous phase marked linkage as missing; Q1/Q2/Q3 used as provisional proxies).",
+        "A head-to-head ontology-vs-SynCraft comparison on an identical metric and test set.",
+        "Explicit definition of the 'hardOK' threshold and composition of the 48-API evaluation set."
+      ],
+      "verdict": "WARN"
+    }
+  }
+}

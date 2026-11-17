@@ -1,0 +1,311 @@
+{
+  "phase": "00_problem_freeze",
+  "title": "Phase 0 问题冻结（INV-G1 锚点）",
+  "phase_output": {
+    "PROBLEM_ANCHOR": {
+      "qid": {
+        "value": "Q-ONT-MOL-001",
+        "citations": [
+          "context.qid"
+        ]
+      },
+      "question_verbatim": {
+        "value": "How can an ontology-grounded pipeline identify WHY a generated molecule is non-synthesizable and edit it into a synthesizable analogue while preserving pharmacophoric anchors, stereochemistry and binding interactions?",
+        "citations": [
+          "context.question"
+        ]
+      },
+      "hash": {
+        "value": null,
+        "status": "MISSING",
+        "citations": [
+          "context.question"
+        ]
+      },
+      "three_question_decomposition": {
+        "Q1": {
+          "value": "where the structure is problematic",
+          "citations": [
+            "context.three_questions.Q1"
+          ]
+        },
+        "Q2": {
+          "value": "why it cannot be made",
+          "citations": [
+            "context.three_questions.Q2"
+          ]
+        },
+        "Q3": {
+          "value": "what must not be touched during editing",
+          "citations": [
+            "context.three_questions.Q3"
+          ]
+        }
+      }
+    },
+    "INV-G1": {
+      "statement": {
+        "value": "The pipeline must identify why a generated molecule is non-synthesizable and edit it into a synthesizable analogue while preserving pharmacophoric anchors, stereochemistry and binding interactions.",
+        "citations": [
+          "context.question",
+          "context.three_questions"
+        ]
+      }
+    },
+    "evidence_snapshot": {
+      "corpus": {
+        "value": "3272 CQ cases / 14 batches; 2783 crossdocked molecules",
+        "citations": [
+          "context.corpus"
+        ]
+      },
+      "hardOK_48api": {
+        "value": {
+          "similarity": 0.5,
+          "random": 0.5,
+          "ontology": 0.875
+        },
+        "citations": [
+          "context.hardOK_48api"
+        ]
+      },
+      "p_value": {
+        "value": "6 wins 0 losses, exact sign test p=0.0156; end2end 7 wins 0 losses p=0.0078",
+        "citations": [
+          "context.p_value"
+        ]
+      },
+      "end2edit_validity": {
+        "value": {
+          "syncraft": 0.5,
+          "ontology": 1.0,
+          "ontology_lora": 1.0,
+          "source": null
+        },
+        "citations": [
+          "context.end2edit_validity"
+        ]
+      },
+      "anchor_violation": {
+        "value": {
+          "syncraft": 0.125,
+          "ontology": 0.0,
+          "ontology_lora": 0.0,
+          "source": null
+        },
+        "citations": [
+          "context.anchor_violation"
+        ]
+      },
+      "reasoner_inferences": {
+        "value": {
+          "A21 hasRequiredOperation SET_CHIRAL": 115,
+          "A19 hasFailureRisk": 231,
+          "A20 hasProtectedAtom": 363,
+          "定义类 ValidatedEditSequence": 78,
+          "定义类 StereocenterPreservingReaction": 2,
+          "StereocenterAnchor 契约": 320,
+          "source": "kernel_verify.json; owlrl 10400->23113 triples"
+        },
+        "citations": [
+          "context.reasoner_inferences"
+        ]
+      },
+      "n_molecules": {
+        "value": 3483,
+        "citations": [
+          "context.n_molecules"
+        ]
+      },
+      "n_evidence": {
+        "value": 79,
+        "citations": [
+          "context.n_evidence"
+        ]
+      },
+      "papers": {
+        "value": 7,
+        "citations": [
+          "context.papers"
+        ]
+      },
+      "transforms_freed": {
+        "value": "5/5",
+        "citations": [
+          "context.transforms_freed"
+        ]
+      },
+      "rl_pool": {
+        "value": 5174,
+        "citations": [
+          "context.rl_pool"
+        ]
+      }
+    }
+  },
+  "verdict": "WARN",
+  "missing_inputs": [
+    {
+      "field": "PROBLEM_ANCHOR.hash",
+      "issue": "No hash value is provided in CONTEXT for the verbatim question.",
+      "citations": [
+        "context.question"
+      ]
+    }
+  ],
+  "full_response": {
+    "phase": "Phase 0 问题冻结（INV-G1 锚点）",
+    "phase_output": {
+      "PROBLEM_ANCHOR": {
+        "qid": {
+          "value": "Q-ONT-MOL-001",
+          "citations": [
+            "context.qid"
+          ]
+        },
+        "question_verbatim": {
+          "value": "How can an ontology-grounded pipeline identify WHY a generated molecule is non-synthesizable and edit it into a synthesizable analogue while preserving pharmacophoric anchors, stereochemistry and binding interactions?",
+          "citations": [
+            "context.question"
+          ]
+        },
+        "hash": {
+          "value": null,
+          "status": "MISSING",
+          "citations": [
+            "context.question"
+          ]
+        },
+        "three_question_decomposition": {
+          "Q1": {
+            "value": "where the structure is problematic",
+            "citations": [
+              "context.three_questions.Q1"
+            ]
+          },
+          "Q2": {
+            "value": "why it cannot be made",
+            "citations": [
+              "context.three_questions.Q2"
+            ]
+          },
+          "Q3": {
+            "value": "what must not be touched during editing",
+            "citations": [
+              "context.three_questions.Q3"
+            ]
+          }
+        }
+      },
+      "INV-G1": {
+        "statement": {
+          "value": "The pipeline must identify why a generated molecule is non-synthesizable and edit it into a synthesizable analogue while preserving pharmacophoric anchors, stereochemistry and binding interactions.",
+          "citations": [
+            "context.question",
+            "context.three_questions"
+          ]
+        }
+      },
+      "evidence_snapshot": {
+        "corpus": {
+          "value": "3272 CQ cases / 14 batches; 2783 crossdocked molecules",
+          "citations": [
+            "context.corpus"
+          ]
+        },
+        "hardOK_48api": {
+          "value": {
+            "similarity": 0.5,
+            "random": 0.5,
+            "ontology": 0.875
+          },
+          "citations": [
+            "context.hardOK_48api"
+          ]
+        },
+        "p_value": {
+          "value": "6 wins 0 losses, exact sign test p=0.0156; end2end 7 wins 0 losses p=0.0078",
+          "citations": [
+            "context.p_value"
+          ]
+        },
+        "end2edit_validity": {
+          "value": {
+            "syncraft": 0.5,
+            "ontology": 1.0,
+            "ontology_lora": 1.0,
+            "source": null
+          },
+          "citations": [
+            "context.end2edit_validity"
+          ]
+        },
+        "anchor_violation": {
+          "value": {
+            "syncraft": 0.125,
+            "ontology": 0.0,
+            "ontology_lora": 0.0,
+            "source": null
+          },
+          "citations": [
+            "context.anchor_violation"
+          ]
+        },
+        "reasoner_inferences": {
+          "value": {
+            "A21 hasRequiredOperation SET_CHIRAL": 115,
+            "A19 hasFailureRisk": 231,
+            "A20 hasProtectedAtom": 363,
+            "定义类 ValidatedEditSequence": 78,
+            "定义类 StereocenterPreservingReaction": 2,
+            "StereocenterAnchor 契约": 320,
+            "source": "kernel_verify.json; owlrl 10400->23113 triples"
+          },
+          "citations": [
+            "context.reasoner_inferences"
+          ]
+        },
+        "n_molecules": {
+          "value": 3483,
+          "citations": [
+            "context.n_molecules"
+          ]
+        },
+        "n_evidence": {
+          "value": 79,
+          "citations": [
+            "context.n_evidence"
+          ]
+        },
+        "papers": {
+          "value": 7,
+          "citations": [
+            "context.papers"
+          ]
+        },
+        "transforms_freed": {
+          "value": "5/5",
+          "citations": [
+            "context.transforms_freed"
+          ]
+        },
+        "rl_pool": {
+          "value": 5174,
+          "citations": [
+            "context.rl_pool"
+          ]
+        }
+      }
+    },
+    "missing_inputs": [
+      {
+        "field": "PROBLEM_ANCHOR.hash",
+        "issue": "No hash value is provided in CONTEXT for the verbatim question.",
+        "citations": [
+          "context.question"
+        ]
+      }
+    ],
+    "verdict": "WARN"
+  }
+}

@@ -1,0 +1,243 @@
+{
+  "phase": "025_adversarial_falsification",
+  "title": "Phase 2.5 强制证伪",
+  "phase_output": {
+    "phase": "2.5 强制证伪",
+    "assumptions_tested": 6,
+    "fatal_assumptions": [
+      "A1",
+      "A2",
+      "A3"
+    ],
+    "severe_assumptions": [
+      "A4",
+      "A5",
+      "A6"
+    ],
+    "verdict_tally": {
+      "SURVIVE": 1,
+      "WEAKENED": 5,
+      "FALSIFIED": 0
+    },
+    "falsified_assumptions": [],
+    "survive_assumptions": [
+      "A4"
+    ],
+    "weakened_assumptions": [
+      "A1",
+      "A2",
+      "A3",
+      "A5",
+      "A6"
+    ],
+    "key_evidence_cited": [
+      "CONTEXT.end2edit_validity.ontology=1.0 (source=null)",
+      "CONTEXT.anchor_violation.ontology=0.0 (source=null)",
+      "CONTEXT.hardOK_48api.ontology=0.875 vs similarity=0.5 / random=0.5",
+      "CONTEXT.p_value: 6W/0L sign test p=0.0156; end2end 7W/0L p=0.0078",
+      "CONTEXT.reasoner_inferences: A19=231, A20=363, A21 SET_CHIRAL=115, StereocenterPreservingReaction=2, StereocenterAnchor=320, ValidatedEditSequence=78",
+      "CONTEXT.n_evidence=79, papers=7, corpus=3272 CQ / 2783 crossdocked",
+      "CONTEXT.literature.crux.lesson (evidence sufficiency)",
+      "CONTEXT.literature.syncraft.reported (P2M 28.4% / ResGen 29.1% at similarity>0.6)"
+    ],
+    "recommended_next_actions": [
+      "Obtain denominators and provenance for end2edit_validity and anchor_violation (currently source=null) to test A2.",
+      "Provide ground-truth validation linking A19/A20 annotations to real synthesis outcomes to test A1.",
+      "Expand or justify the 2 StereocenterPreservingReaction classes against the 115 SET_CHIRAL requirements to test A3.",
+      "Characterize the ~6 non-passing hardOK_48api cases to bound Q2 resolution (A4).",
+      "Run a metric-matched, same-test-set ontology-vs-SynCraft comparison to test A6."
+    ]
+  },
+  "verdict": "WARN",
+  "missing_inputs": [
+    "Denominator/sample size and provenance for end2edit_validity and anchor_violation (both source=null in CONTEXT).",
+    "Ground-truth validation linking A19 hasFailureRisk / A20 hasProtectedAtom annotations to actual synthesis success/failure.",
+    "Identity and characterization of the ~6 non-passing hardOK_48api cases (derived from 0.875 of the 48-API set; not itemized in CONTEXT).",
+    "Coverage analysis of the 2 defined StereocenterPreservingReaction classes versus the 115 A21 SET_CHIRAL requirements.",
+    "Prior-phase gap-ids (previous phase marked linkage as missing; Q1/Q2/Q3 used as provisional proxies).",
+    "A head-to-head ontology-vs-SynCraft comparison on an identical metric and test set.",
+    "Explicit definition of the 'hardOK' threshold and composition of the 48-API evaluation set."
+  ],
+  "full_response": {
+    "phase": "2.5 强制证伪 (forced falsification)",
+    "qid": "Q-ONT-MOL-001",
+    "selected_idea": {
+      "idea_id": "IDEA_ALPHA",
+      "title": "Ontology failure-risk localization and protected-atom edit planner",
+      "falsifiable_claim": "For molecules flagged by A19 hasFailureRisk and A20 hasProtectedAtom, an ontology-grounded edit planner emitting ValidatedEditSequence and respecting StereocenterAnchor preserves end2edit_validity=1.0 and anchor_violation=0.0 while maintaining hardOK_48api ontology success=0.875.",
+      "stated_falsification_condition": "Falsified if any such edit has end2edit_validity<1.0, anchor_violation>0.0, or hardOK_48api ontology<0.875."
+    },
+    "scoring_methodology": {
+      "reasonability_scale": "0.0-1.0, analyst-assigned subjective judgment (1.0 = strongly supported by CONTEXT, 0.0 = unsupported/contradicted).",
+      "score_type": "analyst_assigned_subjective",
+      "note": "These scores are meta-assessments produced by this phase, NOT empirical values measured in CONTEXT. No empirical numbers are invented; every empirical figure below is quoted from CONTEXT or is explicit arithmetic on a CONTEXT figure and is labeled as such."
+    },
+    "assumptions": [
+      {
+        "assumption_id": "A1",
+        "severity": "fatal",
+        "statement": "Ontology annotations A19 hasFailureRisk and A20 hasProtectedAtom correctly and completely localize the synthesis problem (Q1/Q2) and the atoms that must not be touched (Q3).",
+        "citations": [
+          "CONTEXT.reasoner_inferences['A19 hasFailureRisk']=231",
+          "CONTEXT.reasoner_inferences['A20 hasProtectedAtom']=363",
+          "CONTEXT.reasoner_inferences.source='kernel_verify.json; owlrl 10400->23113 triples'"
+        ],
+        "reasonability_score": 0.55,
+        "counterexamples": [
+          "CONTEXT.hardOK_48api.ontology=0.875 (<1.0) implies residual non-synthesizable cases remain despite the ontology pipeline; CONTEXT does not disambiguate whether A19/A20 mis-localized the problem or the edit failed."
+        ],
+        "verdict": "WEAKENED",
+        "rationale": "The inference mechanism exists and fires at scale (owlrl expanded 10400->23113 triples; 231 failure-risk and 363 protected-atom inferences), but CONTEXT provides no ground-truth linkage proving these annotations correspond to real synthesis failures."
+      },
+      {
+        "assumption_id": "A2",
+        "severity": "fatal",
+        "statement": "end2edit_validity=1.0 and anchor_violation=0.0 generalize beyond the evaluated sample.",
+        "citations": [
+          "CONTEXT.end2edit_validity.ontology=1.0 (source=null)",
+          "CONTEXT.anchor_violation.ontology=0.0 (source=null)",
+          "CONTEXT.p_value='end2end 7 wins 0 losses p=0.0078'"
+        ],
+        "reasonability_score": 0.45,
+        "counterexamples": [
+          "No CONTEXT observation contradicts the perfect scores (no violation observed), so not falsified; however source=null and the only sample-size hint (end2end n=7) is small, so robustness is unconfirmed rather than refuted."
+        ],
+        "verdict": "WEAKENED",
+        "rationale": "Perfect scores with null provenance and a possibly tiny denominator are fragile; the claim is not contradicted but is not established as generalizable."
+      },
+      {
+        "assumption_id": "A3",
+        "severity": "fatal",
+        "statement": "The defined reaction/anchor vocabulary is sufficient to preserve stereochemistry and pharmacophoric anchors across the required edit space.",
+        "citations": [
+          "CONTEXT.reasoner_inferences['定义类 StereocenterPreservingReaction']=2",
+          "CONTEXT.reasoner_inferences['A21 hasRequiredOperation SET_CHIRAL']=115",
+          "CONTEXT.reasoner_inferences['StereocenterAnchor 契约']=320",
+          "CONTEXT.reasoner_inferences['定义类 ValidatedEditSequence']=78",
+          "CONTEXT.transforms_freed='5/5'"
+        ],
+        "reasonability_score": 0.3,
+        "counterexamples": [
+          "Only 2 StereocenterPreservingReaction classes are defined against 115 A21 SET_CHIRAL requirements and 320 StereocenterAnchor contracts; any required stereocenter-preserving edit outside those 2 templates could push anchor_violation above 0.0. CONTEXT shows 0.0 within the tested set, so coverage beyond the tested set is unverified, not refuted."
+        ],
+        "verdict": "WEAKENED",
+        "rationale": "Severe coverage gap: 2 reaction templates vs 115 chiral-set requirements. The tested anchor_violation=0.0 holds, but generalization of stereochemistry preservation is unsupported by the vocabulary size."
+      },
+      {
+        "assumption_id": "A4",
+        "severity": "severe",
+        "statement": "hardOK_48api.ontology=0.875 constitutes adequate resolution of Q2 (why it cannot be made) and Q3 (what must not be touched).",
+        "citations": [
+          "CONTEXT.hardOK_48api.ontology=0.875",
+          "CONTEXT.hardOK_48api.similarity=0.5",
+          "CONTEXT.hardOK_48api.random=0.5",
+          "CONTEXT.question.three_questions Q2/Q3"
+        ],
+        "reasonability_score": 0.6,
+        "counterexamples": [
+          "Arithmetic on the metric name hardOK_48api: 0.875 = 42/48, implying ~6 of 48 cases do not pass hardOK. These residual cases are counterexamples to any universal-synthesizability reading, but the falsifiable claim only requires maintaining 0.875, so IDEA_ALPHA as written is not falsified. Exact failing-case identities are not in CONTEXT."
+        ],
+        "verdict": "SURVIVE",
+        "rationale": "Ontology (0.875) clearly beats similarity/random baselines (0.5), a cited improvement, and the claim only asserts maintaining 0.875, which holds. Residual ~6/48 failures are noted as an unresolved Q2 tail, not a falsification."
+      },
+      {
+        "assumption_id": "A5",
+        "severity": "severe",
+        "statement": "The evidence base is sufficient to support the causal WHY-claims (Q2).",
+        "citations": [
+          "CONTEXT.n_evidence=79",
+          "CONTEXT.papers=7",
+          "CONTEXT.corpus='3272 CQ cases / 14 batches; 2783 crossdocked molecules'",
+          "CONTEXT.literature.crux.lesson='agents do engineering but fail at evidence sufficiency'"
+        ],
+        "reasonability_score": 0.5,
+        "counterexamples": [
+          "CONTEXT.literature.crux documents the failure mode where agent pipelines produce engineering artifacts that fail evidence sufficiency; with n_evidence=79 and papers=7 this risk is directly applicable."
+        ],
+        "verdict": "WEAKENED",
+        "rationale": "Corpus is large (3272 CQ, 2783 crossdocked) but the supporting evidence count (79) and paper count (7) are modest, and CRUX explicitly flags evidence-insufficiency as a known agent failure mode."
+      },
+      {
+        "assumption_id": "A6",
+        "severity": "severe",
+        "statement": "Comparative superiority over SynCraft is established on a fair, identical metric and test set.",
+        "citations": [
+          "CONTEXT.literature.syncraft.reported='P2M 28.4% / ResGen 29.1% rescue at similarity>0.6 (Gemini-2.5-Pro)'",
+          "CONTEXT.hardOK_48api.ontology=0.875",
+          "CONTEXT.p_value='6 wins 0 losses, exact sign test p=0.0156'"
+        ],
+        "reasonability_score": 0.4,
+        "counterexamples": [
+          "SynCraft reports P2M/ResGen rescue rates at similarity>0.6, whereas CONTEXT's ontology figure is hardOK_48api; these are different metrics on possibly different test sets. The significant sign test (p=0.0156) is against 'similarity'/'random' baselines (0.5), not against SynCraft, so no apples-to-apples SynCraft comparison exists in CONTEXT."
+        ],
+        "verdict": "WEAKENED",
+        "rationale": "Within-study significance is real (ontology vs similarity/random), but the cross-study comparison to SynCraft is not metric-matched in CONTEXT and cannot be treated as established."
+      }
+    ],
+    "counterexamples_summary": [
+      "hardOK_48api.ontology=0.875 implies ~6/48 residual non-synthesizable cases (arithmetic on metric name), bounding the achievable resolution of Q2.",
+      "Only 2 StereocenterPreservingReaction classes vs 115 A21 SET_CHIRAL requirements bounds stereochemistry-preservation coverage.",
+      "CRUX lesson supplies a documented counterexample-class (agents fail at evidence sufficiency) directly relevant to n_evidence=79 / papers=7.",
+      "No CONTEXT counterexample directly contradicts end2edit_validity=1.0 or anchor_violation=0.0; these remain un-falsified but unproven for generalization (source=null)."
+    ],
+    "overall_idea_verdict": "WEAKENED",
+    "overall_rationale": "No CONTEXT artifact directly falsifies the falsifiable claim: the cited figures hold (end2edit_validity.ontology=1.0, anchor_violation.ontology=0.0, hardOK_48api.ontology=0.875, sign test p=0.0156, end2end p=0.0078). However, three fatal assumptions (A1 correctness of annotations, A2 generalization of perfect scores, A3 reaction-vocabulary coverage) and three severe assumptions (A4 residual failures, A5 evidence sufficiency, A6 non-matched SynCraft comparison) rest on null provenance, small reaction vocabulary, and modest evidence counts. Hence WEAKENED rather than SURVIVE, and not FALSIFIED.",
+    "phase_output": {
+      "phase": "2.5 强制证伪",
+      "assumptions_tested": 6,
+      "fatal_assumptions": [
+        "A1",
+        "A2",
+        "A3"
+      ],
+      "severe_assumptions": [
+        "A4",
+        "A5",
+        "A6"
+      ],
+      "verdict_tally": {
+        "SURVIVE": 1,
+        "WEAKENED": 5,
+        "FALSIFIED": 0
+      },
+      "falsified_assumptions": [],
+      "survive_assumptions": [
+        "A4"
+      ],
+      "weakened_assumptions": [
+        "A1",
+        "A2",
+        "A3",
+        "A5",
+        "A6"
+      ],
+      "key_evidence_cited": [
+        "CONTEXT.end2edit_validity.ontology=1.0 (source=null)",
+        "CONTEXT.anchor_violation.ontology=0.0 (source=null)",
+        "CONTEXT.hardOK_48api.ontology=0.875 vs similarity=0.5 / random=0.5",
+        "CONTEXT.p_value: 6W/0L sign test p=0.0156; end2end 7W/0L p=0.0078",
+        "CONTEXT.reasoner_inferences: A19=231, A20=363, A21 SET_CHIRAL=115, StereocenterPreservingReaction=2, StereocenterAnchor=320, ValidatedEditSequence=78",
+        "CONTEXT.n_evidence=79, papers=7, corpus=3272 CQ / 2783 crossdocked",
+        "CONTEXT.literature.crux.lesson (evidence sufficiency)",
+        "CONTEXT.literature.syncraft.reported (P2M 28.4% / ResGen 29.1% at similarity>0.6)"
+      ],
+      "recommended_next_actions": [
+        "Obtain denominators and provenance for end2edit_validity and anchor_violation (currently source=null) to test A2.",
+        "Provide ground-truth validation linking A19/A20 annotations to real synthesis outcomes to test A1.",
+        "Expand or justify the 2 StereocenterPreservingReaction classes against the 115 SET_CHIRAL requirements to test A3.",
+        "Characterize the ~6 non-passing hardOK_48api cases to bound Q2 resolution (A4).",
+        "Run a metric-matched, same-test-set ontology-vs-SynCraft comparison to test A6."
+      ]
+    },
+    "missing_inputs": [
+      "Denominator/sample size and provenance for end2edit_validity and anchor_violation (both source=null in CONTEXT).",
+      "Ground-truth validation linking A19 hasFailureRisk / A20 hasProtectedAtom annotations to actual synthesis success/failure.",
+      "Identity and characterization of the ~6 non-passing hardOK_48api cases (derived from 0.875 of the 48-API set; not itemized in CONTEXT).",
+      "Coverage analysis of the 2 defined StereocenterPreservingReaction classes versus the 115 A21 SET_CHIRAL requirements.",
+      "Prior-phase gap-ids (previous phase marked linkage as missing; Q1/Q2/Q3 used as provisional proxies).",
+      "A head-to-head ontology-vs-SynCraft comparison on an identical metric and test set.",
+      "Explicit definition of the 'hardOK' threshold and composition of the 48-API evaluation set."
+    ],
+    "verdict": "WARN"
+  }
+}

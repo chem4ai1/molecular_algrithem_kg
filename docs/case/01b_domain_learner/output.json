@@ -1,0 +1,606 @@
+{
+  "phase": "01b_domain_learner",
+  "title": "Phase 1b 领域学习（MUST，sole writer）",
+  "phase_output": {
+    "artifact_type": {
+      "value": "domain_signature_learning",
+      "citations": [
+        "context.question"
+      ]
+    },
+    "domain_signature": {
+      "domain": {
+        "value": "Ontology-grounded discovery and editing of non-synthesizable molecules",
+        "citations": [
+          "context.question"
+        ]
+      },
+      "paradigm": {
+        "value": "Ontology-grounded constrained editing with explicit failure-risk, protected-atom, stereocenter, and anchor constraints",
+        "citations": [
+          "context.question",
+          "context.reasoner_inferences"
+        ]
+      },
+      "evidence_type": {
+        "value": "Ontology reasoner inferences, CQ corpus, crossdocked molecules, literature benchmarks, edit validity, anchor violation, and structure papers",
+        "citations": [
+          "context.reasoner_inferences",
+          "context.corpus",
+          "context.literature",
+          "context.end2edit_validity",
+          "context.anchor_violation",
+          "context.literature.structure_papers"
+        ]
+      }
+    },
+    "evidence_norm_profile": {
+      "sample_size_norm": {
+        "value": "unknown — defaulting to conservative; observed sample-size artifacts: n_molecules=3483, n_evidence=79, papers=7, corpus=3272 CQ cases / 14 batches, crossdocked molecules=2783, rl_pool=5174",
+        "citations": [
+          "context.n_molecules",
+          "context.n_evidence",
+          "context.papers",
+          "context.corpus",
+          "context.rl_pool"
+        ]
+      },
+      "control_design_norm": {
+        "value": "unknown — defaulting to conservative; observed control comparisons: hardOK_48api similarity=0.5, random=0.5, ontology=0.875; exact sign test 6 wins 0 losses p=0.0156; end2end 7 wins 0 losses p=0.0078",
+        "citations": [
+          "context.hardOK_48api",
+          "context.p_value"
+        ]
+      },
+      "effect_reporting_norm": {
+        "value": "unknown — defaulting to conservative; observed effect reporting includes hardOK rates, end2edit validity, anchor violation, and sign-test p-values: ontology hardOK=0.875 vs similarity/random=0.5; end2edit validity ontology=1.0, ontology_lora=1.0, syncraft=0.5; anchor violation ontology=0.0, ontology_lora=0.0, syncraft=0.125",
+        "citations": [
+          "context.hardOK_48api",
+          "context.end2edit_validity",
+          "context.anchor_violation",
+          "context.p_value"
+        ]
+      },
+      "negative_result_norm": {
+        "value": "unknown — defaulting to conservative; observed negative-result or zero-signal artifacts: sign-test losses=0 for 6-win and 7-win comparisons; anchor_violation ontology=0.0 and ontology_lora=0.0; syncraft anchor_violation=0.125",
+        "citations": [
+          "context.p_value",
+          "context.anchor_violation"
+        ]
+      },
+      "exemplar_venues": {
+        "value": "unknown — defaulting to conservative; observed venue-like identifiers: arXiv:2512.20333, arXiv:2607.27191, structure papers 5KB3, 5IRU, 5J2M, 5JJK, 5JXG, 5K3S, 5IAR",
+        "citations": [
+          "context.literature.syncraft.arxiv",
+          "context.literature.crux.arxiv",
+          "context.literature.structure_papers"
+        ]
+      }
+    },
+    "method_frequencies": {
+      "normalization_status": {
+        "value": "unknown — defaulting to conservative; normalized method frequencies are not provided",
+        "citations": [
+          "context.papers",
+          "context.n_evidence",
+          "context.literature"
+        ]
+      },
+      "observed": [
+        {
+          "method": "ontology reasoner inference",
+          "frequency": "owlrl 10400->23113 triples",
+          "citations": [
+            "context.reasoner_inferences.source"
+          ]
+        },
+        {
+          "method": "A19 hasFailureRisk",
+          "frequency": 231,
+          "citations": [
+            "context.reasoner_inferences.A19 hasFailureRisk"
+          ]
+        },
+        {
+          "method": "A20 hasProtectedAtom",
+          "frequency": 363,
+          "citations": [
+            "context.reasoner_inferences.A20 hasProtectedAtom"
+          ]
+        },
+        {
+          "method": "A21 hasRequiredOperation SET_CHIRAL",
+          "frequency": 115,
+          "citations": [
+            "context.reasoner_inferences.A21 hasRequiredOperation SET_CHIRAL"
+          ]
+        },
+        {
+          "method": "ValidatedEditSequence",
+          "frequency": 78,
+          "citations": [
+            "context.reasoner_inferences.定义类 ValidatedEditSequence"
+          ]
+        },
+        {
+          "method": "StereocenterPreservingReaction",
+          "frequency": 2,
+          "citations": [
+            "context.reasoner_inferences.定义类 StereocenterPreservingReaction"
+          ]
+        },
+        {
+          "method": "StereocenterAnchor",
+          "frequency": 320,
+          "citations": [
+            "context.reasoner_inferences.StereocenterAnchor 契约"
+          ]
+        },
+        {
+          "method": "transforms_freed",
+          "frequency": "5/5",
+          "citations": [
+            "context.transforms_freed"
+          ]
+        },
+        {
+          "method": "rl_pool",
+          "frequency": 5174,
+          "citations": [
+            "context.rl_pool"
+          ]
+        },
+        {
+          "method": "syncraft rescue at similarity>0.6",
+          "frequency": "P2M 28.4% / ResGen 29.1%",
+          "citations": [
+            "context.literature.syncraft.reported"
+          ]
+        }
+      ]
+    },
+    "failure_mode_frequencies": {
+      "normalization_status": {
+        "value": "unknown — defaulting to conservative; denominators for failure-mode frequencies are not provided",
+        "citations": [
+          "context.reasoner_inferences",
+          "context.anchor_violation",
+          "context.end2edit_validity"
+        ]
+      },
+      "observed_failure_modes": [
+        {
+          "failure_mode": "A19 hasFailureRisk",
+          "frequency": 231,
+          "citations": [
+            "context.reasoner_inferences.A19 hasFailureRisk"
+          ]
+        },
+        {
+          "failure_mode": "anchor_violation",
+          "frequency": {
+            "syncraft": 0.125,
+            "ontology": 0.0,
+            "ontology_lora": 0.0
+          },
+          "citations": [
+            "context.anchor_violation"
+          ]
+        },
+        {
+          "failure_mode": "sign_test_losses",
+          "frequency": 0,
+          "citations": [
+            "context.p_value"
+          ]
+        }
+      ],
+      "related_constraint_signals": [
+        {
+          "signal": "A21 hasRequiredOperation SET_CHIRAL",
+          "frequency": 115,
+          "citations": [
+            "context.reasoner_inferences.A21 hasRequiredOperation SET_CHIRAL"
+          ]
+        },
+        {
+          "signal": "end2edit_validity",
+          "frequency": {
+            "syncraft": 0.5,
+            "ontology": 1.0,
+            "ontology_lora": 1.0
+          },
+          "citations": [
+            "context.end2edit_validity"
+          ]
+        }
+      ]
+    },
+    "learning_confidence": {
+      "level": {
+        "value": "moderate",
+        "citations": [
+          "context.n_evidence",
+          "context.papers",
+          "context.p_value",
+          "context.reasoner_inferences",
+          "context.hardOK_48api"
+        ]
+      },
+      "rationale": {
+        "value": "Multiple ontology, corpus, benchmark, and literature artifacts support the domain signature, but normalized evidence and failure-mode norms remain under-specified; the CRUX lesson also indicates evidence sufficiency is a known agent failure mode",
+        "citations": [
+          "context.reasoner_inferences",
+          "context.corpus",
+          "context.literature",
+          "context.end2edit_validity",
+          "context.anchor_violation",
+          "context.literature.crux.lesson"
+        ]
+      },
+      "conservative_defaults": {
+        "value": "unknown — defaulting to conservative for sample-size, control-design, effect-reporting, negative-result, and venue norms",
+        "citations": [
+          "context.n_molecules",
+          "context.n_evidence",
+          "context.papers",
+          "context.hardOK_48api",
+          "context.p_value",
+          "context.literature"
+        ]
+      }
+    }
+  },
+  "verdict": "WARN",
+  "missing_inputs": [
+    {
+      "item": "source for end2edit_validity",
+      "citations": [
+        "context.end2edit_validity.source"
+      ]
+    },
+    {
+      "item": "source for anchor_violation",
+      "citations": [
+        "context.anchor_violation.source"
+      ]
+    },
+    {
+      "item": "explicit venue names beyond arXiv identifiers and structure-paper identifiers",
+      "citations": [
+        "context.literature.syncraft.arxiv",
+        "context.literature.crux.arxiv",
+        "context.literature.structure_papers"
+      ]
+    },
+    {
+      "item": "denominators for failure-mode frequencies",
+      "citations": [
+        "context.reasoner_inferences",
+        "context.anchor_violation",
+        "context.end2edit_validity"
+      ]
+    },
+    {
+      "item": "explicit negative-result reporting norm",
+      "citations": [
+        "context.p_value",
+        "context.anchor_violation"
+      ]
+    },
+    {
+      "item": "explicit sample-size norm",
+      "citations": [
+        "context.n_molecules",
+        "context.n_evidence",
+        "context.papers",
+        "context.corpus"
+      ]
+    }
+  ],
+  "full_response": {
+    "verdict": "WARN",
+    "qid": {
+      "value": "Q-ONT-MOL-001",
+      "citations": [
+        "context.qid"
+      ]
+    },
+    "missing_inputs": [
+      {
+        "item": "source for end2edit_validity",
+        "citations": [
+          "context.end2edit_validity.source"
+        ]
+      },
+      {
+        "item": "source for anchor_violation",
+        "citations": [
+          "context.anchor_violation.source"
+        ]
+      },
+      {
+        "item": "explicit venue names beyond arXiv identifiers and structure-paper identifiers",
+        "citations": [
+          "context.literature.syncraft.arxiv",
+          "context.literature.crux.arxiv",
+          "context.literature.structure_papers"
+        ]
+      },
+      {
+        "item": "denominators for failure-mode frequencies",
+        "citations": [
+          "context.reasoner_inferences",
+          "context.anchor_violation",
+          "context.end2edit_validity"
+        ]
+      },
+      {
+        "item": "explicit negative-result reporting norm",
+        "citations": [
+          "context.p_value",
+          "context.anchor_violation"
+        ]
+      },
+      {
+        "item": "explicit sample-size norm",
+        "citations": [
+          "context.n_molecules",
+          "context.n_evidence",
+          "context.papers",
+          "context.corpus"
+        ]
+      }
+    ],
+    "phase_output": {
+      "artifact_type": {
+        "value": "domain_signature_learning",
+        "citations": [
+          "context.question"
+        ]
+      },
+      "domain_signature": {
+        "domain": {
+          "value": "Ontology-grounded discovery and editing of non-synthesizable molecules",
+          "citations": [
+            "context.question"
+          ]
+        },
+        "paradigm": {
+          "value": "Ontology-grounded constrained editing with explicit failure-risk, protected-atom, stereocenter, and anchor constraints",
+          "citations": [
+            "context.question",
+            "context.reasoner_inferences"
+          ]
+        },
+        "evidence_type": {
+          "value": "Ontology reasoner inferences, CQ corpus, crossdocked molecules, literature benchmarks, edit validity, anchor violation, and structure papers",
+          "citations": [
+            "context.reasoner_inferences",
+            "context.corpus",
+            "context.literature",
+            "context.end2edit_validity",
+            "context.anchor_violation",
+            "context.literature.structure_papers"
+          ]
+        }
+      },
+      "evidence_norm_profile": {
+        "sample_size_norm": {
+          "value": "unknown — defaulting to conservative; observed sample-size artifacts: n_molecules=3483, n_evidence=79, papers=7, corpus=3272 CQ cases / 14 batches, crossdocked molecules=2783, rl_pool=5174",
+          "citations": [
+            "context.n_molecules",
+            "context.n_evidence",
+            "context.papers",
+            "context.corpus",
+            "context.rl_pool"
+          ]
+        },
+        "control_design_norm": {
+          "value": "unknown — defaulting to conservative; observed control comparisons: hardOK_48api similarity=0.5, random=0.5, ontology=0.875; exact sign test 6 wins 0 losses p=0.0156; end2end 7 wins 0 losses p=0.0078",
+          "citations": [
+            "context.hardOK_48api",
+            "context.p_value"
+          ]
+        },
+        "effect_reporting_norm": {
+          "value": "unknown — defaulting to conservative; observed effect reporting includes hardOK rates, end2edit validity, anchor violation, and sign-test p-values: ontology hardOK=0.875 vs similarity/random=0.5; end2edit validity ontology=1.0, ontology_lora=1.0, syncraft=0.5; anchor violation ontology=0.0, ontology_lora=0.0, syncraft=0.125",
+          "citations": [
+            "context.hardOK_48api",
+            "context.end2edit_validity",
+            "context.anchor_violation",
+            "context.p_value"
+          ]
+        },
+        "negative_result_norm": {
+          "value": "unknown — defaulting to conservative; observed negative-result or zero-signal artifacts: sign-test losses=0 for 6-win and 7-win comparisons; anchor_violation ontology=0.0 and ontology_lora=0.0; syncraft anchor_violation=0.125",
+          "citations": [
+            "context.p_value",
+            "context.anchor_violation"
+          ]
+        },
+        "exemplar_venues": {
+          "value": "unknown — defaulting to conservative; observed venue-like identifiers: arXiv:2512.20333, arXiv:2607.27191, structure papers 5KB3, 5IRU, 5J2M, 5JJK, 5JXG, 5K3S, 5IAR",
+          "citations": [
+            "context.literature.syncraft.arxiv",
+            "context.literature.crux.arxiv",
+            "context.literature.structure_papers"
+          ]
+        }
+      },
+      "method_frequencies": {
+        "normalization_status": {
+          "value": "unknown — defaulting to conservative; normalized method frequencies are not provided",
+          "citations": [
+            "context.papers",
+            "context.n_evidence",
+            "context.literature"
+          ]
+        },
+        "observed": [
+          {
+            "method": "ontology reasoner inference",
+            "frequency": "owlrl 10400->23113 triples",
+            "citations": [
+              "context.reasoner_inferences.source"
+            ]
+          },
+          {
+            "method": "A19 hasFailureRisk",
+            "frequency": 231,
+            "citations": [
+              "context.reasoner_inferences.A19 hasFailureRisk"
+            ]
+          },
+          {
+            "method": "A20 hasProtectedAtom",
+            "frequency": 363,
+            "citations": [
+              "context.reasoner_inferences.A20 hasProtectedAtom"
+            ]
+          },
+          {
+            "method": "A21 hasRequiredOperation SET_CHIRAL",
+            "frequency": 115,
+            "citations": [
+              "context.reasoner_inferences.A21 hasRequiredOperation SET_CHIRAL"
+            ]
+          },
+          {
+            "method": "ValidatedEditSequence",
+            "frequency": 78,
+            "citations": [
+              "context.reasoner_inferences.定义类 ValidatedEditSequence"
+            ]
+          },
+          {
+            "method": "StereocenterPreservingReaction",
+            "frequency": 2,
+            "citations": [
+              "context.reasoner_inferences.定义类 StereocenterPreservingReaction"
+            ]
+          },
+          {
+            "method": "StereocenterAnchor",
+            "frequency": 320,
+            "citations": [
+              "context.reasoner_inferences.StereocenterAnchor 契约"
+            ]
+          },
+          {
+            "method": "transforms_freed",
+            "frequency": "5/5",
+            "citations": [
+              "context.transforms_freed"
+            ]
+          },
+          {
+            "method": "rl_pool",
+            "frequency": 5174,
+            "citations": [
+              "context.rl_pool"
+            ]
+          },
+          {
+            "method": "syncraft rescue at similarity>0.6",
+            "frequency": "P2M 28.4% / ResGen 29.1%",
+            "citations": [
+              "context.literature.syncraft.reported"
+            ]
+          }
+        ]
+      },
+      "failure_mode_frequencies": {
+        "normalization_status": {
+          "value": "unknown — defaulting to conservative; denominators for failure-mode frequencies are not provided",
+          "citations": [
+            "context.reasoner_inferences",
+            "context.anchor_violation",
+            "context.end2edit_validity"
+          ]
+        },
+        "observed_failure_modes": [
+          {
+            "failure_mode": "A19 hasFailureRisk",
+            "frequency": 231,
+            "citations": [
+              "context.reasoner_inferences.A19 hasFailureRisk"
+            ]
+          },
+          {
+            "failure_mode": "anchor_violation",
+            "frequency": {
+              "syncraft": 0.125,
+              "ontology": 0.0,
+              "ontology_lora": 0.0
+            },
+            "citations": [
+              "context.anchor_violation"
+            ]
+          },
+          {
+            "failure_mode": "sign_test_losses",
+            "frequency": 0,
+            "citations": [
+              "context.p_value"
+            ]
+          }
+        ],
+        "related_constraint_signals": [
+          {
+            "signal": "A21 hasRequiredOperation SET_CHIRAL",
+            "frequency": 115,
+            "citations": [
+              "context.reasoner_inferences.A21 hasRequiredOperation SET_CHIRAL"
+            ]
+          },
+          {
+            "signal": "end2edit_validity",
+            "frequency": {
+              "syncraft": 0.5,
+              "ontology": 1.0,
+              "ontology_lora": 1.0
+            },
+            "citations": [
+              "context.end2edit_validity"
+            ]
+          }
+        ]
+      },
+      "learning_confidence": {
+        "level": {
+          "value": "moderate",
+          "citations": [
+            "context.n_evidence",
+            "context.papers",
+            "context.p_value",
+            "context.reasoner_inferences",
+            "context.hardOK_48api"
+          ]
+        },
+        "rationale": {
+          "value": "Multiple ontology, corpus, benchmark, and literature artifacts support the domain signature, but normalized evidence and failure-mode norms remain under-specified; the CRUX lesson also indicates evidence sufficiency is a known agent failure mode",
+          "citations": [
+            "context.reasoner_inferences",
+            "context.corpus",
+            "context.literature",
+            "context.end2edit_validity",
+            "context.anchor_violation",
+            "context.literature.crux.lesson"
+          ]
+        },
+        "conservative_defaults": {
+          "value": "unknown — defaulting to conservative for sample-size, control-design, effect-reporting, negative-result, and venue norms",
+          "citations": [
+            "context.n_molecules",
+            "context.n_evidence",
+            "context.papers",
+            "context.hardOK_48api",
+            "context.p_value",
+            "context.literature"
+          ]
+        }
+      }
+    }
+  }
+}

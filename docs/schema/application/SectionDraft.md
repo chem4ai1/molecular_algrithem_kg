@@ -28,6 +28,7 @@
 | `INSTANCE_OF` | SectionPlan | 实例化的骨架 |
 | `USES_EVIDENCE` | Evidence | 该节用到的证据 |
 | `CONSULTED` | ConsultedPaper | 该节查过的论文 |
+| `RETRIEVED` | RelatedPaper | 该节检索到哪些候选 |
 
 **入边**
 

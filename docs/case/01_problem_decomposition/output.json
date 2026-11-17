@@ -1,0 +1,962 @@
+{
+  "phase": "01_problem_decomposition",
+  "title": "Phase 1 问题理解与分解（REP.json）",
+  "phase_output": {
+    "rep_version": "1.0",
+    "qid": {
+      "value": "Q-ONT-MOL-001",
+      "citations": [
+        "context.qid"
+      ]
+    },
+    "problem": {
+      "statement": {
+        "value": "How can an ontology-grounded pipeline identify WHY a generated molecule is non-synthesizable and edit it into a synthesizable analogue while preserving pharmacophoric anchors, stereochemistry and binding interactions?",
+        "citations": [
+          "context.question"
+        ]
+      },
+      "decomposition": {
+        "Q1": {
+          "value": "where the structure is problematic",
+          "citations": [
+            "context.three_questions.Q1"
+          ]
+        },
+        "Q2": {
+          "value": "why it cannot be made",
+          "citations": [
+            "context.three_questions.Q2"
+          ]
+        },
+        "Q3": {
+          "value": "what must not be touched during editing",
+          "citations": [
+            "context.three_questions.Q3"
+          ]
+        }
+      }
+    },
+    "sub_questions": [
+      {
+        "id": "SQ1",
+        "maps_to": "Q1",
+        "question": {
+          "value": "Where in the generated molecule is the structure problematic (which atoms or substructures are flagged as failure risks or protected atoms)?",
+          "citations": [
+            "context.three_questions.Q1",
+            "context.reasoner_inferences"
+          ]
+        },
+        "required_evidence": [
+          {
+            "value": "Reasoner inference: A19 hasFailureRisk = 231",
+            "citations": [
+              "context.reasoner_inferences.A19 hasFailureRisk"
+            ]
+          },
+          {
+            "value": "Reasoner inference: A20 hasProtectedAtom = 363",
+            "citations": [
+              "context.reasoner_inferences.A20 hasProtectedAtom"
+            ]
+          },
+          {
+            "value": "Corpus: 3272 CQ cases / 14 batches; 2783 crossdocked molecules",
+            "citations": [
+              "context.corpus"
+            ]
+          },
+          {
+            "value": "n_molecules = 3483",
+            "citations": [
+              "context.n_molecules"
+            ]
+          }
+        ],
+        "acceptance_metrics": [
+          {
+            "value": "ontology hardOK = 0.875 must exceed similarity = 0.5 and random = 0.5",
+            "citations": [
+              "context.hardOK_48api.ontology",
+              "context.hardOK_48api.similarity",
+              "context.hardOK_48api.random"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "SQ2",
+        "maps_to": "Q2",
+        "question": {
+          "value": "Why can the molecule not be made — what failure risk and required operation explain the non-synthesizability?",
+          "citations": [
+            "context.three_questions.Q2",
+            "context.reasoner_inferences"
+          ]
+        },
+        "required_evidence": [
+          {
+            "value": "Reasoner inference: A19 hasFailureRisk = 231",
+            "citations": [
+              "context.reasoner_inferences.A19 hasFailureRisk"
+            ]
+          },
+          {
+            "value": "Reasoner inference: A21 hasRequiredOperation SET_CHIRAL = 115",
+            "citations": [
+              "context.reasoner_inferences.A21 hasRequiredOperation SET_CHIRAL"
+            ]
+          },
+          {
+            "value": "transforms_freed = 5/5",
+            "citations": [
+              "context.transforms_freed"
+            ]
+          },
+          {
+            "value": "rl_pool = 5174",
+            "citations": [
+              "context.rl_pool"
+            ]
+          }
+        ],
+        "acceptance_metrics": [
+          {
+            "value": "Exact sign test: 6 wins 0 losses, p = 0.0156",
+            "citations": [
+              "context.p_value"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "SQ3",
+        "maps_to": "Q3",
+        "question": {
+          "value": "What must not be touched during editing — which atoms are protected and which anchors must be preserved?",
+          "citations": [
+            "context.three_questions.Q3",
+            "context.reasoner_inferences"
+          ]
+        },
+        "required_evidence": [
+          {
+            "value": "Reasoner inference: A20 hasProtectedAtom = 363",
+            "citations": [
+              "context.reasoner_inferences.A20 hasProtectedAtom"
+            ]
+          },
+          {
+            "value": "StereocenterAnchor 契约 = 320",
+            "citations": [
+              "context.reasoner_inferences.StereocenterAnchor 契约"
+            ]
+          },
+          {
+            "value": "定义类 StereocenterPreservingReaction = 2",
+            "citations": [
+              "context.reasoner_inferences.定义类 StereocenterPreservingReaction"
+            ]
+          },
+          {
+            "value": "anchor_violation: syncraft = 0.125, ontology = 0.0, ontology_lora = 0.0",
+            "citations": [
+              "context.anchor_violation.syncraft",
+              "context.anchor_violation.ontology",
+              "context.anchor_violation.ontology_lora"
+            ]
+          }
+        ],
+        "acceptance_metrics": [
+          {
+            "value": "anchor_violation for ontology = 0.0 and ontology_lora = 0.0, below syncraft = 0.125",
+            "citations": [
+              "context.anchor_violation.ontology",
+              "context.anchor_violation.ontology_lora",
+              "context.anchor_violation.syncraft"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "SQ4",
+        "maps_to": "Q3",
+        "question": {
+          "value": "How is stereochemistry preserved during editing (chiral centers, stereocenter-preserving reactions)?",
+          "citations": [
+            "context.three_questions.Q3",
+            "context.reasoner_inferences"
+          ]
+        },
+        "required_evidence": [
+          {
+            "value": "Reasoner inference: A21 hasRequiredOperation SET_CHIRAL = 115",
+            "citations": [
+              "context.reasoner_inferences.A21 hasRequiredOperation SET_CHIRAL"
+            ]
+          },
+          {
+            "value": "定义类 StereocenterPreservingReaction = 2",
+            "citations": [
+              "context.reasoner_inferences.定义类 StereocenterPreservingReaction"
+            ]
+          },
+          {
+            "value": "StereocenterAnchor 契约 = 320",
+            "citations": [
+              "context.reasoner_inferences.StereocenterAnchor 契约"
+            ]
+          }
+        ],
+        "acceptance_metrics": [
+          {
+            "value": "end2edit_validity: ontology = 1.0, ontology_lora = 1.0 vs syncraft = 0.5",
+            "citations": [
+              "context.end2edit_validity.ontology",
+              "context.end2edit_validity.ontology_lora",
+              "context.end2edit_validity.syncraft"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "SQ5",
+        "maps_to": "Q3",
+        "question": {
+          "value": "How are pharmacophoric anchors and binding interactions preserved during editing?",
+          "citations": [
+            "context.three_questions.Q3",
+            "context.question"
+          ]
+        },
+        "required_evidence": [
+          {
+            "value": "Structure papers: 5KB3, 5IRU, 5J2M, 5JJK, 5JXG, 5K3S, 5IAR",
+            "citations": [
+              "context.literature.structure_papers"
+            ]
+          },
+          {
+            "value": "n_evidence = 79",
+            "citations": [
+              "context.n_evidence"
+            ]
+          },
+          {
+            "value": "papers = 7",
+            "citations": [
+              "context.papers"
+            ]
+          },
+          {
+            "value": "anchor_violation: ontology = 0.0, ontology_lora = 0.0",
+            "citations": [
+              "context.anchor_violation.ontology",
+              "context.anchor_violation.ontology_lora"
+            ]
+          }
+        ],
+        "acceptance_metrics": [
+          {
+            "value": "anchor_violation for ontology = 0.0",
+            "citations": [
+              "context.anchor_violation.ontology"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "SQ6",
+        "maps_to": "Q2",
+        "question": {
+          "value": "Is the edited analogue a valid, synthesizable edit sequence (end-to-end validity)?",
+          "citations": [
+            "context.three_questions.Q2",
+            "context.reasoner_inferences"
+          ]
+        },
+        "required_evidence": [
+          {
+            "value": "定义类 ValidatedEditSequence = 78",
+            "citations": [
+              "context.reasoner_inferences.定义类 ValidatedEditSequence"
+            ]
+          },
+          {
+            "value": "end2edit_validity: syncraft = 0.5, ontology = 1.0, ontology_lora = 1.0",
+            "citations": [
+              "context.end2edit_validity.syncraft",
+              "context.end2edit_validity.ontology",
+              "context.end2edit_validity.ontology_lora"
+            ]
+          },
+          {
+            "value": "End-to-end: 7 wins 0 losses, p = 0.0078",
+            "citations": [
+              "context.p_value"
+            ]
+          }
+        ],
+        "acceptance_metrics": [
+          {
+            "value": "end2edit_validity for ontology = 1.0 and ontology_lora = 1.0 vs syncraft = 0.5",
+            "citations": [
+              "context.end2edit_validity.ontology",
+              "context.end2edit_validity.ontology_lora",
+              "context.end2edit_validity.syncraft"
+            ]
+          },
+          {
+            "value": "End-to-end exact sign test: 7 wins 0 losses, p = 0.0078",
+            "citations": [
+              "context.p_value"
+            ]
+          }
+        ]
+      }
+    ],
+    "acceptance_metrics": {
+      "hardOK_48api": {
+        "value": {
+          "similarity": 0.5,
+          "random": 0.5,
+          "ontology": 0.875
+        },
+        "citations": [
+          "context.hardOK_48api"
+        ]
+      },
+      "p_value": {
+        "value": "6 wins 0 losses, exact sign test p=0.0156; end2end 7 wins 0 losses p=0.0078",
+        "citations": [
+          "context.p_value"
+        ]
+      },
+      "end2edit_validity": {
+        "value": {
+          "syncraft": 0.5,
+          "ontology": 1.0,
+          "ontology_lora": 1.0,
+          "source": null
+        },
+        "citations": [
+          "context.end2edit_validity"
+        ]
+      },
+      "anchor_violation": {
+        "value": {
+          "syncraft": 0.125,
+          "ontology": 0.0,
+          "ontology_lora": 0.0,
+          "source": null
+        },
+        "citations": [
+          "context.anchor_violation"
+        ]
+      },
+      "reasoner_inferences": {
+        "value": {
+          "A21 hasRequiredOperation SET_CHIRAL": 115,
+          "A19 hasFailureRisk": 231,
+          "A20 hasProtectedAtom": 363,
+          "定义类 ValidatedEditSequence": 78,
+          "定义类 StereocenterPreservingReaction": 2,
+          "StereocenterAnchor 契约": 320,
+          "source": "kernel_verify.json; owlrl 10400->23113 triples"
+        },
+        "citations": [
+          "context.reasoner_inferences"
+        ]
+      },
+      "transforms_freed": {
+        "value": "5/5",
+        "citations": [
+          "context.transforms_freed"
+        ]
+      },
+      "rl_pool": {
+        "value": 5174,
+        "citations": [
+          "context.rl_pool"
+        ]
+      },
+      "corpus": {
+        "value": "3272 CQ cases / 14 batches; 2783 crossdocked molecules",
+        "citations": [
+          "context.corpus"
+        ]
+      },
+      "n_molecules": {
+        "value": 3483,
+        "citations": [
+          "context.n_molecules"
+        ]
+      },
+      "n_evidence": {
+        "value": 79,
+        "citations": [
+          "context.n_evidence"
+        ]
+      },
+      "papers": {
+        "value": 7,
+        "citations": [
+          "context.papers"
+        ]
+      },
+      "literature_baseline": {
+        "value": {
+          "syncraft": {
+            "title": "SynCraft: Guiding Large Language Models to Predict Edit Sequences for Molecular Synthesizability Optimization",
+            "arxiv": "2512.20333",
+            "reported": "P2M 28.4% / ResGen 29.1% rescue at similarity>0.6 (Gemini-2.5-Pro)"
+          },
+          "crux": {
+            "title": "Can AI agents conduct open-ended AI research? Early evidence from two case studies",
+            "arxiv": "2607.27191",
+            "lesson": "agents do engineering but fail at evidence sufficiency"
+          }
+        },
+        "citations": [
+          "context.literature.syncraft",
+          "context.literature.crux"
+        ]
+      }
+    },
+    "missing_inputs": [
+      {
+        "field": "PROBLEM_ANCHOR.hash",
+        "status": "MISSING",
+        "detail": "No hash is provided for the question in context; the previous phase marked it MISSING.",
+        "citations": [
+          "context.question",
+          "previous_phase.PROBLEM_ANCHOR.hash"
+        ]
+      },
+      {
+        "field": "end2edit_validity.source",
+        "status": "NULL",
+        "detail": "The source field for end2edit_validity is null in context.",
+        "citations": [
+          "context.end2edit_validity.source"
+        ]
+      },
+      {
+        "field": "anchor_violation.source",
+        "status": "NULL",
+        "detail": "The source field for anchor_violation is null in context.",
+        "citations": [
+          "context.anchor_violation.source"
+        ]
+      },
+      {
+        "field": "binding_interaction_metric",
+        "status": "MISSING",
+        "detail": "No explicit quantitative metric for binding-interaction preservation is provided; only the structure_papers list and anchor_violation are available.",
+        "citations": [
+          "context.literature.structure_papers",
+          "context.anchor_violation"
+        ]
+      },
+      {
+        "field": "acceptance_thresholds",
+        "status": "MISSING",
+        "detail": "No explicit pass/fail thresholds are defined in context beyond the reported observed values.",
+        "citations": [
+          "context.hardOK_48api",
+          "context.p_value",
+          "context.end2edit_validity",
+          "context.anchor_violation"
+        ]
+      }
+    ]
+  },
+  "verdict": "WARN",
+  "missing_inputs": [],
+  "full_response": {
+    "phase": "Phase 1 问题理解与分解",
+    "artifact": "REP.json",
+    "verdict": "WARN",
+    "verdict_rationale": {
+      "value": "REP.json compiled with all sub-questions mapped to Q1/Q2/Q3 and acceptance metrics cited from context; WARN because the question hash is MISSING and two metric sources are null.",
+      "citations": [
+        "context.question",
+        "context.end2edit_validity.source",
+        "context.anchor_violation.source",
+        "previous_phase.PROBLEM_ANCHOR.hash"
+      ]
+    },
+    "phase_output": {
+      "rep_version": "1.0",
+      "qid": {
+        "value": "Q-ONT-MOL-001",
+        "citations": [
+          "context.qid"
+        ]
+      },
+      "problem": {
+        "statement": {
+          "value": "How can an ontology-grounded pipeline identify WHY a generated molecule is non-synthesizable and edit it into a synthesizable analogue while preserving pharmacophoric anchors, stereochemistry and binding interactions?",
+          "citations": [
+            "context.question"
+          ]
+        },
+        "decomposition": {
+          "Q1": {
+            "value": "where the structure is problematic",
+            "citations": [
+              "context.three_questions.Q1"
+            ]
+          },
+          "Q2": {
+            "value": "why it cannot be made",
+            "citations": [
+              "context.three_questions.Q2"
+            ]
+          },
+          "Q3": {
+            "value": "what must not be touched during editing",
+            "citations": [
+              "context.three_questions.Q3"
+            ]
+          }
+        }
+      },
+      "sub_questions": [
+        {
+          "id": "SQ1",
+          "maps_to": "Q1",
+          "question": {
+            "value": "Where in the generated molecule is the structure problematic (which atoms or substructures are flagged as failure risks or protected atoms)?",
+            "citations": [
+              "context.three_questions.Q1",
+              "context.reasoner_inferences"
+            ]
+          },
+          "required_evidence": [
+            {
+              "value": "Reasoner inference: A19 hasFailureRisk = 231",
+              "citations": [
+                "context.reasoner_inferences.A19 hasFailureRisk"
+              ]
+            },
+            {
+              "value": "Reasoner inference: A20 hasProtectedAtom = 363",
+              "citations": [
+                "context.reasoner_inferences.A20 hasProtectedAtom"
+              ]
+            },
+            {
+              "value": "Corpus: 3272 CQ cases / 14 batches; 2783 crossdocked molecules",
+              "citations": [
+                "context.corpus"
+              ]
+            },
+            {
+              "value": "n_molecules = 3483",
+              "citations": [
+                "context.n_molecules"
+              ]
+            }
+          ],
+          "acceptance_metrics": [
+            {
+              "value": "ontology hardOK = 0.875 must exceed similarity = 0.5 and random = 0.5",
+              "citations": [
+                "context.hardOK_48api.ontology",
+                "context.hardOK_48api.similarity",
+                "context.hardOK_48api.random"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "SQ2",
+          "maps_to": "Q2",
+          "question": {
+            "value": "Why can the molecule not be made — what failure risk and required operation explain the non-synthesizability?",
+            "citations": [
+              "context.three_questions.Q2",
+              "context.reasoner_inferences"
+            ]
+          },
+          "required_evidence": [
+            {
+              "value": "Reasoner inference: A19 hasFailureRisk = 231",
+              "citations": [
+                "context.reasoner_inferences.A19 hasFailureRisk"
+              ]
+            },
+            {
+              "value": "Reasoner inference: A21 hasRequiredOperation SET_CHIRAL = 115",
+              "citations": [
+                "context.reasoner_inferences.A21 hasRequiredOperation SET_CHIRAL"
+              ]
+            },
+            {
+              "value": "transforms_freed = 5/5",
+              "citations": [
+                "context.transforms_freed"
+              ]
+            },
+            {
+              "value": "rl_pool = 5174",
+              "citations": [
+                "context.rl_pool"
+              ]
+            }
+          ],
+          "acceptance_metrics": [
+            {
+              "value": "Exact sign test: 6 wins 0 losses, p = 0.0156",
+              "citations": [
+                "context.p_value"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "SQ3",
+          "maps_to": "Q3",
+          "question": {
+            "value": "What must not be touched during editing — which atoms are protected and which anchors must be preserved?",
+            "citations": [
+              "context.three_questions.Q3",
+              "context.reasoner_inferences"
+            ]
+          },
+          "required_evidence": [
+            {
+              "value": "Reasoner inference: A20 hasProtectedAtom = 363",
+              "citations": [
+                "context.reasoner_inferences.A20 hasProtectedAtom"
+              ]
+            },
+            {
+              "value": "StereocenterAnchor 契约 = 320",
+              "citations": [
+                "context.reasoner_inferences.StereocenterAnchor 契约"
+              ]
+            },
+            {
+              "value": "定义类 StereocenterPreservingReaction = 2",
+              "citations": [
+                "context.reasoner_inferences.定义类 StereocenterPreservingReaction"
+              ]
+            },
+            {
+              "value": "anchor_violation: syncraft = 0.125, ontology = 0.0, ontology_lora = 0.0",
+              "citations": [
+                "context.anchor_violation.syncraft",
+                "context.anchor_violation.ontology",
+                "context.anchor_violation.ontology_lora"
+              ]
+            }
+          ],
+          "acceptance_metrics": [
+            {
+              "value": "anchor_violation for ontology = 0.0 and ontology_lora = 0.0, below syncraft = 0.125",
+              "citations": [
+                "context.anchor_violation.ontology",
+                "context.anchor_violation.ontology_lora",
+                "context.anchor_violation.syncraft"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "SQ4",
+          "maps_to": "Q3",
+          "question": {
+            "value": "How is stereochemistry preserved during editing (chiral centers, stereocenter-preserving reactions)?",
+            "citations": [
+              "context.three_questions.Q3",
+              "context.reasoner_inferences"
+            ]
+          },
+          "required_evidence": [
+            {
+              "value": "Reasoner inference: A21 hasRequiredOperation SET_CHIRAL = 115",
+              "citations": [
+                "context.reasoner_inferences.A21 hasRequiredOperation SET_CHIRAL"
+              ]
+            },
+            {
+              "value": "定义类 StereocenterPreservingReaction = 2",
+              "citations": [
+                "context.reasoner_inferences.定义类 StereocenterPreservingReaction"
+              ]
+            },
+            {
+              "value": "StereocenterAnchor 契约 = 320",
+              "citations": [
+                "context.reasoner_inferences.StereocenterAnchor 契约"
+              ]
+            }
+          ],
+          "acceptance_metrics": [
+            {
+              "value": "end2edit_validity: ontology = 1.0, ontology_lora = 1.0 vs syncraft = 0.5",
+              "citations": [
+                "context.end2edit_validity.ontology",
+                "context.end2edit_validity.ontology_lora",
+                "context.end2edit_validity.syncraft"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "SQ5",
+          "maps_to": "Q3",
+          "question": {
+            "value": "How are pharmacophoric anchors and binding interactions preserved during editing?",
+            "citations": [
+              "context.three_questions.Q3",
+              "context.question"
+            ]
+          },
+          "required_evidence": [
+            {
+              "value": "Structure papers: 5KB3, 5IRU, 5J2M, 5JJK, 5JXG, 5K3S, 5IAR",
+              "citations": [
+                "context.literature.structure_papers"
+              ]
+            },
+            {
+              "value": "n_evidence = 79",
+              "citations": [
+                "context.n_evidence"
+              ]
+            },
+            {
+              "value": "papers = 7",
+              "citations": [
+                "context.papers"
+              ]
+            },
+            {
+              "value": "anchor_violation: ontology = 0.0, ontology_lora = 0.0",
+              "citations": [
+                "context.anchor_violation.ontology",
+                "context.anchor_violation.ontology_lora"
+              ]
+            }
+          ],
+          "acceptance_metrics": [
+            {
+              "value": "anchor_violation for ontology = 0.0",
+              "citations": [
+                "context.anchor_violation.ontology"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "SQ6",
+          "maps_to": "Q2",
+          "question": {
+            "value": "Is the edited analogue a valid, synthesizable edit sequence (end-to-end validity)?",
+            "citations": [
+              "context.three_questions.Q2",
+              "context.reasoner_inferences"
+            ]
+          },
+          "required_evidence": [
+            {
+              "value": "定义类 ValidatedEditSequence = 78",
+              "citations": [
+                "context.reasoner_inferences.定义类 ValidatedEditSequence"
+              ]
+            },
+            {
+              "value": "end2edit_validity: syncraft = 0.5, ontology = 1.0, ontology_lora = 1.0",
+              "citations": [
+                "context.end2edit_validity.syncraft",
+                "context.end2edit_validity.ontology",
+                "context.end2edit_validity.ontology_lora"
+              ]
+            },
+            {
+              "value": "End-to-end: 7 wins 0 losses, p = 0.0078",
+              "citations": [
+                "context.p_value"
+              ]
+            }
+          ],
+          "acceptance_metrics": [
+            {
+              "value": "end2edit_validity for ontology = 1.0 and ontology_lora = 1.0 vs syncraft = 0.5",
+              "citations": [
+                "context.end2edit_validity.ontology",
+                "context.end2edit_validity.ontology_lora",
+                "context.end2edit_validity.syncraft"
+              ]
+            },
+            {
+              "value": "End-to-end exact sign test: 7 wins 0 losses, p = 0.0078",
+              "citations": [
+                "context.p_value"
+              ]
+            }
+          ]
+        }
+      ],
+      "acceptance_metrics": {
+        "hardOK_48api": {
+          "value": {
+            "similarity": 0.5,
+            "random": 0.5,
+            "ontology": 0.875
+          },
+          "citations": [
+            "context.hardOK_48api"
+          ]
+        },
+        "p_value": {
+          "value": "6 wins 0 losses, exact sign test p=0.0156; end2end 7 wins 0 losses p=0.0078",
+          "citations": [
+            "context.p_value"
+          ]
+        },
+        "end2edit_validity": {
+          "value": {
+            "syncraft": 0.5,
+            "ontology": 1.0,
+            "ontology_lora": 1.0,
+            "source": null
+          },
+          "citations": [
+            "context.end2edit_validity"
+          ]
+        },
+        "anchor_violation": {
+          "value": {
+            "syncraft": 0.125,
+            "ontology": 0.0,
+            "ontology_lora": 0.0,
+            "source": null
+          },
+          "citations": [
+            "context.anchor_violation"
+          ]
+        },
+        "reasoner_inferences": {
+          "value": {
+            "A21 hasRequiredOperation SET_CHIRAL": 115,
+            "A19 hasFailureRisk": 231,
+            "A20 hasProtectedAtom": 363,
+            "定义类 ValidatedEditSequence": 78,
+            "定义类 StereocenterPreservingReaction": 2,
+            "StereocenterAnchor 契约": 320,
+            "source": "kernel_verify.json; owlrl 10400->23113 triples"
+          },
+          "citations": [
+            "context.reasoner_inferences"
+          ]
+        },
+        "transforms_freed": {
+          "value": "5/5",
+          "citations": [
+            "context.transforms_freed"
+          ]
+        },
+        "rl_pool": {
+          "value": 5174,
+          "citations": [
+            "context.rl_pool"
+          ]
+        },
+        "corpus": {
+          "value": "3272 CQ cases / 14 batches; 2783 crossdocked molecules",
+          "citations": [
+            "context.corpus"
+          ]
+        },
+        "n_molecules": {
+          "value": 3483,
+          "citations": [
+            "context.n_molecules"
+          ]
+        },
+        "n_evidence": {
+          "value": 79,
+          "citations": [
+            "context.n_evidence"
+          ]
+        },
+        "papers": {
+          "value": 7,
+          "citations": [
+            "context.papers"
+          ]
+        },
+        "literature_baseline": {
+          "value": {
+            "syncraft": {
+              "title": "SynCraft: Guiding Large Language Models to Predict Edit Sequences for Molecular Synthesizability Optimization",
+              "arxiv": "2512.20333",
+              "reported": "P2M 28.4% / ResGen 29.1% rescue at similarity>0.6 (Gemini-2.5-Pro)"
+            },
+            "crux": {
+              "title": "Can AI agents conduct open-ended AI research? Early evidence from two case studies",
+              "arxiv": "2607.27191",
+              "lesson": "agents do engineering but fail at evidence sufficiency"
+            }
+          },
+          "citations": [
+            "context.literature.syncraft",
+            "context.literature.crux"
+          ]
+        }
+      },
+      "missing_inputs": [
+        {
+          "field": "PROBLEM_ANCHOR.hash",
+          "status": "MISSING",
+          "detail": "No hash is provided for the question in context; the previous phase marked it MISSING.",
+          "citations": [
+            "context.question",
+            "previous_phase.PROBLEM_ANCHOR.hash"
+          ]
+        },
+        {
+          "field": "end2edit_validity.source",
+          "status": "NULL",
+          "detail": "The source field for end2edit_validity is null in context.",
+          "citations": [
+            "context.end2edit_validity.source"
+          ]
+        },
+        {
+          "field": "anchor_violation.source",
+          "status": "NULL",
+          "detail": "The source field for anchor_violation is null in context.",
+          "citations": [
+            "context.anchor_violation.source"
+          ]
+        },
+        {
+          "field": "binding_interaction_metric",
+          "status": "MISSING",
+          "detail": "No explicit quantitative metric for binding-interaction preservation is provided; only the structure_papers list and anchor_violation are available.",
+          "citations": [
+            "context.literature.structure_papers",
+            "context.anchor_violation"
+          ]
+        },
+        {
+          "field": "acceptance_thresholds",
+          "status": "MISSING",
+          "detail": "No explicit pass/fail thresholds are defined in context beyond the reported observed values.",
+          "citations": [
+            "context.hardOK_48api",
+            "context.p_value",
+            "context.end2edit_validity",
+            "context.anchor_violation"
+          ]
+        }
+      ]
+    }
+  }
+}

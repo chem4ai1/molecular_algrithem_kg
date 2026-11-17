@@ -1,0 +1,522 @@
+{
+  "phase": "02_idea_discovery",
+  "title": "Phase 2 四视角 + MCTS 选题",
+  "phase_output": {
+    "status": "partial",
+    "gap_id_policy": "No prior-phase gap-ids are invented; candidate ideas use CONTEXT.three_questions identifiers Q1/Q2/Q3 as provisional gap targets and explicitly mark prior-phase linkage as missing.",
+    "candidate_ideas": [
+      {
+        "idea_id": "IDEA_ALPHA",
+        "title": "Ontology failure-risk localization and protected-atom edit planner",
+        "gap_ids": [
+          "Q1",
+          "Q2"
+        ],
+        "gap_id_status": "provisional: prior-phase gap-ids missing; Q1/Q2 are from CONTEXT.three_questions",
+        "falsifiable_claim": {
+          "statement": "For molecules flagged by A19 hasFailureRisk and A20 hasProtectedAtom, an ontology-grounded edit planner that emits ValidatedEditSequence and respects StereocenterAnchor will preserve end2edit_validity at 1.0 and anchor_violation at 0.0 while maintaining hardOK_48api ontology success at 0.875.",
+          "falsification_condition": "Falsified if any such edit has end2edit_validity below 1.0, anchor_violation above 0.0, or hardOK_48api ontology success below 0.875.",
+          "citations": [
+            "CONTEXT.end2edit_validity.ontology=1.0",
+            "CONTEXT.anchor_violation.ontology=0.0",
+            "CONTEXT.hardOK_48api.ontology=0.875",
+            "CONTEXT.reasoner_inferences['A19 hasFailureRisk']=231",
+            "CONTEXT.reasoner_inferences['A20 hasProtectedAtom']=363"
+          ]
+        },
+        "perspectives": {
+          "mechanism": {
+            "statement": "Use A19 hasFailureRisk, A20 hasProtectedAtom, A21 hasRequiredOperation SET_CHIRAL, ValidatedEditSequence, and the StereocenterAnchor contract to localize problematic structure and required operations.",
+            "citations": [
+              "CONTEXT.reasoner_inferences['A19 hasFailureRisk']=231",
+              "CONTEXT.reasoner_inferences['A20 hasProtectedAtom']=363",
+              "CONTEXT.reasoner_inferences['A21 hasRequiredOperation SET_CHIRAL']=115",
+              "CONTEXT.reasoner_inferences['定义类 ValidatedEditSequence']=78",
+              "CONTEXT.reasoner_inferences['StereocenterAnchor 契约']=320"
+            ]
+          },
+          "data": {
+            "statement": "Use the provided corpus of 3272 CQ cases / 14 batches, 2783 crossdocked molecules, 3483 molecules, 79 evidence items, 5174 RL pool, and transforms_freed 5/5.",
+            "citations": [
+              "CONTEXT.corpus",
+              "CONTEXT.n_molecules=3483",
+              "CONTEXT.n_evidence=79",
+              "CONTEXT.rl_pool=5174",
+              "CONTEXT.transforms_freed=5/5"
+            ]
+          },
+          "evaluation": {
+            "statement": "Evaluate against similarity and random baselines using hardOK_48api, exact sign test, end2end sign test, end2edit validity, and anchor violation.",
+            "citations": [
+              "CONTEXT.hardOK_48api.similarity=0.5",
+              "CONTEXT.hardOK_48api.random=0.5",
+              "CONTEXT.hardOK_48api.ontology=0.875",
+              "CONTEXT.p_value",
+              "CONTEXT.end2edit_validity",
+              "CONTEXT.anchor_violation"
+            ]
+          },
+          "transfer": {
+            "statement": "Transfer to the SynCraft edit-sequence setting and require evidence sufficiency because the CRUX lesson reports agents fail at evidence sufficiency.",
+            "citations": [
+              "CONTEXT.literature.syncraft",
+              "CONTEXT.literature.crux.lesson"
+            ]
+          }
+        },
+        "mcts": {
+          "priority": "selected",
+          "rationale": "Selected because it directly targets Q1/Q2 and has the strongest provided ontology evidence for hardOK, validity, and anchor safety.",
+          "citations": [
+            "CONTEXT.three_questions",
+            "CONTEXT.hardOK_48api.ontology=0.875",
+            "CONTEXT.end2edit_validity.ontology=1.0",
+            "CONTEXT.anchor_violation.ontology=0.0"
+          ]
+        }
+      },
+      {
+        "idea_id": "IDEA_BETA",
+        "title": "Stereocenter-anchor contract validator for synthesizable analogues",
+        "gap_ids": [
+          "Q3",
+          "Q1"
+        ],
+        "gap_id_status": "provisional: prior-phase gap-ids missing; Q3/Q1 are from CONTEXT.three_questions",
+        "falsifiable_claim": {
+          "statement": "If edits are validated by the StereocenterAnchor contract and StereocenterPreservingReaction class, then anchor_violation will remain 0.0 for ontology and ontology_lora and end2edit_validity will remain 1.0 for ontology and ontology_lora.",
+          "falsification_condition": "Falsified if anchor_violation is above 0.0 or end2edit_validity is below 1.0 for ontology or ontology_lora.",
+          "citations": [
+            "CONTEXT.anchor_violation.ontology=0.0",
+            "CONTEXT.anchor_violation.ontology_lora=0.0",
+            "CONTEXT.end2edit_validity.ontology=1.0",
+            "CONTEXT.end2edit_validity.ontology_lora=1.0",
+            "CONTEXT.reasoner_inferences['StereocenterAnchor 契约']=320",
+            "CONTEXT.reasoner_inferences['定义类 StereocenterPreservingReaction']=2"
+          ]
+        },
+        "perspectives": {
+          "mechanism": {
+            "statement": "Use the StereocenterAnchor contract, StereocenterPreservingReaction, A20 hasProtectedAtom, and A21 hasRequiredOperation SET_CHIRAL to define which atoms and stereochemistry must not be touched.",
+            "citations": [
+              "CONTEXT.reasoner_inferences['StereocenterAnchor 契约']=320",
+              "CONTEXT.reasoner_inferences['定义类 StereocenterPreservingReaction']=2",
+              "CONTEXT.reasoner_inferences['A20 hasProtectedAtom']=363",
+              "CONTEXT.reasoner_inferences['A21 hasRequiredOperation SET_CHIRAL']=115"
+            ]
+          },
+          "data": {
+            "statement": "Use reasoner inferences from kernel_verify.json with owlrl 10400->23113 triples, plus the provided corpus and molecule counts.",
+            "citations": [
+              "CONTEXT.reasoner_inferences.source",
+              "CONTEXT.corpus",
+              "CONTEXT.n_molecules=3483",
+              "CONTEXT.n_evidence=79"
+            ]
+          },
+          "evaluation": {
+            "statement": "Evaluate anchor preservation and edit validity against syncraft, ontology, and ontology_lora, with source fields noted as null.",
+            "citations": [
+              "CONTEXT.anchor_violation.syncraft=0.125",
+              "CONTEXT.anchor_violation.ontology=0.0",
+              "CONTEXT.anchor_violation.ontology_lora=0.0",
+              "CONTEXT.end2edit_validity.syncraft=0.5",
+              "CONTEXT.end2edit_validity.ontology=1.0",
+              "CONTEXT.end2edit_validity.ontology_lora=1.0",
+              "CONTEXT.end2edit_validity.source=null",
+              "CONTEXT.anchor_violation.source=null"
+            ]
+          },
+          "transfer": {
+            "statement": "Transfer to structure-paired cases represented by the listed structure papers and to the SynCraft setting reported at similarity>0.6.",
+            "citations": [
+              "CONTEXT.literature.structure_papers",
+              "CONTEXT.literature.syncraft.reported"
+            ]
+          }
+        },
+        "mcts": {
+          "priority": "runner_up",
+          "rationale": "Strong anchor-safety evidence for Q3/Q1.",
+          "citations": [
+            "CONTEXT.anchor_violation.ontology=0.0",
+            "CONTEXT.anchor_violation.ontology_lora=0.0",
+            "CONTEXT.end2edit_validity.ontology=1.0",
+            "CONTEXT.three_questions"
+          ]
+        }
+      },
+      {
+        "idea_id": "IDEA_GAMMA",
+        "title": "Crossdocked why-not explanation and edit benchmark",
+        "gap_ids": [
+          "Q2",
+          "Q3"
+        ],
+        "gap_id_status": "provisional: prior-phase gap-ids missing; Q2/Q3 are from CONTEXT.three_questions",
+        "falsifiable_claim": {
+          "statement": "An ontology-grounded why-not explanation using A19 hasFailureRisk and A20 hasProtectedAtom will preserve anchor_violation at 0.0 and reproduce the reported end2end evidence of 7 wins 0 losses with exact sign test p=0.0078 when re-evaluated on the same provided artifacts.",
+          "falsification_condition": "Falsified if anchor_violation is above 0.0 or the end2end sign-test result is not 7 wins 0 losses with p=0.0078 on the same provided artifacts.",
+          "citations": [
+            "CONTEXT.anchor_violation.ontology=0.0",
+            "CONTEXT.p_value",
+            "CONTEXT.reasoner_inferences['A19 hasFailureRisk']=231",
+            "CONTEXT.reasoner_inferences['A20 hasProtectedAtom']=363"
+          ]
+        },
+        "perspectives": {
+          "mechanism": {
+            "statement": "Generate a why-not explanation from A19 hasFailureRisk and A20 hasProtectedAtom, then edit with ValidatedEditSequence while preserving StereocenterAnchor.",
+            "citations": [
+              "CONTEXT.reasoner_inferences['A19 hasFailureRisk']=231",
+              "CONTEXT.reasoner_inferences['A20 hasProtectedAtom']=363",
+              "CONTEXT.reasoner_inferences['定义类 ValidatedEditSequence']=78",
+              "CONTEXT.reasoner_inferences['StereocenterAnchor 契约']=320"
+            ]
+          },
+          "data": {
+            "statement": "Use 2783 crossdocked molecules, 3272 CQ cases / 14 batches, 5174 RL pool, and transforms_freed 5/5.",
+            "citations": [
+              "CONTEXT.corpus",
+              "CONTEXT.rl_pool=5174",
+              "CONTEXT.transforms_freed=5/5"
+            ]
+          },
+          "evaluation": {
+            "statement": "Evaluate with hardOK_48api, exact sign test, end2end sign test, end2edit validity, and anchor violation.",
+            "citations": [
+              "CONTEXT.hardOK_48api",
+              "CONTEXT.p_value",
+              "CONTEXT.end2edit_validity",
+              "CONTEXT.anchor_violation"
+            ]
+          },
+          "transfer": {
+            "statement": "Transfer to open-ended agent research and SynCraft comparisons, with evidence sufficiency required because the CRUX lesson reports agents fail at evidence sufficiency.",
+            "citations": [
+              "CONTEXT.literature.crux.lesson",
+              "CONTEXT.literature.syncraft"
+            ]
+          }
+        },
+        "mcts": {
+          "priority": "alternative",
+          "rationale": "Broad benchmark value for Q2/Q3.",
+          "citations": [
+            "CONTEXT.p_value",
+            "CONTEXT.corpus",
+            "CONTEXT.three_questions"
+          ]
+        }
+      }
+    ],
+    "mcts_selection": {
+      "selected_idea": "IDEA_ALPHA",
+      "selection_basis": [
+        {
+          "criterion": "directness to Q1/Q2",
+          "citations": [
+            "CONTEXT.three_questions"
+          ]
+        },
+        {
+          "criterion": "ontology hardOK advantage over similarity and random",
+          "citations": [
+            "CONTEXT.hardOK_48api.ontology=0.875",
+            "CONTEXT.hardOK_48api.similarity=0.5",
+            "CONTEXT.hardOK_48api.random=0.5"
+          ]
+        },
+        {
+          "criterion": "validity and anchor safety",
+          "citations": [
+            "CONTEXT.end2edit_validity.ontology=1.0",
+            "CONTEXT.anchor_violation.ontology=0.0"
+          ]
+        }
+      ],
+      "selected_reason": {
+        "statement": "IDEA_ALPHA is selected because it combines mechanism localization, data coverage, evaluation evidence, and transfer relevance with the strongest provided ontology metrics.",
+        "citations": [
+          "CONTEXT.hardOK_48api.ontology=0.875",
+          "CONTEXT.end2edit_validity.ontology=1.0",
+          "CONTEXT.anchor_violation.ontology=0.0",
+          "CONTEXT.corpus",
+          "CONTEXT.literature.syncraft",
+          "CONTEXT.literature.crux.lesson"
+        ]
+      },
+      "alternatives": [
+        "IDEA_BETA",
+        "IDEA_GAMMA"
+      ]
+    }
+  },
+  "verdict": "WARN",
+  "missing_inputs": [
+    "prior_phase_gap_ids: PREVIOUS PHASE phase_output is null, so no prior-phase gap-ids are available.",
+    "mcts_rollout_scores: no new MCTS rollout scores are provided in CONTEXT.",
+    "source fields for end2edit_validity and anchor_violation are null in CONTEXT."
+  ],
+  "full_response": {
+    "qid": "Q-ONT-MOL-001",
+    "phase": "Phase 2 四视角 + MCTS 选题",
+    "verdict": "WARN",
+    "missing_inputs": [
+      "prior_phase_gap_ids: PREVIOUS PHASE phase_output is null, so no prior-phase gap-ids are available.",
+      "mcts_rollout_scores: no new MCTS rollout scores are provided in CONTEXT.",
+      "source fields for end2edit_validity and anchor_violation are null in CONTEXT."
+    ],
+    "phase_output": {
+      "status": "partial",
+      "gap_id_policy": "No prior-phase gap-ids are invented; candidate ideas use CONTEXT.three_questions identifiers Q1/Q2/Q3 as provisional gap targets and explicitly mark prior-phase linkage as missing.",
+      "candidate_ideas": [
+        {
+          "idea_id": "IDEA_ALPHA",
+          "title": "Ontology failure-risk localization and protected-atom edit planner",
+          "gap_ids": [
+            "Q1",
+            "Q2"
+          ],
+          "gap_id_status": "provisional: prior-phase gap-ids missing; Q1/Q2 are from CONTEXT.three_questions",
+          "falsifiable_claim": {
+            "statement": "For molecules flagged by A19 hasFailureRisk and A20 hasProtectedAtom, an ontology-grounded edit planner that emits ValidatedEditSequence and respects StereocenterAnchor will preserve end2edit_validity at 1.0 and anchor_violation at 0.0 while maintaining hardOK_48api ontology success at 0.875.",
+            "falsification_condition": "Falsified if any such edit has end2edit_validity below 1.0, anchor_violation above 0.0, or hardOK_48api ontology success below 0.875.",
+            "citations": [
+              "CONTEXT.end2edit_validity.ontology=1.0",
+              "CONTEXT.anchor_violation.ontology=0.0",
+              "CONTEXT.hardOK_48api.ontology=0.875",
+              "CONTEXT.reasoner_inferences['A19 hasFailureRisk']=231",
+              "CONTEXT.reasoner_inferences['A20 hasProtectedAtom']=363"
+            ]
+          },
+          "perspectives": {
+            "mechanism": {
+              "statement": "Use A19 hasFailureRisk, A20 hasProtectedAtom, A21 hasRequiredOperation SET_CHIRAL, ValidatedEditSequence, and the StereocenterAnchor contract to localize problematic structure and required operations.",
+              "citations": [
+                "CONTEXT.reasoner_inferences['A19 hasFailureRisk']=231",
+                "CONTEXT.reasoner_inferences['A20 hasProtectedAtom']=363",
+                "CONTEXT.reasoner_inferences['A21 hasRequiredOperation SET_CHIRAL']=115",
+                "CONTEXT.reasoner_inferences['定义类 ValidatedEditSequence']=78",
+                "CONTEXT.reasoner_inferences['StereocenterAnchor 契约']=320"
+              ]
+            },
+            "data": {
+              "statement": "Use the provided corpus of 3272 CQ cases / 14 batches, 2783 crossdocked molecules, 3483 molecules, 79 evidence items, 5174 RL pool, and transforms_freed 5/5.",
+              "citations": [
+                "CONTEXT.corpus",
+                "CONTEXT.n_molecules=3483",
+                "CONTEXT.n_evidence=79",
+                "CONTEXT.rl_pool=5174",
+                "CONTEXT.transforms_freed=5/5"
+              ]
+            },
+            "evaluation": {
+              "statement": "Evaluate against similarity and random baselines using hardOK_48api, exact sign test, end2end sign test, end2edit validity, and anchor violation.",
+              "citations": [
+                "CONTEXT.hardOK_48api.similarity=0.5",
+                "CONTEXT.hardOK_48api.random=0.5",
+                "CONTEXT.hardOK_48api.ontology=0.875",
+                "CONTEXT.p_value",
+                "CONTEXT.end2edit_validity",
+                "CONTEXT.anchor_violation"
+              ]
+            },
+            "transfer": {
+              "statement": "Transfer to the SynCraft edit-sequence setting and require evidence sufficiency because the CRUX lesson reports agents fail at evidence sufficiency.",
+              "citations": [
+                "CONTEXT.literature.syncraft",
+                "CONTEXT.literature.crux.lesson"
+              ]
+            }
+          },
+          "mcts": {
+            "priority": "selected",
+            "rationale": "Selected because it directly targets Q1/Q2 and has the strongest provided ontology evidence for hardOK, validity, and anchor safety.",
+            "citations": [
+              "CONTEXT.three_questions",
+              "CONTEXT.hardOK_48api.ontology=0.875",
+              "CONTEXT.end2edit_validity.ontology=1.0",
+              "CONTEXT.anchor_violation.ontology=0.0"
+            ]
+          }
+        },
+        {
+          "idea_id": "IDEA_BETA",
+          "title": "Stereocenter-anchor contract validator for synthesizable analogues",
+          "gap_ids": [
+            "Q3",
+            "Q1"
+          ],
+          "gap_id_status": "provisional: prior-phase gap-ids missing; Q3/Q1 are from CONTEXT.three_questions",
+          "falsifiable_claim": {
+            "statement": "If edits are validated by the StereocenterAnchor contract and StereocenterPreservingReaction class, then anchor_violation will remain 0.0 for ontology and ontology_lora and end2edit_validity will remain 1.0 for ontology and ontology_lora.",
+            "falsification_condition": "Falsified if anchor_violation is above 0.0 or end2edit_validity is below 1.0 for ontology or ontology_lora.",
+            "citations": [
+              "CONTEXT.anchor_violation.ontology=0.0",
+              "CONTEXT.anchor_violation.ontology_lora=0.0",
+              "CONTEXT.end2edit_validity.ontology=1.0",
+              "CONTEXT.end2edit_validity.ontology_lora=1.0",
+              "CONTEXT.reasoner_inferences['StereocenterAnchor 契约']=320",
+              "CONTEXT.reasoner_inferences['定义类 StereocenterPreservingReaction']=2"
+            ]
+          },
+          "perspectives": {
+            "mechanism": {
+              "statement": "Use the StereocenterAnchor contract, StereocenterPreservingReaction, A20 hasProtectedAtom, and A21 hasRequiredOperation SET_CHIRAL to define which atoms and stereochemistry must not be touched.",
+              "citations": [
+                "CONTEXT.reasoner_inferences['StereocenterAnchor 契约']=320",
+                "CONTEXT.reasoner_inferences['定义类 StereocenterPreservingReaction']=2",
+                "CONTEXT.reasoner_inferences['A20 hasProtectedAtom']=363",
+                "CONTEXT.reasoner_inferences['A21 hasRequiredOperation SET_CHIRAL']=115"
+              ]
+            },
+            "data": {
+              "statement": "Use reasoner inferences from kernel_verify.json with owlrl 10400->23113 triples, plus the provided corpus and molecule counts.",
+              "citations": [
+                "CONTEXT.reasoner_inferences.source",
+                "CONTEXT.corpus",
+                "CONTEXT.n_molecules=3483",
+                "CONTEXT.n_evidence=79"
+              ]
+            },
+            "evaluation": {
+              "statement": "Evaluate anchor preservation and edit validity against syncraft, ontology, and ontology_lora, with source fields noted as null.",
+              "citations": [
+                "CONTEXT.anchor_violation.syncraft=0.125",
+                "CONTEXT.anchor_violation.ontology=0.0",
+                "CONTEXT.anchor_violation.ontology_lora=0.0",
+                "CONTEXT.end2edit_validity.syncraft=0.5",
+                "CONTEXT.end2edit_validity.ontology=1.0",
+                "CONTEXT.end2edit_validity.ontology_lora=1.0",
+                "CONTEXT.end2edit_validity.source=null",
+                "CONTEXT.anchor_violation.source=null"
+              ]
+            },
+            "transfer": {
+              "statement": "Transfer to structure-paired cases represented by the listed structure papers and to the SynCraft setting reported at similarity>0.6.",
+              "citations": [
+                "CONTEXT.literature.structure_papers",
+                "CONTEXT.literature.syncraft.reported"
+              ]
+            }
+          },
+          "mcts": {
+            "priority": "runner_up",
+            "rationale": "Strong anchor-safety evidence for Q3/Q1.",
+            "citations": [
+              "CONTEXT.anchor_violation.ontology=0.0",
+              "CONTEXT.anchor_violation.ontology_lora=0.0",
+              "CONTEXT.end2edit_validity.ontology=1.0",
+              "CONTEXT.three_questions"
+            ]
+          }
+        },
+        {
+          "idea_id": "IDEA_GAMMA",
+          "title": "Crossdocked why-not explanation and edit benchmark",
+          "gap_ids": [
+            "Q2",
+            "Q3"
+          ],
+          "gap_id_status": "provisional: prior-phase gap-ids missing; Q2/Q3 are from CONTEXT.three_questions",
+          "falsifiable_claim": {
+            "statement": "An ontology-grounded why-not explanation using A19 hasFailureRisk and A20 hasProtectedAtom will preserve anchor_violation at 0.0 and reproduce the reported end2end evidence of 7 wins 0 losses with exact sign test p=0.0078 when re-evaluated on the same provided artifacts.",
+            "falsification_condition": "Falsified if anchor_violation is above 0.0 or the end2end sign-test result is not 7 wins 0 losses with p=0.0078 on the same provided artifacts.",
+            "citations": [
+              "CONTEXT.anchor_violation.ontology=0.0",
+              "CONTEXT.p_value",
+              "CONTEXT.reasoner_inferences['A19 hasFailureRisk']=231",
+              "CONTEXT.reasoner_inferences['A20 hasProtectedAtom']=363"
+            ]
+          },
+          "perspectives": {
+            "mechanism": {
+              "statement": "Generate a why-not explanation from A19 hasFailureRisk and A20 hasProtectedAtom, then edit with ValidatedEditSequence while preserving StereocenterAnchor.",
+              "citations": [
+                "CONTEXT.reasoner_inferences['A19 hasFailureRisk']=231",
+                "CONTEXT.reasoner_inferences['A20 hasProtectedAtom']=363",
+                "CONTEXT.reasoner_inferences['定义类 ValidatedEditSequence']=78",
+                "CONTEXT.reasoner_inferences['StereocenterAnchor 契约']=320"
+              ]
+            },
+            "data": {
+              "statement": "Use 2783 crossdocked molecules, 3272 CQ cases / 14 batches, 5174 RL pool, and transforms_freed 5/5.",
+              "citations": [
+                "CONTEXT.corpus",
+                "CONTEXT.rl_pool=5174",
+                "CONTEXT.transforms_freed=5/5"
+              ]
+            },
+            "evaluation": {
+              "statement": "Evaluate with hardOK_48api, exact sign test, end2end sign test, end2edit validity, and anchor violation.",
+              "citations": [
+                "CONTEXT.hardOK_48api",
+                "CONTEXT.p_value",
+                "CONTEXT.end2edit_validity",
+                "CONTEXT.anchor_violation"
+              ]
+            },
+            "transfer": {
+              "statement": "Transfer to open-ended agent research and SynCraft comparisons, with evidence sufficiency required because the CRUX lesson reports agents fail at evidence sufficiency.",
+              "citations": [
+                "CONTEXT.literature.crux.lesson",
+                "CONTEXT.literature.syncraft"
+              ]
+            }
+          },
+          "mcts": {
+            "priority": "alternative",
+            "rationale": "Broad benchmark value for Q2/Q3.",
+            "citations": [
+              "CONTEXT.p_value",
+              "CONTEXT.corpus",
+              "CONTEXT.three_questions"
+            ]
+          }
+        }
+      ],
+      "mcts_selection": {
+        "selected_idea": "IDEA_ALPHA",
+        "selection_basis": [
+          {
+            "criterion": "directness to Q1/Q2",
+            "citations": [
+              "CONTEXT.three_questions"
+            ]
+          },
+          {
+            "criterion": "ontology hardOK advantage over similarity and random",
+            "citations": [
+              "CONTEXT.hardOK_48api.ontology=0.875",
+              "CONTEXT.hardOK_48api.similarity=0.5",
+              "CONTEXT.hardOK_48api.random=0.5"
+            ]
+          },
+          {
+            "criterion": "validity and anchor safety",
+            "citations": [
+              "CONTEXT.end2edit_validity.ontology=1.0",
+              "CONTEXT.anchor_violation.ontology=0.0"
+            ]
+          }
+        ],
+        "selected_reason": {
+          "statement": "IDEA_ALPHA is selected because it combines mechanism localization, data coverage, evaluation evidence, and transfer relevance with the strongest provided ontology metrics.",
+          "citations": [
+            "CONTEXT.hardOK_48api.ontology=0.875",
+            "CONTEXT.end2edit_validity.ontology=1.0",
+            "CONTEXT.anchor_violation.ontology=0.0",
+            "CONTEXT.corpus",
+            "CONTEXT.literature.syncraft",
+            "CONTEXT.literature.crux.lesson"
+          ]
+        },
+        "alternatives": [
+          "IDEA_BETA",
+          "IDEA_GAMMA"
+        ]
+      }
+    }
+  }
+}

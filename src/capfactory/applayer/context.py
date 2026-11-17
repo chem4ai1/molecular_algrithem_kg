@@ -102,6 +102,71 @@ class WritingContext:
             self.g.assert_rel(draft_id, evidence_id, "USES_EVIDENCE",
                               layer="application")
 
+    # -- 检索候选（task-r） ------------------------------------------------
+    def retrieved(self, *, paper_id: str, query: str,
+                  score: float | None = None, bm25: float | None = None,
+                  vector: float | None = None, domain_hint: str = "",
+                  rank: int = 0, draft_id: str = "") -> str:
+        """登记一次检索召回的候选；同 run 同 paper 复用，更新更高分。
+
+        domain_hint 只记领域标签作为**检索线索**，不用于推导证据规范。
+        """
+        nid = f"related:{self.run_id}:{_slug(paper_id)}"
+        row = {"run_id": self.run_id, "paper_id": paper_id, "query": query,
+               "score": score, "bm25": bm25, "vector": vector,
+               "domain_hint": domain_hint, "rank": rank,
+               "decision": "pending", "retrieved_at": self._now()}
+        if nid in self.g.nodes:
+            old = self.g.nodes[nid].attrs
+            if (score or 0) >= (old.get("score") or 0):
+                for k, v in row.items():
+                    if v not in (None, ""):
+                        old[k] = v
+        else:
+            self.g.node(nid, "RelatedPaper", paper_id[:80],
+                        layer="application", task="writing",
+                        miner="writing_context", **row)
+        if paper_id in self.g.nodes:
+            self.g.assert_rel(nid, paper_id, "ABOUT", layer="application")
+        if draft_id and draft_id in self.g.nodes:
+            self.g.assert_rel(draft_id, nid, "RETRIEVED", layer="application")
+        return nid
+
+    def retrieve(self, query: str, *, k: int = 8,
+                 types: List[str] | None = None,
+                 domain_hint: str = "", draft_id: str = "",
+                 searcher: Any = None) -> List[str]:
+        """调向量检索并把命中登记为 RelatedPaper。
+
+        searcher 可注入（便于测试）；默认用 semantic.vector_sync.search。
+        领域标签只作为 domain_hint 传入，不参与相似度计算或证据规范推导。
+        """
+        if searcher is None:
+            from ..semantic.vector_sync import search as searcher  # type: ignore
+        hits = searcher(query, types=types or ["Paper"], k=k)
+        ids = []
+        for i, h in enumerate(hits, 1):
+            pid = str(h.get("id") or h.get("node_id") or "")
+            if not pid:
+                continue
+            ids.append(self.retrieved(
+                paper_id=pid, query=query, score=h.get("score"),
+                bm25=h.get("bm25"), vector=h.get("vector"),
+                domain_hint=domain_hint or str(self.g.nodes[pid].attrs.get("domain") or "")
+                if pid in self.g.nodes else domain_hint,
+                rank=i, draft_id=draft_id))
+        return ids
+
+    def decide(self, related_id: str, decision: str,
+               *, cited_id: str = "") -> None:
+        """候选处理：cited / consulted / rejected。"""
+        if related_id not in self.g.nodes:
+            return
+        self.g.nodes[related_id].attrs["decision"] = decision
+        if decision == "cited" and cited_id and cited_id in self.g.nodes:
+            self.g.assert_rel(related_id, cited_id, "LED_TO",
+                              layer="application")
+
     # -- 预演与自检 --------------------------------------------------------
     def review(self, *, contribution_id: str, axis: str, attack: str,
                severity: str = "high", response: str = "",

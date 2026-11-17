@@ -86,6 +86,11 @@ APP_CLASSES: Dict[str, Tuple[str, Tuple[Tuple[str, str], ...]]] = {
     "ConsultedPaper": ("本次查过但未引的论文（按 run 实例化）", (
         ("run_id", "must"), ("paper_id", "must"), ("reason", "optional"),
         ("used_in", "optional"))),
+    "RelatedPaper": ("本次检索召回的候选论文（task-r，不等于最终引用）", (
+        ("run_id", "must"), ("paper_id", "must"), ("query", "optional"),
+        ("score", "optional"), ("bm25", "optional"), ("vector", "optional"),
+        ("domain_hint", "optional"), ("rank", "optional"),
+        ("decision", "optional"), ("retrieved_at", "optional"))),
     "ResearchGap": ("本次写作要填补的空白（按 run 实例化）", (
         ("run_id", "must"), ("gap_id", "must"), ("gap_type", "must"),
         ("statement", "must"), ("evidence", "optional"),
@@ -152,6 +157,9 @@ APP_RELATIONS: Dict[str, Tuple[str, str, str]] = {
     "CONSULTED": ("SectionDraft", "ConsultedPaper", "该节查过的论文"),
     "CHECKED": ("Paper", "FailureCheck", "本次失败模式自检"),
     "CHECK_OF": ("FailureCheck", "FailureMode", "检查的是哪条失败模式"),
+    "RETRIEVED": ("SectionDraft", "RelatedPaper", "该节检索到哪些候选"),
+    "ABOUT": ("RelatedPaper", "Paper", "候选指向库内哪篇论文"),
+    "LED_TO": ("RelatedPaper", "CitedPaper", "该候选最终是否被引"),
     # ===== 代码域：域内 9 =====
     "CONTAINS": ("CodeUnit", "CodeSymbol", "文件包含符号"),
     "IMPORTS": ("CodeUnit", "CodeUnit", "同仓库文件依赖"),
