@@ -90,7 +90,9 @@ def apply_one(g, rep) -> Dict[str, Any]:
         for k in ("research_question", "problem_category", "domain_code",
                   "why_hard", "relation_hints", "paradigm", "evidence_type",
                   "evidence_norm", "authors", "abstract", "claims",
-                  "references", "figures", "section_map", "gaps"):
+                  "references", "figures", "section_map", "gaps",
+                  "open_problems", "delta_claims", "negative_results",
+                  "protocol_disclosure", "citation_style", "writing_style"):
             if e1.get(k):
                 paper.attrs[k] = e1[k]
         if rep.get("domain_calibrated"):

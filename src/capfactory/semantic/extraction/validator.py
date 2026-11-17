@@ -107,6 +107,20 @@ def _e1(data, source_text, issues):
                     "evidence": _str(g.get("evidence"))[:120]}
                    for g in _list(data.get("gaps"))[:6]
                    if isinstance(g, dict)]
+    # 前沿/失败/协议/写作惯例：别人的客观事实，供后续阶段检索
+    out["open_problems"] = [{"statement": _str(x.get("statement"))[:80],
+                             "evidence": _str(x.get("evidence"))[:120]}
+                            for x in _list(data.get("open_problems"))[:6]
+                            if isinstance(x, dict)]
+    out["delta_claims"] = [{"statement": _str(x.get("statement"))[:80],
+                            "baseline": _str(x.get("baseline"))[:40],
+                            "evidence": _str(x.get("evidence"))[:120]}
+                           for x in _list(data.get("delta_claims"))[:6]
+                           if isinstance(x, dict)]
+    out["negative_results"] = _list(data.get("negative_results"))[:8]
+    out["protocol_disclosure"] = _list(data.get("protocol_disclosure"))[:8]
+    out["citation_style"] = _str(data.get("citation_style"))
+    out["writing_style"] = _str(data.get("writing_style"))[:200]
     if not out["research_question"]:
         issues.append("missing:research_question")
     out["problem_category"] = _vocab_or_other(

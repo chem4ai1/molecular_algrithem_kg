@@ -12,9 +12,9 @@
 |---|---|---|---|
 | `title` | must | 标题 | ✅ |
 | `arxiv_id` | should | arXiv 标识 | ✅ |
-| `doi` | optional | DOI | ❌ 0% |
+| `doi` | optional | DOI | ✅ |
 | `year` | optional | 年份 | ✅ |
-| `venue` | optional | 发表场所 | ❌ 0% |
+| `venue` | optional | 发表场所 | ✅ |
 | `research_question` | should | 研究什么问题（吸收 ResearchQuestion 节点） | ✅ |
 | `problem_category` | should | 问题类别（吸收 ProblemCategory 节点） | ✅ |
 | `domain` | should | 所属领域 | ✅ |
@@ -22,16 +22,22 @@
 | `why_hard` | optional | 现有方法瓶颈 | ✅ |
 | `keywords` | optional | 关键词 | ✅ |
 | `relation_hints` | optional | 关系线索 | ✅ |
-| `paradigm` | should | 研究范式 formal/empirical/design/interpretive | ❌ 0% |
-| `evidence_type` | should | 证据类型 causal_inference/derivational/experimental/simulational/correlational/interpretive | ❌ 0% |
-| `evidence_norm` | optional | 该领域认可的指标与证据规范 | ❌ 0% |
+| `paradigm` | should | 研究范式 formal/empirical/design/interpretive | ✅ |
+| `evidence_type` | should | 证据类型 causal_inference/derivational/experimental/simulational/correlational/interpretive | ✅ |
+| `evidence_norm` | optional | 该领域认可的指标与证据规范 | ✅ |
 | `figures` | optional | 图表清单[{label,caption,kind,for_contribution}] | ❌ 0% |
-| `section_map` | optional | 章节→论断映射[{section,claims[]}] | ❌ 0% |
-| `gaps` | optional | 论文指出的研究空白[{gap_type,statement,evidence}] | ❌ 0% |
-| `authors` | should | 作者列表（检索元数据） | ❌ 0% |
-| `abstract` | should | 摘要原文（向量索引召回用） | ❌ 0% |
-| `claims` | optional | 论文提出的主张[{statement,evidence}]（写作参考） | ❌ 0% |
+| `section_map` | optional | 章节→论断映射[{section,claims[]}] | ✅ |
+| `gaps` | optional | 论文指出的研究空白[{gap_type,statement,evidence}] | ✅ |
+| `authors` | should | 作者列表（检索元数据） | ✅ |
+| `abstract` | should | 摘要原文（向量索引召回用） | ✅ |
+| `claims` | optional | 论文提出的主张[{statement,evidence}]（写作参考） | ✅ |
 | `references` | optional | 参考文献标识列表（补足 RELATED_TO） | ❌ 0% |
+| `open_problems` | optional | 别人明确陈述的开放问题[{statement,evidence}] | ❌ 0% |
+| `delta_claims` | optional | 别人声称的增量[{statement,baseline,evidence}] | ❌ 0% |
+| `negative_results` | optional | 别人报告的阴性结果/失败尝试[] | ❌ 0% |
+| `protocol_disclosure` | optional | 别人披露的实验协议声明[] | ❌ 0% |
+| `citation_style` | optional | author-year|numeric|other | ❌ 0% |
+| `writing_style` | optional | 章节与措辞惯例（从同类论文归纳） | ❌ 0% |
 
 ## 3. 关系
 

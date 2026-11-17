@@ -1,6 +1,6 @@
 # `AlgorithmModule` · 算法模块（原 AlgorithmStep）
 
-> 层：**语义层** ｜ 生命周期：**global** ｜ 图内实例：**2856**
+> 层：**语义层** ｜ 生命周期：**global** ｜ 图内实例：**2870**
 
 ## 1. 定位
 
@@ -17,8 +17,8 @@
 | `formula` | optional | 公式/方程（文本，不建节点） | ✅ |
 | `inputs` | should | 输入 | ✅ |
 | `outputs` | should | 输出 | ✅ |
-| `is_novel_component` | optional | 是否论文声称的创新组件（消融规划用） | ❌ 0% |
-| `component_role` | optional | backbone/encoder/decoder/loss/sampler/other | ❌ 0% |
+| `is_novel_component` | optional | 是否论文声称的创新组件（消融规划用） | ✅ |
+| `component_role` | optional | backbone/encoder/decoder/loss/sampler/other | ✅ |
 
 ## 3. 关系
 

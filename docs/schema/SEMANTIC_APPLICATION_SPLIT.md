@@ -139,3 +139,79 @@ P3  每阶段串成 CLI（freeze → retrieve → hint → ...）
 
 语义层是**图书馆**（别的论文沉淀的可复用输入），应用层是**工作台**（本次生成的逐步产物）。
 现在的问题不是工作台不够，是图书馆里 13 本新书还没上架——**先重抽，再扩建**。
+
+## 4.5 修正：「明确不加」三项拆成两半（2026-11-18）
+
+> 原 §4.4 把「别人的事实」和「本次的判断」一起砍掉了，这是错的。
+> 正确做法：**同一件事，事实进语义层，判断留应用层**。
+
+| 原候选 | 别人的事实（**现已加进语义层**） | 本次判断（应用层） |
+|---|---|---|
+| `frontier_signals` | `Paper.open_problems[]`（别人明确说的未解决问题）<br>`Paper.delta_claims[]`（别人声称的增量 + baseline）<br>已有 `Benchmark.sota_by_metric`（别人报告的 SOTA） | `Novelty`（本次判定新不新颖） |
+| `falsified_hypotheses` | `Paper.negative_results[]`（别人报告的阴性结果/失败尝试）<br>已有 `Algorithm.limitations[]`（27% 覆盖） | `FalsificationRecord`（本次试过的反例） |
+| `pre_registration` | `Paper.protocol_disclosure[]`（别人披露的协议声明）<br>已有 `Benchmark.protocol`（协议本身，0%） | `MethodLock` / `VerificationRoute`（本次锁什么、走哪条验证路线） |
+
+### 如果不加，靠什么替代？为什么不够？
+
+| 阶段 | 没有新字段时的替代检索 | 为什么不够 |
+|---|---|---|
+| **04 想法证伪** | `Algorithm.limitations`（27%）+ `FailureMode`（内置目录） | limitations 只说「做不到什么」，拿不到「**别人已经试过并失败**」这条关键信息；会重复踩坑 |
+| **05 新颖性** | `Paper.why_hard` + `SUBCLASS_OF` + `Benchmark.sota_by_metric` | 能拼出「瓶颈 + 继承链 + SOTA 数字」，但拿不到别人**明确指出**的 open problem 与**增量措辞**——碰撞矩阵判不了 |
+| **06 预注册** | `Benchmark.protocol` | 那是「基准的协议」，不是「论文声明怎么锁协议」；缺 `seed_policy` / 消融完整性的**写作先例** |
+| **02/08 写作惯例** | `Paper.section_map`（0%） | 只有骨架没有引用格式与措辞风格；阶段02 的六维签名写不全 |
+
+**结论**：替代方案能凑出 60% 的信息，但恰好丢掉「别人明确说过什么」这类最有用的部分。
+所以这 6 个字段（open_problems / delta_claims / negative_results / protocol_disclosure /
+citation_style / writing_style）已从「明确不加」提升为**已加**，E1 契约、validator、apply 已同步。
+
+## 8. 更清晰的回顾：两层的完整边界
+
+### 8.1 三问判据
+
+对任何信息问：
+
+| 问 | 是 → 语义层 | 否 → 应用层 |
+|---|---|---|
+| 它能在**别的论文**里指到一句话/一个表格吗？ | ✅ | ❌ |
+| 两篇不同论文的同名信息，合并会串味吗？ | 会 → 按论文隔离（`paper:` id） | 不会 → 可全局归一 |
+| 它是「这次生成**选择/判定**出来的」吗？ | ❌ | ✅ → 建任务级节点（带 `run_id`） |
+
+### 8.2 语义层 = 可复用输入（28 个 Paper 字段，按用途分五组）
+
+| 组 | 字段 | 服务阶段 |
+|---|---|---|
+| **身份与检索** | title / authors / abstract / doi / venue / year / keywords / references | 01、03、12 |
+| **问题与方法** | research_question / problem_category / why_hard / paradigm / evidence_type / flow_family | 01、02、04、05 |
+| **贡献与前沿** | claims / gaps / open_problems / delta_claims | 04、05、07、09 |
+| **方法与实验** | assumptions / novelty_basis / is_novel_component / component_role / protocol / protocol_disclosure / failure_modes / metrics[].contribution_link | 02、04、06、07 |
+| **写作与呈现** | figures / section_map / citation_style / writing_style / negative_results | 02、06、08 |
+
+**共同点**：都能从论文文本/表格解析出来，且被 ≥1 个后续阶段复用。
+
+### 8.3 应用层 = 本次阶段输出（31 类，按阶段归）
+
+| 阶段 | 本次输出 | 对应语义层参考 |
+|---|---|---|
+| 01 锚定 | ProblemAnchor / DomainHint / RelatedPaper | domain / research_question |
+| 02 领域学习 | EvidenceNorm(learned) / MethodologyProfile | paradigm / evidence_type / citation_style / writing_style |
+| 03 检索 | CitedPaper / SourcePaper | authors / abstract / references |
+| 04 想法与证伪 | ResearchGap / **FalsificationRecord** | gaps / **negative_results** / limitations |
+| 05 新颖性 | Contribution / **Novelty** | claims / **open_problems / delta_claims** / SOTA |
+| 06 预注册 | Assumption / MethodLock / **VerificationRoute** | assumptions / **protocol_disclosure** / protocol |
+| 07 素材 | Evidence / Claim / FigureAsset | claims / figures / model_results |
+| 08 起草 | SectionPlan / SectionDraft / RunArtifact | section_map / writing_style |
+| 09–12 审稿 | ReviewPoint / AttackMemo / Rebuttal / FailureCheck | FailureMode / limitations / RELATED_TO |
+
+**规律**：每一行都是「左边读右边 → 产出自己」；**右边永远是可复用事实，左边永远是本次决定**。
+
+### 8.4 最容易混的五组（务必分清）
+
+| 语义层（事实） | 应用层（本次） | 区别 |
+|---|---|---|
+| `Paper.claims[]`：别人主张什么 | `Claim`：本次要论证什么 | 来源不同 |
+| `Paper.gaps[]`：别人指出的空白 | `ResearchGap`：本次要填的空白 | 选择 vs 事实 |
+| `Paper.negative_results[]`：别人失败过 | `FalsificationRecord`：本次试过的反例 | 谁做的 |
+| `Paper.protocol_disclosure[]`：别人怎么锁 | `MethodLock`：本次锁什么 | 先例 vs 决定 |
+| `Paper.open_problems[]`：别人说没解决 | `Novelty`：本次判定新不新颖 | 事实 vs 判断 |
+
+**一句话**：语义层回答「别人说过什么」，应用层回答「我这次怎么做」。

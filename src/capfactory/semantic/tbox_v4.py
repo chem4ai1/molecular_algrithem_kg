@@ -52,6 +52,13 @@ SEMANTIC_CLASSES: Dict[str, Tuple[str, Tuple[Tuple[str, str, str], ...]]] = {
         ("abstract", "should", "摘要原文（向量索引召回用）"),
         ("claims", "optional", "论文提出的主张[{statement,evidence}]（写作参考）"),
         ("references", "optional", "参考文献标识列表（补足 RELATED_TO）"),
+        # 从别的论文解析出的「前沿/失败/协议/写作惯例」事实（阶段02/04/05/06/08）
+        ("open_problems", "optional", "别人明确陈述的开放问题[{statement,evidence}]"),
+        ("delta_claims", "optional", "别人声称的增量[{statement,baseline,evidence}]"),
+        ("negative_results", "optional", "别人报告的阴性结果/失败尝试[]"),
+        ("protocol_disclosure", "optional", "别人披露的实验协议声明[]"),
+        ("citation_style", "optional", "author-year|numeric|other"),
+        ("writing_style", "optional", "章节与措辞惯例（从同类论文归纳）"),
     )),
     "Algorithm": ("算法（论文提出的方法）", (
         ("name", "must", "算法名"),

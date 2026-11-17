@@ -32,6 +32,12 @@ contract:
   - abstract
   - claims
   - references
+  - open_problems
+  - delta_claims
+  - negative_results
+  - protocol_disclosure
+  - citation_style
+  - writing_style
   aux_fields:
   - domain_code
   - evidence
@@ -53,4 +59,8 @@ template: "任务：抽 Paper 的核心属性（研究什么问题 / 问题类�
   \ 字）\",\n           \"evidence\":\"逐字引文\"}]\n注意：gaps 是「现有方法的不足」，不是本文贡献；二者要分开写。\n  补充（供后续阶段检索与写作参考）：\n\
   \  \"authors\":[\"作者名\"],\n  \"abstract\":\"摘要原文（逐字）\",\n  \"claims\":[{\"statement\":\"论文的主张（≤80 字）\"\
   ,\"evidence\":\"逐字引文\"}],\n  \"references\":[\"参考文献的 arXiv ID 或 DOI，没有就空数组\"]\n注意：claims 是论文自己主张什么，gaps\
-  \ 是现有方法缺什么，两者分开。"
+  \ 是现有方法缺什么，两者分开。\n  前沿与惯例（供阶段02/04/05/06/08 检索参考，都是本文里写出的客观事实）：\n  \"open_problems\":[{\"statement\"\
+  :\"作者明确说的未解决问题\",\"evidence\":\"逐字引文\"}],\n  \"delta_claims\":[{\"statement\":\"作者声称的增量\",\"baseline\"\
+  :\"被改进的方法\",\"evidence\":\"逐字引文\"}],\n  \"negative_results\":[\"作者报告的阴性结果/失败尝试\"],\n  \"protocol_disclosure\"\
+  :[\"作者声明的实验协议（seed/划分/评测细节）\"],\n  \"citation_style\":\"author-year|numeric|other\",\n  \"writing_style\"\
+  :\"本文的章节与措辞惯例（简短归纳）\"\n注意：这里记的是**本文说了什么**，不是本次生成任务的判断。"

@@ -1,6 +1,6 @@
 # `Benchmark` · 评测基准/数据集
 
-> 层：**语义层** ｜ 生命周期：**global** ｜ 图内实例：**604**
+> 层：**语义层** ｜ 生命周期：**global** ｜ 图内实例：**607**
 
 ## 1. 定位
 
@@ -23,7 +23,7 @@
 | `model_results` | should | 各模型结果[{model,metric,value,unit,is_sota}] | ✅ |
 | `sota_by_metric` | optional | 动态 SOTA | ✅ |
 | `is_evaluation` | should | 是否评测基准 | ✅ |
-| `protocol` | optional | 实验协议{seeds,split,eval_script,epochs,hardware} | ❌ 0% |
+| `protocol` | optional | 实验协议{seeds,split,eval_script,epochs,hardware} | ✅ |
 | `failure_modes` | optional | 适用本基准的失败模式 id[] | ❌ 0% |
 
 ## 3. 关系
