@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-11-17T16:39:10Z",
+  "generated_at": "2026-11-17T16:56:10Z",
   "metrics": {
-    "generated_at": "2026-11-17T16:39:08Z",
+    "generated_at": "2026-11-17T16:56:07Z",
     "cache_hit_rate": 0.3333,
     "llm_call_reduction": 0.3333,
     "n_new_nodes_per_run": {

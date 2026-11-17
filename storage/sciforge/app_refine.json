@@ -4,9 +4,9 @@
     "created_at": "2026-11-13T13:24:29+00:00",
     "source": "问题导向本体与知识图谱架构_20261109",
     "stats": {
-      "graph_id": "po::2026-11-17T16:37:11+00:00",
-      "n_nodes": 6063,
-      "n_assertions": 7522,
+      "graph_id": "po::2026-11-17T16:52:35+00:00",
+      "n_nodes": 6066,
+      "n_assertions": 7525,
       "nodes_by_type": {
         "Paper": 808,
         "CodeRepository": 10,
@@ -14,7 +14,7 @@
         "AlgorithmModule": 2856,
         "CodeFunction": 49,
         "Benchmark": 604,
-        "Contribution": 12,
+        "Contribution": 15,
         "ExperimentArm": 17,
         "Assumption": 11,
         "FigureAsset": 10,
@@ -30,7 +30,7 @@
         "EVALUATED_ON": 984,
         "HAS_FUNCTION": 49,
         "SUBCLASS_OF": 1083,
-        "DECLARES": 12,
+        "DECLARES": 15,
         "RUNS": 17,
         "ASSUMES": 11,
         "SHOWN_BY": 10,
@@ -39,7 +39,7 @@
       },
       "nodes_by_dimension": {
         "knowledge": 808,
-        "other": 2977,
+        "other": 2980,
         "algorithm_data": 2278
       },
       "problem_categories": 0,
@@ -3024,6 +3024,9 @@
         "[assumption:2611.06237:1] 未知概念类 'Assumption'",
         "[assumption:2611.06237:2] 未知概念类 'Assumption'",
         "[assumption:2611.06237:3] 未知概念类 'Assumption'",
+        "[contribution:2411.06608:7] 未知概念类 'Contribution'",
+        "[contribution:2411.06608:8] 未知概念类 'Contribution'",
+        "[contribution:2411.06608:9] 未知概念类 'Contribution'",
         "[assertion:0001] HAS_CODE 目标类型应为 ('CodeArtifact',)，实际 CodeRepository",
         "[assertion:0002] 未知关系类型 'PROPOSES_METHOD'",
         "[assertion:0003] 未知关系类型 'RELATED_TO'",
@@ -9562,6 +9565,9 @@
         "[assertion:7520] 未知关系类型 'ASSUMES'",
         "[assertion:7521] 未知关系类型 'ASSUMES'",
         "[assertion:7522] 未知关系类型 'ASSUMES'",
+        "[assertion:7523] 未知关系类型 'DECLARES'",
+        "[assertion:7524] 未知关系类型 'DECLARES'",
+        "[assertion:7525] 未知关系类型 'DECLARES'",
         "图中没有任何论文—问题关联边（ADDRESSES/EXPOSES_LIMITATION/ANALYST_RELEVANT_TO）"
       ]
     }
@@ -272014,14 +272020,14 @@
         "layer": "semantic",
         "paper_id": "paper:2411.06608",
         "miner": "refine:R1_contribution",
-        "statement": "提出MolMiner，一种基于片段、几何感知且顺序无关的自回归分子设计模型。",
-        "kind": "method",
+        "statement": "We introduce MolMiner, a fragment-based, geometry-aware, and order-agnostic auto",
+        "kind": "system",
         "why_not_before": [
-          "理论盲点"
+          "Existing autoregressive frameworks are n"
         ],
         "section": "Abstract",
         "claimed_strength": "proven",
-        "evidence": "We introduce MolMiner, a fragment-based, geometry-aware, and order-agnostic autoregressive model for molecular design.",
+        "evidence": "Explicit self-introduction of the model in the abstract; the excerpt presents the model as an artifact the authors built",
         "label": "提出MolMiner，一种基于片段、几何感知且顺序无关的自回归分子设计模型。"
       },
       "attribution": "analyst_synthesis",
@@ -272037,14 +272043,14 @@
         "layer": "semantic",
         "paper_id": "paper:2411.06608",
         "miner": "refine:R1_contribution",
-        "statement": "支持从部分规格对十二个理化及结构属性进行高维条件控制。",
+        "statement": "MolMiner supports high-dimensional conditional control over twelve physicochemic",
         "kind": "method",
         "why_not_before": [
-          "技术约束"
+          "The authors state that while most models"
         ],
-        "section": "Abstract",
-        "claimed_strength": "proven",
-        "evidence": "MolMiner supports high-dimensional conditional control over twelve physicochemical and structural properties from partia",
+        "section": "Abstract (see also Introduction: 'While most models support only single-target conditioning, we enable multi-p…')",
+        "claimed_strength": "supported",
+        "evidence": "Stated capability with a count of twelve properties; no per-property numbers appear in the provided excerpt (sentence is",
         "label": "支持从部分规格对十二个理化及结构属性进行高维条件控制。"
       },
       "attribution": "analyst_synthesis",
@@ -272060,14 +272066,14 @@
         "layer": "semantic",
         "paper_id": "paper:2411.06608",
         "miner": "refine:R1_contribution",
-        "statement": "通过对称感知片段连接构建分子，并在生成步骤中条件化于力场弛豫的3D几何。",
+        "statement": "MolMiner constructs molecules via symmetry-aware fragment attachments.",
         "kind": "method",
         "why_not_before": [
-          "技术约束"
+          "Prior fragment/motif-based generators (e"
         ],
-        "section": "Abstract",
-        "claimed_strength": "proven",
-        "evidence": "constructs molecules via symmetry-aware fragment attachments, and conditions each generation step on force-field-relaxed",
+        "section": "Abstract (mechanics detailed in Section 3.1, Fragment-Based Molecular Representation)",
+        "claimed_strength": "supported",
+        "evidence": "Described as a design property of the generative process; Section 3.1 explains fragment extraction and attachment-point ",
         "label": "通过对称感知片段连接构建分子，并在生成步骤中条件化于力场弛豫的3D几何。"
       },
       "attribution": "analyst_synthesis",
@@ -272083,14 +272089,14 @@
         "layer": "semantic",
         "paper_id": "paper:2411.06608",
         "miner": "refine:R1_contribution",
-        "statement": "无需辅助属性损失即可实现条件控制，显著提升命中率。",
-        "kind": "analysis",
+        "statement": "MolMiner conditions each generation step on the force-field-relaxed three-dimens",
+        "kind": "method",
         "why_not_before": [
-          "技术约束"
+          "The authors state that incorporating 3D "
         ],
-        "section": "Abstract",
-        "claimed_strength": "proven",
-        "evidence": "Conditional control emerges without auxiliary property losses. On targeted property windows, conditioning lifts hit rate",
+        "section": "Abstract (motivated in Introduction)",
+        "claimed_strength": "supported",
+        "evidence": "Per-step conditioning on force-field-relaxed geometry of the partial (incomplete) structure, contrasted with prior work ",
         "label": "无需辅助属性损失即可实现条件控制，显著提升命中率。"
       },
       "attribution": "analyst_synthesis",
@@ -272106,14 +272112,14 @@
         "layer": "semantic",
         "paper_id": "paper:2411.06608",
         "miner": "refine:R1_contribution",
-        "statement": "多步片段生成允许灵活控制分子大小，并显式强制化学有效性。",
-        "kind": "method",
+        "statement": "Conditional control emerges without auxiliary property losses.",
+        "kind": "analysis",
         "why_not_before": [
-          "技术约束"
+          "Property control in prior generative mod"
         ],
-        "section": "Introduction",
-        "claimed_strength": "proven",
-        "evidence": "Multi-step fragment-based generation enables flexible control over molecular size and allows chemical validity to be exp",
+        "section": "Abstract",
+        "claimed_strength": "supported",
+        "evidence": "Stated as an emergent property of the conditional generative process; the excerpt gives no ablation table, though the cl",
         "label": "多步片段生成允许灵活控制分子大小，并显式强制化学有效性。"
       },
       "attribution": "analyst_synthesis",
@@ -272129,14 +272135,14 @@
         "layer": "semantic",
         "paper_id": "paper:2411.06608",
         "miner": "refine:R1_contribution",
-        "statement": "提出顺序无关的回滚策略，作为数据增强和正则化形式以改善泛化。",
-        "kind": "method",
+        "statement": "On targeted property windows, conditioning lifts hit rates by up to 5.25× over u",
+        "kind": "analysis",
         "why_not_before": [
-          "理论盲点"
+          "Prior work reports conditioning as modes"
         ],
-        "section": "Introduction",
-        "claimed_strength": "supported",
-        "evidence": "An order-agnostic rollout strategy... better reflects molecular structure and acts as an effective form of data augmenta",
+        "section": "Abstract",
+        "claimed_strength": "proven",
+        "evidence": "Quantified results: up to 5.25× hit-rate increase vs. unconditional generation and 3.5× vs. the training distribution on",
         "label": "提出顺序无关的回滚策略，作为数据增强和正则化形式以改善泛化。"
       },
       "attribution": "analyst_synthesis",
@@ -273254,6 +273260,75 @@
         "applicability": "色散模块",
         "evidence": "Both are trained on per-atom labels from the QCML [20] and QCell [21] datasets and scale the free-atom references αi = α",
         "label": "色散参数基于自由原子参考值，通过环境依赖的极化率和C6比率进行缩放"
+      },
+      "attribution": "analyst_synthesis",
+      "evidence_ids": [],
+      "source_version": "",
+      "missing_states": {}
+    },
+    {
+      "id": "contribution:2411.06608:7",
+      "type": "Contribution",
+      "label": "Multi-step fragment-based generation enables flexible control over molecular siz",
+      "attrs": {
+        "layer": "semantic",
+        "paper_id": "paper:2411.06608",
+        "miner": "refine:R1_contribution",
+        "statement": "Multi-step fragment-based generation enables flexible control over molecular siz",
+        "kind": "method",
+        "why_not_before": [
+          "Single-shot or fixed-order atom-wise gen"
+        ],
+        "section": "Abstract (motivated in Introduction)",
+        "claimed_strength": "supported",
+        "evidence": "Presented as consequences of the multi-step fragment construction; no size-control or validity-rate numbers appear in th",
+        "label": "Multi-step fragment-based generation enables flexible control over molecular siz"
+      },
+      "attribution": "analyst_synthesis",
+      "evidence_ids": [],
+      "source_version": "",
+      "missing_states": {}
+    },
+    {
+      "id": "contribution:2411.06608:8",
+      "type": "Contribution",
+      "label": "An order-agnostic rollout strategy, in which growth can proceed from any valid f",
+      "attrs": {
+        "layer": "semantic",
+        "paper_id": "paper:2411.06608",
+        "miner": "refine:R1_contribution",
+        "statement": "An order-agnostic rollout strategy, in which growth can proceed from any valid f",
+        "kind": "method",
+        "why_not_before": [
+          "The authors state that many autoregressi"
+        ],
+        "section": "Introduction",
+        "claimed_strength": "suggests",
+        "evidence": "Argued on structural grounds ('better reflects molecular structure', 'acts as an effective form of data augmentation and",
+        "label": "An order-agnostic rollout strategy, in which growth can proceed from any valid f"
+      },
+      "attribution": "analyst_synthesis",
+      "evidence_ids": [],
+      "source_version": "",
+      "missing_states": {}
+    },
+    {
+      "id": "contribution:2411.06608:9",
+      "type": "Contribution",
+      "label": "A fragment-based molecular representation that decomposes each molecule into rin",
+      "attrs": {
+        "layer": "semantic",
+        "paper_id": "paper:2411.06608",
+        "miner": "refine:R1_contribution",
+        "statement": "A fragment-based molecular representation that decomposes each molecule into rin",
+        "kind": "method",
+        "why_not_before": [
+          "Canonical SMILES alone do not retain how"
+        ],
+        "section": "3.1 Fragment-Based Molecular Representation",
+        "claimed_strength": "proven",
+        "evidence": "Concrete, reproducible procedure: RDKit SSSR ring extraction, isolated non-ring bonds, canonical SMILES via RDKit [20,21",
+        "label": "A fragment-based molecular representation that decomposes each molecule into rin"
       },
       "attribution": "analyst_synthesis",
       "evidence_ids": [],
@@ -350138,6 +350213,39 @@
       "source": "algorithm:so3lr_tauri",
       "target": "assumption:2611.06237:3",
       "relation": "ASSUMES",
+      "attribution": "analyst_synthesis",
+      "evidence_ids": [],
+      "properties": {
+        "layer": "semantic"
+      }
+    },
+    {
+      "id": "assertion:7523",
+      "source": "paper:2411.06608",
+      "target": "contribution:2411.06608:7",
+      "relation": "DECLARES",
+      "attribution": "analyst_synthesis",
+      "evidence_ids": [],
+      "properties": {
+        "layer": "semantic"
+      }
+    },
+    {
+      "id": "assertion:7524",
+      "source": "paper:2411.06608",
+      "target": "contribution:2411.06608:8",
+      "relation": "DECLARES",
+      "attribution": "analyst_synthesis",
+      "evidence_ids": [],
+      "properties": {
+        "layer": "semantic"
+      }
+    },
+    {
+      "id": "assertion:7525",
+      "source": "paper:2411.06608",
+      "target": "contribution:2411.06608:9",
+      "relation": "DECLARES",
       "attribution": "analyst_synthesis",
       "evidence_ids": [],
       "properties": {

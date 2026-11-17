@@ -25,11 +25,20 @@ MD = ROOT / "data/docx"
 BACKUP = ROOT / "storage/extract_target_backup"
 
 
-def _chat():
-    """按项目既有配置取聊天函数；不可用时返回 None（退化为 dry-run）。"""
+DEFAULT_ERNIE = "baidu/ernie-5.5-flash-preview:free"
+
+
+def _chat(backend: str = "vllm", model: str = ""):
+    """返回 (prompt -> text)；不可用时返回 None（退化为 dry-run）。"""
     try:
+        if backend == "openrouter":
+            from capfactory.vector.labeler import OpenRouterBackend
+            b = OpenRouterBackend(model=model or DEFAULT_ERNIE)
+            if not b.ok:
+                return None
+            return lambda prompt: b.chat(prompt, max_tokens=4000)
         from capfactory.llm.backends import chat as _chat  # 与 runner.py 同一入口
-        return lambda prompt: _chat(prompt, backend="vllm")
+        return lambda prompt: _chat(prompt, backend=backend)
     except Exception:  # noqa: BLE001
         return None
 
@@ -41,6 +50,10 @@ def main() -> int:
     ap.add_argument("--target")
     ap.add_argument("--dry-run", action="store_true", default=True)
     ap.add_argument("--apply", dest="apply", action="store_true")
+    ap.add_argument("--backend", default="vllm",
+                    choices=["vllm", "openrouter", "ollama"])
+    ap.add_argument("--model", default="",
+                    help="openrouter 模型；默认 baidu/ernie-5.5-flash-preview:free")
     a = ap.parse_args()
 
     if a.list:
@@ -65,8 +78,10 @@ def main() -> int:
     # 在已有二次抽取图上累积；没有则从语义层快照起步
     base = OUT if OUT.exists() else GRAPH
     g = POGraph.load(str(base))
-    out = run_refine(g, a.paper, a.target, chat_fn=_chat() if a.apply else None,
-                     md_dir=MD, dry_run=not a.apply)
+    out = run_refine(g, a.paper, a.target,
+                     chat_fn=_chat(a.backend, a.model) if a.apply else None,
+                     md_dir=MD, dry_run=not a.apply,
+                     compact=(a.backend == "openrouter"))
     if a.apply and out.get("applied", {}).get("nodes"):
         BACKUP.mkdir(parents=True, exist_ok=True)
         (BACKUP / f"{a.paper}.{a.target}.json").write_text(

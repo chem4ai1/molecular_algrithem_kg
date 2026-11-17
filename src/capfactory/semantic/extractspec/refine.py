@@ -70,7 +70,20 @@ def _existing(graph: Any, spec: RefineSpec, aid: str) -> str:
     return ", ".join(bits[:40]) or "(无)"
 
 
-def build_prompt(spec: RefineSpec, *, context: str, existing: str) -> str:
+def build_prompt(spec: RefineSpec, *, context: str, existing: str,
+                 compact: bool = False) -> str:
+    if compact:
+        # OpenRouter 免费推理模型对长说明+字段列表易返回空串；
+        # 极简「任务 + JSON 示例 + 原文」结构实测稳定。
+        import re as _re
+        m = _re.search(r"输出 JSON：\{\"(\w+)\"", spec.template)
+        wrapper = m.group(1) if m else spec.refine.split("_")[-1] + "s"
+        demo = ", ".join(
+            f'\"{f.name}\":\"{("|".join(f.enum) if f.enum else "...")}\"'
+            for f in spec.fields)
+        task = spec.template.strip().splitlines()[0]
+        return (f"{task}\n输出 {{\"{wrapper}\":[{{{demo}}}]}}。只输出JSON。\n\n"
+                f"原文：{context}")
     fields = "\n".join(
         f"- {f.name}: {f.type}"
         + (f"（枚举 {'|'.join(f.enum)}）" if f.enum else "")
@@ -91,16 +104,24 @@ def parse_payload(spec: RefineSpec, payload: Any) -> Dict[str, Any]:
     issues: List[str] = []
     if isinstance(payload, str):
         try:
-            payload = json.loads(payload)
-        except json.JSONDecodeError as exc:
-            return {"items": [], "issues": [f"JSON 解析失败: {exc}"]}
-    if not isinstance(payload, dict):
+            from ...utils import parse_llm_json
+            payload = parse_llm_json(payload)
+        except Exception:  # noqa: BLE001
+            try:
+                payload = json.loads(payload)
+            except json.JSONDecodeError as exc:
+                return {"items": [], "issues": [f"JSON 解析失败: {exc}"]}
+    if isinstance(payload, list):
+        arr = payload                      # 部分模型直接返回顶层数组
+    elif isinstance(payload, dict):
+        arr = None
+    else:
         return {"items": [], "issues": ["顶层不是对象"]}
-    arr = None
-    for v in payload.values():
-        if isinstance(v, list):
-            arr = v
-            break
+    if isinstance(payload, dict):
+        for v in payload.values():
+            if isinstance(v, list):
+                arr = v
+                break
     if arr is None:
         return {"items": [], "issues": [f"未找到数组字段：{list(payload)}"]}
     items = []
@@ -170,6 +191,10 @@ def apply_to_graph(graph: Any, spec: RefineSpec, aid: str,
                                   kind=str(row.get("kind") or "x"),
                                   parent=parent.id)
         if nid in graph.nodes and spec.merge == "append":
+            # 重跑（换模型/改配置）时更新同 id 节点，而不是静默跳过
+            for k, v in row.items():
+                if v not in (None, "", []):
+                    graph.nodes[nid].attrs[k] = v
             continue
         label = str(row.get("statement") or row.get("name") or
                     f"{spec.cls} {i}")[:80]
@@ -184,7 +209,7 @@ def apply_to_graph(graph: Any, spec: RefineSpec, aid: str,
 
 def run_refine(graph: Any, aid: str, name: str, *, chat_fn: Any = None,
                md_dir: Any = "data/docx", dry_run: bool = False,
-               length: int = 1200) -> Dict[str, Any]:
+               length: int = 1200, compact: bool = False) -> Dict[str, Any]:
     """跑一个二次抽取目标；dry_run=True 只返回 prompt 与候选段落。"""
     specs = loader.refines() or {}
     if name not in specs:
@@ -200,7 +225,8 @@ def run_refine(graph: Any, aid: str, name: str, *, chat_fn: Any = None,
                 "hint": f"检查 section_hints/signal_words：{spec.section_hints}"}
     ctx = "\n\n".join(p["text"][:length] for p in paras)
     prompt = build_prompt(spec, context=ctx,
-                          existing=_existing(graph, spec, aid))
+                          existing=_existing(graph, spec, aid),
+                          compact=compact)
     base = {"ok": True, "refine": name, "target": spec.cls,
             "n_paragraphs": len(paras),
             "paragraph_lines": [p["line"] for p in paras],
@@ -209,11 +235,22 @@ def run_refine(graph: Any, aid: str, name: str, *, chat_fn: Any = None,
         return {**base, "dry_run": True, "prompt": prompt,
                 "paragraphs": [{"line": p["line"], "score": p["score"],
                                 "text": p["text"][:160]} for p in paras]}
-    try:
-        raw = chat_fn(prompt)
-    except Exception as exc:  # noqa: BLE001
-        return {**base, "ok": False, "error": f"LLM 调用失败 {exc}"}
-    parsed = parse_payload(spec, raw)
+    parsed = {"items": [], "issues": []}
+    raw = ""
+    attempts = 3
+    for attempt in range(attempts):
+        try:
+            raw = chat_fn(prompt)
+        except Exception as exc:  # noqa: BLE001
+            parsed["issues"].append(f"attempt{attempt}: {type(exc).__name__}")
+            continue
+        parsed = parse_payload(spec, raw)
+        if parsed["items"]:
+            break
+        parsed["issues"].append(f"attempt{attempt}: empty")
+    if not parsed["items"]:
+        return {**base, "ok": False, "issues": parsed["issues"],
+                "raw_head": str(raw)[:120]}
     applied = (apply_to_graph(graph, spec, aid, parsed["items"])
                if parsed["items"] else {"nodes": 0, "relations": 0})
     return {**base, "dry_run": False, "items": parsed["items"],

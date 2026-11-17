@@ -45,6 +45,15 @@ BASE_VOCABS: Dict[str, List[str]] = {
     "flow_family": _families(),
     "func_type": _func_types(),
     "problem_category": _task_types(),
+    # --- 写作方法论枚举（词表驱动，允许 other + proposed_new 自动扩表）---
+    "paradigm": ["formal", "empirical", "design", "interpretive"],
+    "evidence_type": ["causal_inference", "derivational", "experimental",
+                      "simulational", "correlational", "interpretive"],
+    "gap_type": ["capability", "scale", "data", "theory", "efficiency"],
+    "component_role": ["backbone", "encoder", "decoder", "loss", "sampler", "other"],
+    "outcome_class": ["primary", "secondary"],
+    "arm_kind": ["main", "baseline", "ablation", "hyperparam"],
+    "claimed_strength": ["proven", "supported", "suggests"],
 }
 
 
@@ -145,10 +154,10 @@ def promote(name: str, value: str) -> bool:
 
 
 STAGE_VOCABS: Dict[str, Tuple[str, ...]] = {
-    "E1_paper": ("problem_category", "domain_code"),
-    "E2_algorithm": ("task_type",),
-    "E3_benchmark": ("form",),
-    "E4_values": (),          # 数值阶段不需要词表
+    "E1_paper": ("problem_category", "domain_code", "paradigm", "evidence_type"),
+    "E2_algorithm": ("task_type", "component_role"),
+    "E3_benchmark": ("form", "outcome_class", "arm_kind"),
+    "E4_values": ("outcome_class", "arm_kind"),
     "E5_relations": (),       # 工具/公式是自由文本
     "E6_lineage": (),         # 方法名是自由文本
 }
