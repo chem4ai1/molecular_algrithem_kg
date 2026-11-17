@@ -47,6 +47,11 @@ SEMANTIC_CLASSES: Dict[str, Tuple[str, Tuple[Tuple[str, str, str], ...]]] = {
         ("figures", "optional", "图表清单[{label,caption,kind,for_contribution}]"),
         ("section_map", "optional", "章节→论断映射[{section,claims[]}]"),
         ("gaps", "optional", "论文指出的研究空白[{gap_type,statement,evidence}]"),
+        # 可复用输入（供阶段03 检索 / 07 素材 / 12 引用校验）
+        ("authors", "should", "作者列表（检索元数据）"),
+        ("abstract", "should", "摘要原文（向量索引召回用）"),
+        ("claims", "optional", "论文提出的主张[{statement,evidence}]（写作参考）"),
+        ("references", "optional", "参考文献标识列表（补足 RELATED_TO）"),
     )),
     "Algorithm": ("算法（论文提出的方法）", (
         ("name", "must", "算法名"),

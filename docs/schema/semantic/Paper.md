@@ -28,6 +28,10 @@
 | `figures` | optional | 图表清单[{label,caption,kind,for_contribution}] | ❌ 0% |
 | `section_map` | optional | 章节→论断映射[{section,claims[]}] | ❌ 0% |
 | `gaps` | optional | 论文指出的研究空白[{gap_type,statement,evidence}] | ❌ 0% |
+| `authors` | should | 作者列表（检索元数据） | ❌ 0% |
+| `abstract` | should | 摘要原文（向量索引召回用） | ❌ 0% |
+| `claims` | optional | 论文提出的主张[{statement,evidence}]（写作参考） | ❌ 0% |
+| `references` | optional | 参考文献标识列表（补足 RELATED_TO） | ❌ 0% |
 
 ## 3. 关系
 
