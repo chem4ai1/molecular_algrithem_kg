@@ -244,6 +244,7 @@ APP_RELATIONS: Dict[str, Tuple[str, str, str]] = {
     "IDEA_FOR": ("IdeaCandidate", "GapTriple", "想法针对空白"),
     "FULFILLS": ("Claim", "IdeaCandidate", "主张兑现想法"),
     "DELIVERED_BY": ("Claim", "ReproductionPackage", "主张由复现包交付"),
+    "GROUNDED_IN_NORM": ("Claim", "EvaluationNorm", "主张锚定领域规范"),
 }
 
 

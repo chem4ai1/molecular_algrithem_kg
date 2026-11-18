@@ -8,7 +8,7 @@
       "source": "lineage:factory:other",
       "via": "LINEAGE_OF",
       "verdict": "CREATED",
-      "at": "2026-11-18T21:23:14",
+      "at": "2026-11-18T22:48:01",
       "found": true
     },
     {
@@ -19,7 +19,7 @@
       "source": "gaptriple:factory_v2:x4f941a68",
       "via": "IDEA_FOR",
       "verdict": "LOCKED",
-      "at": "2026-11-18T21:23:14"
+      "at": "2026-11-18T22:48:01"
     },
     {
       "kind": "Claim",
@@ -29,7 +29,7 @@
       "source": "norm:factory:experimental",
       "via": "GROUNDED_IN",
       "verdict": "LOCKED",
-      "at": "2026-11-18T21:23:14"
+      "at": "2026-11-18T22:48:01"
     },
     {
       "kind": "Claim",
@@ -39,17 +39,18 @@
       "source": "",
       "via": "",
       "verdict": "BLOCKED:no_refutation_condition",
-      "at": "2026-11-18T21:23:14"
+      "at": "2026-11-18T22:48:01"
     },
     {
       "kind": "ClaimGrading",
       "node": "claim:factory_v2:x6fd098ae",
       "run_id": "factory_v2",
-      "intent": "按失败模式定档",
+      "intent": "三值门定档",
       "source": "failurelib:factory",
       "via": "AUDITED_BY",
       "verdict": "SUPPORTED",
-      "at": "2026-11-18T21:23:14",
+      "at": "2026-11-18T22:48:01",
+      "confidence": 0.8846153846153846,
       "n_checks": 8
     },
     {
@@ -60,7 +61,7 @@
       "source": "venue:factory:unknown",
       "via": "VENUE_OF",
       "verdict": "WARN:no_venue",
-      "at": "2026-11-18T21:23:14",
+      "at": "2026-11-18T22:48:01",
       "figure": "fig:factory_v2:figure_1"
     },
     {
@@ -71,7 +72,7 @@
       "source": "claim:factory_v2:x6fd098ae",
       "via": "DELIVERED_BY",
       "verdict": "BLOCKED:verification",
-      "at": "2026-11-18T21:23:14"
+      "at": "2026-11-18T22:48:01"
     }
   ],
   "summary": {
@@ -87,7 +88,7 @@
         "source": "",
         "via": "",
         "verdict": "BLOCKED:no_refutation_condition",
-        "at": "2026-11-18T21:23:14"
+        "at": "2026-11-18T22:48:01"
       },
       {
         "kind": "Delivery",
@@ -97,7 +98,7 @@
         "source": "claim:factory_v2:x6fd098ae",
         "via": "DELIVERED_BY",
         "verdict": "BLOCKED:verification",
-        "at": "2026-11-18T21:23:14"
+        "at": "2026-11-18T22:48:01"
       }
     ]
   }

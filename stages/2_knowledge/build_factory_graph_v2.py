@@ -45,7 +45,14 @@ def build_b_graph(g):
         nid = f"norm:factory:{et}"
         g.node(nid, "EvaluationNorm", et, evidence_type=et,
                accepted_metrics=accepted[:12], n_papers=len(ps),
-               min_fidelity="numerical" if et in ("experimental", "simulational") else "qualitative")
+               min_fidelity="numerical" if et in ("experimental", "simulational") else "qualitative",
+               title=f"{et} 证据规范",
+               summary=f"从 {len(ps)} 篇论文聚合的 {et} 类证据规范",
+               findings=[{"summary": f"认可指标：{', '.join(accepted[:4])}",
+                          "explanation": f"在 {len(ps)} 篇 {et} 论文中反复出现"}],
+               rating=min(len(ps)/20.0, 1.0),
+               rating_explanation=f"基于 {len(ps)} 篇论文的支持度",
+               community_level=1)
         for p in ps:
             g.assert_rel(nid, p.id, "DERIVED_FROM_PAPERS")
     negs = [x for p in papers for x in (p.attrs.get("negative_results") or [])]

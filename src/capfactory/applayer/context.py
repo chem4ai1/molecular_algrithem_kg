@@ -329,7 +329,7 @@ class WritingContext:
                   locked_at=self._now(), grade="pending",
                   norm_source=norm["source"], norm_found=norm["found"])
         for src, rel in ((idea_id, "FULFILLS"), (anchor_id, "CLAIM_OF"),
-                         (norm.get("source"), "GROUNDED_IN")):
+                         (norm.get("source"), "GROUNDED_IN_NORM")):
             if src and src in self.g.nodes:
                 self.g.assert_rel(nid, src, rel, layer="application")
         self._log("Claim", nid, intent="冻结可证伪主张",
@@ -340,18 +340,30 @@ class WritingContext:
                     n_checks: int = 0) -> str:
         """⑦ 定档：从 FailureModeLibrary 查失败模式，规则计算 grade。"""
         from .graph_query import query_failure_checks
+        from .edge_verdict import verify_edge, EdgeVerdict
         fails = query_failure_checks(self.g)
-        grade = "suggests" if not has_numeric_evidence else (
-            "supported" if fails["found"] and fails["n_negative"] > 0 and n_checks >= 10
-            else "supported")
-        if claim_id in self.g.nodes:
-            self.g.nodes[claim_id].attrs["grade"] = grade
-            self.g.nodes[claim_id].attrs["audit_source"] = fails["source"]
+        claim = self.g.nodes.get(claim_id)
+        target = claim.attrs.get("norm_source") if claim else None
+        total = len(self.g.by_type("Paper"))
+        # TruthHypo 范式：三值门 + 置信度
+        v = verify_edge(self.g, claim_source=claim_id,
+                        relation="GROUNDED_IN_NORM", target_id=target or "",
+                        total_papers=total,
+                        contradiction_terms=["不支持", "无法", "失败"] if not has_numeric_evidence else [])
+        if not has_numeric_evidence and v.verdict == "SUPPORTED":
+            v = EdgeVerdict("INSUFFICIENT", v.confidence, supporting=v.supporting,
+                            reason="no numeric evidence")
+        grade = {"SUPPORTED": "supported", "REFUTED": "refuted",
+                 "INSUFFICIENT": "suggests"}[v.verdict]
+        if claim:
+            claim.attrs["grade"] = grade
+            claim.attrs["verdict"] = v.to_dict()
+            claim.attrs["audit_source"] = fails["source"]
             if fails["source"] and fails["source"] in self.g.nodes:
                 self.g.assert_rel(claim_id, fails["source"], "AUDITED_BY", layer="application")
-        self._log("ClaimGrading", claim_id, intent="按失败模式定档",
-                  source=fails["source"], via="AUDITED_BY", verdict=grade.upper(),
-                  n_checks=len(fails["checks"]))
+        self._log("ClaimGrading", claim_id, intent="三值门定档",
+                  source=fails["source"], via="AUDITED_BY", verdict=v.verdict,
+                  confidence=v.confidence, n_checks=len(fails["checks"]))
         return grade
 
     def design_narrative(self, *, claim_id: str, section: str,

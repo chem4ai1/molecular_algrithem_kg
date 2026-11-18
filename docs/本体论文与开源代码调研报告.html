@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>本体（Ontology）论文与开源代码 GitHub 调研报告</title>
+<style>
+  :root{
+    --bg:#0d1117; --panel:#161b22; --panel2:#1c2230; --line:#30363d;
+    --txt:#e6edf3; --muted:#9aa7b4; --cyan:#39c5cf; --blue:#58a6ff;
+    --purple:#bc8cff; --green:#3fb950; --amber:#d29922; --red:#f85149;
+    --chip:#21262d;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--txt);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+    line-height:1.7;font-size:15px}
+  .wrap{max-width:1080px;margin:0 auto;padding:40px 28px 90px}
+  header.hero{border:1px solid var(--line);border-radius:14px;padding:30px 32px;
+    background:linear-gradient(135deg,#161b22 0%,#12212b 100%);margin-bottom:28px}
+  .hero h1{margin:0 0 10px;font-size:27px;letter-spacing:.3px}
+  .hero .meta{color:var(--muted);font-size:13px}
+  .hero .badge{display:inline-block;background:var(--chip);border:1px solid var(--line);
+    border-radius:20px;padding:3px 12px;margin:6px 6px 0 0;font-size:12px;color:var(--cyan)}
+  h2{font-size:21px;margin:44px 0 16px;padding-left:12px;border-left:4px solid var(--cyan)}
+  h3{font-size:17px;margin:26px 0 12px;color:var(--blue)}
+  p{margin:10px 0}
+  a{color:var(--blue);text-decoration:none}
+  a:hover{text-decoration:underline}
+  code{background:var(--chip);border:1px solid var(--line);border-radius:5px;padding:1px 6px;
+    font-family:"SFMono-Regular",Consolas,monospace;font-size:13px;color:var(--purple)}
+  nav.toc{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px 24px;margin-bottom:30px}
+  nav.toc b{color:var(--cyan);display:block;margin-bottom:8px}
+  nav.toc a{display:block;color:var(--txt);font-size:14px;padding:2px 0}
+  nav.toc a:hover{color:var(--cyan)}
+  table{width:100%;border-collapse:collapse;margin:14px 0 8px;font-size:13.5px}
+  th,td{border:1px solid var(--line);padding:9px 11px;text-align:left;vertical-align:top}
+  th{background:var(--panel2);color:var(--cyan);font-weight:600;white-space:nowrap}
+  tr:nth-child(even) td{background:#12182100}
+  tr:hover td{background:#1b2430}
+  .num{color:var(--amber);font-weight:700;white-space:nowrap}
+  .star{color:var(--amber)}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px 20px;margin:14px 0}
+  .card.hi{border-left:4px solid var(--green)}
+  .card.warn{border-left:4px solid var(--amber)}
+  .card.gap{border-left:4px solid var(--red)}
+  .kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(165px,1fr));gap:14px;margin:18px 0}
+  .kpi .box{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px;text-align:center}
+  .kpi .box .v{font-size:30px;font-weight:800;color:var(--cyan)}
+  .kpi .box .l{font-size:12.5px;color:var(--muted);margin-top:4px}
+  .tag{display:inline-block;font-size:11px;border-radius:6px;padding:2px 8px;margin:2px 4px 2px 0;
+    background:var(--chip);border:1px solid var(--line);color:var(--muted)}
+  .tag.a{color:var(--cyan)} .tag.b{color:var(--green)} .tag.c{color:var(--purple)}
+  .barrow{display:flex;align-items:center;gap:10px;margin:7px 0;font-size:13px}
+  .barrow .lab{width:210px;color:var(--muted);flex-shrink:0}
+  .barrow .track{flex:1;background:var(--chip);border-radius:6px;height:20px;position:relative;overflow:hidden}
+  .barrow .fill{height:100%;border-radius:6px;background:linear-gradient(90deg,#1f6f78,#39c5cf)}
+  .barrow .val{width:52px;text-align:right;color:var(--amber);font-weight:700}
+  ul,ol{padding-left:22px} li{margin:5px 0}
+  .small{font-size:12.5px;color:var(--muted)}
+  .yes{color:var(--green);font-weight:700} .no{color:var(--red);font-weight:700}
+  footer{margin-top:50px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:12.5px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <h1>本体（Ontology）论文与开源代码 GitHub 调研报告</h1>
+  <div class="meta">聚焦：本体构建方法 · 本体应用方法 · 基于本体特征的图聚合 / 边预测算法</div>
+  <div>
+    <span class="badge">数据来源：GitHub 官方 API + Trending / Awesome 仓库原文</span>
+    <span class="badge">抓取时间：2026-11-18</span>
+    <span class="badge">调研人：鹏城信息AI专家</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <b>目录</b>
+  <a href="#s0">0. 一句话结论</a>
+  <a href="#s1">1. 调研方法与数据口径</a>
+  <a href="#s2">2. 数量总览（实测数据）</a>
+  <a href="#s3">3. 类别 A：本体综合收集类 Awesome 项目</a>
+  <a href="#s4">4. 类别 B：本体构建 / 本体学习方法与工具</a>
+  <a href="#s5">5. 类别 C：基于本体特征的图聚合 / 边预测算法（重点）</a>
+  <a href="#s6">6. 核心发现与空白分析</a>
+  <a href="#s7">7. 面向你的场景的选型建议</a>
+  <a href="#s8">8. 待核实清单</a>
+</nav>
+
+<section id="s0">
+<h2>0. 一句话结论</h2>
+<div class="card hi">
+<p><strong>有收集项目，但没有"专门做本体 + 图聚合/边预测"的权威汇总库。</strong> 本体资源在 GitHub 上呈"三层分布"：</p>
+<ol>
+<li><span class="tag a">工具层</span> 有成熟的本体 Awesome 列表（<code>ozekik/awesome-ontology</code> 751⭐ 等），但它们是<strong>工具/本体/编辑器清单，不是论文清单</strong>；</li>
+<li><span class="tag b">论文层</span> 本体与构建方法的论文，散落在<strong>知识图谱 / KGE / GNN 的综合 Awesome 列表</strong>中（如 <code>Awesome-Graph-Engineering</code>、<code>awesome-knowledge-graph</code>），没有独立的"本体论文库"；</li>
+<li><span class="tag c">算法层</span> "基于本体特征做图聚合/边预测"是一个<strong>新兴交叉空白</strong>：本次仅检索到约 <strong>12–15 篇代表性论文 + 8–10 个开源代码库</strong>，散落分布，无任何专门收集项目。</li>
+</ol>
+</div>
+<p class="small">这意味着：如果你要系统跟进这个方向，现阶段只能"自建清单"，本报告的清单可直接作为种子列表。</p>
+</section>
+
+<section id="s1">
+<h2>1. 调研方法与数据口径</h2>
+<table>
+<tr><th>手段</th><th>具体方式</th><th>得到什么</th><th>局限</th></tr>
+<tr><td>GitHub 搜索 API</td><td><code>/search/repositories</code> 多关键词组合（name/description/readme）</td><td>仓库匹配数量（量级）</td><td>未认证额度 60 次/小时，中途触发限流，部分维度未跑完</td></tr>
+<tr><td>仓库原文抓取</td><td>抓取 <code>raw.githubusercontent.com</code> 上 awesome 列表 README</td><td>逐条统计论文/工具/本体数量</td><td>为 README 声明条目的静态快照</td></tr>
+<tr><td>仓库元数据 API</td><td><code>/repos/{owner}/{repo}</code></td><td>star / fork / 语言 / 更新时间</td><td>实时快照，会随时间变化</td></tr>
+<tr><td>Web 检索兜底</td><td>针对细分方向的论文+代码检索</td><td>发现散落的论文-代码对</td><td>非穷尽，依赖关键词覆盖</td></tr>
+</table>
+<div class="card warn">
+<p><strong>口径提醒：</strong>仓库搜索返回的 "total_count" 是<strong>仓库数量</strong>，不是论文数量。论文数量来自具体 awesome 列表的人工逐条统计，两者不可混用。本报告所有数字均为<strong>本次可见范围内的下界估计</strong>，非全 GitHub 穷尽统计。</p>
+</div>
+</section>
+
+<section id="s2">
+<h2>2. 数量总览（实测数据）</h2>
+
+<h3>2.1 GitHub 仓库搜索命中量（API 实测）</h3>
+<div class="card">
+<div class="barrow"><span class="lab">ontology papers（名/描述）</span><div class="track"><div class="fill" style="width:88%"></div></div><span class="val">53</span></div>
+<div class="barrow"><span class="lab">ontology survey（名/描述）</span><div class="track"><div class="fill" style="width:88%"></div></div><span class="val">53</span></div>
+<div class="barrow"><span class="lab">ontology graph neural network</span><div class="track"><div class="fill" style="width:23%"></div></div><span class="val">14</span></div>
+<div class="barrow"><span class="lab">ontology-learning topic（全部）</span><div class="track"><div class="fill" style="width:25%"></div></div><span class="val">15</span></div>
+<div class="barrow"><span class="lab">ontology-learning topic（Python）</span><div class="track"><div class="fill" style="width:15%"></div></div><span class="val">9</span></div>
+<div class="barrow"><span class="lab">awesome ontology（仓库名）</span><div class="track"><div class="fill" style="width:10%"></div></div><span class="val">6</span></div>
+<p class="small">单位：仓库个数。搜索式：<code>ontology papers in:name,description</code> 等；抓取时间 2026-11-18。</p>
+</div>
+
+<h3>2.2 重点 Awesome 列表的收录规模（README 逐条统计）</h3>
+<table>
+<tr><th>项目</th><th>⭐</th><th>性质</th><th>论文数</th><th>开源库/工具数</th><th>与本体强相关部分</th></tr>
+<tr><td><a href="https://github.com/DEEP-JLU/Awesome-Graph-Engineering">DEEP-JLU/Awesome-Graph-Engineering</a></td><td class="star">407</td><td>论文+代码 Survey</td><td class="num">321</td><td class="num">31</td><td>Ontology Engineering 子方向 <b>12 篇论文 + 1 库</b>；Graph Engineering 广义 139 篇</td></tr>
+<tr><td><a href="https://github.com/shelyin/awesome-knowledge-graph">shelyin/awesome-knowledge-graph</a></td><td class="star">高星</td><td>中文 KG 学习资料</td><td class="num">数百篇</td><td>工具/数据集若干</td><td>「Taxonomy（本体构建）」2 篇核心 + KG 补全/推理/embedding 多节</td></tr>
+<tr><td><a href="https://github.com/ozekik/awesome-ontology">ozekik/awesome-ontology</a></td><td class="star">751</td><td>本体工具综合列表</td><td class="no">几乎无</td><td class="num">~100+</td><td>编辑器 10（+6 归档）、工具 14、对齐匹配 4、ML 仅 <b>1</b>（OntoLearner）</td></tr>
+<tr><td><a href="https://github.com/NCOR-Organization/awesome-ontologies">NCOR-Organization/awesome-ontologies</a></td><td class="star">—</td><td>本体清单</td><td class="no">无</td><td>本体 258 个</td><td>上层/中层/领域本体，供语义互操作，非论文/算法</td></tr>
+<tr><td><a href="https://github.com/ATai2/awesome-ontology">ATai2/awesome-ontology</a></td><td class="star">8</td><td>中文本体资料</td><td>文献入口若干</td><td>工具若干</td><td>含"本体学习/抽取/LLM 辅助建模""匹配对齐"等分节</td></tr>
+</table>
+
+<h3>2.3 按你的三个关注方向给出的"有多少"结论</h3>
+<table>
+<tr><th>你的关注方向</th><th>专门收集项目</th><th>可见论文量（下界）</th><th>可见开源代码量（下界）</th></tr>
+<tr><td>① 本体构建 / 学习方法</td><td class="no">无纯本体论文库；靠综合库 + topic</td><td class="num">~20–40 篇</td><td class="num">~10–15 库</td></tr>
+<tr><td>② 本体应用方法</td><td class="yes">有综合列表（ozekik 等）</td><td class="num">散见于 KG 综述</td><td class="num">~100+ 工具/本体</td></tr>
+<tr><td>③ 本体特征 + 图聚合/边预测</td><td class="no">空白，无专门库</td><td class="num">~12–15 篇</td><td class="num">~8–10 库</td></tr>
+</table>
+<p class="small">⚠️ "专门收集项目"的判定标准：仓库主题明确为该方向且持续维护的论文/代码清单。第 ③ 类未发现满足者。</p>
+</section>
+
+<section id="s3">
+<h2>3. 类别 A：本体综合收集类 Awesome 项目</h2>
+
+<h3>A1 · <a href="https://github.com/ozekik/awesome-ontology">ozekik/awesome-ontology</a> <span class="star">⭐751</span></h3>
+<p>本体领域最主力的 Awesome 列表（CC-BY-4.0，持续更新至 2026-10）。分类齐全：</p>
+<table>
+<tr><th>分类</th><th>条目数</th><th>代表项目</th></tr>
+<tr><td>Ontology Editors</td><td>10 + 6 归档</td><td>Protégé、OWLGrEd、VocBench、NeOn Toolkit</td></tr>
+<tr><td>Ontology Utilities</td><td>14 + RDF 工具 7</td><td>OAK、ROBOT、OWLTools、WebVOWL、obonet</td></tr>
+<tr><td>Machine Learning</td><td class="num">1</td><td>OntoLearner（LLM 学习本体）</td></tr>
+<tr><td>Alignment &amp; Matching</td><td>4</td><td>AgreementMakerLight、LogMap、OntoAligner、OntoEMMA(AllenAI)</td></tr>
+<tr><td>Ontologies and Vocabularies</td><td>数十 + 顶层/中层/领域</td><td>BFO、DOLCE、SUMO、GO、FIBO、SNOMED CT</td></tr>
+<tr><td>Reasoners / Logics / Querying / Programming</td><td>共 30+</td><td>ELK、FaCT++、OWL-RL、Apache Jena、Owlready2</td></tr>
+</table>
+<div class="card gap"><p><strong>关键不足：</strong>它<strong>不收论文</strong>，Machine Learning 类目仅 1 项。想找"本体 + 图算法"的论文，这里基本帮不上。</p></div>
+
+<h3>A2 · <a href="https://github.com/DEEP-JLU/Awesome-Graph-Engineering">DEEP-JLU/Awesome-Graph-Engineering</a> <span class="star">⭐407</span></h3>
+<p>2026 年的新 Survey（arXiv:2608.21156），<strong>本次调研中唯一系统性覆盖"Ontology Engineering"论文的清单</strong>：</p>
+<ul>
+<li>总规模：<b>321 篇论文 + 31 个开源库</b>；</li>
+<li>Ontology Engineering 子节：<b>12 篇论文</b>（OntoExtend、Agentology、OntoCodex、Ontology SLR、Ontology-to-Tools、iCARE 等）+ 1 库（Semantica）；</li>
+<li>Graph Engineering 广义：139 篇（Task Organization 20、Agent Coordination 56、State Management 32 等）。</li>
+</ul>
+<p class="small">注：<code>tonydzi/Awesome-Graph-Engineering</code> 为同一 Survey 的镜像/别名仓库。</p>
+
+<h3>A3 · <a href="https://github.com/shelyin/awesome-knowledge-graph">shelyin/awesome-knowledge-graph</a>（及 husthuke 同名高星版）</h3>
+<p>中文 KG 学习资料库，覆盖"综述 → 知识增强语言模型 → 表示学习 → 推理 → 补全 → Taxonomy(本体构建)"全链路，数百篇论文。与本体直接相关：</p>
+<ul>
+<li><code>Taxonomy(本体构建)</code>：AutoKnow (KDD 2020)、A Short Survey on Taxonomy Learning from Text Corpora (ACL 2017)；</li>
+<li>KG Completion / Reasoning 节：Query2box、RotatE、Quaternion、Logic Tensor Networks、Neural-Symbolic Reasoning 等（可作为"本体约束图推理"的邻近文献池）。</li>
+</ul>
+
+<h3>A4 · 其他相关清单</h3>
+<table>
+<tr><th>项目</th><th>说明</th></tr>
+<tr><td><a href="https://github.com/totogo/awesome-knowledge-graph">totogo/awesome-knowledge-graph</a></td><td>英文版，偏工具/数据集（Neo4j、Jena、Wikidata 等），论文少</td></tr>
+<tr><td><a href="https://github.com/songjiang0909/awesome-knowledge-graph-construction">songjiang0909/awesome-knowledge-graph-construction</a></td><td>KG 构建专题：手工/自动化/OpenIE、DeepDive 等</td></tr>
+<tr><td><a href="https://github.com/GRAND-Lab/Awesome-Graph-Neural-Networks">GRAND-Lab/Awesome-Graph-Neural-Networks</a></td><td>GNN 论文大列表（含链接预测、异构图），本体视角需自行筛选</td></tr>
+<tr><td><a href="https://github.com/brianretford/practically-awesome">brianretford/practically-awesome</a></td><td>结构化思维/本体/约束系统精选，含生物医学、游戏本体等</td></tr>
+<tr><td><a href="https://github.com/robert-haas/awesome-biomedical-knowledge-graphs">robert-haas/awesome-biomedical-knowledge-graphs</a></td><td>生物医学 KG/本体/标准高质量清单——本体落地最活跃的领域</td></tr>
+</table>
+</section>
+
+<section id="s4">
+<h2>4. 类别 B：本体构建 / 本体学习方法与工具</h2>
+<p>GitHub <code>ontology-learning</code> topic 下约 <b>9（Python）～15（全部）</b>个活跃仓库。核心项目：</p>
+<table>
+<tr><th>项目</th><th>⭐</th><th>方法 / 定位</th></tr>
+<tr><td><a href="https://github.com/HamedBabaei/LLMs4OL">HamedBabaei/LLMs4OL</a></td><td class="star">194</td><td>ISWC 2023，用 LLM 做本体学习（术语类型化、分类发现、非分类关系抽取），该方向的标杆</td></tr>
+<tr><td><a href="https://github.com/sciknoworg/OntoLearner">sciknoworg/OntoLearner</a></td><td class="star">127</td><td>模块化 LLM 本体学习 Python 库；已被 awesome-ontology 的 ML 类目收录</td></tr>
+<tr><td><a href="https://github.com/sciknoworg/LLMs4OL-Challenge">sciknoworg/LLMs4OL-Challenge</a></td><td class="star">18</td><td>ISWC 2025 共享任务官方仓库，含评测数据与排行榜</td></tr>
+<tr><td><a href="https://github.com/nheist/CaLiGraph">nheist/CaLiGraph</a></td><td class="star">24</td><td>从 Wikipedia 分类/列表构建大规模语义 KG（本体驱动的构建）</td></tr>
+<tr><td><a href="https://github.com/nheist/Cat2Ax">nheist/Cat2Ax</a></td><td class="star">6</td><td>学习关系与类型公理，丰富维基本体</td></tr>
+<tr><td><a href="https://github.com/kracr/OntoLearnBench">kracr/OntoLearnBench</a></td><td class="star">1</td><td>本体学习与丰富化评测基准（taxonomy/OWL2）</td></tr>
+<tr><td>DL-Learner / Onto-learn (DICE)</td><td>—</td><td>基于描述逻辑的符号式本体学习（经典框架）</td></tr>
+<tr><td>OntoGPT (Monarch Initiative) / OntoEMMA (AllenAI)</td><td>—</td><td>LLM 抽取 + 本体链接 / 本体匹配</td></tr>
+</table>
+<p class="small">本体匹配/对齐（属"使用本体的方法"）：AgreementMakerLight、LogMap（内置推理与不一致修复）、OntoAligner（模块化 Python）、LIMES、Silk；学术共同体 OAEI（Ontology Alignment Evaluation Initiative）每年评测。</p>
+</section>
+
+<section id="s5">
+<h2>5. 类别 C：基于本体特征的图聚合 / 边预测算法（重点）</h2>
+<div class="card warn">
+<p><strong>这是你问题中最细分的诉求，也是 GitHub 上的空白区。</strong>没有专门收集项目；以下为本次逐一核实到的论文-代码对。<strong>核心分两条技术路线</strong>：</p>
+<ul>
+<li><b>路线 ①（本体作结构注入）</b>：把本体的层次/子类关系转成图边或几何嵌入（Poincaré / box embedding），再喂给 GNN 做聚合或边预测；</li>
+<li><b>路线 ②（本体作语义约束）</b>：把本体层次/规则做成损失项或残差层，约束 GNN 表示（语义损失、可微层次损失、残差本体层）。</li>
+</ul>
+</div>
+
+<table>
+<tr><th>项目 / 论文</th><th>来源</th><th>⭐</th><th>本体如何参与图任务</th></tr>
+<tr><td><a href="https://github.com/TheYKXiao/FuseLinker">TheYKXiao/FuseLinker</a></td><td>生物医学 KG 补全（2024）</td><td class="star">4</td><td>LLM 文本 embedding + <b>医学本体 Poincaré embedding</b> 融合后送入 GNN 做<b>边预测</b>（4 个 BKG 数据集，MRR 最高 0.969）</td></tr>
+<tr><td><a href="https://github.com/LuisaWerner/knowledge_gae">LuisaWerner/knowledge_gae</a>（fork of <a href="https://github.com/zfjsail/gae-pytorch">zfjsail/gae-pytorch</a> ⭐449）</td><td>Ontology-enhanced LP on featured KGs</td><td class="star">0</td><td>GAE 编码器-解码器做链接预测，用<b>本体知识残差层</b>约束预测结果（grounding enforcement）</td></tr>
+<tr><td><a href="https://github.com/zjunlp/OntoProtein">zjunlp/OntoProtein</a></td><td>ICLR 2022</td><td class="star">高</td><td>构建 ProteinKG25（GO 基因本体 + 蛋白质），用<b>本体嵌入</b>增强蛋白质预训练——本体特征注入的经典范式</td></tr>
+<tr><td><a href="https://github.com/daiquocnguyen/GNN-NoGE">daiquocnguyen/GNN-NoGE</a></td><td>WSDM 2022</td><td class="star">55</td><td>实体/关系当节点、共现权重当边构图，GNN 聚合做 KG <b>link prediction</b>（偏结构，本体语义弱）</td></tr>
+<tr><td><a href="https://github.com/eamdord/ntn-pytorch-ontological-info">eamdord/ntn-pytorch-ontological-info</a></td><td>NTN + 本体信息</td><td class="star">8</td><td>神经张量网络中引入<b>本体信息</b>做关系学习/链接预测（早期代表作）</td></tr>
+<tr><td><a href="https://github.com/david4096/on2vec">david4096/on2vec</a></td><td>2025 软件</td><td class="star">新</td><td>OWL 本体→图→<b>GCN/GAT/RGCN 聚合</b>→本体 class 嵌入，融合文本特征，输出 HuggingFace 模型</td></tr>
+<tr><td><a href="https://github.com/AutoML-4Paradigm/Interstellar">AutoML-4Paradigm/Interstellar</a></td><td>NeurIPS 2020</td><td class="star">高</td><td> NAS 搜索关系路径架构，用于 link prediction 与实体对齐（本体 Schema 感知的 KG 补全）</td></tr>
+<tr><td><a href="https://github.com/basiralab/HGNet">basiralab/HGNet</a></td><td>ICLR 2026</td><td class="star">新</td><td><b>层次感知 GNN</b>（父/子/同级三通道消息传递）+ 可微层次损失，把关系约束成 DAG——本体层次直接驱动图聚合</td></tr>
+<tr><td><a href="https://github.com/everyoneelse/AutoSchemaKG">everyoneelse/AutoSchemaKG</a></td><td>2025</td><td class="star">新</td><td>自动 KG 构建 + <b>schema（概念化 ≈ 本体）生成</b> + KG 补全；ATLAS 图谱 9 亿节点/59 亿边</td></tr>
+<tr><td>Hierarchy-Aware Semantic Losses for KG Link Prediction</td><td>arXiv:2608.22981 (2026)</td><td>—</td><td><b>本体类层次的语义损失</b> + GNN/box 嵌入，AIFB/CoDEx/BioKG 上 MRR 较基线 GNN 提升 7.6%/2.4%/15.5%，且优于"把子类当额外边加入"</td></tr>
+<tr><td>CoPE / RAILD / STonKGs / BioPathNet</td><td>2022–2026</td><td>—</td><td>FuseLinker 引用的邻近工作：Poincaré 组合嵌入做 LP、关系特征归纳 LP、文本+KG 联合预训练、生物医学 KG link prediction</td></tr>
+</table>
+
+<div class="card hi">
+<p><strong>值得重点关注的最新结论（2026 arXiv）：</strong>"利用本体层次"有两种做法——① 把子类关系<b>当额外边</b>加进图；② 把本体层次做成<b>语义损失</b>约束表示。实测表明 <b>② 一致优于 ①</b>，且参数高效。这对你正在做的 SAS 图（状态-动作 + L1/L2/L3 规则推理）有直接借鉴价值：规则更适合做约束/损失层，而非简单加边。</p>
+</div>
+</section>
+
+<section id="s6">
+<h2>6. 核心发现与空白分析</h2>
+<table>
+<tr><th>#</th><th>发现</th><th>含义</th></tr>
+<tr><td>1</td><td>本体 Awesome 列表偏工程工具，论文覆盖薄弱（ozekik 的 ML 类仅 1 项）</td><td>找论文要靠 KG/GNN 综合列表，不能只盯本体列表</td></tr>
+<tr><td>2</td><td>"本体构建/学习"有明确社区与标杆（LLMs4OL、OntoLearner、ISWC Challenge），2023 后随 LLM 爆发</td><td>这是本体方向近两年最活跃的分支</td></tr>
+<tr><td>3</td><td>"本体 + 图聚合/边预测"无专门收集库，论文-代码对仅十余个且分散在生物医学/KGE 社区</td><td><strong>明确的空白</strong>：做一份该方向 awesome 清单有实际价值</td></tr>
+<tr><td>4</td><td>本体落地最活跃领域是生物医学（GO、医学本体、药物重定位）</td><td>算法原型与 benchmark 优先看生物医学 KG</td></tr>
+<tr><td>5</td><td>本体注入图模型存在"加边 vs 做损失"两条路线，最新证据偏向语义损失</td><td>约束/规则型本体更适合做损失或残差层</td></tr>
+</table>
+</section>
+
+<section id="s7">
+<h2>7. 面向你的场景的选型建议</h2>
+<p class="small">结合你正在推进的 LiveMat SAS 知识图谱（状态-动作 + L1 安全护栏 / L2 设计权衡 / L3 工艺启发式三层规则推理）：</p>
+<ol>
+<li><b>本体构建：</b>优先参考 <code>LLMs4OL</code> + <code>OntoLearner</code> 做"从论文/材料文本中抽取 L1/L2/L3 规则并结构化为本体"；用 <code>OntoLearnBench</code> 做评测。</li>
+<li><b>本体约束的图推理：</b>借鉴 <code>FuseLinker</code> 的"本体嵌入 + GNN"与 2026 语义损失工作——把 L1 安全护栏做成<b>损失/残差约束层</b>，而非简单加边，实验上更优且参数高效。</li>
+<li><b>层次结构建模：</b><code>HGNet</code> 的三通道（父/子/同级）消息传递 + 可微层次损失，直接对应你聚合物 L1/L2/L3 层级与 SAS 状态层次，值得移植。</li>
+<li><b>Schema 自动生成：</b>AutoSchemaKG 的"概念化生成 schema"思路，可用于从材料描述中自动归纳状态/动作类型，减少人工建模。</li>
+<li><b>建立自有清单：</b>由于无现成汇总库，建议按本报告第 5 节种子列表建一个内部 awesome 仓库，持续跟踪（尤其生物医学 KG + KGE 社区）。</li>
+</ol>
+</section>
+
+<section id="s8">
+<h2>8. 待核实清单</h2>
+<div class="card warn">
+<ol>
+<li><b>数量口径：</b>GitHub 搜索 API 因未认证限流，仅完成 6 个维度的检索；<code>ontology matching</code>、<code>ontology embedding</code>、<code>ontology-aware graph</code> 等维度未跑完，实际仓库数可能更高。</li>
+<li><b>"数百篇"论文：</strong><code>awesome-knowledge-graph</code> 未逐条计数，为量级估计；若需精确值需解析 README 全部链接。</li>
+<li><b>Star 数：</b>部分高星项目星数为搜索快照（如 ozekik 751、LLMs4OL 194 为 API 实测），随时间变化。</li>
+<li><b>axial 论文可用性：</b>2026 新论文（arXiv:2608.22981、HGNet ICLR 2026）部分可能仅论文、代码未放全，需逐个确认开源状态。</li>
+<li><b>"无专门收集库"结论：</b>基于本次关键词覆盖；不排除存在用非 "ontology/awesome" 命名的小众清单（如论文笔记仓库 <code>zhaoyang97/Paper-Notes-en</code> 中有相关条目）。</li>
+<li><b>镜像仓库：</b><code>DEEP-JLU/Awesome-Graph-Engineering</code> 与 <code>tonydzi/Awesome-Graph-Engineering</code> 为同一 Survey，统计时已去重，但 GitHub 上可能还有其他镜像未识别。</li>
+</ol>
+</div>
+</section>
+
+<footer>
+<p>数据来源：GitHub Trending 官方页面 · GitHub REST Search / Repositories API · 各仓库 README 原文 · 公开论文检索。</p>
+<p>抓取时间：2026-11-18。本报告为实时快照，数据可能随项目更新而变化；榜单反映社区短期热度，不等同于项目质量评价，仅作为技术情报参考。</p>
+</footer>
+
+</div>
+</body>
+</html>
