@@ -1,0 +1,104 @@
+{
+  "decisions": [
+    {
+      "kind": "GapTriple",
+      "node": "gaptriple:factory_v2:x4f941a68",
+      "run_id": "factory_v2",
+      "intent": "把空白形式化为三元组",
+      "source": "lineage:factory:other",
+      "via": "LINEAGE_OF",
+      "verdict": "CREATED",
+      "at": "2026-11-18T21:23:14",
+      "found": true
+    },
+    {
+      "kind": "IdeaCandidate",
+      "node": "idea:factory_v2:x6803d4d4",
+      "run_id": "factory_v2",
+      "intent": "提出可证伪想法",
+      "source": "gaptriple:factory_v2:x4f941a68",
+      "via": "IDEA_FOR",
+      "verdict": "LOCKED",
+      "at": "2026-11-18T21:23:14"
+    },
+    {
+      "kind": "Claim",
+      "node": "claim:factory_v2:x6fd098ae",
+      "run_id": "factory_v2",
+      "intent": "冻结可证伪主张",
+      "source": "norm:factory:experimental",
+      "via": "GROUNDED_IN",
+      "verdict": "LOCKED",
+      "at": "2026-11-18T21:23:14"
+    },
+    {
+      "kind": "Claim",
+      "node": "REJECTED",
+      "run_id": "factory_v2",
+      "intent": "主张形式化",
+      "source": "",
+      "via": "",
+      "verdict": "BLOCKED:no_refutation_condition",
+      "at": "2026-11-18T21:23:14"
+    },
+    {
+      "kind": "ClaimGrading",
+      "node": "claim:factory_v2:x6fd098ae",
+      "run_id": "factory_v2",
+      "intent": "按失败模式定档",
+      "source": "failurelib:factory",
+      "via": "AUDITED_BY",
+      "verdict": "SUPPORTED",
+      "at": "2026-11-18T21:23:14",
+      "n_checks": 8
+    },
+    {
+      "kind": "Narrative",
+      "node": "section:factory_v2:introduction",
+      "run_id": "factory_v2",
+      "intent": "先定结构后起草",
+      "source": "venue:factory:unknown",
+      "via": "VENUE_OF",
+      "verdict": "WARN:no_venue",
+      "at": "2026-11-18T21:23:14",
+      "figure": "fig:factory_v2:figure_1"
+    },
+    {
+      "kind": "Delivery",
+      "node": "pkg:factory_v2",
+      "run_id": "factory_v2",
+      "intent": "独立复现交付",
+      "source": "claim:factory_v2:x6fd098ae",
+      "via": "DELIVERED_BY",
+      "verdict": "BLOCKED:verification",
+      "at": "2026-11-18T21:23:14"
+    }
+  ],
+  "summary": {
+    "nodes": 374,
+    "assertions": 433,
+    "n_decisions": 7,
+    "blocked": [
+      {
+        "kind": "Claim",
+        "node": "REJECTED",
+        "run_id": "factory_v2",
+        "intent": "主张形式化",
+        "source": "",
+        "via": "",
+        "verdict": "BLOCKED:no_refutation_condition",
+        "at": "2026-11-18T21:23:14"
+      },
+      {
+        "kind": "Delivery",
+        "node": "pkg:factory_v2",
+        "run_id": "factory_v2",
+        "intent": "独立复现交付",
+        "source": "claim:factory_v2:x6fd098ae",
+        "via": "DELIVERED_BY",
+        "verdict": "BLOCKED:verification",
+        "at": "2026-11-18T21:23:14"
+      }
+    ]
+  }
+}

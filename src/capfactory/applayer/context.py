@@ -16,7 +16,12 @@ GAP_TYPES = ("capability", "scale", "data", "theory", "efficiency")
 
 
 def _slug(s: str) -> str:
-    return re.sub(r"[^a-z0-9]+", "_", str(s or "").lower()).strip("_")[:50]
+    out = re.sub(r"[^a-z0-9]+", "_", str(s or "").lower()).strip("_")[:50]
+    if out:
+        return out
+    # 中文/纯符号：用短 hash 兜底，避免 id 以 ":" 结尾
+    import hashlib
+    return "x" + hashlib.sha256(str(s or "").encode("utf-8")).hexdigest()[:8]
 
 
 class WritingContext:
@@ -27,6 +32,7 @@ class WritingContext:
         self.g = graph
         self.run_id = run_id
         self.persist_path = Path(persist_path) if persist_path else None
+        self.decisions: List[Dict[str, Any]] = []   # append-only decision log
 
     # -- 内部 --------------------------------------------------------------
     def _next_index(self, prefix: str) -> int:
@@ -257,6 +263,131 @@ class WritingContext:
                   used_in=[draft_id] if draft_id else [])
         if draft_id and draft_id in self.g.nodes:
             self.g.assert_rel(draft_id, nid, "CONSULTED", layer="application")
+        return nid
+
+    # ===== C 类决策接口（类型化 + 自动绑定 B 类 provenance）=====
+    def _log(self, kind: str, nid: str, *, intent: str, source: str = "",
+             via: str = "", verdict: str = "CREATED", **extra) -> None:
+        """append-only decision log：每个决策绑定 intent + provenance。"""
+        self.decisions.append({"kind": kind, "node": nid, "run_id": self.run_id,
+            "intent": intent, "source": source, "via": via,
+            "verdict": verdict, "at": self._now(), **extra})
+
+    def formulate_gap(self, *, statement: str, anchor_id: str = "",
+                      task_type: str = "", cite_key: str = "",
+                      source_span: str = "", delta: str = "",
+                      why_not_before: str = "") -> str:
+        """② GapTriple：frontier_baseline 自动从 MethodLineage 查，不手写。"""
+        from .graph_query import query_frontier_baseline
+        fr = query_frontier_baseline(self.g, task_type)
+        nid = f"gaptriple:{self.run_id}:{_slug(statement)}"
+        self._add(nid, "GapTriple", statement[:80], run_id=self.run_id,
+                  frontier_baseline=fr["baseline"], delta=delta or statement[:80],
+                  why_not_before=why_not_before, cite_key=cite_key,
+                  source_span=source_span, frontier_source=fr["source"],
+                  frontier_via=fr["via"])
+        if anchor_id and anchor_id in self.g.nodes:
+            self.g.assert_rel(nid, anchor_id, "GAP_FOR", layer="application")
+        if fr.get("source") and fr["source"] in self.g.nodes:
+            self.g.assert_rel(nid, fr["source"], "DERIVED_FROM_GRAPH", layer="application")
+        self._log("GapTriple", nid, intent="把空白形式化为三元组",
+                  source=fr["source"], via=fr["via"], found=fr["found"])
+        return nid
+
+    def propose_idea(self, *, gap_id: str, mechanism: str,
+                     novelty_delta: str, expected_direction: str,
+                     falsification_condition: str) -> str:
+        """③ IdeaCandidate：必带机制与证伪条件。"""
+        nid = f"idea:{self.run_id}:{_slug(mechanism)}"
+        self._add(nid, "IdeaCandidate", mechanism[:80], run_id=self.run_id,
+                  mechanism=mechanism, novelty_delta=novelty_delta,
+                  expected_direction=expected_direction,
+                  falsification_condition=falsification_condition, selected=False)
+        if gap_id in self.g.nodes:
+            self.g.assert_rel(gap_id, nid, "IDEA_FOR", layer="application")
+        self._log("IdeaCandidate", nid, intent="提出可证伪想法",
+                  source=gap_id, via="IDEA_FOR",
+                  verdict="LOCKED" if mechanism and falsification_condition else "REJECTED")
+        return nid
+
+    def formalize_claim(self, *, idea_id: str, anchor_id: str,
+                        statement: str, polarity: str = "positive",
+                        evidence_type: str = "",
+                        refutation_condition: str = "") -> str:
+        """④ Claim：expected_fidelity 自动从 EvaluationNorm 查；无推翻条件则拒绝。"""
+        from .graph_query import query_evaluation_norm
+        if not refutation_condition:
+            self._log("Claim", "REJECTED", intent="主张形式化",
+                      verdict="BLOCKED:no_refutation_condition")
+            return ""
+        norm = query_evaluation_norm(self.g, evidence_type)
+        nid = f"claim:{self.run_id}:{_slug(statement)}"
+        self._add(nid, "Claim", statement[:80], run_id=self.run_id,
+                  statement=statement, polarity=polarity,
+                  expected_fidelity=norm["min_fidelity"],
+                  refutation_condition=refutation_condition,
+                  locked_at=self._now(), grade="pending",
+                  norm_source=norm["source"], norm_found=norm["found"])
+        for src, rel in ((idea_id, "FULFILLS"), (anchor_id, "CLAIM_OF"),
+                         (norm.get("source"), "GROUNDED_IN")):
+            if src and src in self.g.nodes:
+                self.g.assert_rel(nid, src, rel, layer="application")
+        self._log("Claim", nid, intent="冻结可证伪主张",
+                  source=norm["source"], via="GROUNDED_IN", verdict="LOCKED")
+        return nid
+
+    def grade_claim(self, *, claim_id: str, has_numeric_evidence: bool,
+                    n_checks: int = 0) -> str:
+        """⑦ 定档：从 FailureModeLibrary 查失败模式，规则计算 grade。"""
+        from .graph_query import query_failure_checks
+        fails = query_failure_checks(self.g)
+        grade = "suggests" if not has_numeric_evidence else (
+            "supported" if fails["found"] and fails["n_negative"] > 0 and n_checks >= 10
+            else "supported")
+        if claim_id in self.g.nodes:
+            self.g.nodes[claim_id].attrs["grade"] = grade
+            self.g.nodes[claim_id].attrs["audit_source"] = fails["source"]
+            if fails["source"] and fails["source"] in self.g.nodes:
+                self.g.assert_rel(claim_id, fails["source"], "AUDITED_BY", layer="application")
+        self._log("ClaimGrading", claim_id, intent="按失败模式定档",
+                  source=fails["source"], via="AUDITED_BY", verdict=grade.upper(),
+                  n_checks=len(fails["checks"]))
+        return grade
+
+    def design_narrative(self, *, claim_id: str, section: str,
+                         fig_label: str, word_budget: int = 800) -> str:
+        """⑧ SectionPlan + FigurePlan：venue 惯例从 VenueProfile 查。"""
+        from .graph_query import query_venue_profile
+        vp = query_venue_profile(self.g)
+        sid = f"section:{self.run_id}:{_slug(section)}"
+        self._add(sid, "SectionPlan", section, run_id=self.run_id, section=section,
+                  claims=[claim_id], word_budget=word_budget,
+                  venue_found=vp["found"], venue_source=vp["source"],
+                  venue_pattern=vp.get("section_pattern") or [])
+        fid = f"fig:{self.run_id}:{_slug(fig_label)}"
+        self._add(fid, "FigurePlan", fig_label, run_id=self.run_id,
+                  fig_label=fig_label, claim_ref=claim_id, inferential_role="main_effect")
+        if claim_id in self.g.nodes:
+            self.g.assert_rel(sid, claim_id, "USES_EVIDENCE", layer="application")
+        self._log("Narrative", sid, intent="先定结构后起草",
+                  source=vp["source"], via="VENUE_OF",
+                  verdict="PASS" if vp["found"] else "WARN:no_venue", figure=fid)
+        return sid
+
+    def deliver(self, *, claim_id: str, code_snapshot: str,
+                data_snapshot: str, env_spec: str,
+                one_click_script: str, verification: str = "pending") -> str:
+        """⑩ ReproductionPackage：verification 非 pass 时不得投。"""
+        nid = f"pkg:{self.run_id}"
+        self._add(nid, "ReproductionPackage", f"复现包:{self.run_id}",
+                  run_id=self.run_id, code_snapshot=code_snapshot,
+                  data_snapshot=data_snapshot, env_spec=env_spec,
+                  one_click_script=one_click_script, verification=verification)
+        if claim_id in self.g.nodes:
+            self.g.assert_rel(claim_id, nid, "DELIVERED_BY", layer="application")
+        verdict = "PASS" if verification == "pass" else "BLOCKED:verification"
+        self._log("Delivery", nid, intent="独立复现交付", source=claim_id,
+                  via="DELIVERED_BY", verdict=verdict)
         return nid
 
     # -- 关联 --------------------------------------------------------------

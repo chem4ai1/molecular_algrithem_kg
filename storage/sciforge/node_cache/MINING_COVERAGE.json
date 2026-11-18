@@ -1,0 +1,249 @@
+{
+  "semantic_version": "v4.1-semantic",
+  "generated_at": "2026-11-18T13:23:50Z",
+  "fields": [
+    {
+      "class": "Paper",
+      "name": "research_question",
+      "consumed_by": [
+        "questions"
+      ],
+      "status": "covered"
+    },
+    {
+      "class": "Paper",
+      "name": "problem_category",
+      "consumed_by": [
+        "categories"
+      ],
+      "status": "covered"
+    },
+    {
+      "class": "Paper",
+      "name": "flow_family",
+      "consumed_by": [
+        "D3:lineage_slice"
+      ],
+      "status": "covered"
+    },
+    {
+      "class": "Paper",
+      "name": "why_hard",
+      "consumed_by": [],
+      "status": "gap"
+    },
+    {
+      "class": "Paper",
+      "name": "year",
+      "consumed_by": [
+        "D3:lineage_slice"
+      ],
+      "status": "covered"
+    },
+    {
+      "class": "Algorithm",
+      "name": "mechanism",
+      "consumed_by": [
+        "D2:method_benchmark_matrix"
+      ],
+      "status": "covered"
+    },
+    {
+      "class": "Algorithm",
+      "name": "limitations",
+      "consumed_by": [
+        "limitations"
+      ],
+      "status": "covered"
+    },
+    {
+      "class": "AlgorithmModule",
+      "name": "inputs",
+      "consumed_by": [
+        "D1:flow_closure"
+      ],
+      "status": "covered"
+    },
+    {
+      "class": "AlgorithmModule",
+      "name": "outputs",
+      "consumed_by": [
+        "D1:flow_closure"
+      ],
+      "status": "covered"
+    },
+    {
+      "class": "AlgorithmModule",
+      "name": "formula",
+      "consumed_by": [],
+      "status": "gap"
+    },
+    {
+      "class": "CodeRepository",
+      "name": "url",
+      "consumed_by": [
+        "D4:capability_cooccurrence"
+      ],
+      "status": "covered"
+    },
+    {
+      "class": "CodeFunction",
+      "name": "name",
+      "consumed_by": [
+        "D4:capability_cooccurrence"
+      ],
+      "status": "covered"
+    },
+    {
+      "class": "CodeFunction",
+      "name": "purpose",
+      "consumed_by": [
+        "D4:capability_cooccurrence"
+      ],
+      "status": "covered"
+    },
+    {
+      "class": "Benchmark",
+      "name": "metrics",
+      "consumed_by": [
+        "metrics"
+      ],
+      "status": "covered"
+    },
+    {
+      "class": "Benchmark",
+      "name": "model_results",
+      "consumed_by": [
+        "leaderboard"
+      ],
+      "status": "covered"
+    },
+    {
+      "class": "Benchmark",
+      "name": "input_form",
+      "consumed_by": [
+        "D2:method_benchmark_matrix"
+      ],
+      "status": "covered"
+    }
+  ],
+  "assertions": [
+    {
+      "relation": "PROPOSES_METHOD",
+      "consumed_by": [
+        "D2:method_benchmark_matrix"
+      ],
+      "status": "covered"
+    },
+    {
+      "relation": "HAS_MODULE",
+      "consumed_by": [
+        "D1:flow_closure"
+      ],
+      "status": "covered"
+    },
+    {
+      "relation": "MODULE_IMPLEMENTED_BY",
+      "consumed_by": [
+        "D4:capability_cooccurrence"
+      ],
+      "status": "covered"
+    },
+    {
+      "relation": "EVALUATED_ON",
+      "consumed_by": [
+        "D2:method_benchmark_matrix"
+      ],
+      "status": "covered"
+    },
+    {
+      "relation": "RELATED_TO",
+      "consumed_by": [
+        "D3:lineage_slice"
+      ],
+      "status": "covered"
+    },
+    {
+      "relation": "HAS_FUNCTION",
+      "consumed_by": [
+        "D4:capability_cooccurrence"
+      ],
+      "status": "covered"
+    }
+  ],
+  "miners": [
+    {
+      "name": "questions",
+      "status": "covered",
+      "n_outputs": 0
+    },
+    {
+      "name": "categories",
+      "status": "covered",
+      "n_outputs": 0
+    },
+    {
+      "name": "metrics",
+      "status": "covered",
+      "n_outputs": 0
+    },
+    {
+      "name": "leaderboard",
+      "status": "covered",
+      "n_outputs": 0
+    },
+    {
+      "name": "contracts",
+      "status": "covered",
+      "n_outputs": 0
+    },
+    {
+      "name": "evidence",
+      "status": "covered",
+      "n_outputs": 0
+    },
+    {
+      "name": "limitations",
+      "status": "covered",
+      "n_outputs": 0
+    },
+    {
+      "name": "source_papers",
+      "status": "covered",
+      "n_outputs": 0
+    },
+    {
+      "name": "D1:flow_closure",
+      "status": "covered",
+      "n_outputs": 0
+    },
+    {
+      "name": "D2:method_benchmark_matrix",
+      "status": "covered",
+      "n_outputs": 0
+    },
+    {
+      "name": "D3:lineage_slice",
+      "status": "covered",
+      "n_outputs": 0
+    },
+    {
+      "name": "D4:capability_cooccurrence",
+      "status": "covered",
+      "n_outputs": 0
+    }
+  ],
+  "coverage_ratio": 0.9091,
+  "n_gap_candidates": 2,
+  "gap_candidates": [
+    {
+      "id": "gap:why_hard",
+      "reason": "字段/关系从未被任何挖掘器消费"
+    },
+    {
+      "id": "gap:formula",
+      "reason": "字段/关系从未被任何挖掘器消费"
+    }
+  ],
+  "target": 0.75
+}

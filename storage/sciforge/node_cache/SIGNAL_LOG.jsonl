@@ -1,0 +1,2 @@
+{"event": "signal_created", "kind": "mining_gap", "paper_id": "", "run_id": "", "signal_id": "sig:af16561bfd388070", "stage": "coverage", "ts": "2026-11-18T13:23:50Z", "value": "why_hard"}
+{"event": "signal_created", "kind": "mining_gap", "paper_id": "", "run_id": "", "signal_id": "sig:671f8ffdb927c113", "stage": "coverage", "ts": "2026-11-18T13:23:50Z", "value": "formula"}

@@ -1,13 +1,13 @@
 # S6 最终验收签字（v2）
 
-生成时间：2026-11-17T16:58:29Z
+生成时间：2026-11-18T13:24:11Z
 
 ## 16 硬门实测
 
 | 门 | 判据 | 实测 |
 |---|---|---|
 | H1_语义层冻结 | 见 plan/README.md §5 / §10.3 | PASS |
-| H2_重建等价 | 见 plan/README.md §5 / §10.3 | PASS |
+| H2_重建等价 | 见 plan/README.md §5 / §10.3 | FAIL |
 | H3_基础契约 | 见 plan/README.md §5 / §10.3 | FAIL |
 | H4_缓存幂等 | 见 plan/README.md §5 / §10.3 | PASS |
 | H5_LLM节点隔离 | 见 plan/README.md §5 / §10.3 | PASS |
@@ -27,19 +27,19 @@
 
 | 指标 | 实测 |
 |---|---|
-| cache_hit_rate | `0.3333` |
-| llm_call_reduction | `0.3333` |
-| n_new_nodes_per_run | `{'n_proposals': 1, 'n_registered': 1, 'n_signals': 4}` |
-| promotion_rate | `1.0` |
+| cache_hit_rate | `0.0` |
+| llm_call_reduction | `0.0` |
+| n_new_nodes_per_run | `{'n_proposals': 0, 'n_registered': 0, 'n_signals': 2}` |
+| promotion_rate | `0.0` |
 | semantic_graph_hash_stable | `True` |
-| rebuild_equivalence | `True` |
+| rebuild_equivalence | `False` |
 | provenance_coverage | `1.0` |
 | stale_recompute_scope | `0.0` |
 | signal_capture_rate | `1.0` |
 | decision_propagation_rate | `1.0` |
 | mining_coverage_ratio | `0.9091` |
 | exploration_regret | `0` |
-| n_active_human_decisions | `8` |
+| n_active_human_decisions | `0` |
 
 ## 人工签字项（需人工确认）
 
