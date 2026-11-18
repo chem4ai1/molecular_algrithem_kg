@@ -1,0 +1,33 @@
+refine: B3_failure_lib
+order: 22
+enabled: true
+target:
+  class: FailureModeLibrary
+  node_id: failurelib:{arxiv_id}
+  relation: FAILURE_SEEN_IN
+  parent_class: Paper
+source: aggregate
+aggregate_from: Paper.negative_results + Algorithm.limitations
+fields:
+- name: name
+  required: true
+  type: str
+- name: severity
+  type: str
+  enum:
+  - fatal
+  - high
+  - medium
+  - low
+- name: detection
+  type: str
+  max_chars: 100
+- name: source_papers
+  type: list
+- name: negative_results
+  type: list
+template: '从多篇论文的局限与阴性结果中，归纳领域失败模式。只输出JSON。
+
+
+  聚合材料：{context}'
+merge: append

@@ -1,0 +1,161 @@
+{
+  "stages": [
+    {
+      "stage": "B类聚合",
+      "knowledge": "方法族谱/规范/失败模式/venue",
+      "form": "跨论文图谱节点+边",
+      "input": "52 Paper + 52 Algorithm",
+      "output": "MethodLineage 6 + Norm 4 + FailureLib 1",
+      "note": "离线聚合一次建，边回指来源论文",
+      "skill": "graph-aggregator",
+      "verdict": "PASS"
+    },
+    {
+      "stage": "①问题锚定",
+      "knowledge": "领域常识+分类",
+      "form": "ProblemAnchor节点",
+      "input": "paper:1911.00598",
+      "output": "anchor:factory_52_run:Q-8827ba182067",
+      "note": "Q-ID冻结",
+      "skill": "①问题锚定",
+      "verdict": "PASS"
+    },
+    {
+      "stage": "②领域定位",
+      "knowledge": "空白三元组+方法族谱",
+      "form": "GapTriple(C)+MethodLineage(B)",
+      "input": "Paper.gaps + MethodLineage",
+      "output": "gaptriple:factory:main",
+      "note": "frontier从lineage:factory:molecule_optimization查出",
+      "skill": "retrieval+gap-formalizer",
+      "verdict": "PASS"
+    },
+    {
+      "stage": "③想法生成",
+      "knowledge": "跨领域类比",
+      "form": "IdeaCandidate节点",
+      "input": "gaptriple:factory:main",
+      "output": "idea:factory:main",
+      "note": "机制+证伪条件",
+      "skill": "③想法生成",
+      "verdict": "PASS"
+    },
+    {
+      "stage": "④主张形式化",
+      "knowledge": "证据规范(B)",
+      "form": "Claim(C)独立节点",
+      "input": "Idea + norm:factory:experimental",
+      "output": "claim:factory:main",
+      "note": "fidelity=numerical 从规范查出",
+      "skill": "claim-formalizer",
+      "verdict": "LOCKED"
+    },
+    {
+      "stage": "⑦证据审计",
+      "knowledge": "失败模式库(B)",
+      "form": "grade属性+AuditVerdict",
+      "input": "failurelib:factory",
+      "output": "grade=supported",
+      "note": "从52篇失败模式查询+规则",
+      "skill": "auditor",
+      "verdict": "SUPPORTED"
+    },
+    {
+      "stage": "⑧叙事设计",
+      "knowledge": "venue惯例(B)",
+      "form": "SectionPlan/FigurePlan(C)",
+      "input": "venue:factory:unknown",
+      "output": "section:factory:intro+fig:factory:1",
+      "note": "venue found=False，不伪造",
+      "skill": "narrative-designer",
+      "verdict": "PASS"
+    },
+    {
+      "stage": "⑩终检交付",
+      "knowledge": "工程交付",
+      "form": "ReproductionPackage(C)",
+      "input": "claim:factory:main",
+      "output": "pkg:factory",
+      "note": "独立交付物",
+      "skill": "delivery",
+      "verdict": "PENDING"
+    }
+  ],
+  "queries": [
+    {
+      "stage": "②",
+      "query": "query_frontier_baseline",
+      "result": {
+        "found": true,
+        "baseline": "Saturn / AgentDrug / MultiMol",
+        "n_methods": 17,
+        "source": "lineage:factory:molecule_optimization",
+        "via": "LINEAGE_OF",
+        "task_type": "molecule_optimization"
+      }
+    },
+    {
+      "stage": "④",
+      "query": "query_evaluation_norm",
+      "result": {
+        "found": true,
+        "evidence_type": "experimental",
+        "min_fidelity": "numerical",
+        "accepted_metrics": [
+          "top-k accuracy",
+          "step-wise verifier correctness",
+          "final-answer correctness",
+          "diversity",
+          "Layer coverage",
+          "MPO objectives",
+          "top-5 accuracy",
+          "Quality audit pass rate",
+          "pathway diversity",
+          "Success Rate × Similarity",
+          "scaffold similarity",
+          "starting-material price"
+        ],
+        "n_papers": 32,
+        "source": "norm:factory:experimental",
+        "via": "DERIVED_FROM_PAPERS"
+      },
+      "evidence_type_original": "derivational",
+      "evidence_type_used": "experimental",
+      "corrected": true
+    },
+    {
+      "stage": "⑦",
+      "query": "query_failure_checks",
+      "result": {
+        "found": true,
+        "checks": [
+          "仅覆盖SHACL的一个子集，未给出核心SHACL组件的完整形式语义（如递归SHACL约束）",
+          "仅考虑无否定的datalog规则，且要求规则后件每个triple pattern的谓词位置为常数、主宾位置无相同变量",
+          "critical instance规模很大且低效",
+          "失去旋转不变性。",
+          "反应编码可能使MDP反向遍历复杂",
+          "合成复杂度启发式会损害主要目标",
+          "示例中沿链接遍历相连shape的策略仅带来轻微验证时间改善（slight improvement in validation time）",
+          "straightforward prompting achieves limited accuracy"
+        ],
+        "n_limitations": 40,
+        "n_negative": 9,
+        "related_papers": [],
+        "source": "failurelib:factory",
+        "via": "FAILURE_SEEN_IN"
+      }
+    },
+    {
+      "stage": "⑧",
+      "query": "query_venue_profile",
+      "result": {
+        "found": false,
+        "venue": "unknown",
+        "citation_style": "unknown",
+        "section_pattern": [],
+        "source": "venue:factory:unknown",
+        "note": "无 venue 元数据，不伪造惯例"
+      }
+    }
+  ]
+}

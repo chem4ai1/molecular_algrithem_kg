@@ -1,0 +1,41 @@
+refine: C1_claim
+order: 30
+enabled: true
+target:
+  class: Claim
+  node_id: claim:{run_id}:{n}
+  relation: CLAIM_OF
+  parent_class: ProblemAnchor
+source: decision
+requires_query:
+- query_evaluation_norm
+fields:
+- name: statement
+  required: true
+  type: str
+  max_chars: 120
+- name: polarity
+  required: true
+  type: str
+  enum:
+  - positive
+  - negative
+  - boundary
+- name: expected_fidelity
+  required: true
+  type: str
+  enum:
+  - symbolic
+  - numerical
+  - qualitative
+- name: refutation_condition
+  required: true
+  type: str
+  max_chars: 100
+template: '把候选想法形式化为可证伪主张。expected_fidelity 必须来自查询到的 EvaluationNorm.min_fidelity，不得自行判断。只输出JSON。
+
+
+  想法：{context}
+
+  领域规范：{norm}'
+merge: append

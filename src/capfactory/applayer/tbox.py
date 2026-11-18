@@ -15,6 +15,28 @@
 from __future__ import annotations
 from typing import Any, Dict, Tuple
 
+# P2 冗余清理（保守：不物理删除，标记废弃 + 映射到新类）
+# 旧类保留是为了不破坏现有 miner 与 18 个测试；新流程一律用 NEW_CLASSES。
+DEPRECATED = {
+    "ResearchQuestion": "Paper.research_question + ProblemAnchor",
+    "ProblemCategory": "ProblemTaxonomy",
+    "LeaderboardEntry": "Benchmark.model_results + Evidence",
+    "SourcePaper": "CitationItem(global)",
+    "RelatedPaper": "LiteratureItem(stage=candidate)",
+    "ConsultedPaper": "LiteratureItem(stage=consulted)",
+    "CitedPaper": "LiteratureItem(stage=cited)",
+    "ExperimentArm": "ExecutionRun(kind=planned)",
+    "RunArtifact": "ExecutionRun(kind=executed)",
+    "FigureAsset": "FigurePlan",
+}
+NEW_CLASSES = (
+    "ProblemTaxonomy", "MethodLineage", "EvaluationNorm",
+    "FailureModeLibrary", "VenueProfile",
+    "Claim", "GapTriple", "IdeaCandidate", "ReproductionPackage",
+    "LiteratureItem", "ExecutionRun", "FigurePlan",
+)
+
+
 APP_VERSION = "v1.0-application"
 
 APP_CLASSES: Dict[str, Tuple[str, Tuple[Tuple[str, str], ...]]] = {
@@ -135,6 +157,22 @@ APP_CLASSES: Dict[str, Tuple[str, Tuple[Tuple[str, str], ...]]] = {
     "RunArtifact": ("运行产物（按 run 实例化）", (
         ("run_id", "must"), ("kind", "must"), ("path", "optional"),
         ("sha256", "optional"), ("produced_by", "optional"))),
+    # ===== B 类：跨论文图谱节点 =====
+    "ProblemTaxonomy": ("问题分类学（跨论文聚类）", (("code", "must"), ("label", "must"), ("parent", "optional"), ("n_papers", "optional"), ("exemplars", "optional"))),
+    "MethodLineage": ("方法族谱", (("parent_method", "must"), ("child_method", "must"), ("delta", "optional"), ("domain", "optional"), ("evidence", "optional"))),
+    "EvaluationNorm": ("领域评价规范（跨论文聚合）", (("evidence_type", "must"), ("accepted_metrics", "optional"), ("min_fidelity", "optional"), ("seed_floor", "optional"), ("control_design", "optional"), ("venue_scope", "optional"))),
+    "FailureModeLibrary": ("失败模式库", (("name", "must"), ("severity", "optional"), ("detection", "optional"), ("source_papers", "optional"), ("negative_results", "optional"))),
+    "VenueProfile": ("venue 写作惯例", (("venue", "must"), ("citation_style", "optional"), ("section_pattern", "optional"), ("writing_tone", "optional"), ("claim_floor", "optional"))),
+    # ===== C 类：关键决策节点 =====
+    "Claim": ("本次承诺的可证伪主张", (("run_id", "must"), ("statement", "must"), ("polarity", "must"), ("expected_fidelity", "optional"), ("refutation_condition", "must"), ("locked_at", "optional"), ("method_hash", "optional"), ("grade", "optional"))),
+    "GapTriple": ("空白三元组", (("run_id", "must"), ("frontier_baseline", "must"), ("delta", "must"), ("why_not_before", "must"), ("cite_key", "must"), ("source_span", "must"), ("nearest_papers", "optional"))),
+    "IdeaCandidate": ("候选想法", (("run_id", "must"), ("mechanism", "must"), ("novelty_delta", "must"), ("expected_direction", "must"), ("falsification_condition", "must"), ("selected", "optional"))),
+    "ReproductionPackage": ("复现交付包", (("run_id", "must"), ("code_snapshot", "must"), ("data_snapshot", "must"), ("env_spec", "must"), ("one_click_script", "must"), ("verification", "must"))),
+
+    # ===== P2 统一类 =====
+    "LiteratureItem": ("文献条目（统一候选/查阅/引用/出处）", (("run_id", "must"), ("paper_ref", "must"), ("stage", "must"), ("cite_key", "optional"), ("score", "optional"), ("reason", "optional"), ("context_quote", "optional"), ("layers", "optional"))),
+    "ExecutionRun": ("执行单元（统一计划与产物）", (("run_id", "must"), ("kind", "must"), ("name", "must"), ("config", "optional"), ("seeds", "optional"), ("benchmark", "optional"), ("outputs_sha", "optional"))),
+    "FigurePlan": ("图表计划（图绑定 claim）", (("run_id", "must"), ("fig_label", "must"), ("claim_ref", "must"), ("inferential_role", "optional"), ("caption", "optional"), ("placement", "optional"))),
 }
 
 APP_RELATIONS: Dict[str, Tuple[str, str, str]] = {
@@ -194,7 +232,20 @@ APP_RELATIONS: Dict[str, Tuple[str, str, str]] = {
     "ASSUMED_IN": ("Assumption", "CodeUnit", "假设隐含在代码哪处"),
     "DETECTABLE_IN": ("FailureMode", "CodeUnit", "该失败模式在代码哪处可检测"),
     "GROUNDED_IN": ("Evidence", "CodeUnit", "证据来自代码哪处"),
+    # B 类图谱关系
+    "TAXONOMY_OF": ("ProblemTaxonomy", "Paper", "问题类别归属"),
+    "LINEAGE_OF": ("MethodLineage", "Algorithm", "族谱连接的算法"),
+    "DERIVED_FROM_PAPERS": ("EvaluationNorm", "Paper", "规范来源论文"),
+    "FAILURE_SEEN_IN": ("FailureModeLibrary", "Paper", "失败模式出现的论文"),
+    "VENUE_OF": ("VenueProfile", "Paper", "venue 惯例来源"),
+    # C 类决策关系
+    "CLAIM_OF": ("Claim", "ProblemAnchor", "主张锚定问题"),
+    "GAP_FOR": ("GapTriple", "ProblemAnchor", "空白针对问题"),
+    "IDEA_FOR": ("IdeaCandidate", "GapTriple", "想法针对空白"),
+    "FULFILLS": ("Claim", "IdeaCandidate", "主张兑现想法"),
+    "DELIVERED_BY": ("Claim", "ReproductionPackage", "主张由复现包交付"),
 }
+
 
 
 def snapshot() -> Dict[str, Any]:

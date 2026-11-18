@@ -1,0 +1,42 @@
+refine: B2_norm
+order: 21
+enabled: true
+target:
+  class: EvaluationNorm
+  node_id: norm:{arxiv_id}:{evidence_type}
+  relation: DERIVED_FROM_PAPERS
+  parent_class: Paper
+source: aggregate
+aggregate_from: Paper.evidence_type + evidence_norm + Benchmark.protocol
+fields:
+- name: evidence_type
+  required: true
+  type: str
+  enum:
+  - causal_inference
+  - derivational
+  - experimental
+  - simulational
+  - correlational
+  - interpretive
+- name: accepted_metrics
+  type: list
+  max_items: 10
+- name: min_fidelity
+  type: str
+  enum:
+  - symbolic
+  - numerical
+  - qualitative
+- name: seed_floor
+  type: int
+- name: control_design
+  type: str
+  max_chars: 80
+- name: venue_scope
+  type: str
+template: '从多篇论文的证据类型、认可指标、协议声明中，归纳该类证据的领域规范。只输出JSON。
+
+
+  聚合材料：{context}'
+merge: append

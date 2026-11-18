@@ -1,0 +1,37 @@
+refine: C2_gap_triple
+order: 31
+enabled: true
+target:
+  class: GapTriple
+  node_id: gaptriple:{run_id}:{n}
+  relation: GAP_FOR
+  parent_class: ProblemAnchor
+source: decision
+requires_query:
+- query_frontier_baseline
+fields:
+- name: frontier_baseline
+  required: true
+  type: str
+- name: delta
+  required: true
+  type: str
+  max_chars: 80
+- name: why_not_before
+  required: true
+  type: str
+  max_chars: 100
+- name: cite_key
+  required: true
+  type: str
+- name: source_span
+  required: true
+  type: str
+template: '把研究空白形式化为三元组（frontier baseline / delta / why-not-before）。frontier_baseline 必须来自 MethodLineage
+  查询结果。只输出JSON。
+
+
+  空白材料：{context}
+
+  前沿基线：{baseline}'
+merge: append

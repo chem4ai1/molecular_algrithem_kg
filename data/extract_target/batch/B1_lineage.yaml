@@ -1,0 +1,30 @@
+refine: B1_lineage
+order: 20
+enabled: true
+target:
+  class: MethodLineage
+  node_id: lineage:{arxiv_id}:{n}
+  relation: LINEAGE_OF
+  parent_class: Algorithm
+source: aggregate
+aggregate_from: Algorithm.task_type + SUBCLASS_OF
+fields:
+- name: parent_method
+  required: true
+  type: str
+- name: child_method
+  required: true
+  type: str
+- name: delta
+  type: str
+  max_chars: 80
+- name: domain
+  type: str
+- name: evidence
+  type: str
+  max_chars: 120
+template: '从以下同族算法的机制描述中，归纳 method A → method B 的改进关系。输出 {"lineages":[{"parent_method":"...","child_method":"...","delta":"...","domain":"...","evidence":"..."}]}。只输出JSON。
+
+
+  算法列表：{context}'
+merge: append
