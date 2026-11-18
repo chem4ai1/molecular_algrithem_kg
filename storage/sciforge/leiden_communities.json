@@ -1,0 +1,257 @@
+{
+  "algorithm": "leiden",
+  "resolution": 1.0,
+  "n_papers": 47,
+  "n_communities": 5,
+  "communities": [
+    {
+      "id": "community:leiden:0",
+      "title": "社区:molecule_optimization",
+      "summary": "从 13 篇论文自动发现的社区，主导问题 molecule_optimization，证据 experimental",
+      "findings": [
+        {
+          "summary": "证据类型: experimental(12), derivational(1)",
+          "explanation": "在 13 篇社区成员中统计"
+        },
+        {
+          "summary": "领域: D0(1)",
+          "explanation": "在 13 篇社区成员中统计"
+        },
+        {
+          "summary": "问题类别: molecule_optimization(13)",
+          "explanation": "在 13 篇社区成员中统计"
+        },
+        {
+          "summary": "指标: QED(3), accuracy(1), success rate(1)",
+          "explanation": "在 13 篇社区成员中统计"
+        }
+      ],
+      "rating": 0.759,
+      "rating_explanation": "n=13, 主导证据纯度=0.92",
+      "n_papers": 13,
+      "members": [
+        "paper:2410.13147",
+        "paper:2503.03503",
+        "paper:2505.20820",
+        "paper:2509.16084",
+        "paper:2603.05900",
+        "paper:2603.24382",
+        "paper:2604.23061",
+        "paper:2605.10831",
+        "paper:2607.00531",
+        "paper:2607.02944",
+        "paper:2609.34491",
+        "paper:2609.35336",
+        "paper:2610.18851"
+      ],
+      "evidence_type": "experimental",
+      "accepted_metrics": [
+        "QED",
+        "accuracy",
+        "success rate",
+        "reconstruction rate",
+        "pathway diversity",
+        "optimization performance",
+        "Success Rate × Similarity",
+        "Similarity",
+        "Success Optimized Rate (SOR)",
+        "scaffold similarity"
+      ],
+      "community_level": 0
+    },
+    {
+      "id": "community:leiden:1",
+      "title": "社区:molecule_generation",
+      "summary": "从 12 篇论文自动发现的社区，主导问题 molecule_generation，证据 experimental",
+      "findings": [
+        {
+          "summary": "证据类型: experimental(8), simulational(4)",
+          "explanation": "在 12 篇社区成员中统计"
+        },
+        {
+          "summary": "领域: D0(3), D2(1)",
+          "explanation": "在 12 篇社区成员中统计"
+        },
+        {
+          "summary": "问题类别: molecule_generation(9), representation_pretrain(1), constraint_validation(1)",
+          "explanation": "在 12 篇社区成员中统计"
+        },
+        {
+          "summary": "指标: synthesizability(5), diversity(2), synthetic complexity(1)",
+          "explanation": "在 12 篇社区成员中统计"
+        }
+      ],
+      "rating": 0.627,
+      "rating_explanation": "n=12, 主导证据纯度=0.67",
+      "n_papers": 12,
+      "members": [
+        "paper:2002.07007",
+        "paper:2405.01155",
+        "paper:2406.08506",
+        "paper:2410.11527",
+        "paper:2410.03494",
+        "paper:2507.02752",
+        "paper:2602.04119",
+        "paper:2605.16480",
+        "paper:2606.03660",
+        "paper:2607.00464",
+        "paper:2609.34301",
+        "paper:2610.16975"
+      ],
+      "evidence_type": "experimental",
+      "accepted_metrics": [
+        "synthesizability",
+        "diversity",
+        "synthetic complexity",
+        "synthetic accessibility scores",
+        "sample diversity",
+        "docking score",
+        "optimization quality",
+        "biological activity",
+        "MPO objectives",
+        "property score"
+      ],
+      "community_level": 0
+    },
+    {
+      "id": "community:leiden:2",
+      "title": "社区:reaction_prediction",
+      "summary": "从 9 篇论文自动发现的社区，主导问题 reaction_prediction，证据 experimental",
+      "findings": [
+        {
+          "summary": "证据类型: experimental(5), simulational(3), derivational(1)",
+          "explanation": "在 9 篇社区成员中统计"
+        },
+        {
+          "summary": "领域: D3(6)",
+          "explanation": "在 9 篇社区成员中统计"
+        },
+        {
+          "summary": "问题类别: reaction_prediction(8), molecule_optimization(1)",
+          "explanation": "在 9 篇社区成员中统计"
+        },
+        {
+          "summary": "指标: success rate(2), solve rates(1), number of search expansions(1)",
+          "explanation": "在 9 篇社区成员中统计"
+        }
+      ],
+      "rating": 0.492,
+      "rating_explanation": "n=9, 主导证据纯度=0.56",
+      "n_papers": 9,
+      "members": [
+        "paper:2407.06334",
+        "paper:2407.12186",
+        "paper:2501.08897",
+        "paper:2507.08475",
+        "paper:2508.11860",
+        "paper:2605.24428",
+        "paper:2609.38484",
+        "paper:2610.16391",
+        "paper:2611.03696"
+      ],
+      "evidence_type": "experimental",
+      "accepted_metrics": [
+        "success rate",
+        "solve rates",
+        "number of search expansions",
+        "oracle budget",
+        "docking scores",
+        "synthesizability",
+        "state-of-the-art performance",
+        "time",
+        "top-1 accuracy",
+        "top-3 accuracy"
+      ],
+      "community_level": 0
+    },
+    {
+      "id": "community:leiden:3",
+      "title": "社区:other",
+      "summary": "从 6 篇论文自动发现的社区，主导问题 other，证据 experimental",
+      "findings": [
+        {
+          "summary": "证据类型: experimental(6)",
+          "explanation": "在 6 篇社区成员中统计"
+        },
+        {
+          "summary": "领域: D0(1)",
+          "explanation": "在 6 篇社区成员中统计"
+        },
+        {
+          "summary": "问题类别: other(5), property_prediction(1)",
+          "explanation": "在 6 篇社区成员中统计"
+        },
+        {
+          "summary": "指标: validation time(1), speedup factor(1), F1 score(1)",
+          "explanation": "在 6 篇社区成员中统计"
+        }
+      ],
+      "rating": 0.58,
+      "rating_explanation": "n=6, 主导证据纯度=1.00",
+      "n_papers": 6,
+      "members": [
+        "paper:2101.07136",
+        "paper:2008.02232",
+        "paper:2404.14209",
+        "paper:2605.07022",
+        "paper:2609.09203",
+        "paper:2607.16038"
+      ],
+      "evidence_type": "experimental",
+      "accepted_metrics": [
+        "validation time",
+        "speedup factor",
+        "F1 score",
+        "frontier-model rejection rate",
+        "label error rate (human-judgment audit)",
+        "record count / dataset scale",
+        "precision/recall-targeted retrieval filters",
+        "success rate",
+        "errors per trajectory",
+        "Cliff’s δ"
+      ],
+      "community_level": 0
+    },
+    {
+      "id": "community:leiden:4",
+      "title": "社区:other",
+      "summary": "从 6 篇论文自动发现的社区，主导问题 other，证据 derivational",
+      "findings": [
+        {
+          "summary": "证据类型: derivational(4), interpretive(2)",
+          "explanation": "在 6 篇社区成员中统计"
+        },
+        {
+          "summary": "领域: D0(1)",
+          "explanation": "在 6 篇社区成员中统计"
+        },
+        {
+          "summary": "问题类别: other(3), molecule_generation(1), reaction_prediction(1)",
+          "explanation": "在 6 篇社区成员中统计"
+        },
+        {
+          "summary": "指标: soundness(1), completeness(1), universality(1)",
+          "explanation": "在 6 篇社区成员中统计"
+        }
+      ],
+      "rating": 0.447,
+      "rating_explanation": "n=6, 主导证据纯度=0.67",
+      "n_papers": 6,
+      "members": [
+        "paper:1911.00598",
+        "paper:2402.15864",
+        "paper:2407.01603",
+        "paper:2410.01421",
+        "paper:2508.00137",
+        "paper:2607.27556"
+      ],
+      "evidence_type": "derivational",
+      "accepted_metrics": [
+        "soundness",
+        "completeness",
+        "universality"
+      ],
+      "community_level": 0
+    }
+  ]
+}
