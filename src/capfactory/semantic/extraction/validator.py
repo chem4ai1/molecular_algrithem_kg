@@ -86,7 +86,7 @@ def _e1(data, source_text, issues):
     out["evidence_type"] = _str(data.get("evidence_type"))
     out["evidence_norm"] = _list(data.get("evidence_norm"))[:8]
     out["authors"] = _list(data.get("authors"))[:12]
-    out["abstract"] = _str(data.get("abstract"))[:2000]
+    out["abstract"] = _str(data.get("abstract"))[:4000]
     out["claims"] = [{"statement": _str(c.get("statement"))[:80],
                       "evidence": _str(c.get("evidence"))[:120]}
                      for c in _list(data.get("claims"))[:6]
