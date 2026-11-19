@@ -7,7 +7,7 @@ ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "src"))
 from capfactory.po import POGraph
 from capfactory.applayer.paper_artifacts import table_to_latex
-from capfactory.applayer.context import WritingContext
+from capfactory.semantic.extractspec import loader as _loader
 
 GRAPH = ROOT / "storage/sciforge/factory_knowledge_rules.json"
 OUT = ROOT / "storage/sciforge/factory_knowledge_p6.json"
@@ -34,8 +34,13 @@ def pick_numeric_columns(header: list, rows: list) -> list:
 
 
 def main():
+    # 主结果表判定规则来自 YAML（不再硬编码）
+    _sp = (_loader.stages() or {}).get("E1_paper")
+    _rt = (_sp.rules.get("result_tables") if _sp else {}) or {}
+    FIRST_COL_KW = _rt.get("main_table_first_col_keywords") or ["model", "method"]
+    MIN_ROWS = int(_rt.get("main_table_min_rows") or 2)
+    print(f"YAML 判定规则: first_col={FIRST_COL_KW} min_rows={MIN_ROWS}", flush=True)
     g = POGraph.load(str(GRAPH))
-    ctx = WritingContext(g, "p6_run")
     papers = g.by_type("Paper")
     GEN.mkdir(parents=True, exist_ok=True)
     for old in GEN.glob("*.tex"):      # 清理上轮残留，避免误判覆盖率
@@ -50,11 +55,10 @@ def main():
         for t in tables:
             # 主结果表启发式：第一列必须是 Model/Method/Approach 之类
             first = str(t["columns"][0]).lower()
-            if not any(k in first for k in ("model", "method", "approach", "system",
-                                            "baseline", "variant", "ours")):
+            if not any(k in first for k in FIRST_COL_KW):
                 continue
             cols = pick_numeric_columns(t["columns"], t["rows"])
-            if len(cols) >= 1 and len(t["rows"]) >= 2:
+            if len(cols) >= 1 and len(t["rows"]) >= MIN_ROWS:
                 if best is None or len(cols) > len(best[1]):
                     best = (t, cols)
         if not best:
@@ -70,13 +74,7 @@ def main():
             rows.append(row)
         latex = table_to_latex(rows, columns=[n for _, n in cols],
                                caption=t.get("label", ""), label=f"tab:{aid}")
-        tid = f"resulttable:{aid}:main"
-        g.node(tid, "ResultTable", t.get("label", aid)[:60],
-               run_id="p6_run", table_label=t.get("label", ""),
-               caption=t.get("label", ""), columns=[n for _, n in cols],
-               rows=rows, source_paper=p.id, latex=latex,
-               layer="application", task="writing", miner="p6_tablegen")
-        g.assert_rel(tid, p.id, "DERIVED_FROM_PAPERS", layer="application")
+        # 只负责产出 .tex；ResultTable 节点由 applayer.miner 统一派生
         (GEN / f"{aid}.tex").write_text(latex, encoding="utf-8")
         made += 1
         report.append({"aid": aid, "table": t.get("label", "")[:50],

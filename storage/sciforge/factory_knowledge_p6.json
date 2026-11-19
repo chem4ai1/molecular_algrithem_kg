@@ -4,9 +4,9 @@
     "created_at": "2026-11-18T12:41:58+00:00",
     "source": "问题导向本体与知识图谱架构_20261109",
     "stats": {
-      "graph_id": "po::2026-11-19T01:23:24+00:00",
-      "n_nodes": 392,
-      "n_assertions": 451,
+      "graph_id": "po::2026-11-19T01:34:43+00:00",
+      "n_nodes": 374,
+      "n_assertions": 433,
       "nodes_by_type": {
         "Paper": 52,
         "Algorithm": 52,
@@ -22,15 +22,14 @@
         "Claim": 1,
         "SectionPlan": 1,
         "FigurePlan": 1,
-        "ReproductionPackage": 1,
-        "ResultTable": 18
+        "ReproductionPackage": 1
       },
       "assertions_by_relation": {
         "PROPOSES_METHOD": 55,
         "HAS_MODULE": 210,
         "EVALUATED_ON": 52,
         "LINEAGE_OF": 52,
-        "DERIVED_FROM_PAPERS": 65,
+        "DERIVED_FROM_PAPERS": 47,
         "FAILURE_SEEN_IN": 7,
         "GROUNDED_IN": 1,
         "GAP_FOR": 1,
@@ -46,7 +45,7 @@
       "nodes_by_dimension": {
         "knowledge": 52,
         "algorithm_data": 95,
-        "other": 245
+        "other": 227
       },
       "problem_categories": 0,
       "research_problems": 0,
@@ -280,24 +279,6 @@
         "[section:factory_v2:introduction] 未知概念类 'SectionPlan'",
         "[fig:factory_v2:figure_1] 未知概念类 'FigurePlan'",
         "[pkg:factory_v2] 未知概念类 'ReproductionPackage'",
-        "[resulttable:2402.15864:main] 未知概念类 'ResultTable'",
-        "[resulttable:2407.12186:main] 未知概念类 'ResultTable'",
-        "[resulttable:2509.16084:main] 未知概念类 'ResultTable'",
-        "[resulttable:2512.20333:main] 未知概念类 'ResultTable'",
-        "[resulttable:2603.24382:main] 未知概念类 'ResultTable'",
-        "[resulttable:2604.23061:main] 未知概念类 'ResultTable'",
-        "[resulttable:2605.07022:main] 未知概念类 'ResultTable'",
-        "[resulttable:2606.03660:main] 未知概念类 'ResultTable'",
-        "[resulttable:2605.24428:main] 未知概念类 'ResultTable'",
-        "[resulttable:2607.00464:main] 未知概念类 'ResultTable'",
-        "[resulttable:2607.00531:main] 未知概念类 'ResultTable'",
-        "[resulttable:2609.34491:main] 未知概念类 'ResultTable'",
-        "[resulttable:2609.35336:main] 未知概念类 'ResultTable'",
-        "[resulttable:2609.34301:main] 未知概念类 'ResultTable'",
-        "[resulttable:2609.38484:main] 未知概念类 'ResultTable'",
-        "[resulttable:2610.16975:main] 未知概念类 'ResultTable'",
-        "[resulttable:2610.16391:main] 未知概念类 'ResultTable'",
-        "[resulttable:2610.18851:main] 未知概念类 'ResultTable'",
         "[assertion:0001] 未知关系类型 'PROPOSES_METHOD'",
         "[assertion:0002] 未知关系类型 'HAS_MODULE'",
         "[assertion:0003] 未知关系类型 'HAS_MODULE'",
@@ -679,24 +660,6 @@
         "[assertion:0431] 未知关系类型 'AUDITED_BY'",
         "[assertion:0432] 未知关系类型 'USES_EVIDENCE'",
         "[assertion:0433] 未知关系类型 'DELIVERED_BY'",
-        "[assertion:0434] 未知关系类型 'DERIVED_FROM_PAPERS'",
-        "[assertion:0435] 未知关系类型 'DERIVED_FROM_PAPERS'",
-        "[assertion:0436] 未知关系类型 'DERIVED_FROM_PAPERS'",
-        "[assertion:0437] 未知关系类型 'DERIVED_FROM_PAPERS'",
-        "[assertion:0438] 未知关系类型 'DERIVED_FROM_PAPERS'",
-        "[assertion:0439] 未知关系类型 'DERIVED_FROM_PAPERS'",
-        "[assertion:0440] 未知关系类型 'DERIVED_FROM_PAPERS'",
-        "[assertion:0441] 未知关系类型 'DERIVED_FROM_PAPERS'",
-        "[assertion:0442] 未知关系类型 'DERIVED_FROM_PAPERS'",
-        "[assertion:0443] 未知关系类型 'DERIVED_FROM_PAPERS'",
-        "[assertion:0444] 未知关系类型 'DERIVED_FROM_PAPERS'",
-        "[assertion:0445] 未知关系类型 'DERIVED_FROM_PAPERS'",
-        "[assertion:0446] 未知关系类型 'DERIVED_FROM_PAPERS'",
-        "[assertion:0447] 未知关系类型 'DERIVED_FROM_PAPERS'",
-        "[assertion:0448] 未知关系类型 'DERIVED_FROM_PAPERS'",
-        "[assertion:0449] 未知关系类型 'DERIVED_FROM_PAPERS'",
-        "[assertion:0450] 未知关系类型 'DERIVED_FROM_PAPERS'",
-        "[assertion:0451] 未知关系类型 'DERIVED_FROM_PAPERS'",
         "图中没有任何论文—问题关联边（ADDRESSES/EXPOSES_LIMITATION/ANALYST_RELEVANT_TO）"
       ]
     }
@@ -1213,12 +1176,16 @@
           "GEOM",
           "QM9"
         ],
-        "split_spec": "valid molecules (about 38%",
         "hyperparams": [
           {
             "param": "learning rate",
             "value": "0.9",
             "context": " with 8 _·_ 10<sup>_−_5</sup> learning rate and (0.9"
+          },
+          {
+            "param": "epochs",
+            "value": "1.2",
+            "context": "or 1.32 million iterations (6 epochs), and our implicit one for 1.2"
           },
           {
             "param": "threshold",
@@ -1232,18 +1199,13 @@
           },
           {
             "param": "threshold",
-            "value": "0",
-            "context": "t.   **Parameters** We choose threshold parameter _t_ = 0"
+            "value": "0.3",
+            "context": "t.   **Parameters** We choose threshold parameter _t_ = 0.3"
           },
           {
             "param": "threshold",
-            "value": "0",
-            "context": " in contact with it. The bond threshold is set to _tb_ = 0"
-          },
-          {
-            "param": "learning rate",
-            "value": "5",
-            "context": "cent for 500 iterations and a learning rate of 5"
+            "value": "0.3",
+            "context": " in contact with it. The bond threshold is set to _tb_ = 0.3"
           }
         ],
         "result_tables": [
@@ -1309,7 +1271,7 @@
                 "0.59_±_0.01",
                 "1.08 _±_0.12",
                 "2.15_±_0.385",
-                "0.71_±_0_._02"
+                "0.71_±_0.02"
               ],
               [
                 "FMG_β_=0",
@@ -2256,18 +2218,18 @@
             "rows": [
               [
                 "Aripiprazole rediscovery",
-                "0_._90_±_0_._00",
-                "2_._19_±_0_._00"
+                "0.90_±_0.00",
+                "2.19_±_0.00"
               ],
               [
                 "Celecoxib rediscovery",
-                "0_._48_±_0_._01",
-                "2_._47_±_0_._04"
+                "0.48_±_0.01",
+                "2.47_±_0.04"
               ]
             ]
           },
           {
-            "label": "table_2",
+            "label": "Table 2 we compare a fixed, uniform backward policy to three versio",
             "columns": [
               "_PB_ policy",
               "% of solved routes (train)",
@@ -2277,27 +2239,27 @@
             "rows": [
               [
                 "Uniform",
-                "11_._0_±_3_._7%",
-                "11_._0_±_4_._1%",
-                "47_,_515_._0_±_11_,_264_._7"
+                "11.0_±_3.7%",
+                "11.0_±_4.1%",
+                "47_,_515.0_±_11_,_264.7"
               ],
               [
                 "Free",
-                "67_._3_±_3_._7%",
-                "1_._0_±_0_._8%",
-                "6_,_754_._3_±_4_,_980_._1"
+                "67.3_±_3.7%",
+                "1.0_±_0.8%",
+                "6_,_754.3_±_4_,_980.1"
               ],
               [
                 "MaxLikelihood",
-                "99_._3_±_0_._5%",
-                "32_._3_±_7_._3%",
-                "37_,_708_._2_±_13_,_992_._6"
+                "99.3_±_0.5%",
+                "32.3_±_7.3%",
+                "37_,_708.2_±_13_,_992.6"
               ],
               [
                 "REINFORCE",
-                "100_._0_±_0_._0%",
-                "44_._3_±_2_._6%",
-                "55_,_387_._6_±_28_,_886_._3"
+                "100.0_±_0.0%",
+                "44.3_±_2.6%",
+                "55_,_387.6_±_28_,_886.3"
               ]
             ]
           },
@@ -2615,7 +2577,7 @@
             ]
           },
           {
-            "label": "Table 2: Translation of Concept Inclusions in normalized form",
+            "label": "Table 2 shows how the Datalog translation of a TBox in normalized f",
             "columns": [
               "Concept Inclusion (CI)",
               "Equivalent Datalog Rule"
@@ -2648,11 +2610,11 @@
             "rows": [
               [
                 "_noStart_(_X_1) _←sameAs_(_X_0_,X_1) _∧X_0_< X_1_._",
-                "(2_._1)"
+                "(2.1)"
               ],
               [
                 "_noStart_(_X_2) _←sameAs_(_X_0_,X_1) _∧sameAs_(_X_1_,X_2)_∧X_0_< X_2_._",
-                "(2_._2)"
+                "(2.2)"
               ],
               [
                 "...",
@@ -3052,9 +3014,9 @@
             "context": "elated metrics, computed over top-k modes generated for each method, in Table 1"
           },
           {
-            "param": "learning rate",
+            "param": "epochs",
             "value": "5",
-            "context": "ing the Adam optimizer with a learning rate of 5"
+            "context": " The training was done for 30 epochs using the Adam optimizer with a learning rate of 5"
           },
           {
             "param": "batch size",
@@ -3952,7 +3914,11 @@
           "QM9",
           "GuacaMol",
           "MoleculeNet",
-          "PDB"
+          "PDB",
+          "SIDER",
+          "Tox21",
+          "FreeSolv",
+          "Lipophilicity"
         ],
         "result_tables": [
           {
@@ -5049,7 +5015,8 @@
           "ChEMBL",
           "PubChem",
           "Enamine",
-          "PDB"
+          "PDB",
+          "Lipophilicity"
         ],
         "dedup_rule": "Tanimoto similarity < 0.5",
         "hyperparams": [
@@ -5086,7 +5053,7 @@
         ],
         "result_tables": [
           {
-            "label": "Table 1: Synthesizability metrics for top-k Modes ( **molecules wit",
+            "label": "Table 1 shows the Saturn results and also results taken from RGFN’s",
             "columns": [
               "Method",
               "Modes (Yield)",
@@ -6104,7 +6071,8 @@
         "data_sources": [
           "ZINC",
           "PubChem",
-          "Enamine"
+          "Enamine",
+          "Lipophilicity"
         ],
         "dedup_rule": "TanimotoSimilarity( _node, benf_ ) _FMS ←_ ComputeFMS( _node, benf_ ) _block_reward ← TanSim ·_ 0.50",
         "hyperparams": [
@@ -6234,7 +6202,7 @@
             ]
           },
           {
-            "label": "Table 2: Results for constrained synthesis generative design with 1",
+            "label": "Table 2 shows that this is also learnable within the oracle budget,",
             "columns": [
               "**Cfiti**",
               "**Synt**",
@@ -6601,6 +6569,11 @@
         ],
         "dedup_rule": "Tanimoto similarities greater than 0.5",
         "hyperparams": [
+          {
+            "param": "epochs",
+            "value": "4",
+            "context": "ng performance based on early epochs may not be an effective   4"
+          },
           {
             "param": "threshold",
             "value": "73",
@@ -8585,7 +8558,8 @@
         ],
         "data_sources": [
           "PubChem",
-          "PDB"
+          "PDB",
+          "Lipophilicity"
         ],
         "split_spec": "training dataset sizes, ranging from 93-99%",
         "hyperparams": [
@@ -9401,290 +9375,290 @@
             "rows": [
               [
                 "albuterol_similarity",
-                "0_._636",
-                "0_._496",
-                "0_._656",
-                "0_._664",
-                "0_._583",
-                "0_._557",
-                "0_._886",
-                "0_._883",
+                "0.636",
+                "0.496",
+                "0.656",
+                "0.664",
+                "0.583",
+                "0.557",
+                "0.886",
+                "0.883",
                 "**0**_._**998**"
               ],
               [
                 "amlodipine_mpo",
-                "0_._519",
-                "0_._472",
-                "0_._541",
-                "0_._534",
-                "0_._501",
-                "0_._489",
-                "0_._637",
-                "0_._540",
+                "0.519",
+                "0.472",
+                "0.541",
+                "0.534",
+                "0.501",
+                "0.489",
+                "0.637",
+                "0.540",
                 "**0**_._**647**"
               ],
               [
                 "celecoxib_rediscovery",
-                "0_._411",
-                "0_._370",
-                "0_._447",
-                "0_._447",
-                "0_._424",
-                "0_._385",
-                "0_._402",
-                "0_._512",
+                "0.411",
+                "0.370",
+                "0.447",
+                "0.447",
+                "0.424",
+                "0.385",
+                "0.402",
+                "0.512",
                 "**0**_._**867**"
               ],
               [
                 "deco_hop",
-                "0_._593",
-                "0_._572",
-                "0_._596",
-                "0_._604",
-                "0_._581",
-                "0_._579",
-                "0_._588",
-                "0_._574",
+                "0.593",
+                "0.572",
+                "0.596",
+                "0.604",
+                "0.581",
+                "0.579",
+                "0.588",
+                "0.574",
                 "**0**_._**842**"
               ],
               [
                 "drd2",
-                "0_._857",
-                "0_._775",
-                "0_._859",
-                "0_._809",
-                "0_._833",
-                "0_._795",
+                "0.857",
+                "0.775",
+                "0.859",
+                "0.809",
+                "0.833",
+                "0.795",
                 "**0**_._**910**",
-                "0_._812",
-                "0_._756"
+                "0.812",
+                "0.756"
               ],
               [
                 "fexofenadine_mpo",
-                "0_._707",
-                "0_._650",
-                "0_._700",
-                "0_._682",
-                "0_._666",
-                "0_._679",
-                "0_._674",
-                "0_._680",
+                "0.707",
+                "0.650",
+                "0.700",
+                "0.682",
+                "0.666",
+                "0.679",
+                "0.674",
+                "0.680",
                 "**0**_._**883**"
               ],
               [
                 "gsk3b",
-                "0_._611",
-                "0_._589",
-                "0_._617",
+                "0.611",
+                "0.589",
+                "0.617",
                 "**0**_._**637**",
-                "0_._523",
-                "0_._539",
-                "0_._397",
-                "0_._496",
-                "0_._308"
+                "0.523",
+                "0.539",
+                "0.397",
+                "0.496",
+                "0.308"
               ],
               [
                 "isomers_c7h8n2o2",
-                "0_._545",
-                "0_._725",
-                "0_._779",
-                "0_._738",
-                "0_._735",
-                "0_._661",
-                "0_._737",
-                "0_._850",
+                "0.545",
+                "0.725",
+                "0.779",
+                "0.738",
+                "0.735",
+                "0.661",
+                "0.737",
+                "0.850",
                 "**0**_._**986**"
               ],
               [
                 "isomers_c9h10n2o2pf2cl",
-                "0_._599",
-                "0_._630",
-                "0_._672",
-                "0_._656",
-                "0_._630",
-                "0_._596",
-                "0_._635",
-                "0_._832",
+                "0.599",
+                "0.630",
+                "0.672",
+                "0.656",
+                "0.630",
+                "0.596",
+                "0.635",
+                "0.832",
                 "**0**_._**914**"
               ],
               [
                 "jnk3",
-                "0_._346",
-                "0_._315",
-                "0_._336",
+                "0.346",
+                "0.315",
+                "0.336",
                 "**0**_._**409**",
-                "0_._301",
-                "0_._294",
-                "0_._186",
-                "0_._342",
-                "0_._125"
+                "0.301",
+                "0.294",
+                "0.186",
+                "0.342",
+                "0.125"
               ],
               [
                 "median1",
-                "0_._213",
-                "0_._205",
-                "0_._217",
-                "0_._219",
-                "0_._208",
-                "0_._219",
-                "0_._236",
-                "0_._193",
+                "0.213",
+                "0.205",
+                "0.217",
+                "0.219",
+                "0.208",
+                "0.219",
+                "0.236",
+                "0.193",
                 "**0**_._**321**"
               ],
               [
                 "median2",
-                "0_._203",
-                "0_._188",
-                "0_._193",
-                "0_._204",
-                "0_._181",
-                "0_._184",
-                "0_._191",
-                "0_._197",
+                "0.203",
+                "0.188",
+                "0.193",
+                "0.204",
+                "0.181",
+                "0.184",
+                "0.191",
+                "0.197",
                 "**0**_._**322**"
               ],
               [
                 "mestranol_similarity",
-                "0_._427",
-                "0_._379",
-                "0_._423",
-                "0_._414",
-                "0_._362",
-                "0_._393",
-                "0_._399",
-                "0_._630",
+                "0.427",
+                "0.379",
+                "0.423",
+                "0.414",
+                "0.362",
+                "0.393",
+                "0.399",
+                "0.630",
                 "**0**_._**996**"
               ],
               [
                 "osimertinib_mpo",
-                "0_._766",
-                "0_._737",
-                "0_._759",
-                "0_._763",
-                "0_._751",
-                "0_._761",
-                "0_._779",
-                "0_._753",
+                "0.766",
+                "0.737",
+                "0.759",
+                "0.763",
+                "0.751",
+                "0.761",
+                "0.779",
+                "0.753",
                 "**0**_._**796**"
               ],
               [
                 "perindopril_mpo",
-                "0_._458",
-                "0_._404",
-                "0_._473",
-                "0_._462",
-                "0_._435",
-                "0_._422",
+                "0.458",
+                "0.404",
+                "0.473",
+                "0.462",
+                "0.435",
+                "0.422",
                 "**0**_._**655**",
-                "0_._422",
-                "0_._542"
+                "0.422",
+                "0.542"
               ],
               [
                 "qed",
-                "0_._912",
-                "0_._921",
-                "0_._925",
+                "0.912",
+                "0.921",
+                "0.925",
                 "**0**_._**928**",
-                "0_._914",
-                "0_._923",
-                "0_._919",
+                "0.914",
+                "0.923",
+                "0.919",
                 "**0**_._**928**",
-                "0_._903"
+                "0.903"
               ],
               [
                 "ranolazine_mpo",
                 "**0**_._**701**",
-                "0_._574",
-                "0_._687",
-                "0_._623",
-                "0_._620",
-                "0_._614",
-                "0_._640",
-                "0_._516",
-                "0_._233"
+                "0.574",
+                "0.687",
+                "0.623",
+                "0.620",
+                "0.614",
+                "0.640",
+                "0.516",
+                "0.233"
               ],
               [
                 "scaffold_hop",
-                "0_._478",
-                "0_._447",
-                "0_._480",
-                "0_._485",
-                "0_._461",
-                "0_._460",
-                "0_._473",
-                "0_._464",
+                "0.478",
+                "0.447",
+                "0.480",
+                "0.485",
+                "0.461",
+                "0.460",
+                "0.473",
+                "0.464",
                 "**0**_._**646**"
               ],
               [
                 "sitagliptin_mpo",
-                "0_._232",
-                "0_._261",
-                "0_._315",
-                "0_._227",
-                "0_._229",
-                "0_._245",
-                "0_._193",
+                "0.232",
+                "0.261",
+                "0.315",
+                "0.227",
+                "0.229",
+                "0.245",
+                "0.193",
                 "**0**_._**328**",
-                "0_._067"
+                "0.067"
               ],
               [
                 "thiothixene_rediscovery",
-                "0_._351",
-                "0_._311",
-                "0_._343",
-                "0_._377",
-                "0_._322",
-                "0_._336",
-                "0_._416",
-                "0_._478",
+                "0.351",
+                "0.311",
+                "0.343",
+                "0.377",
+                "0.322",
+                "0.336",
+                "0.416",
+                "0.478",
                 "**0**_._**719**"
               ],
               [
                 "troglitazone_rediscovery",
-                "0_._313",
-                "0_._246",
-                "0_._292",
-                "0_._277",
-                "0_._267",
-                "0_._262",
-                "0_._302",
-                "0_._387",
+                "0.313",
+                "0.246",
+                "0.292",
+                "0.277",
+                "0.267",
+                "0.262",
+                "0.302",
+                "0.387",
                 "**0**_._**841**"
               ],
               [
                 "valsartan_smarts",
-                "0_._000",
-                "0_._000",
-                "0_._000",
-                "0_._000",
-                "0_._000",
-                "0_._000",
-                "0_._000",
-                "0_._000",
-                "0_._000"
+                "0.000",
+                "0.000",
+                "0.000",
+                "0.000",
+                "0.000",
+                "0.000",
+                "0.000",
+                "0.000",
+                "0.000"
               ],
               [
                 "zaleplon_mpo",
-                "0_._392",
-                "0_._406",
-                "0_._404",
-                "0_._400",
-                "0_._374",
-                "0_._415",
-                "0_._392",
-                "0_._409",
+                "0.392",
+                "0.406",
+                "0.404",
+                "0.400",
+                "0.374",
+                "0.415",
+                "0.392",
+                "0.409",
                 "**0**_._**625**"
               ],
               [
                 "**Sum of scores (↑)**",
-                "11_._27",
-                "10_._68",
-                "11_._71",
-                "11_._56",
-                "10_._90",
-                "10_._81",
-                "11_._65",
-                "12_._23",
+                "11.27",
+                "10.68",
+                "11.71",
+                "11.56",
+                "10.90",
+                "10.81",
+                "11.65",
+                "12.23",
                 "**15**_._**42**"
               ]
             ]
@@ -9698,15 +9672,15 @@
             "rows": [
               [
                 "osimertinib_mpo<br>MT-MOL<br>w/o Tool<br>w/o Reviewer<br>w/o Double checker",
-                "**0**_._**796**_±_**0**_._**005**<br>0_._694_±_0_._054<br>0_._619_±_0_._140<br>0_._704_±_0_._017"
+                "**0**_._**796**_±_**0**_._**005**<br>0.694_±_0.054<br>0.619_±_0.140<br>0.704_±_0.017"
               ],
               [
                 "albuterol_similarity<br>MT-MOL<br>w/o Tool<br>w/o Reviewer<br>w/o Double checker",
-                "**0**_._**998**_±_**0**_._**000**<br>0_._750_±_0_._021<br>0_._991_±_0_._003<br>0_._996_±_0_._003"
+                "**0**_._**998**_±_**0**_._**000**<br>0.750_±_0.021<br>0.991_±_0.003<br>0.996_±_0.003"
               ],
               [
                 "mestranol_similarity<br>MT-MOL<br>w/o Tool<br>w/o Reviewer<br>w/o Double checker",
-                "**0**_._**996**_±_**0**_._**001**<br>0_._831_±_0_._052<br>0_._990_±_0_._002<br>0_._994_±_0_._002"
+                "**0**_._**996**_±_**0**_._**001**<br>0.831_±_0.052<br>0.990_±_0.002<br>0.994_±_0.002"
               ],
               [
                 "Table 2:**Ablation study.**AUC-Top10<br>ferent agent removals for each task.<br>and Grover,2025), and two variant",
@@ -9999,7 +9973,6 @@
           "BindingDB",
           "PDB"
         ],
-        "split_spec": "valid syntheses over 50%",
         "hyperparams": [
           {
             "param": "learning rate",
@@ -10029,7 +10002,7 @@
         ],
         "result_tables": [
           {
-            "label": "table_1",
+            "label": "Table 2 and Supplementary Table S3, when trained with their respect",
             "columns": [
               "Dataset",
               "Method",
@@ -11077,7 +11050,7 @@
         "data_sources": [
           "USPTO"
         ],
-        "split_spec": "split as proposed by [44], leading to 40,000, 500",
+        "split_spec": "split as proposed by [44], leading to 40,000",
         "hyperparams": [
           {
             "param": "learning rate",
@@ -11189,7 +11162,7 @@
               ],
               [
                 "noise levels",
-                "_σ_ = 0_._5",
+                "_σ_ = 0.5",
                 "82.1",
                 "85.0",
                 "85.2"
@@ -11983,7 +11956,6 @@
           "ChemCoTBench"
         ],
         "dedup_rule": "Tanimoto similarity _≥_ 0.6",
-        "split_spec": "validity with 95%",
         "result_tables": [
           {
             "label": "table_1",
@@ -13312,7 +13284,7 @@
             ]
           },
           {
-            "label": "Table 2",
+            "label": "Table 1, S3-GFN achieves a high positive ratio (0",
             "columns": [
               "Average Top-100",
               "Vina Docking Sc",
@@ -13570,7 +13542,8 @@
         ],
         "data_sources": [
           "ZINC",
-          "PubChem"
+          "PubChem",
+          "Lipophilicity"
         ],
         "split_spec": "training examples and keep only 40%",
         "hyperparams": [
@@ -13586,8 +13559,13 @@
           },
           {
             "param": "learning rate",
-            "value": "1",
-            "context": "2 steps before an update. The learning rate is set to 1"
+            "value": "1.0",
+            "context": "2 steps before an update. The learning rate is set to 1.0"
+          },
+          {
+            "param": "epochs",
+            "value": "16",
+            "context": "g. The model is trained for 5 epochs using BF16"
           },
           {
             "param": "learning rate",
@@ -13596,13 +13574,8 @@
           },
           {
             "param": "learning rate",
-            "value": "5",
-            "context": "the following exceptions: the learning rate is set to 5"
-          },
-          {
-            "param": "batch size",
-            "value": "2",
-            "context": "or 4 epochs with a per-device batch size of 2"
+            "value": "5.0",
+            "context": "the following exceptions: the learning rate is set to 5.0"
           }
         ],
         "result_tables": [
@@ -14133,12 +14106,13 @@
         ],
         "data_sources": [
           "MoleculeNet",
-          "ChemCoTBench"
+          "ChemCoTBench",
+          "Lipophilicity"
         ],
         "split_spec": "split the dataset into an 80/10/10",
         "result_tables": [
           {
-            "label": "Table 1",
+            "label": "Table 1 illustrate the predictive performance of MolEvolve across d",
             "columns": [
               "**Base Model**",
               "**Method**",
@@ -14576,8 +14550,8 @@
         "hyperparams": [
           {
             "param": "learning rate",
-            "value": "1",
-            "context": "999)| |Weight decay|0.0<br>| |Learning rate|1"
+            "value": "1.0",
+            "context": "999)| |Weight decay|0.0<br>| |Learning rate|1.0"
           },
           {
             "param": "batch size",
@@ -14585,14 +14559,24 @@
             "context": "ories per molecule|10| |Micro-batch size|20"
           },
           {
+            "param": "epochs",
+            "value": "2",
+            "context": "|Micro-batch size|20| |Update epochs per rollout|2"
+          },
+          {
             "param": "temperature",
-            "value": "0",
-            "context": "Inference uses a low decoding temperature _τ_ =0"
+            "value": "0.1",
+            "context": "Inference uses a low decoding temperature _τ_ =0.1"
           },
           {
             "param": "temperature",
             "value": "5",
             "context": "nvironment model and decoding temperature, the Enamine buildingblock filter, the maximum depth of 5"
+          },
+          {
+            "param": "epochs",
+            "value": "512",
+            "context": "-7B-Chat with LoRA (7B)|– (10 epochs, batch 512"
           }
         ],
         "result_tables": [
@@ -14692,7 +14676,7 @@
               ],
               [
                 "Adam(_β_1_, β_2)",
-                "(0_._9_,_ 0_._999)"
+                "(0.9_,_ 0.999)"
               ],
               [
                 "Weight decay",
@@ -14700,7 +14684,7 @@
               ],
               [
                 "Learning rate",
-                "1_._0_×_10<sup>_−_5</sup>"
+                "1.0_×_10<sup>_−_5</sup>"
               ],
               [
                 "Training steps",
@@ -15045,7 +15029,8 @@
         ],
         "data_sources": [
           "PubChem",
-          "ChemCoTBench"
+          "ChemCoTBench",
+          "Lipophilicity"
         ],
         "hyperparams": [
           {
@@ -15330,7 +15315,7 @@
           {
             "param": "learning rate",
             "value": "1",
-            "context": "= 0_._9_, β_2 = 0_._95)<br>| |Learning Rate|1"
+            "context": "β_1 = 0.9_, β_2 = 0.95)<br>| |Learning Rate|1"
           },
           {
             "param": "learning rate",
@@ -15475,7 +15460,7 @@
               ],
               [
                 "Optimizer",
-                "AdamW (_β_1 = 0_._9_, β_2 = 0_._95)<br>"
+                "AdamW (_β_1 = 0.9_, β_2 = 0.95)<br>"
               ],
               [
                 "Learning Rate",
@@ -15831,19 +15816,20 @@
           "MolEvolve"
         ],
         "data_sources": [
-          "ZINC"
+          "ZINC",
+          "Lipophilicity"
         ],
         "dedup_rule": "Tanimoto 0.79",
         "hyperparams": [
           {
             "param": "threshold",
-            "value": "0",
-            "context": "3.9 on average. At the strict threshold _τ_ = 0"
+            "value": "0.65",
+            "context": "3.9 on average. At the strict threshold _τ_ = 0.65"
           },
           {
             "param": "temperature",
-            "value": "0",
-            "context": " space. The InfoNCE loss with temperature _τc_ = 0"
+            "value": "0.07",
+            "context": " space. The InfoNCE loss with temperature _τc_ = 0.07"
           },
           {
             "param": "learning rate",
@@ -15854,6 +15840,11 @@
             "param": "learning rate",
             "value": "1",
             "context": "_proj<br>2e-4 (cosine)<br>128|Learning rate<br>Batch size<br>Epochs|1"
+          },
+          {
+            "param": "epochs",
+            "value": "3",
+            "context": " positions<br>L2 before avg| |Epochs|3"
           },
           {
             "param": "temperature",
@@ -16398,7 +16389,6 @@
           "PubChem",
           "USPTO"
         ],
-        "split_spec": "Validator` estimates _≥_ 80%",
         "hyperparams": [
           {
             "param": "temperature",
@@ -16408,7 +16398,7 @@
         ],
         "result_tables": [
           {
-            "label": "Table 2: Predictive performance on (1) the TDC test set with and wi",
+            "label": "Table 2, we consider how useful `Starling` -curated data is for tra",
             "columns": [
               "**Task**",
               "**Metric**",
@@ -17459,9 +17449,19 @@
         "split_spec": "splits [3, 23",
         "hyperparams": [
           {
+            "param": "epochs",
+            "value": "35%",
+            "context": "uidance reduces the number of epochs by 35%"
+          },
+          {
             "param": "top-k",
             "value": "50",
             "context": " of USPTO-50k.**   **Table 3: Top-k (exact match) accuracy on the USPTO-50"
+          },
+          {
+            "param": "epochs",
+            "value": "35%",
+            "context": ".** GRG reduces the number of epochs by 35%"
           },
           {
             "param": "learning rate",
@@ -17476,7 +17476,7 @@
         ],
         "result_tables": [
           {
-            "label": "Table 1: Top-** _𝑘_ **exact-match accuracy (%) on the USPTO-50k tes",
+            "label": "Table 1, node-level alignment not only improves top- _𝑘_ across the",
             "columns": [
               "Model",
               "Guidance granularity",
@@ -17561,7 +17561,7 @@
             ]
           },
           {
-            "label": "Table 2), indicating that the guided generator produces candidates",
+            "label": "Table 2 reports roundtrip coverage and accuracy using the Molecular",
             "columns": [
               "Model",
               "Top-1",
@@ -17923,7 +17923,8 @@
         "data_sources": [
           "ZINC",
           "ChEMBL",
-          "GEOM"
+          "GEOM",
+          "Lipophilicity"
         ],
         "result_tables": [
           {
@@ -18662,6 +18663,11 @@
             "param": "threshold",
             "value": "0.2",
             "context": "nk capacity_K_|5| |Similarity threshold in_Q_|0.2"
+          },
+          {
+            "param": "epochs",
+            "value": "1500",
+            "context": "100-80GB GPUs. We train for 4 epochs on OpenMolIns-light, with 1500"
           }
         ],
         "result_tables": [
@@ -18720,7 +18726,7 @@
             ]
           },
           {
-            "label": "Table 2: Ablation results on TOMG-Bench MOLOPT",
+            "label": "Table 2 isolates the two core mechanisms in Active-GRPO",
             "columns": [
               "Variant",
               "LogP SR_×_Sim_↑_",
@@ -18738,7 +18744,7 @@
                 "0.12",
                 "58_±_0.0033",
                 "0.1665",
-                "_−_0_._0108"
+                "_−_0.0108"
               ],
               [
                 "Active-G<br>Active-G<br>**Active-G**<br>0.04<br>im",
@@ -18747,14 +18753,14 @@
                 "0.12<br>0.12<br>**0.14**<br>**L**",
                 "20_±_0.0098<br>75_±_0.0072<br>**40**_±_**0.0081**<br>**ogP headroo**",
                 "0.1624<br>0.1659<br>**0.1773**<br>**m break**",
-                "_−_0_._0149<br>_−_0_._0114<br>—<br>**down**"
+                "_−_0.0149<br>_−_0.0114<br>—<br>**down**"
               ],
               [
                 "0.01<br>0.00<br>0.01<br>0.02<br>0.03<br>Active-GRPO - RePO SR x S",
                 "",
                 "",
                 "Bin<br>Q1<br>Q2<br>Q3<br>Q4<br>Q5",
-                "Range<br>(_−_3_._91_,_1_._30] <br>(1_._30_,_2_._25]<br>(2_._25_,_2_._94]<br>(2_._94_,_3_._63]<br>(3_._63_,_7_._36]",
+                "Range<br>(_−_3.91_,_1.30] <br>(1.30_,_2.25]<br>(2.25_,_2.94]<br>(2.94_,_3.63]<br>(3.63_,_7.36]",
                 "∆SR<br> +0.007<br>+0.014<br>+0.024<br>+0.032<br>+0.045",
                 "∆SR_×_Sim<br>+0.002<br>+0.007<br>+0.013<br>+0.022<br>+0.031"
               ]
@@ -18785,7 +18791,7 @@
               ],
               [
                 "Top-_k_size for_v_top",
-                "_k_ =_⌈_0_._33_G⌉_= 1"
+                "_k_ =_⌈_0.33_G⌉_= 1"
               ],
               [
                 "Guidance lower bound_β_min",
@@ -19427,7 +19433,7 @@
                 "3.5_±_3.5",
                 "4.1_±_4.0",
                 "4.8_±_5.4",
-                "n.s. (_p_=0_._158)",
+                "n.s. (_p_=0.158)",
                 "0.160 (small)"
               ],
               [
@@ -19435,7 +19441,7 @@
                 "2.5_±_3.5",
                 "2.8_±_3.2",
                 "3.8_±_5.2",
-                "n.s. (_p_=0_._214)",
+                "n.s. (_p_=0.214)",
                 "0.149 (small)"
               ],
               [
@@ -19451,7 +19457,7 @@
                 "0.4_±_0.8",
                 "1.2_±_2.0",
                 "1.0_±_2.5",
-                "_∗∗∗_(_H_=15_._6,_p_=0_._0004)",
+                "_∗∗∗_(_H_=15.6,_p_=0.0004)",
                 "0.244 (small)"
               ],
               [
@@ -19475,7 +19481,7 @@
                 "88.6%",
                 "83.9%",
                 "89.3%",
-                "n.s. (_p_=0_._38)",
+                "n.s. (_p_=0.38)",
                 "—"
               ],
               [
@@ -19483,7 +19489,7 @@
                 "100%",
                 "99.2%",
                 "100%",
-                "n.s. (_p_=0_._368)",
+                "n.s. (_p_=0.368)",
                 "—"
               ]
             ]
@@ -20064,7 +20070,8 @@
         ],
         "data_sources": [
           "ChEMBL",
-          "PDB"
+          "PDB",
+          "SIDER"
         ],
         "dedup_rule": "Tanimoto similarity (weight 0.15",
         "result_tables": [
@@ -20099,7 +20106,7 @@
                 "Expert review",
                 "rationale plausibility (1–5), blinded,<br>multi-rater",
                 "held-out redesign cases",
-                "mean_≥_3_._5, substantial agreement"
+                "mean_≥_3.5, substantial agreement"
               ]
             ]
           },
@@ -20692,7 +20699,8 @@
         ],
         "data_sources": [
           "ChEMBL",
-          "PDB"
+          "PDB",
+          "Lipophilicity"
         ],
         "dedup_rule": "Tanimoto similarity _Tc ≥_ 0.70",
         "hyperparams": [
@@ -20703,8 +20711,8 @@
           },
           {
             "param": "temperature",
-            "value": "1",
-            "context": "ion specifies fixed values of temperature = 1"
+            "value": "1.0",
+            "context": "ion specifies fixed values of temperature = 1.0"
           },
           {
             "param": "temperature",
@@ -21901,7 +21909,8 @@
           "GuacaMol",
           "MoleculeNet",
           "CrossDocked",
-          "PDB"
+          "PDB",
+          "Tox21"
         ],
         "dedup_rule": "Tanimoto similarity of at least 0.20",
         "split_spec": "split from the 30,000",
@@ -21927,19 +21936,19 @@
             "context": "Loshchilov and Hutter, 2019) (learning rate 3"
           },
           {
-            "param": "top-k",
-            "value": "2.2",
-            "context": "_0 / 2z3h_A)<br>best score in Top-K<br>2.2"
+            "param": "epochs",
+            "value": "20",
+            "context": " batches of 64, and up to 200 epochs with patience-20"
           },
           {
             "param": "top-k",
-            "value": "2.0",
-            "context": "st score in Top-K<br>2.2 mean(Top-K)<br>2.0"
+            "value": "2.2",
+            "context": "_0 / 2z3h_A)<br>best score in Top-K<br>2.2"
           }
         ],
         "result_tables": [
           {
-            "label": "table_1",
+            "label": "Table 1, CAGenMol-2 achieves a mean hit rate of 0",
             "columns": [
               "Property",
               "Hit-ID",
@@ -23006,8 +23015,8 @@
           },
           {
             "param": "threshold",
-            "value": "0",
-            "context": "t guidance mode with a pocket threshold of 0"
+            "value": "0.5",
+            "context": "t guidance mode with a pocket threshold of 0.5"
           }
         ],
         "result_tables": [
@@ -23613,11 +23622,18 @@
           "ZINC",
           "ChEMBL",
           "PubChem",
-          "MoleculeNet"
+          "MoleculeNet",
+          "Tox21",
+          "Lipophilicity"
         ],
         "dedup_rule": "Tanimoto distance was 0.671",
         "split_spec": "split [41] used by MolT5, with 3,300",
         "hyperparams": [
+          {
+            "param": "epochs",
+            "value": "100",
+            "context": "former (dimension 256) for 10 epochs with a shared 100"
+          },
           {
             "param": "threshold",
             "value": "0.4",
@@ -23629,9 +23645,9 @@
             "context": " 5ht1b/2 result at similarity threshold 0.6"
           },
           {
-            "param": "batch size",
+            "param": "epochs",
             "value": "256",
-            "context": "n inputs for 10 epochs, using batch size 256"
+            "context": ",000 validation inputs for 10 epochs, using batch size 256"
           },
           {
             "param": "learning rate",
@@ -23642,11 +23658,6 @@
             "param": "batch size",
             "value": "1",
             "context": "0 training steps, with global batch size 1"
-          },
-          {
-            "param": "learning rate",
-            "value": "3",
-            "context": "h global batch size 1,024 and learning rate 3"
           }
         ],
         "result_tables": [
@@ -23691,7 +23702,7 @@
               ],
               [
                 "deco_hop",
-                "0_._9279",
+                "0.9279",
                 "**0.960**",
                 "0.936",
                 "0.733",
@@ -23709,7 +23720,7 @@
               ],
               [
                 "fexofenadine_mpo",
-                "0_._8720",
+                "0.8720",
                 "**0.894**",
                 "0.856",
                 "0.856",
@@ -23727,7 +23738,7 @@
               ],
               [
                 "isomers_c7h8n2o2",
-                "0_._9511",
+                "0.9511",
                 "0.942",
                 "0.955",
                 "**0.969**",
@@ -23736,7 +23747,7 @@
               ],
               [
                 "isomers_c9h10n2o2pf2cl",
-                "0_._8842",
+                "0.8842",
                 "0.833",
                 "0.850",
                 "**0.897**",
@@ -23745,7 +23756,7 @@
               ],
               [
                 "jnk3",
-                "0_._8054",
+                "0.8054",
                 "**0.906**",
                 "0.904",
                 "0.764",
@@ -23790,7 +23801,7 @@
               ],
               [
                 "perindopril_mpo",
-                "0_._7126",
+                "0.7126",
                 "**0.718**",
                 "0.681",
                 "0.595",
@@ -23844,7 +23855,7 @@
               ],
               [
                 "troglitazone_redisc.",
-                "0_._8196",
+                "0.8196",
                 "**0.867**",
                 "0.448",
                 "0.511",
@@ -23862,7 +23873,7 @@
               ],
               [
                 "zaleplon_mpo",
-                "0_._5653",
+                "0.5653",
                 "**0.584**",
                 "0.486",
                 "0.552",
@@ -24220,6 +24231,11 @@
             "context": "ts reasoning and decisions at temperature 0.6"
           },
           {
+            "param": "epochs",
+            "value": "2",
+            "context": "val trajectories|3,142 / 64| |Epochs|2"
+          },
+          {
             "param": "batch size",
             "value": "4",
             "context": "/ 64| |Epochs|2| |Steps|429| |Batch size|4"
@@ -24227,7 +24243,7 @@
           {
             "param": "learning rate",
             "value": "1",
-            "context": "mW (_β_1=0_._9,_β_2=0_._95)| |Learning rate|1"
+            "context": "|AdamW (_β_1=0.9,_β_2=0.95)| |Learning rate|1"
           },
           {
             "param": "temperature",
@@ -24311,7 +24327,7 @@
             ]
           },
           {
-            "label": "Table 3: Ablation on the reasoning schema on USPTO-190, with all va",
+            "label": "Table 2 compares _Multi-Route_",
             "columns": [
               "**Variant**",
               "**Sc**",
@@ -24349,11 +24365,11 @@
                 "–",
                 "–",
                 "_L_0",
-                "0.989(+0_._000)",
-                "5.49(+0_._71)",
-                "0.691(+0_._063)",
-                "3.15(+0_._36)",
-                "**0.769**(+0_._049)"
+                "0.989(+0.000)",
+                "5.49(+0.71)",
+                "0.691(+0.063)",
+                "3.15(+0.36)",
+                "**0.769**(+0.049)"
               ],
               [
                 "_L_2",
@@ -24363,11 +24379,11 @@
                 "–",
                 "–",
                 "_L_1",
-                "**0.995**(+0_._006)",
-                "5.53(+0_._04)",
-                "0.722(+0_._031)",
-                "3.16(+0_._01)",
-                "0.742(_−_0_._027)"
+                "**0.995**(+0.006)",
+                "5.53(+0.04)",
+                "0.722(+0.031)",
+                "3.16(+0.01)",
+                "0.742(_−_0.027)"
               ],
               [
                 "_L_3-div",
@@ -24377,11 +24393,11 @@
                 "✓",
                 "–",
                 "_L_2",
-                "0.989(_−_0_._006)",
-                "**5.78**(+0_._25)",
-                "0.726(+0_._004)",
-                "3.34(+0_._18)",
-                "0.720(_−_0_._022)"
+                "0.989(_−_0.006)",
+                "**5.78**(+0.25)",
+                "0.726(+0.004)",
+                "3.34(+0.18)",
+                "0.720(_−_0.022)"
               ],
               [
                 "_L_3-ord",
@@ -24391,11 +24407,11 @@
                 "–",
                 "✓",
                 "_L_2",
-                "0.979(_−_0_._016)",
-                "5.08(_−_0_._45)",
-                "**0.756**(+0_._034)",
-                "3.20(+0_._04)",
-                "0.737(_−_0_._005)"
+                "0.979(_−_0.016)",
+                "5.08(_−_0.45)",
+                "**0.756**(+0.034)",
+                "3.20(+0.04)",
+                "0.737(_−_0.005)"
               ],
               [
                 "_L_3",
@@ -24405,11 +24421,11 @@
                 "✓",
                 "✓",
                 "_L_2",
-                "0.984(_−_0_._011)",
-                "5.59(+0_._06)",
-                "0.745(+0_._023)",
-                "**3.35**(+0_._19)",
-                "0.726(_−_0_._016)"
+                "0.984(_−_0.011)",
+                "5.59(+0.06)",
+                "0.745(+0.023)",
+                "**3.35**(+0.19)",
+                "0.726(_−_0.016)"
               ]
             ]
           }
@@ -24625,6 +24641,9 @@
           "RePO",
           "MolEvolve"
         ],
+        "data_sources": [
+          "Lipophilicity"
+        ],
         "hyperparams": [
           {
             "param": "threshold",
@@ -24638,8 +24657,8 @@
           },
           {
             "param": "threshold",
-            "value": "0",
-            "context": "r a more stringent similarity threshold _α_ = 0"
+            "value": "0.6",
+            "context": "r a more stringent similarity threshold _α_ = 0.6"
           }
         ],
         "result_tables": [
@@ -25479,7 +25498,7 @@
           {
             "param": "learning rate",
             "value": "3",
-            "context": "9, _β_ 2 = 0 _._ 999, initial learning rate of 3"
+            "context": "= 0.9, _β_ 2 = 0.999, initial learning rate of 3"
           },
           {
             "param": "batch size",
@@ -25487,14 +25506,9 @@
             "context": " PyTorch. We use an effective batch size of 64"
           },
           {
-            "param": "temperature",
-            "value": "0.6",
-            "context": "es, 16 Euler steps, a Poisson temperature of 0.6"
-          },
-          {
-            "param": "batch size",
-            "value": "4",
-            "context": "te selection and an effective batch size of 4"
+            "param": "epochs",
+            "value": "55",
+            "context": "h size of 64 and train for 64 epochs (approximately 55"
           },
           {
             "param": "temperature",
@@ -25505,6 +25519,11 @@
             "param": "batch size",
             "value": "4",
             "context": "te selection and an effective batch size of 4"
+          },
+          {
+            "param": "temperature",
+            "value": "0.6",
+            "context": "es, 16 Euler steps, a Poisson temperature of 0.6"
           }
         ],
         "result_tables": [
@@ -26282,1705 +26301,6 @@
         "one_click_script": "run.sh",
         "verification": "pending",
         "label": "复现包:factory_v2"
-      },
-      "attribution": "analyst_synthesis",
-      "evidence_ids": [],
-      "source_version": "",
-      "missing_states": {}
-    },
-    {
-      "id": "resulttable:2402.15864:main",
-      "type": "ResultTable",
-      "label": "Table 3) and CExTB (Table 4) to gain significant improvement",
-      "attrs": {
-        "run_id": "p6_run",
-        "table_label": "Table 3) and CExTB (Table 4) to gain significant improvements as a",
-        "caption": "Table 3) and CExTB (Table 4) to gain significant improvements as a",
-        "columns": [
-          "BL (↓W1)",
-          "BA (↓W1)",
-          "CEMMFF (↓W1)",
-          "CExTB (↓W1)"
-        ],
-        "rows": [
-          {
-            "model": "EDM",
-            "BL (↓W1)": "0.47",
-            "BA (↓W1)": "0.68",
-            "CEMMFF (↓W1)": "3.45",
-            "CExTB (↓W1)": "0.30"
-          },
-          {
-            "model": "MiDi",
-            "BL (↓W1)": "1.92",
-            "BA (↓W1)": "0.95",
-            "CEMMFF (↓W1)": "3.12",
-            "CExTB (↓W1)": "0.34"
-          },
-          {
-            "model": "JODO",
-            "BL (↓W1)": "0.62",
-            "BA (↓W1)": "0.83",
-            "CEMMFF (↓W1)": "1.41",
-            "CExTB (↓W1)": "0.22"
-          },
-          {
-            "model": "FMG",
-            "BL (↓W1)": "0.59_±_0.01",
-            "BA (↓W1)": "1.08 _±_0.12",
-            "CEMMFF (↓W1)": "2.15_±_0.385",
-            "CExTB (↓W1)": "0.71_±_0_._02"
-          },
-          {
-            "model": "FMG_β_=0",
-            "BL (↓W1)": "-",
-            "BA (↓W1)": "-",
-            "CEMMFF (↓W1)": "-",
-            "CExTB (↓W1)": "0.98"
-          }
-        ],
-        "source_paper": "paper:2402.15864",
-        "latex": "\\begin{table}[t]\n\\centering\n\\caption{Table 3) and CExTB (Table 4) to gain significant improvements as a}\n\\label{tab:2402.15864}\n\\begin{tabular}{lcccc}\n\\toprule\nModel & BL (↓W1) & BA (↓W1) & CEMMFF (↓W1) & CExTB (↓W1) \\\\\n\\midrule\nEDM & \\textbf{0.47} & \\textbf{0.68} & 3.45 & 0.30 \\\\\nMiDi & 1.92 & 0.95 & 3.12 & 0.34 \\\\\nJODO & 0.62 & 0.83 & \\textbf{1.41} & \\textbf{0.22} \\\\\nFMG & 0.59\\_±\\_0.01 & 1.08 \\_±\\_0.12 & 2.15\\_±\\_0.385 & 0.71\\_±\\_0\\_.\\_02 \\\\\nFMG\\_β\\_=0 & - & - & - & 0.98 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n",
-        "layer": "application",
-        "task": "writing",
-        "miner": "p6_tablegen",
-        "label": "Table 3) and CExTB (Table 4) to gain significant improvement"
-      },
-      "attribution": "analyst_synthesis",
-      "evidence_ids": [],
-      "source_version": "",
-      "missing_states": {}
-    },
-    {
-      "id": "resulttable:2407.12186:main",
-      "type": "ResultTable",
-      "label": "Table 3: Synthesizability metrics across various Saturn expe",
-      "attrs": {
-        "run_id": "p6_run",
-        "table_label": "Table 3: Synthesizability metrics across various Saturn experiments",
-        "caption": "Table 3: Synthesizability metrics across various Saturn experiments",
-        "columns": [
-          "Mol. weight (↓)",
-          "QED (↑)",
-          "SA score (↓)",
-          "AiZynth (↑)"
-        ],
-        "rows": [
-          {
-            "model": "Saturn-GA-ChEMBL",
-            "Mol. weight (↓)": "370.9",
-            "QED (↑)": "0.84",
-            "SA score (↓)": "2.44",
-            "AiZynth (↑)": "0.70"
-          },
-          {
-            "model": "Saturn-GA-ZINC",
-            "Mol. weight (↓)": "371.1",
-            "QED (↑)": "0.81",
-            "SA score (↓)": "2.45",
-            "AiZynth (↑)": "0.69"
-          },
-          {
-            "model": "Saturn-ChEMBL",
-            "Mol. weight (↓)": "486.2",
-            "QED (↑)": "0.28",
-            "SA score (↓)": "2.40",
-            "AiZynth (↑)": "0.82"
-          },
-          {
-            "model": "Saturn-GA-ChEMBL",
-            "Mol. weight (↓)": "464.1",
-            "QED (↑)": "0.34",
-            "SA score (↓)": "2.51",
-            "AiZynth (↑)": "0.68"
-          },
-          {
-            "model": "Saturn-ZINC",
-            "Mol. weight (↓)": "521.2",
-            "QED (↑)": "0.25",
-            "SA score (↓)": "2.40",
-            "AiZynth (↑)": "0.76"
-          },
-          {
-            "model": "Saturn-GA-ZINC",
-            "Mol. weight (↓)": "455.6",
-            "QED (↑)": "0.34",
-            "SA score (↓)": "2.48",
-            "AiZynth (↑)": "0.72"
-          },
-          {
-            "model": "Saturn-ChEMBL",
-            "Mol. weight (↓)": "376.7",
-            "QED (↑)": "0.80",
-            "SA score (↓)": "2.66",
-            "AiZynth (↑)": "0.39"
-          },
-          {
-            "model": "Saturn-ZINC",
-            "Mol. weight (↓)": "382.1",
-            "QED (↑)": "0.76",
-            "SA score (↓)": "2.43",
-            "AiZynth (↑)": "0.55"
-          },
-          {
-            "model": "Saturn-ChEMBL",
-            "Mol. weight (↓)": "511.9",
-            "QED (↑)": "0.26",
-            "SA score (↓)": "3.09",
-            "AiZynth (↑)": "0.14"
-          }
-        ],
-        "source_paper": "paper:2407.12186",
-        "latex": "\\begin{table}[t]\n\\centering\n\\caption{Table 3: Synthesizability metrics across various Saturn experiments}\n\\label{tab:2407.12186}\n\\begin{tabular}{lcccc}\n\\toprule\nModel & Mol. weight (↓) & QED (↑) & SA score (↓) & AiZynth (↑) \\\\\n\\midrule\nSaturn-GA-ChEMBL & \\textbf{370.9} & \\textbf{0.84} & 2.44 & 0.70 \\\\\nSaturn-GA-ZINC & 371.1 & 0.81 & 2.45 & 0.69 \\\\\nSaturn-ChEMBL & 486.2 & 0.28 & 2.40 & \\textbf{0.82} \\\\\nSaturn-GA-ChEMBL & 464.1 & 0.34 & 2.51 & 0.68 \\\\\nSaturn-ZINC & 521.2 & 0.25 & 2.40 & 0.76 \\\\\nSaturn-GA-ZINC & 455.6 & 0.34 & 2.48 & 0.72 \\\\\nSaturn-ChEMBL & 376.7 & 0.80 & 2.66 & 0.39 \\\\\nSaturn-ZINC & 382.1 & 0.76 & 2.43 & 0.55 \\\\\nSaturn-ChEMBL & 511.9 & 0.26 & 3.09 & 0.14 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n",
-        "layer": "application",
-        "task": "writing",
-        "miner": "p6_tablegen",
-        "label": "Table 3: Synthesizability metrics across various Saturn expe"
-      },
-      "attribution": "analyst_synthesis",
-      "evidence_ids": [],
-      "source_version": "",
-      "missing_states": {}
-    },
-    {
-      "id": "resulttable:2509.16084:main",
-      "type": "ResultTable",
-      "label": "Table 3 _|_ **Synthesizable goal-directed molecular optimiza",
-      "attrs": {
-        "run_id": "p6_run",
-        "table_label": "Table 3 _|_ **Synthesizable goal-directed molecular optimization re",
-        "caption": "Table 3 _|_ **Synthesizable goal-directed molecular optimization re",
-        "columns": [
-          "Graph GA-ReaSyn",
-          "Graph GA-SF",
-          "SynthesisNet",
-          "SynNet",
-          "DoG-Gen",
-          "DoG-AE",
-          "Graph GA"
-        ],
-        "rows": [
-          {
-            "model": "Synthesis",
-            "Graph GA-ReaSyn": "✓",
-            "Graph GA-SF": "✓",
-            "SynthesisNet": "✓",
-            "SynNet": "✓",
-            "DoG-Gen": "✓",
-            "DoG-AE": "✓",
-            "Graph GA": "x"
-          },
-          {
-            "model": "amlodipine_mpo",
-            "Graph GA-ReaSyn": "0.620",
-            "Graph GA-SF": "0.696",
-            "SynthesisNet": "0.608",
-            "SynNet": "0.567",
-            "DoG-Gen": "0.537",
-            "DoG-AE": "0.509",
-            "Graph GA": "0.651"
-          },
-          {
-            "model": "celecoxib_rediscovery",
-            "Graph GA-ReaSyn": "0.810",
-            "Graph GA-SF": "0.559",
-            "SynthesisNet": "0.582",
-            "SynNet": "0.443",
-            "DoG-Gen": "0.466",
-            "DoG-AE": "0.357",
-            "Graph GA": "0.682"
-          },
-          {
-            "model": "drd2",
-            "Graph GA-ReaSyn": "0.977",
-            "Graph GA-SF": "0.972",
-            "SynthesisNet": "0.960",
-            "SynNet": "0.969",
-            "DoG-Gen": "0.949",
-            "DoG-AE": "0.944",
-            "Graph GA": "0.970"
-          },
-          {
-            "model": "fexofenadine_mpo",
-            "Graph GA-ReaSyn": "0.788",
-            "Graph GA-SF": "0.786",
-            "SynthesisNet": "0.791",
-            "SynNet": "0.764",
-            "DoG-Gen": "0.697",
-            "DoG-AE": "0.681",
-            "Graph GA": "0.785"
-          },
-          {
-            "model": "gsk3b",
-            "Graph GA-ReaSyn": "0.889",
-            "Graph GA-SF": "0.803",
-            "SynthesisNet": "0.848",
-            "SynNet": "0.790",
-            "DoG-Gen": "0.832",
-            "DoG-AE": "0.602",
-            "Graph GA": "0.838"
-          },
-          {
-            "model": "jnk3",
-            "Graph GA-ReaSyn": "0.695",
-            "Graph GA-SF": "0.658",
-            "SynthesisNet": "0.639",
-            "SynNet": "0.631",
-            "DoG-Gen": "0.596",
-            "DoG-AE": "0.470",
-            "Graph GA": "0.693"
-          },
-          {
-            "model": "median1",
-            "Graph GA-ReaSyn": "0.274",
-            "Graph GA-SF": "0.308",
-            "SynthesisNet": "0.305",
-            "SynNet": "0.219",
-            "DoG-Gen": "0.218",
-            "DoG-AE": "0.172",
-            "Graph GA": "0.261"
-          },
-          {
-            "model": "median2",
-            "Graph GA-ReaSyn": "0.259",
-            "Graph GA-SF": "0.258",
-            "SynthesisNet": "0.257",
-            "SynNet": "0.237",
-            "DoG-Gen": "0.213",
-            "DoG-AE": "0.183",
-            "Graph GA": "0.257"
-          },
-          {
-            "model": "osimertinib_mpo",
-            "Graph GA-ReaSyn": "0.823",
-            "Graph GA-SF": "0.816",
-            "SynthesisNet": "0.810",
-            "SynNet": "0.797",
-            "DoG-Gen": "0.776",
-            "DoG-AE": "0.751",
-            "Graph GA": "0.829"
-          },
-          {
-            "model": "perindopril_mpo",
-            "Graph GA-ReaSyn": "0.561",
-            "Graph GA-SF": "0.530",
-            "SynthesisNet": "0.524",
-            "SynNet": "0.559",
-            "DoG-Gen": "0.475",
-            "DoG-AE": "0.433",
-            "Graph GA": "0.533"
-          },
-          {
-            "model": "ranolazine_mpo",
-            "Graph GA-ReaSyn": "0.752",
-            "Graph GA-SF": "0.751",
-            "SynthesisNet": "0.741",
-            "SynNet": "0.743",
-            "DoG-Gen": "0.712",
-            "DoG-AE": "0.690",
-            "Graph GA": "0.745"
-          },
-          {
-            "model": "sitagliptin_mpo",
-            "Graph GA-ReaSyn": "0.314",
-            "Graph GA-SF": "0.338",
-            "SynthesisNet": "0.313",
-            "SynNet": "0.026",
-            "DoG-Gen": "0.048",
-            "DoG-AE": "0.010",
-            "Graph GA": "0.524"
-          },
-          {
-            "model": "zaleplon_mpo",
-            "Graph GA-ReaSyn": "0.460",
-            "Graph GA-SF": "0.478",
-            "SynthesisNet": "0.528",
-            "SynNet": "0.341",
-            "DoG-Gen": "0.123",
-            "DoG-AE": "0.050",
-            "Graph GA": "0.458"
-          },
-          {
-            "model": "Average score",
-            "Graph GA-ReaSyn": "0.633",
-            "Graph GA-SF": "0.612",
-            "SynthesisNet": "0.608",
-            "SynNet": "0.545",
-            "DoG-Gen": "0.511",
-            "DoG-AE": "0.450",
-            "Graph GA": "0.633"
-          }
-        ],
-        "source_paper": "paper:2509.16084",
-        "latex": "\\begin{table}[t]\n\\centering\n\\caption{Table 3 \\_|\\_ **Synthesizable goal-directed molecular optimization re}\n\\label{tab:2509.16084}\n\\begin{tabular}{lccccccc}\n\\toprule\nModel & Graph GA-ReaSyn & Graph GA-SF & SynthesisNet & SynNet & DoG-Gen & DoG-AE & Graph GA \\\\\n\\midrule\nSynthesis & ✓ & ✓ & ✓ & ✓ & ✓ & ✓ & x \\\\\namlodipine\\_mpo & 0.620 & 0.696 & 0.608 & 0.567 & 0.537 & 0.509 & 0.651 \\\\\ncelecoxib\\_rediscovery & \\textbf{0.810} & \\textbf{0.559} & \\textbf{0.582} & \\textbf{0.443} & \\textbf{0.466} & \\textbf{0.357} & \\textbf{0.682} \\\\\ndrd2 & 0.977 & 0.972 & 0.960 & 0.969 & 0.949 & 0.944 & 0.970 \\\\\nfexofenadine\\_mpo & 0.788 & 0.786 & 0.791 & 0.764 & 0.697 & 0.681 & 0.785 \\\\\ngsk3b & 0.889 & 0.803 & 0.848 & 0.790 & 0.832 & 0.602 & 0.838 \\\\\njnk3 & 0.695 & 0.658 & 0.639 & 0.631 & 0.596 & 0.470 & 0.693 \\\\\nmedian1 & 0.274 & 0.308 & 0.305 & 0.219 & 0.218 & 0.172 & 0.261 \\\\\nmedian2 & 0.259 & 0.258 & 0.257 & 0.237 & 0.213 & 0.183 & 0.257 \\\\\nosimertinib\\_mpo & 0.823 & 0.816 & 0.810 & 0.797 & 0.776 & 0.751 & 0.829 \\\\\nperindopril\\_mpo & 0.561 & 0.530 & 0.524 & 0.559 & 0.475 & 0.433 & 0.533 \\\\\nranolazine\\_mpo & 0.752 & 0.751 & 0.741 & 0.743 & 0.712 & 0.690 & 0.745 \\\\\nsitagliptin\\_mpo & 0.314 & 0.338 & 0.313 & 0.026 & 0.048 & 0.010 & 0.524 \\\\\nzaleplon\\_mpo & 0.460 & 0.478 & 0.528 & 0.341 & 0.123 & 0.050 & 0.458 \\\\\nAverage score & 0.633 & 0.612 & 0.608 & 0.545 & 0.511 & 0.450 & 0.633 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n",
-        "layer": "application",
-        "task": "writing",
-        "miner": "p6_tablegen",
-        "label": "Table 3 _|_ **Synthesizable goal-directed molecular optimiza"
-      },
-      "attribution": "analyst_synthesis",
-      "evidence_ids": [],
-      "source_version": "",
-      "missing_states": {}
-    },
-    {
-      "id": "resulttable:2512.20333:main",
-      "type": "ResultTable",
-      "label": "Table 1 | Success rates of identifying synthesizable analogu",
-      "attrs": {
-        "run_id": "p6_run",
-        "table_label": "Table 1 | Success rates of identifying synthesizable analogues at v",
-        "caption": "Table 1 | Success rates of identifying synthesizable analogues at v",
-        "columns": [
-          "**Sim >0.5**",
-          "**Sim >0.6**",
-          "**Sim >0.7**",
-          "**Sim >0.8**"
-        ],
-        "rows": [
-          {
-            "model": "P2M-ChemProjector",
-            "**Sim >0.5**": "21.6",
-            "**Sim >0.6**": "9.8",
-            "**Sim >0.7**": "4.2",
-            "**Sim >0.8**": "1.9"
-          },
-          {
-            "model": "P2M-SynFormer",
-            "**Sim >0.5**": "30.7",
-            "**Sim >0.6**": "14.1",
-            "**Sim >0.7**": "6.2",
-            "**Sim >0.8**": "2.9"
-          },
-          {
-            "model": "P2M-ReaSyn",
-            "**Sim >0.5**": "30.4",
-            "**Sim >0.6**": "15.4",
-            "**Sim >0.7**": "6.4",
-            "**Sim >0.8**": "3.0"
-          },
-          {
-            "model": "P2M-SynCraft (Gemini-2.5-Pro)",
-            "**Sim >0.5**": "42.7",
-            "**Sim >0.6**": "28.4",
-            "**Sim >0.7**": "11.9",
-            "**Sim >0.8**": "3.2"
-          },
-          {
-            "model": "P2M-SynCraft (GPT-5.2)<sup>‡</sup>",
-            "**Sim >0.5**": "39.0",
-            "**Sim >0.6**": "27.1",
-            "**Sim >0.7**": "12.7",
-            "**Sim >0.8**": "2.6"
-          },
-          {
-            "model": "P2M-SynCraft (DeepSeek-V4-Pro)<sup>†</sup>",
-            "**Sim >0.5**": "64.3",
-            "**Sim >0.6**": "50.1",
-            "**Sim >0.7**": "27.8",
-            "**Sim >0.8**": "8.5"
-          },
-          {
-            "model": "P2M-SynCraft (DeepSeek-V4-Flash)<sup>†</sup>",
-            "**Sim >0.5**": "64.9",
-            "**Sim >0.6**": "48.2",
-            "**Sim >0.7**": "28.5",
-            "**Sim >0.8**": "8.2"
-          },
-          {
-            "model": "ResGen-ChemProjector",
-            "**Sim >0.5**": "28.3",
-            "**Sim >0.6**": "14.8",
-            "**Sim >0.7**": "7.2",
-            "**Sim >0.8**": "2.0"
-          },
-          {
-            "model": "ResGen-SynFormer",
-            "**Sim >0.5**": "33.8",
-            "**Sim >0.6**": "19.9",
-            "**Sim >0.7**": "8.7",
-            "**Sim >0.8**": "3.5"
-          },
-          {
-            "model": "ResGen-ReaSyn",
-            "**Sim >0.5**": "37.5",
-            "**Sim >0.6**": "22.0",
-            "**Sim >0.7**": "10.5",
-            "**Sim >0.8**": "4.3"
-          },
-          {
-            "model": "ResGen-SynCraft (Gemini-2.5-Pro)",
-            "**Sim >0.5**": "44.7",
-            "**Sim >0.6**": "29.1",
-            "**Sim >0.7**": "13.1",
-            "**Sim >0.8**": "3.5"
-          },
-          {
-            "model": "ResGen-SynCraft (GPT-5.2)<sup>‡</sup>",
-            "**Sim >0.5**": "44.5",
-            "**Sim >0.6**": "31.6",
-            "**Sim >0.7**": "16.9",
-            "**Sim >0.8**": "4.8"
-          },
-          {
-            "model": "ResGen-SynCraft (DeepSeek-V4-Pro)<sup>†</sup>",
-            "**Sim >0.5**": "65.7",
-            "**Sim >0.6**": "51.3",
-            "**Sim >0.7**": "29.0",
-            "**Sim >0.8**": "10.0"
-          },
-          {
-            "model": "ResGen-SynCraft (DeepSeek-V4-Flash)<sup>†</sup>",
-            "**Sim >0.5**": "65.2",
-            "**Sim >0.6**": "50.1",
-            "**Sim >0.7**": "28.3",
-            "**Sim >0.8**": "8.6"
-          }
-        ],
-        "source_paper": "paper:2512.20333",
-        "latex": "\\begin{table}[t]\n\\centering\n\\caption{Table 1 | Success rates of identifying synthesizable analogues at v}\n\\label{tab:2512.20333}\n\\begin{tabular}{lcccc}\n\\toprule\nModel & **Sim >0.5** & **Sim >0.6** & **Sim >0.7** & **Sim >0.8** \\\\\n\\midrule\nP2M-ChemProjector & 21.6 & 9.8 & 4.2 & 1.9 \\\\\nP2M-SynFormer & 30.7 & 14.1 & 6.2 & 2.9 \\\\\nP2M-ReaSyn & 30.4 & 15.4 & 6.4 & 3.0 \\\\\nP2M-SynCraft (Gemini-2.5-Pro) & 42.7 & 28.4 & 11.9 & 3.2 \\\\\nP2M-SynCraft (GPT-5.2)<sup>‡</sup> & 39.0 & 27.1 & 12.7 & 2.6 \\\\\nP2M-SynCraft (DeepSeek-V4-Pro)<sup>†</sup> & 64.3 & 50.1 & 27.8 & 8.5 \\\\\nP2M-SynCraft (DeepSeek-V4-Flash)<sup>†</sup> & 64.9 & 48.2 & 28.5 & 8.2 \\\\\nResGen-ChemProjector & 28.3 & 14.8 & 7.2 & 2.0 \\\\\nResGen-SynFormer & 33.8 & 19.9 & 8.7 & 3.5 \\\\\nResGen-ReaSyn & 37.5 & 22.0 & 10.5 & 4.3 \\\\\nResGen-SynCraft (Gemini-2.5-Pro) & 44.7 & 29.1 & 13.1 & 3.5 \\\\\nResGen-SynCraft (GPT-5.2)<sup>‡</sup> & 44.5 & 31.6 & 16.9 & 4.8 \\\\\nResGen-SynCraft (DeepSeek-V4-Pro)<sup>†</sup> & \\textbf{65.7} & \\textbf{51.3} & \\textbf{29.0} & \\textbf{10.0} \\\\\nResGen-SynCraft (DeepSeek-V4-Flash)<sup>†</sup> & 65.2 & 50.1 & 28.3 & 8.6 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n",
-        "layer": "application",
-        "task": "writing",
-        "miner": "p6_tablegen",
-        "label": "Table 1 | Success rates of identifying synthesizable analogu"
-      },
-      "attribution": "analyst_synthesis",
-      "evidence_ids": [],
-      "source_version": "",
-      "missing_states": {}
-    },
-    {
-      "id": "resulttable:2603.24382:main",
-      "type": "ResultTable",
-      "label": "Table 1",
-      "attrs": {
-        "run_id": "p6_run",
-        "table_label": "Table 1",
-        "caption": "Table 1",
-        "columns": [
-          "**Regressio**",
-          "**n (RMSE**_↓_**)**",
-          "**Classific**",
-          "**iation (RO**",
-          "**i C-AUC**_↑_**)**"
-        ],
-        "rows": [
-          {
-            "model": "257BItt",
-            "**Regressio**": "1.7160",
-            "**n (RMSE**_↓_**)**": "2.5412",
-            "**Classific**": "0.6968",
-            "**iation (RO**": "0.5608",
-            "**i C-AUC**_↑_**)**": "0.6476"
-          },
-          {
-            "model": "Qwen.--nsruc",
-            "**Regressio**": "1.8420",
-            "**n (RMSE**_↓_**)**": "-",
-            "**Classific**": "0.6102",
-            "**iation (RO**": "0.5810",
-            "**i C-AUC**_↑_**)**": "-"
-          },
-          {
-            "model": "GPT-4o-mini",
-            "**Regressio**": "1.2355",
-            "**n (RMSE**_↓_**)**": "1.7800",
-            "**Classific**": "0.7762",
-            "**iation (RO**": "0.6392",
-            "**i C-AUC**_↑_**)**": "0.6823"
-          },
-          {
-            "model": "GPT-4o",
-            "**Regressio**": "1.4237",
-            "**n (RMSE**_↓_**)**": "1.2967",
-            "**Classific**": "0.7663",
-            "**iation (RO**": "0.6271",
-            "**i C-AUC**_↑_**)**": "0.6209"
-          },
-          {
-            "model": "GNN",
-            "**Regressio**": "1.2182",
-            "**n (RMSE**_↓_**)**": "1.5481",
-            "**Classific**": "0.7326",
-            "**iation (RO**": "0.6953",
-            "**i C-AUC**_↑_**)**": "0.7450"
-          },
-          {
-            "model": "s",
-            "**Regressio**": "0.9260",
-            "**n (RMSE**_↓_**)**": "1.2367",
-            "**Classific**": "0.7695",
-            "**iation (RO**": "0.7012",
-            "**i C-AUC**_↑_**)**": "0.7788"
-          },
-          {
-            "model": "Tbd dl",
-            "**Regressio**": "0.9364",
-            "**n (RMSE**_↓_**)**": "0.9833",
-            "**Classific**": "0.6428",
-            "**iation (RO**": "0.6864",
-            "**i C-AUC**_↑_**)**": "0.7020"
-          },
-          {
-            "model": "ree-ase moe",
-            "**Regressio**": "0.8287",
-            "**n (RMSE**_↓_**)**": "1.1135",
-            "**Classific**": "0.6352",
-            "**iation (RO**": "0.6037",
-            "**i C-AUC**_↑_**)**": "0.5566"
-          },
-          {
-            "model": "Linear model",
-            "**Regressio**": "0.9970",
-            "**n (RMSE**_↓_**)**": "1.0651",
-            "**Classific**": "0.6334",
-            "**iation (RO**": "0.6727",
-            "**i C-AUC**_↑_**)**": "0.6571"
-          }
-        ],
-        "source_paper": "paper:2603.24382",
-        "latex": "\\begin{table}[t]\n\\centering\n\\caption{Table 1}\n\\label{tab:2603.24382}\n\\begin{tabular}{lccccc}\n\\toprule\nModel & **Regressio** & **n (RMSE**\\_↓\\_**)** & **Classific** & **iation (RO** & **i C-AUC**\\_↑\\_**)** \\\\\n\\midrule\n257BItt & 1.7160 & 2.5412 & 0.6968 & 0.5608 & 0.6476 \\\\\nQwen.--nsruc & \\textbf{1.8420} & - & 0.6102 & 0.5810 & - \\\\\nGPT-4o-mini & 1.2355 & 1.7800 & \\textbf{0.7762} & 0.6392 & 0.6823 \\\\\nGPT-4o & 1.4237 & 1.2967 & 0.7663 & 0.6271 & 0.6209 \\\\\nGNN & 1.2182 & 1.5481 & 0.7326 & 0.6953 & \\textbf{0.7450} \\\\\ns & 0.9260 & \\textbf{1.2367} & 0.7695 & \\textbf{0.7012} & 0.7788 \\\\\nTbd dl & 0.9364 & 0.9833 & 0.6428 & 0.6864 & 0.7020 \\\\\nree-ase moe & 0.8287 & 1.1135 & 0.6352 & 0.6037 & 0.5566 \\\\\nLinear model & 0.9970 & 1.0651 & 0.6334 & 0.6727 & 0.6571 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n",
-        "layer": "application",
-        "task": "writing",
-        "miner": "p6_tablegen",
-        "label": "Table 1"
-      },
-      "attribution": "analyst_synthesis",
-      "evidence_ids": [],
-      "source_version": "",
-      "missing_states": {}
-    },
-    {
-      "id": "resulttable:2604.23061:main",
-      "type": "ResultTable",
-      "label": "table_2",
-      "attrs": {
-        "run_id": "p6_run",
-        "table_label": "table_2",
-        "caption": "table_2",
-        "columns": [
-          "(IND)",
-          "",
-          "Out",
-          "-of-Domai",
-          "n (OOD",
-          ")"
-        ],
-        "rows": [
-          {
-            "model": "GeLLM<sup>4</sup>O-CLlama<br>_RL Post-Training (Ours:_",
-            "(IND)": "0.56",
-            "": "61.3",
-            "Out": "25.2",
-            "-of-Domai": "10.2",
-            "n (OOD": "0.57",
-            ")": "6.5"
-          },
-          {
-            "model": "GDPOLlama",
-            "(IND)": "0.57",
-            "": "110.3",
-            "Out": "35.6",
-            "-of-Domai": "19.5",
-            "n (OOD": "0.59",
-            ")": "19.1"
-          }
-        ],
-        "source_paper": "paper:2604.23061",
-        "latex": "\\begin{table}[t]\n\\centering\n\\caption{table\\_2}\n\\label{tab:2604.23061}\n\\begin{tabular}{lcccccc}\n\\toprule\nModel & (IND) &  & Out & -of-Domai & n (OOD & ) \\\\\n\\midrule\nGeLLM<sup>4</sup>O-CLlama<br>\\_RL Post-Training (Ours:\\_ & 0.56 & 61.3 & 25.2 & 10.2 & 0.57 & 6.5 \\\\\nGDPOLlama & \\textbf{0.57} & \\textbf{110.3} & \\textbf{35.6} & \\textbf{19.5} & \\textbf{0.59} & \\textbf{19.1} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n",
-        "layer": "application",
-        "task": "writing",
-        "miner": "p6_tablegen",
-        "label": "table_2"
-      },
-      "attribution": "analyst_synthesis",
-      "evidence_ids": [],
-      "source_version": "",
-      "missing_states": {}
-    },
-    {
-      "id": "resulttable:2605.07022:main",
-      "type": "ResultTable",
-      "label": "Table 3: Human-validated label error rates on molecules in f",
-      "attrs": {
-        "run_id": "p6_run",
-        "table_label": "Table 3: Human-validated label error rates on molecules in four man",
-        "caption": "Table 3: Human-validated label error rates on molecules in four man",
-        "columns": [
-          "Mols.",
-          "Baseline",
-          "`Starling`",
-          "Lit.",
-          "Confirmed-wrong",
-          "Confirmed-wrong"
-        ],
-        "rows": [
-          {
-            "model": "Dataset",
-            "Mols.": "Reviewed",
-            "Baseline": "wrong",
-            "`Starling`": "wrong",
-            "Lit.": "ambiguous",
-            "Confirmed-wrong": "`Starling`rate"
-          },
-          {
-            "model": "Bioavailability_Ma",
-            "Mols.": "34",
-            "Baseline": "25",
-            "`Starling`": "0",
-            "Lit.": "9",
-            "Confirmed-wrong": "0.0"
-          },
-          {
-            "model": "BBB_Martins",
-            "Mols.": "138",
-            "Baseline": "98",
-            "`Starling`": "10",
-            "Lit.": "30",
-            "Confirmed-wrong": "1.7"
-          },
-          {
-            "model": "LD50_Zhu",
-            "Mols.": "95",
-            "Baseline": "37",
-            "`Starling`": "10",
-            "Lit.": "48",
-            "Confirmed-wrong": "1.5"
-          },
-          {
-            "model": "B3DB",
-            "Mols.": "316",
-            "Baseline": "214",
-            "`Starling`": "20",
-            "Lit.": "78",
-            "Confirmed-wrong": "1.8"
-          }
-        ],
-        "source_paper": "paper:2605.07022",
-        "latex": "\\begin{table}[t]\n\\centering\n\\caption{Table 3: Human-validated label error rates on molecules in four man}\n\\label{tab:2605.07022}\n\\begin{tabular}{lcccccc}\n\\toprule\nModel & Mols. & Baseline & `Starling` & Lit. & Confirmed-wrong & Confirmed-wrong \\\\\n\\midrule\nDataset & Reviewed & wrong & wrong & ambiguous & `Starling`rate & `Starling`rate \\\\\nBioavailability\\_Ma & 34 & 25 & 0 & 9 & 0.0 & 0.0 \\\\\nBBB\\_Martins & 138 & 98 & 10 & 30 & 1.7 & 1.7 \\\\\nLD50\\_Zhu & \\textbf{95} & \\textbf{37} & \\textbf{10} & \\textbf{48} & \\textbf{1.5} & \\textbf{1.5} \\\\\nB3DB & 316 & 214 & 20 & 78 & 1.8 & 1.8 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n",
-        "layer": "application",
-        "task": "writing",
-        "miner": "p6_tablegen",
-        "label": "Table 3: Human-validated label error rates on molecules in f"
-      },
-      "attribution": "analyst_synthesis",
-      "evidence_ids": [],
-      "source_version": "",
-      "missing_states": {}
-    },
-    {
-      "id": "resulttable:2606.03660:main",
-      "type": "ResultTable",
-      "label": "table_3",
-      "attrs": {
-        "run_id": "p6_run",
-        "table_label": "table_3",
-        "caption": "table_3",
-        "columns": [
-          "**Produc**",
-          "**Retros**",
-          "**Template/**",
-          "**Component Re**",
-          "**Conditi**",
-          "**Yield**"
-        ],
-        "rows": [
-          {
-            "model": "Qwen3.5 Plus",
-            "**Produc**": "45.3",
-            "**Retros**": "18.5",
-            "**Template/**": "70.8",
-            "**Component Re**": "31.8",
-            "**Conditi**": "35.5",
-            "**Yield**": "0.295"
-          },
-          {
-            "model": "DeepSeek-V4",
-            "**Produc**": "33.3",
-            "**Retros**": "15.0",
-            "**Template/**": "76.0",
-            "**Component Re**": "35.2",
-            "**Conditi**": "34.0",
-            "**Yield**": "0.288"
-          },
-          {
-            "model": "GPT-5.2",
-            "**Produc**": "24.0",
-            "**Retros**": "8.0",
-            "**Template/**": "72.8",
-            "**Component Re**": "27.8",
-            "**Conditi**": "33.0",
-            "**Yield**": "0.241"
-          },
-          {
-            "model": "Gemini-3.1",
-            "**Produc**": "52.7",
-            "**Retros**": "28.5",
-            "**Template/**": "86.2",
-            "**Component Re**": "39.2",
-            "**Conditi**": "37.0",
-            "**Yield**": "0.299"
-          },
-          {
-            "model": "DeepSeek-V3.2",
-            "**Produc**": "18.3",
-            "**Retros**": "2.0",
-            "**Template/**": "68.0",
-            "**Component Re**": "24.7",
-            "**Conditi**": "34.5",
-            "**Yield**": "0.303"
-          },
-          {
-            "model": "Doubao-2Pro",
-            "**Produc**": "39.8",
-            "**Retros**": "12.5",
-            "**Template/**": "78.0",
-            "**Component Re**": "33.7",
-            "**Conditi**": "33.5",
-            "**Yield**": "0.295"
-          },
-          {
-            "model": "GLM-5.1",
-            "**Produc**": "35.7",
-            "**Retros**": "8.0",
-            "**Template/**": "81.0",
-            "**Component Re**": "33.7",
-            "**Conditi**": "38.0",
-            "**Yield**": "0.309"
-          },
-          {
-            "model": "Claude-Sonnet",
-            "**Produc**": "42.0",
-            "**Retros**": "20.5",
-            "**Template/**": "84.0",
-            "**Component Re**": "35.0",
-            "**Conditi**": "36.5",
-            "**Yield**": "0.233"
-          }
-        ],
-        "source_paper": "paper:2606.03660",
-        "latex": "\\begin{table}[t]\n\\centering\n\\caption{table\\_3}\n\\label{tab:2606.03660}\n\\begin{tabular}{lcccccc}\n\\toprule\nModel & **Produc** & **Retros** & **Template/** & **Component Re** & **Conditi** & **Yield** \\\\\n\\midrule\nQwen3.5 Plus & 45.3 & 18.5 & 70.8 & 31.8 & 35.5 & 0.295 \\\\\nDeepSeek-V4 & 33.3 & 15.0 & 76.0 & 35.2 & 34.0 & 0.288 \\\\\nGPT-5.2 & 24.0 & 8.0 & 72.8 & 27.8 & 33.0 & 0.241 \\\\\nGemini-3.1 & \\textbf{52.7} & \\textbf{28.5} & \\textbf{86.2} & \\textbf{39.2} & 37.0 & 0.299 \\\\\nDeepSeek-V3.2 & 18.3 & 2.0 & 68.0 & 24.7 & 34.5 & 0.303 \\\\\nDoubao-2Pro & 39.8 & 12.5 & 78.0 & 33.7 & 33.5 & 0.295 \\\\\nGLM-5.1 & 35.7 & 8.0 & 81.0 & 33.7 & \\textbf{38.0} & \\textbf{0.309} \\\\\nClaude-Sonnet & 42.0 & 20.5 & 84.0 & 35.0 & 36.5 & 0.233 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n",
-        "layer": "application",
-        "task": "writing",
-        "miner": "p6_tablegen",
-        "label": "table_3"
-      },
-      "attribution": "analyst_synthesis",
-      "evidence_ids": [],
-      "source_version": "",
-      "missing_states": {}
-    },
-    {
-      "id": "resulttable:2605.24428:main",
-      "type": "ResultTable",
-      "label": "Table 4: Representation entanglement via joint modeling of a",
-      "attrs": {
-        "run_id": "p6_run",
-        "table_label": "Table 4: Representation entanglement via joint modeling of auxiliar",
-        "caption": "Table 4: Representation entanglement via joint modeling of auxiliar",
-        "columns": [
-          "Dim",
-          "Top-1",
-          "Top-3",
-          "Top-5",
-          "Top-10",
-          "Diversity"
-        ],
-        "rows": [
-          {
-            "model": "RetroBridge (Base)",
-            "Dim": "–",
-            "Top-1": "50.8",
-            "Top-3": "71.1",
-            "Top-5": "76.0",
-            "Top-10": "80.3",
-            "Diversity": "12.9"
-          },
-          {
-            "model": "RB-REG (reaction type)",
-            "Dim": "10",
-            "Top-1": "60.0",
-            "Top-3": "74.1",
-            "Top-5": "78.0",
-            "Top-10": "80.4",
-            "Diversity": "11.7"
-          },
-          {
-            "model": "RB-REG (RMAT CLS)",
-            "Dim": "64",
-            "Top-1": "58.8",
-            "Top-3": "77.0",
-            "Top-5": "80.8",
-            "Top-10": "83.8",
-            "Diversity": "13.2"
-          },
-          {
-            "model": "RB-REG (Uni-Mol+ CLS)",
-            "Dim": "64",
-            "Top-1": "59.2",
-            "Top-3": "77.8",
-            "Top-5": "81.0",
-            "Top-10": "83.2",
-            "Diversity": "10.3"
-          },
-          {
-            "model": "RB-REG (Uni-RXN CLS)",
-            "Dim": "64",
-            "Top-1": "58.6",
-            "Top-3": "74.6",
-            "Top-5": "78.0",
-            "Top-10": "80.2",
-            "Diversity": "9.8"
-          },
-          {
-            "model": "RB-REG (Uni-RXN CLS)",
-            "Dim": "16",
-            "Top-1": "58.4",
-            "Top-3": "73.5",
-            "Top-5": "76.6",
-            "Top-10": "79.0",
-            "Diversity": "10.9"
-          }
-        ],
-        "source_paper": "paper:2605.24428",
-        "latex": "\\begin{table}[t]\n\\centering\n\\caption{Table 4: Representation entanglement via joint modeling of auxiliar}\n\\label{tab:2605.24428}\n\\begin{tabular}{lcccccc}\n\\toprule\nModel & Dim & Top-1 & Top-3 & Top-5 & Top-10 & Diversity \\\\\n\\midrule\nRetroBridge (Base) & – & 50.8 & 71.1 & 76.0 & 80.3 & 12.9 \\\\\nRB-REG (reaction type) & 10 & \\textbf{60.0} & 74.1 & 78.0 & 80.4 & 11.7 \\\\\nRB-REG (RMAT CLS) & 64 & 58.8 & 77.0 & 80.8 & \\textbf{83.8} & \\textbf{13.2} \\\\\nRB-REG (Uni-Mol+ CLS) & 64 & 59.2 & \\textbf{77.8} & \\textbf{81.0} & 83.2 & 10.3 \\\\\nRB-REG (Uni-RXN CLS) & 64 & 58.6 & 74.6 & 78.0 & 80.2 & 9.8 \\\\\nRB-REG (Uni-RXN CLS) & 16 & 58.4 & 73.5 & 76.6 & 79.0 & 10.9 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n",
-        "layer": "application",
-        "task": "writing",
-        "miner": "p6_tablegen",
-        "label": "Table 4: Representation entanglement via joint modeling of a"
-      },
-      "attribution": "analyst_synthesis",
-      "evidence_ids": [],
-      "source_version": "",
-      "missing_states": {}
-    },
-    {
-      "id": "resulttable:2607.00464:main",
-      "type": "ResultTable",
-      "label": "Table 2, we report performance across 11 distinct safety ass",
-      "attrs": {
-        "run_id": "p6_run",
-        "table_label": "Table 2, we report performance across 11 distinct safety assessment",
-        "caption": "Table 2, we report performance across 11 distinct safety assessment",
-        "columns": [
-          "",
-          "",
-          "",
-          "Toxic",
-          "ity (ACC)",
-          "_↑_",
-          "",
-          "",
-          "Haza",
-          "rd Level (",
-          "JSC)_↑_"
-        ],
-        "rows": [
-          {
-            "model": "#Molecules",
-            "": "Hemato.<br>1,909",
-            "Toxic": "Resp.<br>3,894",
-            "ity (ACC)": "Neuro.<br>571",
-            "_↑_": "Nephro.<br>504",
-            "Haza": "Phy.<br>7,104",
-            "rd Level (": "Heal.<br>22,314",
-            "JSC)_↑_": "Env.<br>14,757"
-          },
-          {
-            "model": "3MTox",
-            "": "0.769",
-            "Toxic": "0.824",
-            "ity (ACC)": "0.782",
-            "_↑_": "0.736",
-            "Haza": "0.696",
-            "rd Level (": "0.758",
-            "JSC)_↑_": "0.718"
-          },
-          {
-            "model": "DCAMCP",
-            "": "0.763",
-            "Toxic": "0.796",
-            "ity (ACC)": "0.743",
-            "_↑_": "0.716",
-            "Haza": "-",
-            "rd Level (": "-",
-            "JSC)_↑_": "-"
-          },
-          {
-            "model": "GPT-4o",
-            "": "0.645",
-            "Toxic": "0.548",
-            "ity (ACC)": "0.569",
-            "_↑_": "0.571",
-            "Haza": "0.371",
-            "rd Level (": "0.198",
-            "JSC)_↑_": "0.174"
-          },
-          {
-            "model": "o4-mini",
-            "": "0.646",
-            "Toxic": "0.425",
-            "ity (ACC)": "0.539",
-            "_↑_": "0.577",
-            "Haza": "0.484",
-            "rd Level (": "0.481",
-            "JSC)_↑_": "0.162"
-          },
-          {
-            "model": "gemini-2.5-flash",
-            "": "0.506",
-            "Toxic": "0.562",
-            "ity (ACC)": "0.576",
-            "_↑_": "0.563",
-            "Haza": "0.363",
-            "rd Level (": "0.031",
-            "JSC)_↑_": "0.202"
-          },
-          {
-            "model": "Qwen3-plus",
-            "": "0.576",
-            "Toxic": "0.595",
-            "ity (ACC)": "0.592",
-            "_↑_": "0.577",
-            "Haza": "0.367",
-            "rd Level (": "0.192",
-            "JSC)_↑_": "0.282"
-          },
-          {
-            "model": "Deepseek-V3",
-            "": "0.583",
-            "Toxic": "0.562",
-            "ity (ACC)": "0.641",
-            "_↑_": "0.605",
-            "Haza": "0.441",
-            "rd Level (": "0.293",
-            "JSC)_↑_": "0.199"
-          },
-          {
-            "model": "Ours(GPT-4o)",
-            "": "0.767",
-            "Toxic": "0.824",
-            "ity (ACC)": "0.748",
-            "_↑_": "0.712",
-            "Haza": "0.647",
-            "rd Level (": "0.708",
-            "JSC)_↑_": "0.659"
-          },
-          {
-            "model": "Ours(o4-mini)",
-            "": "0.780",
-            "Toxic": "0.837",
-            "ity (ACC)": "0.772",
-            "_↑_": "0.732",
-            "Haza": "0.703",
-            "rd Level (": "0.764",
-            "JSC)_↑_": "0.724"
-          },
-          {
-            "model": "Ours(gemini-2.5-flash)",
-            "": "0.686",
-            "Toxic": "0.782",
-            "ity (ACC)": "0.704",
-            "_↑_": "0.677",
-            "Haza": "0.681",
-            "rd Level (": "0.684",
-            "JSC)_↑_": "0.689"
-          },
-          {
-            "model": "Ours(Qwen3-plus)",
-            "": "0.653",
-            "Toxic": "0.764",
-            "ity (ACC)": "0.706",
-            "_↑_": "0.690",
-            "Haza": "0.651",
-            "rd Level (": "0.734",
-            "JSC)_↑_": "0.691"
-          },
-          {
-            "model": "Ours(Deepseek-V3)",
-            "": "0.781",
-            "Toxic": "0.847",
-            "ity (ACC)": "0.793",
-            "_↑_": "0.738",
-            "Haza": "0.707",
-            "rd Level (": "0.771",
-            "JSC)_↑_": "0.725"
-          }
-        ],
-        "source_paper": "paper:2607.00464",
-        "latex": "\\begin{table}[t]\n\\centering\n\\caption{Table 2, we report performance across 11 distinct safety assessment}\n\\label{tab:2607.00464}\n\\begin{tabular}{lccccccccccc}\n\\toprule\nModel &  &  &  & Toxic & ity (ACC) & \\_↑\\_ &  &  & Haza & rd Level ( & JSC)\\_↑\\_ \\\\\n\\midrule\n\\#Molecules & Hemato.<br>1,909 & Hemato.<br>1,909 & Hemato.<br>1,909 & Resp.<br>3,894 & Neuro.<br>571 & Nephro.<br>504 & Hemato.<br>1,909 & Hemato.<br>1,909 & Phy.<br>7,104 & Heal.<br>22,314 & Env.<br>14,757 \\\\\n3MTox & 0.769 & 0.769 & 0.769 & 0.824 & 0.782 & 0.736 & 0.769 & 0.769 & 0.696 & 0.758 & 0.718 \\\\\nDCAMCP & 0.763 & 0.763 & 0.763 & 0.796 & 0.743 & 0.716 & 0.763 & 0.763 & - & - & - \\\\\nGPT-4o & 0.645 & 0.645 & 0.645 & 0.548 & 0.569 & 0.571 & 0.645 & 0.645 & 0.371 & 0.198 & 0.174 \\\\\no4-mini & 0.646 & 0.646 & 0.646 & 0.425 & 0.539 & 0.577 & 0.646 & 0.646 & 0.484 & 0.481 & 0.162 \\\\\ngemini-2.5-flash & 0.506 & 0.506 & 0.506 & 0.562 & 0.576 & 0.563 & 0.506 & 0.506 & 0.363 & 0.031 & 0.202 \\\\\nQwen3-plus & 0.576 & 0.576 & 0.576 & 0.595 & 0.592 & 0.577 & 0.576 & 0.576 & 0.367 & 0.192 & 0.282 \\\\\nDeepseek-V3 & 0.583 & 0.583 & 0.583 & 0.562 & 0.641 & 0.605 & 0.583 & 0.583 & 0.441 & 0.293 & 0.199 \\\\\nOurs(GPT-4o) & 0.767 & 0.767 & 0.767 & 0.824 & 0.748 & 0.712 & 0.767 & 0.767 & 0.647 & 0.708 & 0.659 \\\\\nOurs(o4-mini) & 0.780 & 0.780 & 0.780 & 0.837 & 0.772 & 0.732 & 0.780 & 0.780 & 0.703 & 0.764 & 0.724 \\\\\nOurs(gemini-2.5-flash) & 0.686 & 0.686 & 0.686 & 0.782 & 0.704 & 0.677 & 0.686 & 0.686 & \\textbf{0.681} & \\textbf{0.684} & \\textbf{0.689} \\\\\nOurs(Qwen3-plus) & \\textbf{0.653} & \\textbf{0.653} & \\textbf{0.653} & \\textbf{0.764} & \\textbf{0.706} & \\textbf{0.690} & \\textbf{0.653} & \\textbf{0.653} & 0.651 & 0.734 & 0.691 \\\\\nOurs(Deepseek-V3) & 0.781 & 0.781 & 0.781 & 0.847 & 0.793 & 0.738 & 0.781 & 0.781 & 0.707 & 0.771 & 0.725 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n",
-        "layer": "application",
-        "task": "writing",
-        "miner": "p6_tablegen",
-        "label": "Table 2, we report performance across 11 distinct safety ass"
-      },
-      "attribution": "analyst_synthesis",
-      "evidence_ids": [],
-      "source_version": "",
-      "missing_states": {}
-    },
-    {
-      "id": "resulttable:2607.00531:main",
-      "type": "ResultTable",
-      "label": "Table 1: Main results on TOMG-Bench MOLOPT",
-      "attrs": {
-        "run_id": "p6_run",
-        "table_label": "Table 1: Main results on TOMG-Bench MOLOPT",
-        "caption": "Table 1: Main results on TOMG-Bench MOLOPT",
-        "columns": [
-          "Avg SR_×_Sim_↑_"
-        ],
-        "rows": [
-          {
-            "model": "Zero-shot",
-            "Avg SR_×_Sim_↑_": "0.1376"
-          },
-          {
-            "model": "GRPO-only",
-            "Avg SR_×_Sim_↑_": "0.0959"
-          },
-          {
-            "model": "Iterative SFT",
-            "Avg SR_×_Sim_↑_": "0.1627"
-          },
-          {
-            "model": "Offline-strengthened RePO",
-            "Avg SR_×_Sim_↑_": "0.1652"
-          },
-          {
-            "model": "RePO",
-            "Avg SR_×_Sim_↑_": "0.1665"
-          },
-          {
-            "model": "**Active-GRPO (ours)**",
-            "Avg SR_×_Sim_↑_": "0.1773"
-          }
-        ],
-        "source_paper": "paper:2607.00531",
-        "latex": "\\begin{table}[t]\n\\centering\n\\caption{Table 1: Main results on TOMG-Bench MOLOPT}\n\\label{tab:2607.00531}\n\\begin{tabular}{lc}\n\\toprule\nModel & Avg SR\\_×\\_Sim\\_↑\\_ \\\\\n\\midrule\nZero-shot & 0.1376 \\\\\nGRPO-only & 0.0959 \\\\\nIterative SFT & 0.1627 \\\\\nOffline-strengthened RePO & 0.1652 \\\\\nRePO & 0.1665 \\\\\n**Active-GRPO (ours)** & \\textbf{0.1773} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n",
-        "layer": "application",
-        "task": "writing",
-        "miner": "p6_tablegen",
-        "label": "Table 1: Main results on TOMG-Bench MOLOPT"
-      },
-      "attribution": "analyst_synthesis",
-      "evidence_ids": [],
-      "source_version": "",
-      "missing_states": {}
-    },
-    {
-      "id": "resulttable:2609.34491:main",
-      "type": "ResultTable",
-      "label": "Table 3** SMDD-Bench-93 task success rates",
-      "attrs": {
-        "run_id": "p6_run",
-        "table_label": "Table 3** SMDD-Bench-93 task success rates",
-        "caption": "Table 3** SMDD-Bench-93 task success rates",
-        "columns": [
-          "Single solution SR_↑_",
-          "Graph-any SR_↑_"
-        ],
-        "rows": [
-          {
-            "model": "Kimi-K3 Low",
-            "Single solution SR_↑_": "0.42",
-            "Graph-any SR_↑_": "0.47"
-          },
-          {
-            "model": "Kimi-K3 Low",
-            "Single solution SR_↑_": "0.48",
-            "Graph-any SR_↑_": "0.57"
-          },
-          {
-            "model": "Kimi-K3 Low",
-            "Single solution SR_↑_": "0.59",
-            "Graph-any SR_↑_": "0.61"
-          }
-        ],
-        "source_paper": "paper:2609.34491",
-        "latex": "\\begin{table}[t]\n\\centering\n\\caption{Table 3** SMDD-Bench-93 task success rates}\n\\label{tab:2609.34491}\n\\begin{tabular}{lcc}\n\\toprule\nModel & Single solution SR\\_↑\\_ & Graph-any SR\\_↑\\_ \\\\\n\\midrule\nKimi-K3 Low & 0.42 & 0.47 \\\\\nKimi-K3 Low & 0.48 & 0.57 \\\\\nKimi-K3 Low & \\textbf{0.59} & \\textbf{0.61} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n",
-        "layer": "application",
-        "task": "writing",
-        "miner": "p6_tablegen",
-        "label": "Table 3** SMDD-Bench-93 task success rates"
-      },
-      "attribution": "analyst_synthesis",
-      "evidence_ids": [],
-      "source_version": "",
-      "missing_states": {}
-    },
-    {
-      "id": "resulttable:2609.35336:main",
-      "type": "ResultTable",
-      "label": "Table 2: Results on individual chemical tasks",
-      "attrs": {
-        "run_id": "p6_run",
-        "table_label": "Table 2: Results on individual chemical tasks",
-        "caption": "Table 2: Results on individual chemical tasks",
-        "columns": [
-          "**Log**",
-          "**P**",
-          "**Solub**",
-          "**ility**",
-          "**QE**",
-          "**D**",
-          "**DR**",
-          "**D2**",
-          "**JNK**",
-          "**3**",
-          "**GSK**",
-          "**3-**_β_"
-        ],
-        "rows": [
-          {
-            "model": "GPT-4o",
-            "**Log**": "-0.09",
-            "**P**": "37",
-            "**Solub**": "0.92",
-            "**ility**": "80",
-            "**QE**": "0.13",
-            "**D**": "70",
-            "**DR**": "0.07",
-            "**D2**": "48",
-            "**JNK**": "-0.02",
-            "**3**": "30",
-            "**GSK**": "-0.00",
-            "**3-**_β_": "39"
-          },
-          {
-            "model": "DeepSeek-R1",
-            "**Log**": "0.47",
-            "**P**": "69",
-            "**Solub**": "0.80",
-            "**ility**": "80",
-            "**QE**": "0.17",
-            "**D**": "72",
-            "**DR**": "0.12",
-            "**D2**": "62",
-            "**JNK**": "-0.02",
-            "**3**": "29",
-            "**GSK**": "0.01",
-            "**3-**_β_": "41"
-          },
-          {
-            "model": "Gemini-2.5-pro",
-            "**Log**": "-0.22",
-            "**P**": "76",
-            "**Solub**": "1.06",
-            "**ility**": "70",
-            "**QE**": "0.28",
-            "**D**": "84",
-            "**DR**": "0.36",
-            "**D2**": "74",
-            "**JNK**": "-0.02",
-            "**3**": "35",
-            "**GSK**": "0.06",
-            "**3-**_β_": "68"
-          },
-          {
-            "model": "Llama-3.3-70B-Instruct",
-            "**Log**": "0.02",
-            "**P**": "35",
-            "**Solub**": "0.72",
-            "**ility**": "81",
-            "**QE**": "0.15",
-            "**D**": "61",
-            "**DR**": "0.00",
-            "**D2**": "31",
-            "**JNK**": "-0.01",
-            "**3**": "30",
-            "**GSK**": "0.01",
-            "**3-**_β_": "40"
-          },
-          {
-            "model": "GPT-5.4",
-            "**Log**": "0.54",
-            "**P**": "83",
-            "**Solub**": "1.00",
-            "**ility**": "90",
-            "**QE**": "0.18",
-            "**D**": "91",
-            "**DR**": "0.00",
-            "**D2**": "57",
-            "**JNK**": "0.00",
-            "**3**": "39",
-            "**GSK**": "0.04",
-            "**3-**_β_": "69"
-          },
-          {
-            "model": "ether0",
-            "**Log**": "0.00",
-            "**P**": "0",
-            "**Solub**": "0.00",
-            "**ility**": "0",
-            "**QE**": "0.00",
-            "**D**": "0",
-            "**DR**": "0.00",
-            "**D2**": "0",
-            "**JNK**": "0.00",
-            "**3**": "0",
-            "**GSK**": "0.00",
-            "**3-**_β_": "0"
-          },
-          {
-            "model": "Chem-R",
-            "**Log**": "-",
-            "**P**": "-",
-            "**Solub**": "0.34",
-            "**ility**": "83",
-            "**QE**": "-",
-            "**D**": "-",
-            "**DR**": "0.01",
-            "**D2**": "36",
-            "**JNK**": "-0.02",
-            "**3**": "24",
-            "**GSK**": "-0.01",
-            "**3-**_β_": "29"
-          },
-          {
-            "model": "BioMistral",
-            "**Log**": "0.01",
-            "**P**": "1",
-            "**Solub**": "0.24",
-            "**ility**": "6",
-            "**QE**": "0.00",
-            "**D**": "0",
-            "**DR**": "0.00",
-            "**D2**": "1",
-            "**JNK**": "-0.01",
-            "**3**": "1",
-            "**GSK**": "-0.01",
-            "**3-**_β_": "0"
-          },
-          {
-            "model": "BioMedGPT",
-            "**Log**": "-0.36",
-            "**P**": "17",
-            "**Solub**": "0.25",
-            "**ility**": "63",
-            "**QE**": "-0.29",
-            "**D**": "7",
-            "**DR**": "-0.09",
-            "**D2**": "5",
-            "**JNK**": "-0.11",
-            "**3**": "6",
-            "**GSK**": "-0.08",
-            "**3-**_β_": "1"
-          },
-          {
-            "model": "TMCS (70B)",
-            "**Log**": "1.10",
-            "**P**": "96",
-            "**Solub**": "0.92",
-            "**ility**": "73",
-            "**QE**": "0.20",
-            "**D**": "80",
-            "**DR**": "0.30",
-            "**D2**": "90",
-            "**JNK**": "0.12",
-            "**3**": "72",
-            "**GSK**": "0.07",
-            "**3-**_β_": "49"
-          },
-          {
-            "model": "TMCS (GPT 5.4)",
-            "**Log**": "0.90",
-            "**P**": "98",
-            "**Solub**": "1.09",
-            "**ility**": "99",
-            "**QE**": "0.25",
-            "**D**": "98",
-            "**DR**": "0.42",
-            "**D2**": "92",
-            "**JNK**": "0.07",
-            "**3**": "61",
-            "**GSK**": "0.16",
-            "**3-**_β_": "79"
-          }
-        ],
-        "source_paper": "paper:2609.35336",
-        "latex": "\\begin{table}[t]\n\\centering\n\\caption{Table 2: Results on individual chemical tasks}\n\\label{tab:2609.35336}\n\\begin{tabular}{lcccccccccccc}\n\\toprule\nModel & **Log** & **P** & **Solub** & **ility** & **QE** & **D** & **DR** & **D2** & **JNK** & **3** & **GSK** & **3-**\\_β\\_ \\\\\n\\midrule\nGPT-4o & -0.09 & 37 & 0.92 & 80 & 0.13 & 70 & 0.07 & 48 & -0.02 & 30 & -0.00 & 39 \\\\\nDeepSeek-R1 & 0.47 & 69 & 0.80 & 80 & 0.17 & 72 & 0.12 & 62 & -0.02 & 29 & 0.01 & 41 \\\\\nGemini-2.5-pro & -0.22 & 76 & 1.06 & 70 & \\textbf{0.28} & 84 & 0.36 & 74 & -0.02 & 35 & 0.06 & 68 \\\\\nLlama-3.3-70B-Instruct & 0.02 & 35 & 0.72 & 81 & 0.15 & 61 & 0.00 & 31 & -0.01 & 30 & 0.01 & 40 \\\\\nGPT-5.4 & 0.54 & 83 & 1.00 & 90 & 0.18 & 91 & 0.00 & 57 & 0.00 & 39 & 0.04 & 69 \\\\\nether0 & 0.00 & 0 & 0.00 & 0 & 0.00 & 0 & 0.00 & 0 & 0.00 & 0 & 0.00 & 0 \\\\\nChem-R & - & - & 0.34 & 83 & - & - & 0.01 & 36 & -0.02 & 24 & -0.01 & 29 \\\\\nBioMistral & 0.01 & 1 & 0.24 & 6 & 0.00 & 0 & 0.00 & 1 & -0.01 & 1 & -0.01 & 0 \\\\\nBioMedGPT & \\textbf{-0.36} & 17 & 0.25 & 63 & -0.29 & 7 & -0.09 & 5 & -0.11 & 6 & -0.08 & 1 \\\\\nTMCS (70B) & 1.10 & \\textbf{96} & 0.92 & 73 & 0.20 & \\textbf{80} & 0.30 & 90 & \\textbf{0.12} & \\textbf{72} & 0.07 & 49 \\\\\nTMCS (GPT 5.4) & 0.90 & 98 & \\textbf{1.09} & \\textbf{99} & 0.25 & 98 & \\textbf{0.42} & \\textbf{92} & 0.07 & 61 & \\textbf{0.16} & \\textbf{79} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n",
-        "layer": "application",
-        "task": "writing",
-        "miner": "p6_tablegen",
-        "label": "Table 2: Results on individual chemical tasks"
-      },
-      "attribution": "analyst_synthesis",
-      "evidence_ids": [],
-      "source_version": "",
-      "missing_states": {}
-    },
-    {
-      "id": "resulttable:2609.34301:main",
-      "type": "ResultTable",
-      "label": "Table 2)",
-      "attrs": {
-        "run_id": "p6_run",
-        "table_label": "Table 2)",
-        "caption": "Table 2)",
-        "columns": [
-          "Macro_R_<sup>2</sup> _↑_",
-          "Macro Pearson_↑_"
-        ],
-        "rows": [
-          {
-            "model": "Morgan + GBR",
-            "Macro_R_<sup>2</sup> _↑_": "0.525",
-            "Macro Pearson_↑_": "0.720"
-          },
-          {
-            "model": "GIN + GBR",
-            "Macro_R_<sup>2</sup> _↑_": "0.219",
-            "Macro Pearson_↑_": "0.550"
-          },
-          {
-            "model": "GIN + MLP",
-            "Macro_R_<sup>2</sup> _↑_": "0.477",
-            "Macro Pearson_↑_": "0.678"
-          },
-          {
-            "model": "ChemBERTa + MLP",
-            "Macro_R_<sup>2</sup> _↑_": "0.762",
-            "Macro Pearson_↑_": "0.880"
-          },
-          {
-            "model": "CAGenMol-2 (native)",
-            "Macro_R_<sup>2</sup> _↑_": "0.910",
-            "Macro Pearson_↑_": "0.974"
-          }
-        ],
-        "source_paper": "paper:2609.34301",
-        "latex": "\\begin{table}[t]\n\\centering\n\\caption{Table 2)}\n\\label{tab:2609.34301}\n\\begin{tabular}{lcc}\n\\toprule\nModel & Macro\\_R\\_<sup>2</sup> \\_↑\\_ & Macro Pearson\\_↑\\_ \\\\\n\\midrule\nMorgan + GBR & 0.525 & 0.720 \\\\\nGIN + GBR & 0.219 & 0.550 \\\\\nGIN + MLP & 0.477 & 0.678 \\\\\nChemBERTa + MLP & 0.762 & 0.880 \\\\\nCAGenMol-2 (native) & \\textbf{0.910} & \\textbf{0.974} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n",
-        "layer": "application",
-        "task": "writing",
-        "miner": "p6_tablegen",
-        "label": "Table 2)"
-      },
-      "attribution": "analyst_synthesis",
-      "evidence_ids": [],
-      "source_version": "",
-      "missing_states": {}
-    },
-    {
-      "id": "resulttable:2609.38484:main",
-      "type": "ResultTable",
-      "label": "Table 1: USPTO-Full test results",
-      "attrs": {
-        "run_id": "p6_run",
-        "table_label": "Table 1: USPTO-Full test results",
-        "caption": "Table 1: USPTO-Full test results",
-        "columns": [
-          "Top-1",
-          "Top-3",
-          "Top-5",
-          "Top-10"
-        ],
-        "rows": [
-          {
-            "model": "RetroSim",
-            "Top-1": "32.8",
-            "Top-3": "–",
-            "Top-5": "–",
-            "Top-10": "56.1"
-          },
-          {
-            "model": "LocalRetro",
-            "Top-1": "39.1",
-            "Top-3": "53.3",
-            "Top-5": "58.4",
-            "Top-10": "63.7"
-          },
-          {
-            "model": "GLN",
-            "Top-1": "39.3",
-            "Top-3": "–",
-            "Top-5": "–",
-            "Top-10": "63.7"
-          },
-          {
-            "model": "RetroPrime",
-            "Top-1": "44.1",
-            "Top-3": "59.1",
-            "Top-5": "62.8",
-            "Top-10": "68.5"
-          },
-          {
-            "model": "R-SMILES",
-            "Top-1": "48.9",
-            "Top-3": "66.6",
-            "Top-5": "72.0",
-            "Top-10": "76.4"
-          },
-          {
-            "model": "NAG2G",
-            "Top-1": "49.7",
-            "Top-3": "64.6",
-            "Top-5": "69.3",
-            "Top-10": "74.0"
-          },
-          {
-            "model": "RetroDiT (Pred.)",
-            "Top-1": "51.3",
-            "Top-3": "67.8",
-            "Top-5": "72.3",
-            "Top-10": "75.8"
-          },
-          {
-            "model": "**RETROGEF (Pred.)**",
-            "Top-1": "54.3",
-            "Top-3": "70.1",
-            "Top-5": "74.1",
-            "Top-10": "77.1"
-          },
-          {
-            "model": "RSGPT",
-            "Top-1": "59.2",
-            "Top-3": "74.2",
-            "Top-5": "78.2",
-            "Top-10": "82.1"
-          },
-          {
-            "model": "RetroDiT (Oracle)",
-            "Top-1": "63.4",
-            "Top-3": "77.6",
-            "Top-5": "80.9",
-            "Top-10": "83.6"
-          },
-          {
-            "model": "**RETROGEF (Oracle)**",
-            "Top-1": "68.6",
-            "Top-3": "80.7",
-            "Top-5": "82.8",
-            "Top-10": "84.1"
-          }
-        ],
-        "source_paper": "paper:2609.38484",
-        "latex": "\\begin{table}[t]\n\\centering\n\\caption{Table 1: USPTO-Full test results}\n\\label{tab:2609.38484}\n\\begin{tabular}{lcccc}\n\\toprule\nModel & Top-1 & Top-3 & Top-5 & Top-10 \\\\\n\\midrule\nRetroSim & 32.8 & – & – & 56.1 \\\\\nLocalRetro & 39.1 & 53.3 & 58.4 & 63.7 \\\\\nGLN & 39.3 & – & – & 63.7 \\\\\nRetroPrime & 44.1 & 59.1 & 62.8 & 68.5 \\\\\nR-SMILES & 48.9 & 66.6 & 72.0 & 76.4 \\\\\nNAG2G & 49.7 & 64.6 & 69.3 & 74.0 \\\\\nRetroDiT (Pred.) & 51.3 & 67.8 & 72.3 & 75.8 \\\\\n**RETROGEF (Pred.)** & 54.3 & 70.1 & 74.1 & 77.1 \\\\\nRSGPT & 59.2 & \\textbf{74.2} & \\textbf{78.2} & 82.1 \\\\\nRetroDiT (Oracle) & 63.4 & 77.6 & 80.9 & 83.6 \\\\\n**RETROGEF (Oracle)** & \\textbf{68.6} & 80.7 & 82.8 & \\textbf{84.1} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n",
-        "layer": "application",
-        "task": "writing",
-        "miner": "p6_tablegen",
-        "label": "Table 1: USPTO-Full test results"
-      },
-      "attribution": "analyst_synthesis",
-      "evidence_ids": [],
-      "source_version": "",
-      "missing_states": {}
-    },
-    {
-      "id": "resulttable:2610.16975:main",
-      "type": "ResultTable",
-      "label": "Table 3",
-      "attrs": {
-        "run_id": "p6_run",
-        "table_label": "Table 3",
-        "caption": "Table 3",
-        "columns": [
-          "_tout_",
-          "_Nout_",
-          "_Nsat_",
-          "%`Pass`",
-          "%`Syn`"
-        ],
-        "rows": [
-          {
-            "model": "MADDIE",
-            "_tout_": "50",
-            "_Nout_": "100.0",
-            "_Nsat_": "100.0",
-            "%`Pass`": "100.0",
-            "%`Syn`": "100.0"
-          },
-          {
-            "model": "_w/o_ Synthesizer",
-            "_tout_": "50",
-            "_Nout_": "100.0",
-            "_Nsat_": "40.2",
-            "%`Pass`": "40.2",
-            "%`Syn`": "40.2"
-          },
-          {
-            "model": "_w/o_ LeadOptimizer",
-            "_tout_": "49",
-            "_Nout_": "100.0",
-            "_Nsat_": "100.0",
-            "%`Pass`": "100.0",
-            "%`Syn`": "100.0"
-          },
-          {
-            "model": "_w/o_ Orchestrator",
-            "_tout_": "50",
-            "_Nout_": "100.0",
-            "_Nsat_": "100.0",
-            "%`Pass`": "100.0",
-            "%`Syn`": "100.0"
-          }
-        ],
-        "source_paper": "paper:2610.16975",
-        "latex": "\\begin{table}[t]\n\\centering\n\\caption{Table 3}\n\\label{tab:2610.16975}\n\\begin{tabular}{lccccc}\n\\toprule\nModel & \\_tout\\_ & \\_Nout\\_ & \\_Nsat\\_ & \\%`Pass` & \\%`Syn` \\\\\n\\midrule\nMADDIE & 50 & 100.0 & 100.0 & 100.0 & 100.0 \\\\\n\\_w/o\\_ Synthesizer & 50 & 100.0 & 40.2 & 40.2 & 40.2 \\\\\n\\_w/o\\_ LeadOptimizer & 49 & 100.0 & 100.0 & 100.0 & 100.0 \\\\\n\\_w/o\\_ Orchestrator & 50 & 100.0 & 100.0 & 100.0 & 100.0 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n",
-        "layer": "application",
-        "task": "writing",
-        "miner": "p6_tablegen",
-        "label": "Table 3"
-      },
-      "attribution": "analyst_synthesis",
-      "evidence_ids": [],
-      "source_version": "",
-      "missing_states": {}
-    },
-    {
-      "id": "resulttable:2610.16391:main",
-      "type": "ResultTable",
-      "label": "Table 2: Effect of the expansion strategy on route diversity",
-      "attrs": {
-        "run_id": "p6_run",
-        "table_label": "Table 2: Effect of the expansion strategy on route diversity and qu",
-        "caption": "Table 2: Effect of the expansion strategy on route diversity and qu",
-        "columns": [
-          "**Search**",
-          "**Outcome**",
-          "**Diver**",
-          "**sity**",
-          "**Quality**"
-        ],
-        "rows": [
-          {
-            "model": "Random",
-            "**Search**": "0.879",
-            "**Outcome**": "1.55",
-            "**Diver**": "1.000<sup>_†_</sup>",
-            "**sity**": "1.55",
-            "**Quality**": "0.280"
-          },
-          {
-            "model": "Score-only",
-            "**Search**": "0.937",
-            "**Outcome**": "1.59",
-            "**Diver**": "1.000<sup>_†_</sup>",
-            "**sity**": "1.59",
-            "**Quality**": "0.672"
-          },
-          {
-            "model": "Single-Route",
-            "**Search**": "0.984",
-            "**Outcome**": "6.05",
-            "**Diver**": "0.450",
-            "**sity**": "2.23",
-            "**Quality**": "0.780"
-          },
-          {
-            "model": "Multi-Route (Seq.)",
-            "**Search**": "0.995",
-            "**Outcome**": "9.10",
-            "**Diver**": "0.660",
-            "**sity**": "3.88",
-            "**Quality**": "0.812"
-          },
-          {
-            "model": "<br>Multi-Route (Par.)",
-            "**Search**": "1.000",
-            "**Outcome**": "7.75",
-            "**Diver**": "0.654",
-            "**sity**": "3.54",
-            "**Quality**": "0.823"
-          }
-        ],
-        "source_paper": "paper:2610.16391",
-        "latex": "\\begin{table}[t]\n\\centering\n\\caption{Table 2: Effect of the expansion strategy on route diversity and qu}\n\\label{tab:2610.16391}\n\\begin{tabular}{lccccc}\n\\toprule\nModel & **Search** & **Outcome** & **Diver** & **sity** & **Quality** \\\\\n\\midrule\nRandom & 0.879 & 1.55 & 1.000<sup>\\_†\\_</sup> & 1.55 & 0.280 \\\\\nScore-only & 0.937 & 1.59 & \\textbf{1.000<sup>\\_†\\_</sup>} & 1.59 & 0.672 \\\\\nSingle-Route & 0.984 & 6.05 & 0.450 & 2.23 & 0.780 \\\\\nMulti-Route (Seq.) & 0.995 & \\textbf{9.10} & 0.660 & \\textbf{3.88} & 0.812 \\\\\n<br>Multi-Route (Par.) & \\textbf{1.000} & 7.75 & 0.654 & 3.54 & \\textbf{0.823} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n",
-        "layer": "application",
-        "task": "writing",
-        "miner": "p6_tablegen",
-        "label": "Table 2: Effect of the expansion strategy on route diversity"
-      },
-      "attribution": "analyst_synthesis",
-      "evidence_ids": [],
-      "source_version": "",
-      "missing_states": {}
-    },
-    {
-      "id": "resulttable:2610.18851:main",
-      "type": "ResultTable",
-      "label": "Table 1: Overall Performance on IND Tasks",
-      "attrs": {
-        "run_id": "p6_run",
-        "table_label": "Table 1: Overall Performance on IND Tasks",
-        "caption": "Table 1: Overall Performance on IND Tasks",
-        "columns": [
-          "",
-          "",
-          "BDQ",
-          "",
-          "",
-          "",
-          "DPQ"
-        ],
-        "rows": [
-          {
-            "model": "Qwen35-9B",
-            "": "15.60",
-            "BDQ": "0.73",
-            "DPQ": "0.72"
-          },
-          {
-            "model": ".",
-            "": "19.80",
-            "BDQ": "0.70<br>",
-            "DPQ": "0.69"
-          },
-          {
-            "model": "Ministral-3-8B",
-            "": "12.80",
-            "BDQ": "0.67",
-            "DPQ": "0.68"
-          },
-          {
-            "model": "LlaSMol",
-            "": "4.40",
-            "BDQ": "0.56",
-            "DPQ": "0.66"
-          },
-          {
-            "model": "BiMdGPTMl",
-            "": "47.80",
-            "BDQ": "0.62",
-            "DPQ": "0.63"
-          },
-          {
-            "model": "oe-o",
-            "": "47.80",
-            "BDQ": "0.62",
-            "DPQ": "0.63"
-          },
-          {
-            "model": "GLLM<sup>3</sup>O",
-            "": "43.80",
-            "BDQ": "0.64",
-            "DPQ": "0.61"
-          },
-          {
-            "model": "e",
-            "": "43.80",
-            "BDQ": "0.60",
-            "DPQ": "0.61"
-          },
-          {
-            "model": "GLLM<sup>3</sup>OMFG",
-            "": "48.40",
-            "BDQ": "0.63",
-            "DPQ": "0.63"
-          },
-          {
-            "model": "e-",
-            "": "54.60",
-            "BDQ": "0.61",
-            "DPQ": "0.60"
-          }
-        ],
-        "source_paper": "paper:2610.18851",
-        "latex": "\\begin{table}[t]\n\\centering\n\\caption{Table 1: Overall Performance on IND Tasks}\n\\label{tab:2610.18851}\n\\begin{tabular}{lccccccc}\n\\toprule\nModel &  &  & BDQ &  &  &  & DPQ \\\\\n\\midrule\nQwen35-9B & 15.60 & 15.60 & \\textbf{0.73} & 15.60 & 15.60 & 15.60 & \\textbf{0.72} \\\\\n. & 19.80 & 19.80 & 0.70<br> & 19.80 & 19.80 & 19.80 & 0.69 \\\\\nMinistral-3-8B & 12.80 & 12.80 & 0.67 & 12.80 & 12.80 & 12.80 & 0.68 \\\\\nLlaSMol & 4.40 & 4.40 & 0.56 & 4.40 & 4.40 & 4.40 & 0.66 \\\\\nBiMdGPTMl & 47.80 & 47.80 & 0.62 & 47.80 & 47.80 & 47.80 & 0.63 \\\\\noe-o & 47.80 & 47.80 & 0.62 & 47.80 & 47.80 & 47.80 & 0.63 \\\\\nGLLM<sup>3</sup>O & 43.80 & 43.80 & 0.64 & 43.80 & 43.80 & 43.80 & 0.61 \\\\\ne & 43.80 & 43.80 & 0.60 & 43.80 & 43.80 & 43.80 & 0.61 \\\\\nGLLM<sup>3</sup>OMFG & 48.40 & 48.40 & 0.63 & 48.40 & 48.40 & 48.40 & 0.63 \\\\\ne- & \\textbf{54.60} & \\textbf{54.60} & 0.61 & \\textbf{54.60} & \\textbf{54.60} & \\textbf{54.60} & 0.60 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n",
-        "layer": "application",
-        "task": "writing",
-        "miner": "p6_tablegen",
-        "label": "Table 1: Overall Performance on IND Tasks"
       },
       "attribution": "analyst_synthesis",
       "evidence_ids": [],
@@ -32010,204 +30330,6 @@
       "source": "claim:factory_v2:x6fd098ae",
       "target": "pkg:factory_v2",
       "relation": "DELIVERED_BY",
-      "attribution": "analyst_synthesis",
-      "evidence_ids": [],
-      "properties": {
-        "layer": "application"
-      }
-    },
-    {
-      "id": "assertion:0434",
-      "source": "resulttable:2402.15864:main",
-      "target": "paper:2402.15864",
-      "relation": "DERIVED_FROM_PAPERS",
-      "attribution": "analyst_synthesis",
-      "evidence_ids": [],
-      "properties": {
-        "layer": "application"
-      }
-    },
-    {
-      "id": "assertion:0435",
-      "source": "resulttable:2407.12186:main",
-      "target": "paper:2407.12186",
-      "relation": "DERIVED_FROM_PAPERS",
-      "attribution": "analyst_synthesis",
-      "evidence_ids": [],
-      "properties": {
-        "layer": "application"
-      }
-    },
-    {
-      "id": "assertion:0436",
-      "source": "resulttable:2509.16084:main",
-      "target": "paper:2509.16084",
-      "relation": "DERIVED_FROM_PAPERS",
-      "attribution": "analyst_synthesis",
-      "evidence_ids": [],
-      "properties": {
-        "layer": "application"
-      }
-    },
-    {
-      "id": "assertion:0437",
-      "source": "resulttable:2512.20333:main",
-      "target": "paper:2512.20333",
-      "relation": "DERIVED_FROM_PAPERS",
-      "attribution": "analyst_synthesis",
-      "evidence_ids": [],
-      "properties": {
-        "layer": "application"
-      }
-    },
-    {
-      "id": "assertion:0438",
-      "source": "resulttable:2603.24382:main",
-      "target": "paper:2603.24382",
-      "relation": "DERIVED_FROM_PAPERS",
-      "attribution": "analyst_synthesis",
-      "evidence_ids": [],
-      "properties": {
-        "layer": "application"
-      }
-    },
-    {
-      "id": "assertion:0439",
-      "source": "resulttable:2604.23061:main",
-      "target": "paper:2604.23061",
-      "relation": "DERIVED_FROM_PAPERS",
-      "attribution": "analyst_synthesis",
-      "evidence_ids": [],
-      "properties": {
-        "layer": "application"
-      }
-    },
-    {
-      "id": "assertion:0440",
-      "source": "resulttable:2605.07022:main",
-      "target": "paper:2605.07022",
-      "relation": "DERIVED_FROM_PAPERS",
-      "attribution": "analyst_synthesis",
-      "evidence_ids": [],
-      "properties": {
-        "layer": "application"
-      }
-    },
-    {
-      "id": "assertion:0441",
-      "source": "resulttable:2606.03660:main",
-      "target": "paper:2606.03660",
-      "relation": "DERIVED_FROM_PAPERS",
-      "attribution": "analyst_synthesis",
-      "evidence_ids": [],
-      "properties": {
-        "layer": "application"
-      }
-    },
-    {
-      "id": "assertion:0442",
-      "source": "resulttable:2605.24428:main",
-      "target": "paper:2605.24428",
-      "relation": "DERIVED_FROM_PAPERS",
-      "attribution": "analyst_synthesis",
-      "evidence_ids": [],
-      "properties": {
-        "layer": "application"
-      }
-    },
-    {
-      "id": "assertion:0443",
-      "source": "resulttable:2607.00464:main",
-      "target": "paper:2607.00464",
-      "relation": "DERIVED_FROM_PAPERS",
-      "attribution": "analyst_synthesis",
-      "evidence_ids": [],
-      "properties": {
-        "layer": "application"
-      }
-    },
-    {
-      "id": "assertion:0444",
-      "source": "resulttable:2607.00531:main",
-      "target": "paper:2607.00531",
-      "relation": "DERIVED_FROM_PAPERS",
-      "attribution": "analyst_synthesis",
-      "evidence_ids": [],
-      "properties": {
-        "layer": "application"
-      }
-    },
-    {
-      "id": "assertion:0445",
-      "source": "resulttable:2609.34491:main",
-      "target": "paper:2609.34491",
-      "relation": "DERIVED_FROM_PAPERS",
-      "attribution": "analyst_synthesis",
-      "evidence_ids": [],
-      "properties": {
-        "layer": "application"
-      }
-    },
-    {
-      "id": "assertion:0446",
-      "source": "resulttable:2609.35336:main",
-      "target": "paper:2609.35336",
-      "relation": "DERIVED_FROM_PAPERS",
-      "attribution": "analyst_synthesis",
-      "evidence_ids": [],
-      "properties": {
-        "layer": "application"
-      }
-    },
-    {
-      "id": "assertion:0447",
-      "source": "resulttable:2609.34301:main",
-      "target": "paper:2609.34301",
-      "relation": "DERIVED_FROM_PAPERS",
-      "attribution": "analyst_synthesis",
-      "evidence_ids": [],
-      "properties": {
-        "layer": "application"
-      }
-    },
-    {
-      "id": "assertion:0448",
-      "source": "resulttable:2609.38484:main",
-      "target": "paper:2609.38484",
-      "relation": "DERIVED_FROM_PAPERS",
-      "attribution": "analyst_synthesis",
-      "evidence_ids": [],
-      "properties": {
-        "layer": "application"
-      }
-    },
-    {
-      "id": "assertion:0449",
-      "source": "resulttable:2610.16975:main",
-      "target": "paper:2610.16975",
-      "relation": "DERIVED_FROM_PAPERS",
-      "attribution": "analyst_synthesis",
-      "evidence_ids": [],
-      "properties": {
-        "layer": "application"
-      }
-    },
-    {
-      "id": "assertion:0450",
-      "source": "resulttable:2610.16391:main",
-      "target": "paper:2610.16391",
-      "relation": "DERIVED_FROM_PAPERS",
-      "attribution": "analyst_synthesis",
-      "evidence_ids": [],
-      "properties": {
-        "layer": "application"
-      }
-    },
-    {
-      "id": "assertion:0451",
-      "source": "resulttable:2610.18851:main",
-      "target": "paper:2610.18851",
-      "relation": "DERIVED_FROM_PAPERS",
       "attribution": "analyst_synthesis",
       "evidence_ids": [],
       "properties": {

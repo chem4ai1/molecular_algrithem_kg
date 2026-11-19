@@ -4,7 +4,7 @@
     "created_at": "2026-11-18T12:41:58+00:00",
     "source": "问题导向本体与知识图谱架构_20261109",
     "stats": {
-      "graph_id": "po::2026-11-19T01:23:05+00:00",
+      "graph_id": "po::2026-11-19T01:33:29+00:00",
       "n_nodes": 374,
       "n_assertions": 433,
       "nodes_by_type": {
@@ -1176,12 +1176,16 @@
           "GEOM",
           "QM9"
         ],
-        "split_spec": "valid molecules (about 38%",
         "hyperparams": [
           {
             "param": "learning rate",
             "value": "0.9",
             "context": " with 8 _·_ 10<sup>_−_5</sup> learning rate and (0.9"
+          },
+          {
+            "param": "epochs",
+            "value": "1.2",
+            "context": "or 1.32 million iterations (6 epochs), and our implicit one for 1.2"
           },
           {
             "param": "threshold",
@@ -1195,18 +1199,13 @@
           },
           {
             "param": "threshold",
-            "value": "0",
-            "context": "t.   **Parameters** We choose threshold parameter _t_ = 0"
+            "value": "0.3",
+            "context": "t.   **Parameters** We choose threshold parameter _t_ = 0.3"
           },
           {
             "param": "threshold",
-            "value": "0",
-            "context": " in contact with it. The bond threshold is set to _tb_ = 0"
-          },
-          {
-            "param": "learning rate",
-            "value": "5",
-            "context": "cent for 500 iterations and a learning rate of 5"
+            "value": "0.3",
+            "context": " in contact with it. The bond threshold is set to _tb_ = 0.3"
           }
         ],
         "result_tables": [
@@ -1272,7 +1271,7 @@
                 "0.59_±_0.01",
                 "1.08 _±_0.12",
                 "2.15_±_0.385",
-                "0.71_±_0_._02"
+                "0.71_±_0.02"
               ],
               [
                 "FMG_β_=0",
@@ -2219,18 +2218,18 @@
             "rows": [
               [
                 "Aripiprazole rediscovery",
-                "0_._90_±_0_._00",
-                "2_._19_±_0_._00"
+                "0.90_±_0.00",
+                "2.19_±_0.00"
               ],
               [
                 "Celecoxib rediscovery",
-                "0_._48_±_0_._01",
-                "2_._47_±_0_._04"
+                "0.48_±_0.01",
+                "2.47_±_0.04"
               ]
             ]
           },
           {
-            "label": "table_2",
+            "label": "Table 2 we compare a fixed, uniform backward policy to three versio",
             "columns": [
               "_PB_ policy",
               "% of solved routes (train)",
@@ -2240,27 +2239,27 @@
             "rows": [
               [
                 "Uniform",
-                "11_._0_±_3_._7%",
-                "11_._0_±_4_._1%",
-                "47_,_515_._0_±_11_,_264_._7"
+                "11.0_±_3.7%",
+                "11.0_±_4.1%",
+                "47_,_515.0_±_11_,_264.7"
               ],
               [
                 "Free",
-                "67_._3_±_3_._7%",
-                "1_._0_±_0_._8%",
-                "6_,_754_._3_±_4_,_980_._1"
+                "67.3_±_3.7%",
+                "1.0_±_0.8%",
+                "6_,_754.3_±_4_,_980.1"
               ],
               [
                 "MaxLikelihood",
-                "99_._3_±_0_._5%",
-                "32_._3_±_7_._3%",
-                "37_,_708_._2_±_13_,_992_._6"
+                "99.3_±_0.5%",
+                "32.3_±_7.3%",
+                "37_,_708.2_±_13_,_992.6"
               ],
               [
                 "REINFORCE",
-                "100_._0_±_0_._0%",
-                "44_._3_±_2_._6%",
-                "55_,_387_._6_±_28_,_886_._3"
+                "100.0_±_0.0%",
+                "44.3_±_2.6%",
+                "55_,_387.6_±_28_,_886.3"
               ]
             ]
           },
@@ -2578,7 +2577,7 @@
             ]
           },
           {
-            "label": "Table 2: Translation of Concept Inclusions in normalized form",
+            "label": "Table 2 shows how the Datalog translation of a TBox in normalized f",
             "columns": [
               "Concept Inclusion (CI)",
               "Equivalent Datalog Rule"
@@ -2611,11 +2610,11 @@
             "rows": [
               [
                 "_noStart_(_X_1) _←sameAs_(_X_0_,X_1) _∧X_0_< X_1_._",
-                "(2_._1)"
+                "(2.1)"
               ],
               [
                 "_noStart_(_X_2) _←sameAs_(_X_0_,X_1) _∧sameAs_(_X_1_,X_2)_∧X_0_< X_2_._",
-                "(2_._2)"
+                "(2.2)"
               ],
               [
                 "...",
@@ -3015,9 +3014,9 @@
             "context": "elated metrics, computed over top-k modes generated for each method, in Table 1"
           },
           {
-            "param": "learning rate",
+            "param": "epochs",
             "value": "5",
-            "context": "ing the Adam optimizer with a learning rate of 5"
+            "context": " The training was done for 30 epochs using the Adam optimizer with a learning rate of 5"
           },
           {
             "param": "batch size",
@@ -3915,7 +3914,11 @@
           "QM9",
           "GuacaMol",
           "MoleculeNet",
-          "PDB"
+          "PDB",
+          "SIDER",
+          "Tox21",
+          "FreeSolv",
+          "Lipophilicity"
         ],
         "result_tables": [
           {
@@ -5012,7 +5015,8 @@
           "ChEMBL",
           "PubChem",
           "Enamine",
-          "PDB"
+          "PDB",
+          "Lipophilicity"
         ],
         "dedup_rule": "Tanimoto similarity < 0.5",
         "hyperparams": [
@@ -5049,7 +5053,7 @@
         ],
         "result_tables": [
           {
-            "label": "Table 1: Synthesizability metrics for top-k Modes ( **molecules wit",
+            "label": "Table 1 shows the Saturn results and also results taken from RGFN’s",
             "columns": [
               "Method",
               "Modes (Yield)",
@@ -6067,7 +6071,8 @@
         "data_sources": [
           "ZINC",
           "PubChem",
-          "Enamine"
+          "Enamine",
+          "Lipophilicity"
         ],
         "dedup_rule": "TanimotoSimilarity( _node, benf_ ) _FMS ←_ ComputeFMS( _node, benf_ ) _block_reward ← TanSim ·_ 0.50",
         "hyperparams": [
@@ -6197,7 +6202,7 @@
             ]
           },
           {
-            "label": "Table 2: Results for constrained synthesis generative design with 1",
+            "label": "Table 2 shows that this is also learnable within the oracle budget,",
             "columns": [
               "**Cfiti**",
               "**Synt**",
@@ -6564,6 +6569,11 @@
         ],
         "dedup_rule": "Tanimoto similarities greater than 0.5",
         "hyperparams": [
+          {
+            "param": "epochs",
+            "value": "4",
+            "context": "ng performance based on early epochs may not be an effective   4"
+          },
           {
             "param": "threshold",
             "value": "73",
@@ -8548,7 +8558,8 @@
         ],
         "data_sources": [
           "PubChem",
-          "PDB"
+          "PDB",
+          "Lipophilicity"
         ],
         "split_spec": "training dataset sizes, ranging from 93-99%",
         "hyperparams": [
@@ -9364,290 +9375,290 @@
             "rows": [
               [
                 "albuterol_similarity",
-                "0_._636",
-                "0_._496",
-                "0_._656",
-                "0_._664",
-                "0_._583",
-                "0_._557",
-                "0_._886",
-                "0_._883",
+                "0.636",
+                "0.496",
+                "0.656",
+                "0.664",
+                "0.583",
+                "0.557",
+                "0.886",
+                "0.883",
                 "**0**_._**998**"
               ],
               [
                 "amlodipine_mpo",
-                "0_._519",
-                "0_._472",
-                "0_._541",
-                "0_._534",
-                "0_._501",
-                "0_._489",
-                "0_._637",
-                "0_._540",
+                "0.519",
+                "0.472",
+                "0.541",
+                "0.534",
+                "0.501",
+                "0.489",
+                "0.637",
+                "0.540",
                 "**0**_._**647**"
               ],
               [
                 "celecoxib_rediscovery",
-                "0_._411",
-                "0_._370",
-                "0_._447",
-                "0_._447",
-                "0_._424",
-                "0_._385",
-                "0_._402",
-                "0_._512",
+                "0.411",
+                "0.370",
+                "0.447",
+                "0.447",
+                "0.424",
+                "0.385",
+                "0.402",
+                "0.512",
                 "**0**_._**867**"
               ],
               [
                 "deco_hop",
-                "0_._593",
-                "0_._572",
-                "0_._596",
-                "0_._604",
-                "0_._581",
-                "0_._579",
-                "0_._588",
-                "0_._574",
+                "0.593",
+                "0.572",
+                "0.596",
+                "0.604",
+                "0.581",
+                "0.579",
+                "0.588",
+                "0.574",
                 "**0**_._**842**"
               ],
               [
                 "drd2",
-                "0_._857",
-                "0_._775",
-                "0_._859",
-                "0_._809",
-                "0_._833",
-                "0_._795",
+                "0.857",
+                "0.775",
+                "0.859",
+                "0.809",
+                "0.833",
+                "0.795",
                 "**0**_._**910**",
-                "0_._812",
-                "0_._756"
+                "0.812",
+                "0.756"
               ],
               [
                 "fexofenadine_mpo",
-                "0_._707",
-                "0_._650",
-                "0_._700",
-                "0_._682",
-                "0_._666",
-                "0_._679",
-                "0_._674",
-                "0_._680",
+                "0.707",
+                "0.650",
+                "0.700",
+                "0.682",
+                "0.666",
+                "0.679",
+                "0.674",
+                "0.680",
                 "**0**_._**883**"
               ],
               [
                 "gsk3b",
-                "0_._611",
-                "0_._589",
-                "0_._617",
+                "0.611",
+                "0.589",
+                "0.617",
                 "**0**_._**637**",
-                "0_._523",
-                "0_._539",
-                "0_._397",
-                "0_._496",
-                "0_._308"
+                "0.523",
+                "0.539",
+                "0.397",
+                "0.496",
+                "0.308"
               ],
               [
                 "isomers_c7h8n2o2",
-                "0_._545",
-                "0_._725",
-                "0_._779",
-                "0_._738",
-                "0_._735",
-                "0_._661",
-                "0_._737",
-                "0_._850",
+                "0.545",
+                "0.725",
+                "0.779",
+                "0.738",
+                "0.735",
+                "0.661",
+                "0.737",
+                "0.850",
                 "**0**_._**986**"
               ],
               [
                 "isomers_c9h10n2o2pf2cl",
-                "0_._599",
-                "0_._630",
-                "0_._672",
-                "0_._656",
-                "0_._630",
-                "0_._596",
-                "0_._635",
-                "0_._832",
+                "0.599",
+                "0.630",
+                "0.672",
+                "0.656",
+                "0.630",
+                "0.596",
+                "0.635",
+                "0.832",
                 "**0**_._**914**"
               ],
               [
                 "jnk3",
-                "0_._346",
-                "0_._315",
-                "0_._336",
+                "0.346",
+                "0.315",
+                "0.336",
                 "**0**_._**409**",
-                "0_._301",
-                "0_._294",
-                "0_._186",
-                "0_._342",
-                "0_._125"
+                "0.301",
+                "0.294",
+                "0.186",
+                "0.342",
+                "0.125"
               ],
               [
                 "median1",
-                "0_._213",
-                "0_._205",
-                "0_._217",
-                "0_._219",
-                "0_._208",
-                "0_._219",
-                "0_._236",
-                "0_._193",
+                "0.213",
+                "0.205",
+                "0.217",
+                "0.219",
+                "0.208",
+                "0.219",
+                "0.236",
+                "0.193",
                 "**0**_._**321**"
               ],
               [
                 "median2",
-                "0_._203",
-                "0_._188",
-                "0_._193",
-                "0_._204",
-                "0_._181",
-                "0_._184",
-                "0_._191",
-                "0_._197",
+                "0.203",
+                "0.188",
+                "0.193",
+                "0.204",
+                "0.181",
+                "0.184",
+                "0.191",
+                "0.197",
                 "**0**_._**322**"
               ],
               [
                 "mestranol_similarity",
-                "0_._427",
-                "0_._379",
-                "0_._423",
-                "0_._414",
-                "0_._362",
-                "0_._393",
-                "0_._399",
-                "0_._630",
+                "0.427",
+                "0.379",
+                "0.423",
+                "0.414",
+                "0.362",
+                "0.393",
+                "0.399",
+                "0.630",
                 "**0**_._**996**"
               ],
               [
                 "osimertinib_mpo",
-                "0_._766",
-                "0_._737",
-                "0_._759",
-                "0_._763",
-                "0_._751",
-                "0_._761",
-                "0_._779",
-                "0_._753",
+                "0.766",
+                "0.737",
+                "0.759",
+                "0.763",
+                "0.751",
+                "0.761",
+                "0.779",
+                "0.753",
                 "**0**_._**796**"
               ],
               [
                 "perindopril_mpo",
-                "0_._458",
-                "0_._404",
-                "0_._473",
-                "0_._462",
-                "0_._435",
-                "0_._422",
+                "0.458",
+                "0.404",
+                "0.473",
+                "0.462",
+                "0.435",
+                "0.422",
                 "**0**_._**655**",
-                "0_._422",
-                "0_._542"
+                "0.422",
+                "0.542"
               ],
               [
                 "qed",
-                "0_._912",
-                "0_._921",
-                "0_._925",
+                "0.912",
+                "0.921",
+                "0.925",
                 "**0**_._**928**",
-                "0_._914",
-                "0_._923",
-                "0_._919",
+                "0.914",
+                "0.923",
+                "0.919",
                 "**0**_._**928**",
-                "0_._903"
+                "0.903"
               ],
               [
                 "ranolazine_mpo",
                 "**0**_._**701**",
-                "0_._574",
-                "0_._687",
-                "0_._623",
-                "0_._620",
-                "0_._614",
-                "0_._640",
-                "0_._516",
-                "0_._233"
+                "0.574",
+                "0.687",
+                "0.623",
+                "0.620",
+                "0.614",
+                "0.640",
+                "0.516",
+                "0.233"
               ],
               [
                 "scaffold_hop",
-                "0_._478",
-                "0_._447",
-                "0_._480",
-                "0_._485",
-                "0_._461",
-                "0_._460",
-                "0_._473",
-                "0_._464",
+                "0.478",
+                "0.447",
+                "0.480",
+                "0.485",
+                "0.461",
+                "0.460",
+                "0.473",
+                "0.464",
                 "**0**_._**646**"
               ],
               [
                 "sitagliptin_mpo",
-                "0_._232",
-                "0_._261",
-                "0_._315",
-                "0_._227",
-                "0_._229",
-                "0_._245",
-                "0_._193",
+                "0.232",
+                "0.261",
+                "0.315",
+                "0.227",
+                "0.229",
+                "0.245",
+                "0.193",
                 "**0**_._**328**",
-                "0_._067"
+                "0.067"
               ],
               [
                 "thiothixene_rediscovery",
-                "0_._351",
-                "0_._311",
-                "0_._343",
-                "0_._377",
-                "0_._322",
-                "0_._336",
-                "0_._416",
-                "0_._478",
+                "0.351",
+                "0.311",
+                "0.343",
+                "0.377",
+                "0.322",
+                "0.336",
+                "0.416",
+                "0.478",
                 "**0**_._**719**"
               ],
               [
                 "troglitazone_rediscovery",
-                "0_._313",
-                "0_._246",
-                "0_._292",
-                "0_._277",
-                "0_._267",
-                "0_._262",
-                "0_._302",
-                "0_._387",
+                "0.313",
+                "0.246",
+                "0.292",
+                "0.277",
+                "0.267",
+                "0.262",
+                "0.302",
+                "0.387",
                 "**0**_._**841**"
               ],
               [
                 "valsartan_smarts",
-                "0_._000",
-                "0_._000",
-                "0_._000",
-                "0_._000",
-                "0_._000",
-                "0_._000",
-                "0_._000",
-                "0_._000",
-                "0_._000"
+                "0.000",
+                "0.000",
+                "0.000",
+                "0.000",
+                "0.000",
+                "0.000",
+                "0.000",
+                "0.000",
+                "0.000"
               ],
               [
                 "zaleplon_mpo",
-                "0_._392",
-                "0_._406",
-                "0_._404",
-                "0_._400",
-                "0_._374",
-                "0_._415",
-                "0_._392",
-                "0_._409",
+                "0.392",
+                "0.406",
+                "0.404",
+                "0.400",
+                "0.374",
+                "0.415",
+                "0.392",
+                "0.409",
                 "**0**_._**625**"
               ],
               [
                 "**Sum of scores (↑)**",
-                "11_._27",
-                "10_._68",
-                "11_._71",
-                "11_._56",
-                "10_._90",
-                "10_._81",
-                "11_._65",
-                "12_._23",
+                "11.27",
+                "10.68",
+                "11.71",
+                "11.56",
+                "10.90",
+                "10.81",
+                "11.65",
+                "12.23",
                 "**15**_._**42**"
               ]
             ]
@@ -9661,15 +9672,15 @@
             "rows": [
               [
                 "osimertinib_mpo<br>MT-MOL<br>w/o Tool<br>w/o Reviewer<br>w/o Double checker",
-                "**0**_._**796**_±_**0**_._**005**<br>0_._694_±_0_._054<br>0_._619_±_0_._140<br>0_._704_±_0_._017"
+                "**0**_._**796**_±_**0**_._**005**<br>0.694_±_0.054<br>0.619_±_0.140<br>0.704_±_0.017"
               ],
               [
                 "albuterol_similarity<br>MT-MOL<br>w/o Tool<br>w/o Reviewer<br>w/o Double checker",
-                "**0**_._**998**_±_**0**_._**000**<br>0_._750_±_0_._021<br>0_._991_±_0_._003<br>0_._996_±_0_._003"
+                "**0**_._**998**_±_**0**_._**000**<br>0.750_±_0.021<br>0.991_±_0.003<br>0.996_±_0.003"
               ],
               [
                 "mestranol_similarity<br>MT-MOL<br>w/o Tool<br>w/o Reviewer<br>w/o Double checker",
-                "**0**_._**996**_±_**0**_._**001**<br>0_._831_±_0_._052<br>0_._990_±_0_._002<br>0_._994_±_0_._002"
+                "**0**_._**996**_±_**0**_._**001**<br>0.831_±_0.052<br>0.990_±_0.002<br>0.994_±_0.002"
               ],
               [
                 "Table 2:**Ablation study.**AUC-Top10<br>ferent agent removals for each task.<br>and Grover,2025), and two variant",
@@ -9962,7 +9973,6 @@
           "BindingDB",
           "PDB"
         ],
-        "split_spec": "valid syntheses over 50%",
         "hyperparams": [
           {
             "param": "learning rate",
@@ -9992,7 +10002,7 @@
         ],
         "result_tables": [
           {
-            "label": "table_1",
+            "label": "Table 2 and Supplementary Table S3, when trained with their respect",
             "columns": [
               "Dataset",
               "Method",
@@ -11040,7 +11050,7 @@
         "data_sources": [
           "USPTO"
         ],
-        "split_spec": "split as proposed by [44], leading to 40,000, 500",
+        "split_spec": "split as proposed by [44], leading to 40,000",
         "hyperparams": [
           {
             "param": "learning rate",
@@ -11152,7 +11162,7 @@
               ],
               [
                 "noise levels",
-                "_σ_ = 0_._5",
+                "_σ_ = 0.5",
                 "82.1",
                 "85.0",
                 "85.2"
@@ -11946,7 +11956,6 @@
           "ChemCoTBench"
         ],
         "dedup_rule": "Tanimoto similarity _≥_ 0.6",
-        "split_spec": "validity with 95%",
         "result_tables": [
           {
             "label": "table_1",
@@ -13275,7 +13284,7 @@
             ]
           },
           {
-            "label": "Table 2",
+            "label": "Table 1, S3-GFN achieves a high positive ratio (0",
             "columns": [
               "Average Top-100",
               "Vina Docking Sc",
@@ -13533,7 +13542,8 @@
         ],
         "data_sources": [
           "ZINC",
-          "PubChem"
+          "PubChem",
+          "Lipophilicity"
         ],
         "split_spec": "training examples and keep only 40%",
         "hyperparams": [
@@ -13549,8 +13559,13 @@
           },
           {
             "param": "learning rate",
-            "value": "1",
-            "context": "2 steps before an update. The learning rate is set to 1"
+            "value": "1.0",
+            "context": "2 steps before an update. The learning rate is set to 1.0"
+          },
+          {
+            "param": "epochs",
+            "value": "16",
+            "context": "g. The model is trained for 5 epochs using BF16"
           },
           {
             "param": "learning rate",
@@ -13559,13 +13574,8 @@
           },
           {
             "param": "learning rate",
-            "value": "5",
-            "context": "the following exceptions: the learning rate is set to 5"
-          },
-          {
-            "param": "batch size",
-            "value": "2",
-            "context": "or 4 epochs with a per-device batch size of 2"
+            "value": "5.0",
+            "context": "the following exceptions: the learning rate is set to 5.0"
           }
         ],
         "result_tables": [
@@ -14096,12 +14106,13 @@
         ],
         "data_sources": [
           "MoleculeNet",
-          "ChemCoTBench"
+          "ChemCoTBench",
+          "Lipophilicity"
         ],
         "split_spec": "split the dataset into an 80/10/10",
         "result_tables": [
           {
-            "label": "Table 1",
+            "label": "Table 1 illustrate the predictive performance of MolEvolve across d",
             "columns": [
               "**Base Model**",
               "**Method**",
@@ -14539,8 +14550,8 @@
         "hyperparams": [
           {
             "param": "learning rate",
-            "value": "1",
-            "context": "999)| |Weight decay|0.0<br>| |Learning rate|1"
+            "value": "1.0",
+            "context": "999)| |Weight decay|0.0<br>| |Learning rate|1.0"
           },
           {
             "param": "batch size",
@@ -14548,14 +14559,24 @@
             "context": "ories per molecule|10| |Micro-batch size|20"
           },
           {
+            "param": "epochs",
+            "value": "2",
+            "context": "|Micro-batch size|20| |Update epochs per rollout|2"
+          },
+          {
             "param": "temperature",
-            "value": "0",
-            "context": "Inference uses a low decoding temperature _τ_ =0"
+            "value": "0.1",
+            "context": "Inference uses a low decoding temperature _τ_ =0.1"
           },
           {
             "param": "temperature",
             "value": "5",
             "context": "nvironment model and decoding temperature, the Enamine buildingblock filter, the maximum depth of 5"
+          },
+          {
+            "param": "epochs",
+            "value": "512",
+            "context": "-7B-Chat with LoRA (7B)|– (10 epochs, batch 512"
           }
         ],
         "result_tables": [
@@ -14655,7 +14676,7 @@
               ],
               [
                 "Adam(_β_1_, β_2)",
-                "(0_._9_,_ 0_._999)"
+                "(0.9_,_ 0.999)"
               ],
               [
                 "Weight decay",
@@ -14663,7 +14684,7 @@
               ],
               [
                 "Learning rate",
-                "1_._0_×_10<sup>_−_5</sup>"
+                "1.0_×_10<sup>_−_5</sup>"
               ],
               [
                 "Training steps",
@@ -15008,7 +15029,8 @@
         ],
         "data_sources": [
           "PubChem",
-          "ChemCoTBench"
+          "ChemCoTBench",
+          "Lipophilicity"
         ],
         "hyperparams": [
           {
@@ -15293,7 +15315,7 @@
           {
             "param": "learning rate",
             "value": "1",
-            "context": "= 0_._9_, β_2 = 0_._95)<br>| |Learning Rate|1"
+            "context": "β_1 = 0.9_, β_2 = 0.95)<br>| |Learning Rate|1"
           },
           {
             "param": "learning rate",
@@ -15438,7 +15460,7 @@
               ],
               [
                 "Optimizer",
-                "AdamW (_β_1 = 0_._9_, β_2 = 0_._95)<br>"
+                "AdamW (_β_1 = 0.9_, β_2 = 0.95)<br>"
               ],
               [
                 "Learning Rate",
@@ -15794,19 +15816,20 @@
           "MolEvolve"
         ],
         "data_sources": [
-          "ZINC"
+          "ZINC",
+          "Lipophilicity"
         ],
         "dedup_rule": "Tanimoto 0.79",
         "hyperparams": [
           {
             "param": "threshold",
-            "value": "0",
-            "context": "3.9 on average. At the strict threshold _τ_ = 0"
+            "value": "0.65",
+            "context": "3.9 on average. At the strict threshold _τ_ = 0.65"
           },
           {
             "param": "temperature",
-            "value": "0",
-            "context": " space. The InfoNCE loss with temperature _τc_ = 0"
+            "value": "0.07",
+            "context": " space. The InfoNCE loss with temperature _τc_ = 0.07"
           },
           {
             "param": "learning rate",
@@ -15817,6 +15840,11 @@
             "param": "learning rate",
             "value": "1",
             "context": "_proj<br>2e-4 (cosine)<br>128|Learning rate<br>Batch size<br>Epochs|1"
+          },
+          {
+            "param": "epochs",
+            "value": "3",
+            "context": " positions<br>L2 before avg| |Epochs|3"
           },
           {
             "param": "temperature",
@@ -16361,7 +16389,6 @@
           "PubChem",
           "USPTO"
         ],
-        "split_spec": "Validator` estimates _≥_ 80%",
         "hyperparams": [
           {
             "param": "temperature",
@@ -16371,7 +16398,7 @@
         ],
         "result_tables": [
           {
-            "label": "Table 2: Predictive performance on (1) the TDC test set with and wi",
+            "label": "Table 2, we consider how useful `Starling` -curated data is for tra",
             "columns": [
               "**Task**",
               "**Metric**",
@@ -17422,9 +17449,19 @@
         "split_spec": "splits [3, 23",
         "hyperparams": [
           {
+            "param": "epochs",
+            "value": "35%",
+            "context": "uidance reduces the number of epochs by 35%"
+          },
+          {
             "param": "top-k",
             "value": "50",
             "context": " of USPTO-50k.**   **Table 3: Top-k (exact match) accuracy on the USPTO-50"
+          },
+          {
+            "param": "epochs",
+            "value": "35%",
+            "context": ".** GRG reduces the number of epochs by 35%"
           },
           {
             "param": "learning rate",
@@ -17439,7 +17476,7 @@
         ],
         "result_tables": [
           {
-            "label": "Table 1: Top-** _𝑘_ **exact-match accuracy (%) on the USPTO-50k tes",
+            "label": "Table 1, node-level alignment not only improves top- _𝑘_ across the",
             "columns": [
               "Model",
               "Guidance granularity",
@@ -17524,7 +17561,7 @@
             ]
           },
           {
-            "label": "Table 2), indicating that the guided generator produces candidates",
+            "label": "Table 2 reports roundtrip coverage and accuracy using the Molecular",
             "columns": [
               "Model",
               "Top-1",
@@ -17886,7 +17923,8 @@
         "data_sources": [
           "ZINC",
           "ChEMBL",
-          "GEOM"
+          "GEOM",
+          "Lipophilicity"
         ],
         "result_tables": [
           {
@@ -18625,6 +18663,11 @@
             "param": "threshold",
             "value": "0.2",
             "context": "nk capacity_K_|5| |Similarity threshold in_Q_|0.2"
+          },
+          {
+            "param": "epochs",
+            "value": "1500",
+            "context": "100-80GB GPUs. We train for 4 epochs on OpenMolIns-light, with 1500"
           }
         ],
         "result_tables": [
@@ -18683,7 +18726,7 @@
             ]
           },
           {
-            "label": "Table 2: Ablation results on TOMG-Bench MOLOPT",
+            "label": "Table 2 isolates the two core mechanisms in Active-GRPO",
             "columns": [
               "Variant",
               "LogP SR_×_Sim_↑_",
@@ -18701,7 +18744,7 @@
                 "0.12",
                 "58_±_0.0033",
                 "0.1665",
-                "_−_0_._0108"
+                "_−_0.0108"
               ],
               [
                 "Active-G<br>Active-G<br>**Active-G**<br>0.04<br>im",
@@ -18710,14 +18753,14 @@
                 "0.12<br>0.12<br>**0.14**<br>**L**",
                 "20_±_0.0098<br>75_±_0.0072<br>**40**_±_**0.0081**<br>**ogP headroo**",
                 "0.1624<br>0.1659<br>**0.1773**<br>**m break**",
-                "_−_0_._0149<br>_−_0_._0114<br>—<br>**down**"
+                "_−_0.0149<br>_−_0.0114<br>—<br>**down**"
               ],
               [
                 "0.01<br>0.00<br>0.01<br>0.02<br>0.03<br>Active-GRPO - RePO SR x S",
                 "",
                 "",
                 "Bin<br>Q1<br>Q2<br>Q3<br>Q4<br>Q5",
-                "Range<br>(_−_3_._91_,_1_._30] <br>(1_._30_,_2_._25]<br>(2_._25_,_2_._94]<br>(2_._94_,_3_._63]<br>(3_._63_,_7_._36]",
+                "Range<br>(_−_3.91_,_1.30] <br>(1.30_,_2.25]<br>(2.25_,_2.94]<br>(2.94_,_3.63]<br>(3.63_,_7.36]",
                 "∆SR<br> +0.007<br>+0.014<br>+0.024<br>+0.032<br>+0.045",
                 "∆SR_×_Sim<br>+0.002<br>+0.007<br>+0.013<br>+0.022<br>+0.031"
               ]
@@ -18748,7 +18791,7 @@
               ],
               [
                 "Top-_k_size for_v_top",
-                "_k_ =_⌈_0_._33_G⌉_= 1"
+                "_k_ =_⌈_0.33_G⌉_= 1"
               ],
               [
                 "Guidance lower bound_β_min",
@@ -19390,7 +19433,7 @@
                 "3.5_±_3.5",
                 "4.1_±_4.0",
                 "4.8_±_5.4",
-                "n.s. (_p_=0_._158)",
+                "n.s. (_p_=0.158)",
                 "0.160 (small)"
               ],
               [
@@ -19398,7 +19441,7 @@
                 "2.5_±_3.5",
                 "2.8_±_3.2",
                 "3.8_±_5.2",
-                "n.s. (_p_=0_._214)",
+                "n.s. (_p_=0.214)",
                 "0.149 (small)"
               ],
               [
@@ -19414,7 +19457,7 @@
                 "0.4_±_0.8",
                 "1.2_±_2.0",
                 "1.0_±_2.5",
-                "_∗∗∗_(_H_=15_._6,_p_=0_._0004)",
+                "_∗∗∗_(_H_=15.6,_p_=0.0004)",
                 "0.244 (small)"
               ],
               [
@@ -19438,7 +19481,7 @@
                 "88.6%",
                 "83.9%",
                 "89.3%",
-                "n.s. (_p_=0_._38)",
+                "n.s. (_p_=0.38)",
                 "—"
               ],
               [
@@ -19446,7 +19489,7 @@
                 "100%",
                 "99.2%",
                 "100%",
-                "n.s. (_p_=0_._368)",
+                "n.s. (_p_=0.368)",
                 "—"
               ]
             ]
@@ -20027,7 +20070,8 @@
         ],
         "data_sources": [
           "ChEMBL",
-          "PDB"
+          "PDB",
+          "SIDER"
         ],
         "dedup_rule": "Tanimoto similarity (weight 0.15",
         "result_tables": [
@@ -20062,7 +20106,7 @@
                 "Expert review",
                 "rationale plausibility (1–5), blinded,<br>multi-rater",
                 "held-out redesign cases",
-                "mean_≥_3_._5, substantial agreement"
+                "mean_≥_3.5, substantial agreement"
               ]
             ]
           },
@@ -20655,7 +20699,8 @@
         ],
         "data_sources": [
           "ChEMBL",
-          "PDB"
+          "PDB",
+          "Lipophilicity"
         ],
         "dedup_rule": "Tanimoto similarity _Tc ≥_ 0.70",
         "hyperparams": [
@@ -20666,8 +20711,8 @@
           },
           {
             "param": "temperature",
-            "value": "1",
-            "context": "ion specifies fixed values of temperature = 1"
+            "value": "1.0",
+            "context": "ion specifies fixed values of temperature = 1.0"
           },
           {
             "param": "temperature",
@@ -21864,7 +21909,8 @@
           "GuacaMol",
           "MoleculeNet",
           "CrossDocked",
-          "PDB"
+          "PDB",
+          "Tox21"
         ],
         "dedup_rule": "Tanimoto similarity of at least 0.20",
         "split_spec": "split from the 30,000",
@@ -21890,19 +21936,19 @@
             "context": "Loshchilov and Hutter, 2019) (learning rate 3"
           },
           {
-            "param": "top-k",
-            "value": "2.2",
-            "context": "_0 / 2z3h_A)<br>best score in Top-K<br>2.2"
+            "param": "epochs",
+            "value": "20",
+            "context": " batches of 64, and up to 200 epochs with patience-20"
           },
           {
             "param": "top-k",
-            "value": "2.0",
-            "context": "st score in Top-K<br>2.2 mean(Top-K)<br>2.0"
+            "value": "2.2",
+            "context": "_0 / 2z3h_A)<br>best score in Top-K<br>2.2"
           }
         ],
         "result_tables": [
           {
-            "label": "table_1",
+            "label": "Table 1, CAGenMol-2 achieves a mean hit rate of 0",
             "columns": [
               "Property",
               "Hit-ID",
@@ -22969,8 +23015,8 @@
           },
           {
             "param": "threshold",
-            "value": "0",
-            "context": "t guidance mode with a pocket threshold of 0"
+            "value": "0.5",
+            "context": "t guidance mode with a pocket threshold of 0.5"
           }
         ],
         "result_tables": [
@@ -23576,11 +23622,18 @@
           "ZINC",
           "ChEMBL",
           "PubChem",
-          "MoleculeNet"
+          "MoleculeNet",
+          "Tox21",
+          "Lipophilicity"
         ],
         "dedup_rule": "Tanimoto distance was 0.671",
         "split_spec": "split [41] used by MolT5, with 3,300",
         "hyperparams": [
+          {
+            "param": "epochs",
+            "value": "100",
+            "context": "former (dimension 256) for 10 epochs with a shared 100"
+          },
           {
             "param": "threshold",
             "value": "0.4",
@@ -23592,9 +23645,9 @@
             "context": " 5ht1b/2 result at similarity threshold 0.6"
           },
           {
-            "param": "batch size",
+            "param": "epochs",
             "value": "256",
-            "context": "n inputs for 10 epochs, using batch size 256"
+            "context": ",000 validation inputs for 10 epochs, using batch size 256"
           },
           {
             "param": "learning rate",
@@ -23605,11 +23658,6 @@
             "param": "batch size",
             "value": "1",
             "context": "0 training steps, with global batch size 1"
-          },
-          {
-            "param": "learning rate",
-            "value": "3",
-            "context": "h global batch size 1,024 and learning rate 3"
           }
         ],
         "result_tables": [
@@ -23654,7 +23702,7 @@
               ],
               [
                 "deco_hop",
-                "0_._9279",
+                "0.9279",
                 "**0.960**",
                 "0.936",
                 "0.733",
@@ -23672,7 +23720,7 @@
               ],
               [
                 "fexofenadine_mpo",
-                "0_._8720",
+                "0.8720",
                 "**0.894**",
                 "0.856",
                 "0.856",
@@ -23690,7 +23738,7 @@
               ],
               [
                 "isomers_c7h8n2o2",
-                "0_._9511",
+                "0.9511",
                 "0.942",
                 "0.955",
                 "**0.969**",
@@ -23699,7 +23747,7 @@
               ],
               [
                 "isomers_c9h10n2o2pf2cl",
-                "0_._8842",
+                "0.8842",
                 "0.833",
                 "0.850",
                 "**0.897**",
@@ -23708,7 +23756,7 @@
               ],
               [
                 "jnk3",
-                "0_._8054",
+                "0.8054",
                 "**0.906**",
                 "0.904",
                 "0.764",
@@ -23753,7 +23801,7 @@
               ],
               [
                 "perindopril_mpo",
-                "0_._7126",
+                "0.7126",
                 "**0.718**",
                 "0.681",
                 "0.595",
@@ -23807,7 +23855,7 @@
               ],
               [
                 "troglitazone_redisc.",
-                "0_._8196",
+                "0.8196",
                 "**0.867**",
                 "0.448",
                 "0.511",
@@ -23825,7 +23873,7 @@
               ],
               [
                 "zaleplon_mpo",
-                "0_._5653",
+                "0.5653",
                 "**0.584**",
                 "0.486",
                 "0.552",
@@ -24183,6 +24231,11 @@
             "context": "ts reasoning and decisions at temperature 0.6"
           },
           {
+            "param": "epochs",
+            "value": "2",
+            "context": "val trajectories|3,142 / 64| |Epochs|2"
+          },
+          {
             "param": "batch size",
             "value": "4",
             "context": "/ 64| |Epochs|2| |Steps|429| |Batch size|4"
@@ -24190,7 +24243,7 @@
           {
             "param": "learning rate",
             "value": "1",
-            "context": "mW (_β_1=0_._9,_β_2=0_._95)| |Learning rate|1"
+            "context": "|AdamW (_β_1=0.9,_β_2=0.95)| |Learning rate|1"
           },
           {
             "param": "temperature",
@@ -24274,7 +24327,7 @@
             ]
           },
           {
-            "label": "Table 3: Ablation on the reasoning schema on USPTO-190, with all va",
+            "label": "Table 2 compares _Multi-Route_",
             "columns": [
               "**Variant**",
               "**Sc**",
@@ -24312,11 +24365,11 @@
                 "–",
                 "–",
                 "_L_0",
-                "0.989(+0_._000)",
-                "5.49(+0_._71)",
-                "0.691(+0_._063)",
-                "3.15(+0_._36)",
-                "**0.769**(+0_._049)"
+                "0.989(+0.000)",
+                "5.49(+0.71)",
+                "0.691(+0.063)",
+                "3.15(+0.36)",
+                "**0.769**(+0.049)"
               ],
               [
                 "_L_2",
@@ -24326,11 +24379,11 @@
                 "–",
                 "–",
                 "_L_1",
-                "**0.995**(+0_._006)",
-                "5.53(+0_._04)",
-                "0.722(+0_._031)",
-                "3.16(+0_._01)",
-                "0.742(_−_0_._027)"
+                "**0.995**(+0.006)",
+                "5.53(+0.04)",
+                "0.722(+0.031)",
+                "3.16(+0.01)",
+                "0.742(_−_0.027)"
               ],
               [
                 "_L_3-div",
@@ -24340,11 +24393,11 @@
                 "✓",
                 "–",
                 "_L_2",
-                "0.989(_−_0_._006)",
-                "**5.78**(+0_._25)",
-                "0.726(+0_._004)",
-                "3.34(+0_._18)",
-                "0.720(_−_0_._022)"
+                "0.989(_−_0.006)",
+                "**5.78**(+0.25)",
+                "0.726(+0.004)",
+                "3.34(+0.18)",
+                "0.720(_−_0.022)"
               ],
               [
                 "_L_3-ord",
@@ -24354,11 +24407,11 @@
                 "–",
                 "✓",
                 "_L_2",
-                "0.979(_−_0_._016)",
-                "5.08(_−_0_._45)",
-                "**0.756**(+0_._034)",
-                "3.20(+0_._04)",
-                "0.737(_−_0_._005)"
+                "0.979(_−_0.016)",
+                "5.08(_−_0.45)",
+                "**0.756**(+0.034)",
+                "3.20(+0.04)",
+                "0.737(_−_0.005)"
               ],
               [
                 "_L_3",
@@ -24368,11 +24421,11 @@
                 "✓",
                 "✓",
                 "_L_2",
-                "0.984(_−_0_._011)",
-                "5.59(+0_._06)",
-                "0.745(+0_._023)",
-                "**3.35**(+0_._19)",
-                "0.726(_−_0_._016)"
+                "0.984(_−_0.011)",
+                "5.59(+0.06)",
+                "0.745(+0.023)",
+                "**3.35**(+0.19)",
+                "0.726(_−_0.016)"
               ]
             ]
           }
@@ -24588,6 +24641,9 @@
           "RePO",
           "MolEvolve"
         ],
+        "data_sources": [
+          "Lipophilicity"
+        ],
         "hyperparams": [
           {
             "param": "threshold",
@@ -24601,8 +24657,8 @@
           },
           {
             "param": "threshold",
-            "value": "0",
-            "context": "r a more stringent similarity threshold _α_ = 0"
+            "value": "0.6",
+            "context": "r a more stringent similarity threshold _α_ = 0.6"
           }
         ],
         "result_tables": [
@@ -25442,7 +25498,7 @@
           {
             "param": "learning rate",
             "value": "3",
-            "context": "9, _β_ 2 = 0 _._ 999, initial learning rate of 3"
+            "context": "= 0.9, _β_ 2 = 0.999, initial learning rate of 3"
           },
           {
             "param": "batch size",
@@ -25450,14 +25506,9 @@
             "context": " PyTorch. We use an effective batch size of 64"
           },
           {
-            "param": "temperature",
-            "value": "0.6",
-            "context": "es, 16 Euler steps, a Poisson temperature of 0.6"
-          },
-          {
-            "param": "batch size",
-            "value": "4",
-            "context": "te selection and an effective batch size of 4"
+            "param": "epochs",
+            "value": "55",
+            "context": "h size of 64 and train for 64 epochs (approximately 55"
           },
           {
             "param": "temperature",
@@ -25468,6 +25519,11 @@
             "param": "batch size",
             "value": "4",
             "context": "te selection and an effective batch size of 4"
+          },
+          {
+            "param": "temperature",
+            "value": "0.6",
+            "context": "es, 16 Euler steps, a Poisson temperature of 0.6"
           }
         ],
         "result_tables": [

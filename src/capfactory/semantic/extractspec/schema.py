@@ -38,6 +38,7 @@ class StageSpec:
     slots: List[str] = field(default_factory=list)
     template: str = ""
     guards: Dict[str, Any] = field(default_factory=dict)
+    rules: Dict[str, Any] = field(default_factory=dict)   # 声明式规则（字段→规则类型）
 
     @property
     def fields(self) -> List[str]:
@@ -83,7 +84,8 @@ def parse_stage(d: Dict[str, Any]) -> StageSpec:
         section_slice=str(d.get("section_slice") or "paper"),
         slots=list(d.get("slots") or []),
         template=str(d.get("template") or ""),
-        guards=dict(d.get("guards") or {}))
+        guards=dict(d.get("guards") or {}),
+        rules=dict(d.get("rules") or {}))
 
 
 def parse_refine(d: Dict[str, Any]) -> RefineSpec:

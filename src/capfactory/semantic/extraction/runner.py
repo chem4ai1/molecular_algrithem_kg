@@ -234,8 +234,22 @@ def run_extraction(arxiv_id: str, *, md: str = "", graph: Any = None,
                                 ast=ast, guide=stage_guide, retries=retries,
                                 tolerate_empty=tolerant)
         rep["guide_chars"] += len(stage_guide)
+        # 声明式规则：YAML rules: 段声明的字段用规则抽，补 LLM 漏掉的
+        rule_filled = {}
+        try:
+            from ..extractspec import loader as _ld
+            from ..extractspec.rules import apply_rules as _apply
+            _spec = (_ld.stages() or {}).get(st)
+            if _spec is not None and getattr(_spec, "rules", None):
+                rule_filled = _apply(_spec.rules, sl.get("paper", ""))
+                for k, v in rule_filled.items():
+                    if out.get(k) in (None, "", [], {}):
+                        out[k] = v
+        except Exception:  # noqa: BLE001
+            rule_filled = {}
         rep["stages"][st] = {"ok": not meta["fatal"], **meta,
-                             "n_fields": len(out), "data": out}
+                             "n_fields": len(out), "data": out,
+                             "rule_filled": list(rule_filled)}
     # 规则校准
     e1 = rep["stages"].get("E1_paper", {}).get("data") or {}
     rep["domain_calibrated"] = _csv_domain(arxiv_id)

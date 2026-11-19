@@ -156,12 +156,15 @@ def mine_all(sem_g: Any, *, task: str | None = None,
                            "n_semantic_nodes": 0, "task": task}
     # 底层：复制语义层节点（标 layer=semantic）**与其断言**，应用层叠加其上
     for n in sem_g.nodes.values():
-        a = {k: v for k, v in n.attrs.items() if k != "label"}
+        # 排除由 mine_all 统一设置的属性，避免 layer/task/miner 重复传参
+        a = {k: v for k, v in n.attrs.items()
+             if k not in ("label", "layer", "task", "miner")}
         g.node(n.id, n.type, n.label, layer="semantic", **a)
         rep["n_semantic_nodes"] += 1
     for a in sem_g.assertions:
-        g.assert_rel(a.source, a.target, a.relation,
-                     layer="semantic", **(dict(a.properties or {})))
+        props = {k: v for k, v in dict(a.properties or {}).items()
+                 if k not in ("layer", "task", "miner")}
+        g.assert_rel(a.source, a.target, a.relation, layer="semantic", **props)
     rep["n_semantic_assertions"] = len(sem_g.assertions)
 
     # 抽取/回填期（task=None）：只输出语义层快照，应用节点一个都不建，
@@ -332,6 +335,18 @@ def mine_all(sem_g: Any, *, task: str | None = None,
             derived_from=[a.source, a.target], miner="source_papers")
         rel(a.source, "SITUATED_IN", sid); n8 += 1
     rep["miners"]["source_papers"] = n8
+
+    # 结果表：从 Paper.result_tables 派生（P6）
+    n9 = 0
+    for p in papers:
+        for ti, tb in enumerate((p.attrs.get("result_tables") or [])[:2]):
+            tid = f"resulttable:{p.id.split(':')[-1]}:{ti}"
+            if add(tid, "ResultTable", str(tb.get("label") or "")[:60],
+                   table_label=tb.get("label", ""), columns=tb.get("columns") or [],
+                   rows=tb.get("rows") or [], source_paper=p.id,
+                   derived_from=[p.id], miner="result_tables"):
+                rel(tid, "DERIVED_FROM_PAPERS", p.id); n9 += 1
+    rep["miners"]["result_tables"] = n9
     # ===== S2：写作方法论节点 =====
     # 9) 贡献（S1 落库才有；缺失不造）
     n9 = 0
