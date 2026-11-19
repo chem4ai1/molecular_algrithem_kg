@@ -4,7 +4,7 @@
     "created_at": "2026-11-18T12:41:58+00:00",
     "source": "问题导向本体与知识图谱架构_20261109",
     "stats": {
-      "graph_id": "po::2026-11-19T01:33:29+00:00",
+      "graph_id": "po::2026-11-19T01:38:29+00:00",
       "n_nodes": 374,
       "n_assertions": 433,
       "nodes_by_type": {
@@ -1328,7 +1328,8 @@
               ]
             ]
           }
-        ]
+        ],
+        "formal_def": "M =  M (31)"
       },
       "attribution": "analyst_synthesis",
       "evidence_ids": [],
@@ -4631,7 +4632,8 @@
               ]
             ]
           }
-        ]
+        ],
+        "formal_def": "Vpi_ = _D_ ( _pi, γ_ ( _pi_ )"
       },
       "attribution": "analyst_synthesis",
       "evidence_ids": [],
@@ -12064,7 +12066,8 @@
               ]
             ]
           }
-        ]
+        ],
+        "formal_def": "Mo =  F ( Mi, T )"
       },
       "attribution": "analyst_synthesis",
       "evidence_ids": [],
@@ -25244,7 +25247,8 @@
               ]
             ]
           }
-        ]
+        ],
+        "formal_def": "_s_ = Sim( _Ct, C_ 0)"
       },
       "attribution": "analyst_synthesis",
       "evidence_ids": [],

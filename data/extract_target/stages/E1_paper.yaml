@@ -43,6 +43,9 @@ contract:
   - split_spec
   - hyperparams
   - result_tables
+  - formal_def
+  - old_forms
+  - method_limits
   aux_fields:
   - domain_code
   - evidence
@@ -71,7 +74,10 @@ template: "任务：抽 Paper 的核心属性（研究什么问题 / 问题类�
   :\"本文的章节与措辞惯例（简短归纳）\"\n注意：这里记的是**本文说了什么**，不是本次生成任务的判断。\n  实验做法（客观事实，供 P2 数据构造与 P6 结果表参照）：\n  \"data_sources\"\
   :[\"ZINC\",\"ChEMBL\"],\n  \"dedup_rule\":\"如 Tanimoto>=0.6 或 sequence identity<30%\",\n  \"split_spec\"\
   :\"train/val/test 划分\",\n  \"hyperparams\":[{\"param\":\"iterations\",\"value\":\"5\"}],\n  \"result_tables\"\
-  :[{\"label\":\"Table 1\",\"columns\":[\"Model\",\"SR%\"],\"rows\":[[\"A\",\"99.9\"]]}]\n注意：只记本文写了什么，不判断本次该用什么。"
+  :[{\"label\":\"Table 1\",\"columns\":[\"Model\",\"SR%\"],\"rows\":[[\"A\",\"99.9\"]]}]\n注意：只记本文写了什么，不判断本次该用什么。\n\
+  \n问题形式化（P0，逐字或近逐字，不编造）：\n  \"formal_def\":\"本文的问题定义/公式（如 Mo=F(Mi,T)，没有则空字符串）\",\n  \"old_forms\":[\"\
+  先前工作怎么形式化的（含其写法）\"],\n  \"method_limits\":[\"作者指出的旧方法具体缺陷（每条一句话）\"]\n注意：formal_def 只写原文出现的公式或等价文字定义；method_limits\
+  \ 只写作者明确批评的缺陷。"
 rules:
   preprocess: normalize_pdf
   data_sources:
@@ -109,3 +115,10 @@ rules:
     - variant
     - ours
     main_table_min_rows: 2
+  formal_def:
+    type: regex
+    group: 0
+    max_chars: 160
+    patterns:
+    - ([A-Za-z_]{1,6}\s*=\s*[A-Za-z_]{1,8}\s*\(\s*[A-Za-z_]{1,8}\s*,[^)]{0,40}\))
+    - ((?:M|Y|X|y|x)\s*=\s*[A-Za-z_]{1,8}\s*\([^)]{1,60}\))

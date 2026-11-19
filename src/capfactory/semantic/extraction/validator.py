@@ -130,6 +130,9 @@ def _e1(data, source_text, issues):
                            "context": _str(x.get("context"))[:100]}
                           for x in _list(data.get("hyperparams"))[:8]
                           if isinstance(x, dict)]
+    out["formal_def"] = _str(data.get("formal_def"))[:200]
+    out["old_forms"] = _list(data.get("old_forms"))[:4]
+    out["method_limits"] = _list(data.get("method_limits"))[:6]
     out["result_tables"] = [{"label": _str(x.get("label"))[:40],
                              "columns": _list(x.get("columns"))[:12],
                              "rows": _list(x.get("rows"))[:30]}
@@ -160,6 +163,15 @@ def _e2(data, issues):
                 "why_it_works": _str(a.get("why_it_works"))[:220],
                 "applicable_to": _list(a.get("applicable_to"))[:6],
                 "limitations": _list(a.get("limitations"))[:6],
+                # P1 架构要素
+                "arch_modules": [{"name": _str(m.get("name"))[:40],
+                                  "role": _str(m.get("role"))[:100],
+                                  "input": _str(m.get("input"))[:60],
+                                  "output": _str(m.get("output"))[:60]}
+                                 for m in _list(a.get("arch_modules"))[:6]
+                                 if isinstance(m, dict)],
+                "why_not_other": _str(a.get("why_not_other"))[:200],
+                "key_challenge": _str(a.get("key_challenge"))[:160],
                 "modules": []}
         item["task_type"] = _vocab_or_other(
             "task_type", item["task_type"], a, issues)

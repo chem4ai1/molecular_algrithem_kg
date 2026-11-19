@@ -32,6 +32,9 @@ contract:
   - novelty_basis
   - is_novel_component
   - component_role
+  - arch_modules
+  - why_not_other
+  - key_challenge
 section_slice: algorithm
 slots:
 - code_symbols
@@ -46,4 +49,7 @@ template: "任务：抽 Algorithm 及它的 AlgorithmModule（算法模块）。
   {code_symbols}\n每个模块补充（消融与前提检查用）：\n  \"is_novel_component\":true|false,      // 是否论文明确声称的新组件\n  \"component_role\"\
   :\"backbone|encoder|decoder|loss|sampler|other\"\n算法级补充：\n  \"assumptions\":[\"该方法成立所依赖的前提\"],   //\
   \ 不是局限，是前提\n  \"novelty_basis\":[\"technical_constraint|theoretical_blind_spot|data_availability\"]\n\
-  注意：不要把所有模块都标 is_novel_component=true；assumptions 只写原文明确说出的。"
+  注意：不要把所有模块都标 is_novel_component=true；assumptions 只写原文明确说出的。\n\n架构与关键挑战（P1，与上面 modules 的区别：modules 是算法内部机理，arch_modules\
+  \ 是系统级模块划分）：\n  \"arch_modules\":[{\"name\":\"如 reasoning_LLM / code_executor\",\"role\":\"该模块在系统中的职责\"\
+  ,\"input\":\"输入\",\"output\":\"输出\"}],\n  \"why_not_other\":\"为什么不用同流派另一种做法（原文有则写，无则空字符串）\",\n  \"key_challenge\"\
+  :\"作者指出的核心技术挑战（一句话）\"\n注意：arch_modules 必须来自方法节的模块划分，不要臆造；why_not_other 只写原文明确说的。"

@@ -63,6 +63,10 @@ SEMANTIC_CLASSES: Dict[str, Tuple[str, Tuple[Tuple[str, str, str], ...]]] = {
         ("split_spec", "optional", "训练/验证/测试划分"),
         ("hyperparams", "optional", "关键超参[{param,value,context}]"),
         ("result_tables", "optional", "结果表[{label,columns,rows}]"),
+        # P0 问题形式化（LLM 抽）
+        ("formal_def", "optional", "本文的问题定义/公式"),
+        ("old_forms", "optional", "先前工作的形式化写法[]"),
+        ("method_limits", "optional", "作者指出的旧方法缺陷[]"),
         ("citation_style", "optional", "author-year|numeric|other"),
         ("writing_style", "optional", "章节与措辞惯例（从同类论文归纳）"),
     )),

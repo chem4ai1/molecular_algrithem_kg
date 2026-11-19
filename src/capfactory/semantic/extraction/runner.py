@@ -241,7 +241,11 @@ def run_extraction(arxiv_id: str, *, md: str = "", graph: Any = None,
             from ..extractspec.rules import apply_rules as _apply
             _spec = (_ld.stages() or {}).get(st)
             if _spec is not None and getattr(_spec, "rules", None):
-                rule_filled = _apply(_spec.rules, sl.get("paper", ""))
+                # 规则用整篇原文（切片会漏掉 Methods 里的公式/表格）
+                _mdf = MD_DIR / f"{arxiv_id}.md"
+                _full = (_mdf.read_text(encoding="utf-8", errors="replace")
+                         if _mdf.exists() else sl.get("paper", ""))
+                rule_filled = _apply(_spec.rules, _full)
                 for k, v in rule_filled.items():
                     if out.get(k) in (None, "", [], {}):
                         out[k] = v
