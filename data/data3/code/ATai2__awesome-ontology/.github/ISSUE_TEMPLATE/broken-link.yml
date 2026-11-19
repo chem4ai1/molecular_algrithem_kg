@@ -1,0 +1,42 @@
+name: 链接失效或描述过时
+description: 报告清单中的死链、停更项目或错误描述
+title: "[Fix] "
+labels: ["fix"]
+body:
+  - type: input
+    id: url
+    attributes:
+      label: 有问题的条目
+      description: 贴出 README.md 中的那一行，或只给 URL
+      placeholder: https://example.com/old-path
+    validations:
+      required: true
+
+  - type: dropdown
+    id: kind
+    attributes:
+      label: 问题类型
+      options:
+        - 链接 404 或无法访问
+        - 项目已停止维护
+        - 描述不准确或已过时
+        - 分类不合理
+        - 其他
+    validations:
+      required: true
+
+  - type: input
+    id: replacement
+    attributes:
+      label: 新的可用链接
+      description: 如果项目迁移了地址，请填写新地址
+    validations:
+      required: false
+
+  - type: textarea
+    id: detail
+    attributes:
+      label: 补充说明
+      description: 失效时间、错误信息、停更依据等
+    validations:
+      required: false

@@ -1,0 +1,65 @@
+site_name: Awesome Ontology
+site_description: 面向中文读者的本体工程资源清单
+site_author: awesome-ontology contributors
+site_url: https://awesome-ontology.github.io/awesome-ontology/
+repo_url: https://github.com/awesome-ontology/awesome-ontology
+repo_name: awesome-ontology/awesome-ontology
+edit_uri: edit/main/
+
+theme:
+  name: material
+  language: zh
+  icon:
+    repo: fontawesome/brands/github
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.top
+    - navigation.sections
+    - content.code.copy
+    - search.highlight
+    - search.suggest
+    - search.share
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-night
+        name: 切换到深色模式
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-sunny
+        name: 切换到浅色模式
+
+nav:
+  - 首页: index.md
+  - 贡献指南: contributing.md
+  - 维护脚本: maintenance.md
+  - 行为准则: code-of-conduct.md
+  - 研究计划: research_plan_awesome_ontology.md
+  - 工程报告: research_report_awesome_ontology.md
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+
+plugins:
+  - search
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/awesome-ontology/awesome-ontology
+      name: 在 GitHub 上查看
+
+# 说明：docs/ 下的 index.md、contributing.md、code-of-conduct.md、maintenance.md
+# 由 scripts/build_site.py 从根目录同名文件生成，不要直接编辑，改动会被覆盖。

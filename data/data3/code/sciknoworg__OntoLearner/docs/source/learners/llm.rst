@@ -1,0 +1,396 @@
+Large Language Models
+========================
+
+
+.. sidebar:: Examples
+
+    * LLM Learner Example: `llm_learner.py <https://github.com/sciknoworg/OntoLearner/blob/main/examples/llm_learner.py>`_
+    * LLM Learner Pipeline Usage Example: `llm_learner_pipeline_usage.py <https://github.com/sciknoworg/OntoLearner/blob/main/examples/llm_learner_pipeline_usage.py>`_
+
+
+LLM-only learners leverage the power of large language models to perform ontology learning tasks
+without using retrieval components. This approach is particularly useful when you want to rely
+on the model's inherent knowledge rather than specific examples from the training data.
+
+Loading Ontological Data
+----------------------------
+
+We start by importing necessary components from the ontolearner package, loading ontology, and doing train-test splits.
+
+.. code-block:: python
+
+    from ontolearner import AutoLLMLearner, AgrO, train_test_split, LabelMapper, StandardizedPrompting, evaluation_report
+
+    ontology = AgrO()
+
+    ontology.load()
+
+    ontological_data = ontology.extract()
+
+    train_data, test_data = train_test_split(ontological_data, test_size=0.2, random_state=42)
+
+.. note::
+
+    * ``AutoLLMLearner``: A wrapper class to easily configure and run LLM-based learners.
+    * ``LabelMapper``: Maps generated outputs to specified clases.
+    * ``StandardizedPrompting``: A default prompting strategy for prompting LLMs in a consistent way.
+    * ``evaluation_report``: A evaluation method for LLMs4OL tasks.
+
+Initialize Learner
+-----------------------------
+
+Before defining the LLM learner, choose the task you want the LLM to perform. Available tasks has been described in `LLMs4OL Paradigms <https://ontolearner.readthedocs.io/learning_tasks/llms4ol.html>`_. The task IDs are: 'term-typing', 'taxonomy-discovery', 'non-taxonomic-re'.
+
+.. code-block:: python
+
+    task = 'non-taxonomic-re'
+
+Next, to use LLMs hosted on HuggingFace or other providers that require token, provide a valid access token:
+
+.. code-block:: python
+
+    token = '...'
+
+Setup the learner with your prompting and label mapping strategies and then load the desired model:
+
+.. code-block:: python
+
+    llm_learner = AutoLLMLearner(
+        prompting=StandardizedPrompting,
+        label_mapper=LabelMapper(),
+        token=token
+    )
+    llm_learner.load(model_id='Qwen/Qwen2.5-0.5B-Instruct')
+
+Next, ``.fit`` the model and make the predictions:
+
+.. code-block:: python
+
+    llm_learner.fit(train_data, task=task)
+
+    predicts = llm_learner.predict(test_data, task=task)
+
+    truth = llm_learner.tasks_ground_truth_former(data=test_data, task=task)
+
+    metrics = evaluation_report(y_true=truth, y_pred=predicts, task=task)
+
+    print(metrics)
+
+You will see a evaluations results.
+
+
+
+.. hint::
+
+    OntoLearner supports various LLM models, including (but not limited to):
+
+    - Mistral models (e.g., "mistralai/Mistral-7B-Instruct-v0.1")
+    - Llama models (e.g., "meta-llama/Llama-3.1-8B-Instruct")
+    - Qwen models (e.g., "Qwen/Qwen3-0.6B")
+    - DeepSeek models (e.g., "deepseek-ai/deepseek-llm-7b-base")
+    - ...
+
+
+Pipeline Usage
+-----------------------
+The OntoLearner package also offers a streamlined ``LearnerPipeline`` class that simplifies initialization, training, prediction, and evaluation into a single call. In this section, we run the pipeline in **LLM-only** mode by setting ``llm_id`` only.
+
+.. code-block:: python
+
+    # Import the main components from the OntoLearner library
+    from ontolearner import LearnerPipeline, AgrO, train_test_split
+
+    # Load the AgrO ontology, which contains agricultural concepts and relationships
+    ontology = AgrO()
+    ontology.load()  # Parse and initialize internal ontology structures, including term-type pairs
+
+    # Extract annotated examples (terms and their types), and split into train/test sets
+    train_data, test_data = train_test_split(
+        ontology.extract(),     # Extract raw (term, types) instances from the ontology
+        test_size=0.2,          # 20% of the data is reserved for evaluation
+        random_state=42         # Ensure reproducibility by setting a fixed seed
+    )
+
+    # Set up the learner pipeline using a lightweight instruction-tuned LLM
+    pipeline = LearnerPipeline(
+        llm_id='Qwen/Qwen2.5-0.5B-Instruct',   # LLM-only mode
+        hf_token='...',                        # Hugging Face access token for loading gated models
+        batch_size=32                          # Batch size for parallel inference (if applicable)
+    )
+
+    # Run the full learning pipeline on the term-typing task
+    outputs = pipeline(
+        train_data=train_data,
+        test_data=test_data,
+        evaluate=True,               # Enables automatic computation of precision, recall, F1
+        task='term-typing'           # The task is to classify terms into semantic types
+    )
+
+    # Display the evaluation results
+    print("Metrics:", outputs['metrics'])          # Shows {'precision': ..., 'recall': ..., 'f1_score': ...}
+
+    # Display total elapsed time for training + prediction + evaluation
+    print("Elapsed time:", outputs['elapsed_time'])
+
+    # Print all returned outputs (include predictions)
+    print(outputs)
+
+
+Custom AutoLLM
+-----------------
+
+OntoLearner provides a default ``AutoLLM`` wrapper for handling popular model families (Mistral, Llama, Qwen, etc.) through HuggingFace or external providers. However, in some cases you may want to integrate a model family that is not natively supported (e.g., Falcon, DeepSeek, or a proprietary LLM).
+
+For this, you can extend the ``AutoLLM`` class and implement the required
+``load`` and ``generate`` methods. Basic requirements are:
+
+1. Inherit from ``AutoLLM``
+2. Implement ``load(model_id)``, if your model loading is different (for example `mistralai/Mistral-Small-3.2-24B-Instruct-2506 <https://huggingface.co/mistralai/Mistral-Small-3.2-24B-Instruct-2506>`_ uses different type of loading)
+3. Implement ``generate(inputs, max_new_tokens)`` to encodes prompts, performs generation, decodes outputs, and maps them to labels.
+
+
+.. tab:: Falcon-H
+
+	The following example shows how to build a Falcon integration:
+
+	::
+
+	    from ontolearner import AutoLLM
+	    from typing import List
+	    import torch
+
+	    class FalconLLM(AutoLLM):
+
+	        @torch.no_grad()
+	        def generate(self, inputs: List[str], max_new_tokens: int = 50) -> List[str]:
+	            encoded_inputs = self.tokenizer(
+	                inputs,
+	                return_tensors="pt",
+	                padding=True,
+	                truncation=True
+	            ).to(self.model.device)
+
+	            input_ids = encoded_inputs["input_ids"]
+	            input_length = input_ids.shape[1]
+
+	            outputs = self.model.generate(
+	                input_ids,
+	                max_new_tokens=max_new_tokens,
+	                pad_token_id=self.tokenizer.eos_token_id
+	            )
+
+	            generated_tokens = outputs[:, input_length:]
+	            decoded_outputs = [
+	                self.tokenizer.decode(g, skip_special_tokens=True).strip()
+	                for g in generated_tokens
+	            ]
+
+	            return self.label_mapper.predict(decoded_outputs)
+
+.. tab:: Mistral-Small
+
+	For Mistral, you can integrate the official ``mistral-common`` tokenizer and chat completion interface:
+
+	::
+
+		from ontolearner import AutoLLM
+		from typing import List
+		import torch
+
+		class MistralLLM(AutoLLM):
+
+		    def load(self, model_id: str) -> None:
+		        from mistral_common.tokens.tokenizers.mistral import MistralTokenizer
+		        from mistral_common.models.modeling_mistral import Mistral3ForConditionalGeneration
+
+		        self.tokenizer = MistralTokenizer.from_hf_hub(model_id)
+
+		        device_map = "cpu" if self.device == "cpu" else "balanced"
+		        self.model = Mistral3ForConditionalGeneration.from_pretrained(
+		            model_id,
+		            device_map=device_map,
+		            torch_dtype=torch.bfloat16,
+		            token=self.token
+		        )
+
+		        if not hasattr(self.tokenizer, "pad_token_id") or self.tokenizer.pad_token_id is None:
+		            self.tokenizer.pad_token_id = self.model.generation_config.eos_token_id
+
+		        self.label_mapper.fit()
+
+			@torch.no_grad()
+		    def generate(self, inputs: List[str], max_new_tokens: int = 50) -> List[str]:
+		        from mistral_common.protocol.instruct.messages import ChatCompletionRequest
+
+		        tokenized_list = []
+		        for prompt in inputs:
+		            messages = [{"role": "user", "content": [{"type": "text", "text": prompt}]}]
+		            tokenized = self.tokenizer.encode_chat_completion(ChatCompletionRequest(messages=messages))
+		            tokenized_list.append(tokenized.tokens)
+
+		        # Pad inputs and create attention masks
+		        max_len = max(len(tokens) for tokens in tokenized_list)
+		        input_ids, attention_masks = [], []
+		        for tokens in tokenized_list:
+		            pad_length = max_len - len(tokens)
+		            input_ids.append(tokens + [self.tokenizer.pad_token_id] * pad_length)
+		            attention_masks.append([1] * len(tokens) + [0] * pad_length)
+
+		        input_ids = torch.tensor(input_ids).to(self.model.device)
+		        attention_masks = torch.tensor(attention_masks).to(self.model.device)
+
+		        outputs = self.model.generate(
+		            input_ids=input_ids,
+		            attention_mask=attention_masks,
+		            eos_token_id=self.model.generation_config.eos_token_id,
+		            pad_token_id=self.tokenizer.pad_token_id,
+		            max_new_tokens=max_new_tokens,
+		        )
+
+		        decoded_outputs = []
+		        for i, tokens in enumerate(outputs):
+		            output_text = self.tokenizer.decode(tokens[len(tokenized_list[i]):])
+		            decoded_outputs.append(output_text)
+
+		        return self.label_mapper.predict(decoded_outputs)
+
+.. tab:: Logit LLM
+
+	The following example shows how the logit-based probability calculation is happening in the OntoLearner to reduce the experimentation time and efficiency:
+
+	.. hint::
+
+		- To use Mistral LLM in a logit-based approach please use the ``LogitMistralLLM`` class.
+		- Also you can use quantized variant of logit-based approach by calling ``LogitQuantLLM`` class.
+
+	::
+
+		class LogitAutoLLM(AutoLLM):
+		    def _get_label_token_ids(self):
+		        label_token_ids = {}
+		        for label, words in self.label_mapper.label_dict.items():
+		            ids = []
+		            for w in words:
+		                token_ids = self.tokenizer.encode(w, add_special_tokens=False)
+		                ids.append(token_ids)
+		            label_token_ids[label] = ids
+		        return label_token_ids
+
+		    def load(self, model_id: str) -> None:
+		        super().load(model_id)
+		        self.label_token_ids = self._get_label_token_ids()
+
+		    @torch.no_grad()
+		    def generate(self, inputs: List[str], max_new_tokens: int = 1) -> List[str]:
+		        encoded = self.tokenizer(inputs, return_tensors="pt", truncation=True, padding=True).to(self.model.device)
+		        outputs = self.model(**encoded)
+		        logits = outputs.logits # logits: [batch, seq_len, vocab]
+		        last_logits = logits[:, -1, :]  # [batch, vocab] # we only care about the NEXT token prediction
+		        probs = F.softmax(last_logits, dim=-1)
+		        predictions = []
+		        for i in range(probs.size(0)):
+		            label_scores = {}
+		            for label, token_id_lists in self.label_token_ids.items():
+		                score = 0.0
+		                for token_ids in token_id_lists:
+		                    if len(token_ids) == 1:
+		                        score += probs[i, token_ids[0]].item()
+		                    else:
+		                        score += probs[i, token_ids[0]].item() # multi-token fallback (rare but safe)
+		                label_scores[label] = score
+		            predictions.append(max(label_scores, key=label_scores.get))
+		        return predictions
+
+.. tab:: Qwen3-Thinking LLM
+
+	The thinking model of Qwen3 requires a different way of inference, similar to Mistral LLM. The following example shows how to use such model within the OntoLearner. You only need to import ``QwenThinkingLLM`` class and use it.
+
+	::
+
+		class QwenThinkingLLM(AutoLLM):
+		    @torch.no_grad()
+		    def generate(self, inputs: List[str], max_new_tokens: int = 50) -> List[str]:
+		        messages = [[{"role": "user", "content": prompt + " Please show your final response with 'answer': 'label'."}]
+		                    for prompt in inputs]
+		        texts = self.tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
+		        encoded_inputs = self.tokenizer(texts, return_tensors="pt", padding=True).to(self.model.device)
+		        generated_ids = self.model.generate(**encoded_inputs, max_new_tokens=max_new_tokens)
+		        decoded_outputs = []
+		        for i in range(len(generated_ids)):
+		            prompt_len = encoded_inputs.attention_mask[i].sum().item()
+		            output_ids = generated_ids[i][prompt_len:].tolist()
+		            try:
+		                end = len(output_ids) - output_ids[::-1].index(151668)
+		                thinking_ids = output_ids[:end]
+		            except ValueError:
+		                thinking_ids = output_ids
+		            thinking_content = self.tokenizer.decode(thinking_ids, skip_special_tokens=True).strip()
+		            decoded_outputs.append(thinking_content)
+		        return self.label_mapper.predict(decoded_outputs)
+
+
+.. tab:: Qwen3-Instruct  LLM
+
+	Similar to the thinking model of Qwen3, the instruct variant also requires a different way of inference. The following example shows how to use such model within the OntoLearner. You only need to import ``QwenInstructLLM`` class and use it.
+
+	::
+
+		class QwenInstructLLM(AutoLLM):
+
+		    def generate(self, inputs: List[str], max_new_tokens: int = 50) -> List[str]:
+		        messages = [[{"role": "user", "content": prompt + " Please show your final response with 'answer': 'label'."}]
+		                    for prompt in inputs]
+
+		        texts = self.tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
+
+		        encoded_inputs = self.tokenizer(texts, return_tensors="pt", padding="max_length", truncation=True,
+		                                        max_length=256).to(self.model.device)
+
+		        generated_ids = self.model.generate(**encoded_inputs,
+		                                            max_new_tokens=max_new_tokens,
+		                                            use_cache=False,
+		                                            pad_token_id=self.tokenizer.pad_token_id,
+		                                            eos_token_id=self.tokenizer.eos_token_id)
+		        decoded_outputs = []
+		        for i in range(len(generated_ids)):
+		            prompt_len = encoded_inputs.attention_mask[i].sum().item()
+		            output_ids = generated_ids[i][prompt_len:].tolist()
+		            output_content = self.tokenizer.decode(output_ids, skip_special_tokens=True).strip()
+		            decoded_outputs.append(output_content)
+		        return self.label_mapper.predict(decoded_outputs)
+
+
+Once your custom class is defined, you can pass it into ``AutoLLMLearner``:
+
+.. code-block:: python
+
+    from ontolearner import AutoLLMLearner, LabelMapper, StandardizedPrompting
+
+    falcon_learner = AutoLLMLearner(
+        prompting=StandardizedPrompting,
+        label_mapper=LabelMapper(),
+        llm=FalconLLM,      # 👈 plug in custom Falcon
+        token="...",
+        device="cuda"
+    )
+
+    falcon_learner.llm.load(model_id="tiiuae/Falcon-H1-1.5B-Deep-Instruct")
+
+    # Train and evaluate
+    falcon_learner.fit(train_data, task="term-typing")
+    predictions = falcon_learner.predict(test_data, task="term-typing")
+
+    print(predictions)
+
+The following models are specialized within the OntoLearner:
+
+- To use `mistralai/Mistral-Small-3.2-24B-Instruct-2506 <https://huggingface.co/mistralai/Mistral-Small-3.2-24B-Instruct-2506>`_ you can use ``MistralLLM`` instead of ``AutoLLM``.
+- To use `Falcon-H` series of LLMs (e.g. `tiiuae/Falcon-H1-1.5B-Deep-Instruct <https://huggingface.co/tiiuae/Falcon-H1-1.5B-Deep-Instruct>`_ you can ``FalconLLM`` instead of ``AutoLLM``.
+
+.. note::
+
+   You can implement as many custom AutoLLM classes as needed (e.g., for proprietary APIs, local models, or new HF releases). As long as they subclass ``AutoLLM`` and implement ``load`` + ``generate``, they will work seamlessly with ``AutoLLMLearner``.
+
+
+.. hint::
+    See `Learning Tasks <https://ontolearner.readthedocs.io/learning_tasks/llms4ol.html>`_ for possible tasks within Learners.

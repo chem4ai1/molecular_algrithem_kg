@@ -1,0 +1,54 @@
+name: 推荐新资源
+description: 推荐一个值得收录到 awesome-ontology 的本体相关资源
+title: "[Resource] "
+labels: ["new resource"]
+body:
+  - type: markdown
+    value: |
+      提交前请确认：资源与**本体工程**直接相关、公开可访问、近两年内有维护迹象。
+      不确定是否合适也可以提交，维护者会判断。
+
+  - type: input
+    id: name
+    attributes:
+      label: 资源名称
+      description: 保留英文原名，不要音译
+      placeholder: Protégé
+    validations:
+      required: true
+
+  - type: input
+    id: url
+    attributes:
+      label: 官方链接
+      description: 项目官网或 GitHub 仓库主页，不要放教程或二手介绍
+      placeholder: https://protege.stanford.edu/
+    validations:
+      required: true
+
+  - type: input
+    id: category
+    attributes:
+      label: 建议分类
+      description: README.md 中的小节名，例如"工具链 / 推理机"
+      placeholder: 工具链 / 推理机
+    validations:
+      required: false
+
+  - type: textarea
+    id: description
+    attributes:
+      label: 一句话说明
+      description: 它是什么、解决什么问题，50 字以内
+      placeholder: 桌面本体编辑器，插件生态最完整
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: 确认项
+      options:
+        - label: 我已确认该资源目前仍然可访问
+        - label: 我已确认 README 中尚未收录该资源
+        - label: 该资源与本体工程直接相关

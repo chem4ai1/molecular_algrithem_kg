@@ -12,6 +12,8 @@ done
 [ -z "$PY" ] && { echo "[field-sync] 跳过：找不到 python"; exit 0; }
 
 FAIL=0
+NODE_ROLE=$(PYTHONPATH="$ROOT/src" "$PY" "$ROOT/scripts/check_node_roles.py" 2>&1)
+if [ $? -ne 0 ]; then echo "$NODE_ROLE"; FAIL=1; fi
 for st in E1_paper E2_algorithm E3_benchmark; do
   OUT=$(PYTHONPATH="$ROOT/src" "$PY" "$ROOT/scripts/check_field_sync.py" --stage "$st" 2>&1)
   RC=$?

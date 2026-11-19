@@ -1,0 +1,23 @@
+JPype1
+yacs
+torch
+anytree
+click
+dill
+pandas
+numpy
+scikit_learn
+# openprompt==1.0.0  # openprompt has been moved to optional dependencies
+transformers[torch]
+datasets
+spacy
+pprintpp
+networkx
+lxml
+textdistance
+ipywidgets
+ipykernel
+tqdm
+enlighten
+rdflib
+nltk

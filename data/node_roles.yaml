@@ -1,0 +1,249 @@
+version: 1
+semantic:
+  Paper:
+    role: 单篇论文事实容器
+    source: PDF/E1规则+LLM
+    phases: P0-P11
+    note: 所有阶段的基础 literature fact
+  Algorithm:
+    role: 论文提出的方法事实
+    source: E2 LLM/规则
+    phases: P0,P1,P3,P7
+    note: 方法族谱与 P1 技术路线来源
+  AlgorithmModule:
+    role: 算法内部模块事实
+    source: E2 modules/arch_modules
+    phases: P1,P3,P7
+    note: 模块划分与消融对象来源
+  CodeRepository:
+    role: 论文关联代码仓库事实
+    source: data3 manifest/github
+    phases: P3,P5,P11
+    note: 代码实现与复现包来源
+  CodeFunction:
+    role: 代码函数事实
+    source: 本地代码 AST
+    phases: P3,P5,P8
+    note: 代码到算法模块的锚点
+  Benchmark:
+    role: 评测基准事实
+    source: E3 LLM/表格
+    phases: P2,P5,P6,P7
+    note: 评测协议与指标来源
+application:
+  ResearchQuestion:
+    role: ResearchQuestion 应用层节点（ WritingContext/阶段接口/规则门控）
+    source: WritingContext/阶段接口/规则门控
+    phases: P0
+  ProblemCategory:
+    role: ProblemCategory 应用层节点（ WritingContext/阶段接口/规则门控）
+    source: WritingContext/阶段接口/规则门控
+    phases: P0
+  LeaderboardEntry:
+    role: LeaderboardEntry 应用层节点（ WritingContext/阶段接口/规则门控）
+    source: WritingContext/阶段接口/规则门控
+    phases: P5,P6
+  MetricDefinition:
+    role: MetricDefinition 应用层节点（applayer.miner 从语义层派生）
+    source: applayer.miner 从语义层派生
+    phases: P2,P5,P6
+  DataContract:
+    role: DataContract 应用层节点（applayer.miner 从语义层派生）
+    source: applayer.miner 从语义层派生
+    phases: P2,P5
+  Evidence:
+    role: Evidence 应用层节点（applayer.miner 从语义层派生）
+    source: applayer.miner 从语义层派生
+    phases: P6,P9
+  Limitation:
+    role: Limitation 应用层节点（applayer.miner 从语义层派生）
+    source: applayer.miner 从语义层派生
+    phases: P7
+  SourcePaper:
+    role: SourcePaper 应用层节点（ WritingContext/阶段接口/规则门控）
+    source: WritingContext/阶段接口/规则门控
+    phases: P10
+  Contribution:
+    role: Contribution 应用层节点（ WritingContext/阶段接口/规则门控）
+    source: WritingContext/阶段接口/规则门控
+    phases: P9
+  ExperimentArm:
+    role: ExperimentArm 应用层节点（ WritingContext/阶段接口/规则门控）
+    source: WritingContext/阶段接口/规则门控
+    phases: P5,P6,P7
+  Assumption:
+    role: Assumption 应用层节点（ WritingContext/阶段接口/规则门控）
+    source: WritingContext/阶段接口/规则门控
+    phases: P0-P11
+  FailureMode:
+    role: FailureMode 应用层节点（applayer.miner 从语义层派生）
+    source: applayer.miner 从语义层派生
+    phases: P7
+  EvidenceNorm:
+    role: EvidenceNorm 应用层节点（B类图谱聚合（Leiden/统计/规则））
+    source: B类图谱聚合（Leiden/统计/规则）
+    phases: P2,P6,P7
+  FigureAsset:
+    role: FigureAsset 应用层节点（ WritingContext/阶段接口/规则门控）
+    source: WritingContext/阶段接口/规则门控
+    phases: P8
+  CitedPaper:
+    role: CitedPaper 应用层节点（ WritingContext/阶段接口/规则门控）
+    source: WritingContext/阶段接口/规则门控
+    phases: P10
+  SectionDraft:
+    role: SectionDraft 应用层节点（ WritingContext/阶段接口/规则门控）
+    source: WritingContext/阶段接口/规则门控
+    phases: P9
+  FailureCheck:
+    role: FailureCheck 应用层节点（ WritingContext/阶段接口/规则门控）
+    source: WritingContext/阶段接口/规则门控
+    phases: P7
+  ConsultedPaper:
+    role: ConsultedPaper 应用层节点（ WritingContext/阶段接口/规则门控）
+    source: WritingContext/阶段接口/规则门控
+    phases: P10
+  ProblemAnchor:
+    role: ProblemAnchor 应用层节点（WritingContext 类型化接口（决策 ledger））
+    source: WritingContext 类型化接口（决策 ledger）
+    phases: P0,P1
+  DomainHint:
+    role: DomainHint 应用层节点（ WritingContext/阶段接口/规则门控）
+    source: WritingContext/阶段接口/规则门控
+    phases: P0
+  RelatedPaper:
+    role: RelatedPaper 应用层节点（ WritingContext/阶段接口/规则门控）
+    source: WritingContext/阶段接口/规则门控
+    phases: P0,P2
+  ResearchGap:
+    role: ResearchGap 应用层节点（WritingContext 类型化接口（决策 ledger））
+    source: WritingContext 类型化接口（决策 ledger）
+    phases: P0,P1
+  SectionPlan:
+    role: SectionPlan 应用层节点（WritingContext 类型化接口（决策 ledger））
+    source: WritingContext 类型化接口（决策 ledger）
+    phases: P9
+  ReviewPoint:
+    role: ReviewPoint 应用层节点（ WritingContext/阶段接口/规则门控）
+    source: WritingContext/阶段接口/规则门控
+    phases: P9,P10
+  CodeUnit:
+    role: CodeUnit 应用层节点（本地代码 AST/依赖文件解析）
+    source: 本地代码 AST/依赖文件解析
+    phases: P3
+  CodeSymbol:
+    role: CodeSymbol 应用层节点（本地代码 AST/依赖文件解析）
+    source: 本地代码 AST/依赖文件解析
+    phases: P3
+  Dependency:
+    role: Dependency 应用层节点（本地代码 AST/依赖文件解析）
+    source: 本地代码 AST/依赖文件解析
+    phases: P3
+  EntryPoint:
+    role: EntryPoint 应用层节点（本地代码 AST/依赖文件解析）
+    source: 本地代码 AST/依赖文件解析
+    phases: P3,P5
+  TestUnit:
+    role: TestUnit 应用层节点（本地代码 AST/依赖文件解析）
+    source: 本地代码 AST/依赖文件解析
+    phases: P3,P5
+  EnvSpec:
+    role: EnvSpec 应用层节点（本地代码 AST/依赖文件解析）
+    source: 本地代码 AST/依赖文件解析
+    phases: P3,P11
+  RunArtifact:
+    role: RunArtifact 应用层节点（ WritingContext/阶段接口/规则门控）
+    source: WritingContext/阶段接口/规则门控
+    phases: P4,P11
+  ProblemTaxonomy:
+    role: ProblemTaxonomy 应用层节点（B类图谱聚合（Leiden/统计/规则））
+    source: B类图谱聚合（Leiden/统计/规则）
+    phases: P0,P2
+  MethodLineage:
+    role: MethodLineage 应用层节点（B类图谱聚合（Leiden/统计/规则））
+    source: B类图谱聚合（Leiden/统计/规则）
+    phases: P1,P5
+  EvaluationNorm:
+    role: EvaluationNorm 应用层节点（B类图谱聚合（Leiden/统计/规则））
+    source: B类图谱聚合（Leiden/统计/规则）
+    phases: P0-P11
+  FailureModeLibrary:
+    role: FailureModeLibrary 应用层节点（B类图谱聚合（Leiden/统计/规则））
+    source: B类图谱聚合（Leiden/统计/规则）
+    phases: P7
+  VenueProfile:
+    role: VenueProfile 应用层节点（B类图谱聚合（Leiden/统计/规则））
+    source: B类图谱聚合（Leiden/统计/规则）
+    phases: P9
+  Claim:
+    role: Claim 应用层节点（WritingContext 类型化接口（决策 ledger））
+    source: WritingContext 类型化接口（决策 ledger）
+    phases: P4,P6,P9
+  GapTriple:
+    role: GapTriple 应用层节点（WritingContext 类型化接口（决策 ledger））
+    source: WritingContext 类型化接口（决策 ledger）
+    phases: P0,P1,P3
+  IdeaCandidate:
+    role: IdeaCandidate 应用层节点（WritingContext 类型化接口（决策 ledger））
+    source: WritingContext 类型化接口（决策 ledger）
+    phases: P1,P3
+  ReproductionPackage:
+    role: ReproductionPackage 应用层节点（WritingContext 类型化接口（决策 ledger））
+    source: WritingContext 类型化接口（决策 ledger）
+    phases: P11
+  ProblemFormulation:
+    role: ProblemFormulation 应用层节点（ WritingContext/阶段接口/规则门控）
+    source: WritingContext/阶段接口/规则门控
+    phases: P0
+  TechnicalRoute:
+    role: TechnicalRoute 应用层节点（ WritingContext/阶段接口/规则门控）
+    source: WritingContext/阶段接口/规则门控
+    phases: P1
+  DatasetSpec:
+    role: DatasetSpec 应用层节点（ WritingContext/阶段接口/规则门控）
+    source: WritingContext/阶段接口/规则门控
+    phases: P2
+  CodeArtifact:
+    role: CodeArtifact 应用层节点（本地代码 AST/依赖文件解析）
+    source: 本地代码 AST/依赖文件解析
+    phases: P3,P11
+  TrainingRun:
+    role: TrainingRun 应用层节点（ WritingContext/阶段接口/规则门控）
+    source: WritingContext/阶段接口/规则门控
+    phases: P4
+  BaselineResult:
+    role: BaselineResult 应用层节点（ WritingContext/阶段接口/规则门控）
+    source: WritingContext/阶段接口/规则门控
+    phases: P5
+  MainResultTable:
+    role: MainResultTable 应用层节点（ WritingContext/阶段接口/规则门控）
+    source: WritingContext/阶段接口/规则门控
+    phases: P6
+  AblationTable:
+    role: AblationTable 应用层节点（ WritingContext/阶段接口/规则门控）
+    source: WritingContext/阶段接口/规则门控
+    phases: P7
+  CaseStudy:
+    role: CaseStudy 应用层节点（ WritingContext/阶段接口/规则门控）
+    source: WritingContext/阶段接口/规则门控
+    phases: P7
+  ResultTable:
+    role: ResultTable 应用层节点（applayer.miner 从语义层派生）
+    source: applayer.miner 从语义层派生
+    phases: P6
+  CitationVerification:
+    role: CitationVerification 应用层节点（ WritingContext/阶段接口/规则门控）
+    source: WritingContext/阶段接口/规则门控
+    phases: P10
+  LiteratureItem:
+    role: LiteratureItem 应用层节点（ WritingContext/阶段接口/规则门控）
+    source: WritingContext/阶段接口/规则门控
+    phases: P0,P2
+  ExecutionRun:
+    role: ExecutionRun 应用层节点（ WritingContext/阶段接口/规则门控）
+    source: WritingContext/阶段接口/规则门控
+    phases: P4,P5,P6,P7
+  FigurePlan:
+    role: FigurePlan 应用层节点（WritingContext 类型化接口（决策 ledger））
+    source: WritingContext 类型化接口（决策 ledger）
+    phases: P8

@@ -1,0 +1,23 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+
+# 链接检查与统计脚本的输出
+reports/
+link-report.md
+link-report.json
+
+# MkDocs 构建产物与由 README 生成的站点源文件
+site/
+docs/index.md
+docs/contributing.md
+docs/code-of-conduct.md
+docs/maintenance.md
+
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/

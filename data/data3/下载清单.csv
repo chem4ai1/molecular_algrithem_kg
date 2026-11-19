@@ -1,0 +1,84 @@
+﻿类别,项目,GitHub,来源,状态,文件数,大小MB,本地目录,标签/说明
+A,ozekik/awesome-ontology,https://github.com/ozekik/awesome-ontology,原报告,成功,3,0.05,ozekik__awesome-ontology,原报告
+A,DEEP-JLU/Awesome-Graph-Engineering,https://github.com/DEEP-JLU/Awesome-Graph-Engineering,原报告,成功,8,13.1,DEEP-JLU__Awesome-Graph-Engineering,原报告
+A,shelyin/awesome-knowledge-graph,https://github.com/shelyin/awesome-knowledge-graph,原报告,成功,36,185.3,shelyin__awesome-knowledge-graph,原报告
+A,NCOR-Organization/awesome-ontologies,https://github.com/NCOR-Organization/awesome-ontologies,原报告,成功,263,107.62,NCOR-Organization__awesome-ontologies,原报告
+A,ATai2/awesome-ontology,https://github.com/ATai2/awesome-ontology,原报告,成功,25,0.1,ATai2__awesome-ontology,原报告
+A,totogo/awesome-knowledge-graph,https://github.com/totogo/awesome-knowledge-graph,原报告,成功,35,0.06,totogo__awesome-knowledge-graph,原报告
+A,songjiang0909/awesome-knowledge-graph-construction,https://github.com/songjiang0909/awesome-knowledge-graph-construction,原报告,成功,3,0.02,songjiang0909__awesome-knowledge-graph-construction,原报告
+A,GRAND-Lab/Awesome-Graph-Neural-Networks,https://github.com/GRAND-Lab/Awesome-Graph-Neural-Networks,原报告,成功,1,0.03,GRAND-Lab__Awesome-Graph-Neural-Networks,原报告
+A,brianretford/practically-awesome,https://github.com/brianretford/practically-awesome,原报告,成功,1,0.01,brianretford__practically-awesome,原报告
+A,robert-haas/awesome-biomedical-knowledge-graphs,https://github.com/robert-haas/awesome-biomedical-knowledge-graphs,原报告,成功,32,14.68,robert-haas__awesome-biomedical-knowledge-graphs,原报告
+B,HamedBabaei/LLMs4OL,https://github.com/HamedBabaei/LLMs4OL,原报告,成功,278,18.73,HamedBabaei__LLMs4OL,原报告
+B,sciknoworg/OntoLearner,https://github.com/sciknoworg/OntoLearner,原报告,成功,368,9.04,sciknoworg__OntoLearner,原报告
+B,sciknoworg/LLMs4OL-Challenge,https://github.com/sciknoworg/LLMs4OL-Challenge,原报告,成功,141,412.36,sciknoworg__LLMs4OL-Challenge,原报告
+B,nheist/CaLiGraph,https://github.com/nheist/CaLiGraph,原报告,成功,135,1.75,nheist__CaLiGraph,原报告
+B,nheist/Cat2Ax,https://github.com/nheist/Cat2Ax,原报告,成功,55,4.12,nheist__Cat2Ax,原报告
+B,kracr/OntoLearnBench,https://github.com/kracr/OntoLearnBench,原报告,成功,80,32.95,kracr__OntoLearnBench,原报告
+C,TheYKXiao/FuseLinker,https://github.com/TheYKXiao/FuseLinker,原报告,成功,14,13.59,TheYKXiao__FuseLinker,原报告
+C,LuisaWerner/knowledge_gae,https://github.com/LuisaWerner/knowledge_gae,原报告,失败/缺失,0,0.0,,原报告
+C,zfjsail/gae-pytorch,https://github.com/zfjsail/gae-pytorch,原报告,成功,49,1.77,zfjsail__gae-pytorch,原报告
+C,zjunlp/OntoProtein,https://github.com/zjunlp/OntoProtein,原报告,成功,60,0.9,zjunlp__OntoProtein,原报告
+C,daiquocnguyen/GNN-NoGE,https://github.com/daiquocnguyen/GNN-NoGE,原报告,成功,27,42.58,daiquocnguyen__GNN-NoGE,原报告
+C,eamdord/ntn-pytorch-ontological-info,https://github.com/eamdord/ntn-pytorch-ontological-info,原报告,失败/缺失,0,0.0,,原报告
+C,david4096/on2vec,https://github.com/david4096/on2vec,原报告,成功,83,11.36,david4096__on2vec,原报告
+C,AutoML-4Paradigm/Interstellar,https://github.com/AutoML-4Paradigm/Interstellar,原报告,成功,17,16.42,AutoML-4Paradigm__Interstellar,原报告
+C,basiralab/HGNet,https://github.com/basiralab/HGNet,原报告,成功,550,730.51,basiralab__HGNet,原报告
+C,everyoneelse/AutoSchemaKG,https://github.com/everyoneelse/AutoSchemaKG,原报告,成功,1020,38.62,everyoneelse__AutoSchemaKG,原报告
+B,sciknoworg/OntoAligner,https://github.com/sciknoworg/OntoAligner,新增搜索,成功,241,13.13,sciknoworg__OntoAligner,本体对齐+KGE
+C,HKUST-KnowComp/AutoSchemaKG,https://github.com/HKUST-KnowComp/AutoSchemaKG,新增搜索,成功,1205,358.45,HKUST-KnowComp__AutoSchemaKG,AutoSchemaKG官方
+B,KRR-Oxford/DeepOnto,https://github.com/KRR-Oxford/DeepOnto,新增搜索,成功,352,97.19,KRR-Oxford__DeepOnto,本体嵌入完整框架
+C,KRR-Oxford/BoxSquaredEL,https://github.com/KRR-Oxford/BoxSquaredEL,新增搜索,成功,36,27.24,KRR-Oxford__BoxSquaredEL,描述逻辑Box嵌入
+C,KRR-Oxford/HierarchyTransformers,https://github.com/KRR-Oxford/HierarchyTransformers,新增搜索,成功,70,4.37,KRR-Oxford__HierarchyTransformers,层次嵌入Transformer
+B,HuiYang1997/OnT,https://github.com/HuiYang1997/OnT,新增搜索,成功,67,0.32,HuiYang1997__OnT,本体嵌入泽陇翻译ICLR2025
+C,lamng3/kroma,https://github.com/lamng3/kroma,新增搜索,成功,130,1.19,lamng3__kroma,LLM知识图谱构建ISWC2024
+B,QingkaiZeng/CodeTaxo-official,https://github.com/QingkaiZeng/CodeTaxo-official,新增搜索,成功,200,24.22,QingkaiZeng__CodeTaxo-official,TaxoAdapt taxonomy扩展ACL2025
+B,zjukg/MyGO,https://github.com/zjukg/MyGO,新增搜索,成功,46,123.39,zjukg__MyGO,本体嵌入LLM对齐NeurIPS2024
+C,zjukg/KoPA,https://github.com/zjukg/KoPA,新增搜索,成功,43,3.3,zjukg__KoPA,概念知识图谱构建ACL2025
+C,zjukg/AdaMF-MAT,https://github.com/zjukg/AdaMF-MAT,新增搜索,成功,100,5.29,zjukg__AdaMF-MAT,多语言实体对齐ACL2025
+A,MLOpt-MBZUAI/Awasome-KGE-papers,https://github.com/MLOpt-MBZUAI/Awasome-KGE-papers,新增搜索,成功,1,0.06,MLOpt-MBZUAI__Awasome-KGE-papers,KGE论文代码汇总
+A,LIANGKE23/Awesome-Knowledge-Graph-Reasoning,https://github.com/LIANGKE23/Awesome-Knowledge-Graph-Reasoning,新增搜索,成功,2,0.32,LIANGKE23__Awesome-Knowledge-Graph-Reasoning,KG推理汇总
+A,RManLuo/Awesome-LLM-KG,https://github.com/RManLuo/Awesome-LLM-KG,新增搜索,成功,5,0.82,RManLuo__Awesome-LLM-KG,LLM+KG论文汇总
+A,zjukg/KG-LLM-Papers,https://github.com/zjukg/KG-LLM-Papers,新增搜索,成功,2,0.05,zjukg__KG-LLM-Papers,KG+LLM论文汇总
+A,shaoxiongji/knowledge-graphs,https://github.com/shaoxiongji/knowledge-graphs,新增搜索,成功,34,0.17,shaoxiongji__knowledge-graphs,KG资源汇总
+A,heathersherry/Knowledge-Graph-Tutorials-and-Papers,https://github.com/heathersherry/Knowledge-Graph-Tutorials-and-Papers,新增搜索,成功,42,2.41,heathersherry__Knowledge-Graph-Tutorials-and-Papers,KG教程论文
+A,husthuke/awesome-knowledge-graph,https://github.com/husthuke/awesome-knowledge-graph,新增搜索,成功,36,185.3,husthuke__awesome-knowledge-graph,中文KG高星汇总
+B,jw9730/flock,https://github.com/jw9730/flock,新增搜索,成功,150,20.04,jw9730__flock,FLoCK本体聚类KDD2025
+B,DataArcTech/CATS,https://github.com/DataArcTech/CATS,新增搜索,成功,14,0.99,DataArcTech__CATS,组合本体推理2025
+C,sisinflab/tyler,https://github.com/sisinflab/tyler,新增搜索,成功,218,23.54,sisinflab__tyler,KG推理2024
+C,DuanyangYuan/RAA-KGC,https://github.com/DuanyangYuan/RAA-KGC,新增搜索,成功,87,0.5,DuanyangYuan__RAA-KGC,多模态KGC AAAI2025
+C,RaynorLEE/KGR3,https://github.com/RaynorLEE/KGR3,新增搜索,成功,9,0.21,RaynorLEE__KGR3,科学发现KG推理AAAI2025
+C,AnacletoLAB/RNA-KG,https://github.com/AnacletoLAB/RNA-KG,新增搜索,成功,15,3.94,AnacletoLAB__RNA-KG,生物医学KG本体
+
+论文,arXiv,标题,日期,原因,状态,大小MB,本地文件
+论文,2608.21156,Graph Engineering in the Era of LLM Agents: From Individual Intelligence to System Intelligence,2026-08-21,Graph Engineering Survey [DEEP-JLU],成功,9.72,2608.21156_Graph_Engineering_in_the_Era_of_LLM_Agents.pdf
+论文,2505.23628,AutoSchemaKG: Autonomous Knowledge Graph Construction through Dynamic Schema Induction from Web-Scale Corpora,2025-05-29,AutoSchemaKG (2025) [everyoneelse/AutoSchemaKG],成功,0.64,2505.23628_AutoSchemaKG_Autonomous_Knowledge_Graph_Construction_through_Dynamic_S.pdf
+论文,2201.11147,OntoProtein: Protein Pretraining With Gene Ontology Embedding,2022-01-23,OntoProtein (ICLR2022) [zjunlp/OntoProtein],成功,2.43,2201.11147_OntoProtein_Protein_Pretraining_With_Gene_Ontology_Embedding.pdf
+论文,2104.07396,Node Co-occurrence based Graph Neural Networks for Knowledge Graph Link Prediction,2021-04-15,GNN-NoGE (WSDM2022) [daiquocnguyen/GNN-NoGE],成功,1.02,2104.07396_Node_Co-occurrence_based_Graph_Neural_Networks_for_Knowledge_Graph_Lin.pdf
+论文,1906.12089,Uncovering the Semantics of Wikipedia Categories,2019-06-28,Cat2Ax 关系类型公理学习 [nheist/Cat2Ax],成功,0.5,1906.12089_Uncovering_the_Semantics_of_Wikipedia_Categories.pdf
+论文,1911.07132,Interstellar: Searching Recurrent Architecture for Knowledge Graph Embedding,2019-11-17,Interstellar (NeurIPS2020) [AutoML-4Paradigm/Interstellar],成功,2.59,1911.07132_Interstellar_Searching_Recurrent_Architecture_for_Knowledge_Graph_Embe.pdf
+论文,1611.07308,Variational Graph Auto-Encoders,2016-11-21,GAE: Graph Auto-Encoder [zfjsail/gae-pytorch],成功,0.51,1611.07308_Variational_Graph_Auto-Encoders.pdf
+论文,2307.16648,LLMs4OL: Large Language Models for Ontology Learning,2023-07-31,LLMs4OL (ISWC2023) [HamedBabaei/LLMs4OL],成功,0.57,2307.16648_LLMs4OL_Large_Language_Models_for_Ontology_Learning.pdf
+论文,2607.01977,OntoLearner: A Modular Python Library for Ontology Learning with Large Language Models,2025-07-02,OntoLearner 库论文 (2025) [sciknoworg/OntoLearner],成功,5.09,2607.01977_OntoLearner_A_Modular_Python_Library_for_Ontology_Learning_with_Large_.pdf
+论文,2608.22981,Hierarchy-Aware Semantic Losses for Knowledge Graph Link Prediction,2026-08-25,Hierarchy-Aware Semantic Losses (报告重点),成功,0.44,2608.22981_Hierarchy-Aware_Semantic_Losses_for_Knowledge_Graph_Link_Prediction.pdf
+论文,2601.21700,Toward Culturally Aligned LLMs through Ontology-Guided Multi-Agent Reasoning,2026-01-29,近期强相关,成功,8.68,2601.21700_Toward_Culturally_Aligned_LLMs_through_Ontology-Guided_Multi-Agent_Rea.pdf
+论文,2602.03439,Ontology-to-tools compilation for executable semantic constraint enforcement in LLM agents,2026-02-03,近期强相关,成功,1.51,2602.03439_Ontology-to-tools_compilation_for_executable_semantic_constraint_enfor.pdf
+论文,2602.05665,"Graph-based Agent Memory: Taxonomy, Techniques, and Applications",2026-02-05,近期强相关,成功,6.87,2602.05665_Graph-based_Agent_Memory_Taxonomy_Techniques_and_Applications.pdf
+论文,2602.06039,DyTopo: Dynamic Topology Routing for Multi-Agent Reasoning via Semantic Matching,2026-02-05,近期相关,成功,1.13,2602.06039_DyTopo_Dynamic_Topology_Routing_for_Multi-Agent_Reasoning_via_Semantic.pdf
+论文,2604.02369,Beyond Message Passing: A Semantic View of Agent Communication Protocols,2026-03-30,近期相关,成功,1.95,2604.02369_Beyond_Message_Passing_A_Semantic_View_of_Agent_Communication_Protocol.pdf
+论文,2604.06230,Ontology-based knowledge graph infrastructure for interoperable atomistic simulation data,2026-03-31,近期强相关,成功,15.52,2604.06230_Ontology-based_knowledge_graph_infrastructure_for_interoperable_atomis.pdf
+论文,2605.23311,DART: Semantic Recoverability for Structured Tool Agents,2026-05-22,近期相关,成功,0.53,2605.23311_DART_Semantic_Recoverability_for_Structured_Tool_Agents.pdf
+论文,2605.29313,PatchBoard: Schema-Grounded State Mutation for Reliable and Auditable LLM Multi-Agent Collaboration,2026-05-28,近期相关,成功,0.8,2605.29313_PatchBoard_Schema-Grounded_State_Mutation_for_Reliable_and_Auditable_L.pdf
+论文,2606.17573,Cordon: Semantic Transactions for Tool-Using LLM Agents,2026-06-16,近期相关,成功,1.93,2606.17573_Cordon_Semantic_Transactions_for_Tool-Using_LLM_Agents.pdf
+论文,2607.17963,OntoExtend: A Framework for Requirement-driven and Scalable Ontology Extension with LLMs,2026-07-20,近期强相关,成功,0.69,2607.17963_OntoExtend_A_Framework_for_Requirement-driven_and_Scalable_Ontology_Ex.pdf
+论文,2608.12990,LycheeMemory V2: Efficient Long-Term Memory for LLM Agents via Semantic Segment-Level Consolidation,2026-08-13,近期相关,成功,1.13,2608.12990_LycheeMemory_V2_Efficient_Long-Term_Memory_for_LLM_Agents_via_Semantic.pdf
+论文,2608.27101,pro-team at LLMs4OL 2026 Tasks Flagship and Reuse: Retrieval-Augmented Generation and Vocabulary-Constrained Filtering for Ontology Learning,2026-08-27,近期强相关,成功,0.2,2608.27101_pro-team_at_LLMs4OL_2026_Tasks_Flagship_and_Reuse_Retrieval-Augmented_.pdf
+论文,2608.31118,When Does Bigger Help? A Controlled Study of LLM Scale for Ontology Learning,2026-08-31,近期强相关,成功,0.9,2608.31118_When_Does_Bigger_Help_A_Controlled_Study_of_LLM_Scale_for_Ontology_Lea.pdf
+论文,2609.13776,Surprising Effectiveness of Self-Demonstrations in Enhancing Schema-Ontology Mapping with LLMs,2026-09-12,近期强相关,成功,0.68,2609.13776_Surprising_Effectiveness_of_Self-Demonstrations_in_Enhancing_Schema-On.pdf
+论文,2501.13956,Zep: A Temporal Knowledge Graph Architecture for Agent Memory,2025-01-20,近期强相关,成功,0.14,2501.13956_Zep_A_Temporal_Knowledge_Graph_Architecture_for_Agent_Memory.pdf
+论文,2506.18019,"Graphs Meet AI Agents: Taxonomy, Progress, and Future Opportunities",2025-06-22,近期强相关,成功,1.07,2506.18019_Graphs_Meet_AI_Agents_Taxonomy_Progress_and_Future_Opportunities.pdf
+论文,2508.19504,Aegis: Taxonomy and Optimizations for Overcoming Agent-Environment Failures in LLM Agents,2025-08-27,近期强相关,成功,11.18,2508.19504_Aegis_Taxonomy_and_Optimizations_for_Overcoming_Agent-Environment_Fail.pdf
+论文,2408.03866,A semantic approach to mapping the Provenance Ontology to Basic Formal Ontology,2024-08-02,近期强相关,成功,1.94,2408.03866_A_semantic_approach_to_mapping_the_Provenance_Ontology_to_Basic_Formal.pdf
+论文,2410.01821,NFDIcore 2.0: A BFO-Compliant Ontology for Multi-Domain Research Infrastructures,2024-09-16,近期强相关,成功,1.9,2410.01821_NFDIcore_20_A_BFO-Compliant_Ontology_for_Multi-Domain_Research_Infrast.pdf
+论文,2410.11782,G-Designer: Architecting Multi-agent Communication Topologies via Graph Neural Networks,2024-10-15,近期相关,成功,10.05,2410.11782_G-Designer_Architecting_Multi-agent_Communication_Topologies_via_Graph.pdf
+论文,2412.17877,MAMBO: a lightweight ontology for multiscale materials and applications,2024-12-22,近期强相关,成功,1.18,2412.17877_MAMBO_a_lightweight_ontology_for_multiscale_materials_and_applications.pdf
