@@ -1,0 +1,40 @@
+# 抽取就绪度（reasoning-readiness）声明
+# 每个阶段列出：critical（缺则 BLOCKED）/ any_of（至少一组全有）/ optional
+# 由 scripts/audit_readiness.py 读取，audit 结果驱动二次抽取
+
+version: 1
+
+phases:
+  P0:                        # 问题形式化：能不能写出公式+旧法缺陷
+    critical: [method_limits]
+    any_of:
+      - [formal_def]
+      - [old_forms]
+    optional: [formal_def, old_forms]
+    补抽: R7_formulation
+
+  P1:                        # 技术路线：能不能画出架构图+说清为何不用它法
+    critical: [arch_modules, key_challenge]
+    any_of:
+      - [why_not_other]
+      - [arch_modules]
+    补抽: R8_architecture
+
+  P2:                        # 数据构造：能不能说清数据从哪来、怎么去泄漏
+    critical: [data_sources]
+    any_of:
+      - [dedup_rule]
+      - [split_spec]
+    补抽: R9_dataset
+
+  P6:                        # 主实验：能不能给出方法×指标矩阵
+    critical: [result_tables]
+    optional: [hyperparams]
+    补抽: R10_result_table
+
+  P7:                        # 消融：知不知道消融什么
+    critical: [arch_modules]
+    any_of:
+      - [hyperparams]
+      - [ablation_hyperparams]
+    补抽: R8_architecture
