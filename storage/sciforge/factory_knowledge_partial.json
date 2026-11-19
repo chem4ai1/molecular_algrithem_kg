@@ -4,7 +4,7 @@
     "created_at": "2026-11-18T12:41:58+00:00",
     "source": "问题导向本体与知识图谱架构_20261109",
     "stats": {
-      "graph_id": "po::2026-11-19T07:21:26+00:00",
+      "graph_id": "po::2026-11-19T07:45:54+00:00",
       "n_nodes": 405,
       "n_assertions": 463,
       "nodes_by_type": {
@@ -27029,7 +27029,7 @@
         "title": "AutoSchemaKG: Autonomous Knowledge Graph Construction through",
         "label": "AutoSchemaKG: Autonomous Knowledge Graph Construction through",
         "research_question": "如何在不依赖预定义模式的情况下，利用大语言模型从大规模文本中自主抽取知识三元组并动态归纳模式，以构建可扩展的知识图谱？",
-        "problem_category": "other",
+        "problem_category": "knowledge_graph_construction",
         "why_hard": "现有知识图谱构建方法依赖领域专家预定义模式，这从根本上限制了其可扩展性、适应性和领域覆盖范围。",
         "relation_hints": {
           "related_papers": [],
@@ -27053,8 +27053,8 @@
             "evidence": "our schema induction achieves 95% semantic alignment with human-crafted schemas with zero manual intervention"
           },
           {
-            "statement": "处理超过 5000 万份文档，构建了包含 9 亿多节点和 59 亿条边的 ATLAS 知识图谱。",
-            "evidence": "Processing over 50 million documents, we construct ATLAS (Automated Triple Linking And Schema induction), a family of kn"
+            "statement": "构建的 ATLAS 知识图谱包含超过 9 亿节点和 59 亿边。",
+            "evidence": "we construct ATLAS (Automated Triple Linking And Schema induction), a family of knowledge graphs with 900+ million nodes"
           }
         ],
         "section_map": [
@@ -27076,7 +27076,7 @@
         "gaps": [
           {
             "gap_type": "capability",
-            "statement": "现有方法依赖预定义模式，限制了可扩展性和领域覆盖。",
+            "statement": "现有方法受限于预定义模式，缺乏可扩展性和适应性。",
             "evidence": "they require predefined schemas created by domain experts, which fundamentally limits their scalability, adaptability, a"
           }
         ],
@@ -27087,7 +27087,7 @@
             "evidence": "This approach outperforms state-of-the-art baselines on multi-hop QA tasks and enhances LLM factuality."
           }
         ],
-        "writing_style": "学术技术论文，强调范式转变与系统架构",
+        "writing_style": "学术技术报告，强调范式转变与规模化验证",
         "hyperparams": [
           {
             "param": "top-k",
@@ -27101,6 +27101,91 @@
         ],
         "method_limits": [
           "fundamentally limits their scalability, adaptability, and domain coverage"
+        ],
+        "result_tables": [
+          {
+            "label": "table_1",
+            "columns": [
+              "",
+              "QuestionAnsweringCorpora",
+              "Pre-training Corpora",
+              ""
+            ],
+            "rows": [
+              [
+                "",
+                "MuSiQue 2WikiQA HotpotQA",
+                "ATLASWiki -",
+                "ATLAS -Pes2o ATLAS -CC"
+              ],
+              [
+                "#TextChunks #Entities #Events #Concepts #Nodes",
+                "11656 6119 9221 , , , 108582 48782 95686 , , , 99747 50910 82833 , , , 37414 19830 32410 , , , 245743 119522 210929 , , ,",
+                "9599M . 70104M . 165717M . 8091M . 243912M .",
+                "7918M 35040M . . 75857M 241061M . . 92636M 696195M . . 5895M 31070M . . 174387M 937256M . ."
+              ],
+              [
+                "# Entity-Entity Edges # Event-Entity Edges # Event-Event Edges #ConceptulizationEdges #Edges",
+                "91186 40748 78467 , , , 143254 63680 123527 , , , 45157 21062 36602 , , , 933330 432869 789608 , , , 1212927 558359 1028204 , , , , ,",
+                "0114B . 0265B . 0071B . 1041B . 1492B .",
+                "0076B 0414B . . 0208B 1063B . . 0044B 0295B . . 0821B 4178B . . 1150B 5958B . ."
+              ]
+            ]
+          },
+          {
+            "label": "Table 4: Results of schema induction with various",
+            "columns": [
+              "",
+              "",
+              "LLaMA -3 -8B LLaMA -3 -70B"
+            ],
+            "rows": [
+              [
+                "ATLASWiki -",
+                "[Lower-Upper] Entity Event Event+Entity",
+                "46299929 65699970 . - . . - . 6508 7096 . . 9269 9482 . . 9330 9513 . ."
+              ],
+              [
+                "ATLAS -Pes2o",
+                "[Lower-Upper] Entity Event Event+Entity",
+                "62329899 75059949 . - . . - . 8000 8333 . . 9697 9778 . . 9737 9798 . ."
+              ],
+              [
+                "ATLASCC -",
+                "[Lower-Upper] Entity Event Event+Entity",
+                "56089729 70259910 . - . . - . 7678 8101 . . 9487 9678 . . 9628 9698 . ."
+              ]
+            ]
+          },
+          {
+            "label": "table_3",
+            "columns": [
+              "Task Dataset BS -R BS -C",
+              "",
+              "",
+              ""
+            ],
+            "rows": [
+              [
+                "LLaMA -3 -8B",
+                "EntityTyping EventTyping RelationTyping",
+                "FB15kET YAGO43kET wikiHow FB15kET",
+                "8857 8654 . . 8067 5886 . . 9918 9926 . . 8875 8841 . ."
+              ],
+              [
+                "LLaMA -3 -13B",
+                "EntityTyping EventTyping RelationTyping",
+                "FB15kET YAGO43kET wikiHow FB15kET",
+                "8925 8859 . . 9426 9056 . . 9897 9933 . . 8858 8866 . ."
+              ],
+              [
+                "LLaMA -3 -70B",
+                "EntityTyping EventTyping RelationTyping",
+                "FB15kET YAGO43kET wikiHow FB15kET",
+                "8949 8730 . . 9461 9264 . . 9941 9915 . . 8870 9033 . ."
+              ]
+            ]
+          }
         ]
       },
       "attribution": "analyst_synthesis",
@@ -27116,33 +27201,33 @@
         "name": "AutoSchemaKG",
         "label": "AutoSchemaKG",
         "task_type": "other",
-        "mechanism": "利用LLM从文本中同时提取知识三元组并动态归纳模式。通过概念化（conceptualization）将实体、事件和关系抽象为语义类别，无需预定义模式。构建包含实体、事件和概念节点的图结构，支持零样本推理和跨域泛化。",
+        "mechanism": "利用大语言模型从文本中同时提取知识三元组并动态归纳模式。通过概念化（conceptualization）将实体、事件和关系抽象为语义类别，无需预定义模式。处理大规模文档构建包含实体、事件和概念节点的知识图谱，支持多跳问答和增强LLM事实性。",
         "limitations": [
-          "需要处理大规模数据（5000万+文档）",
+          "需要处理海量数据（5000万+文档）",
           "依赖LLM的语义理解能力"
         ],
         "arch_modules": [
           {
             "name": "Input Processing",
-            "role": "过滤、分段和批处理输入文档",
-            "input": "Input Documents",
-            "output": "Chunked Batches"
+            "role": "文档过滤、分段和批处理",
+            "input": "原始文档（Wikipedia, Semantic Scholar, Common Crawl）",
+            "output": "分块批次"
           },
           {
-            "name": "LLM Prompts",
+            "name": "LLM Prompting",
             "role": "执行三元组提取和模式归纳",
-            "input": "Chunked Batches",
-            "output": "Triples, Concepts"
+            "input": "分块批次",
+            "output": "JSON格式的三元组和概念"
           },
           {
             "name": "Graph Finalization",
-            "role": "整合三元组和模式，完成图谱构建",
-            "input": "Extracted Data",
-            "output": "ATLAS KG"
+            "role": "整合三元组和模式，构建最终图谱",
+            "input": "解析后的三元组和概念",
+            "output": "ATLAS Knowledge Graph"
           }
         ],
-        "why_not_other": "传统方法需要领域专家预定义模式，限制了可扩展性和适应性",
-        "key_challenge": "消除对预定义模式的需求，实现完全自主的知识图谱构建"
+        "why_not_other": "传统方法依赖领域专家预定义模式，限制了可扩展性和适应性；AutoSchemaKG通过动态模式归纳解决了这一瓶颈。",
+        "key_challenge": "消除对预定义模式的需求，实现完全自主的知识图谱构建，同时保持大规模下的语义一致性。"
       },
       "attribution": "analyst_synthesis",
       "evidence_ids": [],
@@ -27155,10 +27240,10 @@
       "label": "Triple Extraction",
       "attrs": {
         "name": "Triple Extraction",
-        "mechanism": "使用特定提示词（PEE, PEV, PVV）分别提取实体-实体、实体-事件、事件-事件之间的关系。",
+        "mechanism": "使用特定提示词（PEE, PEV, PVV）分别提取实体-实体、实体-事件、事件-事件之间的关系，解析JSON输出并修复错误。",
         "formula": "",
-        "inputs": "Chunked Batches",
-        "outputs": "Knowledge Graph Triples",
+        "inputs": "分块后的文档批次",
+        "outputs": "知识三元组",
         "is_novel_component": false,
         "component_role": "",
         "label": "Triple Extraction"
@@ -27174,10 +27259,10 @@
       "label": "Schema Induction",
       "attrs": {
         "name": "Schema Induction",
-        "mechanism": "通过概念化过程，将具体实体、事件和关系抽象为一般类型（如College, Hunting），形成动态模式。",
+        "mechanism": "通过概念化过程，利用邻近节点上下文生成抽象实体类型、通用事件类型和语义关系类别，实现零人工干预的模式归纳。",
         "formula": "",
-        "inputs": "Knowledge Graph Triples",
-        "outputs": "Concept Nodes (C)",
+        "inputs": "提取的三元组及节点上下文",
+        "outputs": "动态模式（概念节点及链接）",
         "is_novel_component": false,
         "component_role": "",
         "label": "Schema Induction"
@@ -27193,10 +27278,10 @@
       "label": "Knowledge Graph Construction",
       "attrs": {
         "name": "Knowledge Graph Construction",
-        "mechanism": "创建节点（实体、事件、概念）和边，连接节点到对应概念节点，最终生成ATLAS知识图谱。",
+        "mechanism": "创建实体、事件和概念节点，建立关系边，并将节点链接到对应的概念节点，最终形成完整的知识图谱G = (V, E, C, φ, ψ)。",
         "formula": "",
-        "inputs": "Triples, Concept Nodes",
-        "outputs": "ATLAS Knowledge Graph",
+        "inputs": "三元组和归纳的模式",
+        "outputs": "ATLAS知识图谱",
         "is_novel_component": false,
         "component_role": "",
         "label": "Knowledge Graph Construction"
@@ -27214,9 +27299,9 @@
         "arxiv_id": "2607.01977",
         "title": "OntoLearner: A Modular Python Library for Ontology Learning with Large",
         "label": "OntoLearner: A Modular Python Library for Ontology Learning with Large",
-        "research_question": "如何通过构建统一的跨领域本体学习基础设施，解决现有方法在评估标准、数据访问及本体复杂性导致的失败模式归因上的碎片化问题？",
+        "research_question": "如何通过构建统一的模块化框架OntoLearner，解决本体学习领域缺乏共享基础设施、评估碎片化及跨域基准缺失的问题，以系统评估LLM驱动的本体学习性能。",
         "problem_category": "knowledge_graph_construction",
-        "why_hard": "现有研究缺乏共享的基础设施进行系统性评估和本体访问，导致进展碎片化，且失败模式随本体复杂性而非模型规模扩展。",
+        "why_hard": "现有本体学习研究在方法、领域和评估实践上碎片化，缺乏用于系统评估和本体访问的共享基础设施，导致核心挑战长期未得到解决。",
         "relation_hints": {
           "related_papers": [],
           "algorithms": [],
@@ -27226,13 +27311,12 @@
         "evidence_type": "experimental",
         "evidence_norm": [
           "train/dev/test splits",
-          "term typing accuracy",
-          "taxonomy discovery metrics",
-          "relation extraction F1"
+          "machine-readable ontologies",
+          "cross-domain benchmarking"
         ],
         "claims": [
           {
-            "statement": "OntoLearner 是首个统一本体访问、LLM 学习管道和标准化基准的模块化框架。",
+            "statement": "OntoLearner是首个统一本体访问、LLM学习管道和标准化基准的模块化框架。",
             "evidence": "We introduce OntoLearner, a modular, cross-domain, and first-of-its-kind framework that unifies ontology access, large l"
           },
           {
@@ -27244,38 +27328,38 @@
           {
             "section": "Abstract",
             "claims": [
-              "OntoLearner unifies ontology access, LLM-driven learning pipelines, and standardized benchmarking",
-              "Failure modes scale with ontological complexity rather than model size"
+              "OntoLearner统一了本体访问、LLM驱动的学习管道和标准化基准测试",
+              "失败模式随本体复杂度扩展，而非模型规模"
             ]
           },
           {
             "section": "Introduction",
             "claims": [
-              "OL lacks a shared infrastructure for systematic evaluation and ontology access",
-              "Constructing and maintaining high-quality ontologies remains a bottleneck"
+              "本体学习旨在将异构自然语言转化为结构化、机器可解释的概念模型",
+              "现有基础设施未设计用于评估或自动化学习过程本身"
             ]
           }
         ],
         "gaps": [
           {
             "gap_type": "data",
-            "statement": "缺乏用于系统性评估和本体访问的共享基础设施。",
+            "statement": "缺乏用于系统评估本体学习的共享基础设施和标准化基准。",
             "evidence": "OL lacks a shared infrastructure for systematic evaluation and ontology access."
           },
           {
-            "gap_type": "theory",
-            "statement": "现有方法未能解决本体学习中的核心挑战，导致研究碎片化。",
-            "evidence": "This absence has hindered progress and fragmented research, leaving the central challenges of OL largely unaddressed."
+            "gap_type": "capability",
+            "statement": "现有本体支持基础设施未设计用于评估或自动化本体学习过程。",
+            "evidence": "Yet none was designed to evaluate or automate the learning process itself"
           }
         ],
         "delta_claims": [
           {
-            "statement": "提供 180 个机器可读本体和三个核心任务的管道就绪数据集。",
-            "baseline": "fragmented methods, domains, and evaluat",
+            "statement": "发布180个机器可读本体和三个核心任务的数据集，支持跨域多任务基准测试。",
+            "baseline": "fragmented research",
             "evidence": "OntoLearner releases 180 machine-readable ontologies spanning 22 domains and provides pipeline-ready datasets with train"
           }
         ],
-        "writing_style": "学术严谨，强调基础设施统一性与实证对比",
+        "writing_style": "学术严谨，强调模块化与标准化，引用广泛",
         "hyperparams": [
           {
             "param": "top-k",
@@ -27299,6 +27383,207 @@
           "struggled to align with established vocabularies",
           "produced ontologies too inconsistent to reuse reliably across domains",
           "absence of logical rigor"
+        ],
+        "result_tables": [
+          {
+            "label": "table_1",
+            "columns": [
+              "Feature",
+              "OD",
+              "OLS",
+              "VI",
+              "OntoLearner"
+            ],
+            "rows": [
+              [
+                "Cross-Domain Coverage OntologyHostingandVersioning SearchandBrowseFunctionality ProgrammaticAccess(API) VocabularyAlignmentandMapping LLMIntegration OntologyEditing/AuthoringTools ModularandReusableComponents SupportforOntologyEnrichment FAIRPrinciplesAlignment",
+                "✗ ✓ ✓ ✓ ✓ ✗ ✓ ✗ ✓ ✓",
+                "✓ ✗ ✓ ✓ ✗ ✗ ✗ ✗ ✗ ✓",
+                "✓ ✗ ✓ ✗ ✓ ✗ ✗ ✗ ✗ ✓",
+                "✓ ✓ ✓ ✓ ∼ ✓ ✗ ✓ ✓ ✓"
+              ]
+            ]
+          },
+          {
+            "label": "table_2",
+            "columns": [
+              "System",
+              "MainTasks",
+              "LLMIntegration",
+              "DomainScope",
+              "Bench ."
+            ],
+            "rows": [
+              [
+                "NeOn-GPT (Fathallah et al 2024) . OntoGPT (Caufield et al 2024) . OntoChat (Zhang et al 2024) . OLLM (Lo et al 2024) . Ontolearn (Demir et al 2025) . OntoLearner(ours)",
+                "Requirements, class hierarchy, OWL axioms Entity/relationextraction Requirement engineering (e.g., CQs) Taxonomyinduction OWLclassexpressionlearning Term typing, taxonomy, relations",
+                "GPT-3.5 prompting Schema-driven zero-shot prompting Interactiveprompting Fine-tuned LLM LLM-based verbalization (support module) Modular prompting, hybrid workflows",
+                "Specifci (Wineontology) Biomedical recipes , General (e.g., Music) Cross-domain (Wikipedia, ArXiv) LargeKGs(symbolicfocus) 22domains(180ontologies)",
+                "✗ ✗ ✗ ✗ ✗ ✓"
+              ]
+            ]
+          },
+          {
+            "label": "table_3",
+            "columns": [
+              "",
+              "Requirement",
+              "PF",
+              "CD"
+            ],
+            "rows": [
+              [
+                "F1",
+                "Thelibraryshallbeabletoloadontologiesfromvariouslocalfileformats(eg OWL XML RDF TTL) . ., , , , .",
+                "✓",
+                ""
+              ],
+              [
+                "F2",
+                "ThelibraryshallprovideaPythonimportmoduletoloadontologiesanddatasetsautomatically .",
+                "✓",
+                ""
+              ],
+              [
+                "F3",
+                "ThelibraryshallprovideaccesstoanexternalrepositoryonHuggingfaceforloadingontologiesandtaskdatasets .",
+                "✓",
+                ""
+              ],
+              [
+                "F4",
+                "The library should adapt cross-domain ontologies .",
+                "✓",
+                ""
+              ],
+              [
+                "F5",
+                "Thelibraryshouldallowuserstomeasureanddisplayontologicalmetricsforloadedontologies .",
+                "✓",
+                ""
+              ],
+              [
+                "F6",
+                "Thelibraryshouldallowuserstocreate view andmodifyontologymetadata(eg name domain version license) , , . ., , , , .",
+                "✓",
+                ""
+              ],
+              [
+                "F7",
+                "Thelibraryshouldallowuserstobrowsethroughclassesandrelationsofgivenontologies .",
+                "✓",
+                ""
+              ],
+              [
+                "F8",
+                "The library shall support the term-typing task for OL .",
+                "✓",
+                ""
+              ],
+              [
+                "F9",
+                "ThelibraryshallsupportOL’staxonomydiscoverytask .",
+                "✓",
+                ""
+              ],
+              [
+                "F10",
+                "The library shall support the non-taxonomic relation extraction task of OL .",
+                "✓",
+                ""
+              ],
+              [
+                "F11",
+                "ThelibrarywillenabletheText2Onto(terminologyandtypeextraction)taskinOL .",
+                "✓",
+                ""
+              ],
+              [
+                "F12",
+                "Thelibraryshallintegratewithexternallearners(eg LLMs retrievalmodels) . ., , .",
+                "✓",
+                ""
+              ],
+              [
+                "F13",
+                "Thelibraryshouldenableuserstocustomizeexistinglearningmodelsprovidedbythelibrary includingtheirconfiguration , parameters .",
+                "✓",
+                ""
+              ],
+              [
+                "F14",
+                "Thelibraryshouldallowuserstocustomizelearningtasks includingtaskdefinitionsandconfigurations , .",
+                "",
+                "✓"
+              ],
+              [
+                "F15",
+                "The library should support multi -agent or ensemble learning strategies for OL tasks .",
+                "",
+                "✓"
+              ],
+              [
+                "F16",
+                "Thelibraryshouldprovideagraphicaluserinterfaceforlearnerstointeractivelyexploreandexecuteontologies .",
+                "",
+                "✓"
+              ],
+              [
+                "N1",
+                "Thelibraryshalleffci ientlyhandleincreasingamountsofdataandconcurrentusers .",
+                "✓",
+                ""
+              ],
+              [
+                "N2",
+                "Thelibraryshouldprocesslargeontologies includingthosewiththousandsofclassesandproperties withinareasonable , , timeframe .",
+                "✓",
+                ""
+              ],
+              [
+                "N3",
+                "Thelibraryshouldoptimizememoryusagetoefficientlymanagelargeontologies .",
+                "✓",
+                ""
+              ],
+              [
+                "N4",
+                "Thelibraryshallbeintuitive easytouse andextendible withcomprehensiveuserguides examples tutorials andclear , , , , , , documentation .",
+                "✓",
+                ""
+              ],
+              [
+                "N5",
+                "Thelibrarywillhandleexceptionsgracefully providingtheuserwithmeaningfulerrormessages , .",
+                "✓",
+                ""
+              ],
+              [
+                "N6",
+                "Thelibraryshouldbecompatiblewithmajoroperatingsystems(Windows macOS Linux)andsupportmultiplePython , , versions .",
+                "✓",
+                ""
+              ],
+              [
+                "N7",
+                "ThelibraryshallbeprovidedasaPythonpackageandbeeasilyinstallableviaPyPI .",
+                "✓",
+                ""
+              ],
+              [
+                "N8",
+                "The library should adhere to best practices for software development including version control modular design code- , , , leveldocumentation andautomatedtesting , .",
+                "✓",
+                ""
+              ],
+              [
+                "N9",
+                "Thelibraryshouldisolateoptionalextensions(eg UI advancedlearners)fromthecorelibrarytopreventcouplingand . ., , regression .",
+                "",
+                "✓"
+              ]
+            ]
+          }
         ]
       },
       "attribution": "analyst_synthesis",
@@ -27314,7 +27599,7 @@
         "name": "OntoLearner",
         "label": "OntoLearner",
         "task_type": "other",
-        "mechanism": "A modular, cross-domain framework unifying ontology access, LLM-driven learning pipelines, and standardized benchmarking. It transforms ontologies from diverse repositories into machine-readable formats, supports core OL tasks (term typing, taxonomy discovery, relation extraction) with standardized ",
+        "mechanism": "A modular, cross-domain framework unifying ontology access, LLM-driven learning pipelines, and standardized benchmarking. It releases 180 machine-readable ontologies across 22 domains with train/dev/test splits for term typing, taxonomy discovery, and non-taxonomic relation extraction, enabling syst",
         "limitations": [
           "Failure modes scale with ontological complexity rather than model size",
           "Structural mismatch between how models encode knowledge and how ontologies organize it"
@@ -27328,21 +27613,21 @@
           },
           {
             "name": "Modular OL Library",
-            "role": "Supports core OL tasks with standardized train/dev/test splits and evaluation metrics",
+            "role": "Supports core OL tasks with standardized splits and evaluation metrics",
             "input": "Text data, curated vocabularies",
             "output": "Term typing, taxonomy discovery, non-taxonomic relation extr"
           },
           {
-            "name": "LLM Integration Module",
-            "role": "Integrates AI/LLMs as assistive components aligned with curated vocabularies for concept suggestion ",
+            "name": "AI/LLM Integration",
+            "role": "Assistive components aligned with curated vocabularies for concept suggestion and hierarchy completi",
             "input": "Domain corpora, existing knowledge models",
             "output": "Concept suggestions, typed terms, completed hierarchies, def"
           },
           {
             "name": "Benchmarking Platform",
-            "role": "Provides extensible, domain-agnostic platform for systematic empirical study and reproducible compar",
-            "input": "22 retrieval models, 12 LLMs, 180 ontologies",
-            "output": "Standardized evaluation metrics, cross-domain comparison res"
+            "role": "Extensible, domain-agnostic platform for systematic empirical study and reproducible comparison",
+            "input": "Retrieval models, LLMs, standardized datasets",
+            "output": "Evaluation metrics, cross-domain comparison results"
           }
         ],
         "key_challenge": "Transforming heterogeneous natural language into structured, machine-interpretable conceptual models that enable reasoning, interoperability, and scientific dis"

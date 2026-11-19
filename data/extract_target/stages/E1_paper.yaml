@@ -50,6 +50,42 @@ rules:
   preprocess: normalize_pdf
   data_sources:
     type: db_names
+    candidates:
+    - ZINC
+    - ChEMBL
+    - PubChem
+    - Enamine
+    - USPTO
+    - GEOM
+    - QM9
+    - GuacaMol
+    - MoleculeNet
+    - CrossDocked
+    - BindingDB
+    - PDB
+    - ChemCoTBench
+    - SIDER
+    - Tox21
+    - FreeSolv
+    - Lipophilicity
+    - Wikipedia
+    - Wikidata
+    - DBpedia
+    - YAGO
+    - Freebase
+    - SNOMED CT
+    - Gene Ontology
+    - GO
+    - UMLS
+    - OAE
+    - Biolink
+    - BioPortal
+    - OWL
+    - RDF
+    - LUBM
+    - MUTAG
+    - Cora
+    - Citeseer
   dedup_rule:
     type: regex
     group: 0
@@ -67,6 +103,9 @@ rules:
     - (?:split|ratio)[^.]{0,40}?(\d{1,3})\s*[/:：\-]\s*(\d{1,2})\s*[/:：\-]\s*(\d{1,2})
     - (?:training|train)[^.]{0,40}?(\d{1,3})\s*%
     - split[^.]{0,50}?(\d{1,3})\s*[,/]\s*(\d{1,3})
+    - (?:train|training)\\s*/\\s*(?:dev|valid(?:ation)?)\\s*/\\s*test
+    - (?:train|training)[^.]{0,50}?(?:dev|valid(?:ation)?)[^.]{0,50}?test
+    - (?:train|test|validation)\\s+splits?
   hyperparams:
     type: hyperparam_list
     max_items: 6

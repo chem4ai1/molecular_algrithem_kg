@@ -1,52 +1,54 @@
 {
-  "n_papers": 52,
+  "n_papers": 54,
   "stats": {
     "P0": {
-      "READY": 0,
-      "PARTIAL": 52,
-      "BLOCKED": 0
+      "READY": 6,
+      "READY_NA": 0,
+      "PARTIAL": 0,
+      "BLOCKED": 48
     },
     "P1": {
-      "READY": 0,
-      "PARTIAL": 52,
-      "BLOCKED": 0
+      "READY": 6,
+      "READY_NA": 0,
+      "PARTIAL": 0,
+      "BLOCKED": 48
     },
     "P2": {
-      "READY": 24,
-      "PARTIAL": 28,
+      "READY": 29,
+      "READY_NA": 5,
+      "PARTIAL": 20,
       "BLOCKED": 0
     },
     "P6": {
-      "READY": 48,
+      "READY": 50,
+      "READY_NA": 0,
       "PARTIAL": 0,
       "BLOCKED": 4
     },
     "P7": {
-      "READY": 0,
-      "PARTIAL": 52,
-      "BLOCKED": 0
+      "READY": 6,
+      "READY_NA": 0,
+      "PARTIAL": 0,
+      "BLOCKED": 48
     }
   },
   "missing_by_requirement": {
-    "method_limits": 52,
-    "formal_def | old_forms": 48,
-    "arch_modules": 104,
-    "key_challenge": 52,
-    "why_not_other | arch_modules": 52,
-    "data_sources": 7,
-    "dedup_rule | split_spec": 28,
-    "hyperparams | ablation_hyperparams": 12,
+    "method_limits": 48,
+    "arch_modules": 96,
+    "key_challenge": 48,
+    "why_not_other | arch_modules": 48,
+    "formal_def | old_forms": 45,
+    "dedup_rule | split_spec": 20,
+    "hyperparams | ablation_hyperparams": 8,
     "result_tables": 4
   },
   "pending_refine": {
     "R7_formulation": [
-      "1911.00598",
       "2002.07007",
       "2008.02232",
       "2101.07136",
       "2402.15864",
       "2404.14209",
-      "2405.01155",
       "2406.08506",
       "2407.01603",
       "2407.06334",
@@ -54,7 +56,6 @@
       "2410.01421",
       "2410.03494",
       "2410.11527",
-      "2410.13147",
       "2501.08897",
       "2503.03503",
       "2503.12602",
@@ -65,7 +66,6 @@
       "2508.11860",
       "2508.14111",
       "2509.16084",
-      "2510.14455",
       "2512.20333",
       "2602.04119",
       "2603.05900",
@@ -94,13 +94,11 @@
       "2611.03696"
     ],
     "R8_architecture": [
-      "1911.00598",
       "2002.07007",
       "2008.02232",
       "2101.07136",
       "2402.15864",
       "2404.14209",
-      "2405.01155",
       "2406.08506",
       "2407.01603",
       "2407.06334",
@@ -108,7 +106,6 @@
       "2410.01421",
       "2410.03494",
       "2410.11527",
-      "2410.13147",
       "2501.08897",
       "2503.03503",
       "2503.12602",
@@ -119,7 +116,6 @@
       "2508.11860",
       "2508.14111",
       "2509.16084",
-      "2510.14455",
       "2512.20333",
       "2602.04119",
       "2603.05900",
@@ -148,34 +144,26 @@
       "2611.03696"
     ],
     "R9_dataset": [
-      "1911.00598",
       "2002.07007",
       "2008.02232",
       "2101.07136",
-      "2402.15864",
-      "2407.01603",
-      "2410.01421",
       "2410.13147",
       "2501.08897",
       "2503.12602",
       "2505.20820",
+      "2505.23628",
       "2507.02752",
-      "2508.00137",
       "2508.11860",
-      "2508.14111",
       "2604.07669",
       "2604.23061",
       "2605.07022",
       "2605.16480",
-      "2607.00464",
       "2607.00531",
       "2607.16038",
-      "2607.27556",
       "2609.35336",
       "2610.16391",
       "2610.16975",
-      "2610.18851",
-      "2611.03696"
+      "2610.18851"
     ],
     "R10_result_table": [
       "2410.03494",
@@ -187,96 +175,96 @@
   "per_paper": {
     "1911.00598": {
       "P0": {
-        "status": "PARTIAL",
-        "missing": [
-          "method_limits",
-          "formal_def | old_forms"
-        ],
-        "refine": "R7_formulation"
+        "status": "READY",
+        "missing": [],
+        "na": [],
+        "refine": null
       },
       "P1": {
-        "status": "PARTIAL",
-        "missing": [
-          "arch_modules",
-          "key_challenge",
-          "why_not_other | arch_modules"
-        ],
-        "refine": "R8_architecture"
+        "status": "READY",
+        "missing": [],
+        "na": [],
+        "refine": null
       },
       "P2": {
-        "status": "PARTIAL",
-        "missing": [
-          "data_sources",
+        "status": "READY_NA",
+        "missing": [],
+        "na": [
           "dedup_rule | split_spec"
         ],
-        "refine": "R9_dataset"
+        "refine": null
       },
       "P6": {
         "status": "READY",
         "missing": [],
+        "na": [],
         "refine": null
       },
       "P7": {
-        "status": "PARTIAL",
-        "missing": [
-          "arch_modules"
-        ],
-        "refine": "R8_architecture"
+        "status": "READY",
+        "missing": [],
+        "na": [],
+        "refine": null
       }
     },
     "2402.15864": {
       "P0": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "method_limits"
         ],
+        "na": [],
         "refine": "R7_formulation"
       },
       "P1": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "arch_modules",
           "key_challenge",
           "why_not_other | arch_modules"
         ],
+        "na": [],
         "refine": "R8_architecture"
       },
       "P2": {
-        "status": "PARTIAL",
-        "missing": [
-          "dedup_rule | split_spec"
-        ],
-        "refine": "R9_dataset"
+        "status": "READY",
+        "missing": [],
+        "na": [],
+        "refine": null
       },
       "P6": {
         "status": "READY",
         "missing": [],
+        "na": [],
         "refine": null
       },
       "P7": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "arch_modules"
         ],
+        "na": [],
         "refine": "R8_architecture"
       }
     },
     "2002.07007": {
       "P0": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "method_limits",
           "formal_def | old_forms"
         ],
+        "na": [],
         "refine": "R7_formulation"
       },
       "P1": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "arch_modules",
           "key_challenge",
           "why_not_other | arch_modules"
         ],
+        "na": [],
         "refine": "R8_architecture"
       },
       "P2": {
@@ -284,354 +272,390 @@
         "missing": [
           "dedup_rule | split_spec"
         ],
+        "na": [],
         "refine": "R9_dataset"
       },
       "P6": {
         "status": "READY",
         "missing": [],
+        "na": [],
         "refine": null
       },
       "P7": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "arch_modules",
           "hyperparams | ablation_hyperparams"
         ],
+        "na": [],
         "refine": "R8_architecture"
       }
     },
     "2101.07136": {
       "P0": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "method_limits",
           "formal_def | old_forms"
         ],
+        "na": [],
         "refine": "R7_formulation"
       },
       "P1": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "arch_modules",
           "key_challenge",
           "why_not_other | arch_modules"
         ],
+        "na": [],
         "refine": "R8_architecture"
       },
       "P2": {
         "status": "PARTIAL",
         "missing": [
-          "data_sources",
           "dedup_rule | split_spec"
         ],
+        "na": [],
         "refine": "R9_dataset"
       },
       "P6": {
         "status": "READY",
         "missing": [],
+        "na": [],
         "refine": null
       },
       "P7": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "arch_modules",
           "hyperparams | ablation_hyperparams"
         ],
+        "na": [],
         "refine": "R8_architecture"
       }
     },
     "2405.01155": {
       "P0": {
-        "status": "PARTIAL",
-        "missing": [
-          "method_limits",
-          "formal_def | old_forms"
-        ],
-        "refine": "R7_formulation"
+        "status": "READY",
+        "missing": [],
+        "na": [],
+        "refine": null
       },
       "P1": {
-        "status": "PARTIAL",
-        "missing": [
-          "arch_modules",
-          "key_challenge",
-          "why_not_other | arch_modules"
-        ],
-        "refine": "R8_architecture"
+        "status": "READY",
+        "missing": [],
+        "na": [],
+        "refine": null
       },
       "P2": {
         "status": "READY",
         "missing": [],
+        "na": [],
         "refine": null
       },
       "P6": {
         "status": "READY",
         "missing": [],
+        "na": [],
         "refine": null
       },
       "P7": {
-        "status": "PARTIAL",
-        "missing": [
-          "arch_modules"
-        ],
-        "refine": "R8_architecture"
+        "status": "READY",
+        "missing": [],
+        "na": [],
+        "refine": null
       }
     },
     "2008.02232": {
       "P0": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "method_limits",
           "formal_def | old_forms"
         ],
+        "na": [],
         "refine": "R7_formulation"
       },
       "P1": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "arch_modules",
           "key_challenge",
           "why_not_other | arch_modules"
         ],
+        "na": [],
         "refine": "R8_architecture"
       },
       "P2": {
         "status": "PARTIAL",
         "missing": [
-          "data_sources",
           "dedup_rule | split_spec"
         ],
+        "na": [],
         "refine": "R9_dataset"
       },
       "P6": {
         "status": "READY",
         "missing": [],
+        "na": [],
         "refine": null
       },
       "P7": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "arch_modules",
           "hyperparams | ablation_hyperparams"
         ],
+        "na": [],
         "refine": "R8_architecture"
       }
     },
     "2406.08506": {
       "P0": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "method_limits",
           "formal_def | old_forms"
         ],
+        "na": [],
         "refine": "R7_formulation"
       },
       "P1": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "arch_modules",
           "key_challenge",
           "why_not_other | arch_modules"
         ],
+        "na": [],
         "refine": "R8_architecture"
       },
       "P2": {
         "status": "READY",
         "missing": [],
+        "na": [],
         "refine": null
       },
       "P6": {
         "status": "READY",
         "missing": [],
+        "na": [],
         "refine": null
       },
       "P7": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "arch_modules"
         ],
+        "na": [],
         "refine": "R8_architecture"
       }
     },
     "2404.14209": {
       "P0": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "method_limits",
           "formal_def | old_forms"
         ],
+        "na": [],
         "refine": "R7_formulation"
       },
       "P1": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "arch_modules",
           "key_challenge",
           "why_not_other | arch_modules"
         ],
+        "na": [],
         "refine": "R8_architecture"
       },
       "P2": {
         "status": "READY",
         "missing": [],
+        "na": [],
         "refine": null
       },
       "P6": {
         "status": "READY",
         "missing": [],
+        "na": [],
         "refine": null
       },
       "P7": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "arch_modules"
         ],
+        "na": [],
         "refine": "R8_architecture"
       }
     },
     "2407.01603": {
       "P0": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "method_limits",
           "formal_def | old_forms"
         ],
+        "na": [],
         "refine": "R7_formulation"
       },
       "P1": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "arch_modules",
           "key_challenge",
           "why_not_other | arch_modules"
         ],
+        "na": [],
         "refine": "R8_architecture"
       },
       "P2": {
-        "status": "PARTIAL",
-        "missing": [
-          "dedup_rule | split_spec"
-        ],
-        "refine": "R9_dataset"
+        "status": "READY",
+        "missing": [],
+        "na": [],
+        "refine": null
       },
       "P6": {
         "status": "READY",
         "missing": [],
+        "na": [],
         "refine": null
       },
       "P7": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "arch_modules"
         ],
+        "na": [],
         "refine": "R8_architecture"
       }
     },
     "2407.06334": {
       "P0": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "method_limits"
         ],
+        "na": [],
         "refine": "R7_formulation"
       },
       "P1": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "arch_modules",
           "key_challenge",
           "why_not_other | arch_modules"
         ],
+        "na": [],
         "refine": "R8_architecture"
       },
       "P2": {
         "status": "READY",
         "missing": [],
+        "na": [],
         "refine": null
       },
       "P6": {
         "status": "READY",
         "missing": [],
+        "na": [],
         "refine": null
       },
       "P7": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "arch_modules"
         ],
+        "na": [],
         "refine": "R8_architecture"
       }
     },
     "2407.12186": {
       "P0": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "method_limits",
           "formal_def | old_forms"
         ],
+        "na": [],
         "refine": "R7_formulation"
       },
       "P1": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "arch_modules",
           "key_challenge",
           "why_not_other | arch_modules"
         ],
+        "na": [],
         "refine": "R8_architecture"
       },
       "P2": {
         "status": "READY",
         "missing": [],
+        "na": [],
         "refine": null
       },
       "P6": {
         "status": "READY",
         "missing": [],
+        "na": [],
         "refine": null
       },
       "P7": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "arch_modules"
         ],
+        "na": [],
         "refine": "R8_architecture"
       }
     },
     "2410.01421": {
       "P0": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "method_limits",
           "formal_def | old_forms"
         ],
+        "na": [],
         "refine": "R7_formulation"
       },
       "P1": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "arch_modules",
           "key_challenge",
           "why_not_other | arch_modules"
         ],
+        "na": [],
         "refine": "R8_architecture"
       },
       "P2": {
-        "status": "PARTIAL",
-        "missing": [
+        "status": "READY_NA",
+        "missing": [],
+        "na": [
           "data_sources",
           "dedup_rule | split_spec"
         ],
-        "refine": "R9_dataset"
+        "refine": null
       },
       "P6": {
         "status": "READY",
         "missing": [],
+        "na": [],
         "refine": null
       },
       "P7": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
-          "arch_modules",
+          "arch_modules"
+        ],
+        "na": [
           "hyperparams | ablation_hyperparams"
         ],
         "refine": "R8_architecture"
@@ -639,61 +663,69 @@
     },
     "2410.11527": {
       "P0": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "method_limits",
           "formal_def | old_forms"
         ],
+        "na": [],
         "refine": "R7_formulation"
       },
       "P1": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "arch_modules",
           "key_challenge",
           "why_not_other | arch_modules"
         ],
+        "na": [],
         "refine": "R8_architecture"
       },
       "P2": {
         "status": "READY",
         "missing": [],
+        "na": [],
         "refine": null
       },
       "P6": {
         "status": "READY",
         "missing": [],
+        "na": [],
         "refine": null
       },
       "P7": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "arch_modules"
         ],
+        "na": [],
         "refine": "R8_architecture"
       }
     },
     "2410.03494": {
       "P0": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "method_limits",
           "formal_def | old_forms"
         ],
+        "na": [],
         "refine": "R7_formulation"
       },
       "P1": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "arch_modules",
           "key_challenge",
           "why_not_other | arch_modules"
         ],
+        "na": [],
         "refine": "R8_architecture"
       },
       "P2": {
         "status": "READY",
         "missing": [],
+        "na": [],
         "refine": null
       },
       "P6": {
@@ -701,70 +733,70 @@
         "missing": [
           "result_tables"
         ],
+        "na": [],
         "refine": "R10_result_table"
       },
       "P7": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "arch_modules"
         ],
+        "na": [],
         "refine": "R8_architecture"
       }
     },
     "2410.13147": {
       "P0": {
-        "status": "PARTIAL",
-        "missing": [
-          "method_limits",
-          "formal_def | old_forms"
-        ],
-        "refine": "R7_formulation"
+        "status": "READY",
+        "missing": [],
+        "na": [],
+        "refine": null
       },
       "P1": {
-        "status": "PARTIAL",
-        "missing": [
-          "arch_modules",
-          "key_challenge",
-          "why_not_other | arch_modules"
-        ],
-        "refine": "R8_architecture"
+        "status": "READY",
+        "missing": [],
+        "na": [],
+        "refine": null
       },
       "P2": {
         "status": "PARTIAL",
         "missing": [
           "dedup_rule | split_spec"
         ],
+        "na": [],
         "refine": "R9_dataset"
       },
       "P6": {
         "status": "READY",
         "missing": [],
+        "na": [],
         "refine": null
       },
       "P7": {
-        "status": "PARTIAL",
-        "missing": [
-          "arch_modules"
-        ],
-        "refine": "R8_architecture"
+        "status": "READY",
+        "missing": [],
+        "na": [],
+        "refine": null
       }
     },
     "2501.08897": {
       "P0": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "method_limits",
           "formal_def | old_forms"
         ],
+        "na": [],
         "refine": "R7_formulation"
       },
       "P1": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "arch_modules",
           "key_challenge",
           "why_not_other | arch_modules"
         ],
+        "na": [],
         "refine": "R8_architecture"
       },
       "P2": {
@@ -772,73 +804,83 @@
         "missing": [
           "dedup_rule | split_spec"
         ],
+        "na": [],
         "refine": "R9_dataset"
       },
       "P6": {
         "status": "READY",
         "missing": [],
+        "na": [],
         "refine": null
       },
       "P7": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "arch_modules"
         ],
+        "na": [],
         "refine": "R8_architecture"
       }
     },
     "2503.03503": {
       "P0": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "method_limits",
           "formal_def | old_forms"
         ],
+        "na": [],
         "refine": "R7_formulation"
       },
       "P1": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "arch_modules",
           "key_challenge",
           "why_not_other | arch_modules"
         ],
+        "na": [],
         "refine": "R8_architecture"
       },
       "P2": {
         "status": "READY",
         "missing": [],
+        "na": [],
         "refine": null
       },
       "P6": {
         "status": "READY",
         "missing": [],
+        "na": [],
         "refine": null
       },
       "P7": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "arch_modules"
         ],
+        "na": [],
         "refine": "R8_architecture"
       }
     },
     "2507.02752": {
       "P0": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "method_limits",
           "formal_def | old_forms"
         ],
+        "na": [],
         "refine": "R7_formulation"
       },
       "P1": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "arch_modules",
           "key_challenge",
           "why_not_other | arch_modules"
         ],
+        "na": [],
         "refine": "R8_architecture"
       },
       "P2": {
@@ -846,37 +888,42 @@
         "missing": [
           "dedup_rule | split_spec"
         ],
+        "na": [],
         "refine": "R9_dataset"
       },
       "P6": {
         "status": "READY",
         "missing": [],
+        "na": [],
         "refine": null
       },
       "P7": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "arch_modules"
         ],
+        "na": [],
         "refine": "R8_architecture"
       }
     },
     "2505.20820": {
       "P0": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "method_limits",
           "formal_def | old_forms"
         ],
+        "na": [],
         "refine": "R7_formulation"
       },
       "P1": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "arch_modules",
           "key_challenge",
           "why_not_other | arch_modules"
         ],
+        "na": [],
         "refine": "R8_architecture"
       },
       "P2": {
@@ -884,37 +931,42 @@
         "missing": [
           "dedup_rule | split_spec"
         ],
+        "na": [],
         "refine": "R9_dataset"
       },
       "P6": {
         "status": "READY",
         "missing": [],
+        "na": [],
         "refine": null
       },
       "P7": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "arch_modules"
         ],
+        "na": [],
         "refine": "R8_architecture"
       }
     },
     "2503.12602": {
       "P0": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "method_limits",
           "formal_def | old_forms"
         ],
+        "na": [],
         "refine": "R7_formulation"
       },
       "P1": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "arch_modules",
           "key_challenge",
           "why_not_other | arch_modules"
         ],
+        "na": [],
         "refine": "R8_architecture"
       },
       "P2": {
@@ -922,56 +974,64 @@
         "missing": [
           "dedup_rule | split_spec"
         ],
+        "na": [],
         "refine": "R9_dataset"
       },
       "P6": {
         "status": "READY",
         "missing": [],
+        "na": [],
         "refine": null
       },
       "P7": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "arch_modules"
         ],
+        "na": [],
         "refine": "R8_architecture"
       }
     },
     "2508.14111": {
       "P0": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "method_limits",
           "formal_def | old_forms"
         ],
+        "na": [],
         "refine": "R7_formulation"
       },
       "P1": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "arch_modules",
           "key_challenge",
           "why_not_other | arch_modules"
         ],
+        "na": [],
         "refine": "R8_architecture"
       },
       "P2": {
-        "status": "PARTIAL",
-        "missing": [
-          "data_sources",
+        "status": "READY_NA",
+        "missing": [],
+        "na": [
           "dedup_rule | split_spec"
         ],
-        "refine": "R9_dataset"
+        "refine": null
       },
       "P6": {
         "status": "READY",
         "missing": [],
+        "na": [],
         "refine": null
       },
       "P7": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
-          "arch_modules",
+          "arch_modules"
+        ],
+        "na": [
           "hyperparams | ablation_hyperparams"
         ],
         "refine": "R8_architecture"
@@ -979,41 +1039,46 @@
     },
     "2508.00137": {
       "P0": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "method_limits",
           "formal_def | old_forms"
         ],
+        "na": [],
         "refine": "R7_formulation"
       },
       "P1": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "arch_modules",
           "key_challenge",
           "why_not_other | arch_modules"
         ],
+        "na": [],
         "refine": "R8_architecture"
       },
       "P2": {
-        "status": "PARTIAL",
-        "missing": [
-          "data_sources",
+        "status": "READY_NA",
+        "missing": [],
+        "na": [
           "dedup_rule | split_spec"
         ],
-        "refine": "R9_dataset"
+        "refine": null
       },
       "P6": {
         "status": "BLOCKED",
         "missing": [
           "result_tables"
         ],
+        "na": [],
         "refine": "R10_result_table"
       },
       "P7": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
-          "arch_modules",
+          "arch_modules"
+        ],
+        "na": [
           "hyperparams | ablation_hyperparams"
         ],
         "refine": "R8_architecture"
@@ -1021,56 +1086,63 @@
     },
     "2507.08475": {
       "P0": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "method_limits",
           "formal_def | old_forms"
         ],
+        "na": [],
         "refine": "R7_formulation"
       },
       "P1": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "arch_modules",
           "key_challenge",
           "why_not_other | arch_modules"
         ],
+        "na": [],
         "refine": "R8_architecture"
       },
       "P2": {
         "status": "READY",
         "missing": [],
+        "na": [],
         "refine": null
       },
       "P6": {
         "status": "READY",
         "missing": [],
+        "na": [],
         "refine": null
       },
       "P7": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "arch_modules"
         ],
+        "na": [],
         "refine": "R8_architecture"
       }
     },
     "2508.11860": {
       "P0": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "method_limits",
           "formal_def | old_forms"
         ],
+        "na": [],
         "refine": "R7_formulation"
       },
       "P1": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "arch_modules",
           "key_challenge",
           "why_not_other | arch_modules"
         ],
+        "na": [],
         "refine": "R8_architecture"
       },
       "P2": {
@@ -1078,253 +1150,280 @@
         "missing": [
           "dedup_rule | split_spec"
         ],
+        "na": [],
         "refine": "R9_dataset"
       },
       "P6": {
         "status": "READY",
         "missing": [],
+        "na": [],
         "refine": null
       },
       "P7": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "arch_modules"
         ],
+        "na": [],
         "refine": "R8_architecture"
       }
     },
     "2510.14455": {
       "P0": {
-        "status": "PARTIAL",
-        "missing": [
-          "method_limits"
-        ],
-        "refine": "R7_formulation"
+        "status": "READY",
+        "missing": [],
+        "na": [],
+        "refine": null
       },
       "P1": {
-        "status": "PARTIAL",
-        "missing": [
-          "arch_modules",
-          "key_challenge",
-          "why_not_other | arch_modules"
-        ],
-        "refine": "R8_architecture"
+        "status": "READY",
+        "missing": [],
+        "na": [],
+        "refine": null
       },
       "P2": {
         "status": "READY",
         "missing": [],
+        "na": [],
         "refine": null
       },
       "P6": {
         "status": "READY",
         "missing": [],
+        "na": [],
         "refine": null
       },
       "P7": {
-        "status": "PARTIAL",
-        "missing": [
-          "arch_modules"
-        ],
-        "refine": "R8_architecture"
+        "status": "READY",
+        "missing": [],
+        "na": [],
+        "refine": null
       }
     },
     "2509.16084": {
       "P0": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "method_limits",
           "formal_def | old_forms"
         ],
+        "na": [],
         "refine": "R7_formulation"
       },
       "P1": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "arch_modules",
           "key_challenge",
           "why_not_other | arch_modules"
         ],
+        "na": [],
         "refine": "R8_architecture"
       },
       "P2": {
         "status": "READY",
         "missing": [],
+        "na": [],
         "refine": null
       },
       "P6": {
         "status": "READY",
         "missing": [],
+        "na": [],
         "refine": null
       },
       "P7": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "arch_modules"
         ],
+        "na": [],
         "refine": "R8_architecture"
       }
     },
     "2512.20333": {
       "P0": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "method_limits",
           "formal_def | old_forms"
         ],
+        "na": [],
         "refine": "R7_formulation"
       },
       "P1": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "arch_modules",
           "key_challenge",
           "why_not_other | arch_modules"
         ],
+        "na": [],
         "refine": "R8_architecture"
       },
       "P2": {
         "status": "READY",
         "missing": [],
+        "na": [],
         "refine": null
       },
       "P6": {
         "status": "READY",
         "missing": [],
+        "na": [],
         "refine": null
       },
       "P7": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "arch_modules"
         ],
+        "na": [],
         "refine": "R8_architecture"
       }
     },
     "2602.04119": {
       "P0": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "method_limits",
           "formal_def | old_forms"
         ],
+        "na": [],
         "refine": "R7_formulation"
       },
       "P1": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "arch_modules",
           "key_challenge",
           "why_not_other | arch_modules"
         ],
+        "na": [],
         "refine": "R8_architecture"
       },
       "P2": {
         "status": "READY",
         "missing": [],
+        "na": [],
         "refine": null
       },
       "P6": {
         "status": "READY",
         "missing": [],
+        "na": [],
         "refine": null
       },
       "P7": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "arch_modules"
         ],
+        "na": [],
         "refine": "R8_architecture"
       }
     },
     "2603.05900": {
       "P0": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "method_limits",
           "formal_def | old_forms"
         ],
+        "na": [],
         "refine": "R7_formulation"
       },
       "P1": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "arch_modules",
           "key_challenge",
           "why_not_other | arch_modules"
         ],
+        "na": [],
         "refine": "R8_architecture"
       },
       "P2": {
         "status": "READY",
         "missing": [],
+        "na": [],
         "refine": null
       },
       "P6": {
         "status": "READY",
         "missing": [],
+        "na": [],
         "refine": null
       },
       "P7": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "arch_modules"
         ],
+        "na": [],
         "refine": "R8_architecture"
       }
     },
     "2603.24382": {
       "P0": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "method_limits",
           "formal_def | old_forms"
         ],
+        "na": [],
         "refine": "R7_formulation"
       },
       "P1": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "arch_modules",
           "key_challenge",
           "why_not_other | arch_modules"
         ],
+        "na": [],
         "refine": "R8_architecture"
       },
       "P2": {
         "status": "READY",
         "missing": [],
+        "na": [],
         "refine": null
       },
       "P6": {
         "status": "READY",
         "missing": [],
+        "na": [],
         "refine": null
       },
       "P7": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "arch_modules",
           "hyperparams | ablation_hyperparams"
         ],
+        "na": [],
         "refine": "R8_architecture"
       }
     },
     "2604.07669": {
       "P0": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "method_limits",
           "formal_def | old_forms"
         ],
+        "na": [],
         "refine": "R7_formulation"
       },
       "P1": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "arch_modules",
           "key_challenge",
           "why_not_other | arch_modules"
         ],
+        "na": [],
         "refine": "R8_architecture"
       },
       "P2": {
@@ -1332,37 +1431,42 @@
         "missing": [
           "dedup_rule | split_spec"
         ],
+        "na": [],
         "refine": "R9_dataset"
       },
       "P6": {
         "status": "READY",
         "missing": [],
+        "na": [],
         "refine": null
       },
       "P7": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "arch_modules"
         ],
+        "na": [],
         "refine": "R8_architecture"
       }
     },
     "2605.16480": {
       "P0": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "method_limits",
           "formal_def | old_forms"
         ],
+        "na": [],
         "refine": "R7_formulation"
       },
       "P1": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "arch_modules",
           "key_challenge",
           "why_not_other | arch_modules"
         ],
+        "na": [],
         "refine": "R8_architecture"
       },
       "P2": {
@@ -1370,6 +1474,7 @@
         "missing": [
           "dedup_rule | split_spec"
         ],
+        "na": [],
         "refine": "R9_dataset"
       },
       "P6": {
@@ -1377,32 +1482,36 @@
         "missing": [
           "result_tables"
         ],
+        "na": [],
         "refine": "R10_result_table"
       },
       "P7": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "arch_modules"
         ],
+        "na": [],
         "refine": "R8_architecture"
       }
     },
     "2604.23061": {
       "P0": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "method_limits",
           "formal_def | old_forms"
         ],
+        "na": [],
         "refine": "R7_formulation"
       },
       "P1": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "arch_modules",
           "key_challenge",
           "why_not_other | arch_modules"
         ],
+        "na": [],
         "refine": "R8_architecture"
       },
       "P2": {
@@ -1410,73 +1519,83 @@
         "missing": [
           "dedup_rule | split_spec"
         ],
+        "na": [],
         "refine": "R9_dataset"
       },
       "P6": {
         "status": "READY",
         "missing": [],
+        "na": [],
         "refine": null
       },
       "P7": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "arch_modules"
         ],
+        "na": [],
         "refine": "R8_architecture"
       }
     },
     "2605.10831": {
       "P0": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "method_limits",
           "formal_def | old_forms"
         ],
+        "na": [],
         "refine": "R7_formulation"
       },
       "P1": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "arch_modules",
           "key_challenge",
           "why_not_other | arch_modules"
         ],
+        "na": [],
         "refine": "R8_architecture"
       },
       "P2": {
         "status": "READY",
         "missing": [],
+        "na": [],
         "refine": null
       },
       "P6": {
         "status": "READY",
         "missing": [],
+        "na": [],
         "refine": null
       },
       "P7": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "arch_modules"
         ],
+        "na": [],
         "refine": "R8_architecture"
       }
     },
     "2605.07022": {
       "P0": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "method_limits",
           "formal_def | old_forms"
         ],
+        "na": [],
         "refine": "R7_formulation"
       },
       "P1": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "arch_modules",
           "key_challenge",
           "why_not_other | arch_modules"
         ],
+        "na": [],
         "refine": "R8_architecture"
       },
       "P2": {
@@ -1484,148 +1603,166 @@
         "missing": [
           "dedup_rule | split_spec"
         ],
+        "na": [],
         "refine": "R9_dataset"
       },
       "P6": {
         "status": "READY",
         "missing": [],
+        "na": [],
         "refine": null
       },
       "P7": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "arch_modules"
         ],
+        "na": [],
         "refine": "R8_architecture"
       }
     },
     "2606.03660": {
       "P0": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "method_limits",
           "formal_def | old_forms"
         ],
+        "na": [],
         "refine": "R7_formulation"
       },
       "P1": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "arch_modules",
           "key_challenge",
           "why_not_other | arch_modules"
         ],
+        "na": [],
         "refine": "R8_architecture"
       },
       "P2": {
         "status": "READY",
         "missing": [],
+        "na": [],
         "refine": null
       },
       "P6": {
         "status": "READY",
         "missing": [],
+        "na": [],
         "refine": null
       },
       "P7": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "arch_modules"
         ],
+        "na": [],
         "refine": "R8_architecture"
       }
     },
     "2605.24428": {
       "P0": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "method_limits",
           "formal_def | old_forms"
         ],
+        "na": [],
         "refine": "R7_formulation"
       },
       "P1": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "arch_modules",
           "key_challenge",
           "why_not_other | arch_modules"
         ],
+        "na": [],
         "refine": "R8_architecture"
       },
       "P2": {
         "status": "READY",
         "missing": [],
+        "na": [],
         "refine": null
       },
       "P6": {
         "status": "READY",
         "missing": [],
+        "na": [],
         "refine": null
       },
       "P7": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "arch_modules"
         ],
+        "na": [],
         "refine": "R8_architecture"
       }
     },
     "2607.00464": {
       "P0": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "method_limits",
           "formal_def | old_forms"
         ],
+        "na": [],
         "refine": "R7_formulation"
       },
       "P1": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "arch_modules",
           "key_challenge",
           "why_not_other | arch_modules"
         ],
+        "na": [],
         "refine": "R8_architecture"
       },
       "P2": {
-        "status": "PARTIAL",
-        "missing": [
-          "dedup_rule | split_spec"
-        ],
-        "refine": "R9_dataset"
+        "status": "READY",
+        "missing": [],
+        "na": [],
+        "refine": null
       },
       "P6": {
         "status": "READY",
         "missing": [],
+        "na": [],
         "refine": null
       },
       "P7": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "arch_modules",
           "hyperparams | ablation_hyperparams"
         ],
+        "na": [],
         "refine": "R8_architecture"
       }
     },
     "2607.00531": {
       "P0": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "method_limits",
           "formal_def | old_forms"
         ],
+        "na": [],
         "refine": "R7_formulation"
       },
       "P1": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "arch_modules",
           "key_challenge",
           "why_not_other | arch_modules"
         ],
+        "na": [],
         "refine": "R8_architecture"
       },
       "P2": {
@@ -1633,91 +1770,105 @@
         "missing": [
           "dedup_rule | split_spec"
         ],
+        "na": [],
         "refine": "R9_dataset"
       },
       "P6": {
         "status": "READY",
         "missing": [],
+        "na": [],
         "refine": null
       },
       "P7": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "arch_modules"
         ],
+        "na": [],
         "refine": "R8_architecture"
       }
     },
     "2609.09203": {
       "P0": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "method_limits",
           "formal_def | old_forms"
         ],
+        "na": [],
         "refine": "R7_formulation"
       },
       "P1": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "arch_modules",
           "key_challenge",
           "why_not_other | arch_modules"
         ],
+        "na": [],
         "refine": "R8_architecture"
       },
       "P2": {
         "status": "READY",
         "missing": [],
+        "na": [],
         "refine": null
       },
       "P6": {
         "status": "READY",
         "missing": [],
+        "na": [],
         "refine": null
       },
       "P7": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "arch_modules"
         ],
+        "na": [],
         "refine": "R8_architecture"
       }
     },
     "2607.27556": {
       "P0": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "method_limits",
           "formal_def | old_forms"
         ],
+        "na": [],
         "refine": "R7_formulation"
       },
       "P1": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "arch_modules",
           "key_challenge",
           "why_not_other | arch_modules"
         ],
+        "na": [],
         "refine": "R8_architecture"
       },
       "P2": {
-        "status": "PARTIAL",
-        "missing": [
+        "status": "READY_NA",
+        "missing": [],
+        "na": [
           "dedup_rule | split_spec"
         ],
-        "refine": "R9_dataset"
+        "refine": null
       },
       "P6": {
         "status": "READY",
         "missing": [],
+        "na": [],
         "refine": null
       },
       "P7": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
-          "arch_modules",
+          "arch_modules"
+        ],
+        "na": [
           "hyperparams | ablation_hyperparams"
         ],
         "refine": "R8_architecture"
@@ -1725,65 +1876,72 @@
     },
     "2607.02944": {
       "P0": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "method_limits",
           "formal_def | old_forms"
         ],
+        "na": [],
         "refine": "R7_formulation"
       },
       "P1": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "arch_modules",
           "key_challenge",
           "why_not_other | arch_modules"
         ],
+        "na": [],
         "refine": "R8_architecture"
       },
       "P2": {
         "status": "READY",
         "missing": [],
+        "na": [],
         "refine": null
       },
       "P6": {
         "status": "READY",
         "missing": [],
+        "na": [],
         "refine": null
       },
       "P7": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "arch_modules",
           "hyperparams | ablation_hyperparams"
         ],
+        "na": [],
         "refine": "R8_architecture"
       }
     },
     "2607.16038": {
       "P0": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "method_limits",
           "formal_def | old_forms"
         ],
+        "na": [],
         "refine": "R7_formulation"
       },
       "P1": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "arch_modules",
           "key_challenge",
           "why_not_other | arch_modules"
         ],
+        "na": [],
         "refine": "R8_architecture"
       },
       "P2": {
         "status": "PARTIAL",
         "missing": [
-          "data_sources",
           "dedup_rule | split_spec"
         ],
+        "na": [],
         "refine": "R9_dataset"
       },
       "P6": {
@@ -1791,69 +1949,78 @@
         "missing": [
           "result_tables"
         ],
+        "na": [],
         "refine": "R10_result_table"
       },
       "P7": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "arch_modules",
           "hyperparams | ablation_hyperparams"
         ],
+        "na": [],
         "refine": "R8_architecture"
       }
     },
     "2609.34491": {
       "P0": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "method_limits",
           "formal_def | old_forms"
         ],
+        "na": [],
         "refine": "R7_formulation"
       },
       "P1": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "arch_modules",
           "key_challenge",
           "why_not_other | arch_modules"
         ],
+        "na": [],
         "refine": "R8_architecture"
       },
       "P2": {
         "status": "READY",
         "missing": [],
+        "na": [],
         "refine": null
       },
       "P6": {
         "status": "READY",
         "missing": [],
+        "na": [],
         "refine": null
       },
       "P7": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "arch_modules"
         ],
+        "na": [],
         "refine": "R8_architecture"
       }
     },
     "2609.35336": {
       "P0": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "method_limits",
           "formal_def | old_forms"
         ],
+        "na": [],
         "refine": "R7_formulation"
       },
       "P1": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "arch_modules",
           "key_challenge",
           "why_not_other | arch_modules"
         ],
+        "na": [],
         "refine": "R8_architecture"
       },
       "P2": {
@@ -1861,110 +2028,125 @@
         "missing": [
           "dedup_rule | split_spec"
         ],
+        "na": [],
         "refine": "R9_dataset"
       },
       "P6": {
         "status": "READY",
         "missing": [],
+        "na": [],
         "refine": null
       },
       "P7": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "arch_modules"
         ],
+        "na": [],
         "refine": "R8_architecture"
       }
     },
     "2609.34301": {
       "P0": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "method_limits",
           "formal_def | old_forms"
         ],
+        "na": [],
         "refine": "R7_formulation"
       },
       "P1": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "arch_modules",
           "key_challenge",
           "why_not_other | arch_modules"
         ],
+        "na": [],
         "refine": "R8_architecture"
       },
       "P2": {
         "status": "READY",
         "missing": [],
+        "na": [],
         "refine": null
       },
       "P6": {
         "status": "READY",
         "missing": [],
+        "na": [],
         "refine": null
       },
       "P7": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "arch_modules"
         ],
+        "na": [],
         "refine": "R8_architecture"
       }
     },
     "2609.38484": {
       "P0": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "method_limits",
           "formal_def | old_forms"
         ],
+        "na": [],
         "refine": "R7_formulation"
       },
       "P1": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "arch_modules",
           "key_challenge",
           "why_not_other | arch_modules"
         ],
+        "na": [],
         "refine": "R8_architecture"
       },
       "P2": {
         "status": "READY",
         "missing": [],
+        "na": [],
         "refine": null
       },
       "P6": {
         "status": "READY",
         "missing": [],
+        "na": [],
         "refine": null
       },
       "P7": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "arch_modules",
           "hyperparams | ablation_hyperparams"
         ],
+        "na": [],
         "refine": "R8_architecture"
       }
     },
     "2610.16975": {
       "P0": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "method_limits",
           "formal_def | old_forms"
         ],
+        "na": [],
         "refine": "R7_formulation"
       },
       "P1": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "arch_modules",
           "key_challenge",
           "why_not_other | arch_modules"
         ],
+        "na": [],
         "refine": "R8_architecture"
       },
       "P2": {
@@ -1972,73 +2154,83 @@
         "missing": [
           "dedup_rule | split_spec"
         ],
+        "na": [],
         "refine": "R9_dataset"
       },
       "P6": {
         "status": "READY",
         "missing": [],
+        "na": [],
         "refine": null
       },
       "P7": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "arch_modules"
         ],
+        "na": [],
         "refine": "R8_architecture"
       }
     },
     "2610.18438": {
       "P0": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "method_limits",
           "formal_def | old_forms"
         ],
+        "na": [],
         "refine": "R7_formulation"
       },
       "P1": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "arch_modules",
           "key_challenge",
           "why_not_other | arch_modules"
         ],
+        "na": [],
         "refine": "R8_architecture"
       },
       "P2": {
         "status": "READY",
         "missing": [],
+        "na": [],
         "refine": null
       },
       "P6": {
         "status": "READY",
         "missing": [],
+        "na": [],
         "refine": null
       },
       "P7": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "arch_modules"
         ],
+        "na": [],
         "refine": "R8_architecture"
       }
     },
     "2610.16391": {
       "P0": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "method_limits",
           "formal_def | old_forms"
         ],
+        "na": [],
         "refine": "R7_formulation"
       },
       "P1": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "arch_modules",
           "key_challenge",
           "why_not_other | arch_modules"
         ],
+        "na": [],
         "refine": "R8_architecture"
       },
       "P2": {
@@ -2046,36 +2238,41 @@
         "missing": [
           "dedup_rule | split_spec"
         ],
+        "na": [],
         "refine": "R9_dataset"
       },
       "P6": {
         "status": "READY",
         "missing": [],
+        "na": [],
         "refine": null
       },
       "P7": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "arch_modules"
         ],
+        "na": [],
         "refine": "R8_architecture"
       }
     },
     "2610.18851": {
       "P0": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "method_limits"
         ],
+        "na": [],
         "refine": "R7_formulation"
       },
       "P1": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "arch_modules",
           "key_challenge",
           "why_not_other | arch_modules"
         ],
+        "na": [],
         "refine": "R8_architecture"
       },
       "P2": {
@@ -2083,57 +2280,129 @@
         "missing": [
           "dedup_rule | split_spec"
         ],
+        "na": [],
         "refine": "R9_dataset"
       },
       "P6": {
         "status": "READY",
         "missing": [],
+        "na": [],
         "refine": null
       },
       "P7": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "arch_modules"
         ],
+        "na": [],
         "refine": "R8_architecture"
       }
     },
     "2611.03696": {
       "P0": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "method_limits",
           "formal_def | old_forms"
         ],
+        "na": [],
         "refine": "R7_formulation"
       },
       "P1": {
-        "status": "PARTIAL",
+        "status": "BLOCKED",
         "missing": [
           "arch_modules",
           "key_challenge",
           "why_not_other | arch_modules"
         ],
+        "na": [],
         "refine": "R8_architecture"
+      },
+      "P2": {
+        "status": "READY",
+        "missing": [],
+        "na": [],
+        "refine": null
+      },
+      "P6": {
+        "status": "READY",
+        "missing": [],
+        "na": [],
+        "refine": null
+      },
+      "P7": {
+        "status": "BLOCKED",
+        "missing": [
+          "arch_modules"
+        ],
+        "na": [],
+        "refine": "R8_architecture"
+      }
+    },
+    "2505.23628": {
+      "P0": {
+        "status": "READY",
+        "missing": [],
+        "na": [],
+        "refine": null
+      },
+      "P1": {
+        "status": "READY",
+        "missing": [],
+        "na": [],
+        "refine": null
       },
       "P2": {
         "status": "PARTIAL",
         "missing": [
           "dedup_rule | split_spec"
         ],
+        "na": [],
         "refine": "R9_dataset"
       },
       "P6": {
         "status": "READY",
         "missing": [],
+        "na": [],
         "refine": null
       },
       "P7": {
-        "status": "PARTIAL",
-        "missing": [
-          "arch_modules"
-        ],
-        "refine": "R8_architecture"
+        "status": "READY",
+        "missing": [],
+        "na": [],
+        "refine": null
+      }
+    },
+    "2607.01977": {
+      "P0": {
+        "status": "READY",
+        "missing": [],
+        "na": [],
+        "refine": null
+      },
+      "P1": {
+        "status": "READY",
+        "missing": [],
+        "na": [],
+        "refine": null
+      },
+      "P2": {
+        "status": "READY",
+        "missing": [],
+        "na": [],
+        "refine": null
+      },
+      "P6": {
+        "status": "READY",
+        "missing": [],
+        "na": [],
+        "refine": null
+      },
+      "P7": {
+        "status": "READY",
+        "missing": [],
+        "na": [],
+        "refine": null
       }
     }
   }

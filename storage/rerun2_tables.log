@@ -1,0 +1,9 @@
+APPLIED 2505.23628 ok True
+APPLIED 2607.01977 ok True
+SAVED nodes 405 assertions 463
+READY 2505.23628 | P0=READY P1=READY P2=BLOCKED P6=READY P7=READY
+READY 2607.01977 | P0=READY P1=READY P2=BLOCKED P6=READY P7=READY
+Traceback (most recent call last):
+  File "/tmp/rerun2_tables.py", line 25, in <module>
+    PY
+NameError: name 'PY' is not defined

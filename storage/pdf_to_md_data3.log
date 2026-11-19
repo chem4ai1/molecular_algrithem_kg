@@ -1,0 +1,253 @@
+{
+  "n": 31,
+  "reports": [
+    {
+      "aid": "2608.21156",
+      "pdf": "data/data3/paper/2608.21156_Graph_Engineering_in_the_Era_of_LLM_Agents.pdf",
+      "out": "data/docx/2608.21156.md",
+      "pages": 64,
+      "chars": 317030,
+      "tables": 6
+    },
+    {
+      "aid": "2505.23628",
+      "pdf": "data/data3/paper/2505.23628_AutoSchemaKG_Autonomous_Knowledge_Graph_Construction_through_Dynamic_S.pdf",
+      "out": "data/docx/2505.23628.md",
+      "pages": 26,
+      "chars": 103272,
+      "tables": 11
+    },
+    {
+      "aid": "2201.11147",
+      "pdf": "data/data3/paper/2201.11147_OntoProtein_Protein_Pretraining_With_Gene_Ontology_Embedding.pdf",
+      "out": "data/docx/2201.11147.md",
+      "pages": 18,
+      "chars": 64808,
+      "tables": 7
+    },
+    {
+      "aid": "2104.07396",
+      "pdf": "data/data3/paper/2104.07396_Node_Co-occurrence_based_Graph_Neural_Networks_for_Knowledge_Graph_Lin.pdf",
+      "out": "data/docx/2104.07396.md",
+      "pages": 4,
+      "chars": 24155,
+      "tables": 2
+    },
+    {
+      "aid": "1906.12089",
+      "pdf": "data/data3/paper/1906.12089_Uncovering_the_Semantics_of_Wikipedia_Categories.pdf",
+      "out": "data/docx/1906.12089.md",
+      "pages": 17,
+      "chars": 46871,
+      "tables": 2
+    },
+    {
+      "aid": "1911.07132",
+      "pdf": "data/data3/paper/1911.07132_Interstellar_Searching_Recurrent_Architecture_for_Knowledge_Graph_Embe.pdf",
+      "out": "data/docx/1911.07132.md",
+      "pages": 19,
+      "chars": 62384,
+      "tables": 13
+    },
+    {
+      "aid": "1611.07308",
+      "pdf": "data/data3/paper/1611.07308_Variational_Graph_Auto-Encoders.pdf",
+      "out": "data/docx/1611.07308.md",
+      "pages": 3,
+      "chars": 8993,
+      "tables": 1
+    },
+    {
+      "aid": "2307.16648",
+      "pdf": "data/data3/paper/2307.16648_LLMs4OL_Large_Language_Models_for_Ontology_Learning.pdf",
+      "out": "data/docx/2307.16648.md",
+      "pages": 27,
+      "chars": 81549,
+      "tables": 9
+    },
+    {
+      "aid": "2607.01977",
+      "pdf": "data/data3/paper/2607.01977_OntoLearner_A_Modular_Python_Library_for_Ontology_Learning_with_Large_.pdf",
+      "out": "data/docx/2607.01977.md",
+      "pages": 30,
+      "chars": 151254,
+      "tables": 9
+    },
+    {
+      "aid": "2608.22981",
+      "pdf": "data/data3/paper/2608.22981_Hierarchy-Aware_Semantic_Losses_for_Knowledge_Graph_Link_Prediction.pdf",
+      "out": "data/docx/2608.22981.md",
+      "pages": 16,
+      "chars": 44451,
+      "tables": 5
+    },
+    {
+      "aid": "2601.21700",
+      "pdf": "data/data3/paper/2601.21700_Toward_Culturally_Aligned_LLMs_through_Ontology-Guided_Multi-Agent_Rea.pdf",
+      "out": "data/docx/2601.21700.md",
+      "pages": 42,
+      "chars": 158833,
+      "tables": 20
+    },
+    {
+      "aid": "2602.03439",
+      "pdf": "data/data3/paper/2602.03439_Ontology-to-tools_compilation_for_executable_semantic_constraint_enfor.pdf",
+      "out": "data/docx/2602.03439.md",
+      "pages": 54,
+      "chars": 114297,
+      "tables": 9
+    },
+    {
+      "aid": "2602.05665",
+      "pdf": "data/data3/paper/2602.05665_Graph-based_Agent_Memory_Taxonomy_Techniques_and_Applications.pdf",
+      "out": "data/docx/2602.05665.md",
+      "pages": 29,
+      "chars": 186318,
+      "tables": 4
+    },
+    {
+      "aid": "2602.06039",
+      "pdf": "data/data3/paper/2602.06039_DyTopo_Dynamic_Topology_Routing_for_Multi-Agent_Reasoning_via_Semantic.pdf",
+      "out": "data/docx/2602.06039.md",
+      "pages": 17,
+      "chars": 62119,
+      "tables": 9
+    },
+    {
+      "aid": "2604.02369",
+      "pdf": "data/data3/paper/2604.02369_Beyond_Message_Passing_A_Semantic_View_of_Agent_Communication_Protocol.pdf",
+      "out": "data/docx/2604.02369.md",
+      "pages": 34,
+      "chars": 161898,
+      "tables": 1
+    },
+    {
+      "aid": "2604.06230",
+      "pdf": "data/data3/paper/2604.06230_Ontology-based_knowledge_graph_infrastructure_for_interoperable_atomis.pdf",
+      "out": "data/docx/2604.06230.md",
+      "pages": 21,
+      "chars": 63357,
+      "tables": 0
+    },
+    {
+      "aid": "2605.23311",
+      "pdf": "data/data3/paper/2605.23311_DART_Semantic_Recoverability_for_Structured_Tool_Agents.pdf",
+      "out": "data/docx/2605.23311.md",
+      "pages": 23,
+      "chars": 90848,
+      "tables": 29
+    },
+    {
+      "aid": "2605.29313",
+      "pdf": "data/data3/paper/2605.29313_PatchBoard_Schema-Grounded_State_Mutation_for_Reliable_and_Auditable_L.pdf",
+      "out": "data/docx/2605.29313.md",
+      "pages": 14,
+      "chars": 58672,
+      "tables": 3
+    },
+    {
+      "aid": "2606.17573",
+      "pdf": "data/data3/paper/2606.17573_Cordon_Semantic_Transactions_for_Tool-Using_LLM_Agents.pdf",
+      "out": "data/docx/2606.17573.md",
+      "pages": 14,
+      "chars": 74182,
+      "tables": 6
+    },
+    {
+      "aid": "2607.17963",
+      "pdf": "data/data3/paper/2607.17963_OntoExtend_A_Framework_for_Requirement-driven_and_Scalable_Ontology_Ex.pdf",
+      "out": "data/docx/2607.17963.md",
+      "pages": 17,
+      "chars": 56273,
+      "tables": 5
+    },
+    {
+      "aid": "2608.12990",
+      "pdf": "data/data3/paper/2608.12990_LycheeMemory_V2_Efficient_Long-Term_Memory_for_LLM_Agents_via_Semantic.pdf",
+      "out": "data/docx/2608.12990.md",
+      "pages": 33,
+      "chars": 102677,
+      "tables": 16
+    },
+    {
+      "aid": "2608.27101",
+      "pdf": "data/data3/paper/2608.27101_pro-team_at_LLMs4OL_2026_Tasks_Flagship_and_Reuse_Retrieval-Augmented_.pdf",
+      "out": "data/docx/2608.27101.md",
+      "pages": 13,
+      "chars": 39032,
+      "tables": 4
+    },
+    {
+      "aid": "2608.31118",
+      "pdf": "data/data3/paper/2608.31118_When_Does_Bigger_Help_A_Controlled_Study_of_LLM_Scale_for_Ontology_Lea.pdf",
+      "out": "data/docx/2608.31118.md",
+      "pages": 14,
+      "chars": 55462,
+      "tables": 5
+    },
+    {
+      "aid": "2609.13776",
+      "pdf": "data/data3/paper/2609.13776_Surprising_Effectiveness_of_Self-Demonstrations_in_Enhancing_Schema-On.pdf",
+      "out": "data/docx/2609.13776.md",
+      "pages": 17,
+      "chars": 60748,
+      "tables": 3
+    },
+    {
+      "aid": "2501.13956",
+      "pdf": "data/data3/paper/2501.13956_Zep_A_Temporal_Knowledge_Graph_Architecture_for_Agent_Memory.pdf",
+      "out": "data/docx/2501.13956.md",
+      "pages": 12,
+      "chars": 42114,
+      "tables": 3
+    },
+    {
+      "aid": "2506.18019",
+      "pdf": "data/data3/paper/2506.18019_Graphs_Meet_AI_Agents_Taxonomy_Progress_and_Future_Opportunities.pdf",
+      "out": "data/docx/2506.18019.md",
+      "pages": 20,
+      "chars": 136681,
+      "tables": 1
+    },
+    {
+      "aid": "2508.19504",
+      "pdf": "data/data3/paper/2508.19504_Aegis_Taxonomy_and_Optimizations_for_Overcoming_Agent-Environment_Fail.pdf",
+      "out": "data/docx/2508.19504.md",
+      "pages": 13,
+      "chars": 65036,
+      "tables": 4
+    },
+    {
+      "aid": "2408.03866",
+      "pdf": "data/data3/paper/2408.03866_A_semantic_approach_to_mapping_the_Provenance_Ontology_to_Basic_Formal.pdf",
+      "out": "data/docx/2408.03866.md",
+      "pages": 31,
+      "chars": 85071,
+      "tables": 0
+    },
+    {
+      "aid": "2410.01821",
+      "pdf": "data/data3/paper/2410.01821_NFDIcore_20_A_BFO-Compliant_Ontology_for_Multi-Domain_Research_Infrast.pdf",
+      "out": "data/docx/2410.01821.md",
+      "pages": 17,
+      "chars": 43340,
+      "tables": 0
+    },
+    {
+      "aid": "2410.11782",
+      "pdf": "data/data3/paper/2410.11782_G-Designer_Architecting_Multi-agent_Communication_Topologies_via_Graph.pdf",
+      "out": "data/docx/2410.11782.md",
+      "pages": 15,
+      "chars": 59985,
+      "tables": 7
+    },
+    {
+      "aid": "2412.17877",
+      "pdf": "data/data3/paper/2412.17877_MAMBO_a_lightweight_ontology_for_multiscale_materials_and_applications.pdf",
+      "out": "data/docx/2412.17877.md",
+      "pages": 21,
+      "chars": 91424,
+      "tables": 0
+    }
+  ]
+}

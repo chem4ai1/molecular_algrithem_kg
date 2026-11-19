@@ -7,7 +7,7 @@ sys.path.insert(0, str(ROOT / "src"))
 from capfactory.po import POGraph
 from capfactory.applayer.readiness import audit_graph
 
-GRAPH = ROOT / "storage/sciforge/factory_knowledge_rules.json"
+GRAPH = ROOT / "storage/sciforge/factory_knowledge_main.json"
 OUT = ROOT / "storage/sciforge/readiness_report.json"
 
 g = POGraph.load(str(GRAPH))
@@ -17,7 +17,7 @@ print(f"论文 {rep['n_papers']} 篇")
 print("\n各阶段就绪度：")
 for ph, s in rep["stats"].items():
     n = rep["n_papers"]
-    print(f"  {ph}: READY {s['READY']:>2}/{n}  PARTIAL {s['PARTIAL']:>2}  BLOCKED {s['BLOCKED']:>2}")
+    print(f"  {ph}: READY {s['READY']:>2}/{n}  READY_NA {s.get('READY_NA',0):>2}  PARTIAL {s['PARTIAL']:>2}  BLOCKED {s['BLOCKED']:>2}")
 print("\n缺什么（按需求项统计）：")
 for k, v in sorted(rep["missing_by_requirement"].items(), key=lambda x: -x[1]):
     print(f"  {k:<40} {v} 篇")
