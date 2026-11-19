@@ -4,13 +4,13 @@
     "created_at": "2026-11-18T12:41:58+00:00",
     "source": "问题导向本体与知识图谱架构_20261109",
     "stats": {
-      "graph_id": "po::2026-11-19T02:52:52+00:00",
-      "n_nodes": 391,
-      "n_assertions": 450,
+      "graph_id": "po::2026-11-19T07:21:26+00:00",
+      "n_nodes": 405,
+      "n_assertions": 463,
       "nodes_by_type": {
-        "Paper": 52,
-        "Algorithm": 53,
-        "AlgorithmModule": 222,
+        "Paper": 54,
+        "Algorithm": 56,
+        "AlgorithmModule": 231,
         "Benchmark": 45,
         "MethodLineage": 6,
         "EvaluationNorm": 4,
@@ -25,8 +25,8 @@
         "ReproductionPackage": 1
       },
       "assertions_by_relation": {
-        "PROPOSES_METHOD": 56,
-        "HAS_MODULE": 224,
+        "PROPOSES_METHOD": 59,
+        "HAS_MODULE": 234,
         "EVALUATED_ON": 54,
         "LINEAGE_OF": 52,
         "DERIVED_FROM_PAPERS": 47,
@@ -43,9 +43,9 @@
         "DELIVERED_BY": 1
       },
       "nodes_by_dimension": {
-        "knowledge": 52,
-        "algorithm_data": 98,
-        "other": 241
+        "knowledge": 54,
+        "algorithm_data": 101,
+        "other": 250
       },
       "problem_categories": 0,
       "research_problems": 0,
@@ -293,6 +293,15 @@
         "[algorithmmodule:1911.00598:sandbox_graph_construction] 未知概念类 'AlgorithmModule'",
         "[algorithmmodule:1911.00598:query_rewriting_algorithm] 未知概念类 'AlgorithmModule'",
         "[algorithmmodule:1911.00598:existential_preserving_consequence_computation] 未知概念类 'AlgorithmModule'",
+        "[algorithmmodule:2405.01155:forward_policy] 未知概念类 'AlgorithmModule'",
+        "[algorithmmodule:2405.01155:backward_policy] 未知概念类 'AlgorithmModule'",
+        "[algorithmmodule:2410.13147:inner_loop] 未知概念类 'AlgorithmModule'",
+        "[algorithmmodule:2410.13147:outer_loop] 未知概念类 'AlgorithmModule'",
+        "[algorithmmodule:2410.13147:retrieval_module] 未知概念类 'AlgorithmModule'",
+        "[algorithmmodule:1911.00598:datalog_rewriting_chase] 未知概念类 'AlgorithmModule'",
+        "[algorithmmodule:2505.23628:triple_extraction] 未知概念类 'AlgorithmModule'",
+        "[algorithmmodule:2505.23628:schema_induction] 未知概念类 'AlgorithmModule'",
+        "[algorithmmodule:2505.23628:knowledge_graph_construction] 未知概念类 'AlgorithmModule'",
         "[assertion:0001] 未知关系类型 'PROPOSES_METHOD'",
         "[assertion:0002] 未知关系类型 'HAS_MODULE'",
         "[assertion:0003] 未知关系类型 'HAS_MODULE'",
@@ -689,6 +698,19 @@
         "[assertion:0448] 未知关系类型 'HAS_MODULE'",
         "[assertion:0449] 未知关系类型 'HAS_MODULE'",
         "[assertion:0450] 未知关系类型 'HAS_MODULE'",
+        "[assertion:0451] 未知关系类型 'HAS_MODULE'",
+        "[assertion:0452] 未知关系类型 'HAS_MODULE'",
+        "[assertion:0453] 未知关系类型 'HAS_MODULE'",
+        "[assertion:0454] 未知关系类型 'HAS_MODULE'",
+        "[assertion:0455] 未知关系类型 'HAS_MODULE'",
+        "[assertion:0456] 未知关系类型 'PROPOSES_METHOD'",
+        "[assertion:0457] 未知关系类型 'HAS_MODULE'",
+        "[assertion:0458] 未知关系类型 'HAS_MODULE'",
+        "[assertion:0459] 未知关系类型 'PROPOSES_METHOD'",
+        "[assertion:0460] 未知关系类型 'HAS_MODULE'",
+        "[assertion:0461] 未知关系类型 'HAS_MODULE'",
+        "[assertion:0462] 未知关系类型 'HAS_MODULE'",
+        "[assertion:0463] 未知关系类型 'PROPOSES_METHOD'",
         "图中没有任何论文—问题关联边（ADDRESSES/EXPOSES_LIMITATION/ANALYST_RELEVANT_TO）"
       ]
     }
@@ -702,15 +724,12 @@
         "arxiv_id": "1911.00598",
         "title": "**SHACL Constraints with Inference Rules**",
         "label": "**SHACL Constraints with Inference Rules**",
-        "research_question": "研究如何检测SHACL约束与Datalog推理规则交互导致的违规，并更新模式以捕获推断出的新事实。",
+        "research_question": "研究SHACL约束与Datalog推理规则交互时，如何检测推理导致的新事实对原模式的违反，并自动更新SHACL约束以捕获这些新事实。",
         "problem_category": "constraint_validation",
-        "why_hard": "推理规则可能生成未被原始模式捕获的新事实，导致原本有效的图在闭包计算后失效。",
+        "why_hard": "推理规则可能生成原模式未捕获的新事实，且即使不考虑存在性有效性规则，计算模式后果（schema consequence）在理论上也是具有挑战性的。",
         "relation_hints": {
           "related_papers": [],
-          "algorithms": [
-            "datalog",
-            "SHACL"
-          ],
+          "algorithms": [],
           "benchmarks": []
         },
         "paradigm": "formal",
@@ -724,33 +743,39 @@
         "abstract": "The Shapes Constraint Language (SHACL) has been recently introduced as a W3C recommendation to define constraints that can be validated against RDF graphs. Interactions of SHACL with other Semantic Web technologies, such as ontologies or reasoners, is a matter of ongoing research. In this paper we study the interaction of a subset of SHACL with inference rules expressed in datalog. On the one hand, SHACL constraints can be used to define a “schema” for graph datasets. On the other hand, inference rules can lead to the discovery of new facts that do not match the original schema. Given a set of SHACL constraints and a set of datalog rules, we present a method to detect which constraints could be violated by the application of the inference rules on some graph instance of the schema, and update the original schema, i.e, the set of SHACL constraints, in order to capture the new facts that can be inferred. We provide theoretical and experimental results of the various components of our approach.",
         "claims": [
           {
-            "statement": "提出一种方法检测SHACL约束在应用Datalog规则后可能发生的违规，并更新模式以包含推断事实。",
+            "statement": "SHACL约束可用于定义图数据集的“模式”，而推理规则可能导致发现不匹配原始模式的新事实。",
+            "evidence": "On the one hand, SHACL constraints can be used to define a “schema” for graph datasets. On the other hand, inference rul"
+          },
+          {
+            "statement": "本文提出一种方法，检测哪些约束可能被推理规则违反，并更新原始模式以捕获新事实。",
             "evidence": "we present a method to detect which constraints could be violated by the application of the inference rules on some grap"
           },
           {
-            "statement": "提出三元组模式（triplestore schemas）作为SHACL片段的逻辑抽象，用于建模RDF图属性。",
-            "evidence": "we present an approach that models triplestore schemas as triplets of sets: a set of triple patterns... a set of positio"
+            "statement": "即使不考虑存在性有效性规则，推理规则下的模式后果计算也是具有挑战性的。",
+            "evidence": "This problem proves challenging even without taking existential validity rules into account in our schemas, i.e., for wh"
           }
         ],
         "section_map": [
           {
             "section": "Abstract",
             "claims": [
-              "提出检测SHACL约束与Datalog规则冲突并更新模式的方法"
+              "提出检测SHACL约束被推理规则违反的方法",
+              "更新原始模式以捕获可推断的新事实"
             ]
           },
           {
             "section": "1 Introduction",
             "claims": [
-              "阐述图数据无模式特性及推理规则导致模式演化的问题",
-              "介绍基于三元组集的模式建模方法"
+              "图数据表示本质上是无模式的",
+              "推理规则可能导致新事实不匹配原始模式",
+              "研究动机来自职业健康与安全领域"
             ]
           }
         ],
         "gaps": [
           {
             "gap_type": "capability",
-            "statement": "现有方法缺乏自动检测推理规则与SHACL模式冲突并更新模式的能力，依赖领域专家手动处理。",
+            "statement": "现有方法难以自动检测推理规则与模式之间的冲突，依赖领域专家手动定义规则，过程缓慢且易错。",
             "evidence": "At the moment, domain experts are needed to define such inference rules, however this process is slow, expensive and err"
           }
         ],
@@ -762,13 +787,13 @@
         ],
         "delta_claims": [
           {
-            "statement": "提出 schema consequences 表示推理后所有可能 RDF 图。",
-            "baseline": "",
-            "evidence": "these are schemas that model all possible RDF graphs extended with the inferred facts."
+            "statement": "提出基于三元组模式、位置约束和存在性有效性规则的三元组存储模式模型，用于抽象SHACL片段。",
+            "baseline": "原始SHACL语法",
+            "evidence": "we present an approach that models triplestore schemas as triplets of sets: a set of triple patterns... a set of positio"
           }
         ],
         "citation_style": "numeric",
-        "writing_style": "学术规范，结构清晰，先介绍背景与问题，再提出形式化定义与方法。",
+        "writing_style": "学术严谨，结合形式化定义与领域应用背景",
         "true_title": "SHACL Constraints with Inference Rules",
         "method_family": "rule_symbolic",
         "method_family_score": 0.949,
@@ -922,9 +947,17 @@
         "domain_code": "D0",
         "formal_def": "triplestore schemas as triplets of sets: a set of triple patterns that can be appropriately instantiated by RDF triples, a set of positions in those triples that cannot be instantiated by literal valu",
         "method_limits": [
-          "领域专家定义推理规则的过程缓慢、昂贵且易出错。"
+          "该三元组存储模式旨在作为逻辑工具，并非提供核心SHACL组件（如递归SHACL约束）的完整形式语义表示。"
         ],
-        "domain": "通用"
+        "domain": "通用",
+        "evidence_norm": [
+          "theoretical results",
+          "experimental results"
+        ],
+        "old_forms": [
+          "domain experts are needed to define such inference rules",
+          "schemas are used to model and understand the underlying data sources"
+        ]
       },
       "attribution": "analyst_synthesis",
       "evidence_ids": [],
@@ -2042,20 +2075,12 @@
         "arxiv_id": "2405.01155",
         "title": "Published as a conference paper at ICLR 2025",
         "label": "Published as a conference paper at ICLR 2025",
-        "research_question": "如何利用化学反应和可购买反应物作为动作空间，通过GFlowNet生成具有合成约束的多样且新颖分子。",
+        "research_question": "如何设计一种生成模型，在分子生成过程中显式整合化学合成约束，以解决现有模型生成分子合成不可达的问题，并提升样本多样性？",
         "problem_category": "molecule_generation",
-        "why_hard": "现有生成模型常产生合成不可达分子，且合成规划作为奖励函数计算耗时，难以集成到生成过程中。",
+        "why_hard": "现有基于原子或片段的生成模型不显式考虑合成可达性，且后续合成规划耗时过长，无法作为生成过程中的奖励函数。",
         "relation_hints": {
-          "related_papers": [
-            "Stanley & Segler, 2023",
-            "Segler et al., 2017",
-            "Jensen, 2019",
-            "Segler et al., 2018"
-          ],
-          "algorithms": [
-            "SynFlowNet",
-            "GFlowNet"
-          ],
+          "related_papers": [],
+          "algorithms": [],
           "benchmarks": []
         },
         "paradigm": "design",
@@ -2078,11 +2103,11 @@
         "abstract": "Generative models see increasing use in computer-aided drug design. However, while performing well at capturing distributions of molecular motifs, they often produce synthetically inaccessible molecules. To address this, we introduce SynFlowNet, a GFlowNet model whose action space uses chemical reactions and purchasable reactants to sequentially build new molecules. By incorporating forward synthesis as an explicit constraint of the generative mechanism, we aim at bridging the gap between in silico molecular generation and real world synthesis capabilities. We evaluate our approach using synthetic accessibility scores and an independent retrosynthesis tool to assess the synthesizability of our compounds, and motivate the choice of GFlowNets through considerable improvement in sample diversity compared to baselines. Additionally, we identify challenges with reaction encodings that can complicate traversal of the MDP in the backward direction. To address this, we introduce various strategies for learning the GFlowNet backward policy and thus demonstrate how additional constraints can be integrated into the GFlowNet MDP framework. This approach enables our model to successfully identify synthesis pathways for previously unseen molecules. Source code is available at https://github.com/mirunacrt/synflownet.",
         "claims": [
           {
-            "statement": "SynFlowNet通过显式整合正向合成约束，弥合了计算机模拟分子生成与真实世界合成能力之间的差距。",
-            "evidence": "By incorporating forward synthesis as an explicit constraint of the generative mechanism, we aim at bridging the gap bet"
+            "statement": "SynFlowNet 通过以化学反应和可购试剂为动作空间，显式整合合成约束，生成可合成的分子。",
+            "evidence": "we introduce SynFlowNet, a GFlowNet model whose action space uses chemical reactions and purchasable reactants to sequen"
           },
           {
-            "statement": "与基线相比，SynFlowNet在样本多样性方面有显著提升。",
+            "statement": "该方法在样本多样性方面相比基线模型有显著提升。",
             "evidence": "motivate the choice of GFlowNets through considerable improvement in sample diversity compared to baselines"
           }
         ],
@@ -2090,27 +2115,27 @@
           {
             "section": "ABSTRACT",
             "claims": [
-              "介绍SynFlowNet模型及其基于反应的动作空间",
-              "评估合成可及性和样本多样性"
+              "SynFlowNet uses chemical reactions and purchasable reactants to sequentially build new molecules",
+              "Incorporating forward synthesis as an explicit constraint bridges the gap between in silico generation and real world synthesis"
             ]
           },
           {
             "section": "1 INTRODUCTION",
             "claims": [
-              "指出当前分子生成模型缺乏合成可及性保证",
-              "提出基于化学反应动作空间的解决方案"
+              "Most current de novo design models do not explicitly account for synthetic accessibility",
+              "Synthesis planning can take seconds to minutes, hampering its integration as a reward function"
             ]
           }
         ],
         "gaps": [
           {
             "gap_type": "capability",
-            "statement": "现有去新生成模型未显式考虑合成可及性，生成的分子往往无法合成。",
-            "evidence": "most current de novo design models do not explicitly account for synthetic accessibility"
+            "statement": "现有生成模型生成的分子往往在合成上不可达。",
+            "evidence": "they often produce synthetically inaccessible molecules"
           },
           {
             "gap_type": "efficiency",
-            "statement": "计算机辅助合成规划耗时较长，阻碍其作为生成过程中的奖励函数。",
+            "statement": "计算机辅助合成规划耗时较长，难以集成到生成过程中。",
             "evidence": "it can take seconds to minutes to propose pathways, which hampers its integration as a reward function in the generation"
           }
         ],
@@ -2122,7 +2147,7 @@
         ],
         "delta_claims": [
           {
-            "statement": "在样本多样性方面优于基线方法。",
+            "statement": "SynFlowNet 在样本多样性上优于基线模型。",
             "baseline": "baselines",
             "evidence": "considerable improvement in sample diversity compared to baselines"
           }
@@ -2133,7 +2158,7 @@
           "与基线比较样本多样性"
         ],
         "citation_style": "author-year",
-        "writing_style": "标准ICLR会议论文格式，包含摘要、引言、图表说明，强调方法创新与实验验证。",
+        "writing_style": "学术严谨，强调方法创新与实验验证",
         "true_title": "SYNFLOWNET: DESIGN OF DIVERSE AND NOVEL MOLECULES WITH SYNTHESIS CONSTRAINTS",
         "method_family": "gflownet",
         "method_family_score": 0.378,
@@ -2322,9 +2347,8 @@
           "assemble molecules by composing atoms or molecular fragments into a graph"
         ],
         "method_limits": [
-          "基于SMILES或片段组装的模型无法保证采样分子可合成",
-          "合成复杂度评分启发式方法过于简化",
-          "合成规划作为后续步骤计算耗时，难以集成到生成奖励中"
+          "leaving no guarantee that the sampled molecules can be synthesized",
+          "synthesis planning... can take seconds to minutes to propose pathways"
         ],
         "domain": "通用"
       },
@@ -2346,25 +2370,38 @@
           "提高样本多样性",
           "解决反向轨迹无法回到初始状态的问题"
         ],
-        "mechanism": "使用化学反应和可购买原料作为动作空间构建GFlowNet，通过前向策略生成分子，并训练独立的目标函数优化反向策略以确保轨迹有效性。",
+        "mechanism": "基于GFlowNet框架，动作空间由化学反应和可购买反应物组成。通过前向策略（图Transformer+MLP头）逐步构建分子，确保合成可行性。引入参数化后向策略，使用独立目标训练以避免反向轨迹偏离MDP，从而在保持多样性的同时生成可合成分子。",
         "why_it_works": "将合成约束显式纳入生成机制，且GFlowNet相比RL在样本多样性上表现更好。",
         "applicable_to": [
           "计算机辅助药物设计",
           "从头分子设计"
         ],
         "limitations": [
-          "反应编码可能导致MDP反向遍历困难"
+          "反应编码可能导致反向遍历MDP困难",
+          "需要处理多达200k个构建块的大规模动作空间"
         ],
         "arch_modules": [
           {
-            "name": "SynFlowNet Model",
-            "role": "生成合成可及分子及合成路径",
-            "input": "target properties, building blocks, reactions",
-            "output": "molecules, synthesis pathways"
+            "name": "Graph Transformer",
+            "role": "处理分子状态并生成共享嵌入",
+            "input": "当前分子状态 st",
+            "output": "共享嵌入"
+          },
+          {
+            "name": "MLP Heads",
+            "role": "预测不同动作类型（前向5种，后向3种）的logits",
+            "input": "共享嵌入",
+            "output": "动作 logits"
+          },
+          {
+            "name": "Morgan Fingerprint Encoder",
+            "role": "编码构建块以支持大规模采样",
+            "input": "构建块结构",
+            "output": "Morgan指纹向量"
           }
         ],
-        "why_not_other": "RL在样本多样性上不如GFlowNet，且合成规划作为奖励函数计算耗时",
-        "key_challenge": "反应基于MDP中反向构建轨迹无法保证回到初始状态s0"
+        "why_not_other": "传统基于原子或片段的生成模型无法保证合成可行性；合成规划作为后处理步骤耗时过长，难以集成到生成奖励中；虚拟筛选计算成本过高。",
+        "key_challenge": "反应基于MDP中缺乏保证反向构建的轨迹能返回初始状态 s0，导致反向遍历困难。"
       },
       "attribution": "analyst_synthesis",
       "evidence_ids": [],
@@ -6840,27 +6877,20 @@
         "arxiv_id": "2410.13147",
         "title": "**AgentDrug: Utilizing Large Language Models in An Agentic Workflow for Zero-Shot Molecular Editing**",
         "label": "**AgentDrug: Utilizing Large Language Models in An Agentic Workflow for Zero-Shot Molecular Editing**",
-        "research_question": "利用LLM代理工作流在零样本条件下编辑分子以改善特定性质，同时保持结构相似性并解决无效结构问题",
+        "research_question": "如何利用大语言模型在代理工作流中通过嵌套精炼循环解决零样本分子编辑中结构有效性与属性优化难以兼顾的问题？",
         "problem_category": "molecule_optimization",
-        "why_hard": "简单提示准确率有限，且现有方法未解决分子幻觉导致的无效结构问题，导致检索步骤失效",
+        "why_hard": "简单提示准确率有限，现有对话框架反馈泛化导致仅向目标靠拢且无法解决分子幻觉，常因无效输出过多而禁用检索步骤。",
         "relation_hints": {
-          "related_papers": [
-            "ChatDrug",
-            "Zhang et al., 2024"
-          ],
-          "algorithms": [
-            "AgentDrug",
-            "nested refinement loop",
-            "gradient-based objective"
-          ],
+          "related_papers": [],
+          "algorithms": [],
           "benchmarks": []
         },
-        "paradigm": "design",
+        "paradigm": "empirical",
         "evidence_type": "experimental",
         "evidence_norm": [
           "accuracy",
-          "single-property tasks",
-          "multi-property tasks"
+          "single-property editing",
+          "multi-property editing"
         ],
         "authors": [
           "Khiem Le",
@@ -6870,47 +6900,39 @@
         "abstract": "Molecular editing—modifying a given molecule to improve desired properties—is a fundamental task in drug discovery. While LLMs hold the potential to solve this task using natural language to drive the editing, straightforward prompting achieves limited accuracy. In this work, we propose AgentDrug 1, an agentic workflow that leverages LLMs in a structured refinement process to achieve significantly higher accuracy. AgentDrug defines a nested refinement loop: the inner loop uses feedback from cheminformatics toolkits to validate molecular structures, while the outer loop guides the LLM with generic feedback and a gradient-based objective to steer the molecule toward property improvement. We evaluate AgentDrug on benchmarks with both single- and multi-property editing under loose and strict thresholds. Results demonstrate significant performance gains over previous methods. With Qwen-2.5-3B, AgentDrug improves accuracy by 20.7% (loose) and 16.8% (strict) on six single-property tasks, and by 7.0% and 5.3% on eight multi-property tasks. With larger model Qwen-2.5-7B, AgentDrug further improves accuracy on 6 single-property objectives by 28.9% (loose) and 29.0% (strict), and on 8 multi-property objectives by 14.9% (loose) and 13.2% (strict).",
         "claims": [
           {
-            "statement": "AgentDrug通过嵌套细化循环和梯度信号显著提高了分子编辑的准确率",
-            "evidence": "Results demonstrate significant performance gains over previous methods. With Qwen-2.5-3B, AgentDrug improves accuracy b"
+            "statement": "AgentDrug利用嵌套循环结合化学信息学工具验证结构，并用梯度信号引导属性优化。",
+            "evidence": "the inner loop uses feedback from cheminformatics toolkits to validate molecular structures, while the outer loop guides"
           },
           {
-            "statement": "AgentDrug通过早期强制分子有效性，使检索步骤更可靠地发挥作用",
-            "evidence": "AgentDrug enforces molecular validity early in its workflow, allowing the retrieval step to function more reliably and p"
+            "statement": "AgentDrug在单属性和多属性编辑任务上显著优于先前方法。",
+            "evidence": "Results demonstrate significant performance gains over previous methods."
           }
         ],
         "section_map": [
           {
             "section": "Abstract",
             "claims": [
-              "提出AgentDrug工作流",
-              "在单/多属性编辑任务上显著提升准确率"
+              "AgentDrug通过嵌套精炼循环显著提高分子编辑准确率"
             ]
           },
           {
             "section": "1 Introduction",
             "claims": [
-              "分子编辑面临相似性约束和劳动密集问题",
-              "现有LLM方法存在分子幻觉和反馈泛化问题"
+              "现有方法如ChatDrug因反馈泛化和分子幻觉限制效果"
             ]
           },
           {
             "section": "2 Methodology",
             "claims": [
-              "形式化定义分子编辑任务",
-              "描述嵌套细化循环机制"
+              "分子编辑定义为修改SMILES字符串以满足属性阈值"
             ]
           }
         ],
         "gaps": [
           {
             "gap_type": "capability",
-            "statement": "现有方法未解决LLM产生无效分子结构（分子幻觉）的问题，导致检索步骤因高频率无效输出而被禁用",
-            "evidence": "the method does not address molecular hallucination (Guo et al., 2023), where LLMs produce invalid molecular structures."
-          },
-          {
-            "gap_type": "efficiency",
-            "statement": "简单提示策略在分子编辑任务中准确率有限",
-            "evidence": "straightforward prompting achieves limited accuracy"
+            "statement": "先前方法无法有效处理分子幻觉，导致检索步骤失效。",
+            "evidence": "the method does not address molecular hallucination... Consequently, the retrieval step is often disabled due to the hig"
           }
         ],
         "open_problems": [
@@ -6921,8 +6943,8 @@
         ],
         "delta_claims": [
           {
-            "statement": "相比ChatDrug，AgentDrug在单属性任务上准确率提升20.7%（宽松）和16.8%（严格）",
-            "baseline": "ChatDrug",
+            "statement": "使用Qwen-2.5-3B时，AgentDrug在六个单属性任务上准确率提升20.7%（宽松）和16.8%（严格）。",
+            "baseline": "previous methods",
             "evidence": "With Qwen-2.5-3B, AgentDrug improves accuracy by 20.7% (loose) and 16.8% (strict) on six single-property tasks"
           }
         ],
@@ -6934,7 +6956,7 @@
           "loose and strict thresholds; single/multi-property editing"
         ],
         "citation_style": "author-year",
-        "writing_style": "标准学术论文结构，包含摘要、引言、方法论；使用正式学术语言，强调技术细节和实验结果对比",
+        "writing_style": "学术标准，强调方法论创新与实验对比",
         "true_title": "AgentDrug: Utilizing Large Language Models in An Agentic Workflow for Zero-Shot Molecular Editing",
         "method_family": "llm_agent",
         "method_family_score": 0.436,
@@ -8074,10 +8096,14 @@
         "domain_code": "D2",
         "formal_def": "Formally, molecular editing is the task of modifying a given molecule m, expressed in the SMILES string. The goal is to adjust a set of desired molecular properties p = {pi}^N_i=1 by thresholds d = {d",
         "method_limits": [
-          "简单提示策略准确率有限",
-          "ChatDrug的通用反馈导致LLM仅向目标方向细化，未解决分子幻觉问题"
+          "generic nature of the feedback causes LLMs to refine molecules merely toward the objective",
+          "does not address molecular hallucination"
         ],
-        "domain": "分子优化"
+        "domain": "分子优化",
+        "old_forms": [
+          "straightforward prompting",
+          "conversational framework that guides LLMs in an iterative refinement loop"
+        ]
       },
       "attribution": "analyst_synthesis",
       "evidence_ids": [],
@@ -8097,7 +8123,7 @@
           "提升单属性和多属性分子编辑的准确率",
           "通过结构化反馈引导LLM向目标属性优化"
         ],
-        "mechanism": "采用嵌套精炼循环：内环利用RDKit检测ParseError并反馈给LLM修正结构有效性；外环结合通用反馈和基于梯度的目标信号引导LLM优化分子属性。",
+        "mechanism": "采用嵌套精炼循环：内环利用RDKit检测SMILES语法错误（ParseError）并反馈给LLM以修正分子结构有效性；外环在分子有效后，结合通用反馈与基于梯度的目标信号（gradient signal）引导LLM向目标属性优化，同时从数据库检索相似且满足目标的分子作为上下文示例。",
         "why_it_works": "内环确保分子化学有效性，使检索步骤可靠运行；外环的显式梯度信号为LLM提供类似梯度上升的可操作指导，比通用反馈更有效。",
         "applicable_to": [
           "零样本分子编辑",
@@ -8105,31 +8131,31 @@
           "基于LLM的药物发现工作流"
         ],
         "limitations": [
-          "依赖外部化学信息学工具包进行验证",
-          "需要预制备的分子数据库用于检索"
+          "依赖外部化学信息学工具包（RDKit）进行验证",
+          "需要预构建的分子数据库用于检索"
         ],
         "arch_modules": [
           {
-            "name": "LLM Agent",
-            "role": "执行分子编辑和响应反馈的核心推理引擎",
-            "input": "分子SMILES, 反馈信息, 检索示例",
+            "name": "LLM (Qwen-2.5)",
+            "role": "执行分子编辑生成与迭代修正",
+            "input": "提示词、反馈信息、上下文示例",
             "output": "修改后的分子SMILES"
           },
           {
-            "name": "Cheminformatics Toolkit",
-            "role": "验证分子结构有效性并提供错误诊断",
+            "name": "RDKit",
+            "role": "分子结构验证与错误检测",
             "input": "分子SMILES",
-            "output": "ParseError或有效性标志"
+            "output": "ParseError信息或有效性标志"
           },
           {
             "name": "Molecule Database",
-            "role": "提供满足条件的参考分子用于上下文学习",
-            "input": "查询分子及目标",
-            "output": "相似且满足目标的分子列表"
+            "role": "提供检索参考分子",
+            "input": "相似度查询、目标属性约束",
+            "output": "参考分子集合"
           }
         ],
-        "why_not_other": "ChatDrug仅使用通用反馈，无法解决分子幻觉问题且检索步骤常因无效输出被禁用；AgentDrug通过内环强制有效性，使检索更可靠。",
-        "key_challenge": "在保持分子结构相似性的同时，利用LLM实现高精度的零样本分子属性优化，并克服LLM生成无效分子结构的幻觉问题。"
+        "why_not_other": "ChatDrug仅使用通用反馈且未解决分子幻觉导致检索失效；AgentDrug通过内环强制早期验证有效性，使检索步骤更可靠，并引入梯度信号提供可操作的优化方向。",
+        "key_challenge": "解决LLM在分子编辑中的“分子幻觉”（生成无效结构）问题，并克服简单提示法精度低、通用反馈缺乏具体指导方向的局限。"
       },
       "attribution": "analyst_synthesis",
       "evidence_ids": [],
@@ -11964,22 +11990,12 @@
         "arxiv_id": "2510.14455",
         "title": "**Coder as Editor: Code-driven Interpretable Molecular Editing**",
         "label": "**Coder as Editor: Code-driven Interpretable Molecular Editing**",
-        "research_question": "如何通过代码生成将LLM的分子编辑意图转化为可执行的结构编辑，以解决SMILES表示下的执行不一致问题",
+        "research_question": "针对LLM在SMILES表示下执行分子编辑时因模态不匹配导致的不可控与不可解释问题，提出MECo框架，通过代码生成将编辑意图转化为可执行结构编辑，以实现高保真分子设计。",
         "problem_category": "molecule_optimization",
-        "why_hard": "SMILES是分子图的线性化编码，微小的结构编辑会导致字符串发生巨大且反直觉的变化，导致LLM难以精确控制",
+        "why_hard": "SMILES是分子图的线性化编码，同一分子对应多种有效SMILES，微小结构编辑会导致字符串巨大且反直觉的变化，导致LLM难以精确控制且生成结果可能化学不合理。",
         "relation_hints": {
-          "related_papers": [
-            "Liu et al., 2024a",
-            "Ye et al., 2025",
-            "Wang et al., 2023",
-            "Lewkowycz et al., 2022",
-            "Zhang et al., 2024",
-            "Hou et al., 2025"
-          ],
-          "algorithms": [
-            "MECo",
-            "Large Language Models (LLMs)"
-          ],
+          "related_papers": [],
+          "algorithms": [],
           "benchmarks": []
         },
         "true_title": "Coder as Editor: Code-driven Interpretable Molecular Editing",
@@ -12137,7 +12153,7 @@
         "evidence_norm": [
           "accuracy",
           "consistency",
-          "success rates",
+          "success rate",
           "structural similarity"
         ],
         "authors": [
@@ -12156,51 +12172,52 @@
         "abstract": "Molecular design is a central task in drug discovery that requires precise structural reasoning and domain knowledge. While large language models (LLMs) have shown promise in generating high-level editing intentions in natural language, they often struggle to faithfully execute these modifications, particularly when operating on non-intuitive representations like SMILES. We introduce MECo, a framework that bridges reasoning and execution by translating editing actions into executable code. MECo reformulates molecular modification for LLMs as a cascaded framework: generating human-interpretable editing intentions from a molecule and design objective, followed by translating those intentions into executable structural edits via code generation. Our approach achieves over 98% accuracy in reproducing held-out realistic edits derived from chemical reactions and target-specific compound pairs. On downstream benchmarks spanning physicochemical properties and target activities, MECo substantially improves consistency by 38-86 percentage points to 90%+ and achieves higher success rates over SMILESbased baselines while preserving structural similarity. By aligning intention with execution, MECo enables consistent, controllable and interpretable molecular design, laying the foundation for high-fidelity feedback loops and collaborative human–AI workflows in drug discovery.",
         "claims": [
           {
-            "statement": "MECo在重现真实编辑方面达到98%以上的准确率",
-            "evidence": "Our approach achieves over 98% accuracy in reproducing held-out realistic edits derived from chemical reactions and targ"
+            "statement": "MECo通过代码生成桥接推理与执行，实现一致、可控且可解释的分子设计。",
+            "evidence": "By aligning intention with execution, MECo enables consistent, controllable and interpretable molecular design"
           },
           {
-            "statement": "MECo在下游基准上将一致性提高38-86个百分点至90%以上",
-            "evidence": "On downstream benchmarks spanning physicochemical properties and target activities, MECo substantially improves consiste"
+            "statement": "MECo在重现真实编辑任务中准确率超过98%。",
+            "evidence": "Our approach achieves over 98% accuracy in reproducing held-out realistic edits derived from chemical reactions and targ"
           }
         ],
         "section_map": [
           {
             "section": "Abstract",
             "claims": [
-              "MECo通过代码生成桥接推理与执行，在保持结构相似性的同时提高了下游基准的一致性"
+              "MECo achieves over 98% accuracy in reproducing held-out realistic edits",
+              "MECo substantially improves consistency by 38-86 percentage points to 90%+"
             ]
           },
           {
             "section": "1 Introduction",
             "claims": [
-              "现有基于SMILES的生成范式存在化学合理性差、与设计理由不一致、破坏合成可行性等局限"
+              "generated SMILES may not always be chemically plausible",
+              "extensive uncontrolled edits may severely compromise synthetic feasibility"
             ]
           }
         ],
         "gaps": [
           {
             "gap_type": "capability",
-            "statement": "现有LLM在SMILES表示下难以忠实执行编辑意图，且生成的SMILES可能化学上不合理或偏离设计理由",
-            "evidence": "While intuitive, this generation paradigm faces major limitations. First, generated SMILES may not always be chemically "
+            "statement": "现有LLM直接生成SMILES时，输出可能与设计理由偏离，破坏可解释性和专家信任。",
+            "evidence": "even valid outputs may diverge from the design rationale articulated by reasoning LLMs, undermining interpretability and"
           }
         ],
         "delta_claims": [
           {
-            "statement": "相比基于SMILES的基线，MECo在保持结构相似性的同时实现了更高的一致性和成功率",
+            "statement": "MECo将一致性提高38-86个百分点至90%以上，并提高成功率。",
             "baseline": "SMILES-based baselines",
             "evidence": "MECo substantially improves consistency by 38-86 percentage points to 90%+ and achieves higher success rates over SMILES"
           }
         ],
         "citation_style": "author-year",
-        "writing_style": "标准学术论文结构，强调问题动机、方法框架及实验结果对比",
+        "writing_style": "学术严谨，强调因果机制与实证对比",
         "old_forms": [
-          "prompting them to generate optimized molecules in the form of SMILES strings, conditioned on an input structure and a desired property goal"
+          "prompting them to generate optimized molecules in the form of SMILES strings"
         ],
         "method_limits": [
-          "生成的SMILES可能化学上不合理",
-          "有效输出可能偏离推理LLM阐述的设计理由，损害可解释性和专家信任",
-          "广泛的非受控编辑可能通过破坏既定的合成路线严重损害合成可行性"
+          "generated SMILES may not always be chemically plausible",
+          "extensive uncontrolled edits may severely compromise synthetic feasibility"
         ],
         "domain": "分子生成与从头设计"
       },
@@ -12222,7 +12239,7 @@
           "解决生成结果与设计意图不一致导致的不可解释性",
           "解决广泛编辑破坏合成路线可行性的问题"
         ],
-        "mechanism": "将分子编辑重构为代码生成任务，由推理LLM生成编辑意图，再由代码LLM生成可执行脚本（如RDKit代码）以精确修改分子结构。",
+        "mechanism": "MECo将分子编辑重构为代码生成任务。首先由推理LLM生成人类可解释的编辑意图（rationale），随后由微调过的代码LLM将这些意图转化为可执行的RDKit脚本，从而在分子图上执行精确、可验证的结构修改，解决SMILES表示与化学直觉不匹配的问题。",
         "why_it_works": "代码作为中间表示，利用了LLM在编程领域的强能力，实现了意图与执行的解耦，确保了编辑的精确性、可验证性和可解释性。",
         "applicable_to": [
           "基于性质的分子优化",
@@ -12230,30 +12247,25 @@
           "需要保持结构相似性的分子编辑"
         ],
         "limitations": [
-          "训练数据主要基于随机分子上的有限基团替换合成数据"
+          "依赖上游推理LLM生成高质量的编辑意图",
+          "代码LLM仅在合成数据上微调，泛化性依赖合成数据质量"
         ],
         "arch_modules": [
           {
             "name": "Reasoning LLM",
-            "role": "上游组件，负责生成高层设计理据和编辑动作",
-            "input": "分子与设计目标",
+            "role": "生成高层级编辑意图和理由",
+            "input": "分子结构, 设计目标",
             "output": "编辑意图"
           },
           {
-            "name": "Coder LLM",
-            "role": "核心组件，将编辑意图转化为代码",
+            "name": "Code LLM",
+            "role": "将编辑意图转化为可执行代码",
             "input": "编辑意图",
-            "output": "可执行代码"
-          },
-          {
-            "name": "Code Executor",
-            "role": "执行层，运行代码并输出最终分子",
-            "input": "代码与分子",
-            "output": "优化后的分子"
+            "output": "RDKit代码脚本"
           }
         ],
-        "why_not_other": "SMILES是线性化编码，小结构编辑会导致字符串巨大变化，且存在语法非唯一性，LLM难以直接精确控制；代码是LLM擅长的领域，能实现精确、可验证的结构修改。",
-        "key_challenge": "弥合自然语言推理与低层结构操作之间的模态不匹配，实现意图与执行的一致性。"
+        "why_not_other": "直接生成SMILES的方法存在化学合理性差、与推理意图不一致、破坏合成路线可行性等问题；图优化方法依赖oracle反馈且缺乏可解释性。",
+        "key_challenge": "SMILES线性表示与化学图结构推理之间的模态不匹配，导致LLM难以精确执行结构编辑且缺乏可解释性。"
       },
       "attribution": "analyst_synthesis",
       "evidence_ids": [],
@@ -12266,10 +12278,10 @@
       "label": "Reasoning LLM",
       "attrs": {
         "name": "Reasoning LLM",
-        "mechanism": "生成人类可解释的编辑意图",
+        "mechanism": "基于分子结构和设计目标，生成高层级的编辑意图和理由（rationale），如官能团替换或引入特定基团。",
         "formula": "",
-        "inputs": "初始分子, 设计目标",
-        "outputs": "编辑意图 (Editing Intentions)",
+        "inputs": "初始分子结构 (Mi), 目标属性 (T)",
+        "outputs": "编辑意图 (Editing intentions)",
         "is_novel_component": false,
         "component_role": "encoder",
         "label": "Reasoning LLM"
@@ -26473,10 +26485,10 @@
       "label": "Code LLM",
       "attrs": {
         "name": "Code LLM",
-        "mechanism": "将编辑意图翻译为可执行代码",
+        "mechanism": "将编辑意图翻译为可执行的代码脚本（如RDKit代码），实现具体的结构修改。",
         "formula": "",
-        "inputs": "编辑意图",
-        "outputs": "可执行脚本 (Executable Scripts)",
+        "inputs": "编辑意图 (Editing intentions)",
+        "outputs": "可执行代码脚本 (Executable code scripts)",
         "is_novel_component": true,
         "component_role": "decoder",
         "label": "Code LLM"
@@ -26549,10 +26561,10 @@
       "label": "Building Block Sampler",
       "attrs": {
         "name": "Building Block Sampler",
-        "mechanism": "基于Morgan指纹计算采样概率",
+        "mechanism": "使用Morgan指纹表示构建块，计算其与MLP输出的归一化点积，通过Softmax采样特定构建块，以高效处理大规模构建块集合。",
         "formula": "",
-        "inputs": "MLP output, Morgan fingerprints of BBs",
-        "outputs": "sampled building block",
+        "inputs": "状态表示及反应one-hot编码",
+        "outputs": "采样的构建块",
         "is_novel_component": true,
         "component_role": "sampler",
         "label": "Building Block Sampler"
@@ -26809,7 +26821,7 @@
       "label": "Sandbox Graph Construction",
       "attrs": {
         "name": "Sandbox Graph Construction",
-        "mechanism": "构建比关键实例更小的代表性图实例以替代关键实例",
+        "mechanism": "寻找比critical instance更小且具代表性的实例，用于高效运行推理规则",
         "formula": "",
         "inputs": "Input schema S",
         "outputs": "Sandbox graph",
@@ -26854,6 +26866,486 @@
         "is_novel_component": true,
         "component_role": "other",
         "label": "Existential-Preserving Consequence Computation"
+      },
+      "attribution": "analyst_synthesis",
+      "evidence_ids": [],
+      "source_version": "",
+      "missing_states": {}
+    },
+    {
+      "id": "algorithmmodule:2405.01155:forward_policy",
+      "type": "AlgorithmModule",
+      "label": "Forward Policy",
+      "attrs": {
+        "name": "Forward Policy",
+        "mechanism": "参数化为图Transformer，处理当前分子状态并输出共享嵌入，通过独立MLP头预测不同动作类型的logits，采样动作以过渡到下一状态。",
+        "formula": "",
+        "inputs": "当前分子状态 st",
+        "outputs": "动作 logits 及采样动作 at",
+        "is_novel_component": false,
+        "component_role": "",
+        "label": "Forward Policy"
+      },
+      "attribution": "analyst_synthesis",
+      "evidence_ids": [],
+      "source_version": "",
+      "missing_states": {}
+    },
+    {
+      "id": "algorithmmodule:2405.01155:backward_policy",
+      "type": "AlgorithmModule",
+      "label": "Backward Policy",
+      "attrs": {
+        "name": "Backward Policy",
+        "mechanism": "参数化后向策略，使用独立于前向策略的目标进行训练，旨在避免生成不终止于初始状态 s0 的路径，修正反向生成的轨迹。",
+        "formula": "",
+        "inputs": "当前状态 s",
+        "outputs": "父状态分布及采样父状态",
+        "is_novel_component": false,
+        "component_role": "",
+        "label": "Backward Policy"
+      },
+      "attribution": "analyst_synthesis",
+      "evidence_ids": [],
+      "source_version": "",
+      "missing_states": {}
+    },
+    {
+      "id": "algorithmmodule:2410.13147:inner_loop",
+      "type": "AlgorithmModule",
+      "label": "Inner Loop",
+      "attrs": {
+        "name": "Inner Loop",
+        "mechanism": "使用RDKit解析SMILES，检测并提取ParseError（如语法、括号、价态等错误），将错误信息作为反馈供LLM迭代修正，直至分子结构有效。",
+        "formula": "",
+        "inputs": "LLM生成的初始修改分子SMILES",
+        "outputs": "有效的分子SMILES或ParseError反馈",
+        "is_novel_component": false,
+        "component_role": "",
+        "label": "Inner Loop"
+      },
+      "attribution": "analyst_synthesis",
+      "evidence_ids": [],
+      "source_version": "",
+      "missing_states": {}
+    },
+    {
+      "id": "algorithmmodule:2410.13147:outer_loop",
+      "type": "AlgorithmModule",
+      "label": "Outer Loop",
+      "attrs": {
+        "name": "Outer Loop",
+        "mechanism": "在分子有效后，生成通用反馈和显式梯度信号（∇p），指导LLM进一步编辑分子以接近目标属性阈值。",
+        "formula": "",
+        "inputs": "有效分子SMILES、目标属性及阈值",
+        "outputs": "优化后的分子SMILES",
+        "is_novel_component": false,
+        "component_role": "",
+        "label": "Outer Loop"
+      },
+      "attribution": "analyst_synthesis",
+      "evidence_ids": [],
+      "source_version": "",
+      "missing_states": {}
+    },
+    {
+      "id": "algorithmmodule:2410.13147:retrieval_module",
+      "type": "AlgorithmModule",
+      "label": "Retrieval Module",
+      "attrs": {
+        "name": "Retrieval Module",
+        "mechanism": "基于两个标准从数据库检索分子：(1)与修改后分子的相似度；(2)满足编辑目标。检索结果作为in-context examples引导LLM。",
+        "formula": "",
+        "inputs": "当前修改分子、编辑目标",
+        "outputs": "作为上下文的参考分子列表",
+        "is_novel_component": false,
+        "component_role": "",
+        "label": "Retrieval Module"
+      },
+      "attribution": "analyst_synthesis",
+      "evidence_ids": [],
+      "source_version": "",
+      "missing_states": {}
+    },
+    {
+      "id": "algorithm:query_rewriting_algorithm",
+      "type": "Algorithm",
+      "label": "Query Rewriting Algorithm",
+      "attrs": {
+        "name": "Query Rewriting Algorithm",
+        "label": "Query Rewriting Algorithm",
+        "task_type": "other",
+        "mechanism": "在sandbox graph上计算simple schema consequence，比在critical instance上更高效。结合datalog rewriting变体和chase算法，生成existential-preserving schema consequence，识别并移除可能被推理规则违反的存在性有效性规则。",
+        "limitations": [
+          "仅处理无否定datalog规则",
+          "不处理递归SHACL约束的完整形式语义"
+        ],
+        "arch_modules": [
+          {
+            "name": "Triplestore Schema Model",
+            "role": "将SHACL约束抽象为三元组模式集、非字面量位置集和存在性有效性规则集",
+            "input": "SHACL constraints",
+            "output": "Triplestore schema"
+          },
+          {
+            "name": "Schema Consequence Computation",
+            "role": "计算推理规则应用后的新schema，即schema consequence",
+            "input": "Triplestore schema, Datalog rules",
+            "output": "Updated schema (Schema consequence)"
+          }
+        ],
+        "key_challenge": "Critical instance size is very large and inefficient; need a smaller representative instance (sandbox) for efficient computation."
+      },
+      "attribution": "analyst_synthesis",
+      "evidence_ids": [],
+      "source_version": "",
+      "missing_states": {}
+    },
+    {
+      "id": "algorithmmodule:1911.00598:datalog_rewriting_chase",
+      "type": "AlgorithmModule",
+      "label": "Datalog Rewriting & Chase",
+      "attrs": {
+        "name": "Datalog Rewriting & Chase",
+        "mechanism": "结合datalog重写变体和chase算法，处理存在性有效性规则",
+        "formula": "",
+        "inputs": "Sandbox graph, Inference rules, Existential validity rules",
+        "outputs": "Existential-preserving schema consequence",
+        "is_novel_component": false,
+        "component_role": "",
+        "label": "Datalog Rewriting & Chase"
+      },
+      "attribution": "analyst_synthesis",
+      "evidence_ids": [],
+      "source_version": "",
+      "missing_states": {}
+    },
+    {
+      "id": "paper:2505.23628",
+      "type": "Paper",
+      "label": "AutoSchemaKG: Autonomous Knowledge Graph Construction through",
+      "attrs": {
+        "arxiv_id": "2505.23628",
+        "title": "AutoSchemaKG: Autonomous Knowledge Graph Construction through",
+        "label": "AutoSchemaKG: Autonomous Knowledge Graph Construction through",
+        "research_question": "如何在不依赖预定义模式的情况下，利用大语言模型从大规模文本中自主抽取知识三元组并动态归纳模式，以构建可扩展的知识图谱？",
+        "problem_category": "other",
+        "why_hard": "现有知识图谱构建方法依赖领域专家预定义模式，这从根本上限制了其可扩展性、适应性和领域覆盖范围。",
+        "relation_hints": {
+          "related_papers": [],
+          "algorithms": [],
+          "benchmarks": []
+        },
+        "paradigm": "design",
+        "evidence_type": "experimental",
+        "evidence_norm": [
+          "multi-hop QA accuracy",
+          "semantic alignment with human-crafted schemas",
+          "LLM factuality enhancement"
+        ],
+        "claims": [
+          {
+            "statement": "AutoSchemaKG 框架实现了无需预定义模式的完全自主知识图谱构建。",
+            "evidence": "We present AutoSchemaKG, a framework for fully autonomous knowledge graph construction that eliminates the need for pred"
+          },
+          {
+            "statement": "该系统的模式归纳与人工构建模式达到 95% 的语义对齐，且无需人工干预。",
+            "evidence": "our schema induction achieves 95% semantic alignment with human-crafted schemas with zero manual intervention"
+          },
+          {
+            "statement": "处理超过 5000 万份文档，构建了包含 9 亿多节点和 59 亿条边的 ATLAS 知识图谱。",
+            "evidence": "Processing over 50 million documents, we construct ATLAS (Automated Triple Linking And Schema induction), a family of kn"
+          }
+        ],
+        "section_map": [
+          {
+            "section": "Abstract",
+            "claims": [
+              "AutoSchemaKG eliminates the need for predefined schemas",
+              "Schema induction achieves 95% semantic alignment with human-crafted schemas"
+            ]
+          },
+          {
+            "section": "Introduction",
+            "claims": [
+              "Current KG construction approaches are hampered by the need for predefined schemas",
+              "AutoSchemaKG models events alongside entities to capture dynamic knowledge"
+            ]
+          }
+        ],
+        "gaps": [
+          {
+            "gap_type": "capability",
+            "statement": "现有方法依赖预定义模式，限制了可扩展性和领域覆盖。",
+            "evidence": "they require predefined schemas created by domain experts, which fundamentally limits their scalability, adaptability, a"
+          }
+        ],
+        "delta_claims": [
+          {
+            "statement": "在多重跳问答任务上优于最先进基线，并增强 LLM 的事实性。",
+            "baseline": "state-of-the-art baselines",
+            "evidence": "This approach outperforms state-of-the-art baselines on multi-hop QA tasks and enhances LLM factuality."
+          }
+        ],
+        "writing_style": "学术技术论文，强调范式转变与系统架构",
+        "hyperparams": [
+          {
+            "param": "top-k",
+            "value": "3",
+            "context": "query q using NER 2: Retrieve top-k initial nodes from G based on entity similarity 3"
+          }
+        ],
+        "formal_def": "Scores = PageRank(GSample, personalization_dict)",
+        "old_forms": [
+          "require predefined schemas created by domain experts"
+        ],
+        "method_limits": [
+          "fundamentally limits their scalability, adaptability, and domain coverage"
+        ]
+      },
+      "attribution": "analyst_synthesis",
+      "evidence_ids": [],
+      "source_version": "",
+      "missing_states": {}
+    },
+    {
+      "id": "algorithm:autoschemakg",
+      "type": "Algorithm",
+      "label": "AutoSchemaKG",
+      "attrs": {
+        "name": "AutoSchemaKG",
+        "label": "AutoSchemaKG",
+        "task_type": "other",
+        "mechanism": "利用LLM从文本中同时提取知识三元组并动态归纳模式。通过概念化（conceptualization）将实体、事件和关系抽象为语义类别，无需预定义模式。构建包含实体、事件和概念节点的图结构，支持零样本推理和跨域泛化。",
+        "limitations": [
+          "需要处理大规模数据（5000万+文档）",
+          "依赖LLM的语义理解能力"
+        ],
+        "arch_modules": [
+          {
+            "name": "Input Processing",
+            "role": "过滤、分段和批处理输入文档",
+            "input": "Input Documents",
+            "output": "Chunked Batches"
+          },
+          {
+            "name": "LLM Prompts",
+            "role": "执行三元组提取和模式归纳",
+            "input": "Chunked Batches",
+            "output": "Triples, Concepts"
+          },
+          {
+            "name": "Graph Finalization",
+            "role": "整合三元组和模式，完成图谱构建",
+            "input": "Extracted Data",
+            "output": "ATLAS KG"
+          }
+        ],
+        "why_not_other": "传统方法需要领域专家预定义模式，限制了可扩展性和适应性",
+        "key_challenge": "消除对预定义模式的需求，实现完全自主的知识图谱构建"
+      },
+      "attribution": "analyst_synthesis",
+      "evidence_ids": [],
+      "source_version": "",
+      "missing_states": {}
+    },
+    {
+      "id": "algorithmmodule:2505.23628:triple_extraction",
+      "type": "AlgorithmModule",
+      "label": "Triple Extraction",
+      "attrs": {
+        "name": "Triple Extraction",
+        "mechanism": "使用特定提示词（PEE, PEV, PVV）分别提取实体-实体、实体-事件、事件-事件之间的关系。",
+        "formula": "",
+        "inputs": "Chunked Batches",
+        "outputs": "Knowledge Graph Triples",
+        "is_novel_component": false,
+        "component_role": "",
+        "label": "Triple Extraction"
+      },
+      "attribution": "analyst_synthesis",
+      "evidence_ids": [],
+      "source_version": "",
+      "missing_states": {}
+    },
+    {
+      "id": "algorithmmodule:2505.23628:schema_induction",
+      "type": "AlgorithmModule",
+      "label": "Schema Induction",
+      "attrs": {
+        "name": "Schema Induction",
+        "mechanism": "通过概念化过程，将具体实体、事件和关系抽象为一般类型（如College, Hunting），形成动态模式。",
+        "formula": "",
+        "inputs": "Knowledge Graph Triples",
+        "outputs": "Concept Nodes (C)",
+        "is_novel_component": false,
+        "component_role": "",
+        "label": "Schema Induction"
+      },
+      "attribution": "analyst_synthesis",
+      "evidence_ids": [],
+      "source_version": "",
+      "missing_states": {}
+    },
+    {
+      "id": "algorithmmodule:2505.23628:knowledge_graph_construction",
+      "type": "AlgorithmModule",
+      "label": "Knowledge Graph Construction",
+      "attrs": {
+        "name": "Knowledge Graph Construction",
+        "mechanism": "创建节点（实体、事件、概念）和边，连接节点到对应概念节点，最终生成ATLAS知识图谱。",
+        "formula": "",
+        "inputs": "Triples, Concept Nodes",
+        "outputs": "ATLAS Knowledge Graph",
+        "is_novel_component": false,
+        "component_role": "",
+        "label": "Knowledge Graph Construction"
+      },
+      "attribution": "analyst_synthesis",
+      "evidence_ids": [],
+      "source_version": "",
+      "missing_states": {}
+    },
+    {
+      "id": "paper:2607.01977",
+      "type": "Paper",
+      "label": "OntoLearner: A Modular Python Library for Ontology Learning with Large",
+      "attrs": {
+        "arxiv_id": "2607.01977",
+        "title": "OntoLearner: A Modular Python Library for Ontology Learning with Large",
+        "label": "OntoLearner: A Modular Python Library for Ontology Learning with Large",
+        "research_question": "如何通过构建统一的跨领域本体学习基础设施，解决现有方法在评估标准、数据访问及本体复杂性导致的失败模式归因上的碎片化问题？",
+        "problem_category": "knowledge_graph_construction",
+        "why_hard": "现有研究缺乏共享的基础设施进行系统性评估和本体访问，导致进展碎片化，且失败模式随本体复杂性而非模型规模扩展。",
+        "relation_hints": {
+          "related_papers": [],
+          "algorithms": [],
+          "benchmarks": []
+        },
+        "paradigm": "empirical",
+        "evidence_type": "experimental",
+        "evidence_norm": [
+          "train/dev/test splits",
+          "term typing accuracy",
+          "taxonomy discovery metrics",
+          "relation extraction F1"
+        ],
+        "claims": [
+          {
+            "statement": "OntoLearner 是首个统一本体访问、LLM 学习管道和标准化基准的模块化框架。",
+            "evidence": "We introduce OntoLearner, a modular, cross-domain, and first-of-its-kind framework that unifies ontology access, large l"
+          },
+          {
+            "statement": "本体学习的主要瓶颈是模型编码知识与本体组织方式之间的结构性不匹配。",
+            "evidence": "The primary bottleneck is not model capability, but a structural mismatch between how models encode knowledge and how on"
+          }
+        ],
+        "section_map": [
+          {
+            "section": "Abstract",
+            "claims": [
+              "OntoLearner unifies ontology access, LLM-driven learning pipelines, and standardized benchmarking",
+              "Failure modes scale with ontological complexity rather than model size"
+            ]
+          },
+          {
+            "section": "Introduction",
+            "claims": [
+              "OL lacks a shared infrastructure for systematic evaluation and ontology access",
+              "Constructing and maintaining high-quality ontologies remains a bottleneck"
+            ]
+          }
+        ],
+        "gaps": [
+          {
+            "gap_type": "data",
+            "statement": "缺乏用于系统性评估和本体访问的共享基础设施。",
+            "evidence": "OL lacks a shared infrastructure for systematic evaluation and ontology access."
+          },
+          {
+            "gap_type": "theory",
+            "statement": "现有方法未能解决本体学习中的核心挑战，导致研究碎片化。",
+            "evidence": "This absence has hindered progress and fragmented research, leaving the central challenges of OL largely unaddressed."
+          }
+        ],
+        "delta_claims": [
+          {
+            "statement": "提供 180 个机器可读本体和三个核心任务的管道就绪数据集。",
+            "baseline": "fragmented methods, domains, and evaluat",
+            "evidence": "OntoLearner releases 180 machine-readable ontologies spanning 22 domains and provides pipeline-ready datasets with train"
+          }
+        ],
+        "writing_style": "学术严谨，强调基础设施统一性与实证对比",
+        "hyperparams": [
+          {
+            "param": "top-k",
+            "value": "15",
+            "context": "arious retrieval models using top-k 15"
+          },
+          {
+            "param": "top-k",
+            "value": "15",
+            "context": " Results are reported using a top-k value of 15"
+          }
+        ],
+        "old_forms": [
+          "lexico-syntactic patterns",
+          "modular pipelines",
+          "semi-supervised learning",
+          "web-scale extraction"
+        ],
+        "method_limits": [
+          "struggled under terminological variation",
+          "struggled to align with established vocabularies",
+          "produced ontologies too inconsistent to reuse reliably across domains",
+          "absence of logical rigor"
+        ]
+      },
+      "attribution": "analyst_synthesis",
+      "evidence_ids": [],
+      "source_version": "",
+      "missing_states": {}
+    },
+    {
+      "id": "algorithm:ontolearner",
+      "type": "Algorithm",
+      "label": "OntoLearner",
+      "attrs": {
+        "name": "OntoLearner",
+        "label": "OntoLearner",
+        "task_type": "other",
+        "mechanism": "A modular, cross-domain framework unifying ontology access, LLM-driven learning pipelines, and standardized benchmarking. It transforms ontologies from diverse repositories into machine-readable formats, supports core OL tasks (term typing, taxonomy discovery, relation extraction) with standardized ",
+        "limitations": [
+          "Failure modes scale with ontological complexity rather than model size",
+          "Structural mismatch between how models encode knowledge and how ontologies organize it"
+        ],
+        "arch_modules": [
+          {
+            "name": "Ontology Access Interface",
+            "role": "Transforms ontologies from diverse repositories into machine-readable formats suitable for LLM appli",
+            "input": "Ontologies from BioPortal, OLS, OBO Foundry, LOV, FAIRsharin",
+            "output": "Machine-readable, pipeline-ready, LLM-compatible datasets"
+          },
+          {
+            "name": "Modular OL Library",
+            "role": "Supports core OL tasks with standardized train/dev/test splits and evaluation metrics",
+            "input": "Text data, curated vocabularies",
+            "output": "Term typing, taxonomy discovery, non-taxonomic relation extr"
+          },
+          {
+            "name": "LLM Integration Module",
+            "role": "Integrates AI/LLMs as assistive components aligned with curated vocabularies for concept suggestion ",
+            "input": "Domain corpora, existing knowledge models",
+            "output": "Concept suggestions, typed terms, completed hierarchies, def"
+          },
+          {
+            "name": "Benchmarking Platform",
+            "role": "Provides extensible, domain-agnostic platform for systematic empirical study and reproducible compar",
+            "input": "22 retrieval models, 12 LLMs, 180 ontologies",
+            "output": "Standardized evaluation metrics, cross-domain comparison res"
+          }
+        ],
+        "key_challenge": "Transforming heterogeneous natural language into structured, machine-interpretable conceptual models that enable reasoning, interoperability, and scientific dis"
       },
       "attribution": "analyst_synthesis",
       "evidence_ids": [],
@@ -31043,6 +31535,129 @@
       "attribution": "analyst_synthesis",
       "evidence_ids": [],
       "properties": {}
+    },
+    {
+      "id": "assertion:0451",
+      "source": "algorithm:synflownet",
+      "target": "algorithmmodule:2405.01155:forward_policy",
+      "relation": "HAS_MODULE",
+      "attribution": "analyst_synthesis",
+      "evidence_ids": [],
+      "properties": {}
+    },
+    {
+      "id": "assertion:0452",
+      "source": "algorithm:synflownet",
+      "target": "algorithmmodule:2405.01155:backward_policy",
+      "relation": "HAS_MODULE",
+      "attribution": "analyst_synthesis",
+      "evidence_ids": [],
+      "properties": {}
+    },
+    {
+      "id": "assertion:0453",
+      "source": "algorithm:agentdrug",
+      "target": "algorithmmodule:2410.13147:inner_loop",
+      "relation": "HAS_MODULE",
+      "attribution": "analyst_synthesis",
+      "evidence_ids": [],
+      "properties": {}
+    },
+    {
+      "id": "assertion:0454",
+      "source": "algorithm:agentdrug",
+      "target": "algorithmmodule:2410.13147:outer_loop",
+      "relation": "HAS_MODULE",
+      "attribution": "analyst_synthesis",
+      "evidence_ids": [],
+      "properties": {}
+    },
+    {
+      "id": "assertion:0455",
+      "source": "algorithm:agentdrug",
+      "target": "algorithmmodule:2410.13147:retrieval_module",
+      "relation": "HAS_MODULE",
+      "attribution": "analyst_synthesis",
+      "evidence_ids": [],
+      "properties": {}
+    },
+    {
+      "id": "assertion:0456",
+      "source": "paper:1911.00598",
+      "target": "algorithm:query_rewriting_algorithm",
+      "relation": "PROPOSES_METHOD",
+      "attribution": "analyst_synthesis",
+      "evidence_ids": [],
+      "properties": {
+        "paper_id": "paper:1911.00598"
+      }
+    },
+    {
+      "id": "assertion:0457",
+      "source": "algorithm:query_rewriting_algorithm",
+      "target": "algorithmmodule:1911.00598:sandbox_graph_construction",
+      "relation": "HAS_MODULE",
+      "attribution": "analyst_synthesis",
+      "evidence_ids": [],
+      "properties": {}
+    },
+    {
+      "id": "assertion:0458",
+      "source": "algorithm:query_rewriting_algorithm",
+      "target": "algorithmmodule:1911.00598:datalog_rewriting_chase",
+      "relation": "HAS_MODULE",
+      "attribution": "analyst_synthesis",
+      "evidence_ids": [],
+      "properties": {}
+    },
+    {
+      "id": "assertion:0459",
+      "source": "paper:2505.23628",
+      "target": "algorithm:autoschemakg",
+      "relation": "PROPOSES_METHOD",
+      "attribution": "analyst_synthesis",
+      "evidence_ids": [],
+      "properties": {
+        "paper_id": "paper:2505.23628"
+      }
+    },
+    {
+      "id": "assertion:0460",
+      "source": "algorithm:autoschemakg",
+      "target": "algorithmmodule:2505.23628:triple_extraction",
+      "relation": "HAS_MODULE",
+      "attribution": "analyst_synthesis",
+      "evidence_ids": [],
+      "properties": {}
+    },
+    {
+      "id": "assertion:0461",
+      "source": "algorithm:autoschemakg",
+      "target": "algorithmmodule:2505.23628:schema_induction",
+      "relation": "HAS_MODULE",
+      "attribution": "analyst_synthesis",
+      "evidence_ids": [],
+      "properties": {}
+    },
+    {
+      "id": "assertion:0462",
+      "source": "algorithm:autoschemakg",
+      "target": "algorithmmodule:2505.23628:knowledge_graph_construction",
+      "relation": "HAS_MODULE",
+      "attribution": "analyst_synthesis",
+      "evidence_ids": [],
+      "properties": {}
+    },
+    {
+      "id": "assertion:0463",
+      "source": "paper:2607.01977",
+      "target": "algorithm:ontolearner",
+      "relation": "PROPOSES_METHOD",
+      "attribution": "analyst_synthesis",
+      "evidence_ids": [],
+      "properties": {
+        "paper_id": "paper:2607.01977"
+      }
     }
   ]
 }

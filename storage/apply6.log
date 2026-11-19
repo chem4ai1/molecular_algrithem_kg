@@ -1,0 +1,13 @@
+APPLIED 2510.14455 MECo/edit_sequence ok=True
+APPLIED 2405.01155 SynFlowNet/gflownet ok=True
+APPLIED 2410.13147 AgentDrug/llm_agent ok=True
+APPLIED 1911.00598 SHACL/rule_symbolic ok=True
+APPLIED 2505.23628 AutoSchemaKG/data3_graph ok=True
+APPLIED 2607.01977 OntoLearner/data3_ontology ok=True
+SAVED /home/zengshuxin/molecular_algrithem_design/storage/sciforge/factory_knowledge_main.json nodes 405 assertions 463
+READY 2510.14455 MECo/edit_sequence | P0=READY P1=READY P2=READY P6=READY P7=READY
+READY 2405.01155 SynFlowNet/gflownet | P0=READY P1=READY P2=READY P6=READY P7=READY
+READY 2410.13147 AgentDrug/llm_agent | P0=READY P1=READY P2=PARTIAL P6=READY P7=READY
+READY 1911.00598 SHACL/rule_symbolic | P0=READY P1=READY P2=PARTIAL P6=READY P7=READY
+READY 2505.23628 AutoSchemaKG/data3_graph | P0=READY P1=READY P2=PARTIAL P6=BLOCKED P7=READY
+READY 2607.01977 OntoLearner/data3_ontology | P0=READY P1=READY P2=PARTIAL P6=BLOCKED P7=READY
