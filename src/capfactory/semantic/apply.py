@@ -119,7 +119,8 @@ def apply_one(g, rep) -> Dict[str, Any]:
             n_alg += 1
         for k in ("task_type", "problems_solved", "mechanism",
                   "why_it_works", "applicable_to", "limitations",
-                  "assumptions", "novelty_basis"):
+                  "assumptions", "novelty_basis",
+                  "arch_modules", "why_not_other", "key_challenge"):
             if a.get(k):
                 alg.attrs[k] = a[k]
         if paper and check_domain_range("Paper", "PROPOSES_METHOD", "Algorithm"):

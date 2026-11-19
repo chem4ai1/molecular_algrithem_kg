@@ -30,8 +30,6 @@ contract:
   - modules
   - assumptions
   - novelty_basis
-  - is_novel_component
-  - component_role
   - arch_modules
   - why_not_other
   - key_challenge
