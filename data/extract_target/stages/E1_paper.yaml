@@ -18,34 +18,18 @@ contract:
   all_fields:
   - research_question
   - problem_category
-  - domain_code
   - why_hard
   - relation_hints
-  - evidence
   - paradigm
   - evidence_type
   - evidence_norm
-  - figures
   - section_map
-  - gaps
-  - authors
-  - abstract
-  - claims
-  - references
-  - open_problems
-  - delta_claims
-  - negative_results
-  - protocol_disclosure
-  - citation_style
   - writing_style
-  - data_sources
-  - dedup_rule
-  - split_spec
-  - hyperparams
-  - result_tables
-  - formal_def
-  - old_forms
+  - claims
+  - gaps
+  - delta_claims
   - method_limits
+  - old_forms
   aux_fields:
   - domain_code
   - evidence
@@ -53,31 +37,15 @@ section_slice: paper
 slots:
 - paper_text
 - rule_hints
-template: "任务：抽 Paper 的核心属性（研究什么问题 / 问题类别 / 瓶颈 / 关系线索）。\n输出 JSON：\n{\"research_question\":\"一句话说清本文研究什么问题（含输入、目标、约束）\"\
-  ,\n  \"problem_category\":\"从 TASK_TYPES 词表里选一个，没有就空\",\n  \"domain_code\":\"D0..D10，不确定留空（后续由规则校准）\"\
-  ,\n  \"why_hard\":\"现有方法的瓶颈 1 句\",\n  \"relation_hints\":{\"related_papers\":[\"相关方法/文献名\"],\n     \
-  \               \"algorithms\":[\"本文提到的算法名\"],\n                    \"benchmarks\":[\"本文提到的数据集/基准名\"\
-  ]},\n  \"evidence\":{\"research_question\":\"逐字引文\",\"why_hard\":\"逐字引文\"}}\n注意：research_question 与\
-  \ problem_category 是**字符串**，不是数组、不建节点。\n【论文标题】{title}\n【规则层候选信号（problem_category 只能从这里选）】\n{rule_hints}\n\
-  【摘要与引言】\n{paper_text}\n补充字段（写作方法论，来自领域规范）：\n  \"paradigm\":\"formal|empirical|design|interpretive\"\
-  ,\n  \"evidence_type\":\"causal_inference|derivational|experimental|simulational|correlational|interpretive\"\
-  ,\n  \"evidence_norm\":[\"该领域认可的指标名\"],\n  \"section_map\":[{\"section\":\"章节名\",\"claims\":[\"该节要论证什么\"\
-  ]}]\n注意：paradigm 与 evidence_type 依据**方法节与实验节的写法**判定，不要凭标题猜；\nsection_map 只列论文实际有的章节，没有就空数组。\n  \"gaps\"\
-  :[{\"gap_type\":\"capability|scale|data|theory|efficiency\",\n           \"statement\":\"现有方法缺什么（≤80\
-  \ 字）\",\n           \"evidence\":\"逐字引文\"}]\n注意：gaps 是「现有方法的不足」，不是本文贡献；二者要分开写。\n  补充（供后续阶段检索与写作参考）：\n\
-  \  \"authors\":[\"作者名\"],\n  \"abstract\":\"摘要原文（逐字）\",\n  \"claims\":[{\"statement\":\"论文的主张（≤80 字）\"\
-  ,\"evidence\":\"逐字引文\"}],\n  \"references\":[\"参考文献的 arXiv ID 或 DOI，没有就空数组\"]\n注意：claims 是论文自己主张什么，gaps\
-  \ 是现有方法缺什么，两者分开。\n  前沿与惯例（供阶段02/04/05/06/08 检索参考，都是本文里写出的客观事实）：\n  \"open_problems\":[{\"statement\"\
-  :\"作者明确说的未解决问题\",\"evidence\":\"逐字引文\"}],\n  \"delta_claims\":[{\"statement\":\"作者声称的增量\",\"baseline\"\
-  :\"被改进的方法\",\"evidence\":\"逐字引文\"}],\n  \"negative_results\":[\"作者报告的阴性结果/失败尝试\"],\n  \"protocol_disclosure\"\
-  :[\"作者声明的实验协议（seed/划分/评测细节）\"],\n  \"citation_style\":\"author-year|numeric|other\",\n  \"writing_style\"\
-  :\"本文的章节与措辞惯例（简短归纳）\"\n注意：这里记的是**本文说了什么**，不是本次生成任务的判断。\n  实验做法（客观事实，供 P2 数据构造与 P6 结果表参照）：\n  \"data_sources\"\
-  :[\"ZINC\",\"ChEMBL\"],\n  \"dedup_rule\":\"如 Tanimoto>=0.6 或 sequence identity<30%\",\n  \"split_spec\"\
-  :\"train/val/test 划分\",\n  \"hyperparams\":[{\"param\":\"iterations\",\"value\":\"5\"}],\n  \"result_tables\"\
-  :[{\"label\":\"Table 1\",\"columns\":[\"Model\",\"SR%\"],\"rows\":[[\"A\",\"99.9\"]]}]\n注意：只记本文写了什么，不判断本次该用什么。\n\
-  \n问题形式化（P0，逐字或近逐字，不编造）：\n  \"formal_def\":\"本文的问题定义/公式（如 Mo=F(Mi,T)，没有则空字符串）\",\n  \"old_forms\":[\"\
-  先前工作怎么形式化的（含其写法）\"],\n  \"method_limits\":[\"作者指出的旧方法具体缺陷（每条一句话）\"]\n注意：formal_def 只写原文出现的公式或等价文字定义；method_limits\
-  \ 只写作者明确批评的缺陷。"
+template: "【论文标题】{title}\n【摘要与引言】\n{paper_text}\n\n任务：从上面正文抽取字段。只输出纯 JSON，不要代码块、不要解释。\n\n必填：\n  \"research_question\"\
+  :\"一句话研究问题\",\n  \"problem_category\":\"问题类别（从词表选）\",\n  \"why_hard\":\"现有方法为什么做不到（一句话）\"\n可选：\n  \"\
+  relation_hints\":{},\n  \"paradigm\":\"formal|empirical|design|interpretive\",\n  \"evidence_type\"\
+  :\"causal_inference|derivational|experimental|simulational|correlational|interpretive\",\n  \"evidence_norm\"\
+  :[\"该领域认可的指标/证据形式\"],\n  \"section_map\":[{\"section\":\"节名\",\"claims\":[\"该节论断\"]}],\n  \"writing_style\"\
+  :\"写作惯例（简短）\",\n  \"claims\":[{\"statement\":\"作者主张（≤80字）\",\"evidence\":\"逐字引文\"}],\n  \"gaps\":[{\"\
+  gap_type\":\"capability|scale|data|theory|efficiency\",\"statement\":\"空白\",\"evidence\":\"引文\"}],\n\
+  \  \"delta_claims\":[{\"statement\":\"声称的增量\",\"baseline\":\"被改进方法\",\"evidence\":\"引文\"}],\n  \"old_forms\"\
+  :[\"先前工作怎么做的（原文写法）\"],\n  \"method_limits\":[\"作者指出的旧方法具体缺陷\"]\n不输出：authors/abstract/data_sources/dedup_rule/formal_def/hyperparams/result_tables/figures/references/negative_results/open_problems（由规则层负责）。"
 rules:
   preprocess: normalize_pdf
   data_sources:
@@ -122,3 +90,6 @@ rules:
     patterns:
     - ([A-Za-z_]{1,6}\s*=\s*[A-Za-z_]{1,8}\s*\(\s*[A-Za-z_]{1,8}\s*,[^)]{0,40}\))
     - ((?:M|Y|X|y|x)\s*=\s*[A-Za-z_]{1,8}\s*\([^)]{1,60}\))
+  figures:
+    type: md_figures
+    max_items: 12

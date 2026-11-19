@@ -1,0 +1,579 @@
+{
+  "arxiv_id": "1911.00598",
+  "stages": {
+    "E1_paper": {
+      "ok": true,
+      "attempts": 1,
+      "issues": [],
+      "fatal": [],
+      "n_fields": 30,
+      "data": {
+        "research_question": "如何检测SHACL约束在应用datalog推理规则后可能产生的违规，并更新模式以捕获新推断事实？",
+        "problem_category": "constraint_validation",
+        "domain_code": "",
+        "why_hard": "推理规则可能生成原始模式未涵盖的新事实，导致原本有效的图在闭包计算后违反约束，且该问题在忽略存在性有效性规则时已具挑战性。",
+        "relation_hints": {
+          "related_papers": [],
+          "algorithms": [],
+          "benchmarks": []
+        },
+        "evidence": {
+          "research_question": "",
+          "why_hard": ""
+        },
+        "paradigm": "formal",
+        "evidence_type": "derivational",
+        "evidence_norm": [
+          "theoretical results",
+          "experimental results"
+        ],
+        "authors": [],
+        "abstract": "",
+        "claims": [
+          {
+            "statement": "给定SHACL约束和datalog规则，可检测哪些约束可能被推理规则违反并更新模式。",
+            "evidence": "Given a set of SHACL constraints and a set of datalog rules, we present a method to detect which constraints could be vi"
+          },
+          {
+            "statement": "三元组存储模式建模为三元组模式集、非字面量位置集和存在性有效性规则集。",
+            "evidence": "we present an approach that models triplestore schemas as triplets of sets: a set of triple patterns that can be appropr"
+          }
+        ],
+        "references": [],
+        "figures": [],
+        "section_map": [
+          {
+            "section": "Abstract",
+            "claims": [
+              "提出检测SHACL约束违规并更新模式的方法",
+              "提供理论和实验结果"
+            ]
+          },
+          {
+            "section": "1 Introduction",
+            "claims": [
+              "SHACL用于定义RDF图约束",
+              "推理规则可能导致新事实不匹配原始模式",
+              "研究动机来自职业健康与安全领域"
+            ]
+          }
+        ],
+        "gaps": [
+          {
+            "gap_type": "capability",
+            "statement": "现有方法难以自动检测推理规则与模式之间的冲突，依赖领域专家手动处理。",
+            "evidence": "At the moment, domain experts are needed to define such inference rules, however this process is slow, expensive and err"
+          }
+        ],
+        "open_problems": [],
+        "delta_claims": [
+          {
+            "statement": "提出一种方法自动检测SHACL约束在推理后的违规并更新模式。",
+            "baseline": "依赖领域专家手动定义规则和检测冲突",
+            "evidence": "Our research aims to better inform experts about the effects of the application of certain rules... and automatically de"
+          }
+        ],
+        "negative_results": [],
+        "protocol_disclosure": [],
+        "citation_style": "",
+        "writing_style": "学术严谨，结合形式化定义与应用场景动机",
+        "data_sources": [],
+        "dedup_rule": "",
+        "split_spec": "",
+        "hyperparams": [],
+        "formal_def": "",
+        "old_forms": [
+          "domain experts are needed to define such inference rules"
+        ],
+        "method_limits": [
+          "this process is slow, expensive and error prone"
+        ],
+        "result_tables": [
+          {
+            "label": "Table 2",
+            "columns": [
+              "sh:NodeShape",
+              "sh:IRIOrLiteral",
+              "sh:class"
+            ],
+            "rows": [
+              [
+                "sh:targetObjectsOf",
+                "sh:in",
+                "sh:hasValue"
+              ],
+              [
+                "sh:targetSubjectsOf",
+                "sh:property",
+                "sh:node"
+              ],
+              [
+                "sh:targetClass",
+                "sh:path",
+                "sh:or"
+              ],
+              [
+                "sh:nodeKind",
+                "sh:inversePath",
+                "sh:not"
+              ]
+            ]
+          },
+          {
+            "label": "table_2",
+            "columns": [
+              "SHACL",
+              "Triplestore Schema"
+            ],
+            "rows": [
+              [
+                ":s rdf:type sh:NodeShape;<br>sh:targetObjectsOf:p;<br>sh:nodeKind sh:IRIOrLiteral_._",
+                "_allow_(_{_?v1:p ?v2_}_, _{_?v1_}_)"
+              ],
+              [
+                ":s rdf:type sh:NodeShape;<br>sh:targetObjectsOf:p;<br>sh:nodeKind sh:IRI_._",
+                "_restrict_(_{_?v1:p ?v2_}_, _{_?v1_,_?v2_}_)"
+              ],
+              [
+                ":s rdf:type sh:NodeShape;<br>sh:targetObjectsOf:p;<br>sh:in (:a \"m\" _. . ._ ) _._",
+                "_restrict_(_{_?v1:p:a<br>,<br>?v2:p \"m\"<br>,<br>?v3:p _. . . }_ , _{_?v1_,_?v2_,_?v3_}_)"
+              ],
+              [
+                ":s rdf:type sh:NodeShape;<br>sh:targetSubjectsOf:p;<br>sh:in (:a:b _. . ._ ) _._",
+                "_restrict_(_{_:a:p ?v1<br>,<br>:b:p ?v2<br>,<br>_. . ._ :p?v3 _}_ , _{}_)"
+              ],
+              [
+                ":s rdf:type sh:NodeShape;<br>sh:targetObjectsOf:p;<br>sh:class:c_._",
+                "_restrict_(_{_?v1:p ?v2_}_, _{_?v1_,_?v2_}_)<br>_allow_(_{_?v1 rdf:type ?2_}_, _{_?v1_}_)<br>_include_(?v1:p?v2_→_<sup>_∃_</sup>?v2 rdf:type:c)"
+              ],
+              [
+                ":s rdf:type sh:NodeShape;<br>sh:targetSubjectsOf:p;<br>sh:class:c_._",
+                "_allow_(_{_?v1:p ?v2_}_, _{_?v1_}_)<br>_allow_(_{_?v1 rdf:type ?v2_}_, _{_?v1_}_)<br>_include_(?v1:p?v2_→_<sup>_∃_</sup>?v1 rdf:type:c)"
+              ],
+              [
+                ":s rdf:type sh:NodeShape;<br>sh:targetClass:c;<br>sh:property [<br>sh:path:p;<br>sh:minCount 1 ;<br>] _._",
+                "_allow_(_{_?v1 rdf:type ?v2_}_, _{_?v1_}_)<br>_allow_(_{_?v1:p ?v2_}_, _{_?v1_}_)<br>_include_(?v1 rdf:type:c_→_<sup>_∃_</sup>?v1:p ?v2)"
+              ],
+              [
+                ":s rdf:type sh:NodeShape;<br>sh:targetObjectsOf:p;<br>sh:property [<br>sh:path:q;<br>sh:minCount 1 ;<br>] _._",
+                "_restrict_(_{_?v1:p ?v2_}_, _{_?v1_,_?v2_}_)<br>_allow_(_{_?v1:q ?v2_}_, _{_?v1_}_)<br>_include_(?v1:p ?v2_→_<sup>_∃_</sup>?v2:q ?v3)"
+              ],
+              [
+                ":s rdf:type sh:NodeShape;<br>sh:targetSubjectsOf:p;<br>sh:property [<br>sh:path:q;<br>sh:minCount 1 ;<br>] _._",
+                "_allow_(_{_?v1:p ?v2_}_, _{v_1_}_)<br>_allow_(_{_?v1:q ?v2_}_, _{v_1_}_)<br>_include_(?v1:p ?v2_→_<sup>_∃_</sup>?v1:q ?v3)"
+              ]
+            ]
+          },
+          {
+            "label": "table_3",
+            "columns": [
+              ":s rdf:type sh:NodeShape;<br>sh:targetClass:c;<br>sh:property [<br>sh:path[sh:inversePath:p] ;<br>sh:minCount 1 ;<br>] _._",
+              "_allow_(_{_?v1 rdf:type ?v2_}_, _{_?v1_}_)<br>_allow_(_{_?v1:p ?v2_}_, _{_?v1_}_)<br>_include_(?v1 rdf:type:c_→_<sup>_∃_</sup>?v2:p ?v1)"
+            ],
+            "rows": [
+              [
+                ":s rdf:type sh:NodeShape;<br>sh:targetObjectsOf:p;<br>sh:property [<br>sh:path[sh:inversePath:q] ;<br>sh:minCount 1 ;<br>] _._",
+                "_restrict_(_{_?v1:p ?v2_}_, _{_?v1_,_?v2_}_)<br>_allow_(_{_?v1:q ?v2_}_, _{_?v1_}_)<br>_include_(?v1:p ?v2_→_<sup>_∃_</sup>?v3:q ?v2)"
+              ],
+              [
+                ":s rdf:type sh:NodeShape;<br>sh:targetSubjectsOf:p;<br>sh:property [<br>sh:path[sh:inversePath:q] ;<br>sh:minCount 1 ;<br>] _._",
+                "_allow_(_{_?v1:p ?v2_}_, _{v_1_}_)<br>_allow_(_{_?v1:q ?v2_}_, _{v_1_}_)<br>_include_(?v1:p ?v2_→_<sup>_∃_</sup>?v3:q ?v1)"
+              ],
+              [
+                ":s rdf:type sh:NodeShape;<br>sh:targetClass:c;<br>sh:property [<br>sh:path:p;<br>sh:hasValue:a;<br>sh:minCount 1 ;<br>] _._",
+                "_allow_(_{_?v1 rdf:type ?v2_}_, _{_?v1_}_)<br>_allow_(_{_?v1:p ?v2_}_, _{_?v1_}_)<br>_include_(?v1 rdf:type:c _→_<sup>_∃_</sup>?v1:p:a)"
+              ],
+              [
+                ":s rdf:type sh:NodeShape;<br>sh:targetObjectsOf:p;<br>sh:property [<br>sh:path:q;<br>sh:hasValue:a;<br>sh:minCount 1 ;<br>] _._",
+                "_restrict_(_{_?v1:p ?v2_}_, _{_?v1_,_?v2_}_)<br>_allow_(_{_?v1:q ?v2_}_, _{_?v1_}_)<br>_include_(?v1:p ?v2_→_<sup>_∃_</sup>?v2:q:a)"
+              ],
+              [
+                ":s rdf:type sh:NodeShape;<br>sh:targetSubjectsOf:p;<br>sh:property [<br>sh:path:q;<br>sh:hasValue:a;<br>sh:minCount 1 ;<br>] _._",
+                "_allow_(_{_?v1:p ?v2_}_, _{v_1_}_)<br>_allow_(_{_?v1:q ?v2_}_, _{v_1_}_)<br>_include_(?v1:p ?v2_→_<sup>_∃_</sup>?v1:q:a)"
+              ],
+              [
+                ":s rdf:type sh:NodeShape;<br>sh:targetClass:c;<br>sh:property [<br>sh:path[sh:inversePath:p] ;<br>sh:hasValue:a;<br>sh:minCount 1 ;<br>] _._",
+                "_allow_(_{_?v1 rdf:type ?v2_}_, _{_?v1_}_)<br>_allow_(_{_?v1:p ?v2_}_, _{_?v1_}_)<br>_include_(?v1 rdf:type:c _→_<sup>_∃_</sup>:a:p ?v1)"
+              ],
+              [
+                ":s rdf:type sh:NodeShape;<br>sh:targetObjectsOf:p;<br>sh:property [<br>sh:path[sh:inversePath:q] ;<br>sh:hasValue:a;<br>sh:minCount 1 ;<br>] _._",
+                "_restrict_(_{_?v1:p ?v2_}_, _{_?v1_,_?v2_}_)<br>_allow_(_{_?v1:q ?v2_}_, _{_?v1_}_)<br>_include_(?v1:p ?v2_→_<sup>_∃_</sup>:a:q ?v2)"
+              ]
+            ]
+          }
+        ]
+      },
+      "rule_filled": [
+        "result_tables"
+      ]
+    },
+    "E2_algorithm": {
+      "ok": true,
+      "attempts": 1,
+      "issues": [],
+      "fatal": [],
+      "n_fields": 1,
+      "data": {
+        "algorithms": [
+          {
+            "name": "Query Rewriting Algorithm",
+            "task_type": "other",
+            "problems_solved": [],
+            "mechanism": "在sandbox graph上计算simple schema consequence，通过查询重写技术比在critical instance上更高效地推导推理规则产生的新事实。",
+            "why_it_works": "",
+            "applicable_to": [],
+            "limitations": [
+              "仅处理simple schema consequence，未直接处理existential validity rules"
+            ],
+            "arch_modules": [
+              {
+                "name": "Schema Consequence Computation",
+                "role": "计算推理规则应用后的新schema",
+                "input": "SHACL constraints, Datalog rules",
+                "output": "Updated schema"
+              }
+            ],
+            "why_not_other": "",
+            "key_challenge": "Critical instance size is very large and inefficient",
+            "modules": [
+              {
+                "name": "Sandbox Graph Construction",
+                "mechanism": "构建比critical instance更小且高效的代表实例，用于替代大规模critical instance进行推理。",
+                "formula": "",
+                "inputs": "Input schema S",
+                "outputs": "Sandbox graph",
+                "code_symbols": [],
+                "tools": [],
+                "is_novel_component": false,
+                "component_role": ""
+              },
+              {
+                "name": "Query Rewriting",
+                "mechanism": "在sandbox graph上执行查询重写以计算schema consequence。",
+                "formula": "",
+                "inputs": "Sandbox graph, Inference rules",
+                "outputs": "Simple schema consequence",
+                "code_symbols": [],
+                "tools": [],
+                "is_novel_component": false,
+                "component_role": ""
+              }
+            ],
+            "assumptions": [],
+            "novelty_basis": []
+          },
+          {
+            "name": "Existential-Preserving Schema Consequence Method",
+            "task_type": "other",
+            "problems_solved": [],
+            "mechanism": "结合datalog rewriting变体和chase算法，从simple schema consequence中识别并移除可能被推理规则违反的existential validity rules，生成existential-preserving schema consequence。",
+            "why_it_works": "",
+            "applicable_to": [],
+            "limitations": [
+              "依赖simple schema consequence作为基础"
+            ],
+            "arch_modules": [
+              {
+                "name": "Constraint Violation Detection",
+                "role": "检测哪些SHACL约束可能被推理规则违反",
+                "input": "SHACL constraints, Inference rules",
+                "output": "Violated constraints list"
+              }
+            ],
+            "why_not_other": "",
+            "key_challenge": "Reasoning with inference rules is challenging even without existential validity rules",
+            "modules": [
+              {
+                "name": "Datalog Rewriting Variations",
+                "mechanism": "对datalog规则进行重写以辅助分析约束违反情况。",
+                "formula": "",
+                "inputs": "Inference rules, Simple schema consequence",
+                "outputs": "Rewritten rules/intermediate state",
+                "code_symbols": [],
+                "tools": [],
+                "is_novel_component": false,
+                "component_role": ""
+              },
+              {
+                "name": "Chase Algorithm",
+                "mechanism": "应用chase算法处理tuple-generating dependencies，识别潜在违反的existential validity rules。",
+                "formula": "",
+                "inputs": "Rewritten rules, Existential validity rules",
+                "outputs": "Existential-preserving schema consequence",
+                "code_symbols": [],
+                "tools": [],
+                "is_novel_component": false,
+                "component_role": ""
+              }
+            ],
+            "assumptions": [],
+            "novelty_basis": []
+          }
+        ]
+      },
+      "rule_filled": []
+    }
+  },
+  "paper_type": {
+    "paper_type": "method",
+    "confidence": 0.75,
+    "method": "llm",
+    "margin": 1,
+    "uncertain": true,
+    "scores": {
+      "method": 2,
+      "dataset_benchmark": 1,
+      "theory": 0,
+      "survey": 0.0,
+      "system_tool": 0,
+      "application": 0
+    },
+    "stages": [
+      "E1_paper",
+      "E2_algorithm",
+      "E3_benchmark",
+      "E4_values",
+      "E5_relations",
+      "E6_lineage"
+    ],
+    "focus": "重点抽算法模块与机理；基准只抽本文实际评测的"
+  },
+  "slice_meta": {
+    "source": "fallback",
+    "n_blocks": 0,
+    "kinds": {}
+  },
+  "n_ast_symbols": 0,
+  "guide_chars": 278,
+  "domain_calibrated": "",
+  "model_results": {
+    "table": 0,
+    "llm_fallback": 0,
+    "deduplicated": 0,
+    "rows": []
+  },
+  "application_hints": {
+    "tools_formulas": [],
+    "note": "节点化留给应用层任务（复现/生成论文时按任务构建）"
+  },
+  "lineage": {
+    "all": [],
+    "subclass_of": [],
+    "compared_only": []
+  },
+  "cross_check": [],
+  "paradigm": {
+    "ner": {
+      "algorithms": [
+        {
+          "text": "SHACL",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 2,
+          "block": "paper"
+        },
+        {
+          "text": "W3C",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 387,
+          "block": "paper"
+        },
+        {
+          "text": "RDF",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 458,
+          "block": "paper"
+        },
+        {
+          "text": "OHS",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 3483,
+          "block": "paper"
+        },
+        {
+          "text": "IRIs",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 7310,
+          "block": "algorithm"
+        },
+        {
+          "text": "SPARQL",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 9088,
+          "block": "algorithm"
+        },
+        {
+          "text": "SPIN",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 10294,
+          "block": "algorithm"
+        },
+        {
+          "text": "SWRL",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 10303,
+          "block": "algorithm"
+        },
+        {
+          "text": "IRI",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 10953,
+          "block": "algorithm"
+        }
+      ],
+      "benchmarks": [],
+      "code_symbols": [],
+      "metrics": [],
+      "tables": []
+    },
+    "canonicalization": {
+      "canonical_map": {
+        "algorithm:Query Rewriting Algorithm": {
+          "canonical": "Query Rewriting Algorithm",
+          "node_id": "",
+          "match": "new",
+          "score": 0.0,
+          "type": "Algorithm"
+        },
+        "algorithm:Existential-Preserving Schema Consequence Method": {
+          "canonical": "Existential-Preserving Schema Consequence Method",
+          "node_id": "",
+          "match": "new",
+          "score": 0.0,
+          "type": "Algorithm"
+        }
+      },
+      "alias_groups": {},
+      "n_exact": 0,
+      "n_fuzzy": 0,
+      "n_new": 2,
+      "n_ungrounded_code": 0
+    },
+    "relations": {
+      "grounded": [],
+      "ungrounded": [],
+      "n": 0
+    },
+    "modules": {
+      "chains": [
+        {
+          "algorithm": "Query Rewriting Algorithm",
+          "modules": [
+            {
+              "step_order": 1,
+              "name": "Sandbox Graph Construction",
+              "depends_on": "",
+              "data_flow": "Input schema S",
+              "inputs": "Input schema S",
+              "outputs": "Sandbox graph",
+              "goal": "构建比critical instance更小且高效的代表实例，用于替代大规模critical instance进行推理。",
+              "formula": "",
+              "code_symbols": [],
+              "code_aligned": [],
+              "code_alignment_rate": 0.0
+            },
+            {
+              "step_order": 2,
+              "name": "Query Rewriting",
+              "depends_on": "Sandbox Graph Construction",
+              "data_flow": "Sandbox graph -> Sandbox graph, Inference rules",
+              "inputs": "Sandbox graph, Inference rules",
+              "outputs": "Simple schema consequence",
+              "goal": "在sandbox graph上执行查询重写以计算schema consequence。",
+              "formula": "",
+              "code_symbols": [],
+              "code_aligned": [],
+              "code_alignment_rate": 0.0
+            }
+          ],
+          "n_modules": 2,
+          "pipeline": "Sandbox Graph Construction -> Query Rewriting"
+        },
+        {
+          "algorithm": "Existential-Preserving Schema Consequence Method",
+          "modules": [
+            {
+              "step_order": 1,
+              "name": "Datalog Rewriting Variations",
+              "depends_on": "",
+              "data_flow": "Inference rules, Simple schema consequence",
+              "inputs": "Inference rules, Simple schema consequence",
+              "outputs": "Rewritten rules/intermediate state",
+              "goal": "对datalog规则进行重写以辅助分析约束违反情况。",
+              "formula": "",
+              "code_symbols": [],
+              "code_aligned": [],
+              "code_alignment_rate": 0.0
+            },
+            {
+              "step_order": 2,
+              "name": "Chase Algorithm",
+              "depends_on": "Datalog Rewriting Variations",
+              "data_flow": "Rewritten rules/intermediate state -> Rewritten rules, Existential validity rules",
+              "inputs": "Rewritten rules, Existential validity rules",
+              "outputs": "Existential-preserving schema consequence",
+              "goal": "应用chase算法处理tuple-generating dependencies，识别潜在违反的existential validity rules。",
+              "formula": "",
+              "code_symbols": [],
+              "code_aligned": [],
+              "code_alignment_rate": 0.0
+            }
+          ],
+          "n_modules": 2,
+          "pipeline": "Datalog Rewriting Variations -> Chase Algorithm"
+        }
+      ],
+      "n_algorithms": 2,
+      "n_modules": 4
+    },
+    "slot_audit": {
+      "checks": [
+        {
+          "slot": "Paper.research_question",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "slot": "Paper.problem_category",
+          "ok": true,
+          "detail": "constraint_validation"
+        },
+        {
+          "slot": "Algorithm.mechanism",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "slot": "AlgorithmModule.inputs",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "slot": "AlgorithmModule.outputs",
+          "ok": true,
+          "detail": ""
+        }
+      ],
+      "n_ok": 5,
+      "n_total": 5,
+      "score": 1.0
+    },
+    "summary": {
+      "n_entity_candidates": 9,
+      "n_grounded_relations": 0,
+      "n_ungrounded_relations": 0,
+      "n_modules_tracked": 4,
+      "slot_score": 1.0
+    }
+  },
+  "ok": true,
+  "seconds": 62.17
+}

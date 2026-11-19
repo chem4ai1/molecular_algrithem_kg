@@ -97,8 +97,21 @@ def _md_tables(text: str, cfg: Dict[str, Any]) -> List[Dict[str, Any]]:
     return tables
 
 
+def _md_figures(text: str, cfg: Dict[str, Any]) -> List[Dict[str, Any]]:
+    """从 markdown 图片语法抽图表清单。"""
+    out = []
+    for m in re.finditer(r"!\[([^\]]*)\]\(([^)]+)\)", text):
+        label = m.group(1).strip() or f"fig_{len(out)+1}"
+        out.append({"label": label[:40], "path": m.group(2)[:120],
+                    "kind": "figure"})
+        if len(out) >= int(cfg.get("max_items") or 12):
+            break
+    return out
+
+
 ENGINE = {"db_names": _db_names, "regex": _regex,
-          "hyperparam_list": _hyperparam_list, "md_tables": _md_tables}
+          "hyperparam_list": _hyperparam_list, "md_tables": _md_tables,
+          "md_figures": _md_figures}
 
 
 def apply_rules(spec_rules: Dict[str, Any], text: str) -> Dict[str, Any]:

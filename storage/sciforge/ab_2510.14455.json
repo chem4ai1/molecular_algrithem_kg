@@ -1,0 +1,563 @@
+{
+  "arxiv_id": "2510.14455",
+  "stages": {
+    "E1_paper": {
+      "ok": true,
+      "attempts": 1,
+      "issues": [],
+      "fatal": [],
+      "n_fields": 30,
+      "data": {
+        "research_question": "如何通过代码生成解决LLM在分子编辑中意图与执行不一致的问题？",
+        "problem_category": "molecule_optimization",
+        "domain_code": "",
+        "why_hard": "SMILES线性表示与分子图结构存在模态不匹配，导致LLM难以精确控制结构编辑。",
+        "relation_hints": {
+          "related_papers": [],
+          "algorithms": [],
+          "benchmarks": []
+        },
+        "evidence": {
+          "research_question": "",
+          "why_hard": ""
+        },
+        "paradigm": "design",
+        "evidence_type": "experimental",
+        "evidence_norm": [
+          "accuracy",
+          "consistency",
+          "success rate",
+          "structural similarity"
+        ],
+        "authors": [],
+        "abstract": "",
+        "claims": [
+          {
+            "statement": "MECo通过代码生成桥接推理与执行，实现可解释的分子编辑。",
+            "evidence": "We introduce MECo, a framework that bridges reasoning and execution by translating editing actions into executable code."
+          },
+          {
+            "statement": "MECo在重现真实编辑任务中达到98%以上的准确率。",
+            "evidence": "Our approach achieves over 98% accuracy in reproducing held-out realistic edits derived from chemical reactions and targ"
+          }
+        ],
+        "references": [],
+        "figures": [],
+        "section_map": [
+          {
+            "section": "Abstract",
+            "claims": [
+              "MECo将分子修改重构为级联框架，通过代码生成实现意图到执行的转换。",
+              "MECo在下游基准上显著提高了一致性并保持了结构相似性。"
+            ]
+          },
+          {
+            "section": "1 Introduction",
+            "claims": [
+              "现有基于SMILES的生成范式存在化学合理性差和可解释性低的问题。",
+              "SMILES的线性编码特性导致微小结构编辑引起字符串巨大变化，难以精确控制。"
+            ]
+          }
+        ],
+        "gaps": [
+          {
+            "gap_type": "capability",
+            "statement": "现有LLM在SMILES表示上难以忠实执行高层编辑意图。",
+            "evidence": "they often struggle to faithfully execute these modifications, particularly when operating on non-intuitive representati"
+          }
+        ],
+        "open_problems": [],
+        "delta_claims": [
+          {
+            "statement": "MECo将一致性提高38-86个百分点至90%以上。",
+            "baseline": "SMILES-based baselines",
+            "evidence": "MECo substantially improves consistency by 38-86 percentage points to 90%+ and achieves higher success rates over SMILES"
+          }
+        ],
+        "negative_results": [],
+        "protocol_disclosure": [],
+        "citation_style": "",
+        "writing_style": "学术严谨，强调问题动机与方法对比",
+        "data_sources": [
+          "ZINC",
+          "ChEMBL",
+          "USPTO",
+          "PDB",
+          "ChemCoTBench"
+        ],
+        "dedup_rule": "Tanimoto similarity _≥_ 0.6",
+        "split_spec": "",
+        "hyperparams": [],
+        "formal_def": "Mo =  F ( Mi, T )",
+        "old_forms": [
+          "prompting them to generate optimized molecules in the form of SMILES strings"
+        ],
+        "method_limits": [
+          "generated SMILES may not always be chemically plausible",
+          "valid outputs may diverge from the design rationale articulated by reasoning LLMs",
+          "extensive uncontrolled edits may severely compromise synthetic feasibility"
+        ],
+        "result_tables": [
+          {
+            "label": "table_1",
+            "columns": [
+              "**Action**",
+              "**Model**",
+              "**Terminal re**",
+              "**placement**",
+              "**Core replacement**"
+            ],
+            "rows": [
+              [
+                "Direct",
+                "Qwen2.5-7B-Instruct",
+                "0.5",
+                "1.3",
+                "0.0"
+              ],
+              [
+                "CdG",
+                "Qwen2.5-Coder-7B-Instruct",
+                "50.3",
+                "9.9",
+                "12.2"
+              ],
+              [
+                "oeen",
+                "Qwen2.5-Coder-7B-Instruct-FT (ours)",
+                "**99.9**",
+                "**98.3**",
+                "**98.3**"
+              ]
+            ]
+          },
+          {
+            "label": "Table 1",
+            "columns": [
+              "**P**",
+              "**roperty**",
+              "**optimiz**",
+              "**ation ta**",
+              "**sks**"
+            ],
+            "rows": [
+              [
+                "**A**",
+                "**ctivity**",
+                "**optimiza**",
+                "**tion ta**",
+                "**sks**"
+              ]
+            ]
+          },
+          {
+            "label": "table_3",
+            "columns": [
+              "Category",
+              "Name",
+              "SMILES"
+            ],
+            "rows": [
+              [
+                "Haloens",
+                "Fluoro<br>Chloro",
+                "[*:1]F<br>[*:1]Cl"
+              ],
+              [
+                "g",
+                "Bromo",
+                "[*:1]Br"
+              ],
+              [
+                "Alkl",
+                "Methyl<br>Ethyl",
+                "[*:1]C<br>[*:1]CC"
+              ],
+              [
+                "y",
+                "Isopropyl",
+                "[*:1]C(C)C"
+              ],
+              [
+                "Aryl",
+                "p-Tolyl",
+                "[*:1]c1ccc(cc1)C"
+              ],
+              [
+                "Oii",
+                "Ethoxy",
+                "[*:1]OCC"
+              ],
+              [
+                "xygen-contanng",
+                "Carboxyl",
+                "[*:1]C(=O)O"
+              ],
+              [
+                "Nitrogen-containing",
+                "Dimethylamino<br>Cyano",
+                "[*:1]N(C)C<br>[*:1]C#N"
+              ],
+              [
+                "Sulfur-containing",
+                "Methylthio",
+                "[*:1]SC"
+              ]
+            ]
+          }
+        ]
+      },
+      "rule_filled": [
+        "data_sources",
+        "dedup_rule",
+        "result_tables",
+        "formal_def"
+      ]
+    },
+    "E2_algorithm": {
+      "ok": true,
+      "attempts": 1,
+      "issues": [],
+      "fatal": [],
+      "n_fields": 1,
+      "data": {
+        "algorithms": [
+          {
+            "name": "MECo",
+            "task_type": "molecule_optimization",
+            "problems_solved": [],
+            "mechanism": "MECo将分子编辑重构为代码生成任务。首先由推理LLM生成人类可解释的编辑意图，随后由微调过的代码LLM将这些意图转化为可执行的RDKit脚本，从而在分子图上执行精确、可验证的结构修改，解决了SMILES表示与化学直觉不匹配的问题。",
+            "why_it_works": "",
+            "applicable_to": [],
+            "limitations": [
+              "依赖上游推理LLM生成高质量的编辑意图",
+              "代码LLM仅在合成数据上微调，可能受限于训练分布"
+            ],
+            "arch_modules": [
+              {
+                "name": "MECo Framework",
+                "role": "桥接推理与执行，实现可控分子编辑",
+                "input": "初始分子, 设计目标",
+                "output": "修改后的分子"
+              }
+            ],
+            "why_not_other": "直接生成SMILES可能导致化学不合理或偏离设计理由，且缺乏可解释性；图优化方法依赖oracle反馈，缺乏结构-性质推理",
+            "key_challenge": "SMILES线性表示与化学图结构推理之间的模态不匹配，导致LLM难以忠实执行编辑意图",
+            "modules": [
+              {
+                "name": "Reasoning LLM",
+                "mechanism": "基于分子和设计目标生成高层编辑意图（rationale）和具体编辑动作（actions）",
+                "formula": "",
+                "inputs": "初始分子, 设计目标",
+                "outputs": "编辑意图, 编辑动作",
+                "code_symbols": [],
+                "tools": [],
+                "is_novel_component": false,
+                "component_role": ""
+              },
+              {
+                "name": "Coder LLM",
+                "mechanism": "将编辑意图和动作转化为可执行的代码脚本（如RDKit代码）",
+                "formula": "",
+                "inputs": "编辑意图, 编辑动作, 初始分子",
+                "outputs": "可执行代码脚本",
+                "code_symbols": [],
+                "tools": [],
+                "is_novel_component": false,
+                "component_role": ""
+              }
+            ],
+            "assumptions": [],
+            "novelty_basis": []
+          }
+        ]
+      },
+      "rule_filled": []
+    }
+  },
+  "paper_type": {
+    "paper_type": "method",
+    "confidence": 0.75,
+    "method": "llm",
+    "margin": 0,
+    "uncertain": true,
+    "scores": {
+      "method": 0,
+      "dataset_benchmark": 0,
+      "theory": 0,
+      "survey": 0.0,
+      "system_tool": 0,
+      "application": 0
+    },
+    "stages": [
+      "E1_paper",
+      "E2_algorithm",
+      "E3_benchmark",
+      "E4_values",
+      "E5_relations",
+      "E6_lineage"
+    ],
+    "focus": "重点抽算法模块与机理；基准只抽本文实际评测的"
+  },
+  "slice_meta": {
+    "source": "fallback",
+    "n_blocks": 0,
+    "kinds": {}
+  },
+  "n_ast_symbols": 0,
+  "guide_chars": 278,
+  "domain_calibrated": "",
+  "model_results": {
+    "table": 0,
+    "llm_fallback": 0,
+    "deduplicated": 0,
+    "rows": []
+  },
+  "application_hints": {
+    "tools_formulas": [],
+    "note": "节点化留给应用层任务（复现/生成论文时按任务构建）"
+  },
+  "lineage": {
+    "all": [],
+    "subclass_of": [],
+    "compared_only": []
+  },
+  "cross_check": [],
+  "paradigm": {
+    "ner": {
+      "algorithms": [
+        {
+          "text": "Ya-Qin",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 349,
+          "block": "paper"
+        },
+        {
+          "text": "Wei-Ying",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 384,
+          "block": "paper"
+        },
+        {
+          "text": "LLMs",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 1162,
+          "block": "paper"
+        },
+        {
+          "text": "SMILES",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 1381,
+          "block": "paper"
+        },
+        {
+          "text": "MECo",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 1402,
+          "block": "paper"
+        },
+        {
+          "text": "SMILESbased",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 2114,
+          "block": "paper"
+        },
+        {
+          "text": "NH2",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 4609,
+          "block": "paper"
+        },
+        {
+          "text": "COc1cc",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 4615,
+          "block": "paper"
+        },
+        {
+          "text": "CH3",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 4660,
+          "block": "paper"
+        },
+        {
+          "text": "H3CO",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 4827,
+          "block": "paper"
+        },
+        {
+          "text": "LLM",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 4893,
+          "block": "paper"
+        },
+        {
+          "text": "H3C",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 4966,
+          "block": "paper"
+        },
+        {
+          "text": "CoderLLM",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 5005,
+          "block": "paper"
+        },
+        {
+          "text": "CNC",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 5132,
+          "block": "paper"
+        },
+        {
+          "text": "RDKit",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 6205,
+          "block": "algorithm"
+        },
+        {
+          "text": "DeepSeek-R1",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 7015,
+          "block": "algorithm"
+        },
+        {
+          "text": "LLMguided",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 7521,
+          "block": "algorithm"
+        },
+        {
+          "text": "RNNs",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 10901,
+          "block": "algorithm"
+        }
+      ],
+      "benchmarks": [],
+      "code_symbols": [],
+      "metrics": [],
+      "tables": []
+    },
+    "canonicalization": {
+      "canonical_map": {
+        "algorithm:MECo": {
+          "canonical": "MECo",
+          "node_id": "",
+          "match": "new",
+          "score": 0.0,
+          "type": "Algorithm"
+        }
+      },
+      "alias_groups": {},
+      "n_exact": 0,
+      "n_fuzzy": 0,
+      "n_new": 1,
+      "n_ungrounded_code": 0
+    },
+    "relations": {
+      "grounded": [],
+      "ungrounded": [],
+      "n": 0
+    },
+    "modules": {
+      "chains": [
+        {
+          "algorithm": "MECo",
+          "modules": [
+            {
+              "step_order": 1,
+              "name": "Reasoning LLM",
+              "depends_on": "",
+              "data_flow": "初始分子, 设计目标",
+              "inputs": "初始分子, 设计目标",
+              "outputs": "编辑意图, 编辑动作",
+              "goal": "基于分子和设计目标生成高层编辑意图（rationale）和具体编辑动作（actions）",
+              "formula": "",
+              "code_symbols": [],
+              "code_aligned": [],
+              "code_alignment_rate": 0.0
+            },
+            {
+              "step_order": 2,
+              "name": "Coder LLM",
+              "depends_on": "Reasoning LLM",
+              "data_flow": "编辑意图, 编辑动作 -> 编辑意图, 编辑动作, 初始分子",
+              "inputs": "编辑意图, 编辑动作, 初始分子",
+              "outputs": "可执行代码脚本",
+              "goal": "将编辑意图和动作转化为可执行的代码脚本（如RDKit代码）",
+              "formula": "",
+              "code_symbols": [],
+              "code_aligned": [],
+              "code_alignment_rate": 0.0
+            }
+          ],
+          "n_modules": 2,
+          "pipeline": "Reasoning LLM -> Coder LLM"
+        }
+      ],
+      "n_algorithms": 1,
+      "n_modules": 2
+    },
+    "slot_audit": {
+      "checks": [
+        {
+          "slot": "Paper.research_question",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "slot": "Paper.problem_category",
+          "ok": true,
+          "detail": "molecule_optimization"
+        },
+        {
+          "slot": "Algorithm.mechanism",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "slot": "AlgorithmModule.inputs",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "slot": "AlgorithmModule.outputs",
+          "ok": true,
+          "detail": ""
+        }
+      ],
+      "n_ok": 5,
+      "n_total": 5,
+      "score": 1.0
+    },
+    "summary": {
+      "n_entity_candidates": 18,
+      "n_grounded_relations": 0,
+      "n_ungrounded_relations": 0,
+      "n_modules_tracked": 2,
+      "slot_score": 1.0
+    }
+  },
+  "ok": true,
+  "seconds": 36.78
+}

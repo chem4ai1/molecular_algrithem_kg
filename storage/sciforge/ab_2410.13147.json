@@ -1,0 +1,1564 @@
+{
+  "arxiv_id": "2410.13147",
+  "stages": {
+    "E1_paper": {
+      "ok": true,
+      "attempts": 1,
+      "issues": [],
+      "fatal": [],
+      "n_fields": 30,
+      "data": {
+        "research_question": "如何利用大语言模型在代理工作流中实现零样本分子编辑以提高准确性？",
+        "problem_category": "molecule_optimization",
+        "domain_code": "",
+        "why_hard": "简单提示准确性有限，且现有方法未解决分子幻觉导致的无效结构问题。",
+        "relation_hints": {
+          "related_papers": [],
+          "algorithms": [],
+          "benchmarks": []
+        },
+        "evidence": {
+          "research_question": "",
+          "why_hard": ""
+        },
+        "paradigm": "design",
+        "evidence_type": "experimental",
+        "evidence_norm": [
+          "accuracy",
+          "single-property editing",
+          "multi-property editing"
+        ],
+        "authors": [],
+        "abstract": "",
+        "claims": [
+          {
+            "statement": "AgentDrug 在单属性任务上比先前方法提高准确性 20.7% (loose) 和 16.8% (strict)。",
+            "evidence": "With Qwen-2.5-3B, AgentDrug improves accuracy by 20.7% (loose) and 16.8% (strict) on six single-property tasks"
+          },
+          {
+            "statement": "AgentDrug 通过嵌套细化循环系统性地提高修改分子的效度和质量。",
+            "evidence": "AgentDrug designed a nested refinement loop to systematically improve both the validity and quality of the modified mole"
+          }
+        ],
+        "references": [],
+        "figures": [],
+        "section_map": [
+          {
+            "section": "Abstract",
+            "claims": [
+              "AgentDrug 通过嵌套细化循环显著提高分子编辑准确性"
+            ]
+          },
+          {
+            "section": "Introduction",
+            "claims": [
+              "ChatDrug 的通用反馈导致 LLM 仅向目标细化且未解决分子幻觉"
+            ]
+          },
+          {
+            "section": "Methodology",
+            "claims": [
+              "内循环使用化学信息学工具包验证结构，外循环提供梯度信号引导编辑"
+            ]
+          }
+        ],
+        "gaps": [
+          {
+            "gap_type": "capability",
+            "statement": "先前方法未解决 LLM 产生无效分子结构的分子幻觉问题。",
+            "evidence": "the method does not address molecular hallucination (Guo et al., 2023), where LLMs produce invalid molecular structures"
+          }
+        ],
+        "open_problems": [],
+        "delta_claims": [
+          {
+            "statement": "AgentDrug 在 6 个单属性目标上进一步提高了准确性 28.9% (loose) 和 29.0% (strict)。",
+            "baseline": "previous methods",
+            "evidence": "With larger model Qwen-2.5-7B, AgentDrug further improves accuracy on 6 single-property objectives by 28.9% (loose) and "
+          }
+        ],
+        "negative_results": [],
+        "protocol_disclosure": [],
+        "citation_style": "",
+        "writing_style": "学术技术报告，强调方法论创新与实验对比",
+        "data_sources": [
+          "ZINC",
+          "ChEMBL",
+          "PubChem"
+        ],
+        "dedup_rule": "",
+        "split_spec": "",
+        "hyperparams": [
+          {
+            "param": "learning rate",
+            "value": "1",
+            "context": "2022) with a rank of 16 and a learning rate of 1"
+          },
+          {
+            "param": "number of iterations",
+            "value": "6",
+            "context": "ed.   ### **B.2 Impact of the number of iterations**   Table 6"
+          }
+        ],
+        "formal_def": "",
+        "old_forms": [
+          "straightforward prompting",
+          "conversational framework that guides LLMs in an iterative refinement loop"
+        ],
+        "method_limits": [
+          "generic nature of the feedback causes LLMs to refine molecules merely toward the objective",
+          "retrieval step is often disabled due to the high frequency of invalid outputs"
+        ],
+        "result_tables": [
+          {
+            "label": "Table 1: Definition of the six categories of ParseError",
+            "columns": [
+              "ParseError",
+              "Definition"
+            ],
+            "rows": [
+              [
+                "syntax",
+                "The SMILES string does not follow the<br>correct SMILES grammar, often due to<br>unrecognized characters orpatterns."
+              ],
+              [
+                "parentheses",
+                "The SMILES string contains unmatched<br>parentheses, disruptingbranchinglogic."
+              ],
+              [
+                "duplicate bond",
+                "The SMILES string contains a bond that<br>is defined more than once between the<br>samepair of atoms."
+              ],
+              [
+                "valence",
+                "The SMILES string contains an atom<br>that is assigned more bonds than its al-<br>lowed valence."
+              ],
+              [
+                "aromaticity",
+                "The SMILES string contains misused<br>aromatic atoms, e.g., marking a non-ring<br>atom as aromatic or causing kekuliza-<br>tion conflicts."
+              ],
+              [
+                "unclosed ring",
+                "The SMILES string contains a ring clo-<br>sure digit that appears only once, mean-<br>ingthe ringwas opened but not closed."
+              ]
+            ]
+          },
+          {
+            "label": "Table 2: The results (T = 3) on a set of single- and multi-property",
+            "columns": [
+              "_p_<br>_d_",
+              "",
+              "v",
+              "nilla",
+              "REI",
+              "VENT",
+              "Qwe<br>Ch",
+              "n2.5-3B<br>tDru",
+              "A",
+              "ntDru",
+              "Ae",
+              "tDru_†_",
+              "va",
+              "nilla",
+              "REI",
+              "VENT",
+              "Qwen<br>Cha",
+              "2.5-7B<br>Dru",
+              "A",
+              "ntDru",
+              "Ae",
+              "tDru_†_"
+            ],
+            "rows": [
+              [
+                "+LoP<br>l",
+                "",
+                "687",
+                "213",
+                "660",
+                "175",
+                "658",
+                "276",
+                "**741**",
+                "**430**",
+                "680",
+                "327",
+                "763",
+                "298",
+                "758",
+                "295",
+                "725",
+                "402",
+                "**870**",
+                "**717**",
+                "733",
+                "462"
+              ],
+              [
+                "g<br><br>s",
+                "",
+                ".<br>66.0",
+                ".<br>11.2",
+                ".<br>69.4",
+                ".<br>11.5",
+                ".<br>63.5",
+                ".<br>22.5",
+                "**.**<br>**72.5**",
+                "**.**<br>**37.7**",
+                ".<br>62.9",
+                ".<br>22.0",
+                ".<br>74.3",
+                ".<br>16.7",
+                ".<br>74.1",
+                ".<br>16.7",
+                ".<br>70.4",
+                ".<br>33.1",
+                "**.**<br>**84.4**",
+                "**.**<br>**66.2**",
+                ".<br>73.5",
+                ".<br>45.6"
+              ],
+              [
+                "-LogP<br>l<br>",
+                "",
+                "69.0<br>",
+                "12.4<br>",
+                "71.4<br>",
+                "16.1<br>",
+                "69.0<br>",
+                "26.6<br>",
+                "**79.0**<br>",
+                "**49.8**<br>",
+                "66.4<br>",
+                "28.2<br>",
+                "77.8<br>",
+                "28.8<br>",
+                "77.2<br>",
+                "27.8<br>",
+                "73.5<br>",
+                "41.2<br>",
+                "**85.8**<br>",
+                "**70.8**<br>",
+                "74.9<br>",
+                "49.1<br>"
+              ],
+              [
+                "s<br>+TPSA<br>l",
+                "",
+                "70.9<br>68.5",
+                "09.9<br>13.7",
+                "73.3<br>70.2",
+                "05.5<br>15.4",
+                "67.1<br>63.5",
+                "20.5<br>21.0",
+                "**75.8**<br>**76.6**",
+                "**40.5**<br>**46.4**",
+                "61.9<br>65.4",
+                "16.1<br>26.1",
+                "74.6<br>72.5",
+                "11.6<br>23.2",
+                "74.6<br>72.5",
+                "11.6<br>23.2",
+                "73.5<br>72.5",
+                "39.3<br>37.7",
+                "**83.0**<br>**79.4**",
+                "**63.5**<br>**57.9**",
+                "77.8<br>70.4",
+                "55.6<br>40.8"
+              ],
+              [
+                "-TPSA<br>l",
+                "",
+                ".<br>68.5",
+                ".<br>10.6",
+                ".<br>69.2",
+                ".<br>11.1",
+                ".<br>66.9",
+                ".<br>23.7",
+                "**.**<br>**74.3**",
+                "**.**<br>**39.0**",
+                ".<br>64.1",
+                ".<br>21.8",
+                ".<br>73.8",
+                ".<br>11.8",
+                ".<br>73.5",
+                ".<br>11.4",
+                ".<br>73.5",
+                ".<br>36.8",
+                "**.**<br>**86.2**",
+                "**.**<br>**69.8**",
+                ".<br>77.2",
+                ".<br>52.5"
+              ],
+              [
+                "s",
+                "",
+                "69.2",
+                "06.2",
+                "71.7",
+                "07.2",
+                "65.8",
+                "22.7",
+                "**76.9**",
+                "**38.8**",
+                "65.4",
+                "23.9",
+                "72.5",
+                "04.4",
+                "71.9",
+                "04.3",
+                "70.7",
+                "31.5",
+                "**82.3**",
+                "**63.4**",
+                "73.8",
+                "45.8"
+              ],
+              [
+                "+QED<br>l",
+                "",
+                "68.7",
+                "11.3",
+                "70.2",
+                "13.3",
+                "70.2",
+                "29.1",
+                "**78.7**",
+                "**48.8**",
+                "68.5",
+                "31.5",
+                "76.6",
+                "18.8",
+                "76.3",
+                "18.3",
+                "71.7",
+                "33.0",
+                "**83.7**",
+                "**65.7**",
+                "77.5",
+                "54.7"
+              ],
+              [
+                "s",
+                "",
+                "70.7",
+                "02.5",
+                "70.2",
+                "04.2",
+                "66.2",
+                "10.9",
+                "**73.5**",
+                "**23.2**",
+                "64.7",
+                "12.3",
+                "79.0",
+                "05.1",
+                "78.4",
+                "04.3",
+                "74.1",
+                "20.4",
+                "**80.0**",
+                "**48.0**",
+                "78.1",
+                "41.0"
+              ],
+              [
+                "-QED<br>l",
+                "",
+                "73.5<br>",
+                "23.9<br>",
+                "72.2<br>",
+                "22.0<br>",
+                "68.0<br>",
+                "27.2<br>",
+                "**80.0**<br>",
+                "**52.4**<br>",
+                "68.0<br>",
+                "34.4<br>",
+                "76.9<br>",
+                "28.5<br>",
+                "76.6<br>",
+                "28.4<br>",
+                "76.9<br>",
+                "49.6<br>",
+                "**88.5**<br>",
+                "**76.5**<br>",
+                "78.7<br>",
+                "57.5<br>"
+              ],
+              [
+                "s",
+                "",
+                "71.2",
+                "08.2",
+                "69.9",
+                "05.9",
+                "66.7",
+                "16.0",
+                "**75.2**",
+                "**37.6**",
+                "66.4",
+                "26.9",
+                "77.5",
+                "13.2",
+                "77.2",
+                "13.1",
+                "71.4",
+                "33.9",
+                "**84.4**",
+                "**67.5**",
+                "74.3",
+                "47.2"
+              ],
+              [
+                "Average<br>l<br>",
+                "",
+                "69.5<br>",
+                "15.5<br>",
+                "69.9<br>",
+                "15.9<br>",
+                "67.2<br>",
+                "25.9<br>",
+                "**77.1**<br>",
+                "**46.6**<br>",
+                "66.7<br>",
+                "29.1<br>",
+                "75.6<br>",
+                "23.5<br>",
+                "75.3<br>",
+                "23.1<br>",
+                "73.4<br>",
+                "39.8<br>",
+                "**85.1**<br>",
+                "**68.7**<br>",
+                "75.3<br>",
+                "50.1<br>"
+              ],
+              [
+                "s<br>+LogP+TPSA l<br>",
+                "l<br>",
+                "69.2<br>67.1<br>",
+                "07.8<br>03.4<br>",
+                "70.3<br>66.4<br>",
+                "07.3<br>06.3<br>",
+                "65.5<br>66.2<br>",
+                "18.9<br>16.9<br>",
+                "**74.4**<br>**69.0**<br>",
+                "**35.7**<br>**25.5**<br>",
+                "63.8<br>63.9<br>",
+                "20.0<br>18.2<br>",
+                "74.5<br>72.7<br>",
+                "11.9<br>05.1<br>",
+                "74.2<br>72.2<br>",
+                "11.7<br>05.0<br>",
+                "71.0<br>69.7<br>",
+                "30.9<br>26.8<br>",
+                "**81.7**<br>**78.1**<br>",
+                "**59.9**<br>**49.2**<br>",
+                "74.2<br>72.7<br>",
+                "45.1<br>43.6<br>"
+              ],
+              [
+                "s",
+                "s",
+                "68.0",
+                "03.4",
+                "68.0",
+                "04.4",
+                "65.6",
+                "18.7",
+                "**69.4**",
+                "**24.3**",
+                "63.3",
+                "17.7",
+                "71.2",
+                "04.6",
+                "70.9",
+                "04.6",
+                "66.7",
+                "22.0",
+                "**81.3**",
+                "**53.3**",
+                "69.9",
+                "37.8"
+              ],
+              [
+                "+LogP-TPSA l",
+                "l",
+                "69.0",
+                "04.8",
+                "67.6",
+                "05.7",
+                "64.9",
+                "10.1",
+                "**69.9**",
+                "**14.7**",
+                "64.5",
+                "13.6",
+                "79.0",
+                "09.5",
+                "78.4",
+                "09.4",
+                "74.3",
+                "18.6",
+                "**81.3**",
+                "**27.2**",
+                "76.9",
+                "22.3"
+              ],
+              [
+                "s<br>",
+                "s <br>",
+                "69.7<br>",
+                "03.1<br>",
+                "69.9<br>",
+                "03.5<br>",
+                "62.7<br>",
+                "05.3<br>",
+                "**70.9**<br>",
+                "**08.2**<br>",
+                "62.5<br>",
+                "06.6<br>",
+                "72.7<br>",
+                "01.8<br>",
+                "71.9<br>",
+                "01.8<br>",
+                "73.0<br>",
+                "10.6<br>",
+                "**80.3**<br>",
+                "**16.1**<br>",
+                "73.8<br>",
+                "12.9<br>"
+              ],
+              [
+                "-LogP+TPSA l<br>s",
+                "l<br>s",
+                "69.0<br>673",
+                "04.8<br>027",
+                "67.8<br>707",
+                "07.5<br>035",
+                "68.0<br>639",
+                "16.7<br>105",
+                "**69.9**<br>**71.9**",
+                "**25.9**<br>**23.7**",
+                "65.6<br>667",
+                "19.3<br>180",
+                "78.7<br>766",
+                "26.0<br>134",
+                "78.7<br>766",
+                "26.0<br>134",
+                "72.7<br>678",
+                "39.6<br>258",
+                "**80.0**<br>**77.5**",
+                "**56.0**<br>**50.4**",
+                "76.9<br>725",
+                "52.3<br>420"
+              ],
+              [
+                "<br>-LogP-TPSA l",
+                "<br>l",
+                ".<br> 66.9",
+                ".<br>03.3",
+                ".<br>**70.4**",
+                ".<br>03.2",
+                ".<br>66.7",
+                ".<br>04.3",
+                "70.4",
+                "**10.2**",
+                ".<br>63.7",
+                ".<br>04.8",
+                ".<br>75.8",
+                ".<br>03.0",
+                ".<br>75.8",
+                ".<br>03.0",
+                ".<br>72.7",
+                ".<br>05.1",
+                "**84.0**",
+                "**14.7**",
+                ".<br>77.5",
+                ".<br>12.0"
+              ],
+              [
+                "s",
+                "s",
+                "67.8",
+                "00.3",
+                "70.4",
+                "00.0",
+                "64.5",
+                "01.3",
+                "**74.9**",
+                "**02.3**",
+                "66.7",
+                "01.3",
+                "76.6",
+                "00.4",
+                "76.3",
+                "00.4",
+                "77.2",
+                "02.3",
+                "**83.7**",
+                "**07.1**",
+                "77.2",
+                "04.3"
+              ],
+              [
+                "+LP+QED<br>",
+                "l",
+                "662",
+                "076",
+                "694",
+                "090",
+                "651",
+                "121",
+                "**714**",
+                "**250**",
+                "651",
+                "186",
+                "749",
+                "064",
+                "743",
+                "063",
+                "738",
+                "310",
+                "**797**",
+                "**558**",
+                "763",
+                "508"
+              ],
+              [
+                "og <br> <br>",
+                "<br>",
+                ".<br>",
+                ".<br>",
+                ".<br>",
+                ".<br>",
+                ".<br>",
+                ".<br>",
+                "**.**<br>",
+                "**.**<br>",
+                ".<br>",
+                ".<br>",
+                ".<br>",
+                ".<br>",
+                ".<br>",
+                ".<br>",
+                ".<br>",
+                ".<br>",
+                "**.**<br>",
+                "**.**<br>",
+                ".<br>",
+                ".<br>"
+              ],
+              [
+                "s",
+                "s",
+                "66.9",
+                "01.0",
+                "**68.0**",
+                "01.0",
+                "65.6",
+                "06.2",
+                "68.0",
+                "**16.3**",
+                "65.8",
+                "09.2",
+                "72.5",
+                "01.1",
+                "72.2",
+                "01.1",
+                "71.9",
+                "14.0",
+                "**78.1**",
+                "**38.3**",
+                "74.1",
+                "33.0"
+              ],
+              [
+                "+LogP-QED<br>l<br>",
+                "l<br>",
+                "71.2<br>",
+                "15.3<br>",
+                "68.0<br>",
+                "11.9<br>",
+                "66.2<br>",
+                "16.6<br>",
+                "**71.9**<br>",
+                "**20.5**<br>",
+                "66.9<br>",
+                "16.7<br>",
+                "75.5<br>",
+                "13.2<br>",
+                "75.2<br>",
+                "13.2<br>",
+                "73.8<br>",
+                "20.3<br>",
+                "**84.7**<br>",
+                "**25.4**<br>",
+                "75.2<br>",
+                "16.5<br>"
+              ],
+              [
+                "s",
+                "s",
+                "67.6",
+                "04.1",
+                "**69.4**",
+                "04.5",
+                "63.1",
+                "04.7",
+                "68.0",
+                "**09.5**",
+                "62.9",
+                "06.6",
+                "74.1",
+                "**08.2**",
+                "73.8",
+                "08.1",
+                "71.4",
+                "03.9",
+                "**79.0**",
+                "06.3",
+                "74.6",
+                "05.2"
+              ],
+              [
+                "-LogP+QED<br>l",
+                "l",
+                "67.6",
+                "03.4",
+                "70.4",
+                "04.9",
+                "66.7",
+                "13.3",
+                "**71.4**",
+                "**23.9**",
+                "66.4",
+                "17.6",
+                "76.9",
+                "10.0",
+                "76.3",
+                "09.2",
+                "74.1",
+                "33.0",
+                "**84.0**",
+                "**61.3**",
+                "76.6",
+                "51.3"
+              ],
+              [
+                "<br><br>",
+                "s <br>",
+                ".<br>",
+                ".<br>",
+                "**.**<br>",
+                ".<br>",
+                ".<br>",
+                ".<br>",
+                ".<br>",
+                "**.**<br>",
+                ".<br>",
+                ".<br>",
+                ".<br>",
+                ".<br>",
+                ".<br>",
+                ".<br>",
+                ".<br>",
+                ".<br>",
+                ".<br>",
+                ".<br>",
+                "**.**<br>",
+                "**.**<br>"
+              ],
+              [
+                "-LogP-QED<br>l",
+                "l",
+                "**71.9**",
+                "08.6",
+                "71.4",
+                "09.3",
+                "67.1",
+                "09.7",
+                "71.4",
+                "**10.4**",
+                "67.1",
+                "09.1",
+                "79.4",
+                "19.1",
+                "78.7",
+                "18.9",
+                "75.8",
+                "19.7",
+                "**85.1**",
+                "**24.3**",
+                "79.4",
+                "19.1"
+              ],
+              [
+                "s",
+                "s",
+                "**717**",
+                "**036**",
+                "714",
+                "011",
+                "658",
+                "010",
+                "690",
+                "024",
+                "664",
+                "033",
+                "772",
+                "035",
+                "769",
+                "035",
+                "743",
+                "**056**",
+                "**810**",
+                "049",
+                "769",
+                "050"
+              ],
+              [
+                "<br>Average<br>l<br>s",
+                "<br>l <br>s",
+                "**.**<br> 68.6<br> 68.5",
+                "**.**<br>06.4<br>02.5",
+                ".<br>68.9<br>69.9",
+                ".<br>07.2<br>02.4",
+                ".<br>66.4<br>64.6",
+                ".<br>12.5<br>06.9",
+                ".<br>**70.7**<br>**70.4**",
+                ".<br>**19.5**<br>**12.2**",
+                ".<br>65.4<br>65.2",
+                ".<br>14.7<br>08.7",
+                ".<br>76.6<br>74.9",
+                ".<br>11.5<br>04.2",
+                ".<br>76.2<br>74.6",
+                ".<br>11.4<br>04.1",
+                ".<br>73.4<br>72.1",
+                "**.**<br>24.3<br>12.8",
+                "**.**<br>**82.1**<br>**79.8**",
+                ".<br>**39.2**<br>**26.0**",
+                ".<br>76.4<br>74.9",
+                ".<br>33.5<br>22.1"
+              ],
+              [
+                "+LP<br>",
+                "",
+                "763",
+                "401",
+                "733",
+                "329",
+                "760",
+                "483",
+                "**858**",
+                "**691**",
+                "766",
+                "529",
+                "820",
+                "574",
+                "814",
+                "569",
+                "837",
+                "674",
+                "**948**",
+                "**891**",
+                "826",
+                "653"
+              ],
+              [
+                "og<br>",
+                "",
+                ".<br>",
+                ".<br>",
+                ".<br>",
+                ".<br>",
+                ".<br>",
+                ".<br>",
+                "**.**<br>",
+                "**.**<br>",
+                ".<br>",
+                ".<br>",
+                ".<br>",
+                ".<br>",
+                ".<br>",
+                ".<br>",
+                ".<br>",
+                ".<br>",
+                "**.**<br>",
+                "**.**<br>",
+                ".<br>",
+                ".<br>"
+              ]
+            ]
+          },
+          {
+            "label": "Table 3: The results (T = 3) on a set of single- and multiproperty",
+            "columns": [
+              "_p_<br>_d_",
+              "ChatDrug",
+              "Qwen2.5-3<br>AgentDrug",
+              "B<br>AgentDrug_†_",
+              "ChatDrug",
+              "Qwen2.5-7<br>AgentDrug",
+              "B<br>AgentDrug_†_"
+            ],
+            "rows": [
+              [
+                "+LoP<br>l",
+                "537",
+                "547",
+                "**552**",
+                "562",
+                "**602**",
+                "571"
+              ],
+              [
+                "g<br><br>s",
+                ".<br>51.6",
+                ".<br>49.5",
+                "**.**<br>**53.7**",
+                ".<br>46.1",
+                "**.**<br>**53.1**",
+                ".<br>47.3"
+              ],
+              [
+                "-LogP<br>l<br>",
+                "53.6<br>",
+                "**57.6**<br>",
+                "55.2<br>",
+                "53.9<br>",
+                "**59.6**<br>",
+                "58.0<br>"
+              ],
+              [
+                "s<br>+TPSA<br>l",
+                "48.2<br>48.8",
+                "**53.5**<br>**56.5**",
+                "47.3<br>54.0",
+                "46.5<br>55.1",
+                "**50.5**<br>**56.8**",
+                "44.9<br>52.1"
+              ],
+              [
+                "s",
+                "495",
+                "522",
+                "**530**",
+                "512",
+                "**567**",
+                "509"
+              ],
+              [
+                "-TPSA<br>l",
+                ".<br>44.7",
+                ".<br>**50.9**",
+                "**.**<br>48.3",
+                ".<br>45.1",
+                "**.**<br>**49.7**",
+                ".<br>45.6"
+              ],
+              [
+                "s",
+                "42.8",
+                "**46.5**",
+                "40.7",
+                "39.6",
+                "**45.2**",
+                "40.2"
+              ],
+              [
+                "+QED<br>l",
+                "48.8",
+                "**56.6**",
+                "51.1",
+                "47.6",
+                "**56.6**",
+                "51.0"
+              ],
+              [
+                "s",
+                "46.3",
+                "**55.3**",
+                "50.6",
+                "42.1",
+                "**56.6**",
+                "44.9"
+              ],
+              [
+                "-QED<br>l",
+                "542",
+                "**63.0**",
+                "555",
+                "551",
+                "**56.4**",
+                "562"
+              ],
+              [
+                "s",
+                ".<br>45.6",
+                "**56.3**",
+                ".<br>47.5",
+                ".<br>42.5",
+                "**48.5**",
+                ".<br>40.1"
+              ],
+              [
+                "Average<br>l",
+                "50.6",
+                "**56.6**",
+                "53.2",
+                "52.2",
+                "**56.6**",
+                "53.3"
+              ],
+              [
+                "s",
+                "47.3",
+                "**52.2**",
+                "48.8",
+                "44.7",
+                "**51.8**",
+                "44.7"
+              ],
+              [
+                "+LogP+TPSA l l",
+                "43.3",
+                "**53.2**",
+                "44.9",
+                "36.7",
+                "**45.3**",
+                "41.0"
+              ],
+              [
+                "s s",
+                "37.9",
+                "**41.2**",
+                "40.3",
+                "30.6",
+                "**41.5**",
+                "36.8"
+              ],
+              [
+                "+LogP-TPSA l l",
+                "46.4",
+                "**58.3**",
+                "47.6",
+                "45.2",
+                "**50.7**",
+                "46.0"
+              ],
+              [
+                "s s",
+                "461",
+                "**488**",
+                "436",
+                "423",
+                "**488**",
+                "435"
+              ],
+              [
+                "<br>-LogP+TPSA l l",
+                ".<br>49.7",
+                "**.**<br>**52.3**",
+                ".<br>46.5",
+                ".<br>51.8",
+                "**.**<br>**54.4**",
+                ".<br>50.6"
+              ],
+              [
+                "s s",
+                "45.5",
+                "**49.3**",
+                "43.4",
+                "38.5",
+                "**47.9**",
+                "40.1"
+              ],
+              [
+                "-LogP-TPSA l l",
+                "41.1",
+                "**51.6**",
+                "40.9",
+                "42.3",
+                "**47.5**",
+                "44.5"
+              ],
+              [
+                "s s",
+                "46.1",
+                "**47.3**",
+                "44.9",
+                "40.1",
+                "**49.8**",
+                "41.8"
+              ],
+              [
+                "+LogP+QED l l",
+                "45.9<br>",
+                "**53.5**<br>",
+                "47.7<br>",
+                "41.0<br>",
+                "**52.2**<br>",
+                "43.7<br>"
+              ],
+              [
+                "s s",
+                "43.3",
+                "**50.5**",
+                "48.2",
+                "43.7",
+                "**54.6**",
+                "42.6"
+              ],
+              [
+                "+LogP-QED l l<br>",
+                "50.2<br>",
+                "**58.7**<br>",
+                "50.6<br>",
+                "47.2<br>",
+                "**51.2**<br>",
+                "49.1<br>"
+              ],
+              [
+                "s s",
+                "44.8",
+                "**50.5**",
+                "43.3",
+                "41.6",
+                "**47.2**",
+                "45.1"
+              ],
+              [
+                "-LogP+QED l l",
+                "42.7",
+                "**52.1**",
+                "46.3",
+                "40.1",
+                "**46.9**",
+                "42.0"
+              ],
+              [
+                "s s<br>-LogP-QED l l<br>s s",
+                ".<br>44.8<br>**470**",
+                ".<br>**52.6**<br>431",
+                "**.**<br>46.4<br>440",
+                ".<br>48.7<br>411",
+                "**.**<br>**50.9**<br>**465**",
+                ".<br>50.7<br>429"
+              ],
+              [
+                "<br>Average<br>l l",
+                "**.**<br>45.5",
+                ".<br>**54.0**",
+                ".<br>46.4",
+                ".<br>44.1",
+                "**.**<br>**49.9**",
+                ".<br>46.0"
+              ],
+              [
+                "s s",
+                "44.7",
+                "**47.6**",
+                "45.1",
+                "40.5",
+                "**48.9**",
+                "42.3"
+              ],
+              [
+                "_p_<br>_d_",
+                "",
+                "Llama-3.1-8",
+                "B",
+                "",
+                "Llama-3.1-7",
+                "0B"
+              ]
+            ]
+          }
+        ]
+      },
+      "rule_filled": [
+        "data_sources",
+        "hyperparams",
+        "result_tables"
+      ]
+    },
+    "E2_algorithm": {
+      "ok": true,
+      "attempts": 1,
+      "issues": [],
+      "fatal": [],
+      "n_fields": 1,
+      "data": {
+        "algorithms": [
+          {
+            "name": "AgentDrug",
+            "task_type": "molecule_optimization",
+            "problems_solved": [],
+            "mechanism": "采用嵌套精炼循环：内环利用RDKit检测SMILES语法错误（ParseError）并反馈给LLM以修正分子有效性；外环结合通用反馈与基于梯度的目标信号（gradient signal）引导LLM优化分子属性。同时从数据库检索相似且满足目标的分子作为上下文示例，增强编辑准确性。",
+            "why_it_works": "",
+            "applicable_to": [],
+            "limitations": [
+              "依赖外部化学信息学工具包（RDKit）进行验证",
+              "需要预构建的分子数据库用于检索"
+            ],
+            "arch_modules": [
+              {
+                "name": "LLM Agent",
+                "role": "核心推理与生成引擎，执行分子编辑和修正",
+                "input": "提示词、反馈信号、上下文示例",
+                "output": "修改后的分子SMILES"
+              },
+              {
+                "name": "Cheminformatics Toolkit",
+                "role": "分子有效性验证与错误诊断",
+                "input": "分子SMILES",
+                "output": "有效性状态或ParseError详情"
+              }
+            ],
+            "why_not_other": "ChatDrug仅使用通用反馈，无法有效解决分子幻觉且检索步骤常因无效输出被禁用；AgentDrug通过早期强制有效性和显式梯度信号，使检索更可靠且编辑更精准。",
+            "key_challenge": "解决LLM在分子编辑中的“分子幻觉”（生成无效结构）问题，并克服简单提示法准确率有限的问题，同时保持分子结构相似性约束。",
+            "modules": [
+              {
+                "name": "Inner Loop",
+                "mechanism": "使用RDKit解析SMILES，检测并提取ParseError（如语法、括号、价态等错误），将错误信息作为反馈供LLM迭代修正，直至分子有效。",
+                "formula": "",
+                "inputs": "LLM生成的初始修改分子SMILES",
+                "outputs": "有效的分子SMILES或ParseError反馈",
+                "code_symbols": [],
+                "tools": [],
+                "is_novel_component": false,
+                "component_role": ""
+              },
+              {
+                "name": "Outer Loop",
+                "mechanism": "在分子有效后，提供通用反馈和显式梯度信号（∇p），指导LLM向目标属性方向编辑分子。",
+                "formula": "",
+                "inputs": "有效分子SMILES、目标属性阈值、梯度信号",
+                "outputs": "优化后的分子SMILES",
+                "code_symbols": [],
+                "tools": [],
+                "is_novel_component": false,
+                "component_role": ""
+              },
+              {
+                "name": "Retrieval Module",
+                "mechanism": "基于两个标准从数据库检索分子：(1)与修改后分子的相似度；(2)满足编辑目标。检索结果作为in-context examples引导LLM。",
+                "formula": "",
+                "inputs": "当前修改分子、编辑目标",
+                "outputs": "作为上下文示例的参考分子列表",
+                "code_symbols": [],
+                "tools": [],
+                "is_novel_component": false,
+                "component_role": ""
+              }
+            ],
+            "assumptions": [],
+            "novelty_basis": []
+          }
+        ]
+      },
+      "rule_filled": []
+    }
+  },
+  "paper_type": {
+    "paper_type": "method",
+    "confidence": 0.75,
+    "method": "llm",
+    "margin": 1,
+    "uncertain": true,
+    "scores": {
+      "method": 2,
+      "dataset_benchmark": 1,
+      "theory": 0,
+      "survey": 0.0,
+      "system_tool": 3,
+      "application": 0
+    },
+    "stages": [
+      "E1_paper",
+      "E2_algorithm",
+      "E3_benchmark",
+      "E4_values",
+      "E5_relations",
+      "E6_lineage"
+    ],
+    "focus": "重点抽算法模块与机理；基准只抽本文实际评测的"
+  },
+  "slice_meta": {
+    "source": "fallback",
+    "n_blocks": 0,
+    "kinds": {}
+  },
+  "n_ast_symbols": 0,
+  "guide_chars": 278,
+  "domain_calibrated": "",
+  "model_results": {
+    "table": 0,
+    "llm_fallback": 0,
+    "deduplicated": 0,
+    "rows": []
+  },
+  "application_hints": {
+    "tools_formulas": [],
+    "note": "节点化留给应用层任务（复现/生成论文时按任务构建）"
+  },
+  "lineage": {
+    "all": [],
+    "subclass_of": [],
+    "compared_only": []
+  },
+  "cross_check": [],
+  "paradigm": {
+    "ner": {
+      "algorithms": [
+        {
+          "text": "AgentDrug",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 4,
+          "block": "paper"
+        },
+        {
+          "text": "Zero-Shot",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 74,
+          "block": "paper"
+        },
+        {
+          "text": "USA",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 177,
+          "block": "paper"
+        },
+        {
+          "text": "LLMs",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 352,
+          "block": "paper"
+        },
+        {
+          "text": "LLM",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 817,
+          "block": "paper"
+        },
+        {
+          "text": "ParseError",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 2117,
+          "block": "paper"
+        },
+        {
+          "text": "ChatDrug",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 2144,
+          "block": "paper"
+        },
+        {
+          "text": "SMILES",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 5655,
+          "block": "paper"
+        },
+        {
+          "text": "RDKit",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 7799,
+          "block": "algorithm"
+        },
+        {
+          "text": "REI",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 8708,
+          "block": "algorithm"
+        },
+        {
+          "text": "VENT",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 8712,
+          "block": "algorithm"
+        },
+        {
+          "text": "LoP",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 9134,
+          "block": "algorithm"
+        },
+        {
+          "text": "LogP",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 9489,
+          "block": "algorithm"
+        },
+        {
+          "text": "TPSA",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 9708,
+          "block": "algorithm"
+        },
+        {
+          "text": "QED",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 10481,
+          "block": "algorithm"
+        },
+        {
+          "text": "LogP-TPSA",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 11801,
+          "block": "algorithm"
+        }
+      ],
+      "benchmarks": [],
+      "code_symbols": [],
+      "metrics": [],
+      "tables": [
+        {
+          "text": "Table 1",
+          "type": "TableRef",
+          "source": "surface_pattern",
+          "offset": 6095,
+          "block": "algorithm"
+        },
+        {
+          "text": "Table 2",
+          "type": "TableRef",
+          "source": "surface_pattern",
+          "offset": 8572,
+          "block": "algorithm"
+        }
+      ]
+    },
+    "canonicalization": {
+      "canonical_map": {
+        "algorithm:AgentDrug": {
+          "canonical": "AgentDrug",
+          "node_id": "",
+          "match": "new",
+          "score": 0.0,
+          "type": "Algorithm"
+        }
+      },
+      "alias_groups": {},
+      "n_exact": 0,
+      "n_fuzzy": 0,
+      "n_new": 1,
+      "n_ungrounded_code": 0
+    },
+    "relations": {
+      "grounded": [],
+      "ungrounded": [],
+      "n": 0
+    },
+    "modules": {
+      "chains": [
+        {
+          "algorithm": "AgentDrug",
+          "modules": [
+            {
+              "step_order": 1,
+              "name": "Inner Loop",
+              "depends_on": "",
+              "data_flow": "LLM生成的初始修改分子SMILES",
+              "inputs": "LLM生成的初始修改分子SMILES",
+              "outputs": "有效的分子SMILES或ParseError反馈",
+              "goal": "使用RDKit解析SMILES，检测并提取ParseError（如语法、括号、价态等错误），将错误信息作为反馈供LLM迭代修正，直至分子有效。",
+              "formula": "",
+              "code_symbols": [],
+              "code_aligned": [],
+              "code_alignment_rate": 0.0
+            },
+            {
+              "step_order": 2,
+              "name": "Outer Loop",
+              "depends_on": "Inner Loop",
+              "data_flow": "有效的分子SMILES或ParseError反馈 -> 有效分子SMILES、目标属性阈值、梯度信号",
+              "inputs": "有效分子SMILES、目标属性阈值、梯度信号",
+              "outputs": "优化后的分子SMILES",
+              "goal": "在分子有效后，提供通用反馈和显式梯度信号（∇p），指导LLM向目标属性方向编辑分子。",
+              "formula": "",
+              "code_symbols": [],
+              "code_aligned": [],
+              "code_alignment_rate": 0.0
+            },
+            {
+              "step_order": 3,
+              "name": "Retrieval Module",
+              "depends_on": "Outer Loop",
+              "data_flow": "优化后的分子SMILES -> 当前修改分子、编辑目标",
+              "inputs": "当前修改分子、编辑目标",
+              "outputs": "作为上下文示例的参考分子列表",
+              "goal": "基于两个标准从数据库检索分子：(1)与修改后分子的相似度；(2)满足编辑目标。检索结果作为in-context examples引导LLM。",
+              "formula": "",
+              "code_symbols": [],
+              "code_aligned": [],
+              "code_alignment_rate": 0.0
+            }
+          ],
+          "n_modules": 3,
+          "pipeline": "Inner Loop -> Outer Loop -> Retrieval Module"
+        }
+      ],
+      "n_algorithms": 1,
+      "n_modules": 3
+    },
+    "slot_audit": {
+      "checks": [
+        {
+          "slot": "Paper.research_question",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "slot": "Paper.problem_category",
+          "ok": true,
+          "detail": "molecule_optimization"
+        },
+        {
+          "slot": "Algorithm.mechanism",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "slot": "AlgorithmModule.inputs",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "slot": "AlgorithmModule.outputs",
+          "ok": true,
+          "detail": ""
+        }
+      ],
+      "n_ok": 5,
+      "n_total": 5,
+      "score": 1.0
+    },
+    "summary": {
+      "n_entity_candidates": 18,
+      "n_grounded_relations": 0,
+      "n_ungrounded_relations": 0,
+      "n_modules_tracked": 3,
+      "slot_score": 1.0
+    }
+  },
+  "ok": true,
+  "seconds": 63.58
+}

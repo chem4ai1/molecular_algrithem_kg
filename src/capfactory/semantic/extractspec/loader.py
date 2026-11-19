@@ -43,6 +43,9 @@ def _validate_stage(sp: StageSpec) -> List[str]:
                if s not in sp.slots and s not in builtin]
     if missing:
         errs.append(f"{sp.stage}: 模板占位未在 slots 声明 {missing}")
+    # 反向检查：声明了 paper_text 但模板没用 → LLM 看不到正文（我踩过）
+    if "paper_text" in sp.slots and "{paper_text}" not in sp.template:
+        errs.append(f"{sp.stage}: slots 声明 paper_text 但模板未使用（LLM 看不到正文）")
     try:
         from ..tbox_v4 import SEMANTIC_CLASSES
         from ..extraction.contracts import NON_LLM

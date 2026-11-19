@@ -1,0 +1,737 @@
+{
+  "arxiv_id": "2405.01155",
+  "stages": {
+    "E1_paper": {
+      "ok": true,
+      "attempts": 1,
+      "issues": [],
+      "fatal": [],
+      "n_fields": 30,
+      "data": {
+        "research_question": "如何设计一种生成模型，在生成分子时显式整合合成约束，以确保生成的分子具有可合成性？",
+        "problem_category": "molecule_generation",
+        "domain_code": "",
+        "why_hard": "现有基于原子或片段的生成模型不显式考虑合成可及性，且后续合成规划计算耗时，难以作为生成过程的奖励函数。",
+        "relation_hints": {
+          "related_papers": [],
+          "algorithms": [],
+          "benchmarks": []
+        },
+        "evidence": {
+          "research_question": "",
+          "why_hard": ""
+        },
+        "paradigm": "design",
+        "evidence_type": "simulational",
+        "evidence_norm": [
+          "synthetic accessibility scores",
+          "retrosynthesis tool assessment",
+          "sample diversity"
+        ],
+        "authors": [],
+        "abstract": "",
+        "claims": [
+          {
+            "statement": "SynFlowNet 通过以化学反应和可购试剂为动作空间，显式整合前向合成约束，生成可合成分子。",
+            "evidence": "we introduce SynFlowNet, a GFlowNet model whose action space uses chemical reactions and purchasable reactants to sequen"
+          },
+          {
+            "statement": "该方法在样本多样性方面相比基线模型有显著提升。",
+            "evidence": "motivate the choice of GFlowNets through considerable improvement in sample diversity compared to baselines."
+          }
+        ],
+        "references": [],
+        "figures": [],
+        "section_map": [
+          {
+            "section": "ABSTRACT",
+            "claims": [
+              "SynFlowNet uses chemical reactions and purchasable reactants to sequentially build new molecules",
+              "Incorporating forward synthesis as an explicit constraint bridges the gap between in silico generation and real world synthesis"
+            ]
+          },
+          {
+            "section": "1 INTRODUCTION",
+            "claims": [
+              "Most current de novo design models do not explicitly account for synthetic accessibility",
+              "Synthesis planning can take seconds to minutes, hampering its integration as a reward function"
+            ]
+          }
+        ],
+        "gaps": [
+          {
+            "gap_type": "capability",
+            "statement": "现有生成模型生成的分子往往在合成上不可及。",
+            "evidence": "they often produce synthetically inaccessible molecules"
+          },
+          {
+            "gap_type": "efficiency",
+            "statement": "计算机辅助合成规划耗时较长，阻碍其作为生成奖励函数的集成。",
+            "evidence": "it can take seconds to minutes to propose pathways, which hampers its integration as a reward function in the generation"
+          }
+        ],
+        "open_problems": [],
+        "delta_claims": [
+          {
+            "statement": "SynFlowNet 在样本多样性上优于基线模型。",
+            "baseline": "baselines",
+            "evidence": "considerable improvement in sample diversity compared to baselines"
+          }
+        ],
+        "negative_results": [],
+        "protocol_disclosure": [],
+        "citation_style": "",
+        "writing_style": "学术严谨，强调方法创新与实验验证的结合，使用被动语态和客观陈述。",
+        "data_sources": [
+          "ChEMBL",
+          "Enamine",
+          "PDB"
+        ],
+        "dedup_rule": "0.8<br>Tanimoto",
+        "split_spec": "",
+        "hyperparams": [
+          {
+            "param": "batch size",
+            "value": "100",
+            "context": "as conducted with the default batch size of 100"
+          },
+          {
+            "param": "batch size",
+            "value": "64",
+            "context": "parameters|Values| |---|---| |Batch size|64"
+          },
+          {
+            "param": "learning rate",
+            "value": "10",
+            "context": " |Graph transformer heads|2| |Learning rate (_PF_)|10"
+          },
+          {
+            "param": "learning rate",
+            "value": "10",
+            "context": "_PF_)|10<sup>_−_4</sup><br>| |Learning rate (_PB_)|10"
+          },
+          {
+            "param": "learning rate",
+            "value": "10",
+            "context": "_PB_)|10<sup>_−_4</sup><br>| |Learning rate (_Z_)|10"
+          },
+          {
+            "param": "batch size",
+            "value": "8",
+            "context": " reward, 8000 training steps, batch size 8"
+          }
+        ],
+        "formal_def": "",
+        "old_forms": [
+          "operate on SMILES strings",
+          "assemble molecules by composing atoms or molecular fragments into a graph"
+        ],
+        "method_limits": [
+          "leaving no guarantee that the sampled molecules can be synthesized",
+          "these heuristics and learned metrics are often oversimplified"
+        ],
+        "result_tables": [
+          {
+            "label": "Table 1, where we report top-k similarity and SA scores",
+            "columns": [
+              "Task",
+              "Reward (_↑_)",
+              "SA (_↓_)"
+            ],
+            "rows": [
+              [
+                "Aripiprazole rediscovery",
+                "0.90_±_0.00",
+                "2.19_±_0.00"
+              ],
+              [
+                "Celecoxib rediscovery",
+                "0.48_±_0.01",
+                "2.47_±_0.04"
+              ]
+            ]
+          },
+          {
+            "label": "Table 2 we compare a fixed, uniform backward policy to three versio",
+            "columns": [
+              "_PB_ policy",
+              "% of solved routes (train)",
+              "% of solved routes (test)",
+              "# of high reward modes from_PF_"
+            ],
+            "rows": [
+              [
+                "Uniform",
+                "11.0_±_3.7%",
+                "11.0_±_4.1%",
+                "47_,_515.0_±_11_,_264.7"
+              ],
+              [
+                "Free",
+                "67.3_±_3.7%",
+                "1.0_±_0.8%",
+                "6_,_754.3_±_4_,_980.1"
+              ],
+              [
+                "MaxLikelihood",
+                "99.3_±_0.5%",
+                "32.3_±_7.3%",
+                "37_,_708.2_±_13_,_992.6"
+              ],
+              [
+                "REINFORCE",
+                "100.0_±_0.0%",
+                "44.3_±_2.6%",
+                "55_,_387.6_±_28_,_886.3"
+              ]
+            ]
+          },
+          {
+            "label": "table_3",
+            "columns": [
+              "Hyperparameters",
+              "Values"
+            ],
+            "rows": [
+              [
+                "Batch size",
+                "64"
+              ],
+              [
+                "Number of GNN layers",
+                "4"
+              ],
+              [
+                "GNN node embedding size",
+                "128"
+              ],
+              [
+                "Graph transformer heads",
+                "2"
+              ],
+              [
+                "Learning rate (_PF_)",
+                "10<sup>_−_4</sup><br>"
+              ],
+              [
+                "Learning rate (_PB_)",
+                "10<sup>_−_4</sup><br>"
+              ],
+              [
+                "Learning rate (_Z_)",
+                "10<sup>_−_3</sup>"
+              ]
+            ]
+          }
+        ]
+      },
+      "rule_filled": [
+        "data_sources",
+        "dedup_rule",
+        "hyperparams",
+        "result_tables"
+      ]
+    },
+    "E2_algorithm": {
+      "ok": true,
+      "attempts": 1,
+      "issues": [],
+      "fatal": [],
+      "n_fields": 1,
+      "data": {
+        "algorithms": [
+          {
+            "name": "SynFlowNet",
+            "task_type": "molecule_generation",
+            "problems_solved": [],
+            "mechanism": "基于GFlowNet框架，动作空间由化学反应和可购买反应物组成。通过前向策略逐步构建分子，确保合成可行性。引入参数化反向策略，使用独立目标训练以避免反向轨迹偏离MDP状态空间，从而生成多样且新颖的分子。",
+            "why_it_works": "",
+            "applicable_to": [],
+            "limitations": [
+              "反向构建轨迹可能无法返回初始状态s0",
+              "反应编码在反向遍历MDP时存在挑战"
+            ],
+            "arch_modules": [
+              {
+                "name": "Graph Transformer",
+                "role": "编码器/骨干网络，处理分子图结构",
+                "input": "分子图",
+                "output": "状态嵌入"
+              },
+              {
+                "name": "MLP Heads",
+                "role": "解码器，预测动作logits",
+                "input": "状态嵌入",
+                "output": "动作概率分布"
+              }
+            ],
+            "why_not_other": "传统基于原子或片段的生成模型无法保证合成可行性；合成规划作为后处理步骤计算成本高，难以作为奖励函数集成；虚拟筛选合成空间计算不可行。",
+            "key_challenge": "在基于反应的MDP中，反向构建的轨迹缺乏保证能返回初始状态s0，导致反向策略训练困难。",
+            "modules": [
+              {
+                "name": "Forward Policy",
+                "mechanism": "参数化为图Transformer，处理当前分子状态并输出共享嵌入，通过MLP头预测不同动作类型的logits，采样动作以过渡到下一状态。",
+                "formula": "",
+                "inputs": "当前分子状态st",
+                "outputs": "动作at",
+                "code_symbols": [],
+                "tools": [],
+                "is_novel_component": false,
+                "component_role": ""
+              },
+              {
+                "name": "Backward Policy",
+                "mechanism": "独立于前向策略训练，旨在减少反向遍历MDP时退出定义状态空间（反应和BB集合）的概率，避免路径不终止于s0。",
+                "formula": "",
+                "inputs": "当前状态s",
+                "outputs": "父状态分布",
+                "code_symbols": [],
+                "tools": [],
+                "is_novel_component": false,
+                "component_role": ""
+              },
+              {
+                "name": "Building Block Sampling",
+                "mechanism": "使用Morgan指纹表示大量（最多200k）构建块，计算当前状态MLP输出与指纹归一化点积的概率，采样特定构建块。",
+                "formula": "",
+                "inputs": "当前状态嵌入, 构建块指纹",
+                "outputs": "选中的构建块",
+                "code_symbols": [],
+                "tools": [],
+                "is_novel_component": false,
+                "component_role": ""
+              }
+            ],
+            "assumptions": [],
+            "novelty_basis": []
+          }
+        ]
+      },
+      "rule_filled": []
+    }
+  },
+  "paper_type": {
+    "paper_type": "method",
+    "confidence": 1.0,
+    "method": "rule",
+    "margin": 2,
+    "uncertain": false,
+    "scores": {
+      "method": 2,
+      "dataset_benchmark": 0,
+      "theory": 0,
+      "survey": 0.0,
+      "system_tool": 0,
+      "application": 0
+    },
+    "stages": [
+      "E1_paper",
+      "E2_algorithm",
+      "E3_benchmark",
+      "E4_values",
+      "E5_relations",
+      "E6_lineage"
+    ],
+    "focus": "重点抽算法模块与机理；基准只抽本文实际评测的"
+  },
+  "slice_meta": {
+    "source": "fallback",
+    "n_blocks": 0,
+    "kinds": {}
+  },
+  "n_ast_symbols": 0,
+  "guide_chars": 278,
+  "domain_calibrated": "",
+  "model_results": {
+    "table": 0,
+    "llm_fallback": 0,
+    "deduplicated": 0,
+    "rows": []
+  },
+  "application_hints": {
+    "tools_formulas": [],
+    "note": "节点化留给应用层任务（复现/生成论文时按任务构建）"
+  },
+  "lineage": {
+    "all": [],
+    "subclass_of": [],
+    "compared_only": []
+  },
+  "cross_check": [],
+  "paradigm": {
+    "ner": {
+      "algorithms": [
+        {
+          "text": "ICLR",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 35,
+          "block": "paper"
+        },
+        {
+          "text": "SYNFLOWNET",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 49,
+          "block": "paper"
+        },
+        {
+          "text": "DESIGN",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 61,
+          "block": "paper"
+        },
+        {
+          "text": "DIVERSE",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 71,
+          "block": "paper"
+        },
+        {
+          "text": "NOVEL",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 83,
+          "block": "paper"
+        },
+        {
+          "text": "MOLECULES",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 89,
+          "block": "paper"
+        },
+        {
+          "text": "SYNTHESIS",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 104,
+          "block": "paper"
+        },
+        {
+          "text": "CONSTRAINTS",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 114,
+          "block": "paper"
+        },
+        {
+          "text": "ABSTRACT",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 588,
+          "block": "paper"
+        },
+        {
+          "text": "GFlowNet",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 847,
+          "block": "paper"
+        },
+        {
+          "text": "GFlowNets",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 1340,
+          "block": "paper"
+        },
+        {
+          "text": "MDP",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 1524,
+          "block": "paper"
+        },
+        {
+          "text": "INTRODUCTION",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 1930,
+          "block": "paper"
+        },
+        {
+          "text": "SMILES",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 2400,
+          "block": "paper"
+        },
+        {
+          "text": "CPU",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 3721,
+          "block": "paper"
+        },
+        {
+          "text": "DAG",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 4265,
+          "block": "paper"
+        },
+        {
+          "text": "MLP",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 4292,
+          "block": "paper"
+        },
+        {
+          "text": "AddFirstReactant",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 4296,
+          "block": "paper"
+        },
+        {
+          "text": "ReactUni",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 4320,
+          "block": "paper"
+        },
+        {
+          "text": "ReactBi",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 4336,
+          "block": "paper"
+        },
+        {
+          "text": "AddReactant",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 4348,
+          "block": "paper"
+        },
+        {
+          "text": "BckRemoveFirstReactant",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 4379,
+          "block": "paper"
+        },
+        {
+          "text": "BckReactUni",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 4409,
+          "block": "paper"
+        },
+        {
+          "text": "BckReactBi",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 4428,
+          "block": "paper"
+        },
+        {
+          "text": "BBs",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 5029,
+          "block": "paper"
+        },
+        {
+          "text": "BACKGROUND",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 8456,
+          "block": "algorithm"
+        },
+        {
+          "text": "RELATED",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 8471,
+          "block": "algorithm"
+        },
+        {
+          "text": "WORK",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 8479,
+          "block": "algorithm"
+        },
+        {
+          "text": "QED",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 10278,
+          "block": "algorithm"
+        },
+        {
+          "text": "PARAMETERIZED",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 10332,
+          "block": "algorithm"
+        },
+        {
+          "text": "BACKWARD",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 10346,
+          "block": "algorithm"
+        },
+        {
+          "text": "POLICY",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 10355,
+          "block": "algorithm"
+        },
+        {
+          "text": "GENERATIVE",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 11607,
+          "block": "algorithm"
+        },
+        {
+          "text": "MODELS",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 11618,
+          "block": "algorithm"
+        },
+        {
+          "text": "MOLECULE",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 11629,
+          "block": "algorithm"
+        },
+        {
+          "text": "VAEs",
+          "type": "MethodCandidate",
+          "source": "surface_pattern",
+          "offset": 11809,
+          "block": "algorithm"
+        }
+      ],
+      "benchmarks": [],
+      "code_symbols": [],
+      "metrics": [],
+      "tables": []
+    },
+    "canonicalization": {
+      "canonical_map": {
+        "algorithm:SynFlowNet": {
+          "canonical": "SynFlowNet",
+          "node_id": "",
+          "match": "new",
+          "score": 0.0,
+          "type": "Algorithm"
+        }
+      },
+      "alias_groups": {},
+      "n_exact": 0,
+      "n_fuzzy": 0,
+      "n_new": 1,
+      "n_ungrounded_code": 0
+    },
+    "relations": {
+      "grounded": [],
+      "ungrounded": [],
+      "n": 0
+    },
+    "modules": {
+      "chains": [
+        {
+          "algorithm": "SynFlowNet",
+          "modules": [
+            {
+              "step_order": 1,
+              "name": "Forward Policy",
+              "depends_on": "",
+              "data_flow": "当前分子状态st",
+              "inputs": "当前分子状态st",
+              "outputs": "动作at",
+              "goal": "参数化为图Transformer，处理当前分子状态并输出共享嵌入，通过MLP头预测不同动作类型的logits，采样动作以过渡到下一状态。",
+              "formula": "",
+              "code_symbols": [],
+              "code_aligned": [],
+              "code_alignment_rate": 0.0
+            },
+            {
+              "step_order": 2,
+              "name": "Backward Policy",
+              "depends_on": "Forward Policy",
+              "data_flow": "动作at -> 当前状态s",
+              "inputs": "当前状态s",
+              "outputs": "父状态分布",
+              "goal": "独立于前向策略训练，旨在减少反向遍历MDP时退出定义状态空间（反应和BB集合）的概率，避免路径不终止于s0。",
+              "formula": "",
+              "code_symbols": [],
+              "code_aligned": [],
+              "code_alignment_rate": 0.0
+            },
+            {
+              "step_order": 3,
+              "name": "Building Block Sampling",
+              "depends_on": "Backward Policy",
+              "data_flow": "父状态分布 -> 当前状态嵌入, 构建块指纹",
+              "inputs": "当前状态嵌入, 构建块指纹",
+              "outputs": "选中的构建块",
+              "goal": "使用Morgan指纹表示大量（最多200k）构建块，计算当前状态MLP输出与指纹归一化点积的概率，采样特定构建块。",
+              "formula": "",
+              "code_symbols": [],
+              "code_aligned": [],
+              "code_alignment_rate": 0.0
+            }
+          ],
+          "n_modules": 3,
+          "pipeline": "Forward Policy -> Backward Policy -> Building Block Sampling"
+        }
+      ],
+      "n_algorithms": 1,
+      "n_modules": 3
+    },
+    "slot_audit": {
+      "checks": [
+        {
+          "slot": "Paper.research_question",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "slot": "Paper.problem_category",
+          "ok": true,
+          "detail": "molecule_generation"
+        },
+        {
+          "slot": "Algorithm.mechanism",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "slot": "AlgorithmModule.inputs",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "slot": "AlgorithmModule.outputs",
+          "ok": true,
+          "detail": ""
+        }
+      ],
+      "n_ok": 5,
+      "n_total": 5,
+      "score": 1.0
+    },
+    "summary": {
+      "n_entity_candidates": 36,
+      "n_grounded_relations": 0,
+      "n_ungrounded_relations": 0,
+      "n_modules_tracked": 3,
+      "slot_score": 1.0
+    }
+  },
+  "ok": true,
+  "seconds": 56.88
+}

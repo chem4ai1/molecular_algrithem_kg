@@ -1,0 +1,4 @@
+2510.14455: ok=True e1字段=30 claims=2 limits=3 old=1 arch=1 rule=4
+2405.01155: ok=True e1字段=30 claims=2 limits=2 old=2 arch=2 rule=4
+2410.13147: ok=True e1字段=30 claims=2 limits=2 old=2 arch=2 rule=3
+1911.00598: ok=True e1字段=30 claims=2 limits=1 old=1 arch=1 rule=1
