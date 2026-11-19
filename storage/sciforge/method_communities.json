@@ -1,0 +1,273 @@
+{
+  "algorithm": "leiden+method_family+LLM_title",
+  "n_papers": 52,
+  "n_communities": 4,
+  "communities": [
+    {
+      "id": "method:community:0",
+      "title": "社区:molecule_optimization",
+      "summary": "从 17 篇论文自动发现的社区，主导问题 molecule_optimization，证据 experimental",
+      "findings": [
+        {
+          "summary": "证据类型: experimental(12), derivational(1)",
+          "explanation": "在 17 篇社区成员中统计"
+        },
+        {
+          "summary": "领域: D0(1)",
+          "explanation": "在 17 篇社区成员中统计"
+        },
+        {
+          "summary": "问题类别: molecule_optimization(16)",
+          "explanation": "在 17 篇社区成员中统计"
+        },
+        {
+          "summary": "指标: QED(3), accuracy(1), success rate(1)",
+          "explanation": "在 17 篇社区成员中统计"
+        }
+      ],
+      "rating": 0.792,
+      "rating_explanation": "n=17, 主导证据纯度=0.71",
+      "n_papers": 17,
+      "members": [
+        "paper:2410.13147",
+        "paper:2503.03503",
+        "paper:2505.20820",
+        "paper:2508.14111",
+        "paper:2510.14455",
+        "paper:2509.16084",
+        "paper:2512.20333",
+        "paper:2603.05900",
+        "paper:2603.24382",
+        "paper:2604.07669",
+        "paper:2604.23061",
+        "paper:2605.10831",
+        "paper:2607.00531",
+        "paper:2607.02944",
+        "paper:2609.34491",
+        "paper:2609.35336",
+        "paper:2610.18851"
+      ],
+      "evidence_type": "experimental",
+      "accepted_metrics": [
+        "QED",
+        "accuracy",
+        "success rate",
+        "reconstruction rate",
+        "pathway diversity",
+        "optimization performance",
+        "Success Rate × Similarity",
+        "Similarity",
+        "Success Optimized Rate (SOR)",
+        "scaffold similarity"
+      ],
+      "community_level": 0,
+      "method_families": {
+        "llm_agent": 10,
+        "edit_sequence": 3,
+        "retro_search": 3,
+        "unclassified": 1
+      },
+      "dominant_family": "llm_agent",
+      "design_hint_rule": "用 LLM 做规划/推理/工具调用；适合自动化流程与跨模块协同",
+      "llm_title": "llm_agent优化",
+      "rationale": "该社区以LLM智能体为核心，通过工具调用、多智能体协作与实验反馈完成分子优化。",
+      "design_hint": "后续算法可构建LLM智能体闭环：生成或编辑分子、调用评估工具、依据QED与成功率反思迭代，并支持多目标协作优化。"
+    },
+    {
+      "id": "method:community:1",
+      "title": "社区:molecule_generation",
+      "summary": "从 13 篇论文自动发现的社区，主导问题 molecule_generation，证据 experimental",
+      "findings": [
+        {
+          "summary": "证据类型: experimental(7), simulational(4), derivational(1)",
+          "explanation": "在 13 篇社区成员中统计"
+        },
+        {
+          "summary": "领域: D0(3), D2(1)",
+          "explanation": "在 13 篇社区成员中统计"
+        },
+        {
+          "summary": "问题类别: molecule_generation(11), representation_pretrain(2)",
+          "explanation": "在 13 篇社区成员中统计"
+        },
+        {
+          "summary": "指标: synthesizability(5), synthetic complexity(1), synthetic accessibility scores(1)",
+          "explanation": "在 13 篇社区成员中统计"
+        }
+      ],
+      "rating": 0.605,
+      "rating_explanation": "n=13, 主导证据纯度=0.54",
+      "n_papers": 13,
+      "members": [
+        "paper:2402.15864",
+        "paper:2002.07007",
+        "paper:2405.01155",
+        "paper:2406.08506",
+        "paper:2410.11527",
+        "paper:2410.03494",
+        "paper:2507.02752",
+        "paper:2503.12602",
+        "paper:2602.04119",
+        "paper:2605.16480",
+        "paper:2607.00464",
+        "paper:2610.16975",
+        "paper:2610.18438"
+      ],
+      "evidence_type": "experimental",
+      "accepted_metrics": [
+        "synthesizability",
+        "synthetic complexity",
+        "synthetic accessibility scores",
+        "sample diversity",
+        "docking score",
+        "optimization quality",
+        "diversity",
+        "biological activity",
+        "MPO objectives",
+        "property score"
+      ],
+      "community_level": 0,
+      "method_families": {
+        "diffusion_flow": 1,
+        "retro_search": 3,
+        "gflownet": 3,
+        "unclassified": 1,
+        "llm_finetuned": 3,
+        "benchmark_eval": 1,
+        "llm_agent": 1
+      },
+      "dominant_family": "retro_search",
+      "design_hint_rule": "在反应图上搜索路径；适合可解释的合成路线设计",
+      "llm_title": "逆合成搜索引导生成",
+      "rationale": "该社区以逆合成搜索(retro_search)为可合成性信号，将逆合成路径搜索嵌入生成模型（GFlowNet、流匹配、场方法），并用实验与模拟证据评估生成分子的可合成性、多样性与新颖性。",
+      "design_hint": "把逆合成搜索作为可微奖励或硬约束与生成策略联合优化（如GFlowNet流匹配目标），在采样时用逆合成可行性过滤与路径引导，兼顾新颖性、多样性与合成复杂度；同时关注手性等表示能力对搜索空间的影响。"
+    },
+    {
+      "id": "method:community:2",
+      "title": "社区:other",
+      "summary": "从 12 篇论文自动发现的社区，主导问题 other，证据 experimental",
+      "findings": [
+        {
+          "summary": "证据类型: experimental(8), derivational(2), interpretive(2)",
+          "explanation": "在 12 篇社区成员中统计"
+        },
+        {
+          "summary": "领域: D0(2)",
+          "explanation": "在 12 篇社区成员中统计"
+        },
+        {
+          "summary": "问题类别: other(8), constraint_validation(2), property_prediction(1)",
+          "explanation": "在 12 篇社区成员中统计"
+        },
+        {
+          "summary": "指标: validation time(1), speedup factor(1), F1 score(1)",
+          "explanation": "在 12 篇社区成员中统计"
+        }
+      ],
+      "rating": 0.627,
+      "rating_explanation": "n=12, 主导证据纯度=0.67",
+      "n_papers": 12,
+      "members": [
+        "paper:1911.00598",
+        "paper:2101.07136",
+        "paper:2008.02232",
+        "paper:2404.14209",
+        "paper:2407.01603",
+        "paper:2508.00137",
+        "paper:2605.07022",
+        "paper:2606.03660",
+        "paper:2609.09203",
+        "paper:2607.27556",
+        "paper:2607.16038",
+        "paper:2609.34301"
+      ],
+      "evidence_type": "experimental",
+      "accepted_metrics": [
+        "validation time",
+        "speedup factor",
+        "F1 score",
+        "frontier-model rejection rate",
+        "label error rate (human-judgment audit)",
+        "record count / dataset scale",
+        "precision/recall-targeted retrieval filters",
+        "final-answer correctness",
+        "template adherence",
+        "step-wise verifier correctness"
+      ],
+      "community_level": 0,
+      "method_families": {
+        "rule_symbolic": 7,
+        "benchmark_eval": 5
+      },
+      "dominant_family": "rule_symbolic",
+      "design_hint_rule": "形式化约束与推理；适合正确性保证与知识图谱治理",
+      "llm_title": "规则符号约束验证",
+      "rationale": "该社区以SHACL约束、推理规则和逻辑编程为核心，强调符号化规则对数据约束的验证与推理。",
+      "design_hint": "后续算法可围绕规则编译、约束传播与增量验证设计，利用符号推理提升验证效率并支持可解释性。"
+    },
+    {
+      "id": "method:community:3",
+      "title": "社区:reaction_prediction",
+      "summary": "从 10 篇论文自动发现的社区，主导问题 reaction_prediction，证据 experimental",
+      "findings": [
+        {
+          "summary": "证据类型: experimental(5), simulational(3), derivational(2)",
+          "explanation": "在 10 篇社区成员中统计"
+        },
+        {
+          "summary": "领域: D3(6)",
+          "explanation": "在 10 篇社区成员中统计"
+        },
+        {
+          "summary": "问题类别: reaction_prediction(9), molecule_optimization(1)",
+          "explanation": "在 10 篇社区成员中统计"
+        },
+        {
+          "summary": "指标: success rate(2), solve rates(1), number of search expansions(1)",
+          "explanation": "在 10 篇社区成员中统计"
+        }
+      ],
+      "rating": 0.5,
+      "rating_explanation": "n=10, 主导证据纯度=0.50",
+      "n_papers": 10,
+      "members": [
+        "paper:2407.06334",
+        "paper:2407.12186",
+        "paper:2410.01421",
+        "paper:2501.08897",
+        "paper:2507.08475",
+        "paper:2508.11860",
+        "paper:2605.24428",
+        "paper:2609.38484",
+        "paper:2610.16391",
+        "paper:2611.03696"
+      ],
+      "evidence_type": "experimental",
+      "accepted_metrics": [
+        "success rate",
+        "solve rates",
+        "number of search expansions",
+        "oracle budget",
+        "docking scores",
+        "synthesizability",
+        "soundness",
+        "completeness",
+        "universality",
+        "state-of-the-art performance"
+      ],
+      "community_level": 0,
+      "method_families": {
+        "retro_search": 5,
+        "rule_symbolic": 1,
+        "diffusion_flow": 2,
+        "property_surrogate": 1,
+        "edit_sequence": 1
+      },
+      "dominant_family": "retro_search",
+      "design_hint_rule": "在反应图上搜索路径；适合可解释的合成路线设计",
+      "llm_title": "双向目标逆合成搜索",
+      "rationale": "以逆合成反应预测为核心，将合成规划建模为从产物与反应物双向逼近、由目标约束和断键规则界定搜索空间的问题。",
+      "design_hint": "后续算法可融合双向搜索与可合成性反馈信号，用断键规则约束分支扩展，并以成功率、求解率和搜索扩展数为指标在探索效率与解质量间取得平衡。"
+    }
+  ]
+}

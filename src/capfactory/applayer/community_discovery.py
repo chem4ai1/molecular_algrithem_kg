@@ -62,7 +62,7 @@ def detect_communities(graph, papers: List[Any], *,
 
     partition = la.find_partition(
         ig_g, la.RBConfigurationVertexPartition,
-        weights=ig_g.es["weight"], resolution_parameter=resolution)
+        weights=ig_g.es["weight"], resolution_parameter=resolution, seed=42)
     communities = []
     for comm in partition:
         members = [papers[i] for i in comm]
