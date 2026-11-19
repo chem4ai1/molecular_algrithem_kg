@@ -81,3 +81,28 @@ def enrich(graph, papers, md_dir: str | Path):
         p.attrs["artifact_flags"] = flags
         stats["artifact"][tier] = stats["artifact"].get(tier, 0) + 1
     return stats
+
+
+FORM_TO_MODALITY = {
+    "smiles": "smiles", "3d坐标": "3d", "图": "graph", "序列": "sequence",
+    "向量": "vector", "文本": "text", "标量": "table", "分布": "table",
+}
+
+
+def detect_data_modality(graph) -> dict:
+    """D7：从 Paper 关联的 Benchmark.input_form 推断数据模态。"""
+    from collections import Counter
+    stats = Counter()
+    for p in graph.by_type("Paper"):
+        forms = []
+        for a in graph.outgoing(p.id):
+            if a.relation == "EVALUATED_ON" and a.target in graph.nodes:
+                f = graph.nodes[a.target].attrs.get("input_form")
+                if f:
+                    forms.append(FORM_TO_MODALITY.get(str(f).strip(), "text"))
+        if forms:
+            p.attrs["data_modality"] = Counter(forms).most_common(1)[0][0]
+        else:
+            p.attrs.setdefault("data_modality", "smiles")
+        stats[p.attrs["data_modality"]] += 1
+    return dict(stats)

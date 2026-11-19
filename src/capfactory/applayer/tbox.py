@@ -56,9 +56,12 @@ APP_CLASSES: Dict[str, Tuple[str, Tuple[Tuple[str, str], ...]]] = {
         ("benchmark", "must"), ("input_form", "should"),
         ("output_form", "should"), ("n_samples", "optional"),
         ("scale", "optional"), ("modality", "optional"))),
-    "Evidence": ("证据（从 Observation 溯源字段提升）", (
+    "Evidence": ("证据（数值+协议+seeds+hash；支持溯源）", (
         ("quote", "must"), ("kind", "should"), ("paper_id", "optional"),
-        ("source", "optional"))),
+        ("source", "optional"), ("run_id", "optional"), ("metric", "optional"),
+        ("model", "optional"), ("value", "optional"), ("unit", "optional"),
+        ("protocol", "optional"), ("seeds", "optional"), ("sha256", "optional"),
+        ("table_ref", "optional"))),
     "Limitation": ("局限（从 Algorithm.limitations 文本提升）", (
         ("statement", "must"), ("algorithm", "must"), ("kind", "optional"))),
     "SourcePaper": ("出处论文（从 Paper-RELATED_TO->Paper 科技树）", (
@@ -129,9 +132,12 @@ APP_CLASSES: Dict[str, Tuple[str, Tuple[Tuple[str, str], ...]]] = {
         ("statement", "must"), ("evidence", "optional"),
         ("priority", "optional"), ("source_papers", "optional"),
         ("selected_at", "optional"))),
-    "SectionPlan": ("章节计划（06）", (
+    "SectionPlan": ("章节计划（按流派模板+claim绑定）", (
         ("section", "must"), ("claims", "optional"),
-        ("evidence_refs", "optional"), ("word_budget", "optional"))),
+        ("evidence_refs", "optional"), ("word_budget", "optional"),
+        ("run_id", "optional"), ("template_family", "optional"),
+        ("subsections", "optional"), ("has_equation", "optional"),
+        ("has_algorithm_block", "optional"))),
     "ReviewPoint": ("审稿关注点（09）", (
         ("axis", "must"), ("attack", "must"), ("response", "optional"),
         ("severity", "optional"))),
@@ -169,10 +175,46 @@ APP_CLASSES: Dict[str, Tuple[str, Tuple[Tuple[str, str], ...]]] = {
     "IdeaCandidate": ("候选想法", (("run_id", "must"), ("mechanism", "must"), ("novelty_delta", "must"), ("expected_direction", "must"), ("falsification_condition", "must"), ("selected", "optional"))),
     "ReproductionPackage": ("复现交付包", (("run_id", "must"), ("code_snapshot", "must"), ("data_snapshot", "must"), ("env_spec", "must"), ("one_click_script", "must"), ("verification", "must"))),
 
+    # ===== P0-P11 真实科研动作节点 =====
+    "ProblemFormulation": ("问题形式化（数学定义+旧法缺陷）", (
+        ("run_id", "must"), ("formal_def", "must"), ("symbols", "optional"),
+        ("old_forms", "optional"), ("limits", "must"), ("motivation", "must"),
+        ("source_span", "optional"))),
+    "TechnicalRoute": ("技术路线与架构（流派+模块+为何不用它法）", (
+        ("run_id", "must"), ("method_family", "must"), ("modules", "must"),
+        ("why_not_other", "must"), ("arch_figure", "optional"),
+        ("key_challenge", "optional"))),
+    "DatasetSpec": ("数据构造（源+去泄漏+划分）", (
+        ("run_id", "must"), ("sources", "must"), ("modality", "must"),
+        ("dedup_rule", "must"), ("split", "must"), ("sizes", "must"),
+        ("train_visible", "optional"))),
+    "CodeArtifact": ("代码实现（模块+入口+依赖+冒烟）", (
+        ("run_id", "must"), ("modules", "must"), ("entrypoints", "must"),
+        ("deps", "optional"), ("smoke_test", "must"), ("repo_ref", "optional"))),
+    "TrainingRun": ("训练运行（超参+曲线+checkpoint）", (
+        ("run_id", "must"), ("hyperparams", "must"), ("loss_curve", "optional"),
+        ("checkpoint", "must"), ("seed", "must"), ("converged", "optional"))),
+    "BaselineResult": ("基线复现（同口径数值）", (
+        ("run_id", "must"), ("method", "must"), ("metrics", "must"),
+        ("protocol", "must"), ("same_setting", "must"), ("source", "optional"))),
+    "MainResultTable": ("主实验表（方法×指标矩阵）", (
+        ("run_id", "must"), ("table_label", "must"), ("methods", "must"),
+        ("metrics", "must"), ("values", "must"), ("n_seeds", "must"),
+        ("significance", "optional"))),
+    "AblationTable": ("消融表（组件×增益）", (
+        ("run_id", "must"), ("components", "must"), ("delta", "must"),
+        ("protocol", "must"), ("table_label", "optional"))),
+    "CaseStudy": ("案例研究（可复现的单例）", (
+        ("run_id", "must"), ("input", "must"), ("output", "must"),
+        ("claim_ref", "must"), ("figure_ref", "optional"))),
+    "CitationVerification": ("引用三层核验", (
+        ("run_id", "must"), ("cite_key", "must"), ("existence", "must"),
+        ("metadata_ok", "must"), ("context_ok", "must"), ("source_db", "optional"))),
+
     # ===== P2 统一类 =====
     "LiteratureItem": ("文献条目（统一候选/查阅/引用/出处）", (("run_id", "must"), ("paper_ref", "must"), ("stage", "must"), ("cite_key", "optional"), ("score", "optional"), ("reason", "optional"), ("context_quote", "optional"), ("layers", "optional"))),
     "ExecutionRun": ("执行单元（统一计划与产物）", (("run_id", "must"), ("kind", "must"), ("name", "must"), ("config", "optional"), ("seeds", "optional"), ("benchmark", "optional"), ("outputs_sha", "optional"))),
-    "FigurePlan": ("图表计划（图绑定 claim）", (("run_id", "must"), ("fig_label", "must"), ("claim_ref", "must"), ("inferential_role", "optional"), ("caption", "optional"), ("placement", "optional"))),
+    "FigurePlan": ("图表计划（图绑定 claim + 数据来源 + 类型）", (("run_id", "must"), ("fig_label", "must"), ("claim_ref", "must"), ("inferential_role", "optional"), ("caption", "optional"), ("placement", "optional"), ("figure_kind", "must"), ("source_data", "optional"), ("script", "optional"))),
 }
 
 APP_RELATIONS: Dict[str, Tuple[str, str, str]] = {

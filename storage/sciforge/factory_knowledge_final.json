@@ -4,7 +4,7 @@
     "created_at": "2026-11-18T12:41:58+00:00",
     "source": "问题导向本体与知识图谱架构_20261109",
     "stats": {
-      "graph_id": "po::2026-11-19T00:56:11+00:00",
+      "graph_id": "po::2026-11-19T01:10:46+00:00",
       "n_nodes": 374,
       "n_assertions": 433,
       "nodes_by_type": {
@@ -759,7 +759,8 @@
           "has_benchmark": true,
           "is_theory": true,
           "is_survey": false
-        }
+        },
+        "data_modality": "smiles"
       },
       "attribution": "analyst_synthesis",
       "evidence_ids": [],
@@ -999,7 +1000,8 @@
           "has_benchmark": true,
           "is_theory": true,
           "is_survey": false
-        }
+        },
+        "data_modality": "smiles"
       },
       "attribution": "analyst_synthesis",
       "evidence_ids": [],
@@ -1189,7 +1191,8 @@
           "is_survey": true
         },
         "venue_source": "llm",
-        "venue_confidence": 0.92
+        "venue_confidence": 0.92,
+        "data_modality": "smiles"
       },
       "attribution": "analyst_synthesis",
       "evidence_ids": [],
@@ -1387,7 +1390,8 @@
           "has_benchmark": true,
           "is_theory": false,
           "is_survey": false
-        }
+        },
+        "data_modality": "graph"
       },
       "attribution": "analyst_synthesis",
       "evidence_ids": [],
@@ -1605,7 +1609,8 @@
           "has_benchmark": true,
           "is_theory": false,
           "is_survey": false
-        }
+        },
+        "data_modality": "smiles"
       },
       "attribution": "analyst_synthesis",
       "evidence_ids": [],
@@ -1799,7 +1804,8 @@
           "has_benchmark": true,
           "is_theory": false,
           "is_survey": false
-        }
+        },
+        "data_modality": "graph"
       },
       "attribution": "analyst_synthesis",
       "evidence_ids": [],
@@ -2116,7 +2122,8 @@
           "has_benchmark": true,
           "is_theory": false,
           "is_survey": false
-        }
+        },
+        "data_modality": "graph"
       },
       "attribution": "analyst_synthesis",
       "evidence_ids": [],
@@ -2451,7 +2458,8 @@
           "has_benchmark": true,
           "is_theory": false,
           "is_survey": false
-        }
+        },
+        "data_modality": "text"
       },
       "attribution": "analyst_synthesis",
       "evidence_ids": [],
@@ -2722,7 +2730,8 @@
           "has_benchmark": true,
           "is_theory": false,
           "is_survey": true
-        }
+        },
+        "data_modality": "smiles"
       },
       "attribution": "analyst_synthesis",
       "evidence_ids": [],
@@ -3082,7 +3091,8 @@
           "has_benchmark": true,
           "is_theory": false,
           "is_survey": false
-        }
+        },
+        "data_modality": "graph"
       },
       "attribution": "analyst_synthesis",
       "evidence_ids": [],
@@ -3422,7 +3432,8 @@
           "has_benchmark": true,
           "is_theory": false,
           "is_survey": false
-        }
+        },
+        "data_modality": "text"
       },
       "attribution": "analyst_synthesis",
       "evidence_ids": [],
@@ -3704,7 +3715,8 @@
           "has_benchmark": false,
           "is_theory": true,
           "is_survey": true
-        }
+        },
+        "data_modality": "smiles"
       },
       "attribution": "analyst_synthesis",
       "evidence_ids": [],
@@ -3971,7 +3983,8 @@
           "has_benchmark": true,
           "is_theory": false,
           "is_survey": false
-        }
+        },
+        "data_modality": "smiles"
       },
       "attribution": "analyst_synthesis",
       "evidence_ids": [],
@@ -4112,7 +4125,8 @@
           "is_survey": true
         },
         "venue_source": "llm",
-        "venue_confidence": 0.85
+        "venue_confidence": 0.85,
+        "data_modality": "text"
       },
       "attribution": "analyst_synthesis",
       "evidence_ids": [],
@@ -4427,7 +4441,8 @@
           "has_benchmark": true,
           "is_theory": false,
           "is_survey": false
-        }
+        },
+        "data_modality": "smiles"
       },
       "attribution": "analyst_synthesis",
       "evidence_ids": [],
@@ -4653,7 +4668,8 @@
           "has_benchmark": false,
           "is_theory": false,
           "is_survey": false
-        }
+        },
+        "data_modality": "smiles"
       },
       "attribution": "analyst_synthesis",
       "evidence_ids": [],
@@ -4825,7 +4841,8 @@
           "has_benchmark": true,
           "is_theory": false,
           "is_survey": false
-        }
+        },
+        "data_modality": "smiles"
       },
       "attribution": "analyst_synthesis",
       "evidence_ids": [],
@@ -5017,7 +5034,8 @@
           "has_benchmark": true,
           "is_theory": false,
           "is_survey": false
-        }
+        },
+        "data_modality": "smiles"
       },
       "attribution": "analyst_synthesis",
       "evidence_ids": [],
@@ -5225,7 +5243,8 @@
           "has_benchmark": true,
           "is_theory": false,
           "is_survey": false
-        }
+        },
+        "data_modality": "text"
       },
       "attribution": "analyst_synthesis",
       "evidence_ids": [],
@@ -5396,7 +5415,8 @@
         "evidence_type": "experimental",
         "evidence_type_source": "family_mode",
         "paradigm": "design",
-        "paradigm_source": "family_mode"
+        "paradigm_source": "family_mode",
+        "data_modality": "smiles"
       },
       "attribution": "analyst_synthesis",
       "evidence_ids": [],
@@ -5521,7 +5541,8 @@
         "evidence_type": "interpretive",
         "evidence_type_source": "strong_rule",
         "paradigm": "interpretive",
-        "paradigm_source": "strong_rule"
+        "paradigm_source": "strong_rule",
+        "data_modality": "smiles"
       },
       "attribution": "analyst_synthesis",
       "evidence_ids": [],
@@ -5666,7 +5687,8 @@
           "is_survey": false
         },
         "venue_source": "llm",
-        "venue_confidence": 0.7
+        "venue_confidence": 0.7,
+        "data_modality": "smiles"
       },
       "attribution": "analyst_synthesis",
       "evidence_ids": [],
@@ -5913,7 +5935,8 @@
           "has_benchmark": true,
           "is_theory": false,
           "is_survey": false
-        }
+        },
+        "data_modality": "graph"
       },
       "attribution": "analyst_synthesis",
       "evidence_ids": [],
@@ -6195,7 +6218,8 @@
           "has_benchmark": true,
           "is_theory": false,
           "is_survey": false
-        }
+        },
+        "data_modality": "text"
       },
       "attribution": "analyst_synthesis",
       "evidence_ids": [],
@@ -6378,7 +6402,8 @@
         "evidence_type": "experimental",
         "evidence_type_source": "family_mode",
         "paradigm": "design",
-        "paradigm_source": "family_mode"
+        "paradigm_source": "family_mode",
+        "data_modality": "smiles"
       },
       "attribution": "analyst_synthesis",
       "evidence_ids": [],
@@ -6567,7 +6592,8 @@
           "has_benchmark": true,
           "is_theory": false,
           "is_survey": false
-        }
+        },
+        "data_modality": "text"
       },
       "attribution": "analyst_synthesis",
       "evidence_ids": [],
@@ -6746,7 +6772,8 @@
         "evidence_type": "experimental",
         "evidence_type_source": "family_mode",
         "paradigm": "design",
-        "paradigm_source": "family_mode"
+        "paradigm_source": "family_mode",
+        "data_modality": "graph"
       },
       "attribution": "analyst_synthesis",
       "evidence_ids": [],
@@ -7030,7 +7057,8 @@
           "has_benchmark": true,
           "is_theory": false,
           "is_survey": false
-        }
+        },
+        "data_modality": "text"
       },
       "attribution": "analyst_synthesis",
       "evidence_ids": [],
@@ -7213,7 +7241,8 @@
           "has_benchmark": true,
           "is_theory": false,
           "is_survey": true
-        }
+        },
+        "data_modality": "text"
       },
       "attribution": "analyst_synthesis",
       "evidence_ids": [],
@@ -7522,7 +7551,8 @@
           "has_benchmark": true,
           "is_theory": false,
           "is_survey": false
-        }
+        },
+        "data_modality": "smiles"
       },
       "attribution": "analyst_synthesis",
       "evidence_ids": [],
@@ -7656,7 +7686,8 @@
         "evidence_type": "experimental",
         "evidence_type_source": "family_mode",
         "paradigm": "design",
-        "paradigm_source": "family_mode"
+        "paradigm_source": "family_mode",
+        "data_modality": "text"
       },
       "attribution": "analyst_synthesis",
       "evidence_ids": [],
@@ -7914,7 +7945,8 @@
           "has_benchmark": true,
           "is_theory": false,
           "is_survey": true
-        }
+        },
+        "data_modality": "smiles"
       },
       "attribution": "analyst_synthesis",
       "evidence_ids": [],
@@ -8126,7 +8158,8 @@
           "has_benchmark": true,
           "is_theory": false,
           "is_survey": false
-        }
+        },
+        "data_modality": "text"
       },
       "attribution": "analyst_synthesis",
       "evidence_ids": [],
@@ -8370,7 +8403,8 @@
           "has_benchmark": true,
           "is_theory": false,
           "is_survey": true
-        }
+        },
+        "data_modality": "text"
       },
       "attribution": "analyst_synthesis",
       "evidence_ids": [],
@@ -8682,7 +8716,8 @@
           "has_benchmark": true,
           "is_theory": false,
           "is_survey": false
-        }
+        },
+        "data_modality": "text"
       },
       "attribution": "analyst_synthesis",
       "evidence_ids": [],
@@ -8926,7 +8961,8 @@
           "has_benchmark": true,
           "is_theory": false,
           "is_survey": false
-        }
+        },
+        "data_modality": "text"
       },
       "attribution": "analyst_synthesis",
       "evidence_ids": [],
@@ -9213,7 +9249,8 @@
           "has_benchmark": true,
           "is_theory": false,
           "is_survey": false
-        }
+        },
+        "data_modality": "graph"
       },
       "attribution": "analyst_synthesis",
       "evidence_ids": [],
@@ -9445,7 +9482,8 @@
           "has_benchmark": true,
           "is_theory": false,
           "is_survey": false
-        }
+        },
+        "data_modality": "text"
       },
       "attribution": "analyst_synthesis",
       "evidence_ids": [],
@@ -9690,7 +9728,8 @@
           "has_benchmark": true,
           "is_theory": false,
           "is_survey": false
-        }
+        },
+        "data_modality": "text"
       },
       "attribution": "analyst_synthesis",
       "evidence_ids": [],
@@ -10020,7 +10059,8 @@
           "has_benchmark": true,
           "is_theory": false,
           "is_survey": false
-        }
+        },
+        "data_modality": "sequence"
       },
       "attribution": "analyst_synthesis",
       "evidence_ids": [],
@@ -10159,7 +10199,8 @@
           "has_benchmark": true,
           "is_theory": false,
           "is_survey": true
-        }
+        },
+        "data_modality": "smiles"
       },
       "attribution": "analyst_synthesis",
       "evidence_ids": [],
@@ -10362,7 +10403,8 @@
           "has_benchmark": true,
           "is_theory": false,
           "is_survey": true
-        }
+        },
+        "data_modality": "text"
       },
       "attribution": "analyst_synthesis",
       "evidence_ids": [],
@@ -10571,7 +10613,8 @@
           "has_benchmark": true,
           "is_theory": false,
           "is_survey": false
-        }
+        },
+        "data_modality": "smiles"
       },
       "attribution": "analyst_synthesis",
       "evidence_ids": [],
@@ -10848,7 +10891,8 @@
           "has_benchmark": true,
           "is_theory": false,
           "is_survey": true
-        }
+        },
+        "data_modality": "text"
       },
       "attribution": "analyst_synthesis",
       "evidence_ids": [],
@@ -11215,7 +11259,8 @@
           "has_benchmark": true,
           "is_theory": false,
           "is_survey": true
-        }
+        },
+        "data_modality": "smiles"
       },
       "attribution": "analyst_synthesis",
       "evidence_ids": [],
@@ -11469,7 +11514,8 @@
           "has_benchmark": true,
           "is_theory": false,
           "is_survey": false
-        }
+        },
+        "data_modality": "text"
       },
       "attribution": "analyst_synthesis",
       "evidence_ids": [],
@@ -11798,7 +11844,8 @@
           "has_benchmark": true,
           "is_theory": false,
           "is_survey": false
-        }
+        },
+        "data_modality": "graph"
       },
       "attribution": "analyst_synthesis",
       "evidence_ids": [],
@@ -12043,7 +12090,8 @@
           "has_benchmark": true,
           "is_theory": false,
           "is_survey": true
-        }
+        },
+        "data_modality": "smiles"
       },
       "attribution": "analyst_synthesis",
       "evidence_ids": [],
@@ -12312,7 +12360,8 @@
           "has_benchmark": true,
           "is_theory": false,
           "is_survey": false
-        }
+        },
+        "data_modality": "text"
       },
       "attribution": "analyst_synthesis",
       "evidence_ids": [],
@@ -12610,7 +12659,8 @@
           "has_benchmark": true,
           "is_theory": false,
           "is_survey": false
-        }
+        },
+        "data_modality": "graph"
       },
       "attribution": "analyst_synthesis",
       "evidence_ids": [],
@@ -12809,7 +12859,8 @@
           "has_benchmark": true,
           "is_theory": false,
           "is_survey": false
-        }
+        },
+        "data_modality": "text"
       },
       "attribution": "analyst_synthesis",
       "evidence_ids": [],
@@ -13018,7 +13069,8 @@
           "has_benchmark": true,
           "is_theory": false,
           "is_survey": false
-        }
+        },
+        "data_modality": "smiles"
       },
       "attribution": "analyst_synthesis",
       "evidence_ids": [],
