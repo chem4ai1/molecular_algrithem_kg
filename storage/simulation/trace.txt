@@ -1,0 +1,73 @@
+
+======================================================================
+[00] PDF → Markdown
+  输入 : data/paper_seed/papers/B_molecular_editing/2510.14455_MECo.pdf
+  动作 : parse_pdf() → pymupdf 文本抽取 + 章节切分
+  输出 : data/docx/2510.14455.md (79264 字符, 38 个章节)
+  门控 : PASS  | 文件名按 arxiv_id 重命名
+
+======================================================================
+[01] E1_paper 抽取
+  输入 : YAML(30字段, 7条规则) + md切片
+  动作 : render→LLM(回放)→validate→rules(data_sources,dedup_rule,result_tables)
+  输出 : 30 个字段: research_question, problem_category, domain_code, why_hard, relation_hints, evidence, paradigm, evidence_type...
+  门控 : PASS  | attempts=1, rule_filled=['data_sources', 'dedup_rule', 'result_tables', 'formal_def']
+
+======================================================================
+[02] E2_algorithm 抽取
+  输入 : YAML(13字段, 0条规则) + md切片
+  动作 : render→LLM(回放)→validate→rules()
+  输出 : 1 个字段: algorithms
+  门控 : PASS  | attempts=1, rule_filled=[]
+
+======================================================================
+[03] E3_benchmark 抽取
+  输入 : YAML(10字段, 0条规则) + md切片
+  动作 : render→LLM(回放)→validate→rules()
+  输出 : 1 个字段: benchmarks
+  门控 : PASS  | attempts=1, rule_filled=[]
+
+======================================================================
+[04] 落语义层图
+  输入 : E1+E2+E3 报告
+  动作 : apply_one(): Paper 属性 + Algorithm/Module/Benchmark 节点 + 9 类关系
+  输出 : Paper(36字段) + Algorithm + AlgorithmModule + Benchmark
+  门控 : PASS  | stable_key() 不含新属性，图结构 6 类未变
+
+======================================================================
+[05] B 类图谱聚合
+  输入 : 52 篇论文语义图
+  动作 : Leiden 社区发现 + 规则聚合（离线，一次建长期用）
+  输出 : MethodLineage 6 + EvaluationNorm 4 + FailureModeLibrary 1
+  门控 : PASS  | 带 rating/findings，边回指来源论文
+
+======================================================================
+[06] 阶段路由（按 6 维分类）
+  输入 : method_family=edit_sequence, evidence_type=experimental, venue=NeurIPS
+  动作 : phase_router_v2.route_phase('P1', profile)
+  输出 : modules=[edit_generator, edit_executor], gate=has_why_not_other
+  门控 : PASS  | 不同流派走不同 skill/门控
+
+======================================================================
+[07] 就绪度审计（新增 skill）
+  输入 : Paper + 关联 Algorithm 的字段
+  动作 : readiness.yaml 需求矩阵 → READY/PARTIAL/BLOCKED
+  输出 : 5/5 个阶段 READY: P0=READY, P1=READY, P2=READY, P6=READY, P7=READY
+  门控 : PASS  | 区分『原文没有』vs『抽取漏了』
+
+======================================================================
+[08] C 类决策链（如需要）
+  输入 : ProblemAnchor → GapTriple → IdeaCandidate → Claim → ...
+  动作 : WritingContext 类型化接口（内置 B 类查询 + decision ledger）
+  输出 : C 节点带 run_id/source/via/verdict，门控真阻断
+  门控 : PASS  | 无 refutation_condition → BLOCKED（实测触发）
+
+======================================================================
+[09] 产物生成
+  输入 : Paper.result_tables + SectionPlan 模板
+  动作 : table_to_latex / build_section_skeleton / figure_script
+  输出 : 18 张 LaTeX 表 + 章节骨架 + 绘图脚本
+  门控 : PASS  | ↓ 取 min / 同名行不误加粗
+
+======================================================================
+完成 10 步，追踪写入 /home/zengshuxin/molecular_algrithem_design/storage/simulation/simulation_trace.json

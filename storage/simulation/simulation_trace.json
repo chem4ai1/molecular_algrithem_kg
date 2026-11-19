@@ -1,0 +1,95 @@
+{
+  "paper": "2510.14455",
+  "steps": [
+    {
+      "step": 0,
+      "name": "PDF → Markdown",
+      "input": "data/paper_seed/papers/B_molecular_editing/2510.14455_MECo.pdf",
+      "action": "parse_pdf() → pymupdf 文本抽取 + 章节切分",
+      "output": "data/docx/2510.14455.md (79264 字符, 38 个章节)",
+      "gate": "PASS",
+      "note": "文件名按 arxiv_id 重命名"
+    },
+    {
+      "step": 1,
+      "name": "E1_paper 抽取",
+      "input": "YAML(30字段, 7条规则) + md切片",
+      "action": "render→LLM(回放)→validate→rules(data_sources,dedup_rule,result_tables)",
+      "output": "30 个字段: research_question, problem_category, domain_code, why_hard, relation_hints, evidence, paradigm, evidence_type...",
+      "gate": "PASS",
+      "note": "attempts=1, rule_filled=['data_sources', 'dedup_rule', 'result_tables', 'formal_def']"
+    },
+    {
+      "step": 2,
+      "name": "E2_algorithm 抽取",
+      "input": "YAML(13字段, 0条规则) + md切片",
+      "action": "render→LLM(回放)→validate→rules()",
+      "output": "1 个字段: algorithms",
+      "gate": "PASS",
+      "note": "attempts=1, rule_filled=[]"
+    },
+    {
+      "step": 3,
+      "name": "E3_benchmark 抽取",
+      "input": "YAML(10字段, 0条规则) + md切片",
+      "action": "render→LLM(回放)→validate→rules()",
+      "output": "1 个字段: benchmarks",
+      "gate": "PASS",
+      "note": "attempts=1, rule_filled=[]"
+    },
+    {
+      "step": 4,
+      "name": "落语义层图",
+      "input": "E1+E2+E3 报告",
+      "action": "apply_one(): Paper 属性 + Algorithm/Module/Benchmark 节点 + 9 类关系",
+      "output": "Paper(36字段) + Algorithm + AlgorithmModule + Benchmark",
+      "gate": "PASS",
+      "note": "stable_key() 不含新属性，图结构 6 类未变"
+    },
+    {
+      "step": 5,
+      "name": "B 类图谱聚合",
+      "input": "52 篇论文语义图",
+      "action": "Leiden 社区发现 + 规则聚合（离线，一次建长期用）",
+      "output": "MethodLineage 6 + EvaluationNorm 4 + FailureModeLibrary 1",
+      "gate": "PASS",
+      "note": "带 rating/findings，边回指来源论文"
+    },
+    {
+      "step": 6,
+      "name": "阶段路由（按 6 维分类）",
+      "input": "method_family=edit_sequence, evidence_type=experimental, venue=NeurIPS",
+      "action": "phase_router_v2.route_phase('P1', profile)",
+      "output": "modules=[edit_generator, edit_executor], gate=has_why_not_other",
+      "gate": "PASS",
+      "note": "不同流派走不同 skill/门控"
+    },
+    {
+      "step": 7,
+      "name": "就绪度审计（新增 skill）",
+      "input": "Paper + 关联 Algorithm 的字段",
+      "action": "readiness.yaml 需求矩阵 → READY/PARTIAL/BLOCKED",
+      "output": "5/5 个阶段 READY: P0=READY, P1=READY, P2=READY, P6=READY, P7=READY",
+      "gate": "PASS",
+      "note": "区分『原文没有』vs『抽取漏了』"
+    },
+    {
+      "step": 8,
+      "name": "C 类决策链（如需要）",
+      "input": "ProblemAnchor → GapTriple → IdeaCandidate → Claim → ...",
+      "action": "WritingContext 类型化接口（内置 B 类查询 + decision ledger）",
+      "output": "C 节点带 run_id/source/via/verdict，门控真阻断",
+      "gate": "PASS",
+      "note": "无 refutation_condition → BLOCKED（实测触发）"
+    },
+    {
+      "step": 9,
+      "name": "产物生成",
+      "input": "Paper.result_tables + SectionPlan 模板",
+      "action": "table_to_latex / build_section_skeleton / figure_script",
+      "output": "18 张 LaTeX 表 + 章节骨架 + 绘图脚本",
+      "gate": "PASS",
+      "note": "↓ 取 min / 同名行不误加粗"
+    }
+  ]
+}
