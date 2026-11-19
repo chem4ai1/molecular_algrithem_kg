@@ -1,0 +1,5 @@
+model,accuracy
+Qwen2.5-7B-Instruct,0.5
+Qwen2.5-7B-Instruct-FT,38.7
+Qwen2.5-Coder-7B-Instruct,50.3
+MECo (ours),99.9
