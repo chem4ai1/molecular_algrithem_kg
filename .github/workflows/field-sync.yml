@@ -1,0 +1,31 @@
+name: field-sync
+on:
+  push:
+    paths:
+      - "data/extract_target/**"
+      - "src/capfactory/semantic/tbox_v4.py"
+      - "src/capfactory/semantic/extraction/validator.py"
+      - "src/capfactory/semantic/apply.py"
+      - "scripts/check_field_sync.py"
+  pull_request:
+    paths:
+      - "data/extract_target/**"
+      - "src/capfactory/semantic/**"
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: 安装依赖
+        run: pip install -q pyyaml
+      - name: 字段同步自检（E1/E2/E3）
+        run: |
+          set -e
+          for st in E1_paper E2_algorithm E3_benchmark; do
+            echo "--- $st ---"
+            PYTHONPATH=src python scripts/check_field_sync.py --stage $st
+          done

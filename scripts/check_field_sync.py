@@ -57,6 +57,12 @@ EXEMPT = {
     "name": "作为节点 label + name 属性显式处理",
     "modules": "走 AlgorithmModule 节点创建，不写进 alg.attrs",
     "evidence": "aux_fields，prompt 专用不落图",
+    "unit": "metrics[] 嵌套字段",
+    "direction": "metrics[] 嵌套字段",
+    "contribution_link": "metrics[] 嵌套字段",
+    "model": "model_results[] 嵌套字段",
+    "metric": "model_results[] 嵌套字段",
+    "value": "model_results[] 嵌套字段",
 }
 
 
