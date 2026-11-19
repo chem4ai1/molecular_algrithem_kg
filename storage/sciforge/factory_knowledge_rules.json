@@ -4,7 +4,7 @@
     "created_at": "2026-11-18T12:41:58+00:00",
     "source": "问题导向本体与知识图谱架构_20261109",
     "stats": {
-      "graph_id": "po::2026-11-19T01:20:05+00:00",
+      "graph_id": "po::2026-11-19T01:23:05+00:00",
       "n_nodes": 374,
       "n_assertions": 433,
       "nodes_by_type": {
@@ -1176,6 +1176,7 @@
           "GEOM",
           "QM9"
         ],
+        "split_spec": "valid molecules (about 38%",
         "hyperparams": [
           {
             "param": "learning rate",
@@ -3429,6 +3430,7 @@
         "data_sources": [
           "PubChem"
         ],
+        "split_spec": "split into 5 sets of 7,244",
         "hyperparams": [
           {
             "param": "threshold",
@@ -6582,69 +6584,6 @@
             "value": "20%",
             "context": "uler is applied, reducing the learning rate by 20%"
           }
-        ],
-        "result_tables": [
-          {
-            "label": "Table 1: Specific model hyper-parameters used in the scaling experi",
-            "columns": [
-              "Model Size",
-              "**229M**",
-              "68M",
-              "17.5M",
-              "3.7M"
-            ],
-            "rows": [
-              [
-                "# Feature Dimensions",
-                "768",
-                "512",
-                "256",
-                "128"
-              ],
-              [
-                "# Encoder Layers",
-                "8",
-                "6",
-                "6",
-                "4"
-              ],
-              [
-                "# Encoder Attn. Heads",
-                "16",
-                "16",
-                "8",
-                "4"
-              ],
-              [
-                "# Encoder Feed-forward Dimensions",
-                "4096",
-                "2048",
-                "1024",
-                "512"
-              ],
-              [
-                "# Decoder Layers",
-                "10",
-                "8",
-                "8",
-                "6"
-              ],
-              [
-                "# Decoder Attn. Heads",
-                "16",
-                "16",
-                "8",
-                "4"
-              ],
-              [
-                "# Decoder Feed-forward Dimensions",
-                "4096",
-                "2048",
-                "1024",
-                "512"
-              ]
-            ]
-          }
         ]
       },
       "attribution": "analyst_synthesis",
@@ -8611,6 +8550,7 @@
           "PubChem",
           "PDB"
         ],
+        "split_spec": "training dataset sizes, ranging from 93-99%",
         "hyperparams": [
           {
             "param": "threshold",
@@ -10022,6 +9962,7 @@
           "BindingDB",
           "PDB"
         ],
+        "split_spec": "valid syntheses over 50%",
         "hyperparams": [
           {
             "param": "learning rate",
@@ -11099,6 +11040,7 @@
         "data_sources": [
           "USPTO"
         ],
+        "split_spec": "split as proposed by [44], leading to 40,000, 500",
         "hyperparams": [
           {
             "param": "learning rate",
@@ -12004,6 +11946,7 @@
           "ChemCoTBench"
         ],
         "dedup_rule": "Tanimoto similarity _≥_ 0.6",
+        "split_spec": "validity with 95%",
         "result_tables": [
           {
             "label": "table_1",
@@ -13592,6 +13535,7 @@
           "ZINC",
           "PubChem"
         ],
+        "split_spec": "training examples and keep only 40%",
         "hyperparams": [
           {
             "param": "threshold",
@@ -16417,6 +16361,7 @@
           "PubChem",
           "USPTO"
         ],
+        "split_spec": "Validator` estimates _≥_ 80%",
         "hyperparams": [
           {
             "param": "temperature",
@@ -17474,6 +17419,7 @@
         "data_sources": [
           "USPTO"
         ],
+        "split_spec": "splits [3, 23",
         "hyperparams": [
           {
             "param": "top-k",
@@ -19192,6 +19138,7 @@
         "data_sources": [
           "PubChem"
         ],
+        "split_spec": "Splits:** 80/20",
         "hyperparams": [
           {
             "param": "temperature",
@@ -21920,6 +21867,7 @@
           "PDB"
         ],
         "dedup_rule": "Tanimoto similarity of at least 0.20",
+        "split_spec": "split from the 30,000",
         "hyperparams": [
           {
             "param": "temperature",
@@ -22435,6 +22383,7 @@
         "data_sources": [
           "USPTO"
         ],
+        "split_spec": "split and evaluate 4,944",
         "result_tables": [
           {
             "label": "Table 1: USPTO-Full test results",
@@ -23630,6 +23579,7 @@
           "MoleculeNet"
         ],
         "dedup_rule": "Tanimoto distance was 0.671",
+        "split_spec": "split [41] used by MolT5, with 3,300",
         "hyperparams": [
           {
             "param": "threshold",

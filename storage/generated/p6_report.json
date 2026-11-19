@@ -1,6 +1,6 @@
 {
-  "made": 32,
-  "skipped": 20,
+  "made": 18,
+  "skipped": 34,
   "tables": [
     {
       "aid": "2402.15864",
@@ -14,26 +14,6 @@
       "rows": 5
     },
     {
-      "aid": "2406.08506",
-      "table": "Table 1",
-      "cols": [
-        "AiZynth_↑_"
-      ],
-      "rows": 4
-    },
-    {
-      "aid": "2407.06334",
-      "table": "Table 1: Benchmark dataset summary",
-      "cols": [
-        "# Routes",
-        "Avg. In-Dist. %",
-        "Unique Rxn. %",
-        "Avg. # Rxns.",
-        "Avg. Depth"
-      ],
-      "rows": 3
-    },
-    {
       "aid": "2407.12186",
       "table": "Table 3: Synthesizability metrics across various S",
       "cols": [
@@ -43,82 +23,6 @@
         "AiZynth (↑)"
       ],
       "rows": 9
-    },
-    {
-      "aid": "2410.03494",
-      "table": "Table 1: Specific model hyper-parameters used in t",
-      "cols": [
-        "**229M**",
-        "68M",
-        "17.5M",
-        "3.7M"
-      ],
-      "rows": 7
-    },
-    {
-      "aid": "2410.13147",
-      "table": "Table 3: The results (T = 3) on a set of single- a",
-      "cols": [
-        "ChatDrug",
-        "Qwen2.5-3<br>AgentDrug",
-        "B<br>AgentDrug_†_",
-        "ChatDrug",
-        "Qwen2.5-7<br>AgentDrug",
-        "B<br>AgentDrug_†_"
-      ],
-      "rows": 30
-    },
-    {
-      "aid": "2503.03503",
-      "table": "Table 3 | Task Performance Metrics for Single and ",
-      "cols": [
-        "**Hit Ratio (Lo**<br>",
-        "**ose)**<br>**Hit Ratio (Strict)**<br>_Single Property Optim_<br>",
-        "**Valid Ratio**<br>_ization_<br>",
-        "**Same Scaffold Ratio**<br>"
-      ],
-      "rows": 14
-    },
-    {
-      "aid": "2507.02752",
-      "table": "Table 1** , SynTwins consistently outperforms the ",
-      "cols": [
-        "Exact-match rate",
-        "Top-k",
-        "average sim",
-        "ilarity"
-      ],
-      "rows": 4
-    },
-    {
-      "aid": "2503.12602",
-      "table": "table_1",
-      "cols": [
-        "# of R<br>",
-        "",
-        "Morgan Sim."
-      ],
-      "rows": 5
-    },
-    {
-      "aid": "2507.08475",
-      "table": "Table 4** : Model performance comparison (Top-k ac",
-      "cols": [
-        "Top 1(%)",
-        "Top 3(%)",
-        "Top 5(%)"
-      ],
-      "rows": 3
-    },
-    {
-      "aid": "2510.14455",
-      "table": "table_1",
-      "cols": [
-        "**Terminal re**",
-        "**placement**",
-        "**Core replacement**"
-      ],
-      "rows": 3
     },
     {
       "aid": "2509.16084",
@@ -146,19 +50,6 @@
       "rows": 14
     },
     {
-      "aid": "2603.05900",
-      "table": "Table 1: SuccessRate (SR), Similarity (Sim), and t",
-      "cols": [
-        "Base Model",
-        "Distill-SFT",
-        "SFT",
-        "GRPO",
-        "GRPO (SFT init)",
-        "RePO"
-      ],
-      "rows": 6
-    },
-    {
       "aid": "2603.24382",
       "table": "Table 1",
       "cols": [
@@ -171,25 +62,17 @@
       "rows": 9
     },
     {
-      "aid": "2604.07669",
-      "table": "Table 5 summarizes the hyperparameters shared acro",
+      "aid": "2604.23061",
+      "table": "table_2",
       "cols": [
-        "**Value**"
+        "(IND)",
+        "",
+        "Out",
+        "-of-Domai",
+        "n (OOD",
+        ")"
       ],
-      "rows": 18
-    },
-    {
-      "aid": "2605.10831",
-      "table": "Table 1: Forward-direction results on the MolEditR",
-      "cols": [
-        "A",
-        "cc@0.15 (%",
-        ")",
-        "Ac",
-        "c@0.65 (",
-        "%)"
-      ],
-      "rows": 6
+      "rows": 2
     },
     {
       "aid": "2605.07022",
@@ -229,6 +112,118 @@
         "Diversity"
       ],
       "rows": 6
+    },
+    {
+      "aid": "2607.00464",
+      "table": "Table 2, we report performance across 11 distinct ",
+      "cols": [
+        "",
+        "",
+        "",
+        "Toxic",
+        "ity (ACC)",
+        "_↑_",
+        "",
+        "",
+        "Haza",
+        "rd Level (",
+        "JSC)_↑_"
+      ],
+      "rows": 13
+    },
+    {
+      "aid": "2607.00531",
+      "table": "Table 1: Main results on TOMG-Bench MOLOPT",
+      "cols": [
+        "Avg SR_×_Sim_↑_"
+      ],
+      "rows": 6
+    },
+    {
+      "aid": "2609.34491",
+      "table": "Table 3** SMDD-Bench-93 task success rates",
+      "cols": [
+        "Single solution SR_↑_",
+        "Graph-any SR_↑_"
+      ],
+      "rows": 3
+    },
+    {
+      "aid": "2609.35336",
+      "table": "Table 2: Results on individual chemical tasks",
+      "cols": [
+        "**Log**",
+        "**P**",
+        "**Solub**",
+        "**ility**",
+        "**QE**",
+        "**D**",
+        "**DR**",
+        "**D2**",
+        "**JNK**",
+        "**3**",
+        "**GSK**",
+        "**3-**_β_"
+      ],
+      "rows": 11
+    },
+    {
+      "aid": "2609.34301",
+      "table": "Table 2)",
+      "cols": [
+        "Macro_R_<sup>2</sup> _↑_",
+        "Macro Pearson_↑_"
+      ],
+      "rows": 5
+    },
+    {
+      "aid": "2609.38484",
+      "table": "Table 1: USPTO-Full test results",
+      "cols": [
+        "Top-1",
+        "Top-3",
+        "Top-5",
+        "Top-10"
+      ],
+      "rows": 11
+    },
+    {
+      "aid": "2610.16975",
+      "table": "Table 3",
+      "cols": [
+        "_tout_",
+        "_Nout_",
+        "_Nsat_",
+        "%`Pass`",
+        "%`Syn`"
+      ],
+      "rows": 4
+    },
+    {
+      "aid": "2610.16391",
+      "table": "Table 2: Effect of the expansion strategy on route",
+      "cols": [
+        "**Search**",
+        "**Outcome**",
+        "**Diver**",
+        "**sity**",
+        "**Quality**"
+      ],
+      "rows": 5
+    },
+    {
+      "aid": "2610.18851",
+      "table": "Table 1: Overall Performance on IND Tasks",
+      "cols": [
+        "",
+        "",
+        "BDQ",
+        "",
+        "",
+        "",
+        "DPQ"
+      ],
+      "rows": 10
     }
   ]
 }

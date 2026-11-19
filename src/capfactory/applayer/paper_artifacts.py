@@ -7,6 +7,19 @@ from typing import Any, Dict, List, Optional
 
 
 # ============ P6: 结果表 → LaTeX ============
+_TEX_ESC = {"&": r"\&", "%": r"\%", "$": r"\$", "#": r"\#",
+            "_": r"\_", "{": r"\{", "}": r"\}", "~": r"\textasciitilde{}",
+            "^": r"\textasciicircum{}", "\\": r"\textbackslash{}"}
+
+
+def tex_escape(v: Any) -> str:
+    """转义 LaTeX 特殊字符（保留下划线与百分号的语义正确性）。"""
+    out = []
+    for ch in str(v):
+        out.append(_TEX_ESC.get(ch, ch))
+    return "".join(out)
+
+
 def table_to_latex(rows: List[Dict[str, Any]], *, columns: List[str],
                    caption: str = "", label: str = "tab:main",
                    bold_best: bool = True) -> str:
@@ -31,18 +44,18 @@ def table_to_latex(rows: List[Dict[str, Any]], *, columns: List[str],
             # 用行索引标记唯一最优（避免同名方法被一起加粗）
             idxs = [i for i, (v, _) in enumerate(vals) if v == chosen[0]]
             best[c] = idxs[0] if len(idxs) == 1 else -1
-    head = " & ".join(["Model"] + [c.replace("_", "\\_") for c in columns]) + " \\\\"
+    head = " & ".join(["Model"] + [tex_escape(c) for c in columns]) + " \\\\"
     lines = ["\\begin{table}[t]", "\\centering",
-             f"\\caption{{{caption}}}", f"\\label{{{label}}}",
+             f"\\caption{{{tex_escape(caption)}}}", f"\\label{{{label}}}",
              "\\begin{tabular}{l" + "c" * len(columns) + "}", "\\toprule", head, "\\midrule"]
     for ri, r in enumerate(rows):
         cells = []
         for c in columns:
-            v = str(r.get(c, ""))
+            v = tex_escape(r.get(c, ""))
             if bold_best and best.get(c) == ri:
                 v = f"\\textbf{{{v}}}"
             cells.append(v)
-        lines.append(" & ".join([str(r.get("model", ""))] + cells) + " \\\\")
+        lines.append(" & ".join([tex_escape(r.get("model", ""))] + cells) + " \\\\")
     lines += ["\\bottomrule", "\\end{tabular}", "\\end{table}"]
     return "\n".join(lines) + "\n"
 

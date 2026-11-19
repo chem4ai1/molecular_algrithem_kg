@@ -23,8 +23,13 @@ DEDUP_PATTERNS = [
     re.compile(r"scaffold split", re.I),
 ]
 SPLIT_PATTERNS = [
-    re.compile(r"(?:split|ratio)[^.]{0,40}?(\d{2,3})\s*[/:：]\s*(\d{1,2})\s*[/:：]\s*(\d{1,2})", re.I),
-    re.compile(r"(?:train|training)[^.]{0,30}?(\d{2,3})\s*%[^.]{0,40}?(?:valid|test)", re.I),
+    # 80/10/10、8:1:1、80-10-10
+    re.compile(r"(\d{1,3})\s*[/:\-]\s*(\d{1,2})\s*[/:\-]\s*(\d{1,2})(?=\s*(?:split|ratio|train|$))", re.I),
+    # train/valid/test 各自百分比
+    re.compile(r"(?:training|train)[^.]{0,40}?(\d{1,3})\s*%", re.I),
+    re.compile(r"(?:validation|valid|dev)[^.]{0,40}?(\d{1,3})\s*%", re.I),
+    # "split into X, Y, and Z"
+    re.compile(r"split[^.]{0,50}?(\d{1,3})\s*[,/]\s*(\d{1,3})\s*[,/]?\s*(?:and\s*)?(\d{1,3})", re.I),
 ]
 
 

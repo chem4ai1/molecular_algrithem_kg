@@ -4,9 +4,9 @@
     "created_at": "2026-11-18T12:41:58+00:00",
     "source": "问题导向本体与知识图谱架构_20261109",
     "stats": {
-      "graph_id": "po::2026-11-19T01:20:47+00:00",
-      "n_nodes": 406,
-      "n_assertions": 465,
+      "graph_id": "po::2026-11-19T01:23:24+00:00",
+      "n_nodes": 392,
+      "n_assertions": 451,
       "nodes_by_type": {
         "Paper": 52,
         "Algorithm": 52,
@@ -23,14 +23,14 @@
         "SectionPlan": 1,
         "FigurePlan": 1,
         "ReproductionPackage": 1,
-        "ResultTable": 32
+        "ResultTable": 18
       },
       "assertions_by_relation": {
         "PROPOSES_METHOD": 55,
         "HAS_MODULE": 210,
         "EVALUATED_ON": 52,
         "LINEAGE_OF": 52,
-        "DERIVED_FROM_PAPERS": 79,
+        "DERIVED_FROM_PAPERS": 65,
         "FAILURE_SEEN_IN": 7,
         "GROUNDED_IN": 1,
         "GAP_FOR": 1,
@@ -46,7 +46,7 @@
       "nodes_by_dimension": {
         "knowledge": 52,
         "algorithm_data": 95,
-        "other": 259
+        "other": 245
       },
       "problem_categories": 0,
       "research_problems": 0,
@@ -281,37 +281,23 @@
         "[fig:factory_v2:figure_1] 未知概念类 'FigurePlan'",
         "[pkg:factory_v2] 未知概念类 'ReproductionPackage'",
         "[resulttable:2402.15864:main] 未知概念类 'ResultTable'",
-        "[resulttable:2406.08506:main] 未知概念类 'ResultTable'",
-        "[resulttable:2407.06334:main] 未知概念类 'ResultTable'",
         "[resulttable:2407.12186:main] 未知概念类 'ResultTable'",
-        "[resulttable:2410.03494:main] 未知概念类 'ResultTable'",
-        "[resulttable:2410.13147:main] 未知概念类 'ResultTable'",
-        "[resulttable:2503.03503:main] 未知概念类 'ResultTable'",
-        "[resulttable:2507.02752:main] 未知概念类 'ResultTable'",
-        "[resulttable:2503.12602:main] 未知概念类 'ResultTable'",
-        "[resulttable:2507.08475:main] 未知概念类 'ResultTable'",
-        "[resulttable:2510.14455:main] 未知概念类 'ResultTable'",
         "[resulttable:2509.16084:main] 未知概念类 'ResultTable'",
         "[resulttable:2512.20333:main] 未知概念类 'ResultTable'",
-        "[resulttable:2603.05900:main] 未知概念类 'ResultTable'",
         "[resulttable:2603.24382:main] 未知概念类 'ResultTable'",
-        "[resulttable:2604.07669:main] 未知概念类 'ResultTable'",
-        "[resulttable:2605.10831:main] 未知概念类 'ResultTable'",
+        "[resulttable:2604.23061:main] 未知概念类 'ResultTable'",
         "[resulttable:2605.07022:main] 未知概念类 'ResultTable'",
         "[resulttable:2606.03660:main] 未知概念类 'ResultTable'",
         "[resulttable:2605.24428:main] 未知概念类 'ResultTable'",
         "[resulttable:2607.00464:main] 未知概念类 'ResultTable'",
         "[resulttable:2607.00531:main] 未知概念类 'ResultTable'",
-        "[resulttable:2609.09203:main] 未知概念类 'ResultTable'",
         "[resulttable:2609.34491:main] 未知概念类 'ResultTable'",
         "[resulttable:2609.35336:main] 未知概念类 'ResultTable'",
         "[resulttable:2609.34301:main] 未知概念类 'ResultTable'",
         "[resulttable:2609.38484:main] 未知概念类 'ResultTable'",
         "[resulttable:2610.16975:main] 未知概念类 'ResultTable'",
-        "[resulttable:2610.18438:main] 未知概念类 'ResultTable'",
         "[resulttable:2610.16391:main] 未知概念类 'ResultTable'",
         "[resulttable:2610.18851:main] 未知概念类 'ResultTable'",
-        "[resulttable:2611.03696:main] 未知概念类 'ResultTable'",
         "[assertion:0001] 未知关系类型 'PROPOSES_METHOD'",
         "[assertion:0002] 未知关系类型 'HAS_MODULE'",
         "[assertion:0003] 未知关系类型 'HAS_MODULE'",
@@ -711,20 +697,6 @@
         "[assertion:0449] 未知关系类型 'DERIVED_FROM_PAPERS'",
         "[assertion:0450] 未知关系类型 'DERIVED_FROM_PAPERS'",
         "[assertion:0451] 未知关系类型 'DERIVED_FROM_PAPERS'",
-        "[assertion:0452] 未知关系类型 'DERIVED_FROM_PAPERS'",
-        "[assertion:0453] 未知关系类型 'DERIVED_FROM_PAPERS'",
-        "[assertion:0454] 未知关系类型 'DERIVED_FROM_PAPERS'",
-        "[assertion:0455] 未知关系类型 'DERIVED_FROM_PAPERS'",
-        "[assertion:0456] 未知关系类型 'DERIVED_FROM_PAPERS'",
-        "[assertion:0457] 未知关系类型 'DERIVED_FROM_PAPERS'",
-        "[assertion:0458] 未知关系类型 'DERIVED_FROM_PAPERS'",
-        "[assertion:0459] 未知关系类型 'DERIVED_FROM_PAPERS'",
-        "[assertion:0460] 未知关系类型 'DERIVED_FROM_PAPERS'",
-        "[assertion:0461] 未知关系类型 'DERIVED_FROM_PAPERS'",
-        "[assertion:0462] 未知关系类型 'DERIVED_FROM_PAPERS'",
-        "[assertion:0463] 未知关系类型 'DERIVED_FROM_PAPERS'",
-        "[assertion:0464] 未知关系类型 'DERIVED_FROM_PAPERS'",
-        "[assertion:0465] 未知关系类型 'DERIVED_FROM_PAPERS'",
         "图中没有任何论文—问题关联边（ADDRESSES/EXPOSES_LIMITATION/ANALYST_RELEVANT_TO）"
       ]
     }
@@ -1241,6 +1213,7 @@
           "GEOM",
           "QM9"
         ],
+        "split_spec": "valid molecules (about 38%",
         "hyperparams": [
           {
             "param": "learning rate",
@@ -3494,6 +3467,7 @@
         "data_sources": [
           "PubChem"
         ],
+        "split_spec": "split into 5 sets of 7,244",
         "hyperparams": [
           {
             "param": "threshold",
@@ -6647,69 +6621,6 @@
             "value": "20%",
             "context": "uler is applied, reducing the learning rate by 20%"
           }
-        ],
-        "result_tables": [
-          {
-            "label": "Table 1: Specific model hyper-parameters used in the scaling experi",
-            "columns": [
-              "Model Size",
-              "**229M**",
-              "68M",
-              "17.5M",
-              "3.7M"
-            ],
-            "rows": [
-              [
-                "# Feature Dimensions",
-                "768",
-                "512",
-                "256",
-                "128"
-              ],
-              [
-                "# Encoder Layers",
-                "8",
-                "6",
-                "6",
-                "4"
-              ],
-              [
-                "# Encoder Attn. Heads",
-                "16",
-                "16",
-                "8",
-                "4"
-              ],
-              [
-                "# Encoder Feed-forward Dimensions",
-                "4096",
-                "2048",
-                "1024",
-                "512"
-              ],
-              [
-                "# Decoder Layers",
-                "10",
-                "8",
-                "8",
-                "6"
-              ],
-              [
-                "# Decoder Attn. Heads",
-                "16",
-                "16",
-                "8",
-                "4"
-              ],
-              [
-                "# Decoder Feed-forward Dimensions",
-                "4096",
-                "2048",
-                "1024",
-                "512"
-              ]
-            ]
-          }
         ]
       },
       "attribution": "analyst_synthesis",
@@ -8676,6 +8587,7 @@
           "PubChem",
           "PDB"
         ],
+        "split_spec": "training dataset sizes, ranging from 93-99%",
         "hyperparams": [
           {
             "param": "threshold",
@@ -10087,6 +9999,7 @@
           "BindingDB",
           "PDB"
         ],
+        "split_spec": "valid syntheses over 50%",
         "hyperparams": [
           {
             "param": "learning rate",
@@ -11164,6 +11077,7 @@
         "data_sources": [
           "USPTO"
         ],
+        "split_spec": "split as proposed by [44], leading to 40,000, 500",
         "hyperparams": [
           {
             "param": "learning rate",
@@ -12069,6 +11983,7 @@
           "ChemCoTBench"
         ],
         "dedup_rule": "Tanimoto similarity _≥_ 0.6",
+        "split_spec": "validity with 95%",
         "result_tables": [
           {
             "label": "table_1",
@@ -13657,6 +13572,7 @@
           "ZINC",
           "PubChem"
         ],
+        "split_spec": "training examples and keep only 40%",
         "hyperparams": [
           {
             "param": "threshold",
@@ -16482,6 +16398,7 @@
           "PubChem",
           "USPTO"
         ],
+        "split_spec": "Validator` estimates _≥_ 80%",
         "hyperparams": [
           {
             "param": "temperature",
@@ -17539,6 +17456,7 @@
         "data_sources": [
           "USPTO"
         ],
+        "split_spec": "splits [3, 23",
         "hyperparams": [
           {
             "param": "top-k",
@@ -19257,6 +19175,7 @@
         "data_sources": [
           "PubChem"
         ],
+        "split_spec": "Splits:** 80/20",
         "hyperparams": [
           {
             "param": "temperature",
@@ -21985,6 +21904,7 @@
           "PDB"
         ],
         "dedup_rule": "Tanimoto similarity of at least 0.20",
+        "split_spec": "split from the 30,000",
         "hyperparams": [
           {
             "param": "temperature",
@@ -22500,6 +22420,7 @@
         "data_sources": [
           "USPTO"
         ],
+        "split_spec": "split and evaluate 4,944",
         "result_tables": [
           {
             "label": "Table 1: USPTO-Full test results",
@@ -23695,6 +23616,7 @@
           "MoleculeNet"
         ],
         "dedup_rule": "Tanimoto distance was 0.671",
+        "split_spec": "split [41] used by MolT5, with 3,300",
         "hyperparams": [
           {
             "param": "threshold",
@@ -26418,105 +26340,11 @@
           }
         ],
         "source_paper": "paper:2402.15864",
-        "latex": "\\begin{table}[t]\n\\centering\n\\caption{Table 3) and CExTB (Table 4) to gain significant improvements as a}\n\\label{tab:2402.15864}\n\\begin{tabular}{lcccc}\n\\toprule\nModel & BL (↓W1) & BA (↓W1) & CEMMFF (↓W1) & CExTB (↓W1) \\\\\n\\midrule\nEDM & \\textbf{0.47} & \\textbf{0.68} & 3.45 & 0.30 \\\\\nMiDi & 1.92 & 0.95 & 3.12 & 0.34 \\\\\nJODO & 0.62 & 0.83 & \\textbf{1.41} & \\textbf{0.22} \\\\\nFMG & 0.59_±_0.01 & 1.08 _±_0.12 & 2.15_±_0.385 & 0.71_±_0_._02 \\\\\nFMG_β_=0 & - & - & - & 0.98 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n",
+        "latex": "\\begin{table}[t]\n\\centering\n\\caption{Table 3) and CExTB (Table 4) to gain significant improvements as a}\n\\label{tab:2402.15864}\n\\begin{tabular}{lcccc}\n\\toprule\nModel & BL (↓W1) & BA (↓W1) & CEMMFF (↓W1) & CExTB (↓W1) \\\\\n\\midrule\nEDM & \\textbf{0.47} & \\textbf{0.68} & 3.45 & 0.30 \\\\\nMiDi & 1.92 & 0.95 & 3.12 & 0.34 \\\\\nJODO & 0.62 & 0.83 & \\textbf{1.41} & \\textbf{0.22} \\\\\nFMG & 0.59\\_±\\_0.01 & 1.08 \\_±\\_0.12 & 2.15\\_±\\_0.385 & 0.71\\_±\\_0\\_.\\_02 \\\\\nFMG\\_β\\_=0 & - & - & - & 0.98 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n",
         "layer": "application",
         "task": "writing",
         "miner": "p6_tablegen",
         "label": "Table 3) and CExTB (Table 4) to gain significant improvement"
-      },
-      "attribution": "analyst_synthesis",
-      "evidence_ids": [],
-      "source_version": "",
-      "missing_states": {}
-    },
-    {
-      "id": "resulttable:2406.08506:main",
-      "type": "ResultTable",
-      "label": "Table 1",
-      "attrs": {
-        "run_id": "p6_run",
-        "table_label": "Table 1",
-        "caption": "Table 1",
-        "columns": [
-          "AiZynth_↑_"
-        ],
-        "rows": [
-          {
-            "model": "sEH",
-            "AiZynth_↑_": "0.04"
-          },
-          {
-            "model": "Seno.",
-            "AiZynth_↑_": "0.05"
-          },
-          {
-            "model": "ClpP",
-            "AiZynth_↑_": "0.00"
-          },
-          {
-            "model": "DRD2",
-            "AiZynth_↑_": "0.41"
-          }
-        ],
-        "source_paper": "paper:2406.08506",
-        "latex": "\\begin{table}[t]\n\\centering\n\\caption{Table 1}\n\\label{tab:2406.08506}\n\\begin{tabular}{lc}\n\\toprule\nModel & AiZynth\\_↑\\_ \\\\\n\\midrule\nsEH & 0.04 \\\\\nSeno. & 0.05 \\\\\nClpP & 0.00 \\\\\nDRD2 & \\textbf{0.41} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n",
-        "layer": "application",
-        "task": "writing",
-        "miner": "p6_tablegen",
-        "label": "Table 1"
-      },
-      "attribution": "analyst_synthesis",
-      "evidence_ids": [],
-      "source_version": "",
-      "missing_states": {}
-    },
-    {
-      "id": "resulttable:2407.06334:main",
-      "type": "ResultTable",
-      "label": "Table 1: Benchmark dataset summary",
-      "attrs": {
-        "run_id": "p6_run",
-        "table_label": "Table 1: Benchmark dataset summary",
-        "caption": "Table 1: Benchmark dataset summary",
-        "columns": [
-          "# Routes",
-          "Avg. In-Dist. %",
-          "Unique Rxn. %",
-          "Avg. # Rxns.",
-          "Avg. Depth"
-        ],
-        "rows": [
-          {
-            "model": "**USPTO-190**",
-            "# Routes": "190",
-            "Avg. In-Dist. %": "65.6",
-            "Unique Rxn. %": "50.5",
-            "Avg. # Rxns.": "6.7",
-            "Avg. Depth": "6.0"
-          },
-          {
-            "model": "**Pistachio Reachable**",
-            "# Routes": "150",
-            "Avg. In-Dist. %": "100",
-            "Unique Rxn. %": "86.1",
-            "Avg. # Rxns.": "5.5",
-            "Avg. Depth": "5.4"
-          },
-          {
-            "model": "**Pistachio Hard**",
-            "# Routes": "100",
-            "Avg. In-Dist. %": "59.9",
-            "Unique Rxn. %": "95.2",
-            "Avg. # Rxns.": "7.5",
-            "Avg. Depth": "7.2"
-          }
-        ],
-        "source_paper": "paper:2407.06334",
-        "latex": "\\begin{table}[t]\n\\centering\n\\caption{Table 1: Benchmark dataset summary}\n\\label{tab:2407.06334}\n\\begin{tabular}{lccccc}\n\\toprule\nModel & # Routes & Avg. In-Dist. % & Unique Rxn. % & Avg. # Rxns. & Avg. Depth \\\\\n\\midrule\n**USPTO-190** & \\textbf{190} & 65.6 & 50.5 & 6.7 & 6.0 \\\\\n**Pistachio Reachable** & 150 & \\textbf{100} & 86.1 & 5.5 & 5.4 \\\\\n**Pistachio Hard** & 100 & 59.9 & \\textbf{95.2} & \\textbf{7.5} & \\textbf{7.2} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n",
-        "layer": "application",
-        "task": "writing",
-        "miner": "p6_tablegen",
-        "label": "Table 1: Benchmark dataset summary"
       },
       "attribution": "analyst_synthesis",
       "evidence_ids": [],
@@ -26608,652 +26436,6 @@
         "task": "writing",
         "miner": "p6_tablegen",
         "label": "Table 3: Synthesizability metrics across various Saturn expe"
-      },
-      "attribution": "analyst_synthesis",
-      "evidence_ids": [],
-      "source_version": "",
-      "missing_states": {}
-    },
-    {
-      "id": "resulttable:2410.03494:main",
-      "type": "ResultTable",
-      "label": "Table 1: Specific model hyper-parameters used in the scaling",
-      "attrs": {
-        "run_id": "p6_run",
-        "table_label": "Table 1: Specific model hyper-parameters used in the scaling experi",
-        "caption": "Table 1: Specific model hyper-parameters used in the scaling experi",
-        "columns": [
-          "**229M**",
-          "68M",
-          "17.5M",
-          "3.7M"
-        ],
-        "rows": [
-          {
-            "model": "# Feature Dimensions",
-            "**229M**": "768",
-            "68M": "512",
-            "17.5M": "256",
-            "3.7M": "128"
-          },
-          {
-            "model": "# Encoder Layers",
-            "**229M**": "8",
-            "68M": "6",
-            "17.5M": "6",
-            "3.7M": "4"
-          },
-          {
-            "model": "# Encoder Attn. Heads",
-            "**229M**": "16",
-            "68M": "16",
-            "17.5M": "8",
-            "3.7M": "4"
-          },
-          {
-            "model": "# Encoder Feed-forward Dimensions",
-            "**229M**": "4096",
-            "68M": "2048",
-            "17.5M": "1024",
-            "3.7M": "512"
-          },
-          {
-            "model": "# Decoder Layers",
-            "**229M**": "10",
-            "68M": "8",
-            "17.5M": "8",
-            "3.7M": "6"
-          },
-          {
-            "model": "# Decoder Attn. Heads",
-            "**229M**": "16",
-            "68M": "16",
-            "17.5M": "8",
-            "3.7M": "4"
-          },
-          {
-            "model": "# Decoder Feed-forward Dimensions",
-            "**229M**": "4096",
-            "68M": "2048",
-            "17.5M": "1024",
-            "3.7M": "512"
-          }
-        ],
-        "source_paper": "paper:2410.03494",
-        "latex": "\\begin{table}[t]\n\\centering\n\\caption{Table 1: Specific model hyper-parameters used in the scaling experi}\n\\label{tab:2410.03494}\n\\begin{tabular}{lcccc}\n\\toprule\nModel & **229M** & 68M & 17.5M & 3.7M \\\\\n\\midrule\n# Feature Dimensions & 768 & 512 & 256 & 128 \\\\\n# Encoder Layers & 8 & 6 & 6 & 4 \\\\\n# Encoder Attn. Heads & 16 & 16 & 8 & 4 \\\\\n# Encoder Feed-forward Dimensions & 4096 & 2048 & 1024 & 512 \\\\\n# Decoder Layers & 10 & 8 & 8 & 6 \\\\\n# Decoder Attn. Heads & 16 & 16 & 8 & 4 \\\\\n# Decoder Feed-forward Dimensions & 4096 & 2048 & 1024 & 512 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n",
-        "layer": "application",
-        "task": "writing",
-        "miner": "p6_tablegen",
-        "label": "Table 1: Specific model hyper-parameters used in the scaling"
-      },
-      "attribution": "analyst_synthesis",
-      "evidence_ids": [],
-      "source_version": "",
-      "missing_states": {}
-    },
-    {
-      "id": "resulttable:2410.13147:main",
-      "type": "ResultTable",
-      "label": "Table 3: The results (T = 3) on a set of single- and multipr",
-      "attrs": {
-        "run_id": "p6_run",
-        "table_label": "Table 3: The results (T = 3) on a set of single- and multiproperty",
-        "caption": "Table 3: The results (T = 3) on a set of single- and multiproperty",
-        "columns": [
-          "ChatDrug",
-          "Qwen2.5-3<br>AgentDrug",
-          "B<br>AgentDrug_†_",
-          "ChatDrug",
-          "Qwen2.5-7<br>AgentDrug",
-          "B<br>AgentDrug_†_"
-        ],
-        "rows": [
-          {
-            "model": "+LoP<br>l",
-            "ChatDrug": "562",
-            "Qwen2.5-3<br>AgentDrug": "547",
-            "B<br>AgentDrug_†_": "571",
-            "Qwen2.5-7<br>AgentDrug": "602"
-          },
-          {
-            "model": "g<br><br>s",
-            "ChatDrug": ".<br>46.1",
-            "Qwen2.5-3<br>AgentDrug": ".<br>49.5",
-            "B<br>AgentDrug_†_": ".<br>47.3",
-            "Qwen2.5-7<br>AgentDrug": ".<br>53.1"
-          },
-          {
-            "model": "-LogP<br>l<br>",
-            "ChatDrug": "53.9<br>",
-            "Qwen2.5-3<br>AgentDrug": "57.6<br>",
-            "B<br>AgentDrug_†_": "58.0<br>",
-            "Qwen2.5-7<br>AgentDrug": "59.6<br>"
-          },
-          {
-            "model": "s<br>+TPSA<br>l",
-            "ChatDrug": "46.5<br>55.1",
-            "Qwen2.5-3<br>AgentDrug": "53.5<br>56.5",
-            "B<br>AgentDrug_†_": "44.9<br>52.1",
-            "Qwen2.5-7<br>AgentDrug": "50.5<br>56.8"
-          },
-          {
-            "model": "s",
-            "ChatDrug": "512",
-            "Qwen2.5-3<br>AgentDrug": "522",
-            "B<br>AgentDrug_†_": "509",
-            "Qwen2.5-7<br>AgentDrug": "567"
-          },
-          {
-            "model": "-TPSA<br>l",
-            "ChatDrug": ".<br>45.1",
-            "Qwen2.5-3<br>AgentDrug": ".<br>50.9",
-            "B<br>AgentDrug_†_": ".<br>45.6",
-            "Qwen2.5-7<br>AgentDrug": ".<br>49.7"
-          },
-          {
-            "model": "s",
-            "ChatDrug": "39.6",
-            "Qwen2.5-3<br>AgentDrug": "46.5",
-            "B<br>AgentDrug_†_": "40.2",
-            "Qwen2.5-7<br>AgentDrug": "45.2"
-          },
-          {
-            "model": "+QED<br>l",
-            "ChatDrug": "47.6",
-            "Qwen2.5-3<br>AgentDrug": "56.6",
-            "B<br>AgentDrug_†_": "51.0",
-            "Qwen2.5-7<br>AgentDrug": "56.6"
-          },
-          {
-            "model": "s",
-            "ChatDrug": "42.1",
-            "Qwen2.5-3<br>AgentDrug": "55.3",
-            "B<br>AgentDrug_†_": "44.9",
-            "Qwen2.5-7<br>AgentDrug": "56.6"
-          },
-          {
-            "model": "-QED<br>l",
-            "ChatDrug": "551",
-            "Qwen2.5-3<br>AgentDrug": "63.0",
-            "B<br>AgentDrug_†_": "562",
-            "Qwen2.5-7<br>AgentDrug": "56.4"
-          },
-          {
-            "model": "s",
-            "ChatDrug": ".<br>42.5",
-            "Qwen2.5-3<br>AgentDrug": "56.3",
-            "B<br>AgentDrug_†_": ".<br>40.1",
-            "Qwen2.5-7<br>AgentDrug": "48.5"
-          },
-          {
-            "model": "Average<br>l",
-            "ChatDrug": "52.2",
-            "Qwen2.5-3<br>AgentDrug": "56.6",
-            "B<br>AgentDrug_†_": "53.3",
-            "Qwen2.5-7<br>AgentDrug": "56.6"
-          },
-          {
-            "model": "s",
-            "ChatDrug": "44.7",
-            "Qwen2.5-3<br>AgentDrug": "52.2",
-            "B<br>AgentDrug_†_": "44.7",
-            "Qwen2.5-7<br>AgentDrug": "51.8"
-          },
-          {
-            "model": "+LogP+TPSA l l",
-            "ChatDrug": "36.7",
-            "Qwen2.5-3<br>AgentDrug": "53.2",
-            "B<br>AgentDrug_†_": "41.0",
-            "Qwen2.5-7<br>AgentDrug": "45.3"
-          },
-          {
-            "model": "s s",
-            "ChatDrug": "30.6",
-            "Qwen2.5-3<br>AgentDrug": "41.2",
-            "B<br>AgentDrug_†_": "36.8",
-            "Qwen2.5-7<br>AgentDrug": "41.5"
-          },
-          {
-            "model": "+LogP-TPSA l l",
-            "ChatDrug": "45.2",
-            "Qwen2.5-3<br>AgentDrug": "58.3",
-            "B<br>AgentDrug_†_": "46.0",
-            "Qwen2.5-7<br>AgentDrug": "50.7"
-          },
-          {
-            "model": "s s",
-            "ChatDrug": "423",
-            "Qwen2.5-3<br>AgentDrug": "488",
-            "B<br>AgentDrug_†_": "435",
-            "Qwen2.5-7<br>AgentDrug": "488"
-          },
-          {
-            "model": "<br>-LogP+TPSA l l",
-            "ChatDrug": ".<br>51.8",
-            "Qwen2.5-3<br>AgentDrug": ".<br>52.3",
-            "B<br>AgentDrug_†_": ".<br>50.6",
-            "Qwen2.5-7<br>AgentDrug": ".<br>54.4"
-          },
-          {
-            "model": "s s",
-            "ChatDrug": "38.5",
-            "Qwen2.5-3<br>AgentDrug": "49.3",
-            "B<br>AgentDrug_†_": "40.1",
-            "Qwen2.5-7<br>AgentDrug": "47.9"
-          },
-          {
-            "model": "-LogP-TPSA l l",
-            "ChatDrug": "42.3",
-            "Qwen2.5-3<br>AgentDrug": "51.6",
-            "B<br>AgentDrug_†_": "44.5",
-            "Qwen2.5-7<br>AgentDrug": "47.5"
-          },
-          {
-            "model": "s s",
-            "ChatDrug": "40.1",
-            "Qwen2.5-3<br>AgentDrug": "47.3",
-            "B<br>AgentDrug_†_": "41.8",
-            "Qwen2.5-7<br>AgentDrug": "49.8"
-          },
-          {
-            "model": "+LogP+QED l l",
-            "ChatDrug": "41.0<br>",
-            "Qwen2.5-3<br>AgentDrug": "53.5<br>",
-            "B<br>AgentDrug_†_": "43.7<br>",
-            "Qwen2.5-7<br>AgentDrug": "52.2<br>"
-          },
-          {
-            "model": "s s",
-            "ChatDrug": "43.7",
-            "Qwen2.5-3<br>AgentDrug": "50.5",
-            "B<br>AgentDrug_†_": "42.6",
-            "Qwen2.5-7<br>AgentDrug": "54.6"
-          },
-          {
-            "model": "+LogP-QED l l<br>",
-            "ChatDrug": "47.2<br>",
-            "Qwen2.5-3<br>AgentDrug": "58.7<br>",
-            "B<br>AgentDrug_†_": "49.1<br>",
-            "Qwen2.5-7<br>AgentDrug": "51.2<br>"
-          },
-          {
-            "model": "s s",
-            "ChatDrug": "41.6",
-            "Qwen2.5-3<br>AgentDrug": "50.5",
-            "B<br>AgentDrug_†_": "45.1",
-            "Qwen2.5-7<br>AgentDrug": "47.2"
-          },
-          {
-            "model": "-LogP+QED l l",
-            "ChatDrug": "40.1",
-            "Qwen2.5-3<br>AgentDrug": "52.1",
-            "B<br>AgentDrug_†_": "42.0",
-            "Qwen2.5-7<br>AgentDrug": "46.9"
-          },
-          {
-            "model": "s s<br>-LogP-QED l l<br>s s",
-            "ChatDrug": ".<br>48.7<br>411",
-            "Qwen2.5-3<br>AgentDrug": ".<br>52.6<br>431",
-            "B<br>AgentDrug_†_": ".<br>50.7<br>429",
-            "Qwen2.5-7<br>AgentDrug": ".<br>50.9<br>465"
-          },
-          {
-            "model": "<br>Average<br>l l",
-            "ChatDrug": ".<br>44.1",
-            "Qwen2.5-3<br>AgentDrug": ".<br>54.0",
-            "B<br>AgentDrug_†_": ".<br>46.0",
-            "Qwen2.5-7<br>AgentDrug": ".<br>49.9"
-          },
-          {
-            "model": "s s",
-            "ChatDrug": "40.5",
-            "Qwen2.5-3<br>AgentDrug": "47.6",
-            "B<br>AgentDrug_†_": "42.3",
-            "Qwen2.5-7<br>AgentDrug": "48.9"
-          },
-          {
-            "model": "_p_<br>_d_",
-            "ChatDrug": "",
-            "Qwen2.5-3<br>AgentDrug": "Llama-3.1-8",
-            "B<br>AgentDrug_†_": "0B",
-            "Qwen2.5-7<br>AgentDrug": "Llama-3.1-7"
-          }
-        ],
-        "source_paper": "paper:2410.13147",
-        "latex": "\\begin{table}[t]\n\\centering\n\\caption{Table 3: The results (T = 3) on a set of single- and multiproperty}\n\\label{tab:2410.13147}\n\\begin{tabular}{lcccccc}\n\\toprule\nModel & ChatDrug & Qwen2.5-3<br>AgentDrug & B<br>AgentDrug\\_†\\_ & ChatDrug & Qwen2.5-7<br>AgentDrug & B<br>AgentDrug\\_†\\_ \\\\\n\\midrule\n+LoP<br>l & \\textbf{562} & \\textbf{547} & \\textbf{571} & \\textbf{562} & \\textbf{602} & \\textbf{571} \\\\\ng<br><br>s & .<br>46.1 & .<br>49.5 & .<br>47.3 & .<br>46.1 & .<br>53.1 & .<br>47.3 \\\\\n-LogP<br>l<br> & 53.9<br> & 57.6<br> & 58.0<br> & 53.9<br> & 59.6<br> & 58.0<br> \\\\\ns<br>+TPSA<br>l & 46.5<br>55.1 & 53.5<br>56.5 & 44.9<br>52.1 & 46.5<br>55.1 & 50.5<br>56.8 & 44.9<br>52.1 \\\\\ns & 512 & 522 & 509 & 512 & 567 & 509 \\\\\n-TPSA<br>l & .<br>45.1 & .<br>50.9 & .<br>45.6 & .<br>45.1 & .<br>49.7 & .<br>45.6 \\\\\ns & 39.6 & 46.5 & 40.2 & 39.6 & 45.2 & 40.2 \\\\\n+QED<br>l & 47.6 & 56.6 & 51.0 & 47.6 & 56.6 & 51.0 \\\\\ns & 42.1 & 55.3 & 44.9 & 42.1 & 56.6 & 44.9 \\\\\n-QED<br>l & 551 & 63.0 & 562 & 551 & 56.4 & 562 \\\\\ns & .<br>42.5 & 56.3 & .<br>40.1 & .<br>42.5 & 48.5 & .<br>40.1 \\\\\nAverage<br>l & 52.2 & 56.6 & 53.3 & 52.2 & 56.6 & 53.3 \\\\\ns & 44.7 & 52.2 & 44.7 & 44.7 & 51.8 & 44.7 \\\\\n+LogP+TPSA l l & 36.7 & 53.2 & 41.0 & 36.7 & 45.3 & 41.0 \\\\\ns s & 30.6 & 41.2 & 36.8 & 30.6 & 41.5 & 36.8 \\\\\n+LogP-TPSA l l & 45.2 & 58.3 & 46.0 & 45.2 & 50.7 & 46.0 \\\\\ns s & 423 & 488 & 435 & 423 & 488 & 435 \\\\\n<br>-LogP+TPSA l l & .<br>51.8 & .<br>52.3 & .<br>50.6 & .<br>51.8 & .<br>54.4 & .<br>50.6 \\\\\ns s & 38.5 & 49.3 & 40.1 & 38.5 & 47.9 & 40.1 \\\\\n-LogP-TPSA l l & 42.3 & 51.6 & 44.5 & 42.3 & 47.5 & 44.5 \\\\\ns s & 40.1 & 47.3 & 41.8 & 40.1 & 49.8 & 41.8 \\\\\n+LogP+QED l l & 41.0<br> & 53.5<br> & 43.7<br> & 41.0<br> & 52.2<br> & 43.7<br> \\\\\ns s & 43.7 & 50.5 & 42.6 & 43.7 & 54.6 & 42.6 \\\\\n+LogP-QED l l<br> & 47.2<br> & 58.7<br> & 49.1<br> & 47.2<br> & 51.2<br> & 49.1<br> \\\\\ns s & 41.6 & 50.5 & 45.1 & 41.6 & 47.2 & 45.1 \\\\\n-LogP+QED l l & 40.1 & 52.1 & 42.0 & 40.1 & 46.9 & 42.0 \\\\\ns s<br>-LogP-QED l l<br>s s & .<br>48.7<br>411 & .<br>52.6<br>431 & .<br>50.7<br>429 & .<br>48.7<br>411 & .<br>50.9<br>465 & .<br>50.7<br>429 \\\\\n<br>Average<br>l l & .<br>44.1 & .<br>54.0 & .<br>46.0 & .<br>44.1 & .<br>49.9 & .<br>46.0 \\\\\ns s & 40.5 & 47.6 & 42.3 & 40.5 & 48.9 & 42.3 \\\\\n_p_<br>_d_ &  & Llama-3.1-8 & 0B &  & Llama-3.1-7 & 0B \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n",
-        "layer": "application",
-        "task": "writing",
-        "miner": "p6_tablegen",
-        "label": "Table 3: The results (T = 3) on a set of single- and multipr"
-      },
-      "attribution": "analyst_synthesis",
-      "evidence_ids": [],
-      "source_version": "",
-      "missing_states": {}
-    },
-    {
-      "id": "resulttable:2503.03503:main",
-      "type": "ResultTable",
-      "label": "Table 3 | Task Performance Metrics for Single and Multi-Prop",
-      "attrs": {
-        "run_id": "p6_run",
-        "table_label": "Table 3 | Task Performance Metrics for Single and Multi-Property Op",
-        "caption": "Table 3 | Task Performance Metrics for Single and Multi-Property Op",
-        "columns": [
-          "**Hit Ratio (Lo**<br>",
-          "**ose)**<br>**Hit Ratio (Strict)**<br>_Single Property Optim_<br>",
-          "**Valid Ratio**<br>_ization_<br>",
-          "**Same Scaffold Ratio**<br>"
-        ],
-        "rows": [
-          {
-            "model": "101",
-            "**Hit Ratio (Lo**<br>": "91.37",
-            "**ose)**<br>**Hit Ratio (Strict)**<br>_Single Property Optim_<br>": "82.01",
-            "**Valid Ratio**<br>_ization_<br>": "93.71",
-            "**Same Scaffold Ratio**<br>": "89.45"
-          },
-          {
-            "model": "102",
-            "**Hit Ratio (Lo**<br>": "94.51",
-            "**ose)**<br>**Hit Ratio (Strict)**<br>_Single Property Optim_<br>": "88.28",
-            "**Valid Ratio**<br>_ization_<br>": "90.11",
-            "**Same Scaffold Ratio**<br>": "92.77"
-          },
-          {
-            "model": "103",
-            "**Hit Ratio (Lo**<br>": "69.75",
-            "**ose)**<br>**Hit Ratio (Strict)**<br>_Single Property Optim_<br>": "34.09",
-            "**Valid Ratio**<br>_ization_<br>": "99.55",
-            "**Same Scaffold Ratio**<br>": "85.33"
-          },
-          {
-            "model": "104",
-            "**Hit Ratio (Lo**<br>": "82.38",
-            "**ose)**<br>**Hit Ratio (Strict)**<br>_Single Property Optim_<br>": "58.81",
-            "**Valid Ratio**<br>_ization_<br>": "90.56",
-            "**Same Scaffold Ratio**<br>": "94.79"
-          },
-          {
-            "model": "105",
-            "**Hit Ratio (Lo**<br>": "76.68",
-            "**ose)**<br>**Hit Ratio (Strict)**<br>_Single Property Optim_<br>": "60.34",
-            "**Valid Ratio**<br>_ization_<br>": "93.48",
-            "**Same Scaffold Ratio**<br>": "96.88"
-          },
-          {
-            "model": "106",
-            "**Hit Ratio (Lo**<br>": "96.88",
-            "**ose)**<br>**Hit Ratio (Strict)**<br>_Single Property Optim_<br>": "91.59",
-            "**Valid Ratio**<br>_ization_<br>": "93.48",
-            "**Same Scaffold Ratio**<br>": "93.03"
-          },
-          {
-            "model": "107",
-            "**Hit Ratio (Lo**<br>": "99.28",
-            "**ose)**<br>**Hit Ratio (Strict)**<br>_Single Property Optim_<br>": "95.91",
-            "**Valid Ratio**<br>_ization_<br>": "93.48",
-            "**Same Scaffold Ratio**<br>": "93.75"
-          },
-          {
-            "model": "108",
-            "**Hit Ratio (Lo**<br>": "99.04",
-            "**ose)**<br>**Hit Ratio (Strict)**<br>_Single Property Optim_<br>": "96.15",
-            "**Valid Ratio**<br>_ization_<br>": "93.48",
-            "**Same Scaffold Ratio**<br>": "91.83"
-          },
-          {
-            "model": "201",
-            "**Hit Ratio (Lo**<br>": "90.63",
-            "**ose)**<br>**Hit Ratio (Strict)**<br>_Single Property Optim_<br>": "86.54",
-            "**Valid Ratio**<br>_ization_<br>": "93.48",
-            "**Same Scaffold Ratio**<br>": "94.47"
-          },
-          {
-            "model": "202",
-            "**Hit Ratio (Lo**<br>": "58.35",
-            "**ose)**<br>**Hit Ratio (Strict)**<br>_Single Property Optim_<br>": "34.19",
-            "**Valid Ratio**<br>_ization_<br>": "87.42",
-            "**Same Scaffold Ratio**<br>": "92.80"
-          },
-          {
-            "model": "203",
-            "**Hit Ratio (Lo**<br>": "95.81",
-            "**ose)**<br>**Hit Ratio (Strict)**<br>_Single Property Optim_<br>": "89.66",
-            "**Valid Ratio**<br>_ization_<br>": "91.24",
-            "**Same Scaffold Ratio**<br>": "92.86"
-          },
-          {
-            "model": "204",
-            "**Hit Ratio (Lo**<br>": "51.87",
-            "**ose)**<br>**Hit Ratio (Strict)**<br>_Single Property Optim_<br>": "28.68",
-            "**Valid Ratio**<br>_ization_<br>": "90.11",
-            "**Same Scaffold Ratio**<br>": "90.27"
-          },
-          {
-            "model": "205",
-            "**Hit Ratio (Lo**<br>": "29.26",
-            "**ose)**<br>**Hit Ratio (Strict)**<br>_Single Property Optim_<br>": "11.27",
-            "**Valid Ratio**<br>_ization_<br>": "93.71",
-            "**Same Scaffold Ratio**<br>": "94.72"
-          },
-          {
-            "model": "206",
-            "**Hit Ratio (Lo**<br>": "83.97",
-            "**ose)**<br>**Hit Ratio (Strict)**<br>_Single Property Optim_<br>": "66.03",
-            "**Valid Ratio**<br>_ization_<br>": "93.93",
-            "**Same Scaffold Ratio**<br>": "94.26"
-          }
-        ],
-        "source_paper": "paper:2503.03503",
-        "latex": "\\begin{table}[t]\n\\centering\n\\caption{Table 3 | Task Performance Metrics for Single and Multi-Property Op}\n\\label{tab:2503.03503}\n\\begin{tabular}{lcccc}\n\\toprule\nModel & **Hit Ratio (Lo**<br> & **ose)**<br>**Hit Ratio (Strict)**<br>\\_Single Property Optim\\_<br> & **Valid Ratio**<br>\\_ization\\_<br> & **Same Scaffold Ratio**<br> \\\\\n\\midrule\n101 & 91.37 & 82.01 & 93.71 & 89.45 \\\\\n102 & 94.51 & 88.28 & 90.11 & 92.77 \\\\\n103 & 69.75 & 34.09 & \\textbf{99.55} & 85.33 \\\\\n104 & 82.38 & 58.81 & 90.56 & 94.79 \\\\\n105 & 76.68 & 60.34 & 93.48 & \\textbf{96.88} \\\\\n106 & 96.88 & 91.59 & 93.48 & 93.03 \\\\\n107 & \\textbf{99.28} & 95.91 & 93.48 & 93.75 \\\\\n108 & 99.04 & \\textbf{96.15} & 93.48 & 91.83 \\\\\n201 & 90.63 & 86.54 & 93.48 & 94.47 \\\\\n202 & 58.35 & 34.19 & 87.42 & 92.80 \\\\\n203 & 95.81 & 89.66 & 91.24 & 92.86 \\\\\n204 & 51.87 & 28.68 & 90.11 & 90.27 \\\\\n205 & 29.26 & 11.27 & 93.71 & 94.72 \\\\\n206 & 83.97 & 66.03 & 93.93 & 94.26 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n",
-        "layer": "application",
-        "task": "writing",
-        "miner": "p6_tablegen",
-        "label": "Table 3 | Task Performance Metrics for Single and Multi-Prop"
-      },
-      "attribution": "analyst_synthesis",
-      "evidence_ids": [],
-      "source_version": "",
-      "missing_states": {}
-    },
-    {
-      "id": "resulttable:2507.02752:main",
-      "type": "ResultTable",
-      "label": "Table 1** , SynTwins consistently outperforms the baseline m",
-      "attrs": {
-        "run_id": "p6_run",
-        "table_label": "Table 1** , SynTwins consistently outperforms the baseline methods",
-        "caption": "Table 1** , SynTwins consistently outperforms the baseline methods",
-        "columns": [
-          "Exact-match rate",
-          "Top-k",
-          "average sim",
-          "ilarity"
-        ],
-        "rows": [
-          {
-            "model": "Virtual<br>molecules",
-            "Exact-match rate": "7",
-            "Top-k": "0.6543",
-            "average sim": "0.6247",
-            "ilarity": "0.6070"
-          },
-          {
-            "model": "ChEMBL<br>molecules",
-            "Exact-match rate": "8.9",
-            "Top-k": "0.5725",
-            "average sim": "0.5397",
-            "ilarity": "0.5221"
-          },
-          {
-            "model": "USPTO<br>molecules",
-            "Exact-match rate": "0",
-            "Top-k": "0.4323",
-            "average sim": "0.4204",
-            "ilarity": "0.4114"
-          },
-          {
-            "model": "FDA-approved<br>drugs",
-            "Exact-match rate": "4",
-            "Top-k": "0.3294",
-            "average sim": "0.3089",
-            "ilarity": "0.2979"
-          }
-        ],
-        "source_paper": "paper:2507.02752",
-        "latex": "\\begin{table}[t]\n\\centering\n\\caption{Table 1** , SynTwins consistently outperforms the baseline methods}\n\\label{tab:2507.02752}\n\\begin{tabular}{lcccc}\n\\toprule\nModel & Exact-match rate & Top-k & average sim & ilarity \\\\\n\\midrule\nVirtual<br>molecules & 7 & \\textbf{0.6543} & \\textbf{0.6247} & \\textbf{0.6070} \\\\\nChEMBL<br>molecules & \\textbf{8.9} & 0.5725 & 0.5397 & 0.5221 \\\\\nUSPTO<br>molecules & 0 & 0.4323 & 0.4204 & 0.4114 \\\\\nFDA-approved<br>drugs & 4 & 0.3294 & 0.3089 & 0.2979 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n",
-        "layer": "application",
-        "task": "writing",
-        "miner": "p6_tablegen",
-        "label": "Table 1** , SynTwins consistently outperforms the baseline m"
-      },
-      "attribution": "analyst_synthesis",
-      "evidence_ids": [],
-      "source_version": "",
-      "missing_states": {}
-    },
-    {
-      "id": "resulttable:2503.12602:main",
-      "type": "ResultTable",
-      "label": "table_1",
-      "attrs": {
-        "run_id": "p6_run",
-        "table_label": "table_1",
-        "caption": "table_1",
-        "columns": [
-          "# of R<br>",
-          "",
-          "Morgan Sim."
-        ],
-        "rows": [
-          {
-            "model": "Enamine",
-            "# of R<br>": "462",
-            "": "462",
-            "Morgan Sim.": "0.82"
-          },
-          {
-            "model": "Diversity",
-            "# of R<br>": "660",
-            "": "660",
-            "Morgan Sim.": "0.91"
-          },
-          {
-            "model": "Set",
-            "# of R<br>": "527",
-            "": "568",
-            "Morgan Sim.": "0.87"
-          },
-          {
-            "model": "ChEMBL<br>Dt",
-            "# of R<br>": "198",
-            "": "198",
-            "Morgan Sim.": "0.67"
-          },
-          {
-            "model": "aa",
-            "# of R<br>": "165",
-            "": "223",
-            "Morgan Sim.": "0.66"
-          }
-        ],
-        "source_paper": "paper:2503.12602",
-        "latex": "\\begin{table}[t]\n\\centering\n\\caption{table_1}\n\\label{tab:2503.12602}\n\\begin{tabular}{lccc}\n\\toprule\nModel & # of R<br> &  & Morgan Sim. \\\\\n\\midrule\nEnamine & 462 & 462 & 0.82 \\\\\nDiversity & \\textbf{660} & \\textbf{660} & \\textbf{0.91} \\\\\nSet & 527 & 568 & 0.87 \\\\\nChEMBL<br>Dt & 198 & 198 & 0.67 \\\\\naa & 165 & 223 & 0.66 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n",
-        "layer": "application",
-        "task": "writing",
-        "miner": "p6_tablegen",
-        "label": "table_1"
-      },
-      "attribution": "analyst_synthesis",
-      "evidence_ids": [],
-      "source_version": "",
-      "missing_states": {}
-    },
-    {
-      "id": "resulttable:2507.08475:main",
-      "type": "ResultTable",
-      "label": "Table 4** : Model performance comparison (Top-k accuracy in ",
-      "attrs": {
-        "run_id": "p6_run",
-        "table_label": "Table 4** : Model performance comparison (Top-k accuracy in %) on P",
-        "caption": "Table 4** : Model performance comparison (Top-k accuracy in %) on P",
-        "columns": [
-          "Top 1(%)",
-          "Top 3(%)",
-          "Top 5(%)"
-        ],
-        "rows": [
-          {
-            "model": "USPTO-50K",
-            "Top 1(%)": "93.6<br>94.4",
-            "Top 3(%)": "94.1<br>95.9",
-            "Top 5(%)": "94.5<br>96.2"
-          },
-          {
-            "model": "USPTO-MIT",
-            "Top 1(%)": "83.7",
-            "Top 3(%)": "90.9",
-            "Top 5(%)": "94.8"
-          },
-          {
-            "model": "Pistachio",
-            "Top 1(%)": "95.4",
-            "Top 3(%)": "98.1",
-            "Top 5(%)": "98.6"
-          }
-        ],
-        "source_paper": "paper:2507.08475",
-        "latex": "\\begin{table}[t]\n\\centering\n\\caption{Table 4** : Model performance comparison (Top-k accuracy in %) on P}\n\\label{tab:2507.08475}\n\\begin{tabular}{lccc}\n\\toprule\nModel & Top 1(%) & Top 3(%) & Top 5(%) \\\\\n\\midrule\nUSPTO-50K & 93.6<br>94.4 & 94.1<br>95.9 & 94.5<br>96.2 \\\\\nUSPTO-MIT & \\textbf{83.7} & \\textbf{90.9} & \\textbf{94.8} \\\\\nPistachio & 95.4 & 98.1 & 98.6 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n",
-        "layer": "application",
-        "task": "writing",
-        "miner": "p6_tablegen",
-        "label": "Table 4** : Model performance comparison (Top-k accuracy in "
-      },
-      "attribution": "analyst_synthesis",
-      "evidence_ids": [],
-      "source_version": "",
-      "missing_states": {}
-    },
-    {
-      "id": "resulttable:2510.14455:main",
-      "type": "ResultTable",
-      "label": "table_1",
-      "attrs": {
-        "run_id": "p6_run",
-        "table_label": "table_1",
-        "caption": "table_1",
-        "columns": [
-          "**Terminal re**",
-          "**placement**",
-          "**Core replacement**"
-        ],
-        "rows": [
-          {
-            "model": "Direct",
-            "**Terminal re**": "0.5",
-            "**placement**": "1.3",
-            "**Core replacement**": "0.0"
-          },
-          {
-            "model": "CdG",
-            "**Terminal re**": "50.3",
-            "**placement**": "9.9",
-            "**Core replacement**": "12.2"
-          },
-          {
-            "model": "oeen",
-            "**Terminal re**": "99.9",
-            "**placement**": "98.3",
-            "**Core replacement**": "98.3"
-          }
-        ],
-        "source_paper": "paper:2510.14455",
-        "latex": "\\begin{table}[t]\n\\centering\n\\caption{table_1}\n\\label{tab:2510.14455}\n\\begin{tabular}{lccc}\n\\toprule\nModel & **Terminal re** & **placement** & **Core replacement** \\\\\n\\midrule\nDirect & 0.5 & 1.3 & 0.0 \\\\\nCdG & 50.3 & 9.9 & 12.2 \\\\\noeen & \\textbf{99.9} & \\textbf{98.3} & \\textbf{98.3} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n",
-        "layer": "application",
-        "task": "writing",
-        "miner": "p6_tablegen",
-        "label": "table_1"
       },
       "attribution": "analyst_synthesis",
       "evidence_ids": [],
@@ -27430,7 +26612,7 @@
           }
         ],
         "source_paper": "paper:2509.16084",
-        "latex": "\\begin{table}[t]\n\\centering\n\\caption{Table 3 _|_ **Synthesizable goal-directed molecular optimization re}\n\\label{tab:2509.16084}\n\\begin{tabular}{lccccccc}\n\\toprule\nModel & Graph GA-ReaSyn & Graph GA-SF & SynthesisNet & SynNet & DoG-Gen & DoG-AE & Graph GA \\\\\n\\midrule\nSynthesis & ✓ & ✓ & ✓ & ✓ & ✓ & ✓ & x \\\\\namlodipine_mpo & 0.620 & 0.696 & 0.608 & 0.567 & 0.537 & 0.509 & 0.651 \\\\\ncelecoxib_rediscovery & \\textbf{0.810} & \\textbf{0.559} & \\textbf{0.582} & \\textbf{0.443} & \\textbf{0.466} & \\textbf{0.357} & \\textbf{0.682} \\\\\ndrd2 & 0.977 & 0.972 & 0.960 & 0.969 & 0.949 & 0.944 & 0.970 \\\\\nfexofenadine_mpo & 0.788 & 0.786 & 0.791 & 0.764 & 0.697 & 0.681 & 0.785 \\\\\ngsk3b & 0.889 & 0.803 & 0.848 & 0.790 & 0.832 & 0.602 & 0.838 \\\\\njnk3 & 0.695 & 0.658 & 0.639 & 0.631 & 0.596 & 0.470 & 0.693 \\\\\nmedian1 & 0.274 & 0.308 & 0.305 & 0.219 & 0.218 & 0.172 & 0.261 \\\\\nmedian2 & 0.259 & 0.258 & 0.257 & 0.237 & 0.213 & 0.183 & 0.257 \\\\\nosimertinib_mpo & 0.823 & 0.816 & 0.810 & 0.797 & 0.776 & 0.751 & 0.829 \\\\\nperindopril_mpo & 0.561 & 0.530 & 0.524 & 0.559 & 0.475 & 0.433 & 0.533 \\\\\nranolazine_mpo & 0.752 & 0.751 & 0.741 & 0.743 & 0.712 & 0.690 & 0.745 \\\\\nsitagliptin_mpo & 0.314 & 0.338 & 0.313 & 0.026 & 0.048 & 0.010 & 0.524 \\\\\nzaleplon_mpo & 0.460 & 0.478 & 0.528 & 0.341 & 0.123 & 0.050 & 0.458 \\\\\nAverage score & 0.633 & 0.612 & 0.608 & 0.545 & 0.511 & 0.450 & 0.633 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n",
+        "latex": "\\begin{table}[t]\n\\centering\n\\caption{Table 3 \\_|\\_ **Synthesizable goal-directed molecular optimization re}\n\\label{tab:2509.16084}\n\\begin{tabular}{lccccccc}\n\\toprule\nModel & Graph GA-ReaSyn & Graph GA-SF & SynthesisNet & SynNet & DoG-Gen & DoG-AE & Graph GA \\\\\n\\midrule\nSynthesis & ✓ & ✓ & ✓ & ✓ & ✓ & ✓ & x \\\\\namlodipine\\_mpo & 0.620 & 0.696 & 0.608 & 0.567 & 0.537 & 0.509 & 0.651 \\\\\ncelecoxib\\_rediscovery & \\textbf{0.810} & \\textbf{0.559} & \\textbf{0.582} & \\textbf{0.443} & \\textbf{0.466} & \\textbf{0.357} & \\textbf{0.682} \\\\\ndrd2 & 0.977 & 0.972 & 0.960 & 0.969 & 0.949 & 0.944 & 0.970 \\\\\nfexofenadine\\_mpo & 0.788 & 0.786 & 0.791 & 0.764 & 0.697 & 0.681 & 0.785 \\\\\ngsk3b & 0.889 & 0.803 & 0.848 & 0.790 & 0.832 & 0.602 & 0.838 \\\\\njnk3 & 0.695 & 0.658 & 0.639 & 0.631 & 0.596 & 0.470 & 0.693 \\\\\nmedian1 & 0.274 & 0.308 & 0.305 & 0.219 & 0.218 & 0.172 & 0.261 \\\\\nmedian2 & 0.259 & 0.258 & 0.257 & 0.237 & 0.213 & 0.183 & 0.257 \\\\\nosimertinib\\_mpo & 0.823 & 0.816 & 0.810 & 0.797 & 0.776 & 0.751 & 0.829 \\\\\nperindopril\\_mpo & 0.561 & 0.530 & 0.524 & 0.559 & 0.475 & 0.433 & 0.533 \\\\\nranolazine\\_mpo & 0.752 & 0.751 & 0.741 & 0.743 & 0.712 & 0.690 & 0.745 \\\\\nsitagliptin\\_mpo & 0.314 & 0.338 & 0.313 & 0.026 & 0.048 & 0.010 & 0.524 \\\\\nzaleplon\\_mpo & 0.460 & 0.478 & 0.528 & 0.341 & 0.123 & 0.050 & 0.458 \\\\\nAverage score & 0.633 & 0.612 & 0.608 & 0.545 & 0.511 & 0.450 & 0.633 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n",
         "layer": "application",
         "task": "writing",
         "miner": "p6_tablegen",
@@ -27568,90 +26750,6 @@
       "missing_states": {}
     },
     {
-      "id": "resulttable:2603.05900:main",
-      "type": "ResultTable",
-      "label": "Table 1: SuccessRate (SR), Similarity (Sim), and their produ",
-      "attrs": {
-        "run_id": "p6_run",
-        "table_label": "Table 1: SuccessRate (SR), Similarity (Sim), and their product (SR",
-        "caption": "Table 1: SuccessRate (SR), Similarity (Sim), and their product (SR",
-        "columns": [
-          "Base Model",
-          "Distill-SFT",
-          "SFT",
-          "GRPO",
-          "GRPO (SFT init)",
-          "RePO"
-        ],
-        "rows": [
-          {
-            "model": "Structure-",
-            "Base Model": "0.107",
-            "Distill-SFT": "0.188",
-            "SFT": "0.203",
-            "GRPO": "0.008",
-            "GRPO (SFT init)": "0.232",
-            "RePO": "0.158"
-          },
-          {
-            "model": "based<br>",
-            "Base Model": "0.864",
-            "Distill-SFT": "0.682",
-            "SFT": "0.755",
-            "GRPO": "0.994",
-            "GRPO (SFT init)": "0.759",
-            "RePO": "0.887"
-          },
-          {
-            "model": "optimization",
-            "Base Model": "0.092",
-            "Distill-SFT": "0.128",
-            "SFT": "0.153",
-            "GRPO": "0.008",
-            "GRPO (SFT init)": "0.176",
-            "RePO": "0.140"
-          },
-          {
-            "model": "Proert",
-            "Base Model": "0.268",
-            "Distill-SFT": "0.234",
-            "SFT": "0.298",
-            "GRPO": "0.379",
-            "GRPO (SFT init)": "0.212",
-            "RePO": "0.415"
-          },
-          {
-            "model": "py<br>otimization",
-            "Base Model": "0.627",
-            "Distill-SFT": "0.579",
-            "SFT": "0.692",
-            "GRPO": "0.806",
-            "GRPO (SFT init)": "0.863",
-            "RePO": "0.715"
-          },
-          {
-            "model": "p",
-            "Base Model": "0.168",
-            "Distill-SFT": "0.135",
-            "SFT": "0.206",
-            "GRPO": "0.305",
-            "GRPO (SFT init)": "0.183",
-            "RePO": "0.297"
-          }
-        ],
-        "source_paper": "paper:2603.05900",
-        "latex": "\\begin{table}[t]\n\\centering\n\\caption{Table 1: SuccessRate (SR), Similarity (Sim), and their product (SR}\n\\label{tab:2603.05900}\n\\begin{tabular}{lcccccc}\n\\toprule\nModel & Base Model & Distill-SFT & SFT & GRPO & GRPO (SFT init) & RePO \\\\\n\\midrule\nStructure- & 0.107 & 0.188 & 0.203 & 0.008 & 0.232 & 0.158 \\\\\nbased<br> & \\textbf{0.864} & \\textbf{0.682} & \\textbf{0.755} & \\textbf{0.994} & 0.759 & \\textbf{0.887} \\\\\noptimization & 0.092 & 0.128 & 0.153 & 0.008 & 0.176 & 0.140 \\\\\nProert & 0.268 & 0.234 & 0.298 & 0.379 & 0.212 & 0.415 \\\\\npy<br>otimization & 0.627 & 0.579 & 0.692 & 0.806 & \\textbf{0.863} & 0.715 \\\\\np & 0.168 & 0.135 & 0.206 & 0.305 & 0.183 & 0.297 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n",
-        "layer": "application",
-        "task": "writing",
-        "miner": "p6_tablegen",
-        "label": "Table 1: SuccessRate (SR), Similarity (Sim), and their produ"
-      },
-      "attribution": "analyst_synthesis",
-      "evidence_ids": [],
-      "source_version": "",
-      "missing_states": {}
-    },
-    {
       "id": "resulttable:2603.24382:main",
       "type": "ResultTable",
       "label": "Table 1",
@@ -27753,180 +26851,47 @@
       "missing_states": {}
     },
     {
-      "id": "resulttable:2604.07669:main",
+      "id": "resulttable:2604.23061:main",
       "type": "ResultTable",
-      "label": "Table 5 summarizes the hyperparameters shared across all 14 ",
+      "label": "table_2",
       "attrs": {
         "run_id": "p6_run",
-        "table_label": "Table 5 summarizes the hyperparameters shared across all 14 benchma",
-        "caption": "Table 5 summarizes the hyperparameters shared across all 14 benchma",
+        "table_label": "table_2",
+        "caption": "table_2",
         "columns": [
-          "**Value**"
+          "(IND)",
+          "",
+          "Out",
+          "-of-Domai",
+          "n (OOD",
+          ")"
         ],
         "rows": [
           {
-            "model": "Policy model",
-            "**Value**": "Qwen3-4B-Instruct"
+            "model": "GeLLM<sup>4</sup>O-CLlama<br>_RL Post-Training (Ours:_",
+            "(IND)": "0.56",
+            "": "61.3",
+            "Out": "25.2",
+            "-of-Domai": "10.2",
+            "n (OOD": "0.57",
+            ")": "6.5"
           },
           {
-            "model": "Training dtype",
-            "**Value**": "bfloat16"
-          },
-          {
-            "model": "Optimizer",
-            "**Value**": "MemoryEfficientAdamW"
-          },
-          {
-            "model": "Adam(_β_1_, β_2)",
-            "**Value**": "(0_._9_,_ 0_._999)"
-          },
-          {
-            "model": "Weight decay",
-            "**Value**": "0.0<br>"
-          },
-          {
-            "model": "Learning rate",
-            "**Value**": "1_._0_×_10<sup>_−_5</sup>"
-          },
-          {
-            "model": "Training steps",
-            "**Value**": "25"
-          },
-          {
-            "model": "Clip ratio_ε_",
-            "**Value**": "0.2"
-          },
-          {
-            "model": "Discount factor_γ_",
-            "**Value**": "1.0"
-          },
-          {
-            "model": "KL coefficient_β_KL",
-            "**Value**": "0.02"
-          },
-          {
-            "model": "KL reference policy",
-            "**Value**": "Fixed (initial)"
-          },
-          {
-            "model": "Entropy coefficient",
-            "**Value**": "0.01"
-          },
-          {
-            "model": "Molecules per batch",
-            "**Value**": "30"
-          },
-          {
-            "model": "Trajectories per molecule",
-            "**Value**": "10"
-          },
-          {
-            "model": "Micro-batch size",
-            "**Value**": "20"
-          },
-          {
-            "model": "Update epochs per rollout",
-            "**Value**": "2"
-          },
-          {
-            "model": "Max reaction depth",
-            "**Value**": "5"
-          },
-          {
-            "model": "Agent max iterations",
-            "**Value**": "10"
+            "model": "GDPOLlama",
+            "(IND)": "0.57",
+            "": "110.3",
+            "Out": "35.6",
+            "-of-Domai": "19.5",
+            "n (OOD": "0.59",
+            ")": "19.1"
           }
         ],
-        "source_paper": "paper:2604.07669",
-        "latex": "\\begin{table}[t]\n\\centering\n\\caption{Table 5 summarizes the hyperparameters shared across all 14 benchma}\n\\label{tab:2604.07669}\n\\begin{tabular}{lc}\n\\toprule\nModel & **Value** \\\\\n\\midrule\nPolicy model & Qwen3-4B-Instruct \\\\\nTraining dtype & bfloat16 \\\\\nOptimizer & MemoryEfficientAdamW \\\\\nAdam(_β_1_, β_2) & (0_._9_,_ 0_._999) \\\\\nWeight decay & 0.0<br> \\\\\nLearning rate & \\textbf{1_._0_×_10<sup>_−_5</sup>} \\\\\nTraining steps & 25 \\\\\nClip ratio_ε_ & 0.2 \\\\\nDiscount factor_γ_ & 1.0 \\\\\nKL coefficient_β_KL & 0.02 \\\\\nKL reference policy & Fixed (initial) \\\\\nEntropy coefficient & 0.01 \\\\\nMolecules per batch & 30 \\\\\nTrajectories per molecule & 10 \\\\\nMicro-batch size & 20 \\\\\nUpdate epochs per rollout & 2 \\\\\nMax reaction depth & 5 \\\\\nAgent max iterations & 10 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n",
+        "source_paper": "paper:2604.23061",
+        "latex": "\\begin{table}[t]\n\\centering\n\\caption{table\\_2}\n\\label{tab:2604.23061}\n\\begin{tabular}{lcccccc}\n\\toprule\nModel & (IND) &  & Out & -of-Domai & n (OOD & ) \\\\\n\\midrule\nGeLLM<sup>4</sup>O-CLlama<br>\\_RL Post-Training (Ours:\\_ & 0.56 & 61.3 & 25.2 & 10.2 & 0.57 & 6.5 \\\\\nGDPOLlama & \\textbf{0.57} & \\textbf{110.3} & \\textbf{35.6} & \\textbf{19.5} & \\textbf{0.59} & \\textbf{19.1} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n",
         "layer": "application",
         "task": "writing",
         "miner": "p6_tablegen",
-        "label": "Table 5 summarizes the hyperparameters shared across all 14 "
-      },
-      "attribution": "analyst_synthesis",
-      "evidence_ids": [],
-      "source_version": "",
-      "missing_states": {}
-    },
-    {
-      "id": "resulttable:2605.10831:main",
-      "type": "ResultTable",
-      "label": "Table 1: Forward-direction results on the MolEditRL benchmar",
-      "attrs": {
-        "run_id": "p6_run",
-        "table_label": "Table 1: Forward-direction results on the MolEditRL benchmark (500",
-        "caption": "Table 1: Forward-direction results on the MolEditRL benchmark (500",
-        "columns": [
-          "A",
-          "cc@0.15 (%",
-          ")",
-          "Ac",
-          "c@0.65 (",
-          "%)"
-        ],
-        "rows": [
-          {
-            "model": "To answer **RQ1**, we evaluate SLIM on all four",
-            "A": "36.0",
-            "cc@0.15 (%": "91.0",
-            ")": "94.4",
-            "Ac": "11.4",
-            "c@0.65 (": "57.8",
-            "%)": "60.2"
-          },
-          {
-            "model": "modelsacrosseightpropertiesatbothsimilarity",
-            "A": "34.0",
-            "cc@0.15 (%": "85.6",
-            ")": "93.0",
-            "Ac": "6.8",
-            "c@0.65 (": "40.4",
-            "%)": "63.8"
-          },
-          {
-            "model": "<br>",
-            "A": "38.4",
-            "cc@0.15 (%": "76.4",
-            ")": "85.6",
-            "Ac": "11.2",
-            "c@0.65 (": "39.2",
-            "%)": "43.6"
-          },
-          {
-            "model": "thresholds (Table1).",
-            "A": "2.4",
-            "cc@0.15 (%": "82.8",
-            ")": "95.8",
-            "Ac": "1.0",
-            "c@0.65 (": "62.8",
-            "%)": "55.6"
-          },
-          {
-            "model": "<br>As shown in Table 1, SLIM improves 31/32",
-            "A": "40.0<br>45.8",
-            "cc@0.15 (%": "82.6<br>84.2",
-            ")": "77.4<br>74.2",
-            "Ac": "19.0<br>26.8",
-            "c@0.65 (": "48.4<br>58.2",
-            "%)": "56.0<br>55.2"
-          },
-          {
-            "model": "model-property pairs at_τ_=015The gains are",
-            "A": "32.8",
-            "cc@0.15 (%": "83.8",
-            ")": "86.7",
-            "Ac": "12.7",
-            "c@0.65 (": "51.1",
-            "%)": "55.7"
-          }
-        ],
-        "source_paper": "paper:2605.10831",
-        "latex": "\\begin{table}[t]\n\\centering\n\\caption{Table 1: Forward-direction results on the MolEditRL benchmark (500}\n\\label{tab:2605.10831}\n\\begin{tabular}{lcccccc}\n\\toprule\nModel & A & cc@0.15 (% & ) & Ac & c@0.65 ( & %) \\\\\n\\midrule\nTo answer **RQ1**, we evaluate SLIM on all four & 36.0 & \\textbf{91.0} & 94.4 & 11.4 & 57.8 & 60.2 \\\\\nmodelsacrosseightpropertiesatbothsimilarity & 34.0 & 85.6 & 93.0 & 6.8 & 40.4 & \\textbf{63.8} \\\\\n<br> & \\textbf{38.4} & 76.4 & 85.6 & 11.2 & 39.2 & 43.6 \\\\\nthresholds (Table1). & 2.4 & 82.8 & \\textbf{95.8} & 1.0 & \\textbf{62.8} & 55.6 \\\\\n<br>As shown in Table 1, SLIM improves 31/32 & 40.0<br>45.8 & 82.6<br>84.2 & 77.4<br>74.2 & \\textbf{19.0<br>26.8} & 48.4<br>58.2 & 56.0<br>55.2 \\\\\nmodel-property pairs at_τ_=015The gains are & 32.8 & 83.8 & 86.7 & 12.7 & 51.1 & 55.7 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n",
-        "layer": "application",
-        "task": "writing",
-        "miner": "p6_tablegen",
-        "label": "Table 1: Forward-direction results on the MolEditRL benchmar"
+        "label": "table_2"
       },
       "attribution": "analyst_synthesis",
       "evidence_ids": [],
@@ -27992,7 +26957,7 @@
           }
         ],
         "source_paper": "paper:2605.07022",
-        "latex": "\\begin{table}[t]\n\\centering\n\\caption{Table 3: Human-validated label error rates on molecules in four man}\n\\label{tab:2605.07022}\n\\begin{tabular}{lcccccc}\n\\toprule\nModel & Mols. & Baseline & `Starling` & Lit. & Confirmed-wrong & Confirmed-wrong \\\\\n\\midrule\nDataset & Reviewed & wrong & wrong & ambiguous & `Starling`rate & `Starling`rate \\\\\nBioavailability_Ma & 34 & 25 & 0 & 9 & 0.0 & 0.0 \\\\\nBBB_Martins & 138 & 98 & 10 & 30 & 1.7 & 1.7 \\\\\nLD50_Zhu & \\textbf{95} & \\textbf{37} & \\textbf{10} & \\textbf{48} & \\textbf{1.5} & \\textbf{1.5} \\\\\nB3DB & 316 & 214 & 20 & 78 & 1.8 & 1.8 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n",
+        "latex": "\\begin{table}[t]\n\\centering\n\\caption{Table 3: Human-validated label error rates on molecules in four man}\n\\label{tab:2605.07022}\n\\begin{tabular}{lcccccc}\n\\toprule\nModel & Mols. & Baseline & `Starling` & Lit. & Confirmed-wrong & Confirmed-wrong \\\\\n\\midrule\nDataset & Reviewed & wrong & wrong & ambiguous & `Starling`rate & `Starling`rate \\\\\nBioavailability\\_Ma & 34 & 25 & 0 & 9 & 0.0 & 0.0 \\\\\nBBB\\_Martins & 138 & 98 & 10 & 30 & 1.7 & 1.7 \\\\\nLD50\\_Zhu & \\textbf{95} & \\textbf{37} & \\textbf{10} & \\textbf{48} & \\textbf{1.5} & \\textbf{1.5} \\\\\nB3DB & 316 & 214 & 20 & 78 & 1.8 & 1.8 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n",
         "layer": "application",
         "task": "writing",
         "miner": "p6_tablegen",
@@ -28094,7 +27059,7 @@
           }
         ],
         "source_paper": "paper:2606.03660",
-        "latex": "\\begin{table}[t]\n\\centering\n\\caption{table_3}\n\\label{tab:2606.03660}\n\\begin{tabular}{lcccccc}\n\\toprule\nModel & **Produc** & **Retros** & **Template/** & **Component Re** & **Conditi** & **Yield** \\\\\n\\midrule\nQwen3.5 Plus & 45.3 & 18.5 & 70.8 & 31.8 & 35.5 & 0.295 \\\\\nDeepSeek-V4 & 33.3 & 15.0 & 76.0 & 35.2 & 34.0 & 0.288 \\\\\nGPT-5.2 & 24.0 & 8.0 & 72.8 & 27.8 & 33.0 & 0.241 \\\\\nGemini-3.1 & \\textbf{52.7} & \\textbf{28.5} & \\textbf{86.2} & \\textbf{39.2} & 37.0 & 0.299 \\\\\nDeepSeek-V3.2 & 18.3 & 2.0 & 68.0 & 24.7 & 34.5 & 0.303 \\\\\nDoubao-2Pro & 39.8 & 12.5 & 78.0 & 33.7 & 33.5 & 0.295 \\\\\nGLM-5.1 & 35.7 & 8.0 & 81.0 & 33.7 & \\textbf{38.0} & \\textbf{0.309} \\\\\nClaude-Sonnet & 42.0 & 20.5 & 84.0 & 35.0 & 36.5 & 0.233 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n",
+        "latex": "\\begin{table}[t]\n\\centering\n\\caption{table\\_3}\n\\label{tab:2606.03660}\n\\begin{tabular}{lcccccc}\n\\toprule\nModel & **Produc** & **Retros** & **Template/** & **Component Re** & **Conditi** & **Yield** \\\\\n\\midrule\nQwen3.5 Plus & 45.3 & 18.5 & 70.8 & 31.8 & 35.5 & 0.295 \\\\\nDeepSeek-V4 & 33.3 & 15.0 & 76.0 & 35.2 & 34.0 & 0.288 \\\\\nGPT-5.2 & 24.0 & 8.0 & 72.8 & 27.8 & 33.0 & 0.241 \\\\\nGemini-3.1 & \\textbf{52.7} & \\textbf{28.5} & \\textbf{86.2} & \\textbf{39.2} & 37.0 & 0.299 \\\\\nDeepSeek-V3.2 & 18.3 & 2.0 & 68.0 & 24.7 & 34.5 & 0.303 \\\\\nDoubao-2Pro & 39.8 & 12.5 & 78.0 & 33.7 & 33.5 & 0.295 \\\\\nGLM-5.1 & 35.7 & 8.0 & 81.0 & 33.7 & \\textbf{38.0} & \\textbf{0.309} \\\\\nClaude-Sonnet & 42.0 & 20.5 & 84.0 & 35.0 & 36.5 & 0.233 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n",
         "layer": "application",
         "task": "writing",
         "miner": "p6_tablegen",
@@ -28343,7 +27308,7 @@
           }
         ],
         "source_paper": "paper:2607.00464",
-        "latex": "\\begin{table}[t]\n\\centering\n\\caption{Table 2, we report performance across 11 distinct safety assessment}\n\\label{tab:2607.00464}\n\\begin{tabular}{lccccccccccc}\n\\toprule\nModel &  &  &  & Toxic & ity (ACC) & \\_↑\\_ &  &  & Haza & rd Level ( & JSC)\\_↑\\_ \\\\\n\\midrule\n#Molecules & Hemato.<br>1,909 & Hemato.<br>1,909 & Hemato.<br>1,909 & Resp.<br>3,894 & Neuro.<br>571 & Nephro.<br>504 & Hemato.<br>1,909 & Hemato.<br>1,909 & Phy.<br>7,104 & Heal.<br>22,314 & Env.<br>14,757 \\\\\n3MTox & 0.769 & 0.769 & 0.769 & 0.824 & 0.782 & 0.736 & 0.769 & 0.769 & 0.696 & 0.758 & 0.718 \\\\\nDCAMCP & 0.763 & 0.763 & 0.763 & 0.796 & 0.743 & 0.716 & 0.763 & 0.763 & - & - & - \\\\\nGPT-4o & 0.645 & 0.645 & 0.645 & 0.548 & 0.569 & 0.571 & 0.645 & 0.645 & 0.371 & 0.198 & 0.174 \\\\\no4-mini & 0.646 & 0.646 & 0.646 & 0.425 & 0.539 & 0.577 & 0.646 & 0.646 & 0.484 & 0.481 & 0.162 \\\\\ngemini-2.5-flash & 0.506 & 0.506 & 0.506 & 0.562 & 0.576 & 0.563 & 0.506 & 0.506 & 0.363 & 0.031 & 0.202 \\\\\nQwen3-plus & 0.576 & 0.576 & 0.576 & 0.595 & 0.592 & 0.577 & 0.576 & 0.576 & 0.367 & 0.192 & 0.282 \\\\\nDeepseek-V3 & 0.583 & 0.583 & 0.583 & 0.562 & 0.641 & 0.605 & 0.583 & 0.583 & 0.441 & 0.293 & 0.199 \\\\\nOurs(GPT-4o) & 0.767 & 0.767 & 0.767 & 0.824 & 0.748 & 0.712 & 0.767 & 0.767 & 0.647 & 0.708 & 0.659 \\\\\nOurs(o4-mini) & 0.780 & 0.780 & 0.780 & 0.837 & 0.772 & 0.732 & 0.780 & 0.780 & 0.703 & 0.764 & 0.724 \\\\\nOurs(gemini-2.5-flash) & 0.686 & 0.686 & 0.686 & 0.782 & 0.704 & 0.677 & 0.686 & 0.686 & \\textbf{0.681} & \\textbf{0.684} & \\textbf{0.689} \\\\\nOurs(Qwen3-plus) & \\textbf{0.653} & \\textbf{0.653} & \\textbf{0.653} & \\textbf{0.764} & \\textbf{0.706} & \\textbf{0.690} & \\textbf{0.653} & \\textbf{0.653} & 0.651 & 0.734 & 0.691 \\\\\nOurs(Deepseek-V3) & 0.781 & 0.781 & 0.781 & 0.847 & 0.793 & 0.738 & 0.781 & 0.781 & 0.707 & 0.771 & 0.725 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n",
+        "latex": "\\begin{table}[t]\n\\centering\n\\caption{Table 2, we report performance across 11 distinct safety assessment}\n\\label{tab:2607.00464}\n\\begin{tabular}{lccccccccccc}\n\\toprule\nModel &  &  &  & Toxic & ity (ACC) & \\_↑\\_ &  &  & Haza & rd Level ( & JSC)\\_↑\\_ \\\\\n\\midrule\n\\#Molecules & Hemato.<br>1,909 & Hemato.<br>1,909 & Hemato.<br>1,909 & Resp.<br>3,894 & Neuro.<br>571 & Nephro.<br>504 & Hemato.<br>1,909 & Hemato.<br>1,909 & Phy.<br>7,104 & Heal.<br>22,314 & Env.<br>14,757 \\\\\n3MTox & 0.769 & 0.769 & 0.769 & 0.824 & 0.782 & 0.736 & 0.769 & 0.769 & 0.696 & 0.758 & 0.718 \\\\\nDCAMCP & 0.763 & 0.763 & 0.763 & 0.796 & 0.743 & 0.716 & 0.763 & 0.763 & - & - & - \\\\\nGPT-4o & 0.645 & 0.645 & 0.645 & 0.548 & 0.569 & 0.571 & 0.645 & 0.645 & 0.371 & 0.198 & 0.174 \\\\\no4-mini & 0.646 & 0.646 & 0.646 & 0.425 & 0.539 & 0.577 & 0.646 & 0.646 & 0.484 & 0.481 & 0.162 \\\\\ngemini-2.5-flash & 0.506 & 0.506 & 0.506 & 0.562 & 0.576 & 0.563 & 0.506 & 0.506 & 0.363 & 0.031 & 0.202 \\\\\nQwen3-plus & 0.576 & 0.576 & 0.576 & 0.595 & 0.592 & 0.577 & 0.576 & 0.576 & 0.367 & 0.192 & 0.282 \\\\\nDeepseek-V3 & 0.583 & 0.583 & 0.583 & 0.562 & 0.641 & 0.605 & 0.583 & 0.583 & 0.441 & 0.293 & 0.199 \\\\\nOurs(GPT-4o) & 0.767 & 0.767 & 0.767 & 0.824 & 0.748 & 0.712 & 0.767 & 0.767 & 0.647 & 0.708 & 0.659 \\\\\nOurs(o4-mini) & 0.780 & 0.780 & 0.780 & 0.837 & 0.772 & 0.732 & 0.780 & 0.780 & 0.703 & 0.764 & 0.724 \\\\\nOurs(gemini-2.5-flash) & 0.686 & 0.686 & 0.686 & 0.782 & 0.704 & 0.677 & 0.686 & 0.686 & \\textbf{0.681} & \\textbf{0.684} & \\textbf{0.689} \\\\\nOurs(Qwen3-plus) & \\textbf{0.653} & \\textbf{0.653} & \\textbf{0.653} & \\textbf{0.764} & \\textbf{0.706} & \\textbf{0.690} & \\textbf{0.653} & \\textbf{0.653} & 0.651 & 0.734 & 0.691 \\\\\nOurs(Deepseek-V3) & 0.781 & 0.781 & 0.781 & 0.847 & 0.793 & 0.738 & 0.781 & 0.781 & 0.707 & 0.771 & 0.725 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n",
         "layer": "application",
         "task": "writing",
         "miner": "p6_tablegen",
@@ -28397,131 +27362,6 @@
         "task": "writing",
         "miner": "p6_tablegen",
         "label": "Table 1: Main results on TOMG-Bench MOLOPT"
-      },
-      "attribution": "analyst_synthesis",
-      "evidence_ids": [],
-      "source_version": "",
-      "missing_states": {}
-    },
-    {
-      "id": "resulttable:2609.09203:main",
-      "type": "ResultTable",
-      "label": "Table 2",
-      "attrs": {
-        "run_id": "p6_run",
-        "table_label": "Table 2",
-        "caption": "Table 2",
-        "columns": [
-          "**Value**"
-        ],
-        "rows": [
-          {
-            "model": "Total trajectories",
-            "**Value**": "558"
-          },
-          {
-            "model": "Frontier model trajectories",
-            "**Value**": "372 (124_×_3 models)"
-          },
-          {
-            "model": "Open-weight model trajectories",
-            "**Value**": "120 (30_×_4 models)"
-          },
-          {
-            "model": "Live-retrieval variant trajectories",
-            "**Value**": "60"
-          },
-          {
-            "model": "Models represented",
-            "**Value**": "7 (3 frontier + 4 open-weight)"
-          },
-          {
-            "model": "Domains covered",
-            "**Value**": "4"
-          },
-          {
-            "model": "Tasks executed per frontier model",
-            "**Value**": "124"
-          },
-          {
-            "model": "Tasks in full bank (designed)",
-            "**Value**": "200"
-          },
-          {
-            "model": "Tasks per domain per frontier model",
-            "**Value**": "31"
-          },
-          {
-            "model": "Conclusion rate",
-            "**Value**": "99.7"
-          },
-          {
-            "model": "Success rate (LLM-judged,_n_=363)",
-            "**Value**": "87.3"
-          },
-          {
-            "model": "Mean steps per trajectory",
-            "**Value**": "4.1"
-          },
-          {
-            "model": "Median steps per trajectory<br>",
-            "**Value**": "2.0<br>"
-          },
-          {
-            "model": "Mean tool calls per trajectory",
-            "**Value**": "3.0"
-          },
-          {
-            "model": "Mean errors per trajectory",
-            "**Value**": "1.0"
-          },
-          {
-            "model": "Mean revisions per trajectory",
-            "**Value**": "0.87"
-          },
-          {
-            "model": "Mean wall time (seconds)",
-            "**Value**": "99.1"
-          },
-          {
-            "model": "Trajectories with_≥_1error",
-            "**Value**": "31.2"
-          },
-          {
-            "model": "Trajectories with_≥_1revision",
-            "**Value**": "34.4"
-          },
-          {
-            "model": "Estimated total tokens (frontier)",
-            "**Value**": "_∼_701K"
-          },
-          {
-            "model": "Mean response chars per trajectory (Claude)",
-            "**Value**": "11,237"
-          },
-          {
-            "model": "Mean response chars per trajectory (GPT-5.4)",
-            "**Value**": "5,720"
-          },
-          {
-            "model": "Mean response chars per trajectory (Gemini)",
-            "**Value**": "5,663<br>"
-          },
-          {
-            "model": "API cost (frontier models)",
-            "**Value**": "_∼_$300"
-          },
-          {
-            "model": "GPU cost (open-weight models, Modal A10G)",
-            "**Value**": "_∼_$40"
-          }
-        ],
-        "source_paper": "paper:2609.09203",
-        "latex": "\\begin{table}[t]\n\\centering\n\\caption{Table 2}\n\\label{tab:2609.09203}\n\\begin{tabular}{lc}\n\\toprule\nModel & **Value** \\\\\n\\midrule\nTotal trajectories & \\textbf{558} \\\\\nFrontier model trajectories & 372 (124_×_3 models) \\\\\nOpen-weight model trajectories & 120 (30_×_4 models) \\\\\nLive-retrieval variant trajectories & 60 \\\\\nModels represented & 7 (3 frontier + 4 open-weight) \\\\\nDomains covered & 4 \\\\\nTasks executed per frontier model & 124 \\\\\nTasks in full bank (designed) & 200 \\\\\nTasks per domain per frontier model & 31 \\\\\nConclusion rate & 99.7 \\\\\nSuccess rate (LLM-judged,_n_=363) & 87.3 \\\\\nMean steps per trajectory & 4.1 \\\\\nMedian steps per trajectory<br> & 2.0<br> \\\\\nMean tool calls per trajectory & 3.0 \\\\\nMean errors per trajectory & 1.0 \\\\\nMean revisions per trajectory & 0.87 \\\\\nMean wall time (seconds) & 99.1 \\\\\nTrajectories with_≥_1error & 31.2 \\\\\nTrajectories with_≥_1revision & 34.4 \\\\\nEstimated total tokens (frontier) & _∼_701K \\\\\nMean response chars per trajectory (Claude) & 11,237 \\\\\nMean response chars per trajectory (GPT-5.4) & 5,720 \\\\\nMean response chars per trajectory (Gemini) & 5,663<br> \\\\\nAPI cost (frontier models) & _∼_$300 \\\\\nGPU cost (open-weight models, Modal A10G) & _∼_$40 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n",
-        "layer": "application",
-        "task": "writing",
-        "miner": "p6_tablegen",
-        "label": "Table 2"
       },
       "attribution": "analyst_synthesis",
       "evidence_ids": [],
@@ -28773,74 +27613,48 @@
     {
       "id": "resulttable:2609.34301:main",
       "type": "ResultTable",
-      "label": "table_1",
+      "label": "Table 2)",
       "attrs": {
         "run_id": "p6_run",
-        "table_label": "table_1",
-        "caption": "table_1",
+        "table_label": "Table 2)",
+        "caption": "Table 2)",
         "columns": [
-          "Hit-ID",
-          "Hit-OOD",
-          "MAE-ID",
-          "MAE-OOD",
-          "Shift"
+          "Macro_R_<sup>2</sup> _↑_",
+          "Macro Pearson_↑_"
         ],
         "rows": [
           {
-            "model": "logP",
-            "Hit-ID": "0.96",
-            "Hit-OOD": "0.86",
-            "MAE-ID": "0.13",
-            "MAE-OOD": "0.27",
-            "Shift": "+1.07"
+            "model": "Morgan + GBR",
+            "Macro_R_<sup>2</sup> _↑_": "0.525",
+            "Macro Pearson_↑_": "0.720"
           },
           {
-            "model": "MW",
-            "Hit-ID": "0.93",
-            "Hit-OOD": "0.47",
-            "MAE-ID": "0.14",
-            "MAE-OOD": "0.95",
-            "Shift": "+0.59"
+            "model": "GIN + GBR",
+            "Macro_R_<sup>2</sup> _↑_": "0.219",
+            "Macro Pearson_↑_": "0.550"
           },
           {
-            "model": "QED",
-            "Hit-ID": "0.81",
-            "Hit-OOD": "0.68",
-            "MAE-ID": "0.31",
-            "MAE-OOD": "0.46",
-            "Shift": "+1.27"
+            "model": "GIN + MLP",
+            "Macro_R_<sup>2</sup> _↑_": "0.477",
+            "Macro Pearson_↑_": "0.678"
           },
           {
-            "model": "SA",
-            "Hit-ID": "0.94",
-            "Hit-OOD": "0.89",
-            "MAE-ID": "0.20",
-            "MAE-OOD": "0.25",
-            "Shift": "+1.58"
+            "model": "ChemBERTa + MLP",
+            "Macro_R_<sup>2</sup> _↑_": "0.762",
+            "Macro Pearson_↑_": "0.880"
           },
           {
-            "model": "MR",
-            "Hit-ID": "0.84",
-            "Hit-OOD": "0.69",
-            "MAE-ID": "0.21",
-            "MAE-OOD": "0.43",
-            "Shift": "+0.92"
-          },
-          {
-            "model": "Mean",
-            "Hit-ID": "0.89",
-            "Hit-OOD": "0.72",
-            "MAE-ID": "0.20",
-            "MAE-OOD": "0.48",
-            "Shift": "+1.09"
+            "model": "CAGenMol-2 (native)",
+            "Macro_R_<sup>2</sup> _↑_": "0.910",
+            "Macro Pearson_↑_": "0.974"
           }
         ],
         "source_paper": "paper:2609.34301",
-        "latex": "\\begin{table}[t]\n\\centering\n\\caption{table_1}\n\\label{tab:2609.34301}\n\\begin{tabular}{lccccc}\n\\toprule\nModel & Hit-ID & Hit-OOD & MAE-ID & MAE-OOD & Shift \\\\\n\\midrule\nlogP & \\textbf{0.96} & 0.86 & 0.13 & 0.27 & +1.07 \\\\\nMW & 0.93 & 0.47 & 0.14 & \\textbf{0.95} & +0.59 \\\\\nQED & 0.81 & 0.68 & \\textbf{0.31} & 0.46 & +1.27 \\\\\nSA & 0.94 & \\textbf{0.89} & 0.20 & 0.25 & \\textbf{+1.58} \\\\\nMR & 0.84 & 0.69 & 0.21 & 0.43 & +0.92 \\\\\nMean & 0.89 & 0.72 & 0.20 & 0.48 & +1.09 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n",
+        "latex": "\\begin{table}[t]\n\\centering\n\\caption{Table 2)}\n\\label{tab:2609.34301}\n\\begin{tabular}{lcc}\n\\toprule\nModel & Macro\\_R\\_<sup>2</sup> \\_↑\\_ & Macro Pearson\\_↑\\_ \\\\\n\\midrule\nMorgan + GBR & 0.525 & 0.720 \\\\\nGIN + GBR & 0.219 & 0.550 \\\\\nGIN + MLP & 0.477 & 0.678 \\\\\nChemBERTa + MLP & 0.762 & 0.880 \\\\\nCAGenMol-2 (native) & \\textbf{0.910} & \\textbf{0.974} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n",
         "layer": "application",
         "task": "writing",
         "miner": "p6_tablegen",
-        "label": "table_1"
+        "label": "Table 2)"
       },
       "attribution": "analyst_synthesis",
       "evidence_ids": [],
@@ -29002,232 +27816,11 @@
           }
         ],
         "source_paper": "paper:2610.16975",
-        "latex": "\\begin{table}[t]\n\\centering\n\\caption{Table 3}\n\\label{tab:2610.16975}\n\\begin{tabular}{lccccc}\n\\toprule\nModel & \\_tout\\_ & \\_Nout\\_ & \\_Nsat\\_ & %`Pass` & %`Syn` \\\\\n\\midrule\nMADDIE & 50 & 100.0 & 100.0 & 100.0 & 100.0 \\\\\n_w/o_ Synthesizer & 50 & 100.0 & 40.2 & 40.2 & 40.2 \\\\\n_w/o_ LeadOptimizer & 49 & 100.0 & 100.0 & 100.0 & 100.0 \\\\\n_w/o_ Orchestrator & 50 & 100.0 & 100.0 & 100.0 & 100.0 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n",
+        "latex": "\\begin{table}[t]\n\\centering\n\\caption{Table 3}\n\\label{tab:2610.16975}\n\\begin{tabular}{lccccc}\n\\toprule\nModel & \\_tout\\_ & \\_Nout\\_ & \\_Nsat\\_ & \\%`Pass` & \\%`Syn` \\\\\n\\midrule\nMADDIE & 50 & 100.0 & 100.0 & 100.0 & 100.0 \\\\\n\\_w/o\\_ Synthesizer & 50 & 100.0 & 40.2 & 40.2 & 40.2 \\\\\n\\_w/o\\_ LeadOptimizer & 49 & 100.0 & 100.0 & 100.0 & 100.0 \\\\\n\\_w/o\\_ Orchestrator & 50 & 100.0 & 100.0 & 100.0 & 100.0 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n",
         "layer": "application",
         "task": "writing",
         "miner": "p6_tablegen",
         "label": "Table 3"
-      },
-      "attribution": "analyst_synthesis",
-      "evidence_ids": [],
-      "source_version": "",
-      "missing_states": {}
-    },
-    {
-      "id": "resulttable:2610.18438:main",
-      "type": "ResultTable",
-      "label": "Table 1: AUC-Top10 on the Practical Molecular Optimization b",
-      "attrs": {
-        "run_id": "p6_run",
-        "table_label": "Table 1: AUC-Top10 on the Practical Molecular Optimization benchmar",
-        "caption": "Table 1: AUC-Top10 on the Practical Molecular Optimization benchmar",
-        "columns": [
-          "GenMol",
-          "_f_-RAG",
-          "Gen. GFN",
-          "Mol GA",
-          "REINVENT"
-        ],
-        "rows": [
-          {
-            "model": "albuterol_similarity",
-            "GenMol": "0.937",
-            "_f_-RAG": "0.977",
-            "Gen. GFN": "0.949",
-            "Mol GA": "0.896",
-            "REINVENT": "0.882"
-          },
-          {
-            "model": "amlodipine_mpo",
-            "GenMol": "0.810",
-            "_f_-RAG": "0.749",
-            "Gen. GFN": "0.761",
-            "Mol GA": "0.688",
-            "REINVENT": "0.635"
-          },
-          {
-            "model": "celecoxib_rediscovery",
-            "GenMol": "0.826",
-            "_f_-RAG": "0.778",
-            "Gen. GFN": "0.802",
-            "Mol GA": "0.567",
-            "REINVENT": "0.713"
-          },
-          {
-            "model": "deco_hop",
-            "GenMol": "0.960",
-            "_f_-RAG": "0.936",
-            "Gen. GFN": "0.733",
-            "Mol GA": "0.649",
-            "REINVENT": "0.666"
-          },
-          {
-            "model": "drd2",
-            "GenMol": "0.995",
-            "_f_-RAG": "0.992",
-            "Gen. GFN": "0.974",
-            "Mol GA": "0.936",
-            "REINVENT": "0.945"
-          },
-          {
-            "model": "fexofenadine_mpo",
-            "GenMol": "0.894",
-            "_f_-RAG": "0.856",
-            "Gen. GFN": "0.856",
-            "Mol GA": "0.825",
-            "REINVENT": "0.784"
-          },
-          {
-            "model": "gsk3b",
-            "GenMol": "0.986",
-            "_f_-RAG": "0.969",
-            "Gen. GFN": "0.881",
-            "Mol GA": "0.843",
-            "REINVENT": "0.865"
-          },
-          {
-            "model": "isomers_c7h8n2o2",
-            "GenMol": "0.942",
-            "_f_-RAG": "0.955",
-            "Gen. GFN": "0.969",
-            "Mol GA": "0.878",
-            "REINVENT": "0.852"
-          },
-          {
-            "model": "isomers_c9h10n2o2pf2cl",
-            "GenMol": "0.833",
-            "_f_-RAG": "0.850",
-            "Gen. GFN": "0.897",
-            "Mol GA": "0.865",
-            "REINVENT": "0.642"
-          },
-          {
-            "model": "jnk3",
-            "GenMol": "0.906",
-            "_f_-RAG": "0.904",
-            "Gen. GFN": "0.764",
-            "Mol GA": "0.702",
-            "REINVENT": "0.783"
-          },
-          {
-            "model": "median1",
-            "GenMol": "0.398",
-            "_f_-RAG": "0.340",
-            "Gen. GFN": "0.379",
-            "Mol GA": "0.257",
-            "REINVENT": "0.356"
-          },
-          {
-            "model": "median2",
-            "GenMol": "0.359",
-            "_f_-RAG": "0.323",
-            "Gen. GFN": "0.294",
-            "Mol GA": "0.301",
-            "REINVENT": "0.276"
-          },
-          {
-            "model": "mestranol_similarity",
-            "GenMol": "0.982",
-            "_f_-RAG": "0.671",
-            "Gen. GFN": "0.708",
-            "Mol GA": "0.591",
-            "REINVENT": "0.618"
-          },
-          {
-            "model": "osimertinib_mpo",
-            "GenMol": "0.876",
-            "_f_-RAG": "0.866",
-            "Gen. GFN": "0.860",
-            "Mol GA": "0.844",
-            "REINVENT": "0.837"
-          },
-          {
-            "model": "perindopril_mpo",
-            "GenMol": "0.718",
-            "_f_-RAG": "0.681",
-            "Gen. GFN": "0.595",
-            "Mol GA": "0.547",
-            "REINVENT": "0.537"
-          },
-          {
-            "model": "qed",
-            "GenMol": "0.942",
-            "_f_-RAG": "0.939",
-            "Gen. GFN": "0.942",
-            "Mol GA": "0.941",
-            "REINVENT": "0.941"
-          },
-          {
-            "model": "ranolazine_mpo",
-            "GenMol": "0.821",
-            "_f_-RAG": "0.820",
-            "Gen. GFN": "0.819",
-            "Mol GA": "0.804",
-            "REINVENT": "0.760"
-          },
-          {
-            "model": "scaffold_hop",
-            "GenMol": "0.628",
-            "_f_-RAG": "0.576",
-            "Gen. GFN": "0.615",
-            "Mol GA": "0.527",
-            "REINVENT": "0.560"
-          },
-          {
-            "model": "sitagliptin_mpo",
-            "GenMol": "0.584",
-            "_f_-RAG": "0.601",
-            "Gen. GFN": "0.634",
-            "Mol GA": "0.582",
-            "REINVENT": "0.021"
-          },
-          {
-            "model": "thiothixene_rediscovery",
-            "GenMol": "0.692",
-            "_f_-RAG": "0.584",
-            "Gen. GFN": "0.583",
-            "Mol GA": "0.519",
-            "REINVENT": "0.534"
-          },
-          {
-            "model": "troglitazone_redisc.",
-            "GenMol": "0.867",
-            "_f_-RAG": "0.448",
-            "Gen. GFN": "0.511",
-            "Mol GA": "0.427",
-            "REINVENT": "0.441"
-          },
-          {
-            "model": "valsartan_smarts",
-            "GenMol": "0.822",
-            "_f_-RAG": "0.627",
-            "Gen. GFN": "0.135",
-            "Mol GA": "0.000",
-            "REINVENT": "0.178"
-          },
-          {
-            "model": "zaleplon_mpo",
-            "GenMol": "0.584",
-            "_f_-RAG": "0.486",
-            "Gen. GFN": "0.552",
-            "Mol GA": "0.519",
-            "REINVENT": "0.358"
-          },
-          {
-            "model": "Reported aggregate",
-            "GenMol": "18.362",
-            "_f_-RAG": "16.928",
-            "Gen. GFN": "16.213",
-            "Mol GA": "14.708",
-            "REINVENT": "14.196"
-          }
-        ],
-        "source_paper": "paper:2610.18438",
-        "latex": "\\begin{table}[t]\n\\centering\n\\caption{Table 1: AUC-Top10 on the Practical Molecular Optimization benchmar}\n\\label{tab:2610.18438}\n\\begin{tabular}{lccccc}\n\\toprule\nModel & GenMol & \\_f\\_-RAG & Gen. GFN & Mol GA & REINVENT \\\\\n\\midrule\nalbuterol_similarity & 0.937 & 0.977 & 0.949 & 0.896 & 0.882 \\\\\namlodipine_mpo & 0.810 & 0.749 & 0.761 & 0.688 & 0.635 \\\\\ncelecoxib_rediscovery & 0.826 & 0.778 & 0.802 & 0.567 & 0.713 \\\\\ndeco_hop & 0.960 & 0.936 & 0.733 & 0.649 & 0.666 \\\\\ndrd2 & 0.995 & 0.992 & 0.974 & 0.936 & 0.945 \\\\\nfexofenadine_mpo & 0.894 & 0.856 & 0.856 & 0.825 & 0.784 \\\\\ngsk3b & 0.986 & 0.969 & 0.881 & 0.843 & 0.865 \\\\\nisomers_c7h8n2o2 & 0.942 & 0.955 & 0.969 & 0.878 & 0.852 \\\\\nisomers_c9h10n2o2pf2cl & 0.833 & 0.850 & 0.897 & 0.865 & 0.642 \\\\\njnk3 & 0.906 & 0.904 & 0.764 & 0.702 & 0.783 \\\\\nmedian1 & 0.398 & 0.340 & 0.379 & 0.257 & 0.356 \\\\\nmedian2 & 0.359 & 0.323 & 0.294 & 0.301 & 0.276 \\\\\nmestranol_similarity & 0.982 & 0.671 & 0.708 & 0.591 & 0.618 \\\\\nosimertinib_mpo & 0.876 & 0.866 & 0.860 & 0.844 & 0.837 \\\\\nperindopril_mpo & 0.718 & 0.681 & 0.595 & 0.547 & 0.537 \\\\\nqed & 0.942 & 0.939 & 0.942 & 0.941 & 0.941 \\\\\nranolazine_mpo & 0.821 & 0.820 & 0.819 & 0.804 & 0.760 \\\\\nscaffold_hop & 0.628 & 0.576 & 0.615 & 0.527 & 0.560 \\\\\nsitagliptin_mpo & 0.584 & 0.601 & 0.634 & 0.582 & 0.021 \\\\\nthiothixene_rediscovery & 0.692 & 0.584 & 0.583 & 0.519 & 0.534 \\\\\ntroglitazone_redisc. & 0.867 & 0.448 & 0.511 & 0.427 & 0.441 \\\\\nvalsartan_smarts & 0.822 & 0.627 & 0.135 & 0.000 & 0.178 \\\\\nzaleplon_mpo & 0.584 & 0.486 & 0.552 & 0.519 & 0.358 \\\\\nReported aggregate & \\textbf{18.362} & \\textbf{16.928} & \\textbf{16.213} & \\textbf{14.708} & \\textbf{14.196} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n",
-        "layer": "application",
-        "task": "writing",
-        "miner": "p6_tablegen",
-        "label": "Table 1: AUC-Top10 on the Practical Molecular Optimization b"
       },
       "attribution": "analyst_synthesis",
       "evidence_ids": [],
@@ -29292,7 +27885,7 @@
           }
         ],
         "source_paper": "paper:2610.16391",
-        "latex": "\\begin{table}[t]\n\\centering\n\\caption{Table 2: Effect of the expansion strategy on route diversity and qu}\n\\label{tab:2610.16391}\n\\begin{tabular}{lccccc}\n\\toprule\nModel & **Search** & **Outcome** & **Diver** & **sity** & **Quality** \\\\\n\\midrule\nRandom & 0.879 & 1.55 & 1.000<sup>_†_</sup> & 1.55 & 0.280 \\\\\nScore-only & 0.937 & 1.59 & \\textbf{1.000<sup>_†_</sup>} & 1.59 & 0.672 \\\\\nSingle-Route & 0.984 & 6.05 & 0.450 & 2.23 & 0.780 \\\\\nMulti-Route (Seq.) & 0.995 & \\textbf{9.10} & 0.660 & \\textbf{3.88} & 0.812 \\\\\n<br>Multi-Route (Par.) & \\textbf{1.000} & 7.75 & 0.654 & 3.54 & \\textbf{0.823} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n",
+        "latex": "\\begin{table}[t]\n\\centering\n\\caption{Table 2: Effect of the expansion strategy on route diversity and qu}\n\\label{tab:2610.16391}\n\\begin{tabular}{lccccc}\n\\toprule\nModel & **Search** & **Outcome** & **Diver** & **sity** & **Quality** \\\\\n\\midrule\nRandom & 0.879 & 1.55 & 1.000<sup>\\_†\\_</sup> & 1.55 & 0.280 \\\\\nScore-only & 0.937 & 1.59 & \\textbf{1.000<sup>\\_†\\_</sup>} & 1.59 & 0.672 \\\\\nSingle-Route & 0.984 & 6.05 & 0.450 & 2.23 & 0.780 \\\\\nMulti-Route (Seq.) & 0.995 & \\textbf{9.10} & 0.660 & \\textbf{3.88} & 0.812 \\\\\n<br>Multi-Route (Par.) & \\textbf{1.000} & 7.75 & 0.654 & 3.54 & \\textbf{0.823} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n",
         "layer": "application",
         "task": "writing",
         "miner": "p6_tablegen",
@@ -29388,47 +27981,6 @@
         "task": "writing",
         "miner": "p6_tablegen",
         "label": "Table 1: Overall Performance on IND Tasks"
-      },
-      "attribution": "analyst_synthesis",
-      "evidence_ids": [],
-      "source_version": "",
-      "missing_states": {}
-    },
-    {
-      "id": "resulttable:2611.03696:main",
-      "type": "ResultTable",
-      "label": "Table 2",
-      "attrs": {
-        "run_id": "p6_run",
-        "table_label": "Table 2",
-        "caption": "Table 2",
-        "columns": [
-          "**Entries**",
-          "**Ring breaking**"
-        ],
-        "rows": [
-          {
-            "model": "Train",
-            "**Entries**": "384280",
-            "**Ring breaking**": "3.20"
-          },
-          {
-            "model": "Validation",
-            "**Entries**": "29678",
-            "**Ring breaking**": "3.23"
-          },
-          {
-            "model": "Test",
-            "**Entries**": "39461",
-            "**Ring breaking**": "3.12"
-          }
-        ],
-        "source_paper": "paper:2611.03696",
-        "latex": "\\begin{table}[t]\n\\centering\n\\caption{Table 2}\n\\label{tab:2611.03696}\n\\begin{tabular}{lcc}\n\\toprule\nModel & **Entries** & **Ring breaking** \\\\\n\\midrule\nTrain & \\textbf{384280} & 3.20 \\\\\nValidation & 29678 & \\textbf{3.23} \\\\\nTest & 39461 & 3.12 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n",
-        "layer": "application",
-        "task": "writing",
-        "miner": "p6_tablegen",
-        "label": "Table 2"
       },
       "attribution": "analyst_synthesis",
       "evidence_ids": [],
@@ -33477,28 +32029,6 @@
     },
     {
       "id": "assertion:0435",
-      "source": "resulttable:2406.08506:main",
-      "target": "paper:2406.08506",
-      "relation": "DERIVED_FROM_PAPERS",
-      "attribution": "analyst_synthesis",
-      "evidence_ids": [],
-      "properties": {
-        "layer": "application"
-      }
-    },
-    {
-      "id": "assertion:0436",
-      "source": "resulttable:2407.06334:main",
-      "target": "paper:2407.06334",
-      "relation": "DERIVED_FROM_PAPERS",
-      "attribution": "analyst_synthesis",
-      "evidence_ids": [],
-      "properties": {
-        "layer": "application"
-      }
-    },
-    {
-      "id": "assertion:0437",
       "source": "resulttable:2407.12186:main",
       "target": "paper:2407.12186",
       "relation": "DERIVED_FROM_PAPERS",
@@ -33509,84 +32039,7 @@
       }
     },
     {
-      "id": "assertion:0438",
-      "source": "resulttable:2410.03494:main",
-      "target": "paper:2410.03494",
-      "relation": "DERIVED_FROM_PAPERS",
-      "attribution": "analyst_synthesis",
-      "evidence_ids": [],
-      "properties": {
-        "layer": "application"
-      }
-    },
-    {
-      "id": "assertion:0439",
-      "source": "resulttable:2410.13147:main",
-      "target": "paper:2410.13147",
-      "relation": "DERIVED_FROM_PAPERS",
-      "attribution": "analyst_synthesis",
-      "evidence_ids": [],
-      "properties": {
-        "layer": "application"
-      }
-    },
-    {
-      "id": "assertion:0440",
-      "source": "resulttable:2503.03503:main",
-      "target": "paper:2503.03503",
-      "relation": "DERIVED_FROM_PAPERS",
-      "attribution": "analyst_synthesis",
-      "evidence_ids": [],
-      "properties": {
-        "layer": "application"
-      }
-    },
-    {
-      "id": "assertion:0441",
-      "source": "resulttable:2507.02752:main",
-      "target": "paper:2507.02752",
-      "relation": "DERIVED_FROM_PAPERS",
-      "attribution": "analyst_synthesis",
-      "evidence_ids": [],
-      "properties": {
-        "layer": "application"
-      }
-    },
-    {
-      "id": "assertion:0442",
-      "source": "resulttable:2503.12602:main",
-      "target": "paper:2503.12602",
-      "relation": "DERIVED_FROM_PAPERS",
-      "attribution": "analyst_synthesis",
-      "evidence_ids": [],
-      "properties": {
-        "layer": "application"
-      }
-    },
-    {
-      "id": "assertion:0443",
-      "source": "resulttable:2507.08475:main",
-      "target": "paper:2507.08475",
-      "relation": "DERIVED_FROM_PAPERS",
-      "attribution": "analyst_synthesis",
-      "evidence_ids": [],
-      "properties": {
-        "layer": "application"
-      }
-    },
-    {
-      "id": "assertion:0444",
-      "source": "resulttable:2510.14455:main",
-      "target": "paper:2510.14455",
-      "relation": "DERIVED_FROM_PAPERS",
-      "attribution": "analyst_synthesis",
-      "evidence_ids": [],
-      "properties": {
-        "layer": "application"
-      }
-    },
-    {
-      "id": "assertion:0445",
+      "id": "assertion:0436",
       "source": "resulttable:2509.16084:main",
       "target": "paper:2509.16084",
       "relation": "DERIVED_FROM_PAPERS",
@@ -33597,7 +32050,7 @@
       }
     },
     {
-      "id": "assertion:0446",
+      "id": "assertion:0437",
       "source": "resulttable:2512.20333:main",
       "target": "paper:2512.20333",
       "relation": "DERIVED_FROM_PAPERS",
@@ -33608,18 +32061,7 @@
       }
     },
     {
-      "id": "assertion:0447",
-      "source": "resulttable:2603.05900:main",
-      "target": "paper:2603.05900",
-      "relation": "DERIVED_FROM_PAPERS",
-      "attribution": "analyst_synthesis",
-      "evidence_ids": [],
-      "properties": {
-        "layer": "application"
-      }
-    },
-    {
-      "id": "assertion:0448",
+      "id": "assertion:0438",
       "source": "resulttable:2603.24382:main",
       "target": "paper:2603.24382",
       "relation": "DERIVED_FROM_PAPERS",
@@ -33630,9 +32072,9 @@
       }
     },
     {
-      "id": "assertion:0449",
-      "source": "resulttable:2604.07669:main",
-      "target": "paper:2604.07669",
+      "id": "assertion:0439",
+      "source": "resulttable:2604.23061:main",
+      "target": "paper:2604.23061",
       "relation": "DERIVED_FROM_PAPERS",
       "attribution": "analyst_synthesis",
       "evidence_ids": [],
@@ -33641,18 +32083,7 @@
       }
     },
     {
-      "id": "assertion:0450",
-      "source": "resulttable:2605.10831:main",
-      "target": "paper:2605.10831",
-      "relation": "DERIVED_FROM_PAPERS",
-      "attribution": "analyst_synthesis",
-      "evidence_ids": [],
-      "properties": {
-        "layer": "application"
-      }
-    },
-    {
-      "id": "assertion:0451",
+      "id": "assertion:0440",
       "source": "resulttable:2605.07022:main",
       "target": "paper:2605.07022",
       "relation": "DERIVED_FROM_PAPERS",
@@ -33663,7 +32094,7 @@
       }
     },
     {
-      "id": "assertion:0452",
+      "id": "assertion:0441",
       "source": "resulttable:2606.03660:main",
       "target": "paper:2606.03660",
       "relation": "DERIVED_FROM_PAPERS",
@@ -33674,7 +32105,7 @@
       }
     },
     {
-      "id": "assertion:0453",
+      "id": "assertion:0442",
       "source": "resulttable:2605.24428:main",
       "target": "paper:2605.24428",
       "relation": "DERIVED_FROM_PAPERS",
@@ -33685,7 +32116,7 @@
       }
     },
     {
-      "id": "assertion:0454",
+      "id": "assertion:0443",
       "source": "resulttable:2607.00464:main",
       "target": "paper:2607.00464",
       "relation": "DERIVED_FROM_PAPERS",
@@ -33696,7 +32127,7 @@
       }
     },
     {
-      "id": "assertion:0455",
+      "id": "assertion:0444",
       "source": "resulttable:2607.00531:main",
       "target": "paper:2607.00531",
       "relation": "DERIVED_FROM_PAPERS",
@@ -33707,18 +32138,7 @@
       }
     },
     {
-      "id": "assertion:0456",
-      "source": "resulttable:2609.09203:main",
-      "target": "paper:2609.09203",
-      "relation": "DERIVED_FROM_PAPERS",
-      "attribution": "analyst_synthesis",
-      "evidence_ids": [],
-      "properties": {
-        "layer": "application"
-      }
-    },
-    {
-      "id": "assertion:0457",
+      "id": "assertion:0445",
       "source": "resulttable:2609.34491:main",
       "target": "paper:2609.34491",
       "relation": "DERIVED_FROM_PAPERS",
@@ -33729,7 +32149,7 @@
       }
     },
     {
-      "id": "assertion:0458",
+      "id": "assertion:0446",
       "source": "resulttable:2609.35336:main",
       "target": "paper:2609.35336",
       "relation": "DERIVED_FROM_PAPERS",
@@ -33740,7 +32160,7 @@
       }
     },
     {
-      "id": "assertion:0459",
+      "id": "assertion:0447",
       "source": "resulttable:2609.34301:main",
       "target": "paper:2609.34301",
       "relation": "DERIVED_FROM_PAPERS",
@@ -33751,7 +32171,7 @@
       }
     },
     {
-      "id": "assertion:0460",
+      "id": "assertion:0448",
       "source": "resulttable:2609.38484:main",
       "target": "paper:2609.38484",
       "relation": "DERIVED_FROM_PAPERS",
@@ -33762,7 +32182,7 @@
       }
     },
     {
-      "id": "assertion:0461",
+      "id": "assertion:0449",
       "source": "resulttable:2610.16975:main",
       "target": "paper:2610.16975",
       "relation": "DERIVED_FROM_PAPERS",
@@ -33773,18 +32193,7 @@
       }
     },
     {
-      "id": "assertion:0462",
-      "source": "resulttable:2610.18438:main",
-      "target": "paper:2610.18438",
-      "relation": "DERIVED_FROM_PAPERS",
-      "attribution": "analyst_synthesis",
-      "evidence_ids": [],
-      "properties": {
-        "layer": "application"
-      }
-    },
-    {
-      "id": "assertion:0463",
+      "id": "assertion:0450",
       "source": "resulttable:2610.16391:main",
       "target": "paper:2610.16391",
       "relation": "DERIVED_FROM_PAPERS",
@@ -33795,20 +32204,9 @@
       }
     },
     {
-      "id": "assertion:0464",
+      "id": "assertion:0451",
       "source": "resulttable:2610.18851:main",
       "target": "paper:2610.18851",
-      "relation": "DERIVED_FROM_PAPERS",
-      "attribution": "analyst_synthesis",
-      "evidence_ids": [],
-      "properties": {
-        "layer": "application"
-      }
-    },
-    {
-      "id": "assertion:0465",
-      "source": "resulttable:2611.03696:main",
-      "target": "paper:2611.03696",
       "relation": "DERIVED_FROM_PAPERS",
       "attribution": "analyst_synthesis",
       "evidence_ids": [],

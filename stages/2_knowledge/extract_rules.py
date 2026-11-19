@@ -32,7 +32,10 @@ def parse_md_tables(text: str, max_tables: int = 3) -> list:
         if ln.strip().startswith("|") and i + 1 < len(lines) \
                 and re.match(r"^\s*\|[\s\-:|]+\|?\s*$", lines[i + 1]):
             header = [c.strip() for c in ln.strip().strip("|").split("|")]
-            if len(header) < 2:
+            # 表头过滤：列名不能是「纯数值/数值+单位」（如 229M、17.5M、0.84）
+            NUMish = re.compile(r"^[\*_\s]*[+-]?\d+(\.\d+)?\s*[%MKkGmBb\*_\s]*$")
+            text_cols = sum(1 for h in header if not NUMish.match(h))
+            if len(header) < 2 or text_cols < len(header) / 2:
                 i += 1
                 continue
             rows, j = [], i + 2

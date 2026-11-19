@@ -38,6 +38,8 @@ def main():
     ctx = WritingContext(g, "p6_run")
     papers = g.by_type("Paper")
     GEN.mkdir(parents=True, exist_ok=True)
+    for old in GEN.glob("*.tex"):      # 清理上轮残留，避免误判覆盖率
+        old.unlink()
     made, skipped = 0, 0
     report = []
     # 只对最像主结果的表做转换（选数值列最多的那张）
@@ -46,8 +48,13 @@ def main():
         tables = p.attrs.get("result_tables") or []
         best = None
         for t in tables:
+            # 主结果表启发式：第一列必须是 Model/Method/Approach 之类
+            first = str(t["columns"][0]).lower()
+            if not any(k in first for k in ("model", "method", "approach", "system",
+                                            "baseline", "variant", "ours")):
+                continue
             cols = pick_numeric_columns(t["columns"], t["rows"])
-            if len(cols) >= 1 and len(t["rows"]) >= 3:
+            if len(cols) >= 1 and len(t["rows"]) >= 2:
                 if best is None or len(cols) > len(best[1]):
                     best = (t, cols)
         if not best:
