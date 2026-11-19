@@ -23,17 +23,23 @@ def table_to_latex(rows: List[Dict[str, Any]], *, columns: List[str],
                     vals.append((float(r.get(c)), r.get("model", "")))
                 except (TypeError, ValueError):
                     pass
-            if vals:
-                best[c] = max(vals)[1]
+            if not vals:
+                continue
+            # 指标方向：↓/lower/less/越小越好 → min；否则 max
+            low = any(k in str(c).lower() for k in ("↓", "lower", "less", "error", "runtime", "time"))
+            chosen = min(vals) if low else max(vals)
+            # 用行索引标记唯一最优（避免同名方法被一起加粗）
+            idxs = [i for i, (v, _) in enumerate(vals) if v == chosen[0]]
+            best[c] = idxs[0] if len(idxs) == 1 else -1
     head = " & ".join(["Model"] + [c.replace("_", "\\_") for c in columns]) + " \\\\"
     lines = ["\\begin{table}[t]", "\\centering",
              f"\\caption{{{caption}}}", f"\\label{{{label}}}",
              "\\begin{tabular}{l" + "c" * len(columns) + "}", "\\toprule", head, "\\midrule"]
-    for r in rows:
+    for ri, r in enumerate(rows):
         cells = []
         for c in columns:
             v = str(r.get(c, ""))
-            if bold_best and best.get(c) == r.get("model"):
+            if bold_best and best.get(c) == ri:
                 v = f"\\textbf{{{v}}}"
             cells.append(v)
         lines.append(" & ".join([str(r.get("model", ""))] + cells) + " \\\\")

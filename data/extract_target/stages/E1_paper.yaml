@@ -38,6 +38,11 @@ contract:
   - protocol_disclosure
   - citation_style
   - writing_style
+  - data_sources
+  - dedup_rule
+  - split_spec
+  - hyperparams
+  - result_tables
   aux_fields:
   - domain_code
   - evidence
@@ -63,4 +68,7 @@ template: "任务：抽 Paper 的核心属性（研究什么问题 / 问题类�
   :\"作者明确说的未解决问题\",\"evidence\":\"逐字引文\"}],\n  \"delta_claims\":[{\"statement\":\"作者声称的增量\",\"baseline\"\
   :\"被改进的方法\",\"evidence\":\"逐字引文\"}],\n  \"negative_results\":[\"作者报告的阴性结果/失败尝试\"],\n  \"protocol_disclosure\"\
   :[\"作者声明的实验协议（seed/划分/评测细节）\"],\n  \"citation_style\":\"author-year|numeric|other\",\n  \"writing_style\"\
-  :\"本文的章节与措辞惯例（简短归纳）\"\n注意：这里记的是**本文说了什么**，不是本次生成任务的判断。"
+  :\"本文的章节与措辞惯例（简短归纳）\"\n注意：这里记的是**本文说了什么**，不是本次生成任务的判断。\n  实验做法（客观事实，供 P2 数据构造与 P6 结果表参照）：\n  \"data_sources\"\
+  :[\"ZINC\",\"ChEMBL\"],\n  \"dedup_rule\":\"如 Tanimoto>=0.6 或 sequence identity<30%\",\n  \"split_spec\"\
+  :\"train/val/test 划分\",\n  \"hyperparams\":[{\"param\":\"iterations\",\"value\":\"5\"}],\n  \"result_tables\"\
+  :[{\"label\":\"Table 1\",\"columns\":[\"Model\",\"SR%\"],\"rows\":[[\"A\",\"99.9\"]]}]\n注意：只记本文写了什么，不判断本次该用什么。"

@@ -1,0 +1,29 @@
+\begin{table}[t]
+\centering
+\caption{Table 5 summarizes the hyperparameters shared across all 14 benchma}
+\label{tab:2604.07669}
+\begin{tabular}{lc}
+\toprule
+Model & **Value** \\
+\midrule
+Policy model & Qwen3-4B-Instruct \\
+Training dtype & bfloat16 \\
+Optimizer & MemoryEfficientAdamW \\
+Adam(_β_1_, β_2) & (0_._9_,_ 0_._999) \\
+Weight decay & 0.0<br> \\
+Learning rate & \textbf{1_._0_×_10<sup>_−_5</sup>} \\
+Training steps & 25 \\
+Clip ratio_ε_ & 0.2 \\
+Discount factor_γ_ & 1.0 \\
+KL coefficient_β_KL & 0.02 \\
+KL reference policy & Fixed (initial) \\
+Entropy coefficient & 0.01 \\
+Molecules per batch & 30 \\
+Trajectories per molecule & 10 \\
+Micro-batch size & 20 \\
+Update epochs per rollout & 2 \\
+Max reaction depth & 5 \\
+Agent max iterations & 10 \\
+\bottomrule
+\end{tabular}
+\end{table}

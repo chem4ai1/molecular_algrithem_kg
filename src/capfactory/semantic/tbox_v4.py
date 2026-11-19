@@ -57,6 +57,12 @@ SEMANTIC_CLASSES: Dict[str, Tuple[str, Tuple[Tuple[str, str, str], ...]]] = {
         ("delta_claims", "optional", "别人声称的增量[{statement,baseline,evidence}]"),
         ("negative_results", "optional", "别人报告的阴性结果/失败尝试[]"),
         ("protocol_disclosure", "optional", "别人披露的实验协议声明[]"),
+        # P2/P4/P6 支撑字段（规则可抽，零 LLM 成本）
+        ("data_sources", "optional", "论文使用的数据源[]（ZINC/ChEMBL/...）"),
+        ("dedup_rule", "optional", "去泄漏规则（如 Tanimoto>=0.6）"),
+        ("split_spec", "optional", "训练/验证/测试划分"),
+        ("hyperparams", "optional", "关键超参[{param,value,context}]"),
+        ("result_tables", "optional", "结果表[{label,columns,rows}]"),
         ("citation_style", "optional", "author-year|numeric|other"),
         ("writing_style", "optional", "章节与措辞惯例（从同类论文归纳）"),
     )),

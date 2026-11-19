@@ -121,6 +121,20 @@ def _e1(data, source_text, issues):
     out["protocol_disclosure"] = _list(data.get("protocol_disclosure"))[:8]
     out["citation_style"] = _str(data.get("citation_style"))
     out["writing_style"] = _str(data.get("writing_style"))[:200]
+    # P2/P4/P6 支撑字段（规则可抽，也允许 LLM 补）
+    out["data_sources"] = _list(data.get("data_sources"))[:8]
+    out["dedup_rule"] = _str(data.get("dedup_rule"))[:120]
+    out["split_spec"] = _str(data.get("split_spec"))[:80]
+    out["hyperparams"] = [{"param": _str(x.get("param"))[:40],
+                           "value": _str(x.get("value"))[:40],
+                           "context": _str(x.get("context"))[:100]}
+                          for x in _list(data.get("hyperparams"))[:8]
+                          if isinstance(x, dict)]
+    out["result_tables"] = [{"label": _str(x.get("label"))[:40],
+                             "columns": _list(x.get("columns"))[:12],
+                             "rows": _list(x.get("rows"))[:30]}
+                            for x in _list(data.get("result_tables"))[:3]
+                            if isinstance(x, dict)]
     if not out["research_question"]:
         issues.append("missing:research_question")
     out["problem_category"] = _vocab_or_other(

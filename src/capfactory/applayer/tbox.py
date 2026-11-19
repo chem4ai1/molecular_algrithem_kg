@@ -207,6 +207,11 @@ APP_CLASSES: Dict[str, Tuple[str, Tuple[Tuple[str, str], ...]]] = {
     "CaseStudy": ("案例研究（可复现的单例）", (
         ("run_id", "must"), ("input", "must"), ("output", "must"),
         ("claim_ref", "must"), ("figure_ref", "optional"))),
+    "ResultTable": ("结果表（方法×指标矩阵，可转LaTeX）", (
+        ("run_id", "must"), ("table_label", "must"), ("caption", "optional"),
+        ("columns", "must"), ("rows", "must"), ("claim_ref", "optional"),
+        ("best_by_column", "optional"), ("latex", "optional"),
+        ("source_paper", "optional"))),
     "CitationVerification": ("引用三层核验", (
         ("run_id", "must"), ("cite_key", "must"), ("existence", "must"),
         ("metadata_ok", "must"), ("context_ok", "must"), ("source_db", "optional"))),
@@ -287,6 +292,7 @@ APP_RELATIONS: Dict[str, Tuple[str, str, str]] = {
     "FULFILLS": ("Claim", "IdeaCandidate", "主张兑现想法"),
     "DELIVERED_BY": ("Claim", "ReproductionPackage", "主张由复现包交付"),
     "GROUNDED_IN_NORM": ("Claim", "EvaluationNorm", "主张锚定领域规范"),
+    "TABULATED_IN": ("Claim", "ResultTable", "主张由哪张结果表支撑"),
 }
 
 

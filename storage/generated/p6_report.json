@@ -1,0 +1,234 @@
+{
+  "made": 32,
+  "skipped": 20,
+  "tables": [
+    {
+      "aid": "2402.15864",
+      "table": "Table 3) and CExTB (Table 4) to gain significant i",
+      "cols": [
+        "BL (↓W1)",
+        "BA (↓W1)",
+        "CEMMFF (↓W1)",
+        "CExTB (↓W1)"
+      ],
+      "rows": 5
+    },
+    {
+      "aid": "2406.08506",
+      "table": "Table 1",
+      "cols": [
+        "AiZynth_↑_"
+      ],
+      "rows": 4
+    },
+    {
+      "aid": "2407.06334",
+      "table": "Table 1: Benchmark dataset summary",
+      "cols": [
+        "# Routes",
+        "Avg. In-Dist. %",
+        "Unique Rxn. %",
+        "Avg. # Rxns.",
+        "Avg. Depth"
+      ],
+      "rows": 3
+    },
+    {
+      "aid": "2407.12186",
+      "table": "Table 3: Synthesizability metrics across various S",
+      "cols": [
+        "Mol. weight (↓)",
+        "QED (↑)",
+        "SA score (↓)",
+        "AiZynth (↑)"
+      ],
+      "rows": 9
+    },
+    {
+      "aid": "2410.03494",
+      "table": "Table 1: Specific model hyper-parameters used in t",
+      "cols": [
+        "**229M**",
+        "68M",
+        "17.5M",
+        "3.7M"
+      ],
+      "rows": 7
+    },
+    {
+      "aid": "2410.13147",
+      "table": "Table 3: The results (T = 3) on a set of single- a",
+      "cols": [
+        "ChatDrug",
+        "Qwen2.5-3<br>AgentDrug",
+        "B<br>AgentDrug_†_",
+        "ChatDrug",
+        "Qwen2.5-7<br>AgentDrug",
+        "B<br>AgentDrug_†_"
+      ],
+      "rows": 30
+    },
+    {
+      "aid": "2503.03503",
+      "table": "Table 3 | Task Performance Metrics for Single and ",
+      "cols": [
+        "**Hit Ratio (Lo**<br>",
+        "**ose)**<br>**Hit Ratio (Strict)**<br>_Single Property Optim_<br>",
+        "**Valid Ratio**<br>_ization_<br>",
+        "**Same Scaffold Ratio**<br>"
+      ],
+      "rows": 14
+    },
+    {
+      "aid": "2507.02752",
+      "table": "Table 1** , SynTwins consistently outperforms the ",
+      "cols": [
+        "Exact-match rate",
+        "Top-k",
+        "average sim",
+        "ilarity"
+      ],
+      "rows": 4
+    },
+    {
+      "aid": "2503.12602",
+      "table": "table_1",
+      "cols": [
+        "# of R<br>",
+        "",
+        "Morgan Sim."
+      ],
+      "rows": 5
+    },
+    {
+      "aid": "2507.08475",
+      "table": "Table 4** : Model performance comparison (Top-k ac",
+      "cols": [
+        "Top 1(%)",
+        "Top 3(%)",
+        "Top 5(%)"
+      ],
+      "rows": 3
+    },
+    {
+      "aid": "2510.14455",
+      "table": "table_1",
+      "cols": [
+        "**Terminal re**",
+        "**placement**",
+        "**Core replacement**"
+      ],
+      "rows": 3
+    },
+    {
+      "aid": "2509.16084",
+      "table": "Table 3 _|_ **Synthesizable goal-directed molecula",
+      "cols": [
+        "Graph GA-ReaSyn",
+        "Graph GA-SF",
+        "SynthesisNet",
+        "SynNet",
+        "DoG-Gen",
+        "DoG-AE",
+        "Graph GA"
+      ],
+      "rows": 15
+    },
+    {
+      "aid": "2512.20333",
+      "table": "Table 1 | Success rates of identifying synthesizab",
+      "cols": [
+        "**Sim >0.5**",
+        "**Sim >0.6**",
+        "**Sim >0.7**",
+        "**Sim >0.8**"
+      ],
+      "rows": 14
+    },
+    {
+      "aid": "2603.05900",
+      "table": "Table 1: SuccessRate (SR), Similarity (Sim), and t",
+      "cols": [
+        "Base Model",
+        "Distill-SFT",
+        "SFT",
+        "GRPO",
+        "GRPO (SFT init)",
+        "RePO"
+      ],
+      "rows": 6
+    },
+    {
+      "aid": "2603.24382",
+      "table": "Table 1",
+      "cols": [
+        "**Regressio**",
+        "**n (RMSE**_↓_**)**",
+        "**Classific**",
+        "**iation (RO**",
+        "**i C-AUC**_↑_**)**"
+      ],
+      "rows": 9
+    },
+    {
+      "aid": "2604.07669",
+      "table": "Table 5 summarizes the hyperparameters shared acro",
+      "cols": [
+        "**Value**"
+      ],
+      "rows": 18
+    },
+    {
+      "aid": "2605.10831",
+      "table": "Table 1: Forward-direction results on the MolEditR",
+      "cols": [
+        "A",
+        "cc@0.15 (%",
+        ")",
+        "Ac",
+        "c@0.65 (",
+        "%)"
+      ],
+      "rows": 6
+    },
+    {
+      "aid": "2605.07022",
+      "table": "Table 3: Human-validated label error rates on mole",
+      "cols": [
+        "Mols.",
+        "Baseline",
+        "`Starling`",
+        "Lit.",
+        "Confirmed-wrong",
+        "Confirmed-wrong"
+      ],
+      "rows": 5
+    },
+    {
+      "aid": "2606.03660",
+      "table": "table_3",
+      "cols": [
+        "**Produc**",
+        "**Retros**",
+        "**Template/**",
+        "**Component Re**",
+        "**Conditi**",
+        "**Yield**"
+      ],
+      "rows": 8
+    },
+    {
+      "aid": "2605.24428",
+      "table": "Table 4: Representation entanglement via joint mod",
+      "cols": [
+        "Dim",
+        "Top-1",
+        "Top-3",
+        "Top-5",
+        "Top-10",
+        "Diversity"
+      ],
+      "rows": 6
+    }
+  ]
+}
