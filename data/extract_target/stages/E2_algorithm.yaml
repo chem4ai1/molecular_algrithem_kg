@@ -41,6 +41,9 @@ template: '【论文标题】{title}
 
   任务：抽取本文提出的核心算法。只输出 JSON：
 
-  {"algorithms":[{"name":"算法名","task_type":"从词表选","mechanism":"核心机理（≤200字）","limitations":["局限"],"modules":[{"name":"模块名","mechanism":"机理","inputs":"输入","outputs":"输出"}],"arch_modules":[{"name":"系统级模块名","role":"职责","input":"输入","output":"输出"}],"key_challenge":"作者指出的核心技术挑战","why_not_other":"为何不用同流派其他做法（原文没有则空串）"}]}
+  {"algorithms":[{"name":"算法名","task_type":"从词表选","mechanism":"核心机理（≤200字）","limitations":["局限"],"modules":[{"name":"模块名","mechanism":"机理","inputs":"输入","outputs":"输出"}],"arch_modules":[{"name":"系统组件名","role":"职责","input":"输入","output":"输出"}],"key_challenge":"作者指出的核心技术挑战","why_not_other":"为何不用同流派其他做法（原文没有则空串）"}]}
 
-  只输出JSON，不要解释。'
+  只输出JSON，不要解释。
+
+
+  arch_modules 规则：列出方法节明确出现的每个系统级组件，不要合并为一个框架名；例如 reasoning LLM 与 code LLM 必须拆成两项；只有原文没有分模块时才输出一个端到端模型名。'

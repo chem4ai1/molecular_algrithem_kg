@@ -1,0 +1,29 @@
+{
+  "aid": "2505.23628",
+  "name": "AutoSchemaKG/data3_graph",
+  "ok": true,
+  "research_q_len": 59,
+  "research_q": "如何在不依赖预定义模式的情况下，利用大语言模型从大规模文本中自主抽取知识三元组并动态归纳模式，以构建可扩展的知识图谱？",
+  "limits": [
+    "fundamentally limits their scalability, adaptability, and domain coverage"
+  ],
+  "old_forms": [
+    "require predefined schemas created by domain experts"
+  ],
+  "arch_modules": [
+    {
+      "name": "Input Processing",
+      "role": "过滤、分段和批处理输入文档",
+      "input": "Input Documents",
+      "output": "Chunked Batches"
+    },
+    {
+      "name": "LLM Prompts",
+      "role": "执行三元组抽取和概念化推理",
+      "input": "Text Chunks",
+      "output": "JSON Outputs (Triples/Concepts)"
+    }
+  ],
+  "key_challenge": "消除对预定义Schema的依赖，实现完全自主的知识图谱构建，同时保持语义一致性并达到与LLM参数化知识相当的规模。",
+  "why_not_other": "传统方法需要领域专家预定义Schema，限制了可扩展性和适应性；AutoSchemaKG通过动态归纳Schema解决了这一瓶颈。"
+}

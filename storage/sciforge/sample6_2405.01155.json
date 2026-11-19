@@ -1,0 +1,39 @@
+{
+  "aid": "2405.01155",
+  "name": "SynFlowNet/gflownet",
+  "ok": true,
+  "research_q_len": 59,
+  "research_q": "如何设计一种生成模型，在分子生成过程中显式整合化学合成约束，以解决现有模型生成分子合成不可达的问题，并提升样本多样性？",
+  "limits": [
+    "leaving no guarantee that the sampled molecules can be synthesized",
+    "these heuristics and learned metrics are often oversimplified",
+    "it can take seconds to minutes to propose pathways, which hampers its integration as a reward function"
+  ],
+  "old_forms": [
+    "operate on SMILES strings",
+    "assemble molecules by composing atoms or molecular fragments into a graph",
+    "computer-aided synthesis planning can be performed as a subsequent step to molecule generation"
+  ],
+  "arch_modules": [
+    {
+      "name": "Graph Transformer",
+      "role": "处理分子状态并生成共享嵌入",
+      "input": "当前分子状态 st",
+      "output": "共享嵌入"
+    },
+    {
+      "name": "MLP Heads",
+      "role": "预测不同动作类型（前向5种，反向3种）的logits",
+      "input": "共享嵌入",
+      "output": "动作 logits"
+    },
+    {
+      "name": "Reward Function",
+      "role": "评估最终分子的奖励（如结合亲和力）",
+      "input": "最终分子",
+      "output": "奖励值 R(x)"
+    }
+  ],
+  "key_challenge": "反应基于MDP中反向构建轨迹缺乏返回初始状态s0的保证，导致反向策略训练困难。",
+  "why_not_other": "传统基于原子或片段的生成模型无法保证合成可行性；合成规划作为后处理步骤耗时过长，难以集成到生成奖励中。"
+}

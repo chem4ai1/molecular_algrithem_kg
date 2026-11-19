@@ -1,0 +1,47 @@
+{
+  "aid": "2607.01977",
+  "name": "OntoLearner/data3_ontology",
+  "ok": true,
+  "research_q_len": 53,
+  "research_q": "如何通过构建统一的跨领域本体学习基础设施，解决现有方法在评估标准、数据访问及本体复杂性导致的性能瓶颈问题？",
+  "limits": [
+    "brittle under terminological variation",
+    "struggled to align with established vocabularies",
+    "produced ontologies too inconsistent to reuse reliably",
+    "absence of logical rigor"
+  ],
+  "old_forms": [
+    "lexico-syntactic patterns",
+    "modular pipelines",
+    "semi-supervised learning",
+    "web-scale extraction"
+  ],
+  "arch_modules": [
+    {
+      "name": "Ontology Access Interface",
+      "role": "Transforms ontologies from diverse repositories into machine-readable formats suitable for LLM appli",
+      "input": "Ontologies from BioPortal, OLS, OBO Foundry, LOV, FAIRsharin",
+      "output": "Machine-readable, pipeline-ready, LLM-compatible datasets"
+    },
+    {
+      "name": "Modular OL Library",
+      "role": "Supports core OL tasks with standardized train/dev/test splits and evaluation metrics",
+      "input": "Pipeline-ready datasets",
+      "output": "Evaluation results for term typing, taxonomy discovery, and "
+    },
+    {
+      "name": "AI/LLM Integration",
+      "role": "Assistive components aligned with curated vocabularies for concept suggestion, term typing, hierarch",
+      "input": "Curated vocabularies and domain corpora",
+      "output": "Concept suggestions, typed terms, completed hierarchies, and"
+    },
+    {
+      "name": "Benchmarking Platform",
+      "role": "Extensible, domain-agnostic platform aligned with FAIR principles for systematic empirical study",
+      "input": "22 retrieval models and 12 LLMs",
+      "output": "Standardized cross-domain evaluation metrics"
+    }
+  ],
+  "key_challenge": "Transforming heterogeneous natural language into structured, machine-interpretable conceptual models that enable reasoning, interoperability, and scientific dis",
+  "why_not_other": ""
+}

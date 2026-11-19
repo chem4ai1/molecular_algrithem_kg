@@ -1,0 +1,6 @@
+2510.14455 MECo/edit_sequence: ok=True rq=86 limits=3 old=1 arch=2 challenge=60
+2405.01155 SynFlowNet/gflownet: ok=True rq=59 limits=3 old=3 arch=3 challenge=39
+2410.13147 AgentDrug/llm_agent: ok=True rq=68 limits=2 old=2 arch=3 challenge=63
+1911.00598 SHACL/rule_symbolic: ok=True rq=75 limits=2 old=2 arch=2 challenge=127
+2505.23628 AutoSchemaKG/data3_graph: ok=True rq=59 limits=1 old=1 arch=2 challenge=57
+2607.01977 OntoLearner/data3_ontology: ok=True rq=53 limits=4 old=4 arch=4 challenge=160

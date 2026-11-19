@@ -1,0 +1,31 @@
+{
+  "aid": "2510.14455",
+  "name": "MECo/edit_sequence",
+  "ok": true,
+  "research_q_len": 86,
+  "research_q": "针对LLM在SMILES表示下执行分子编辑时因模态不匹配导致的忠实度低问题，提出MECo框架，通过生成可执行代码将编辑意图转化为精确结构修改，以实现可控且可解释的分子设计。",
+  "limits": [
+    "generated SMILES may not always be chemically plausible",
+    "valid outputs may diverge from the design rationale articulated by reasoning LLMs",
+    "extensive uncontrolled edits may severely compromise synthetic feasibility"
+  ],
+  "old_forms": [
+    "prompting them to generate optimized molecules in the form of SMILES strings, conditioned on an input structure and a desired property goal"
+  ],
+  "arch_modules": [
+    {
+      "name": "Reasoning LLM",
+      "role": "生成高层级编辑意图和理由",
+      "input": "分子结构, 设计目标",
+      "output": "编辑意图"
+    },
+    {
+      "name": "Code LLM",
+      "role": "将编辑意图转化为可执行代码并执行结构修改",
+      "input": "编辑意图, 分子结构",
+      "output": "修改后的分子结构"
+    }
+  ],
+  "key_challenge": "SMILES表示与化学家基于图结构的推理存在模态不匹配，导致LLM直接生成SMILES时难以精确控制结构且缺乏可解释性。",
+  "why_not_other": "直接生成SMILES的方法存在化学合理性差、输出与设计理由不一致、破坏合成路线可行性等问题；图优化方法依赖oracle反馈且缺乏可解释性。"
+}

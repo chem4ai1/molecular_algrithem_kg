@@ -1,0 +1,37 @@
+{
+  "aid": "2410.13147",
+  "name": "AgentDrug/llm_agent",
+  "ok": true,
+  "research_q_len": 68,
+  "research_q": "如何利用大语言模型在代理工作流中实现零样本分子编辑，以克服简单提示准确性低及分子结构无效的问题，从而在保持结构相似性的同时提升目标属性？",
+  "limits": [
+    "generic nature of the feedback causes LLMs to refine molecules merely toward the objective",
+    "does not address molecular hallucination"
+  ],
+  "old_forms": [
+    "straightforward prompting",
+    "conversational framework that guides LLMs in an iterative refinement loop"
+  ],
+  "arch_modules": [
+    {
+      "name": "LLM (Qwen-2.5)",
+      "role": "核心推理与生成引擎，执行分子编辑和根据反馈进行修正",
+      "input": "提示词、反馈信息、参考分子",
+      "output": "修改后的分子SMILES"
+    },
+    {
+      "name": "RDKit",
+      "role": "化学信息学工具包，负责分子结构验证和错误检测",
+      "input": "分子SMILES",
+      "output": "ParseError信息或验证通过状态"
+    },
+    {
+      "name": "Molecule Database",
+      "role": "存储分子数据，支持基于相似性和目标满足度的检索",
+      "input": "查询分子和目标条件",
+      "output": "匹配的参考分子"
+    }
+  ],
+  "key_challenge": "解决LLM在分子编辑中的“分子幻觉”（生成无效结构）问题，并克服简单提示法准确率有限的问题，同时保持分子与原结构的相似性约束。",
+  "why_not_other": "ChatDrug仅使用通用反馈，无法有效解决分子幻觉且检索步骤常因无效输出被禁用；AgentDrug通过早期强制有效性和显式梯度信号提高了可靠性和引导效果。"
+}

@@ -1,0 +1,31 @@
+{
+  "aid": "1911.00598",
+  "name": "SHACL/rule_symbolic",
+  "ok": true,
+  "research_q_len": 75,
+  "research_q": "研究SHACL约束与Datalog推理规则交互时，如何检测推理可能导致的约束违反，并自动更新原始模式以捕获新推断事实，解决模式静态性与推理动态性矛盾。",
+  "limits": [
+    "process is slow, expensive and error prone",
+    "challenging even without taking existential validity rules into account"
+  ],
+  "old_forms": [
+    "domain experts are needed to define such inference rules",
+    "schemas are not static objects, and they can evolve over time"
+  ],
+  "arch_modules": [
+    {
+      "name": "Triplestore Schema Model",
+      "role": "将SHACL约束抽象为三元组模式、非字面量位置集和存在性有效性规则集",
+      "input": "SHACL constraints",
+      "output": "Triplestore schema S"
+    },
+    {
+      "name": "Schema Consequence Computation",
+      "role": "结合datalog重写和chase算法计算existential-preserving schema consequence",
+      "input": "Simple schema consequence, Existential validity rules",
+      "output": "Existential-preserving schema consequence"
+    }
+  ],
+  "key_challenge": "Critical instance size is very large and inefficient; need a smaller representative instance (sandbox) for efficient reasoning.",
+  "why_not_other": ""
+}

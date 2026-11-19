@@ -38,14 +38,14 @@ slots:
 - paper_text
 - rule_hints
 template: "【论文标题】{title}\n【摘要与引言】\n{paper_text}\n\n任务：从上面正文抽取字段。只输出纯 JSON，不要代码块、不要解释。\n\n必填：\n  \"research_question\"\
-  :\"一句话研究问题\",\n  \"problem_category\":\"问题类别（从词表选）\",\n  \"why_hard\":\"现有方法为什么做不到（一句话）\"\n可选：\n  \"\
-  relation_hints\":{},\n  \"paradigm\":\"formal|empirical|design|interpretive\",\n  \"evidence_type\"\
-  :\"causal_inference|derivational|experimental|simulational|correlational|interpretive\",\n  \"evidence_norm\"\
-  :[\"该领域认可的指标/证据形式\"],\n  \"section_map\":[{\"section\":\"节名\",\"claims\":[\"该节论断\"]}],\n  \"writing_style\"\
-  :\"写作惯例（简短）\",\n  \"claims\":[{\"statement\":\"作者主张（≤80字）\",\"evidence\":\"逐字引文\"}],\n  \"gaps\":[{\"\
-  gap_type\":\"capability|scale|data|theory|efficiency\",\"statement\":\"空白\",\"evidence\":\"引文\"}],\n\
-  \  \"delta_claims\":[{\"statement\":\"声称的增量\",\"baseline\":\"被改进方法\",\"evidence\":\"引文\"}],\n  \"old_forms\"\
-  :[\"先前工作怎么做的（原文写法）\"],\n  \"method_limits\":[\"作者指出的旧方法具体缺陷\"]\n不输出：authors/abstract/data_sources/dedup_rule/formal_def/hyperparams/result_tables/figures/references/negative_results/open_problems（由规则层负责）。"
+  :\"1-2句完整研究问题（40-90字）：必须包含研究对象/目标、本文方法或干预、关键矛盾或限制；不要只写短标题\",\n  \"problem_category\":\"问题类别（从词表选）\"\
+  ,\n  \"why_hard\":\"现有方法为什么做不到（1-2句，指出具体限制，不要泛泛而谈）\"\n可选：\n  \"relation_hints\":{},\n  \"paradigm\"\
+  :\"formal|empirical|design|interpretive\",\n  \"evidence_type\":\"causal_inference|derivational|experimental|simulational|correlational|interpretive\"\
+  ,\n  \"evidence_norm\":[\"该领域认可的指标/证据形式\"],\n  \"section_map\":[{\"section\":\"节名\",\"claims\":[\"该节论断\"\
+  ]}],\n  \"writing_style\":\"写作惯例（简短）\",\n  \"claims\":[{\"statement\":\"作者主张（≤80字）\",\"evidence\":\"\
+  逐字引文\"}],\n  \"gaps\":[{\"gap_type\":\"capability|scale|data|theory|efficiency\",\"statement\":\"空白\"\
+  ,\"evidence\":\"引文\"}],\n  \"delta_claims\":[{\"statement\":\"声称的增量\",\"baseline\":\"被改进方法\",\"evidence\"\
+  :\"引文\"}],\n  \"old_forms\":[\"先前工作怎么做的（原文写法）\"],\n  \"method_limits\":[\"作者指出的旧方法具体缺陷\"]\n不输出：authors/abstract/data_sources/dedup_rule/formal_def/hyperparams/result_tables/figures/references/negative_results/open_problems（由规则层负责）。"
 rules:
   preprocess: normalize_pdf
   data_sources:
