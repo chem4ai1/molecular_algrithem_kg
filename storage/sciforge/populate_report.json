@@ -1,0 +1,125 @@
+{
+  "base": "storage_cf/sciforge/batch10_final_graph.json",
+  "out": "storage_cf/sciforge/batch10_populated_graph.json",
+  "before": {
+    "class_coverage": 0.275,
+    "relation_coverage": 0.167
+  },
+  "after": {
+    "class_coverage": 1.0,
+    "relation_coverage": 0.986
+  },
+  "unused_classes_before": [
+    "AlgorithmComposition",
+    "AlgorithmFamily",
+    "CapabilityClaim",
+    "CausalGraph",
+    "CausalNode",
+    "ClaimAnchor",
+    "CodeGenerationTask",
+    "CodeModule",
+    "CompileReport",
+    "DataForm",
+    "Domain",
+    "EvaluationRun",
+    "EvaluationTool",
+    "ExperimentNode",
+    "Figure",
+    "GroundingAlignment",
+    "Limitation",
+    "ManuscriptSection",
+    "MethodApplication",
+    "MethodLock",
+    "NarrativeConstraint",
+    "Observation",
+    "Proposal",
+    "ReproductionResult",
+    "ResearchObject",
+    "ReviewVerdict",
+    "RunPhase",
+    "Section",
+    "StaticCheck"
+  ],
+  "unused_classes_after": [],
+  "unused_relations_before": 60,
+  "unused_relations_after": 1,
+  "unused_relations": [
+    "CORRECTED_BY"
+  ],
+  "nodes": 805,
+  "assertions": 1541,
+  "stats": {
+    "structure": {
+      "HAS_SECTION": 105,
+      "Section": 105,
+      "PARENT_OF": 95,
+      "BENCHMARK_FOR": 24
+    },
+    "data_forms": {
+      "DataForm": 24,
+      "HAS_INPUT_SCHEMA": 10,
+      "HAS_OUTPUT_SCHEMA": 7,
+      "MethodApplication": 10,
+      "PARTICIPATES_IN": 9,
+      "CONSUMES": 10,
+      "PRODUCES": 7,
+      "SCORED_BY": 10,
+      "APPLIED_ON": 12,
+      "ResearchObject": 10
+    },
+    "composition": {
+      "AlgorithmComposition": 6,
+      "HAS_COMPOSITION": 6,
+      "HAS_STEP": 31,
+      "FLOWS_TO": 25,
+      "IN_COMPOSITION": 6
+    },
+    "code": {
+      "CodeModule": 80,
+      "CodeFunction": 80,
+      "CONTAINS_MODULE": 64,
+      "DEFINES_FUNCTION": 80,
+      "CALLS": 70,
+      "REALIZES": 18,
+      "IMPLEMENTS_STEP": 18,
+      "EvaluationTool": 10,
+      "BINDS_TOOL": 8,
+      "IMPLEMENTS_METRIC": 10,
+      "RUNS_ON": 6,
+      "EMITS": 4
+    },
+    "cad": {
+      "CausalGraph": 1,
+      "CausalNode": 10,
+      "HAS_CAUSAL_GRAPH": 10,
+      "HAS_CAUSAL_NODE": 10,
+      "CAUSES": 9,
+      "FLOWS_DATA_TO": 9,
+      "GroundingAlignment": 6,
+      "GROUNDS_TO": 6,
+      "ALIGNED_BY": 6
+    },
+    "process": {
+      "merged_graphs": 3,
+      "merged_nodes": 102,
+      "LOOPS_BACK_TO": 18,
+      "GATED_BY": 30,
+      "HAS_PHASE": 30,
+      "GENERATES_MODULE": 3,
+      "BINDS_BENCHMARK": 3,
+      "HAS_BLOCK": 6
+    },
+    "remaining": {
+      "Domain": 10,
+      "IN_DOMAIN": 10,
+      "AlgorithmFamily": 12,
+      "USES_ALGO_FAMILY": 10,
+      "Limitation": 5,
+      "EvaluationRun": 4,
+      "PRODUCES_OBSERVATION": 4,
+      "ABOUT_METHOD": 3,
+      "ABOUT_SUBJECT": 3,
+      "IMPLEMENTS_ALGORITHM": 48
+    }
+  }
+}

@@ -1,8 +1,0 @@
-blank_issues_enabled: false
-contact_links:
-  - name: 收录标准与格式规范
-    url: https://github.com/awesome-ontology/awesome-ontology/blob/main/CONTRIBUTING.md
-    about: 不确定能不能收录、条目该怎么写，先看这里
-  - name: 讨论区
-    url: https://github.com/awesome-ontology/awesome-ontology/discussions
-    about: 关于清单结构与分类的建议，请在讨论区提出

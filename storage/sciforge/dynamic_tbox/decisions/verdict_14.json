@@ -1,0 +1,10 @@
+{
+  "verdict": "PASS",
+  "ok": true,
+  "artifacts": [],
+  "notes": "human_decision",
+  "reason_code": "human_decision",
+  "state": "PASS",
+  "stage": "14",
+  "evidence_ids": []
+}

@@ -1,0 +1,52 @@
+{"type": "start", "paper_id": "paper:2611.06237", "inputs_sha": "f3be37a2d6556dac", "effort": "lite"}
+{"type": "script_generated", "ts": 1794660711.25, "path": "storage_cf/repro_runs/regression/2611.06237/REPRO_SCRIPT.py", "sha": "sha256:f9ea11ae3d4365237720bd8f39d5a7de4195103c98026e043d3bf20dc7b66ef9"}
+{"type": "exec", "ts": 1794660711.296, "attempt": 0, "ok": true, "rc": 0, "duration": 0.04601788520812988}
+{"type": "exec_ok", "ts": 1794660711.296, "attempt": 0}
+{"type": "results_written", "ts": 1794660711.306, "n_rows": 30, "n_entries": 30, "outputs_sha": "sha256:8dc1985517e67e28bb271cdfa072c7388bccb786d078172bc871b45be9b459c3"}
+{"type": "execution", "ok": true, "status": "PASS", "debug_tries": 0, "ladder": "PASS"}
+{"type": "phase_done", "phase": "R0", "verdict": "PASS", "next": "R1", "gate": "paper_core_present", "reasons": []}
+{"type": "phase_done", "phase": "R1", "verdict": "PASS", "next": "R2", "gate": "method_grounded", "reasons": []}
+{"type": "phase_done", "phase": "R2", "verdict": "PASS", "next": "R3", "gate": "code_located", "reasons": []}
+{"type": "phase_done", "phase": "R3", "verdict": "PASS", "next": "R4", "gate": "data_bound", "reasons": []}
+{"type": "phase_done", "phase": "R4", "verdict": "BLOCKED", "next": "R5", "gate": "metrics_comparable", "reasons": ["metric spearman 方向为启发式，需人工确认", "metric Pearson_r 方向为启发式，需人工确认", "helical twist 方向未知", "DHH 方向未知"]}
+{"type": "phase_done", "phase": "R5", "verdict": "PASS", "next": "R6", "gate": "verdicts_valid", "reasons": []}
+{"type": "phase_done", "phase": "R6", "verdict": "PASS", "next": "done", "gate": "reproduction_close", "reasons": []}
+{"type": "start", "paper_id": "paper:2611.06237", "inputs_sha": "f3be37a2d6556dac", "effort": "lite"}
+{"type": "script_generated", "ts": 1794661028.448, "path": "storage_cf/repro_runs/regression/2611.06237/REPRO_SCRIPT.py", "sha": "sha256:f9ea11ae3d4365237720bd8f39d5a7de4195103c98026e043d3bf20dc7b66ef9"}
+{"type": "exec", "ts": 1794661028.494, "attempt": 0, "ok": true, "rc": 0, "duration": 0.04599928855895996}
+{"type": "exec_ok", "ts": 1794661028.494, "attempt": 0}
+{"type": "results_written", "ts": 1794661028.506, "n_rows": 30, "n_entries": 30, "outputs_sha": "sha256:8dc1985517e67e28bb271cdfa072c7388bccb786d078172bc871b45be9b459c3"}
+{"type": "execution", "ok": true, "status": "PASS", "debug_tries": 0, "ladder": "PASS"}
+{"type": "phase_done", "phase": "R0", "verdict": "PASS", "next": "R1", "gate": "paper_core_present", "reasons": []}
+{"type": "phase_done", "phase": "R1", "verdict": "PASS", "next": "R2", "gate": "method_grounded", "reasons": []}
+{"type": "phase_done", "phase": "R2", "verdict": "PASS", "next": "R3", "gate": "code_located", "reasons": []}
+{"type": "phase_done", "phase": "R3", "verdict": "PASS", "next": "R4", "gate": "data_bound", "reasons": []}
+{"type": "phase_done", "phase": "R4", "verdict": "BLOCKED", "next": "R5", "gate": "metrics_comparable", "reasons": ["metric spearman 方向为启发式，需人工确认", "metric Pearson_r 方向为启发式，需人工确认", "helical twist 方向未知", "DHH 方向未知"]}
+{"type": "phase_done", "phase": "R5", "verdict": "PASS", "next": "R6", "gate": "verdicts_valid", "reasons": []}
+{"type": "phase_done", "phase": "R6", "verdict": "PASS", "next": "done", "gate": "reproduction_close", "reasons": []}
+{"type": "start", "paper_id": "paper:2611.06237", "inputs_sha": "f3be37a2d6556dac", "effort": "lite"}
+{"type": "script_generated", "ts": 1794661064.167, "path": "storage_cf/repro_runs/regression/2611.06237/REPRO_SCRIPT.py", "sha": "sha256:f9ea11ae3d4365237720bd8f39d5a7de4195103c98026e043d3bf20dc7b66ef9"}
+{"type": "exec", "ts": 1794661064.209, "attempt": 0, "ok": true, "rc": 0, "duration": 0.04161214828491211}
+{"type": "exec_ok", "ts": 1794661064.209, "attempt": 0}
+{"type": "results_written", "ts": 1794661064.227, "n_rows": 30, "n_entries": 30, "outputs_sha": "sha256:8dc1985517e67e28bb271cdfa072c7388bccb786d078172bc871b45be9b459c3"}
+{"type": "execution", "ok": true, "status": "PASS", "debug_tries": 0, "ladder": "PASS"}
+{"type": "phase_done", "phase": "R0", "verdict": "PASS", "next": "R1", "gate": "paper_core_present", "reasons": []}
+{"type": "phase_done", "phase": "R1", "verdict": "PASS", "next": "R2", "gate": "method_grounded", "reasons": []}
+{"type": "phase_done", "phase": "R2", "verdict": "PASS", "next": "R3", "gate": "code_located", "reasons": []}
+{"type": "phase_done", "phase": "R3", "verdict": "PASS", "next": "R4", "gate": "data_bound", "reasons": []}
+{"type": "phase_done", "phase": "R4", "verdict": "BLOCKED", "next": "R5", "gate": "metrics_comparable", "reasons": ["metric spearman 方向为启发式，需人工确认", "metric Pearson_r 方向为启发式，需人工确认", "helical twist 方向未知", "DHH 方向未知"]}
+{"type": "phase_done", "phase": "R5", "verdict": "PASS", "next": "R6", "gate": "verdicts_valid", "reasons": []}
+{"type": "phase_done", "phase": "R6", "verdict": "PASS", "next": "done", "gate": "reproduction_close", "reasons": []}
+{"type": "start", "paper_id": "paper:2611.06237", "inputs_sha": "f3be37a2d6556dac", "effort": "lite"}
+{"type": "script_generated", "ts": 1794661093.446, "path": "storage_cf/repro_runs/regression/2611.06237/REPRO_SCRIPT.py", "sha": "sha256:f9ea11ae3d4365237720bd8f39d5a7de4195103c98026e043d3bf20dc7b66ef9"}
+{"type": "exec", "ts": 1794661093.489, "attempt": 0, "ok": true, "rc": 0, "duration": 0.04302978515625}
+{"type": "exec_ok", "ts": 1794661093.49, "attempt": 0}
+{"type": "results_written", "ts": 1794661093.507, "n_rows": 30, "n_entries": 30, "outputs_sha": "sha256:8dc1985517e67e28bb271cdfa072c7388bccb786d078172bc871b45be9b459c3"}
+{"type": "execution", "ok": true, "status": "PASS", "debug_tries": 0, "ladder": "PASS"}
+{"type": "phase_done", "phase": "R0", "verdict": "PASS", "next": "R1", "gate": "paper_core_present", "reasons": []}
+{"type": "phase_done", "phase": "R1", "verdict": "PASS", "next": "R2", "gate": "method_grounded", "reasons": []}
+{"type": "phase_done", "phase": "R2", "verdict": "PASS", "next": "R3", "gate": "code_located", "reasons": []}
+{"type": "phase_done", "phase": "R3", "verdict": "PASS", "next": "R4", "gate": "data_bound", "reasons": []}
+{"type": "phase_done", "phase": "R4", "verdict": "BLOCKED", "next": "R5", "gate": "metrics_comparable", "reasons": ["metric spearman 方向为启发式，需人工确认", "metric Pearson_r 方向为启发式，需人工确认", "helical twist 方向未知", "DHH 方向未知"]}
+{"type": "phase_done", "phase": "R5", "verdict": "PASS", "next": "R6", "gate": "verdicts_valid", "reasons": []}
+{"type": "phase_done", "phase": "R6", "verdict": "PASS", "next": "done", "gate": "reproduction_close", "reasons": []}

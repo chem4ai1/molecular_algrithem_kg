@@ -1,0 +1,162 @@
+{
+  "evaluation": {
+    "paper_id": "paper:2411.06608",
+    "arxiv_id": "2411.06608",
+    "effort": "lite",
+    "overall": "PASS",
+    "reasons": [],
+    "sau_score": 1.0,
+    "coverage": 1.0,
+    "drift_rate": 0.0,
+    "exec_rate": 1.0,
+    "perf_gap": 0.0,
+    "symbol_recall": 1.0,
+    "align_mixed": 100.0,
+    "anchor_integrity": true,
+    "by_drift": {
+      "numerical": 0,
+      "methodological": 0,
+      "protocol": 0,
+      "ordering": 0
+    },
+    "counts": {
+      "method": {
+        "aligned": 10,
+        "mismatch": 0,
+        "stub": 0,
+        "absent": 0,
+        "unverified": 0
+      },
+      "code_grounding": {
+        "aligned": 18,
+        "mismatch": 0,
+        "stub": 0,
+        "absent": 0,
+        "unverified": 0
+      },
+      "protocol": {
+        "aligned": 6,
+        "mismatch": 0,
+        "stub": 0,
+        "absent": 0,
+        "unverified": 0
+      },
+      "numeric": {
+        "aligned": 31,
+        "mismatch": 0,
+        "stub": 0,
+        "absent": 0,
+        "unverified": 0
+      },
+      "ordering": {
+        "aligned": 9,
+        "mismatch": 0,
+        "stub": 0,
+        "absent": 0,
+        "unverified": 0
+      }
+    },
+    "ladder_verdict": "PASS",
+    "debug_tries": 0,
+    "out_of_scope": [
+      "原论文模型训练精度（本轮未训练；full 可行性见 TRAIN_FEASIBILITY.json）",
+      "原论文实验全量表",
+      "跨数据集泛化"
+    ]
+  },
+  "align_rubric": {
+    "paper_level": {
+      "score": 100,
+      "components": {
+        "method_sau": 20,
+        "mechanism_declared": 20,
+        "data_contract": 20,
+        "metric_plan": 20,
+        "code_grounding": 20
+      }
+    },
+    "code_level": {
+      "score": 100,
+      "components": {
+        "symbol_exists": 25,
+        "no_stub": 25,
+        "ordering": 25,
+        "numeric": 25
+      }
+    },
+    "mixed_level": {
+      "score": 100.0,
+      "weight": "0.3*paper + 0.7*code"
+    },
+    "primary": 100.0,
+    "note": "确定性实现；混合级与人类判断相关性文献值 0.81–0.83"
+  },
+  "anchors": {
+    "paper_id": "paper:2411.06608",
+    "spec_hash": "sha256:b3562d3f03436c3299655e49ceb53223bd4c8ab01e9e1b25cd9c91523f57e4fa",
+    "code_sha": "sha256:f0c6bcc6ac2ccdebc1a27eb2b929c6d39edeb19133d52baf4f818dfb3492fb9b",
+    "inputs_sha": "sha256:0cc27f17c0f59e0d47b555700413b4eefc683d63a77e0fe94d97ec376233847f",
+    "outputs_sha": "sha256:3c52210b08d101dc89dc3a3033de6ad1ffee6c1899109860b29fd877014ac931",
+    "double_run_equal": true,
+    "second_run_sha": "",
+    "drift": "",
+    "claims": [
+      {
+        "claim_id": "C1",
+        "sau_id": "sau:241106608:numeric:000",
+        "code_sha": "sha256:f0c6bcc6ac2ccdebc1a27eb2b929c6d39edeb19133d52baf4f818dfb3492fb9b",
+        "inputs_sha": "sha256:0cc27f17c0f59e0d47b555700413b4eefc683d63a77e0fe94d97ec376233847f",
+        "outputs_sha": "sha256:3c52210b08d101dc89dc3a3033de6ad1ffee6c1899109860b29fd877014ac931",
+        "resolved": true
+      },
+      {
+        "claim_id": "C1",
+        "sau_id": "sau:241106608:numeric:001",
+        "code_sha": "sha256:f0c6bcc6ac2ccdebc1a27eb2b929c6d39edeb19133d52baf4f818dfb3492fb9b",
+        "inputs_sha": "sha256:0cc27f17c0f59e0d47b555700413b4eefc683d63a77e0fe94d97ec376233847f",
+        "outputs_sha": "sha256:3c52210b08d101dc89dc3a3033de6ad1ffee6c1899109860b29fd877014ac931",
+        "resolved": true
+      },
+      {
+        "claim_id": "C1",
+        "sau_id": "sau:241106608:numeric:002",
+        "code_sha": "sha256:f0c6bcc6ac2ccdebc1a27eb2b929c6d39edeb19133d52baf4f818dfb3492fb9b",
+        "inputs_sha": "sha256:0cc27f17c0f59e0d47b555700413b4eefc683d63a77e0fe94d97ec376233847f",
+        "outputs_sha": "sha256:3c52210b08d101dc89dc3a3033de6ad1ffee6c1899109860b29fd877014ac931",
+        "resolved": true
+      },
+      {
+        "claim_id": "C1",
+        "sau_id": "sau:241106608:numeric:003",
+        "code_sha": "sha256:f0c6bcc6ac2ccdebc1a27eb2b929c6d39edeb19133d52baf4f818dfb3492fb9b",
+        "inputs_sha": "sha256:0cc27f17c0f59e0d47b555700413b4eefc683d63a77e0fe94d97ec376233847f",
+        "outputs_sha": "sha256:3c52210b08d101dc89dc3a3033de6ad1ffee6c1899109860b29fd877014ac931",
+        "resolved": true
+      },
+      {
+        "claim_id": "C1",
+        "sau_id": "sau:241106608:numeric:004",
+        "code_sha": "sha256:f0c6bcc6ac2ccdebc1a27eb2b929c6d39edeb19133d52baf4f818dfb3492fb9b",
+        "inputs_sha": "sha256:0cc27f17c0f59e0d47b555700413b4eefc683d63a77e0fe94d97ec376233847f",
+        "outputs_sha": "sha256:3c52210b08d101dc89dc3a3033de6ad1ffee6c1899109860b29fd877014ac931",
+        "resolved": true
+      }
+    ]
+  },
+  "rubric_tree": {
+    "root_score": 1.0,
+    "by_l1": {
+      "algorithm:lingo3dmol": 1.0,
+      "algorithm:molminer": 1.0,
+      "benchmark:canonical:zinc": 1.0,
+      "benchmark:conditional_generation": 1.0,
+      "benchmark:targeted_generation": 1.0,
+      "benchmark:targeted_multi_property": 1.0,
+      "benchmark:unconditional_generation": 1.0,
+      "benchmark:zinc": 1.0
+    },
+    "failed_branches": [],
+    "n_leaves": 74,
+    "n_aligned": 74
+  }
+}

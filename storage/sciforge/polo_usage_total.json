@@ -1,0 +1,32 @@
+{
+  "stages": [
+    {
+      "stage": "taskA_llm_ideas",
+      "calls": 1,
+      "prompt_tokens": 1058,
+      "completion_tokens": 2327,
+      "source": "终端输出（逐次明细未落盘）"
+    },
+    {
+      "stage": "batch10_first_pass",
+      "calls": 10,
+      "prompt_tokens": 47196,
+      "completion_tokens": 27135,
+      "source": "终端输出（逐次明细未落盘）"
+    },
+    {
+      "stage": "batch10_retry6_and_fill",
+      "calls": 15,
+      "prompt_tokens": 72009,
+      "completion_tokens": 42943,
+      "source": "polo_usage.json（有逐次明细）"
+    }
+  ],
+  "total": {
+    "calls": 26,
+    "prompt_tokens": 120263,
+    "completion_tokens": 72405,
+    "total_tokens": 192668
+  },
+  "note": "API 未返回单价，只统计 token；前两阶段逐次明细未落盘，仅阶段汇总"
+}

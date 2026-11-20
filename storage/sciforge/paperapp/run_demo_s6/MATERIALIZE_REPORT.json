@@ -1,0 +1,26 @@
+{
+  "run_id": "run:demo:s6",
+  "ts": "2026-11-15T14:25:21Z",
+  "n_proposed": 1,
+  "n_validated": 0,
+  "n_registered": 0,
+  "n_rejected": 0,
+  "n_conflicts": 1,
+  "rebuild_equivalence": true,
+  "verify_reason": "EQUIVALENT",
+  "semantic_graph_sha_before": "sha256:2014b7da1dc3ceaae11b0de44d0039ce5305419aaeff237c605751acccde06db",
+  "semantic_graph_sha_after": "sha256:2014b7da1dc3ceaae11b0de44d0039ce5305419aaeff237c605751acccde06db",
+  "decision_fp": "sha256:e5cf8e54a896f5d20a941e4b6fdd5d209eac60b061ce35596c6f1fb6819c6720",
+  "signal_capture_rate": 1.0,
+  "n_signals_captured": 4,
+  "exploration_regret": 0,
+  "files_written": [],
+  "delta_ids": [],
+  "rejected": [],
+  "conflicts": [
+    {
+      "proposal_id": "prop:25a533cbcbe02a93",
+      "reason": "reuse"
+    }
+  ]
+}

@@ -1,0 +1,114 @@
+{
+  "paper_id": "paper:2411.06608",
+  "arxiv_id": "2411.06608",
+  "effort": "lite",
+  "started_at": "2026-11-15T11:01:02",
+  "lock": {
+    "stage": "lock",
+    "ok": true,
+    "blocked_by": [],
+    "metrics": {
+      "n_method_sau": 14,
+      "method_sau_hash": "sha256:6960a89e0908d6300dc5",
+      "drift": 0
+    },
+    "artifacts": [
+      "METHOD_LOCK.json"
+    ],
+    "seconds": 0.001
+  },
+  "codegen": {
+    "stage": "codegen",
+    "ok": true,
+    "blocked_by": [],
+    "metrics": {
+      "n_tasks": 14,
+      "n_edges": 3,
+      "n_grounded": 10,
+      "symbol_recall": 1.0,
+      "script_sha": "sha256:d6d8b78757d9d12adfdd"
+    },
+    "artifacts": [
+      "CODE_PLAN.json",
+      "REPRO_SCRIPT.py"
+    ],
+    "seconds": 0.009
+  },
+  "execute": {
+    "stage": "execute",
+    "ok": true,
+    "blocked_by": [],
+    "metrics": {
+      "n_stages": 2,
+      "repeatable": true,
+      "n_executed_sau": 14,
+      "n_key_modules": 2,
+      "coverage": 1.0,
+      "outputs_sha": "sha256:8504774157670d715fea",
+      "failures": 0
+    },
+    "artifacts": [
+      "EXECUTION_LOG.json"
+    ],
+    "seconds": 0.097
+  },
+  "anchor": {
+    "stage": "anchor",
+    "ok": true,
+    "blocked_by": [],
+    "metrics": {
+      "n_claims": 31,
+      "n_three_level": 30,
+      "integrity": true,
+      "double_run_equal": true
+    },
+    "artifacts": [
+      "CLAIM_ANCHORS.json"
+    ],
+    "seconds": 0.051
+  },
+  "finished_at": "2026-11-15T11:01:02",
+  "status": {
+    "workspace": "storage/repro_test/2411.06608",
+    "stages": {
+      "lock": {
+        "state": "done",
+        "n_method_sau": 14,
+        "method_sau_hash": "sha256:6960a89e0908d6300dc5",
+        "drift": 0,
+        "locked_at": "2026-11-15T11:01:02"
+      },
+      "codegen": {
+        "state": "done",
+        "n_tasks": 14,
+        "n_edges": 3,
+        "symbol_recall": 1.0,
+        "script_sha": "sha256:d6d8b78757d9d12adfdd"
+      },
+      "execute": {
+        "state": "done",
+        "n_stages": 2,
+        "repeatable": true,
+        "coverage": [
+          14,
+          14
+        ],
+        "failures": 0
+      },
+      "anchor": {
+        "state": "done",
+        "n_claims": 31,
+        "n_three_level": 30,
+        "integrity": true,
+        "outputs_sha": "sha256:8504774157670d715fea"
+      }
+    },
+    "ready": true
+  },
+  "verify": {
+    "workspace": "storage/repro_test/2411.06608",
+    "ok": true,
+    "issues": [],
+    "integrity": true
+  }
+}

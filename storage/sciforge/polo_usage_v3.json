@@ -1,0 +1,186 @@
+{
+  "summary": {
+    "calls": 10,
+    "ok": 10,
+    "failed": 0,
+    "prompt_tokens": 70785,
+    "completion_tokens": 31140,
+    "total_tokens": 101925,
+    "latency_s": 130.95,
+    "avg_latency_s": 13.09,
+    "by_task": {
+      "fill:2411.06608": {
+        "calls": 1,
+        "prompt_tokens": 5201,
+        "completion_tokens": 3000,
+        "total_tokens": 8201
+      },
+      "fill:2405.03370": {
+        "calls": 1,
+        "prompt_tokens": 4869,
+        "completion_tokens": 2996,
+        "total_tokens": 7865
+      },
+      "fill:2611.06237": {
+        "calls": 1,
+        "prompt_tokens": 4980,
+        "completion_tokens": 2996,
+        "total_tokens": 7976
+      },
+      "fill:2407.12296": {
+        "calls": 1,
+        "prompt_tokens": 4774,
+        "completion_tokens": 2996,
+        "total_tokens": 7770
+      },
+      "fill:2305.10133": {
+        "calls": 1,
+        "prompt_tokens": 5715,
+        "completion_tokens": 3000,
+        "total_tokens": 8715
+      },
+      "fill:2306.08018": {
+        "calls": 1,
+        "prompt_tokens": 2827,
+        "completion_tokens": 2996,
+        "total_tokens": 5823
+      },
+      "fill:2301.11259": {
+        "calls": 1,
+        "prompt_tokens": 5223,
+        "completion_tokens": 2367,
+        "total_tokens": 7590
+      },
+      "fill:2606.02455": {
+        "calls": 1,
+        "prompt_tokens": 3158,
+        "completion_tokens": 3000,
+        "total_tokens": 6158
+      },
+      "canonicalize_benchmarks": {
+        "calls": 1,
+        "prompt_tokens": 3632,
+        "completion_tokens": 5996,
+        "total_tokens": 9628
+      },
+      "evidence:2301.11259": {
+        "calls": 1,
+        "prompt_tokens": 30406,
+        "completion_tokens": 1793,
+        "total_tokens": 32199
+      }
+    }
+  },
+  "records": [
+    {
+      "ts": 1794320931.9955535,
+      "model": "gemini-3.8-flash",
+      "task": "fill:2411.06608",
+      "prompt_tokens": 5201,
+      "completion_tokens": 3000,
+      "total_tokens": 8201,
+      "latency_s": 9.94,
+      "ok": true,
+      "error": ""
+    },
+    {
+      "ts": 1794320932.6028743,
+      "model": "gemini-3.8-flash",
+      "task": "fill:2405.03370",
+      "prompt_tokens": 4869,
+      "completion_tokens": 2996,
+      "total_tokens": 7865,
+      "latency_s": 10.54,
+      "ok": true,
+      "error": ""
+    },
+    {
+      "ts": 1794320934.6361828,
+      "model": "gemini-3.8-flash",
+      "task": "fill:2611.06237",
+      "prompt_tokens": 4980,
+      "completion_tokens": 2996,
+      "total_tokens": 7976,
+      "latency_s": 12.58,
+      "ok": true,
+      "error": ""
+    },
+    {
+      "ts": 1794320944.5436385,
+      "model": "gemini-3.8-flash",
+      "task": "fill:2407.12296",
+      "prompt_tokens": 4774,
+      "completion_tokens": 2996,
+      "total_tokens": 7770,
+      "latency_s": 12.55,
+      "ok": true,
+      "error": ""
+    },
+    {
+      "ts": 1794320946.4058576,
+      "model": "gemini-3.8-flash",
+      "task": "fill:2305.10133",
+      "prompt_tokens": 5715,
+      "completion_tokens": 3000,
+      "total_tokens": 8715,
+      "latency_s": 13.8,
+      "ok": true,
+      "error": ""
+    },
+    {
+      "ts": 1794320947.6170456,
+      "model": "gemini-3.8-flash",
+      "task": "fill:2306.08018",
+      "prompt_tokens": 2827,
+      "completion_tokens": 2996,
+      "total_tokens": 5823,
+      "latency_s": 12.98,
+      "ok": true,
+      "error": ""
+    },
+    {
+      "ts": 1794320954.321863,
+      "model": "gemini-3.8-flash",
+      "task": "fill:2301.11259",
+      "prompt_tokens": 5223,
+      "completion_tokens": 2367,
+      "total_tokens": 7590,
+      "latency_s": 9.78,
+      "ok": true,
+      "error": ""
+    },
+    {
+      "ts": 1794320962.8340704,
+      "model": "gemini-3.8-flash",
+      "task": "fill:2606.02455",
+      "prompt_tokens": 3158,
+      "completion_tokens": 3000,
+      "total_tokens": 6158,
+      "latency_s": 16.43,
+      "ok": true,
+      "error": ""
+    },
+    {
+      "ts": 1794320986.209685,
+      "model": "gemini-3.8-flash",
+      "task": "canonicalize_benchmarks",
+      "prompt_tokens": 3632,
+      "completion_tokens": 5996,
+      "total_tokens": 9628,
+      "latency_s": 23.34,
+      "ok": true,
+      "error": ""
+    },
+    {
+      "ts": 1794320995.2284806,
+      "model": "gemini-3.8-flash",
+      "task": "evidence:2301.11259",
+      "prompt_tokens": 30406,
+      "completion_tokens": 1793,
+      "total_tokens": 32199,
+      "latency_s": 9.01,
+      "ok": true,
+      "error": ""
+    }
+  ]
+}

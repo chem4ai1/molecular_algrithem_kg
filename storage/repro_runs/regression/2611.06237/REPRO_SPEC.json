@@ -1,0 +1,1956 @@
+{
+  "paper_id": "paper:2611.06237",
+  "arxiv_id": "2611.06237",
+  "sau": [
+    {
+      "id": "sau:261106237:method:000",
+      "kind": "method",
+      "statement": "SO3LR Tauri 的模块「SO3krates Backbone Representation」实现 message_compute（inputs=['atomic_positions_R', 'atomic_numbers_Z', 'total_charge_Q', 'spin_multiplicity_S'] → outputs=['per_atom_embeddings_xi']）",
+      "source_node_ids": [
+        "algorithm:so3lr_tauri",
+        "algorithmstep:2611.06237:0:so3krates_backbone_representation"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "module_implemented",
+        "target": "algorithmstep:2611.06237:0:so3krates_backbone_representation",
+        "algorithm": "algorithm:so3lr_tauri",
+        "mechanism": "message_compute",
+        "inputs": [
+          "atomic_positions_R",
+          "atomic_numbers_Z",
+          "total_charge_Q",
+          "spin_multiplicity_S"
+        ],
+        "outputs": [
+          "per_atom_embeddings_xi"
+        ],
+        "formula": "Eq. (S1), Eq. (S2)"
+      },
+      "required": true,
+      "provenance": "derived",
+      "relation_hint": "PROPOSES_METHOD|HAS_MODULE"
+    },
+    {
+      "id": "sau:261106237:code_grounding:000",
+      "kind": "code_grounding",
+      "statement": "「SO3krates Backbone Representation」由代码符号 forward 实现（未标注文件）",
+      "source_node_ids": [
+        "algorithmstep:2611.06237:0:so3krates_backbone_representation",
+        "codefunction:general_molecular_simulations_so3lr:so3lr_base_calculator_py:forward"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "symbol_exists",
+        "target": "codefunction:general_molecular_simulations_so3lr:so3lr_base_calculator_py:forward",
+        "signature": "forward",
+        "file": "",
+        "lineno": 53,
+        "stub_allowed": false
+      },
+      "required": true,
+      "provenance": "extracted",
+      "relation_hint": "MODULE_IMPLEMENTED_BY"
+    },
+    {
+      "id": "sau:261106237:method:001",
+      "kind": "method",
+      "statement": "SO3LR Tauri 的模块「Multi-head Energy Readout」实现 readout（inputs=['per_atom_embeddings_xi', 'theory_level_index_t', 'atomic_numbers_Zi'] → outputs=['atomic_energy_epsilon_i_t', 'partial_charges_qi', 'polarizability_ratio_hi', 'dispersion_ratio_rC6_i']）",
+      "source_node_ids": [
+        "algorithm:so3lr_tauri",
+        "algorithmstep:2611.06237:1:multi_head_energy_readout"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "module_implemented",
+        "target": "algorithmstep:2611.06237:1:multi_head_energy_readout",
+        "algorithm": "algorithm:so3lr_tauri",
+        "mechanism": "readout",
+        "inputs": [
+          "per_atom_embeddings_xi",
+          "theory_level_index_t",
+          "atomic_numbers_Zi"
+        ],
+        "outputs": [
+          "atomic_energy_epsilon_i_t",
+          "partial_charges_qi",
+          "polarizability_ratio_hi",
+          "dispersion_ratio_rC6_i"
+        ],
+        "formula": "Eq. (2), Eq. (9), Eq. (S3)"
+      },
+      "required": true,
+      "provenance": "derived",
+      "relation_hint": "PROPOSES_METHOD|HAS_MODULE"
+    },
+    {
+      "id": "sau:261106237:code_grounding:001",
+      "kind": "code_grounding",
+      "statement": "「Multi-head Energy Readout」由代码符号 make_so3lr 实现（未标注文件）",
+      "source_node_ids": [
+        "algorithmstep:2611.06237:1:multi_head_energy_readout",
+        "codefunction:general_molecular_simulations_so3lr:so3lr_base_calculator_py:make_so3lr"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "symbol_exists",
+        "target": "codefunction:general_molecular_simulations_so3lr:so3lr_base_calculator_py:make_so3lr",
+        "signature": "make_so3lr",
+        "file": "",
+        "lineno": 10,
+        "stub_allowed": false
+      },
+      "required": true,
+      "provenance": "extracted",
+      "relation_hint": "MODULE_IMPLEMENTED_BY"
+    },
+    {
+      "id": "sau:261106237:method:002",
+      "kind": "method",
+      "statement": "SO3LR Tauri 的模块「NLH Short-Range Repulsion」实现 scoring（inputs=['interatomic_distances_rij', 'atomic_numbers_Zi_Zj'] → outputs=['repulsion_energy_Erep']）",
+      "source_node_ids": [
+        "algorithm:so3lr_tauri",
+        "algorithmstep:2611.06237:2:nlh_short_range_repulsion"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "module_implemented",
+        "target": "algorithmstep:2611.06237:2:nlh_short_range_repulsion",
+        "algorithm": "algorithm:so3lr_tauri",
+        "mechanism": "scoring",
+        "inputs": [
+          "interatomic_distances_rij",
+          "atomic_numbers_Zi_Zj"
+        ],
+        "outputs": [
+          "repulsion_energy_Erep"
+        ],
+        "formula": "Eq. (3), Eq. (4), Eq. (S4)"
+      },
+      "required": true,
+      "provenance": "derived",
+      "relation_hint": "PROPOSES_METHOD|HAS_MODULE"
+    },
+    {
+      "id": "sau:261106237:method:003",
+      "kind": "method",
+      "statement": "SO3LR Tauri 的模块「Damped Electrostatics with PME」实现 aggregation（inputs=['partial_charges_qi_qj', 'interatomic_distances_rij', 'box_vectors'] → outputs=['electrostatic_energy_Eelec']）",
+      "source_node_ids": [
+        "algorithm:so3lr_tauri",
+        "algorithmstep:2611.06237:3:damped_electrostatics_with_pme"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "module_implemented",
+        "target": "algorithmstep:2611.06237:3:damped_electrostatics_with_pme",
+        "algorithm": "algorithm:so3lr_tauri",
+        "mechanism": "aggregation",
+        "inputs": [
+          "partial_charges_qi_qj",
+          "interatomic_distances_rij",
+          "box_vectors"
+        ],
+        "outputs": [
+          "electrostatic_energy_Eelec"
+        ],
+        "formula": "Eq. (5), Eq. (S6), Eq. (S7)"
+      },
+      "required": true,
+      "provenance": "derived",
+      "relation_hint": "PROPOSES_METHOD|HAS_MODULE"
+    },
+    {
+      "id": "sau:261106237:code_grounding:002",
+      "kind": "code_grounding",
+      "statement": "「Damped Electrostatics with PME」由代码符号 kspace_electrostatics_options 实现（未标注文件）",
+      "source_node_ids": [
+        "algorithmstep:2611.06237:3:damped_electrostatics_with_pme",
+        "codefunction:general_molecular_simulations_so3lr:so3lr_cli_so3lr_cli_py:kspace_electrostatics_options"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "symbol_exists",
+        "target": "codefunction:general_molecular_simulations_so3lr:so3lr_cli_so3lr_cli_py:kspace_electrostatics_options",
+        "signature": "kspace_electrostatics_options",
+        "file": "",
+        "lineno": 541,
+        "stub_allowed": false
+      },
+      "required": true,
+      "provenance": "extracted",
+      "relation_hint": "MODULE_IMPLEMENTED_BY"
+    },
+    {
+      "id": "sau:261106237:method:004",
+      "kind": "method",
+      "statement": "SO3LR Tauri 的模块「QDO Pairwise Dispersion with Reciprocal PME」实现 aggregation（inputs=['polarizability_ratios_hi', 'dispersion_ratios_rC6_i', 'atomic_numbers_Zi', 'interatomic_distances_rij'] → outputs=['dispersion_energy_Edisp']）",
+      "source_node_ids": [
+        "algorithm:so3lr_tauri",
+        "algorithmstep:2611.06237:4:qdo_pairwise_dispersion_with_reciprocal_pme"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "module_implemented",
+        "target": "algorithmstep:2611.06237:4:qdo_pairwise_dispersion_with_reciprocal_pme",
+        "algorithm": "algorithm:so3lr_tauri",
+        "mechanism": "aggregation",
+        "inputs": [
+          "polarizability_ratios_hi",
+          "dispersion_ratios_rC6_i",
+          "atomic_numbers_Zi",
+          "interatomic_distances_rij"
+        ],
+        "outputs": [
+          "dispersion_energy_Edisp"
+        ],
+        "formula": "Eq. (6), Eq. (7), Eq. (8), Eq. (S8)-(S12)"
+      },
+      "required": true,
+      "provenance": "derived",
+      "relation_hint": "PROPOSES_METHOD|HAS_MODULE"
+    },
+    {
+      "id": "sau:261106237:code_grounding:003",
+      "kind": "code_grounding",
+      "statement": "「QDO Pairwise Dispersion with Reciprocal PME」由代码符号 kspace_dispersion_options 实现（未标注文件）",
+      "source_node_ids": [
+        "algorithmstep:2611.06237:4:qdo_pairwise_dispersion_with_reciprocal_pme",
+        "codefunction:general_molecular_simulations_so3lr:so3lr_cli_so3lr_cli_py:kspace_dispersion_options"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "symbol_exists",
+        "target": "codefunction:general_molecular_simulations_so3lr:so3lr_cli_so3lr_cli_py:kspace_dispersion_options",
+        "signature": "kspace_dispersion_options",
+        "file": "",
+        "lineno": 564,
+        "stub_allowed": false
+      },
+      "required": true,
+      "provenance": "extracted",
+      "relation_hint": "MODULE_IMPLEMENTED_BY"
+    },
+    {
+      "id": "sau:261106237:protocol:000",
+      "kind": "protocol",
+      "statement": "SAPT10k 的数据契约为 原子坐标 → 能量/力，样本量 10k 二聚体构象，评测基准=True",
+      "source_node_ids": [
+        "benchmark:sapt10k",
+        "appcontract:benchmark_sapt10k"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "data_contract",
+        "target": "benchmark:sapt10k",
+        "input_form": "原子坐标",
+        "output_form": "能量/力",
+        "n_samples": "10k 二聚体构象",
+        "is_evaluation": true,
+        "shape_probe": null
+      },
+      "required": true,
+      "provenance": "derived",
+      "relation_hint": "EVALUATED_ON|HAS_CONTRACT"
+    },
+    {
+      "id": "sau:261106237:numeric:000",
+      "kind": "numeric",
+      "statement": "SAPT10k 上 未标注模型 的 mae = 0.45kcal/mol（方向=min）",
+      "source_node_ids": [
+        "benchmark:sapt10k",
+        "applb:benchmark_sapt10k:0",
+        "appmetric:mae"
+      ],
+      "evidence_ids": [
+        "appev:benchmark_sapt10k:0"
+      ],
+      "check": {
+        "op": "numeric_compare",
+        "target": "applb:benchmark_sapt10k:0",
+        "metric": "mae",
+        "value": "0.45",
+        "value_num": 0.45,
+        "unit": "kcal/mol",
+        "direction": "min",
+        "direction_raw": "lower",
+        "direction_source": "",
+        "tolerance": 0.05
+      },
+      "required": true,
+      "provenance": "extracted",
+      "relation_hint": "HAS_ENTRY|USES_METRIC"
+    },
+    {
+      "id": "sau:261106237:numeric:001",
+      "kind": "numeric",
+      "statement": "SAPT10k 上 未标注模型 的 rmse = 0.83kcal/mol（方向=min）",
+      "source_node_ids": [
+        "benchmark:sapt10k",
+        "applb:benchmark_sapt10k:1",
+        "appmetric:rmse"
+      ],
+      "evidence_ids": [
+        "appev:benchmark_sapt10k:1"
+      ],
+      "check": {
+        "op": "numeric_compare",
+        "target": "applb:benchmark_sapt10k:1",
+        "metric": "rmse",
+        "value": "0.83",
+        "value_num": 0.83,
+        "unit": "kcal/mol",
+        "direction": "min",
+        "direction_raw": "lower",
+        "direction_source": "",
+        "tolerance": 0.05
+      },
+      "required": true,
+      "provenance": "extracted",
+      "relation_hint": "HAS_ENTRY|USES_METRIC"
+    },
+    {
+      "id": "sau:261106237:numeric:002",
+      "kind": "numeric",
+      "statement": "SAPT10k 上 SO3LR-T-M 的 mae = 0.45kcal/mol（方向=min）",
+      "source_node_ids": [
+        "benchmark:sapt10k",
+        "applb:benchmark_sapt10k:2",
+        "appmetric:mae"
+      ],
+      "evidence_ids": [
+        "appev:benchmark_sapt10k:2"
+      ],
+      "check": {
+        "op": "numeric_compare",
+        "target": "applb:benchmark_sapt10k:2",
+        "metric": "mae",
+        "value": "0.45",
+        "value_num": 0.45,
+        "unit": "kcal/mol",
+        "direction": "min",
+        "direction_raw": "lower",
+        "direction_source": "",
+        "tolerance": 0.05
+      },
+      "required": false,
+      "provenance": "extracted",
+      "relation_hint": "HAS_ENTRY|USES_METRIC"
+    },
+    {
+      "id": "sau:261106237:protocol:001",
+      "kind": "protocol",
+      "statement": "QUID 的数据契约为 原子坐标 → 能量/力，样本量 量子化学相互作用能数据集，评测基准=True",
+      "source_node_ids": [
+        "benchmark:quid",
+        "appcontract:benchmark_quid"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "data_contract",
+        "target": "benchmark:quid",
+        "input_form": "原子坐标",
+        "output_form": "能量/力",
+        "n_samples": "量子化学相互作用能数据集",
+        "is_evaluation": true,
+        "shape_probe": null
+      },
+      "required": true,
+      "provenance": "derived",
+      "relation_hint": "EVALUATED_ON|HAS_CONTRACT"
+    },
+    {
+      "id": "sau:261106237:numeric:003",
+      "kind": "numeric",
+      "statement": "QUID 上 未标注模型 的 mae = 1.24kcal/mol（方向=min）",
+      "source_node_ids": [
+        "benchmark:quid",
+        "applb:benchmark_quid:0",
+        "appmetric:mae"
+      ],
+      "evidence_ids": [
+        "appev:benchmark_quid:0"
+      ],
+      "check": {
+        "op": "numeric_compare",
+        "target": "applb:benchmark_quid:0",
+        "metric": "mae",
+        "value": "1.24",
+        "value_num": 1.24,
+        "unit": "kcal/mol",
+        "direction": "min",
+        "direction_raw": "lower",
+        "direction_source": "",
+        "tolerance": 0.05
+      },
+      "required": true,
+      "provenance": "extracted",
+      "relation_hint": "HAS_ENTRY|USES_METRIC"
+    },
+    {
+      "id": "sau:261106237:numeric:004",
+      "kind": "numeric",
+      "statement": "QUID 上 未标注模型 的 rmse = 1.59kcal/mol（方向=min）",
+      "source_node_ids": [
+        "benchmark:quid",
+        "applb:benchmark_quid:1",
+        "appmetric:rmse"
+      ],
+      "evidence_ids": [
+        "appev:benchmark_quid:1"
+      ],
+      "check": {
+        "op": "numeric_compare",
+        "target": "applb:benchmark_quid:1",
+        "metric": "rmse",
+        "value": "1.59",
+        "value_num": 1.59,
+        "unit": "kcal/mol",
+        "direction": "min",
+        "direction_raw": "lower",
+        "direction_source": "",
+        "tolerance": 0.05
+      },
+      "required": true,
+      "provenance": "extracted",
+      "relation_hint": "HAS_ENTRY|USES_METRIC"
+    },
+    {
+      "id": "sau:261106237:numeric:005",
+      "kind": "numeric",
+      "statement": "QUID 上 SO3LR-T-M 的 mae = 1.24kcal/mol（方向=min）",
+      "source_node_ids": [
+        "benchmark:quid",
+        "applb:benchmark_quid:2",
+        "appmetric:mae"
+      ],
+      "evidence_ids": [
+        "appev:benchmark_quid:2"
+      ],
+      "check": {
+        "op": "numeric_compare",
+        "target": "applb:benchmark_quid:2",
+        "metric": "mae",
+        "value": "1.24",
+        "value_num": 1.24,
+        "unit": "kcal/mol",
+        "direction": "min",
+        "direction_raw": "lower",
+        "direction_source": "",
+        "tolerance": 0.05
+      },
+      "required": false,
+      "provenance": "extracted",
+      "relation_hint": "HAS_ENTRY|USES_METRIC"
+    },
+    {
+      "id": "sau:261106237:protocol:002",
+      "kind": "protocol",
+      "statement": "JSCH-2005 的数据契约为 原子坐标 → 能量/力，样本量 JSCH-2005 基准集，评测基准=True",
+      "source_node_ids": [
+        "benchmark:jsch_2005",
+        "appcontract:benchmark_jsch_2005"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "data_contract",
+        "target": "benchmark:jsch_2005",
+        "input_form": "原子坐标",
+        "output_form": "能量/力",
+        "n_samples": "JSCH-2005 基准集",
+        "is_evaluation": true,
+        "shape_probe": null
+      },
+      "required": true,
+      "provenance": "derived",
+      "relation_hint": "EVALUATED_ON|HAS_CONTRACT"
+    },
+    {
+      "id": "sau:261106237:numeric:006",
+      "kind": "numeric",
+      "statement": "JSCH-2005 上 SO3LR-T-M 的 mae = 0.78kcal/mol（方向=min）",
+      "source_node_ids": [
+        "benchmark:jsch_2005",
+        "applb:benchmark_jsch_2005:0",
+        "appmetric:mae"
+      ],
+      "evidence_ids": [
+        "appev:benchmark_jsch_2005:0"
+      ],
+      "check": {
+        "op": "numeric_compare",
+        "target": "applb:benchmark_jsch_2005:0",
+        "metric": "mae",
+        "value": "0.78",
+        "value_num": 0.78,
+        "unit": "kcal/mol",
+        "direction": "min",
+        "direction_raw": "lower",
+        "direction_source": "",
+        "tolerance": 0.05
+      },
+      "required": true,
+      "provenance": "extracted",
+      "relation_hint": "HAS_ENTRY|USES_METRIC"
+    },
+    {
+      "id": "sau:261106237:numeric:007",
+      "kind": "numeric",
+      "statement": "JSCH-2005 上 未标注模型 的 mae = 0.78kcal/mol（方向=min）",
+      "source_node_ids": [
+        "benchmark:jsch_2005",
+        "applb:benchmark_jsch_2005:1",
+        "appmetric:mae"
+      ],
+      "evidence_ids": [
+        "appev:benchmark_jsch_2005:1"
+      ],
+      "check": {
+        "op": "numeric_compare",
+        "target": "applb:benchmark_jsch_2005:1",
+        "metric": "mae",
+        "value": "0.78",
+        "value_num": 0.78,
+        "unit": "kcal/mol",
+        "direction": "min",
+        "direction_raw": "lower",
+        "direction_source": "",
+        "tolerance": 0.05
+      },
+      "required": false,
+      "provenance": "extracted",
+      "relation_hint": "HAS_ENTRY|USES_METRIC"
+    },
+    {
+      "id": "sau:261106237:numeric:008",
+      "kind": "numeric",
+      "statement": "JSCH-2005 上 未标注模型 的 rmse = 1.04kcal/mol（方向=min）",
+      "source_node_ids": [
+        "benchmark:jsch_2005",
+        "applb:benchmark_jsch_2005:2",
+        "appmetric:rmse"
+      ],
+      "evidence_ids": [
+        "appev:benchmark_jsch_2005:2"
+      ],
+      "check": {
+        "op": "numeric_compare",
+        "target": "applb:benchmark_jsch_2005:2",
+        "metric": "rmse",
+        "value": "1.04",
+        "value_num": 1.04,
+        "unit": "kcal/mol",
+        "direction": "min",
+        "direction_raw": "lower",
+        "direction_source": "",
+        "tolerance": 0.05
+      },
+      "required": true,
+      "provenance": "extracted",
+      "relation_hint": "HAS_ENTRY|USES_METRIC"
+    },
+    {
+      "id": "sau:261106237:protocol:003",
+      "kind": "protocol",
+      "statement": "PLA15 的数据契约为 原子坐标 → 能量/力，样本量 PLA15 构象集，评测基准=True",
+      "source_node_ids": [
+        "benchmark:pla15",
+        "appcontract:benchmark_pla15"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "data_contract",
+        "target": "benchmark:pla15",
+        "input_form": "原子坐标",
+        "output_form": "能量/力",
+        "n_samples": "PLA15 构象集",
+        "is_evaluation": true,
+        "shape_probe": null
+      },
+      "required": true,
+      "provenance": "derived",
+      "relation_hint": "EVALUATED_ON|HAS_CONTRACT"
+    },
+    {
+      "id": "sau:261106237:numeric:009",
+      "kind": "numeric",
+      "statement": "PLA15 上 SO3LR-T-M 的 mae = 3.81kcal/mol（方向=min）",
+      "source_node_ids": [
+        "benchmark:pla15",
+        "applb:benchmark_pla15:0",
+        "appmetric:mae"
+      ],
+      "evidence_ids": [
+        "appev:benchmark_pla15:0"
+      ],
+      "check": {
+        "op": "numeric_compare",
+        "target": "applb:benchmark_pla15:0",
+        "metric": "mae",
+        "value": "3.81",
+        "value_num": 3.81,
+        "unit": "kcal/mol",
+        "direction": "min",
+        "direction_raw": "lower",
+        "direction_source": "",
+        "tolerance": 0.05
+      },
+      "required": true,
+      "provenance": "extracted",
+      "relation_hint": "HAS_ENTRY|USES_METRIC"
+    },
+    {
+      "id": "sau:261106237:numeric:010",
+      "kind": "numeric",
+      "statement": "PLA15 上 未标注模型 的 mae = 3.81kcal/mol（方向=min）",
+      "source_node_ids": [
+        "benchmark:pla15",
+        "applb:benchmark_pla15:1",
+        "appmetric:mae"
+      ],
+      "evidence_ids": [
+        "appev:benchmark_pla15:1"
+      ],
+      "check": {
+        "op": "numeric_compare",
+        "target": "applb:benchmark_pla15:1",
+        "metric": "mae",
+        "value": "3.81",
+        "value_num": 3.81,
+        "unit": "kcal/mol",
+        "direction": "min",
+        "direction_raw": "lower",
+        "direction_source": "",
+        "tolerance": 0.05
+      },
+      "required": false,
+      "provenance": "extracted",
+      "relation_hint": "HAS_ENTRY|USES_METRIC"
+    },
+    {
+      "id": "sau:261106237:numeric:011",
+      "kind": "numeric",
+      "statement": "PLA15 上 未标注模型 的 rmse = 5.48kcal/mol（方向=min）",
+      "source_node_ids": [
+        "benchmark:pla15",
+        "applb:benchmark_pla15:2",
+        "appmetric:rmse"
+      ],
+      "evidence_ids": [
+        "appev:benchmark_pla15:2"
+      ],
+      "check": {
+        "op": "numeric_compare",
+        "target": "applb:benchmark_pla15:2",
+        "metric": "rmse",
+        "value": "5.48",
+        "value_num": 5.48,
+        "unit": "kcal/mol",
+        "direction": "min",
+        "direction_raw": "lower",
+        "direction_source": "",
+        "tolerance": 0.05
+      },
+      "required": true,
+      "provenance": "extracted",
+      "relation_hint": "HAS_ENTRY|USES_METRIC"
+    },
+    {
+      "id": "sau:261106237:protocol:004",
+      "kind": "protocol",
+      "statement": "TorsionNet500 的数据契约为 3D坐标 → 标量，样本量 500，评测基准=True",
+      "source_node_ids": [
+        "benchmark:torsionnet500",
+        "appcontract:benchmark_torsionnet500"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "data_contract",
+        "target": "benchmark:torsionnet500",
+        "input_form": "3D坐标",
+        "output_form": "标量",
+        "n_samples": "500",
+        "is_evaluation": true,
+        "shape_probe": null
+      },
+      "required": true,
+      "provenance": "derived",
+      "relation_hint": "EVALUATED_ON|HAS_CONTRACT"
+    },
+    {
+      "id": "sau:261106237:numeric:012",
+      "kind": "numeric",
+      "statement": "TorsionNet500 上 未标注模型 的 mae = 0.62kcal/mol（方向=min）",
+      "source_node_ids": [
+        "benchmark:torsionnet500",
+        "applb:benchmark_torsionnet500:0",
+        "appmetric:mae"
+      ],
+      "evidence_ids": [
+        "appev:benchmark_torsionnet500:0"
+      ],
+      "check": {
+        "op": "numeric_compare",
+        "target": "applb:benchmark_torsionnet500:0",
+        "metric": "mae",
+        "value": "0.62",
+        "value_num": 0.62,
+        "unit": "kcal/mol",
+        "direction": "min",
+        "direction_raw": "lower",
+        "direction_source": "",
+        "tolerance": 0.05
+      },
+      "required": true,
+      "provenance": "extracted",
+      "relation_hint": "HAS_ENTRY|USES_METRIC"
+    },
+    {
+      "id": "sau:261106237:numeric:013",
+      "kind": "numeric",
+      "statement": "TorsionNet500 上 未标注模型 的 rmse = 0.93kcal/mol（方向=min）",
+      "source_node_ids": [
+        "benchmark:torsionnet500",
+        "applb:benchmark_torsionnet500:1",
+        "appmetric:rmse"
+      ],
+      "evidence_ids": [
+        "appev:benchmark_torsionnet500:1"
+      ],
+      "check": {
+        "op": "numeric_compare",
+        "target": "applb:benchmark_torsionnet500:1",
+        "metric": "rmse",
+        "value": "0.93",
+        "value_num": 0.93,
+        "unit": "kcal/mol",
+        "direction": "min",
+        "direction_raw": "lower",
+        "direction_source": "",
+        "tolerance": 0.05
+      },
+      "required": true,
+      "provenance": "extracted",
+      "relation_hint": "HAS_ENTRY|USES_METRIC"
+    },
+    {
+      "id": "sau:261106237:numeric:014",
+      "kind": "numeric",
+      "statement": "TorsionNet500 上 SO3LR-T-M 的 mae = 0.62kcal/mol（方向=min）",
+      "source_node_ids": [
+        "benchmark:torsionnet500",
+        "applb:benchmark_torsionnet500:2",
+        "appmetric:mae"
+      ],
+      "evidence_ids": [
+        "appev:benchmark_torsionnet500:2"
+      ],
+      "check": {
+        "op": "numeric_compare",
+        "target": "applb:benchmark_torsionnet500:2",
+        "metric": "mae",
+        "value": "0.62",
+        "value_num": 0.62,
+        "unit": "kcal/mol",
+        "direction": "min",
+        "direction_raw": "lower",
+        "direction_source": "",
+        "tolerance": 0.05
+      },
+      "required": false,
+      "provenance": "extracted",
+      "relation_hint": "HAS_ENTRY|USES_METRIC"
+    },
+    {
+      "id": "sau:261106237:protocol:005",
+      "kind": "protocol",
+      "statement": "GlcMal 的数据契约为 SMILES → 分子，样本量 unknown，评测基准=True",
+      "source_node_ids": [
+        "benchmark:glcmal",
+        "appcontract:benchmark_glcmal"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "data_contract",
+        "target": "benchmark:glcmal",
+        "input_form": "SMILES",
+        "output_form": "分子",
+        "n_samples": "unknown",
+        "is_evaluation": true,
+        "shape_probe": null
+      },
+      "required": true,
+      "provenance": "derived",
+      "relation_hint": "EVALUATED_ON|HAS_CONTRACT"
+    },
+    {
+      "id": "sau:261106237:numeric:015",
+      "kind": "numeric",
+      "statement": "GlcMal 上 未标注模型 的 mae = 1.36kcal/mol（方向=min）",
+      "source_node_ids": [
+        "benchmark:glcmal",
+        "applb:benchmark_glcmal:0",
+        "appmetric:mae"
+      ],
+      "evidence_ids": [
+        "appev:benchmark_glcmal:0"
+      ],
+      "check": {
+        "op": "numeric_compare",
+        "target": "applb:benchmark_glcmal:0",
+        "metric": "mae",
+        "value": "1.36",
+        "value_num": 1.36,
+        "unit": "kcal/mol",
+        "direction": "min",
+        "direction_raw": "lower",
+        "direction_source": "",
+        "tolerance": 0.05
+      },
+      "required": true,
+      "provenance": "extracted",
+      "relation_hint": "HAS_ENTRY|USES_METRIC"
+    },
+    {
+      "id": "sau:261106237:numeric:016",
+      "kind": "numeric",
+      "statement": "GlcMal 上 未标注模型 的 rmse = 1.68kcal/mol（方向=min）",
+      "source_node_ids": [
+        "benchmark:glcmal",
+        "applb:benchmark_glcmal:1",
+        "appmetric:rmse"
+      ],
+      "evidence_ids": [
+        "appev:benchmark_glcmal:1"
+      ],
+      "check": {
+        "op": "numeric_compare",
+        "target": "applb:benchmark_glcmal:1",
+        "metric": "rmse",
+        "value": "1.68",
+        "value_num": 1.68,
+        "unit": "kcal/mol",
+        "direction": "min",
+        "direction_raw": "lower",
+        "direction_source": "",
+        "tolerance": 0.05
+      },
+      "required": true,
+      "provenance": "extracted",
+      "relation_hint": "HAS_ENTRY|USES_METRIC"
+    },
+    {
+      "id": "sau:261106237:numeric:017",
+      "kind": "numeric",
+      "statement": "GlcMal 上 未标注模型 的 spearman = 0.89（方向=max）",
+      "source_node_ids": [
+        "benchmark:glcmal",
+        "applb:benchmark_glcmal:2",
+        "appmetric:spearman"
+      ],
+      "evidence_ids": [
+        "appev:benchmark_glcmal:2"
+      ],
+      "check": {
+        "op": "numeric_compare",
+        "target": "applb:benchmark_glcmal:2",
+        "metric": "spearman",
+        "value": "0.89",
+        "value_num": 0.89,
+        "unit": "",
+        "direction": "max",
+        "direction_raw": "higher",
+        "direction_source": "",
+        "tolerance": 0.05
+      },
+      "required": false,
+      "provenance": "extracted",
+      "relation_hint": "HAS_ENTRY|USES_METRIC"
+    },
+    {
+      "id": "sau:261106237:numeric:018",
+      "kind": "numeric",
+      "statement": "GlcMal 上 SO3LR-T-M 的 spearman = 0.89（方向=max）",
+      "source_node_ids": [
+        "benchmark:glcmal",
+        "applb:benchmark_glcmal:3",
+        "appmetric:spearman"
+      ],
+      "evidence_ids": [
+        "appev:benchmark_glcmal:3"
+      ],
+      "check": {
+        "op": "numeric_compare",
+        "target": "applb:benchmark_glcmal:3",
+        "metric": "spearman",
+        "value": "0.89",
+        "value_num": 0.89,
+        "unit": "",
+        "direction": "max",
+        "direction_raw": "higher",
+        "direction_source": "",
+        "tolerance": 0.05
+      },
+      "required": true,
+      "provenance": "extracted",
+      "relation_hint": "HAS_ENTRY|USES_METRIC"
+    },
+    {
+      "id": "sau:261106237:numeric:019",
+      "kind": "numeric",
+      "statement": "GlcMal 上 SO3LR-T-M 的 mae = 1.36kcal/mol（方向=min）",
+      "source_node_ids": [
+        "benchmark:glcmal",
+        "applb:benchmark_glcmal:4",
+        "appmetric:mae"
+      ],
+      "evidence_ids": [
+        "appev:benchmark_glcmal:4"
+      ],
+      "check": {
+        "op": "numeric_compare",
+        "target": "applb:benchmark_glcmal:4",
+        "metric": "mae",
+        "value": "1.36",
+        "value_num": 1.36,
+        "unit": "kcal/mol",
+        "direction": "min",
+        "direction_raw": "lower",
+        "direction_source": "",
+        "tolerance": 0.05
+      },
+      "required": false,
+      "provenance": "extracted",
+      "relation_hint": "HAS_ENTRY|USES_METRIC"
+    },
+    {
+      "id": "sau:261106237:protocol:006",
+      "kind": "protocol",
+      "statement": "Proline-catalyzed aldol addition 的数据契约为 SMILES → 分子，样本量 unknown，评测基准=True",
+      "source_node_ids": [
+        "benchmark:proline_catalyzed_aldol_addition",
+        "appcontract:benchmark_proline_catalyzed_aldol_addition"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "data_contract",
+        "target": "benchmark:proline_catalyzed_aldol_addition",
+        "input_form": "SMILES",
+        "output_form": "分子",
+        "n_samples": "unknown",
+        "is_evaluation": true,
+        "shape_probe": null
+      },
+      "required": true,
+      "provenance": "derived",
+      "relation_hint": "EVALUATED_ON|HAS_CONTRACT"
+    },
+    {
+      "id": "sau:261106237:numeric:020",
+      "kind": "numeric",
+      "statement": "Proline-catalyzed aldol addition 上 未标注模型 的 mae = 2.9kcal/mol（方向=min）",
+      "source_node_ids": [
+        "benchmark:proline_catalyzed_aldol_addition",
+        "applb:benchmark_proline_catalyzed_aldol_addition:0",
+        "appmetric:mae"
+      ],
+      "evidence_ids": [
+        "appev:benchmark_proline_catalyzed_aldol_addition:0"
+      ],
+      "check": {
+        "op": "numeric_compare",
+        "target": "applb:benchmark_proline_catalyzed_aldol_addition:0",
+        "metric": "mae",
+        "value": "2.9",
+        "value_num": 2.9,
+        "unit": "kcal/mol",
+        "direction": "min",
+        "direction_raw": "lower",
+        "direction_source": "",
+        "tolerance": 0.05
+      },
+      "required": true,
+      "provenance": "extracted",
+      "relation_hint": "HAS_ENTRY|USES_METRIC"
+    },
+    {
+      "id": "sau:261106237:numeric:021",
+      "kind": "numeric",
+      "statement": "Proline-catalyzed aldol addition 上 未标注模型 的 rmsd = 0.12Å（方向=min）",
+      "source_node_ids": [
+        "benchmark:proline_catalyzed_aldol_addition",
+        "applb:benchmark_proline_catalyzed_aldol_addition:1",
+        "appmetric:rmsd"
+      ],
+      "evidence_ids": [
+        "appev:benchmark_proline_catalyzed_aldol_addition:1"
+      ],
+      "check": {
+        "op": "numeric_compare",
+        "target": "applb:benchmark_proline_catalyzed_aldol_addition:1",
+        "metric": "rmsd",
+        "value": "0.12",
+        "value_num": 0.12,
+        "unit": "Å",
+        "direction": "min",
+        "direction_raw": "lower",
+        "direction_source": "",
+        "tolerance": 0.05
+      },
+      "required": true,
+      "provenance": "extracted",
+      "relation_hint": "HAS_ENTRY|USES_METRIC"
+    },
+    {
+      "id": "sau:261106237:protocol:007",
+      "kind": "protocol",
+      "statement": "Side-chain pKa of pentapeptides 的数据契约为 氨基酸序列 → 活性/MIC 标签，样本量 五肽侧链 pKa 数据，评测基准=True",
+      "source_node_ids": [
+        "benchmark:side_chain_pka_of_pentapeptides",
+        "appcontract:benchmark_side_chain_pka_of_pentapeptides"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "data_contract",
+        "target": "benchmark:side_chain_pka_of_pentapeptides",
+        "input_form": "氨基酸序列",
+        "output_form": "活性/MIC 标签",
+        "n_samples": "五肽侧链 pKa 数据",
+        "is_evaluation": true,
+        "shape_probe": null
+      },
+      "required": true,
+      "provenance": "derived",
+      "relation_hint": "EVALUATED_ON|HAS_CONTRACT"
+    },
+    {
+      "id": "sau:261106237:numeric:022",
+      "kind": "numeric",
+      "statement": "Side-chain pKa of pentapeptides 上 SO3LR-T-M 的 mae = 0.98（方向=min）",
+      "source_node_ids": [
+        "benchmark:side_chain_pka_of_pentapeptides",
+        "applb:benchmark_side_chain_pka_of_pentapeptides:0",
+        "appmetric:mae"
+      ],
+      "evidence_ids": [
+        "appev:benchmark_side_chain_pka_of_pentapeptides:0"
+      ],
+      "check": {
+        "op": "numeric_compare",
+        "target": "applb:benchmark_side_chain_pka_of_pentapeptides:0",
+        "metric": "mae",
+        "value": "0.98",
+        "value_num": 0.98,
+        "unit": "",
+        "direction": "min",
+        "direction_raw": "lower",
+        "direction_source": "",
+        "tolerance": 0.05
+      },
+      "required": true,
+      "provenance": "extracted",
+      "relation_hint": "HAS_ENTRY|USES_METRIC"
+    },
+    {
+      "id": "sau:261106237:numeric:023",
+      "kind": "numeric",
+      "statement": "Side-chain pKa of pentapeptides 上 SO3LR-T-M 的 rmse = 1.12（方向=min）",
+      "source_node_ids": [
+        "benchmark:side_chain_pka_of_pentapeptides",
+        "applb:benchmark_side_chain_pka_of_pentapeptides:1",
+        "appmetric:rmse"
+      ],
+      "evidence_ids": [
+        "appev:benchmark_side_chain_pka_of_pentapeptides:1"
+      ],
+      "check": {
+        "op": "numeric_compare",
+        "target": "applb:benchmark_side_chain_pka_of_pentapeptides:1",
+        "metric": "rmse",
+        "value": "1.12",
+        "value_num": 1.12,
+        "unit": "",
+        "direction": "min",
+        "direction_raw": "lower",
+        "direction_source": "",
+        "tolerance": 0.05
+      },
+      "required": true,
+      "provenance": "extracted",
+      "relation_hint": "HAS_ENTRY|USES_METRIC"
+    },
+    {
+      "id": "sau:261106237:numeric:024",
+      "kind": "numeric",
+      "statement": "Side-chain pKa of pentapeptides 上 SO3LR-T-M 的 Pearson_r = 0.95（方向=max）",
+      "source_node_ids": [
+        "benchmark:side_chain_pka_of_pentapeptides",
+        "applb:benchmark_side_chain_pka_of_pentapeptides:2",
+        "appmetric:pearson_r"
+      ],
+      "evidence_ids": [
+        "appev:benchmark_side_chain_pka_of_pentapeptides:2"
+      ],
+      "check": {
+        "op": "numeric_compare",
+        "target": "applb:benchmark_side_chain_pka_of_pentapeptides:2",
+        "metric": "Pearson_r",
+        "value": "0.95",
+        "value_num": 0.95,
+        "unit": "",
+        "direction": "max",
+        "direction_raw": "higher",
+        "direction_source": "",
+        "tolerance": 0.05
+      },
+      "required": true,
+      "provenance": "extracted",
+      "relation_hint": "HAS_ENTRY|USES_METRIC"
+    },
+    {
+      "id": "sau:261106237:numeric:025",
+      "kind": "numeric",
+      "statement": "Side-chain pKa of pentapeptides 上 未标注模型 的 mae = 0.98（方向=min）",
+      "source_node_ids": [
+        "benchmark:side_chain_pka_of_pentapeptides",
+        "applb:benchmark_side_chain_pka_of_pentapeptides:3",
+        "appmetric:mae"
+      ],
+      "evidence_ids": [
+        "appev:benchmark_side_chain_pka_of_pentapeptides:3"
+      ],
+      "check": {
+        "op": "numeric_compare",
+        "target": "applb:benchmark_side_chain_pka_of_pentapeptides:3",
+        "metric": "mae",
+        "value": "0.98",
+        "value_num": 0.98,
+        "unit": "",
+        "direction": "min",
+        "direction_raw": "lower",
+        "direction_source": "",
+        "tolerance": 0.05
+      },
+      "required": false,
+      "provenance": "extracted",
+      "relation_hint": "HAS_ENTRY|USES_METRIC"
+    },
+    {
+      "id": "sau:261106237:numeric:026",
+      "kind": "numeric",
+      "statement": "Side-chain pKa of pentapeptides 上 未标注模型 的 rmse = 1.12（方向=min）",
+      "source_node_ids": [
+        "benchmark:side_chain_pka_of_pentapeptides",
+        "applb:benchmark_side_chain_pka_of_pentapeptides:4",
+        "appmetric:rmse"
+      ],
+      "evidence_ids": [
+        "appev:benchmark_side_chain_pka_of_pentapeptides:4"
+      ],
+      "check": {
+        "op": "numeric_compare",
+        "target": "applb:benchmark_side_chain_pka_of_pentapeptides:4",
+        "metric": "rmse",
+        "value": "1.12",
+        "value_num": 1.12,
+        "unit": "",
+        "direction": "min",
+        "direction_raw": "lower",
+        "direction_source": "",
+        "tolerance": 0.05
+      },
+      "required": false,
+      "provenance": "extracted",
+      "relation_hint": "HAS_ENTRY|USES_METRIC"
+    },
+    {
+      "id": "sau:261106237:numeric:027",
+      "kind": "numeric",
+      "statement": "Side-chain pKa of pentapeptides 上 未标注模型 的 Pearson_r = 0.95（方向=max）",
+      "source_node_ids": [
+        "benchmark:side_chain_pka_of_pentapeptides",
+        "applb:benchmark_side_chain_pka_of_pentapeptides:5",
+        "appmetric:pearson_r"
+      ],
+      "evidence_ids": [
+        "appev:benchmark_side_chain_pka_of_pentapeptides:5"
+      ],
+      "check": {
+        "op": "numeric_compare",
+        "target": "applb:benchmark_side_chain_pka_of_pentapeptides:5",
+        "metric": "Pearson_r",
+        "value": "0.95",
+        "value_num": 0.95,
+        "unit": "",
+        "direction": "max",
+        "direction_raw": "higher",
+        "direction_source": "",
+        "tolerance": 0.05
+      },
+      "required": false,
+      "provenance": "extracted",
+      "relation_hint": "HAS_ENTRY|USES_METRIC"
+    },
+    {
+      "id": "sau:261106237:protocol:008",
+      "kind": "protocol",
+      "statement": "Crambin in water 的数据契约为 原子坐标 → 能量/力，样本量 水溶液体系模拟，评测基准=True",
+      "source_node_ids": [
+        "benchmark:crambin_in_water",
+        "appcontract:benchmark_crambin_in_water"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "data_contract",
+        "target": "benchmark:crambin_in_water",
+        "input_form": "原子坐标",
+        "output_form": "能量/力",
+        "n_samples": "水溶液体系模拟",
+        "is_evaluation": true,
+        "shape_probe": null
+      },
+      "required": true,
+      "provenance": "derived",
+      "relation_hint": "EVALUATED_ON|HAS_CONTRACT"
+    },
+    {
+      "id": "sau:261106237:numeric:028",
+      "kind": "numeric",
+      "statement": "Crambin in water 上 SO3LR-T-M 的 rmsd = 1.1Å（方向=min）",
+      "source_node_ids": [
+        "benchmark:crambin_in_water",
+        "applb:benchmark_crambin_in_water:0",
+        "appmetric:rmsd"
+      ],
+      "evidence_ids": [
+        "appev:benchmark_crambin_in_water:0"
+      ],
+      "check": {
+        "op": "numeric_compare",
+        "target": "applb:benchmark_crambin_in_water:0",
+        "metric": "rmsd",
+        "value": "1.1",
+        "value_num": 1.1,
+        "unit": "Å",
+        "direction": "min",
+        "direction_raw": "lower",
+        "direction_source": "",
+        "tolerance": 0.05
+      },
+      "required": true,
+      "provenance": "extracted",
+      "relation_hint": "HAS_ENTRY|USES_METRIC"
+    },
+    {
+      "id": "sau:261106237:numeric:029",
+      "kind": "numeric",
+      "statement": "Crambin in water 上 未标注模型 的 rmsd = 1.1Å（方向=min）",
+      "source_node_ids": [
+        "benchmark:crambin_in_water",
+        "applb:benchmark_crambin_in_water:1",
+        "appmetric:rmsd"
+      ],
+      "evidence_ids": [
+        "appev:benchmark_crambin_in_water:1"
+      ],
+      "check": {
+        "op": "numeric_compare",
+        "target": "applb:benchmark_crambin_in_water:1",
+        "metric": "rmsd",
+        "value": "1.1",
+        "value_num": 1.1,
+        "unit": "Å",
+        "direction": "min",
+        "direction_raw": "lower",
+        "direction_source": "",
+        "tolerance": 0.05
+      },
+      "required": false,
+      "provenance": "extracted",
+      "relation_hint": "HAS_ENTRY|USES_METRIC"
+    },
+    {
+      "id": "sau:261106237:protocol:009",
+      "kind": "protocol",
+      "statement": "SAPT10k 的数据契约为 unknown → unknown，样本量 unknown，评测基准=True",
+      "source_node_ids": [
+        "benchmark:canonical:sapt10k",
+        "appcontract:benchmark_canonical_sapt10k"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "data_contract",
+        "target": "benchmark:canonical:sapt10k",
+        "input_form": "unknown",
+        "output_form": "unknown",
+        "n_samples": "unknown",
+        "is_evaluation": true,
+        "shape_probe": null
+      },
+      "required": true,
+      "provenance": "derived",
+      "relation_hint": "EVALUATED_ON|HAS_CONTRACT"
+    },
+    {
+      "id": "sau:261106237:protocol:010",
+      "kind": "protocol",
+      "statement": "QUID 的数据契约为 unknown → unknown，样本量 unknown，评测基准=True",
+      "source_node_ids": [
+        "benchmark:canonical:quid",
+        "appcontract:benchmark_canonical_quid"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "data_contract",
+        "target": "benchmark:canonical:quid",
+        "input_form": "unknown",
+        "output_form": "unknown",
+        "n_samples": "unknown",
+        "is_evaluation": true,
+        "shape_probe": null
+      },
+      "required": true,
+      "provenance": "derived",
+      "relation_hint": "EVALUATED_ON|HAS_CONTRACT"
+    },
+    {
+      "id": "sau:261106237:protocol:011",
+      "kind": "protocol",
+      "statement": "JSCH-2005 的数据契约为 unknown → unknown，样本量 unknown，评测基准=True",
+      "source_node_ids": [
+        "benchmark:canonical:jsch_2005",
+        "appcontract:benchmark_canonical_jsch_2005"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "data_contract",
+        "target": "benchmark:canonical:jsch_2005",
+        "input_form": "unknown",
+        "output_form": "unknown",
+        "n_samples": "unknown",
+        "is_evaluation": true,
+        "shape_probe": null
+      },
+      "required": true,
+      "provenance": "derived",
+      "relation_hint": "EVALUATED_ON|HAS_CONTRACT"
+    },
+    {
+      "id": "sau:261106237:protocol:012",
+      "kind": "protocol",
+      "statement": "PLA15 的数据契约为 unknown → unknown，样本量 unknown，评测基准=True",
+      "source_node_ids": [
+        "benchmark:canonical:pla15",
+        "appcontract:benchmark_canonical_pla15"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "data_contract",
+        "target": "benchmark:canonical:pla15",
+        "input_form": "unknown",
+        "output_form": "unknown",
+        "n_samples": "unknown",
+        "is_evaluation": true,
+        "shape_probe": null
+      },
+      "required": true,
+      "provenance": "derived",
+      "relation_hint": "EVALUATED_ON|HAS_CONTRACT"
+    },
+    {
+      "id": "sau:261106237:protocol:013",
+      "kind": "protocol",
+      "statement": "TorsionNet500 的数据契约为 unknown → unknown，样本量 unknown，评测基准=True",
+      "source_node_ids": [
+        "benchmark:canonical:torsionnet500",
+        "appcontract:benchmark_canonical_torsionnet500"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "data_contract",
+        "target": "benchmark:canonical:torsionnet500",
+        "input_form": "unknown",
+        "output_form": "unknown",
+        "n_samples": "unknown",
+        "is_evaluation": true,
+        "shape_probe": null
+      },
+      "required": true,
+      "provenance": "derived",
+      "relation_hint": "EVALUATED_ON|HAS_CONTRACT"
+    },
+    {
+      "id": "sau:261106237:protocol:014",
+      "kind": "protocol",
+      "statement": "GlcMal 的数据契约为 unknown → unknown，样本量 unknown，评测基准=True",
+      "source_node_ids": [
+        "benchmark:canonical:glcmal",
+        "appcontract:benchmark_canonical_glcmal"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "data_contract",
+        "target": "benchmark:canonical:glcmal",
+        "input_form": "unknown",
+        "output_form": "unknown",
+        "n_samples": "unknown",
+        "is_evaluation": true,
+        "shape_probe": null
+      },
+      "required": true,
+      "provenance": "derived",
+      "relation_hint": "EVALUATED_ON|HAS_CONTRACT"
+    },
+    {
+      "id": "sau:261106237:protocol:015",
+      "kind": "protocol",
+      "statement": "Proline-catalyzed aldol addition 的数据契约为 unknown → unknown，样本量 unknown，评测基准=True",
+      "source_node_ids": [
+        "benchmark:canonical:proline_catalyzed_aldol_addition",
+        "appcontract:benchmark_canonical_proline_catalyzed_aldol_addition"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "data_contract",
+        "target": "benchmark:canonical:proline_catalyzed_aldol_addition",
+        "input_form": "unknown",
+        "output_form": "unknown",
+        "n_samples": "unknown",
+        "is_evaluation": true,
+        "shape_probe": null
+      },
+      "required": true,
+      "provenance": "derived",
+      "relation_hint": "EVALUATED_ON|HAS_CONTRACT"
+    },
+    {
+      "id": "sau:261106237:protocol:016",
+      "kind": "protocol",
+      "statement": "Side-chain pKa of pentapeptides 的数据契约为 unknown → unknown，样本量 unknown，评测基准=True",
+      "source_node_ids": [
+        "benchmark:canonical:side_chain_pka_of_pentapeptides",
+        "appcontract:benchmark_canonical_side_chain_pka_of_pentapeptides"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "data_contract",
+        "target": "benchmark:canonical:side_chain_pka_of_pentapeptides",
+        "input_form": "unknown",
+        "output_form": "unknown",
+        "n_samples": "unknown",
+        "is_evaluation": true,
+        "shape_probe": null
+      },
+      "required": true,
+      "provenance": "derived",
+      "relation_hint": "EVALUATED_ON|HAS_CONTRACT"
+    },
+    {
+      "id": "sau:261106237:protocol:017",
+      "kind": "protocol",
+      "statement": "Crambin in water 的数据契约为 unknown → unknown，样本量 unknown，评测基准=True",
+      "source_node_ids": [
+        "benchmark:canonical:crambin_in_water",
+        "appcontract:benchmark_canonical_crambin_in_water"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "data_contract",
+        "target": "benchmark:canonical:crambin_in_water",
+        "input_form": "unknown",
+        "output_form": "unknown",
+        "n_samples": "unknown",
+        "is_evaluation": true,
+        "shape_probe": null
+      },
+      "required": true,
+      "provenance": "derived",
+      "relation_hint": "EVALUATED_ON|HAS_CONTRACT"
+    },
+    {
+      "id": "sau:261106237:protocol:018",
+      "kind": "protocol",
+      "statement": "Drew–Dickerson dodecamer 的数据契约为 3D坐标 → 3D坐标，样本量 15 ns，评测基准=True",
+      "source_node_ids": [
+        "benchmark:drew_dickerson_dodecamer",
+        "appcontract:benchmark_drew_dickerson_dodecamer"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "data_contract",
+        "target": "benchmark:drew_dickerson_dodecamer",
+        "input_form": "3D坐标",
+        "output_form": "3D坐标",
+        "n_samples": "15 ns",
+        "is_evaluation": true,
+        "shape_probe": null
+      },
+      "required": true,
+      "provenance": "derived",
+      "relation_hint": "EVALUATED_ON|HAS_CONTRACT"
+    },
+    {
+      "id": "sau:261106237:protocol:019",
+      "kind": "protocol",
+      "statement": "cis-platin 1,2-d(GpG) crosslink 的数据契约为 3D坐标 → 3D坐标，样本量 10 ns，评测基准=True",
+      "source_node_ids": [
+        "benchmark:cis_platin_1_2_d_gpg_crosslink",
+        "appcontract:benchmark_cis_platin_1_2_d_gpg_crosslink"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "data_contract",
+        "target": "benchmark:cis_platin_1_2_d_gpg_crosslink",
+        "input_form": "3D坐标",
+        "output_form": "3D坐标",
+        "n_samples": "10 ns",
+        "is_evaluation": true,
+        "shape_probe": null
+      },
+      "required": true,
+      "provenance": "derived",
+      "relation_hint": "EVALUATED_ON|HAS_CONTRACT"
+    },
+    {
+      "id": "sau:261106237:protocol:020",
+      "kind": "protocol",
+      "statement": "POPC bilayer 的数据契约为 3D坐标 → 3D坐标，样本量 未标注，评测基准=True",
+      "source_node_ids": [
+        "benchmark:popc_bilayer",
+        "appcontract:benchmark_popc_bilayer"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "data_contract",
+        "target": "benchmark:popc_bilayer",
+        "input_form": "3D坐标",
+        "output_form": "3D坐标",
+        "n_samples": "未标注",
+        "is_evaluation": true,
+        "shape_probe": null
+      },
+      "required": true,
+      "provenance": "derived",
+      "relation_hint": "EVALUATED_ON|HAS_CONTRACT"
+    },
+    {
+      "id": "sau:261106237:ordering:000",
+      "kind": "ordering",
+      "statement": "执行顺序：SO3krates Backbone Representation 必须早于 Multi-head Energy Readout（数据流 ['per_atom_embeddings_xi']）",
+      "source_node_ids": [
+        "algorithmstep:2611.06237:0:so3krates_backbone_representation",
+        "algorithmstep:2611.06237:1:multi_head_energy_readout"
+      ],
+      "evidence_ids": [],
+      "check": {
+        "op": "ordering",
+        "before": "algorithmstep:2611.06237:0:so3krates_backbone_representation",
+        "after": "algorithmstep:2611.06237:1:multi_head_energy_readout",
+        "all_predecessors": []
+      },
+      "required": true,
+      "provenance": "derived",
+      "relation_hint": "HAS_MODULE"
+    }
+  ],
+  "method_lock": {
+    "locked": true,
+    "compiler_version": "ggr-spec-0.2.0",
+    "n_method_sau": 5,
+    "method_sau_hash": "sha256:002ed668b6da661b"
+  },
+  "data_contract": [
+    {
+      "benchmark": "benchmark:sapt10k",
+      "label": "SAPT10k",
+      "input_form": "原子坐标",
+      "output_form": "能量/力",
+      "n_samples": "10k 二聚体构象",
+      "scale": "小规模 (<1k)",
+      "is_evaluation": true
+    },
+    {
+      "benchmark": "benchmark:quid",
+      "label": "QUID",
+      "input_form": "原子坐标",
+      "output_form": "能量/力",
+      "n_samples": "量子化学相互作用能数据集",
+      "scale": "小规模 (<1k)",
+      "is_evaluation": true
+    },
+    {
+      "benchmark": "benchmark:jsch_2005",
+      "label": "JSCH-2005",
+      "input_form": "原子坐标",
+      "output_form": "能量/力",
+      "n_samples": "JSCH-2005 基准集",
+      "scale": "小规模 (<1k)",
+      "is_evaluation": true
+    },
+    {
+      "benchmark": "benchmark:pla15",
+      "label": "PLA15",
+      "input_form": "原子坐标",
+      "output_form": "能量/力",
+      "n_samples": "PLA15 构象集",
+      "scale": "小规模 (<1k)",
+      "is_evaluation": true
+    },
+    {
+      "benchmark": "benchmark:torsionnet500",
+      "label": "TorsionNet500",
+      "input_form": "3D坐标",
+      "output_form": "标量",
+      "n_samples": "500",
+      "scale": "中规模 (1k–100k)",
+      "is_evaluation": true
+    },
+    {
+      "benchmark": "benchmark:glcmal",
+      "label": "GlcMal",
+      "input_form": "SMILES",
+      "output_form": "分子",
+      "n_samples": "unknown",
+      "scale": "大规模 (>100k)",
+      "is_evaluation": true
+    },
+    {
+      "benchmark": "benchmark:proline_catalyzed_aldol_addition",
+      "label": "Proline-catalyzed aldol addition",
+      "input_form": "SMILES",
+      "output_form": "分子",
+      "n_samples": "unknown",
+      "scale": "大规模 (>100k)",
+      "is_evaluation": true
+    },
+    {
+      "benchmark": "benchmark:side_chain_pka_of_pentapeptides",
+      "label": "Side-chain pKa of pentapeptides",
+      "input_form": "氨基酸序列",
+      "output_form": "活性/MIC 标签",
+      "n_samples": "五肽侧链 pKa 数据",
+      "scale": "中规模 (1k–100k)",
+      "is_evaluation": true
+    },
+    {
+      "benchmark": "benchmark:crambin_in_water",
+      "label": "Crambin in water",
+      "input_form": "原子坐标",
+      "output_form": "能量/力",
+      "n_samples": "水溶液体系模拟",
+      "scale": "小规模 (<1k)",
+      "is_evaluation": true
+    },
+    {
+      "benchmark": "benchmark:canonical:sapt10k",
+      "label": "SAPT10k",
+      "input_form": "unknown",
+      "output_form": "unknown",
+      "n_samples": "unknown",
+      "scale": "规模未标注",
+      "is_evaluation": true
+    },
+    {
+      "benchmark": "benchmark:canonical:quid",
+      "label": "QUID",
+      "input_form": "unknown",
+      "output_form": "unknown",
+      "n_samples": "unknown",
+      "scale": "规模未标注",
+      "is_evaluation": true
+    },
+    {
+      "benchmark": "benchmark:canonical:jsch_2005",
+      "label": "JSCH-2005",
+      "input_form": "unknown",
+      "output_form": "unknown",
+      "n_samples": "unknown",
+      "scale": "规模未标注",
+      "is_evaluation": true
+    },
+    {
+      "benchmark": "benchmark:canonical:pla15",
+      "label": "PLA15",
+      "input_form": "unknown",
+      "output_form": "unknown",
+      "n_samples": "unknown",
+      "scale": "规模未标注",
+      "is_evaluation": true
+    },
+    {
+      "benchmark": "benchmark:canonical:torsionnet500",
+      "label": "TorsionNet500",
+      "input_form": "unknown",
+      "output_form": "unknown",
+      "n_samples": "unknown",
+      "scale": "规模未标注",
+      "is_evaluation": true
+    },
+    {
+      "benchmark": "benchmark:canonical:glcmal",
+      "label": "GlcMal",
+      "input_form": "unknown",
+      "output_form": "unknown",
+      "n_samples": "unknown",
+      "scale": "规模未标注",
+      "is_evaluation": true
+    },
+    {
+      "benchmark": "benchmark:canonical:proline_catalyzed_aldol_addition",
+      "label": "Proline-catalyzed aldol addition",
+      "input_form": "unknown",
+      "output_form": "unknown",
+      "n_samples": "unknown",
+      "scale": "规模未标注",
+      "is_evaluation": true
+    },
+    {
+      "benchmark": "benchmark:canonical:side_chain_pka_of_pentapeptides",
+      "label": "Side-chain pKa of pentapeptides",
+      "input_form": "unknown",
+      "output_form": "unknown",
+      "n_samples": "unknown",
+      "scale": "规模未标注",
+      "is_evaluation": true
+    },
+    {
+      "benchmark": "benchmark:canonical:crambin_in_water",
+      "label": "Crambin in water",
+      "input_form": "unknown",
+      "output_form": "unknown",
+      "n_samples": "unknown",
+      "scale": "规模未标注",
+      "is_evaluation": true
+    },
+    {
+      "benchmark": "benchmark:drew_dickerson_dodecamer",
+      "label": "Drew–Dickerson dodecamer",
+      "input_form": "3D坐标",
+      "output_form": "3D坐标",
+      "n_samples": "15 ns",
+      "scale": "12-mer DNA duplex",
+      "is_evaluation": true
+    },
+    {
+      "benchmark": "benchmark:cis_platin_1_2_d_gpg_crosslink",
+      "label": "cis-platin 1,2-d(GpG) crosslink",
+      "input_form": "3D坐标",
+      "output_form": "3D坐标",
+      "n_samples": "10 ns",
+      "scale": "Pt(II) crosslink",
+      "is_evaluation": true
+    },
+    {
+      "benchmark": "benchmark:popc_bilayer",
+      "label": "POPC bilayer",
+      "input_form": "3D坐标",
+      "output_form": "3D坐标",
+      "n_samples": null,
+      "scale": "lipid bilayer",
+      "is_evaluation": true
+    }
+  ],
+  "metric_plan": {
+    "mae": {
+      "name": "mae",
+      "direction": "lower",
+      "direction_source": "",
+      "unit": "",
+      "target": "appmetric:mae",
+      "sota_model": "未标注模型",
+      "sota_value": "0.45",
+      "benchmarks": [
+        "benchmark:sapt10k",
+        "benchmark:quid",
+        "benchmark:jsch_2005",
+        "benchmark:pla15",
+        "benchmark:glcmal",
+        "benchmark:proline_catalyzed_aldol_addition",
+        "benchmark:side_chain_pka_of_pentapeptides",
+        "benchmark:cis_platin_1_2_d_gpg_crosslink"
+      ]
+    },
+    "rmse": {
+      "name": "rmse",
+      "direction": "lower",
+      "direction_source": "",
+      "unit": "",
+      "target": "appmetric:rmse",
+      "sota_model": "未标注模型",
+      "sota_value": "0.83",
+      "benchmarks": [
+        "benchmark:sapt10k",
+        "benchmark:quid",
+        "benchmark:jsch_2005",
+        "benchmark:pla15",
+        "benchmark:glcmal",
+        "benchmark:side_chain_pka_of_pentapeptides"
+      ]
+    },
+    "energy_error": {
+      "name": "energy_error",
+      "direction": "lower",
+      "direction_source": "",
+      "unit": "",
+      "target": "appmetric:energy_error",
+      "sota_model": null,
+      "sota_value": null,
+      "benchmarks": [
+        "benchmark:torsionnet500"
+      ]
+    },
+    "spearman": {
+      "name": "spearman",
+      "direction": "higher",
+      "direction_source": "",
+      "unit": "",
+      "target": "appmetric:spearman",
+      "sota_model": "SO3LR-T-M",
+      "sota_value": "0.89",
+      "benchmarks": [
+        "benchmark:glcmal"
+      ]
+    },
+    "rmsd": {
+      "name": "rmsd",
+      "direction": "lower",
+      "direction_source": "",
+      "unit": "",
+      "target": "appmetric:rmsd",
+      "sota_model": "未标注模型",
+      "sota_value": "0.12",
+      "benchmarks": [
+        "benchmark:proline_catalyzed_aldol_addition",
+        "benchmark:crambin_in_water",
+        "benchmark:drew_dickerson_dodecamer",
+        "benchmark:popc_bilayer"
+      ]
+    },
+    "Pearson_r": {
+      "name": "Pearson_r",
+      "direction": "higher",
+      "direction_source": "",
+      "unit": "",
+      "target": "appmetric:pearson_r",
+      "sota_model": "SO3LR-T-M",
+      "sota_value": "0.95",
+      "benchmarks": [
+        "benchmark:side_chain_pka_of_pentapeptides"
+      ]
+    },
+    "helical twist": {
+      "name": "helical twist",
+      "direction": "",
+      "direction_source": "",
+      "unit": "deg",
+      "target": "appmetric:helical_twist",
+      "sota_model": null,
+      "sota_value": null,
+      "benchmarks": [
+        "benchmark:drew_dickerson_dodecamer"
+      ]
+    },
+    "r": {
+      "name": "r",
+      "direction": "higher",
+      "direction_source": "",
+      "unit": "",
+      "target": "appmetric:r",
+      "sota_model": null,
+      "sota_value": null,
+      "benchmarks": [
+        "benchmark:cis_platin_1_2_d_gpg_crosslink"
+      ]
+    },
+    "DHH": {
+      "name": "DHH",
+      "direction": "",
+      "direction_source": "",
+      "unit": "Å",
+      "target": "appmetric:dhh",
+      "sota_model": null,
+      "sota_value": null,
+      "benchmarks": [
+        "benchmark:popc_bilayer"
+      ]
+    }
+  },
+  "lineage": [
+    {
+      "id": "appsrc:paper_2611_06237_paper_src_2611_06237_pbe0_d3_bj",
+      "label": "PBE0-D3(BJ)",
+      "type": "SourcePaper",
+      "relation": "SITUATED_IN",
+      "source": "paper_out",
+      "kind": ""
+    },
+    {
+      "id": "appsrc:paper_2611_06237_paper_src_2611_06237_pbe_d3",
+      "label": "PBE-D3",
+      "type": "SourcePaper",
+      "relation": "SITUATED_IN",
+      "source": "paper_out",
+      "kind": ""
+    },
+    {
+      "id": "appsrc:paper_2611_06237_paper_src_2611_06237_so3lr_t_l",
+      "label": "SO3LR-T-L",
+      "type": "SourcePaper",
+      "relation": "SITUATED_IN",
+      "source": "paper_out",
+      "kind": ""
+    }
+  ],
+  "code_plan": {
+    "strategy": "audit_repo",
+    "has_repo": true,
+    "repositories": [
+      "coderepository:general_molecular_simulations_so3lr"
+    ],
+    "modules": [
+      "algorithmstep:2611.06237:0:so3krates_backbone_representation",
+      "algorithmstep:2611.06237:1:multi_head_energy_readout",
+      "algorithmstep:2611.06237:2:nlh_short_range_repulsion",
+      "algorithmstep:2611.06237:3:damped_electrostatics_with_pme",
+      "algorithmstep:2611.06237:4:qdo_pairwise_dispersion_with_reciprocal_pme"
+    ],
+    "functions": [
+      "codefunction:general_molecular_simulations_so3lr:so3lr_base_calculator_py:forward",
+      "codefunction:general_molecular_simulations_so3lr:so3lr_base_calculator_py:make_so3lr",
+      "codefunction:general_molecular_simulations_so3lr:so3lr_cli_so3lr_cli_py:kspace_electrostatics_options",
+      "codefunction:general_molecular_simulations_so3lr:so3lr_cli_so3lr_cli_py:kspace_dispersion_options"
+    ],
+    "order": [
+      "algorithmstep:2611.06237:0:so3krates_backbone_representation",
+      "algorithmstep:2611.06237:1:multi_head_energy_readout",
+      "algorithmstep:2611.06237:2:nlh_short_range_repulsion",
+      "algorithmstep:2611.06237:3:damped_electrostatics_with_pme",
+      "algorithmstep:2611.06237:4:qdo_pairwise_dispersion_with_reciprocal_pme"
+    ]
+  },
+  "budgets": {
+    "effort": "dry",
+    "debug_tries_max": 20,
+    "engineer_rounds_max": 2,
+    "deviation_tolerance": 0.05,
+    "allow_execution": false
+  },
+  "spec_hash": "sha256:39039fea33a1d3bb5cbefba143836e3d921f7b1f7df86fbb5582bdd2d83b9d63",
+  "graph_path": "storage_cf/sciforge/app_reproduction.json",
+  "graph_stats": {
+    "n_nodes": 8300,
+    "n_assertions": 10260
+  },
+  "warnings": [
+    "metric helical twist 缺 direction，R4 降级 PARTIAL",
+    "metric DHH 缺 direction，R4 降级 PARTIAL"
+  ],
+  "gaps": [],
+  "sau_count": 61,
+  "sau_counts": {
+    "method": 5,
+    "code_grounding": 4,
+    "protocol": 21,
+    "numeric": 30,
+    "ordering": 1
+  }
+}

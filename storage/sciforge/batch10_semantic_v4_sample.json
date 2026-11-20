@@ -1,0 +1,3138 @@
+{
+ "meta": {
+  "schema_version": "po_v1",
+  "created_at": "2026-11-13T13:24:29+00:00",
+  "source": "SMALL SAMPLE from batch10_semantic_v4.json (4 per type)",
+  "stats": {
+   "graph_id": "sample::verify",
+   "n_nodes": 24,
+   "n_assertions": 29
+  }
+ },
+ "nodes": [
+  {
+   "id": "paper:2411.06608",
+   "type": "Paper",
+   "label": "MolMiner: Towards Controllable, 3D-Aware, Fragment-Based Molecular Design",
+   "attrs": {
+    "title": "MolMiner: Towards Controllable, 3D-Aware, Fragment-Based Molecular Design",
+    "arxiv_id": "2411.06608",
+    "research_question": "提出MolMiner，一种基于片段、几何感知且顺序无关的自回归模型，用于支持12个理化性质的高维条件控制分子设计。",
+    "problem_category": "molecule_generation",
+    "domain": "分子生成与从头设计",
+    "flow_family": "片段/结构化生成",
+    "why_hard": "现有自回归模型通常依赖固定的展开顺序，且很少在生成过程中整合动态几何信息，导致泛化能力受限。",
+    "relation_hints": {
+     "related_papers": [
+      "JTNN",
+      "HierVAE",
+      "G-SchNet",
+      "MoLeR"
+     ],
+     "algorithms": [
+      "MolMiner"
+     ],
+     "benchmarks": []
+    },
+    "name": "MolMiner: Towards Controllable, 3D-Aware, Fragment-Based Molecular Design",
+    "label": "MolMiner: Towards Controllable, 3D-Aware, Fragment-Based Molecular Design",
+    "keywords": [
+     "molminer",
+     "d-aware",
+     "fragment-based",
+     "controllable",
+     "towards",
+     "molecular",
+     "design",
+     "generation"
+    ],
+    "domain_code": "D1",
+    "authors": [
+     "Raul Ortega-Ochoa",
+     "Tejs Vegge",
+     "Jes Frellsen"
+    ],
+    "abstract": "We introduce MolMiner, a fragment-based, geometry-aware, and order-agnostic autoregressive model for molecular design. MolMiner supports high-dimensional conditional control over twelve physicochemical and structural properties from partial specifications, constructs molecules via symmetry-aware fragment attachments, and conditions each generation step on force-field-relaxed three-dimensional geometry of the partial structure. Conditional control emerges without auxiliary property losses. On targeted property windows, conditioning lifts hit rates by up to 5.25× over unconditional generation and 3.5× over the training distribution itself — overriding the model’s intrinsic biases — at the cost of a small reduction in unconditional distributional fidelity. MolMiner unifies dynamic geometry, symmetry handling, order-agnostic generation, and scalable multi-property conditioning within a single framework.",
+    "doi": "10.48550/arXiv.2411.06608",
+    "venue": "ARXIV",
+    "year": "2025",
+    "paradigm": "design",
+    "evidence_type": "simulational",
+    "evidence_norm": [
+     "hit rates",
+     "validity",
+     "diversity",
+     "conditional control"
+    ],
+    "claims": [
+     {
+      "statement": "MolMiner通过片段组装和动态几何条件，实现了12个性质的高维条件控制，且无需辅助性质损失。",
+      "evidence": "MolMiner supports high-dimensional conditional control over twelve physicochemical and structural properties... Conditio"
+     },
+     {
+      "statement": "条件生成显著提升了目标性质窗口内的命中率，最高达无条件生成的5.25倍。",
+      "evidence": "conditioning lifts hit rates by up to 5.25× over unconditional generation and 3.5× over the training distribution itself"
+     }
+    ],
+    "section_map": [
+     {
+      "section": "Abstract",
+      "claims": [
+       "介绍MolMiner模型及其在条件控制、几何感知和顺序无关生成方面的特性。"
+      ]
+     },
+     {
+      "section": "Introduction",
+      "claims": [
+       "阐述现有生成模型在化学合理性、多样性及性质控制上的挑战，以及引入片段和几何信息的必要性。"
+      ]
+     },
+     {
+      "section": "Related Work",
+      "claims": [
+       "对比JTNN、HierVAE、G-SchNet等现有片段或原子级生成方法，指出MolMiner在动态几何和对称性处理上的差异。"
+      ]
+     }
+    ],
+    "gaps": [
+     {
+      "gap_type": "capability",
+      "statement": "大多数自回归模型依赖固定的展开顺序，且很少在生成过程中整合动态几何信息。",
+      "evidence": "many autoregressive models rely on a fixed rollout order... yet few autoregressive frameworks integrate dynamic geometri"
+     },
+     {
+      "gap_type": "capability",
+      "statement": "许多模型仅支持单目标条件生成，缺乏对多个理化性质的同时控制能力。",
+      "evidence": "While most models support only single-target conditioning, we enable multi-property control over twelve physicochemical "
+     }
+    ],
+    "delta_claims": [
+     {
+      "statement": "相比无条件生成，条件生成将命中率提升了5.25倍。",
+      "baseline": "unconditional generation",
+      "evidence": "conditioning lifts hit rates by up to 5.25× over unconditional generation"
+     }
+    ],
+    "negative_results": [
+     "at the cost of a small reduction in unconditional distributional fidelity"
+    ],
+    "citation_style": "numeric",
+    "writing_style": "结构化学术写作，强调模型架构创新（片段、几何、顺序无关）与定量性能提升（命中率倍数）。"
+   },
+   "attribution": "analyst_synthesis",
+   "evidence_ids": [],
+   "source_version": "",
+   "missing_states": {}
+  },
+  {
+   "id": "paper:2611.06237",
+   "type": "Paper",
+   "label": "SO3LR Tauri: Generally Applicable Force Fields for Reactive (Bio)Molecular Simul",
+   "attrs": {
+    "title": "SO3LR Tauri: Generally Applicable Force Fields for Reactive (Bio)Molecular Simulations Covering the Periodic Table",
+    "arxiv_id": "2611.06237",
+    "research_question": "开发覆盖周期表85种元素、具备量子力学精度的通用机器学习力场，用于反应性生物分子模拟。",
+    "problem_category": "forcefield_simulation",
+    "domain": "力场/分子模拟",
+    "flow_family": "机器学习势/神经力场",
+    "why_hard": "经典力场需针对每类生物分子单独拟合参数，且独立开发的参数集未设计为协同使用，难以统一描述所有分子类别。",
+    "relation_hints": {
+     "related_papers": [
+      "SO3LR",
+      "QCML",
+      "QCell",
+      "OMol25",
+      "OPoly26"
+     ],
+     "algorithms": [
+      "SO3LR Tauri",
+      "SO3krates",
+      "NLH potentials"
+     ],
+     "benchmarks": []
+    },
+    "name": "SO3LR Tauri: Generally Applicable Force Fields for Reactive (Bio)Molecular Simul",
+    "label": "SO3LR Tauri: Generally Applicable Force Fields for Reactive (Bio)Molecular Simul",
+    "keywords": [
+     "mofs",
+     "so3lr",
+     "tauri",
+     "generally",
+     "applicable",
+     "reactive",
+     "periodic",
+     "so3lr-t"
+    ],
+    "domain_code": "D10",
+    "authors": [
+     "Adil Kabylda",
+     "Florian N. Brünig",
+     "Miguel Gallegos",
+     "J. Thorben Frank",
+     "Evgeny Moerman",
+     "Oliver T. Unke",
+     "Stefan Chmiela",
+     "Klaus-Robert Müller",
+     "Alexandre Tkatchenko"
+    ],
+    "abstract": "Machine-learned force fields (MLFFs) aim to create a unified model that describes all major classes of (bio)molecules at quantum-mechanical accuracy. We present SO3LR Tauri, a family of MLFFs developed toward this goal, coupling a fast SO3krates network to explicit, physics-based interaction modules: pair-specific short-range repulsion, environment-dependent dispersion, and electrostatics, each improved beyond its original formulation. The models are trained on 148 million structures spanning 85 elements, drawn from several quantum-chemical datasets. Against coupled-cluster references, the models accurately reproduce nucleobase-pair and charged protein–ligand interactions, carbohydrate conformer ordering, and molecular dipoles. They also resolve the transition pathways of organic and enzymatic reactions. Dynamical simulations recover experimental densities of water and organic solvents, the hydration structure of mono- and divalent ions, the pKa values of amino-acid side chains, and the structure and dynamics of proteins, membranes, nucleic acids, glycoproteins, and metal-containing biomolecules, all without system-specific fitting. Released in three sizes, the models reach 0.7–3.2 µs/atom and scale to 27–84 million atoms on a single GPU. Much work remains to be done: achieving predictive accuracy for static and dynamic liquid properties, reaction barriers, coverage of chemical and conformational space, and the sampling and inference speed needed to describe biomolecular processes.",
+    "doi": "10.48550/arXiv.2611.06237",
+    "venue": "ARXIV",
+    "year": "2026",
+    "paradigm": "empirical",
+    "evidence_type": "simulational",
+    "evidence_norm": [
+     "MAE",
+     "RMSD",
+     "density",
+     "pKa"
+    ],
+    "claims": [
+     {
+      "statement": "SO3LR Tauri在无需系统特定拟合的情况下，准确再现了多种生物分子相互作用和动力学性质。",
+      "evidence": "Dynamical simulations recover experimental densities of water and organic solvents... all without system-specific fittin"
+     },
+     {
+      "statement": "模型在单GPU上可扩展至2700万-8400万原子，速度达0.7-3.2 µs/atom。",
+      "evidence": "Released in three sizes, the models reach 0.7–3.2 µs/atom and scale to 27–84 million atoms on a single GPU."
+     }
+    ],
+    "section_map": [
+     {
+      "section": "INTRODUCTION",
+      "claims": [
+       "经典力场参数独立开发，难以统一；MLFF有望提供统一模型。"
+      ]
+     }
+    ],
+    "gaps": [
+     {
+      "gap_type": "capability",
+      "statement": "现有通用模型通常基于单一理论层级条件化预测，难以结合不同理论层级的优势。",
+      "evidence": "Unlike recent general-purpose models, which condition each prediction on one level of theory [29, 30], we first train se"
+     },
+     {
+      "gap_type": "data",
+      "statement": "参考数据集中原子间近距离接触罕见，导致学习到的排斥项约束不足。",
+      "evidence": "Close interatomic contacts are rare in reference datasets, which leaves a learned repulsion poorly constrained."
+     }
+    ],
+    "open_problems": [
+     {
+      "statement": "仍需提高静态和动态液体性质、反应势垒的预测精度，以及化学和构象空间的覆盖范围。",
+      "evidence": "Much work remains to be done: achieving predictive accuracy for static and dynamic liquid properties, reaction barriers,"
+     },
+     {
+      "statement": "需要提升采样和推理速度以描述生物分子过程。",
+      "evidence": "and the sampling and inference speed needed to describe biomolecular processes."
+     }
+    ],
+    "delta_claims": [
+     {
+      "statement": "将学习到的ZBL型排斥项替换为预计算的NLH势，以解决近距离接触约束不足的问题。",
+      "baseline": "SO3LR (learned ZBL-type repulsion)",
+      "evidence": "The learned ZBL-type repulsion is thus replaced by pair-specific Nordlund–Lehtola–Hobler (NLH) potentials [31], pre-tabu"
+     },
+     {
+      "statement": "通过共享表示训练独立头并在后期微调中结合两个理论层级，以结合两者优势。",
+      "baseline": "Recent general-purpose models (single le",
+      "evidence": "we first train separate heads on a shared representation and then combine both levels in a single production head during"
+     }
+    ],
+    "citation_style": "numeric",
+    "writing_style": "标准学术论文结构，引言部分对比经典力场与MLFF，强调通用性和物理模块改进。"
+   },
+   "attribution": "analyst_synthesis",
+   "evidence_ids": [],
+   "source_version": "",
+   "missing_states": {}
+  },
+  {
+   "id": "paper:2405.03370",
+   "type": "Paper",
+   "label": "AntiFold: Improved antibody structure-based design using inverse folding",
+   "attrs": {
+    "title": "AntiFold: Improved antibody structure-based design using inverse folding",
+    "arxiv_id": "2405.03370",
+    "research_question": "开发一种抗体特异性逆折叠模型，在保持骨架结构不变的前提下生成序列并预测亲和力，以解决现有工具CDR序列恢复率低的问题。",
+    "problem_category": "sequence_design",
+    "domain": "蛋白/抗体/RNA",
+    "flow_family": "结构基逆折叠/序列设计",
+    "why_hard": "现有逆折叠工具在CDR区域的序列恢复能力有限，且ProteinMPNN类工具存在链重排或插入等与抗体结构不兼容的特征。",
+    "relation_hints": {
+     "related_papers": [
+      "ESM-IF1",
+      "AbMPNN",
+      "IgMPNN",
+      "ProteinMPNN"
+     ],
+     "algorithms": [
+      "AntiFold",
+      "AbMPNN"
+     ],
+     "benchmarks": []
+    },
+    "name": "AntiFold: Improved antibody structure-based design using inverse folding",
+    "label": "AntiFold: Improved antibody structure-based design using inverse folding",
+    "keywords": [
+     "antifold",
+     "improved",
+     "folding",
+     "structure-based",
+     "inverse",
+     "antibody",
+     "design",
+     "sequence"
+    ],
+    "domain_code": "D6",
+    "authors": [
+     "Magnus Haraldson Høie",
+     "Alissa Hummer",
+     "Tobias H. Olsen",
+     "Broncio Aguilar-Sanjuan",
+     "Morten Nielsen",
+     "Charlotte M. Deane"
+    ],
+    "abstract": "Summary: The design and optimization of antibodies requires an intricate balance across multiple properties. Protein inverse folding models, capable of generating diverse sequences folding into the same structure, are promising tools for maintaining structural integrity during antibody design. Here, we present AntiFold, an antibody-specific inverse folding model, fine-tuned from ESM-IF1 on solved and predicted antibody structures. AntiFold outperforms existing inverse folding tools on sequence recovery across complementarity-determining regions, with designed sequences showing high structural similarity to their solved counterpart. It additionally achieves stronger correlations when predicting antibody-antigen binding affinity in a zero-shot manner, while performance is augmented further when including antigen information. AntiFold assigns low probabilities to mutations that disrupt antigen binding, synergizing with protein language model residue probabilities, and demonstrates promise for guiding antibody optimization while retaining structure-related properties.",
+    "venue": "ARXIV",
+    "year": "2024",
+    "paradigm": "design",
+    "evidence_type": "simulational",
+    "evidence_norm": [
+     "sequence recovery",
+     "structural similarity",
+     "binding affinity correlation"
+    ],
+    "claims": [
+     {
+      "statement": "AntiFold在互补决定区（CDR）的序列恢复上优于现有逆折叠工具。",
+      "evidence": "AntiFold outperforms existing inverse folding tools on sequence recovery across complementarity-determining regions"
+     },
+     {
+      "statement": "AntiFold在零样本预测抗体-抗原结合亲和力时表现出更强的相关性。",
+      "evidence": "It additionally achieves stronger correlations when predicting antibody-antigen binding affinity in a zero-shot manner"
+     }
+    ],
+    "section_map": [
+     {
+      "section": "Abstract",
+      "claims": [
+       "AntiFold在CDR序列恢复上优于现有工具",
+       "零样本亲和力预测相关性更强"
+      ]
+     },
+     {
+      "section": "Introduction",
+      "claims": [
+       "抗体设计需平衡多属性",
+       "现有逆折叠工具在CDR恢复和结构兼容性上存在局限"
+      ]
+     }
+    ],
+    "gaps": [
+     {
+      "gap_type": "capability",
+      "statement": "现有逆折叠工具在CDR区域的序列恢复能力有限。",
+      "evidence": "However, the sequence recovery of existing tools for the CDR regions has been limited."
+     },
+     {
+      "gap_type": "capability",
+      "statement": "ProteinMPNN类工具存在链重排、CDRH3插入或IMGT编号间隙，与抗体结构不兼容。",
+      "evidence": "ProteinMPNN-based tools have features such as the occasional re-ordering of antibody chains or CDRH3 position 112 insert"
+     }
+    ],
+    "delta_claims": [
+     {
+      "statement": "AntiFold显著提高了CDR序列恢复和零样本亲和力预测性能。",
+      "baseline": "ESM-IF1",
+      "evidence": "Here, we present AntiFold, an antibody-specific inverse folding model fine-tuned from ESM-IF1 [Hsu et al., 2022], which "
+     }
+    ],
+    "citation_style": "author-year",
+    "writing_style": "标准生物信息学方法论文结构，包含摘要、引言、方法描述及可用性说明，强调模型在特定生物分子（抗体）上的微调优势。"
+   },
+   "attribution": "analyst_synthesis",
+   "evidence_ids": [],
+   "source_version": "",
+   "missing_states": {}
+  },
+  {
+   "id": "paper:2407.12296",
+   "type": "Paper",
+   "label": "A foundation model approach to guide antimicrobial peptide design in the era of ",
+   "attrs": {
+    "title": "A foundation model approach to guide antimicrobial peptide design in the era of artificial intelligence driven scientific discovery",
+    "arxiv_id": "2407.12296",
+    "research_question": "利用基于LLM的基础模型AMP-Designer，在有限数据下快速设计具有广谱抗菌活性、低毒性和稳定性的新型抗菌肽（AMPs）。",
+    "problem_category": "sequence_design",
+    "domain": "多肽与抗菌肽",
+    "flow_family": "多肽/蛋白序列语言模型",
+    "why_hard": "肽序列空间巨大且有效AMP稀疏分布，现有生成模型在数据有限时面临新颖性与有效性之间的权衡困境。",
+    "relation_hints": {
+     "related_papers": [],
+     "algorithms": [
+      "AMP-Designer"
+     ],
+     "benchmarks": []
+    },
+    "name": "A foundation model approach to guide antimicrobial peptide design in the era of ",
+    "label": "A foundation model approach to guide antimicrobial peptide design in the era of ",
+    "keywords": [
+     "era",
+     "amp-designer",
+     "guide",
+     "driven",
+     "amps",
+     "approach",
+     "amp",
+     "antimicrobial"
+    ],
+    "domain_code": "D5",
+    "authors": [
+     "Jike Wang",
+     "Jianwen Feng",
+     "Yu Kang",
+     "Peichen Pan",
+     "Jingxuan Ge",
+     "Yan Wang",
+     "Mingyang Wang",
+     "Zhenxing Wu",
+     "Xingcai Zhang",
+     "Jiameng Yu",
+     "Xujun Zhang",
+     "Tianyue Wang"
+    ],
+    "abstract": "Large language models (LLMs) have shown remarkable advancements in chemistry and biomedical research, acting as versatile foundation models for various tasks. We introduce AMP-Designer, an LLM-based approach for swiftly designing novel antimicrobial peptides (AMPs) with desired properties. Within 11 days, AMP-Designer achieved the de novo design of 18 AMPs with broad-spectrum activity against Gram-negative bacteria. In vitro validation revealed a 94.4% success rate, with two candidates demonstrating exceptional antibacterial efficacy, minimal hemotoxicity, stability in human plasma, and low potential to induce resistance, as evidenced by significant bacterial load reduction in murine lung infection experiments. The entire process, from design to validation, concluded in 48 days. AMP-Designer excels in creating AMPs targeting specific strains despite limited data availability, with a top candidate displaying a minimum inhibitory concentration of 2.0 μg/ml against Propionibacterium acnes. Integrating advanced machine learning techniques, AMP-Designer demonstrates remarkable efficiency, paving the way for innovative solutions to antibiotic resistance.",
+    "venue": "ARXIV",
+    "year": "2024",
+    "paradigm": "design",
+    "evidence_type": "experimental",
+    "evidence_norm": [
+     "minimum inhibitory concentration",
+     "success rate",
+     "bacterial load reduction"
+    ],
+    "claims": [
+     {
+      "statement": "AMP-Designer能在11天内设计18个广谱AMP，体外验证成功率94.4%，并在小鼠实验中显示显著疗效。",
+      "evidence": "Within 11 days, AMP-Designer achieved the de novo design of 18 AMPs with broad-spectrum activity against Gram-negative b"
+     },
+     {
+      "statement": "AMP-Designer在数据有限情况下仍能针对特定菌株设计AMP，最佳候选物对痤疮丙酸杆菌MIC为2.0 μg/ml。",
+      "evidence": "AMP-Designer excels in creating AMPs targeting specific strains despite limited data availability, with a top candidate "
+     }
+    ],
+    "section_map": [
+     {
+      "section": "Abstract",
+      "claims": [
+       "AMP-Designer在11天内设计了18个广谱AMP，体外验证成功率94.4%，小鼠实验显示显著疗效。"
+      ]
+     },
+     {
+      "section": "Introduction",
+      "claims": [
+       "细菌耐药性威胁巨大，现有AMP设计方法受限于序列空间巨大和有效AMP稀疏，需新方法平衡新颖性与有效性。"
+      ]
+     }
+    ],
+    "gaps": [
+     {
+      "gap_type": "capability",
+      "statement": "现有生成模型依赖少量标记数据，导致生成序列新颖性低；扩大数据集无法保证生成具有期望特性的AMP。",
+      "evidence": "As models only learn from experimentally validated and labeled AMPs, this leads to low novelty for generated AMP sequenc"
+     }
+    ],
+    "open_problems": [
+     {
+      "statement": "如何平衡生成AMP的新颖性与有效性（novelty versus validity）仍是挑战。",
+      "evidence": "This dilemma (novelty versus validity) is usually formulated as a problem of multi"
+     }
+    ],
+    "delta_claims": [
+     {
+      "statement": "相比传统优化或预测模型筛选，AMP-Designer利用LLM基础模型实现了更高效的de novo设计，解决了数据有限下的设计难题。",
+      "baseline": "Conventional methods for designing AMPs ",
+      "evidence": "We introduce AMP-Designer, an LLM-based approach for swiftly designing novel antimicrobial peptides (AMPs) with desired "
+     }
+    ],
+    "citation_style": "numeric",
+    "writing_style": "标准学术论文结构，包含摘要、引言，强调方法创新与实验验证结果，引用格式为数字编号。"
+   },
+   "attribution": "analyst_synthesis",
+   "evidence_ids": [],
+   "source_version": "",
+   "missing_states": {}
+  },
+  {
+   "id": "coderepository:raulorteg_molminer",
+   "type": "CodeRepository",
+   "label": "raulorteg__molminer",
+   "attrs": {
+    "repo_name": "raulorteg__molminer",
+    "local_path": "/home/zengshuxin/xKG-main/data/repos/src/raulorteg__molminer",
+    "is_original_repo": true,
+    "name": "raulorteg__molminer",
+    "label": "raulorteg__molminer",
+    "repo_url": "https://github.com/raulorteg/molminer",
+    "license": "Apache License"
+   },
+   "attribution": "analyst_synthesis",
+   "evidence_ids": [],
+   "source_version": "",
+   "missing_states": {}
+  },
+  {
+   "id": "coderepository:general_molecular_simulations_so3lr",
+   "type": "CodeRepository",
+   "label": "general-molecular-simulations__so3lr",
+   "attrs": {
+    "repo_name": "general-molecular-simulations__so3lr",
+    "local_path": "/home/zengshuxin/xKG-main/data/repos/src/general-molecular-simulations__so3lr",
+    "is_original_repo": true,
+    "name": "general-molecular-simulations__so3lr",
+    "label": "general-molecular-simulations__so3lr",
+    "repo_url": "https://github.com/general-molecular-simulations/so3lr",
+    "license": "MIT License"
+   },
+   "attribution": "analyst_synthesis",
+   "evidence_ids": [],
+   "source_version": "",
+   "missing_states": {}
+  },
+  {
+   "id": "coderepository:oxpig_antifold",
+   "type": "CodeRepository",
+   "label": "oxpig__antifold",
+   "attrs": {
+    "repo_name": "oxpig__antifold",
+    "local_path": "/home/zengshuxin/xKG-main/data/repos/src/oxpig__antifold",
+    "is_original_repo": true,
+    "name": "oxpig__antifold",
+    "label": "oxpig__antifold",
+    "repo_url": "https://github.com/oxpig/AntiFold",
+    "license": "BSD 3-Clause License"
+   },
+   "attribution": "analyst_synthesis",
+   "evidence_ids": [],
+   "source_version": "",
+   "missing_states": {}
+  },
+  {
+   "id": "coderepository:jkwang93_amp_designer",
+   "type": "CodeRepository",
+   "label": "jkwang93__amp-designer",
+   "attrs": {
+    "repo_name": "jkwang93__amp-designer",
+    "local_path": "/home/zengshuxin/xKG-main/data/repos/src/jkwang93__amp-designer",
+    "is_original_repo": true,
+    "name": "jkwang93__amp-designer",
+    "label": "jkwang93__amp-designer",
+    "repo_url": "https://github.com/jkwang93/AMP-Designer",
+    "license": "MIT License"
+   },
+   "attribution": "analyst_synthesis",
+   "evidence_ids": [],
+   "source_version": "",
+   "missing_states": {}
+  },
+  {
+   "id": "algorithm:molminer",
+   "type": "Algorithm",
+   "label": "MolMiner",
+   "attrs": {
+    "name": "MolMiner",
+    "task_type": "molecule_generation",
+    "flow_family": "fragment",
+    "problems_solved": [
+     "解决分子生成中化学有效性难以保证的问题",
+     "解决固定生成顺序导致泛化能力差的问题",
+     "解决多属性条件控制缺失的问题"
+    ],
+    "mechanism": "基于片段的自回归生成，结合力场弛豫的3D几何信息和对称性感知的连接建模，支持任意顺序的片段组装。",
+    "why_it_works": "片段级操作显式强制化学有效性；动态3D几何提供物理约束；无顺序依赖策略作为数据增强提升泛化。",
+    "applicable_to": [
+     "高通量筛选中的候选分子生成",
+     "多属性条件分子设计"
+    ],
+    "limitations": [
+     "条件生成导致无条件分布保真度轻微下降"
+    ],
+    "label": "MolMiner"
+   },
+   "attribution": "analyst_synthesis",
+   "evidence_ids": [],
+   "source_version": "",
+   "missing_states": {}
+  },
+  {
+   "id": "algorithm:chemicalvae",
+   "type": "Algorithm",
+   "label": "ChemicalVAE",
+   "attrs": {
+    "name": "ChemicalVAE",
+    "task_type": "molecule_generation",
+    "flow_family": "vae",
+    "problems_solved": [
+     "需要可插值、可优化的连续分子隐空间"
+    ],
+    "mechanism": "CNN 编码 SMILES 到高斯潜空间，RNN 解码重建，KL 约束先验",
+    "why_it_works": "连续潜空间支持贝叶斯优化与属性插值",
+    "applicable_to": [],
+    "limitations": [
+     "SMILES 合法性不稳"
+    ],
+    "label": "ChemicalVAE"
+   },
+   "attribution": "analyst_synthesis",
+   "evidence_ids": [],
+   "source_version": "",
+   "missing_states": {}
+  },
+  {
+   "id": "algorithm:schnet",
+   "type": "Algorithm",
+   "label": "SchNet",
+   "attrs": {
+    "name": "SchNet",
+    "task_type": "forcefield_simulation",
+    "flow_family": "ml_potential",
+    "problems_solved": [
+     "从原子坐标直接预测分子能量/性质，无需手工描述符"
+    ],
+    "mechanism": "连续滤波卷积在原子间距离上做消息传递，聚合得到能量",
+    "why_it_works": "距离连续滤波对几何扰动平滑，适合量子化学回归",
+    "applicable_to": [
+     "能量预测",
+     "力预测"
+    ],
+    "limitations": [],
+    "label": "SchNet"
+   },
+   "attribution": "analyst_synthesis",
+   "evidence_ids": [],
+   "source_version": "",
+   "missing_states": {}
+  },
+  {
+   "id": "algorithm:so3lr_tauri",
+   "type": "Algorithm",
+   "label": "SO3LR Tauri",
+   "attrs": {
+    "name": "SO3LR Tauri",
+    "task_type": "forcefield_simulation",
+    "flow_family": "ml_potential",
+    "problems_solved": [
+     "统一描述所有主要生物分子类别的量子力学精度力场",
+     "解决经典力场需针对每类分子单独拟合参数的问题",
+     "覆盖周期表85种元素并支持大规模生物分子动力学模拟"
+    ],
+    "mechanism": "耦合SO3krates消息传递骨干网络与显式物理相互作用模块（短程排斥、静电、色散），通过多任务头联合训练以结合不同理论水平的优势。",
+    "why_it_works": "显式物理模块保证了正确的长程渐近衰减（1/r和1/r6），避免了深度消息传递网络在长程效应学习上的不足，同时NLH势提高了短程排斥的物理正确性。",
+    "applicable_to": [
+     "蛋白质、脂质、核酸、碳水化合物等生物分子模拟",
+     "含金属生物分子及有机/酶促反应路径",
+     "溶剂、离子水合结构及pKa值预测"
+    ],
+    "limitations": [
+     "静态和动态液体性质的预测精度仍有待提高",
+     "反应势垒的预测精度不足",
+     "化学和构象空间的覆盖范围有限",
+     "采样和推理速度尚不足以完全描述生物分子过程"
+    ],
+    "label": "SO3LR Tauri"
+   },
+   "attribution": "analyst_synthesis",
+   "evidence_ids": [],
+   "source_version": "",
+   "missing_states": {}
+  },
+  {
+   "id": "algorithmstep:2411.06608:0:symmetry_aware_attachment_standardization",
+   "type": "AlgorithmModule",
+   "label": "Symmetry-Aware Attachment Standardization",
+   "attrs": {
+    "mechanism": "encoding",
+    "inputs": [
+     "fragment_graph"
+    ],
+    "outputs": [
+     "canonical_attachments"
+    ],
+    "name": "Symmetry-Aware Attachment Standardization",
+    "formula": "",
+    "label": "Symmetry-Aware Attachment Standardization"
+   },
+   "attribution": "analyst_synthesis",
+   "evidence_ids": [],
+   "source_version": "",
+   "missing_states": {}
+  },
+  {
+   "id": "algorithmstep:2411.06608:1:geometry_biased_attention",
+   "type": "AlgorithmModule",
+   "label": "Geometry-Biased Attention",
+   "attrs": {
+    "mechanism": "attention",
+    "inputs": [
+     "fragment_centroids",
+     "fragment_embeddings"
+    ],
+    "outputs": [
+     "attended_fragment_representations"
+    ],
+    "name": "Geometry-Biased Attention",
+    "formula": "2",
+    "label": "Geometry-Biased Attention"
+   },
+   "attribution": "analyst_synthesis",
+   "evidence_ids": [],
+   "source_version": "",
+   "missing_states": {}
+  },
+  {
+   "id": "algorithmstep:2411.06608:2:fragment_starter",
+   "type": "AlgorithmModule",
+   "label": "Fragment Starter",
+   "attrs": {
+    "mechanism": "initialization",
+    "inputs": [
+     "conditioning_properties"
+    ],
+    "outputs": [
+     "initial_fragment_id"
+    ],
+    "name": "Fragment Starter",
+    "formula": "",
+    "label": "Fragment Starter"
+   },
+   "attribution": "analyst_synthesis",
+   "evidence_ids": [],
+   "source_version": "",
+   "missing_states": {}
+  },
+  {
+   "id": "algorithmstep:2411.06608:3:order_agnostic_autoregressive_rollout",
+   "type": "AlgorithmModule",
+   "label": "Order-Agnostic Autoregressive Rollout",
+   "attrs": {
+    "mechanism": "sampling",
+    "inputs": [
+     "partial_structure",
+     "focal_attachment_site",
+     "properties"
+    ],
+    "outputs": [
+     "next_fragment_attachment_action"
+    ],
+    "name": "Order-Agnostic Autoregressive Rollout",
+    "formula": "1",
+    "label": "Order-Agnostic Autoregressive Rollout"
+   },
+   "attribution": "analyst_synthesis",
+   "evidence_ids": [],
+   "source_version": "",
+   "missing_states": {}
+  },
+  {
+   "id": "codefunction:raulorteg_molminer:molminer_processor_py:get_all_possible_attachments",
+   "type": "CodeFunction",
+   "label": "_get_all_possible_attachments",
+   "attrs": {
+    "name": "_get_all_possible_attachments",
+    "params": "self, canonical_smiles, isring",
+    "purpose": "Compute all possible attachment points for a grain",
+    "comment": "Compute all possible attachment points for a grain.  Parameters ---------- canonical_smiles : str",
+    "returns": "List[List[int]]",
+    "func_type": "accessor",
+    "label": "_get_all_possible_attachments",
+    "lineno": 68,
+    "module_path": "molminer/processor.py"
+   },
+   "attribution": "analyst_synthesis",
+   "evidence_ids": [],
+   "source_version": "",
+   "missing_states": {}
+  },
+  {
+   "id": "codefunction:raulorteg_molminer:molminer_processor_py:compute_possible_remaps",
+   "type": "CodeFunction",
+   "label": "_compute_possible_remaps",
+   "attrs": {
+    "name": "_compute_possible_remaps",
+    "params": "self, mol_reference, mol_other, radius",
+    "purpose": "Compute all valid remappings between atoms in two equivalent molecules",
+    "comment": "Compute all valid remappings between atoms in two equivalent molecules.  Parameters ---------- mol_r",
+    "returns": "List[Dict[int, int]]",
+    "func_type": "helper",
+    "label": "_compute_possible_remaps",
+    "lineno": 132,
+    "module_path": "molminer/processor.py"
+   },
+   "attribution": "analyst_synthesis",
+   "evidence_ids": [],
+   "source_version": "",
+   "missing_states": {}
+  },
+  {
+   "id": "codefunction:raulorteg_molminer:molminer_processor_py:get_canonicalization_map",
+   "type": "CodeFunction",
+   "label": "_get_canonicalization_map",
+   "attrs": {
+    "name": "_get_canonicalization_map",
+    "params": "self, possible_maps",
+    "purpose": "Return a canonical remapping from the list of possible remaps",
+    "comment": "Return a canonical remapping from the list of possible remaps.  Parameters ---------- possible_maps",
+    "returns": "Dict[int, int]",
+    "func_type": "transform",
+    "label": "_get_canonicalization_map",
+    "lineno": 253,
+    "module_path": "molminer/processor.py"
+   },
+   "attribution": "analyst_synthesis",
+   "evidence_ids": [],
+   "source_version": "",
+   "missing_states": {}
+  },
+  {
+   "id": "codefunction:raulorteg_molminer:molminer_models_py:forward",
+   "type": "CodeFunction",
+   "label": "forward",
+   "attrs": {
+    "name": "forward",
+    "params": "self, x",
+    "purpose": "Forward pass through the MLP",
+    "comment": "Forward pass through the MLP.  Parameters ---------- x : torch.Tensor     Input tensor of shape (bat",
+    "returns": "torch.Tensor",
+    "func_type": "forward",
+    "label": "forward",
+    "lineno": 53,
+    "module_path": "molminer/models.py"
+   },
+   "attribution": "analyst_synthesis",
+   "evidence_ids": [],
+   "source_version": "",
+   "missing_states": {}
+  },
+  {
+   "id": "benchmark:zinc",
+   "type": "Benchmark",
+   "label": "ZINC",
+   "attrs": {
+    "name": "ZINC",
+    "input_form": "序列",
+    "output_form": "序列",
+    "n_samples": "1000M pairs",
+    "scale": "large-scale",
+    "modality": "分子",
+    "research_object": "分子生成",
+    "metrics": [
+     {
+      "name": "validity",
+      "unit": "%",
+      "direction": "max",
+      "contribution_link": "衡量生成分子的化学有效性"
+     },
+     {
+      "name": "property optimization",
+      "unit": "",
+      "direction": "max",
+      "contribution_link": "衡量目标导向属性优化性能"
+     }
+    ],
+    "model_results": [
+     {
+      "model": "GDSS",
+      "metric": "uniqueness",
+      "value": "99.6",
+      "unit": "",
+      "is_sota": false,
+      "paper_id": "paper:2411.06608"
+     },
+     {
+      "model": "GDSS",
+      "metric": "novelty",
+      "value": "100.0",
+      "unit": "",
+      "is_sota": true,
+      "paper_id": "paper:2411.06608"
+     },
+     {
+      "model": "GDSS",
+      "metric": "diversity",
+      "value": "0.9026",
+      "unit": "",
+      "is_sota": true,
+      "paper_id": "paper:2411.06608"
+     },
+     {
+      "model": "GDSS",
+      "metric": "validity",
+      "value": "100.0",
+      "unit": "",
+      "is_sota": false,
+      "paper_id": "paper:2411.06608"
+     },
+     {
+      "model": "GDSS",
+      "metric": "frag_ratio",
+      "value": "38.96",
+      "unit": "",
+      "is_sota": false,
+      "paper_id": "paper:2411.06608"
+     },
+     {
+      "model": "MolMiner",
+      "metric": "validity",
+      "value": "100.0",
+      "unit": "",
+      "is_sota": true,
+      "paper_id": "paper:2411.06608"
+     },
+     {
+      "model": "MolMiner",
+      "metric": "frag_ratio",
+      "value": "0.00",
+      "unit": "",
+      "is_sota": true,
+      "paper_id": "paper:2411.06608"
+     },
+     {
+      "model": "MolMiner",
+      "metric": "uniqueness",
+      "value": "98.5",
+      "unit": "",
+      "is_sota": false,
+      "paper_id": "paper:2411.06608"
+     },
+     {
+      "model": "MolMiner",
+      "metric": "novelty",
+      "value": "99.9",
+      "unit": "",
+      "is_sota": false,
+      "paper_id": "paper:2411.06608"
+     },
+     {
+      "model": "MolMiner",
+      "metric": "diversity",
+      "value": "0.8919",
+      "unit": "",
+      "is_sota": false,
+      "paper_id": "paper:2411.06608"
+     },
+     {
+      "model": "HierVAE",
+      "metric": "validity",
+      "value": "100.0",
+      "unit": "",
+      "is_sota": false,
+      "paper_id": "paper:2411.06608"
+     },
+     {
+      "model": "HierVAE",
+      "metric": "frag_ratio",
+      "value": "0.00",
+      "unit": "",
+      "is_sota": false,
+      "paper_id": "paper:2411.06608"
+     },
+     {
+      "model": "HierVAE",
+      "metric": "uniqueness",
+      "value": "100.0",
+      "unit": "",
+      "is_sota": true,
+      "paper_id": "paper:2411.06608"
+     },
+     {
+      "model": "HierVAE",
+      "metric": "novelty",
+      "value": "99.9",
+      "unit": "",
+      "is_sota": false,
+      "paper_id": "paper:2411.06608"
+     },
+     {
+      "model": "HierVAE",
+      "metric": "diversity",
+      "value": "0.8759",
+      "unit": "",
+      "is_sota": false,
+      "paper_id": "paper:2411.06608"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "S/3/NW/NG",
+      "metric_name": "logP",
+      "value": 0.53,
+      "value_raw": "0.53",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "S/3/NW/NG",
+      "metric_name": "QED",
+      "value": 0.02,
+      "value_raw": "0.02",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "S/3/NW/NG",
+      "metric_name": "SAS",
+      "value": 0.08,
+      "value_raw": "0.08",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "S/3/NW/NG",
+      "metric_name": "FractCSP3",
+      "value": 0.02,
+      "value_raw": "0.02",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "S/3/NW/NG",
+      "metric_name": "molWt",
+      "value": 67.23,
+      "value_raw": "67.23",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "S/3/NW/NG",
+      "metric_name": "TPSA",
+      "value": 10.99,
+      "value_raw": "10.99",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "S/3/NW/NG",
+      "metric_name": "MR",
+      "value": 16.99,
+      "value_raw": "16.99",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "S/3/NW/NG",
+      "metric_name": "HBD",
+      "value": 0.15,
+      "value_raw": "0.15",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "S/3/NW/NG",
+      "metric_name": "HBA",
+      "value": 0.59,
+      "value_raw": "0.59",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "S/3/NW/NG",
+      "metric_name": "Rings",
+      "value": 0.61,
+      "value_raw": "0.61",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "S/3/NW/NG",
+      "metric_name": "RotBonds",
+      "value": 0.92,
+      "value_raw": "0.92",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "S/3/NW/NG",
+      "metric_name": "Chiral",
+      "value": 0.25,
+      "value_raw": "0.25",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "S/3/NW/NG",
+      "metric_name": "Uniqueness",
+      "value": 98.0,
+      "value_raw": "98.0",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "S/3/NW/NG",
+      "metric_name": "Novelty",
+      "value": 99.8,
+      "value_raw": "99.8",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "S/3/NW/NG",
+      "metric_name": "diversity",
+      "value": 0.89,
+      "value_raw": "0.89",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "S/3/NW/G",
+      "metric_name": "logP",
+      "value": 0.6,
+      "value_raw": "0.60",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "S/3/NW/G",
+      "metric_name": "QED",
+      "value": 0.03,
+      "value_raw": "0.03",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "S/3/NW/G",
+      "metric_name": "SAS",
+      "value": 0.26,
+      "value_raw": "0.26",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "S/3/NW/G",
+      "metric_name": "FractCSP3",
+      "value": 0.03,
+      "value_raw": "0.03",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "S/3/NW/G",
+      "metric_name": "molWt",
+      "value": 83.88,
+      "value_raw": "83.88",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "S/3/NW/G",
+      "metric_name": "TPSA",
+      "value": 15.28,
+      "value_raw": "15.28",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "S/3/NW/G",
+      "metric_name": "MR",
+      "value": 20.46,
+      "value_raw": "20.46",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "S/3/NW/G",
+      "metric_name": "HBD",
+      "value": 0.2,
+      "value_raw": "0.20",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "S/3/NW/G",
+      "metric_name": "HBA",
+      "value": 0.92,
+      "value_raw": "0.92",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "S/3/NW/G",
+      "metric_name": "Rings",
+      "value": 0.78,
+      "value_raw": "0.78",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "S/3/NW/G",
+      "metric_name": "RotBonds",
+      "value": 0.96,
+      "value_raw": "0.96",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "S/3/NW/G",
+      "metric_name": "Chiral",
+      "value": 0.33,
+      "value_raw": "0.33",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "S/3/NW/G",
+      "metric_name": "Uniqueness",
+      "value": 91.6,
+      "value_raw": "91.6",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "S/3/NW/G",
+      "metric_name": "Novelty",
+      "value": 99.8,
+      "value_raw": "99.8",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "S/3/NW/G",
+      "metric_name": "diversity",
+      "value": 0.88,
+      "value_raw": "0.88",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "D/3/NW/NG",
+      "metric_name": "logP",
+      "value": 0.33,
+      "value_raw": "0.33",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "D/3/NW/NG",
+      "metric_name": "QED",
+      "value": 0.01,
+      "value_raw": "0.01",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "D/3/NW/NG",
+      "metric_name": "SAS",
+      "value": 0.06,
+      "value_raw": "0.06",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "D/3/NW/NG",
+      "metric_name": "FractCSP3",
+      "value": 0.02,
+      "value_raw": "0.02",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "D/3/NW/NG",
+      "metric_name": "molWt",
+      "value": 49.79,
+      "value_raw": "49.79",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "D/3/NW/NG",
+      "metric_name": "TPSA",
+      "value": 8.02,
+      "value_raw": "8.02",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "D/3/NW/NG",
+      "metric_name": "MR",
+      "value": 12.6,
+      "value_raw": "12.60",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "D/3/NW/NG",
+      "metric_name": "HBD",
+      "value": 0.14,
+      "value_raw": "0.14",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "D/3/NW/NG",
+      "metric_name": "HBA",
+      "value": 0.41,
+      "value_raw": "0.41",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "D/3/NW/NG",
+      "metric_name": "Rings",
+      "value": 0.42,
+      "value_raw": "0.42",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "D/3/NW/NG",
+      "metric_name": "RotBonds",
+      "value": 0.73,
+      "value_raw": "0.73",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "D/3/NW/NG",
+      "metric_name": "Chiral",
+      "value": 0.2,
+      "value_raw": "0.20",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "D/3/NW/NG",
+      "metric_name": "Uniqueness",
+      "value": 98.7,
+      "value_raw": "98.7",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "D/3/NW/NG",
+      "metric_name": "Novelty",
+      "value": 99.3,
+      "value_raw": "99.3",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "D/3/NW/NG",
+      "metric_name": "diversity",
+      "value": 0.88,
+      "value_raw": "0.88",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "D/3/NW/G",
+      "metric_name": "logP",
+      "value": 0.44,
+      "value_raw": "0.44",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "D/3/NW/G",
+      "metric_name": "QED",
+      "value": 0.01,
+      "value_raw": "0.01",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "D/3/NW/G",
+      "metric_name": "SAS",
+      "value": 0.2,
+      "value_raw": "0.20",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "D/3/NW/G",
+      "metric_name": "FractCSP3",
+      "value": 0.04,
+      "value_raw": "0.04",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "D/3/NW/G",
+      "metric_name": "molWt",
+      "value": 63.35,
+      "value_raw": "63.35",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "D/3/NW/G",
+      "metric_name": "TPSA",
+      "value": 10.51,
+      "value_raw": "10.51",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "D/3/NW/G",
+      "metric_name": "MR",
+      "value": 15.53,
+      "value_raw": "15.53",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "D/3/NW/G",
+      "metric_name": "HBD",
+      "value": 0.17,
+      "value_raw": "0.17",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "D/3/NW/G",
+      "metric_name": "HBA",
+      "value": 0.62,
+      "value_raw": "0.62",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "D/3/NW/G",
+      "metric_name": "Rings",
+      "value": 0.52,
+      "value_raw": "0.52",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "D/3/NW/G",
+      "metric_name": "RotBonds",
+      "value": 0.86,
+      "value_raw": "0.86",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "D/3/NW/G",
+      "metric_name": "Chiral",
+      "value": 0.24,
+      "value_raw": "0.24",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "D/3/NW/G",
+      "metric_name": "Uniqueness",
+      "value": 92.1,
+      "value_raw": "92.1",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "D/3/NW/G",
+      "metric_name": "Novelty",
+      "value": 98.3,
+      "value_raw": "98.3",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "D/3/NW/G",
+      "metric_name": "diversity",
+      "value": 0.87,
+      "value_raw": "0.87",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "S/3/W/NG",
+      "metric_name": "logP",
+      "value": 0.51,
+      "value_raw": "0.51",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "S/3/W/NG",
+      "metric_name": "QED",
+      "value": 0.02,
+      "value_raw": "0.02",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "S/3/W/NG",
+      "metric_name": "SAS",
+      "value": 0.08,
+      "value_raw": "0.08",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "S/3/W/NG",
+      "metric_name": "FractCSP3",
+      "value": 0.02,
+      "value_raw": "0.02",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "S/3/W/NG",
+      "metric_name": "molWt",
+      "value": 67.48,
+      "value_raw": "67.48",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "S/3/W/NG",
+      "metric_name": "TPSA",
+      "value": 11.75,
+      "value_raw": "11.75",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "S/3/W/NG",
+      "metric_name": "MR",
+      "value": 17.03,
+      "value_raw": "17.03",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "S/3/W/NG",
+      "metric_name": "HBD",
+      "value": 0.16,
+      "value_raw": "0.16",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "S/3/W/NG",
+      "metric_name": "HBA",
+      "value": 0.6,
+      "value_raw": "0.60",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "S/3/W/NG",
+      "metric_name": "Rings",
+      "value": 0.59,
+      "value_raw": "0.59",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "S/3/W/NG",
+      "metric_name": "RotBonds",
+      "value": 0.92,
+      "value_raw": "0.92",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "S/3/W/NG",
+      "metric_name": "Chiral",
+      "value": 0.26,
+      "value_raw": "0.26",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "S/3/W/NG",
+      "metric_name": "Uniqueness",
+      "value": 97.3,
+      "value_raw": "97.3",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "S/3/W/NG",
+      "metric_name": "Novelty",
+      "value": 99.9,
+      "value_raw": "99.9",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "S/3/W/NG",
+      "metric_name": "diversity",
+      "value": 0.89,
+      "value_raw": "0.89",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "S/3/W/G",
+      "metric_name": "logP",
+      "value": 0.62,
+      "value_raw": "0.62",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "S/3/W/G",
+      "metric_name": "QED",
+      "value": 0.03,
+      "value_raw": "0.03",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "S/3/W/G",
+      "metric_name": "SAS",
+      "value": 0.28,
+      "value_raw": "0.28",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "S/3/W/G",
+      "metric_name": "FractCSP3",
+      "value": 0.03,
+      "value_raw": "0.03",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "S/3/W/G",
+      "metric_name": "molWt",
+      "value": 84.94,
+      "value_raw": "84.94",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "S/3/W/G",
+      "metric_name": "TPSA",
+      "value": 15.38,
+      "value_raw": "15.38",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "S/3/W/G",
+      "metric_name": "MR",
+      "value": 20.61,
+      "value_raw": "20.61",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "S/3/W/G",
+      "metric_name": "HBD",
+      "value": 0.21,
+      "value_raw": "0.21",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "S/3/W/G",
+      "metric_name": "HBA",
+      "value": 0.91,
+      "value_raw": "0.91",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "S/3/W/G",
+      "metric_name": "Rings",
+      "value": 0.8,
+      "value_raw": "0.80",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "S/3/W/G",
+      "metric_name": "RotBonds",
+      "value": 0.96,
+      "value_raw": "0.96",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "S/3/W/G",
+      "metric_name": "Chiral",
+      "value": 0.34,
+      "value_raw": "0.34",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "S/3/W/G",
+      "metric_name": "Uniqueness",
+      "value": 90.7,
+      "value_raw": "90.7",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "S/3/W/G",
+      "metric_name": "Novelty",
+      "value": 99.8,
+      "value_raw": "99.8",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "S/3/W/G",
+      "metric_name": "diversity",
+      "value": 0.88,
+      "value_raw": "0.88",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "D/3/W/NG",
+      "metric_name": "logP",
+      "value": 0.34,
+      "value_raw": "0.34",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "D/3/W/NG",
+      "metric_name": "QED",
+      "value": 0.01,
+      "value_raw": "0.01",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "D/3/W/NG",
+      "metric_name": "SAS",
+      "value": 0.07,
+      "value_raw": "0.07",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "D/3/W/NG",
+      "metric_name": "FractCSP3",
+      "value": 0.02,
+      "value_raw": "0.02",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "D/3/W/NG",
+      "metric_name": "molWt",
+      "value": 49.0,
+      "value_raw": "49.00",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "D/3/W/NG",
+      "metric_name": "TPSA",
+      "value": 7.76,
+      "value_raw": "7.76",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "D/3/W/NG",
+      "metric_name": "MR",
+      "value": 12.39,
+      "value_raw": "12.39",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "D/3/W/NG",
+      "metric_name": "HBD",
+      "value": 0.14,
+      "value_raw": "0.14",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "D/3/W/NG",
+      "metric_name": "HBA",
+      "value": 0.36,
+      "value_raw": "0.36",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "D/3/W/NG",
+      "metric_name": "Rings",
+      "value": 0.41,
+      "value_raw": "0.41",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "D/3/W/NG",
+      "metric_name": "RotBonds",
+      "value": 0.75,
+      "value_raw": "0.75",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "D/3/W/NG",
+      "metric_name": "Chiral",
+      "value": 0.21,
+      "value_raw": "0.21",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "D/3/W/NG",
+      "metric_name": "Uniqueness",
+      "value": 98.8,
+      "value_raw": "98.8",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "D/3/W/NG",
+      "metric_name": "Novelty",
+      "value": 99.7,
+      "value_raw": "99.7",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "D/3/W/NG",
+      "metric_name": "diversity",
+      "value": 0.89,
+      "value_raw": "0.89",
+      "unit": "",
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:2"
+     },
+     {
+      "model": "NeVAE",
+      "metric": "property_value_improvement",
+      "value": 121,
+      "unit": "%",
+      "benchmark": "",
+      "source": "text:Abstract",
+      "evidence": ""
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "Targets",
+      "metric_name": "Div",
+      "value": 100.0,
+      "value_raw": "100.0",
+      "unit": "",
+      "paper_id": "paper:2209.13865",
+      "provenance": "table_extract:1"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "Targets",
+      "metric_name": "liGAN 35",
+      "value": 100.0,
+      "value_raw": "100.0",
+      "unit": "",
+      "paper_id": "paper:2209.13865",
+      "provenance": "table_extract:1"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "Targets",
+      "metric_name": "3D SBDD 2",
+      "value": 69.7,
+      "value_raw": "69.7",
+      "unit": "",
+      "paper_id": "paper:2209.13865",
+      "provenance": "table_extract:1"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "Targets",
+      "metric_name": "SCREEN",
+      "value": 100.0,
+      "value_raw": "100.0",
+      "unit": "",
+      "paper_id": "paper:2209.13865",
+      "provenance": "table_extract:1"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "Method",
+      "metric_name": "Div",
+      "value": 55.7,
+      "value_raw": "55.7",
+      "unit": "",
+      "paper_id": "paper:2209.13865",
+      "provenance": "table_extract:1"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "Method",
+      "metric_name": "liGAN 35",
+      "value": 0.4,
+      "value_raw": "0.4",
+      "unit": "",
+      "paper_id": "paper:2209.13865",
+      "provenance": "table_extract:1"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "Method",
+      "metric_name": "3D SBDD 2",
+      "value": 13.6,
+      "value_raw": "13.6",
+      "unit": "",
+      "paper_id": "paper:2209.13865",
+      "provenance": "table_extract:1"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "Method",
+      "metric_name": "SCREEN",
+      "value": 25.6,
+      "value_raw": "25.6",
+      "unit": "",
+      "paper_id": "paper:2209.13865",
+      "provenance": "table_extract:1"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "Method",
+      "metric_name": "SCREEN",
+      "value": 64.0,
+      "value_raw": "64.0",
+      "unit": "",
+      "paper_id": "paper:2209.13865",
+      "provenance": "table_extract:1"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "Uniq",
+      "metric_name": "Div",
+      "value": 100.0,
+      "value_raw": "100.0",
+      "unit": "",
+      "paper_id": "paper:2209.13865",
+      "provenance": "table_extract:1"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "Uniq",
+      "metric_name": "liGAN 35",
+      "value": 100.0,
+      "value_raw": "100.0",
+      "unit": "",
+      "paper_id": "paper:2209.13865",
+      "provenance": "table_extract:1"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "Uniq",
+      "metric_name": "3D SBDD 2",
+      "value": 98.9,
+      "value_raw": "98.9",
+      "unit": "",
+      "paper_id": "paper:2209.13865",
+      "provenance": "table_extract:1"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "Uniq",
+      "metric_name": "SCREEN",
+      "value": 100.0,
+      "value_raw": "100.0",
+      "unit": "",
+      "paper_id": "paper:2209.13865",
+      "provenance": "table_extract:1"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "Succ",
+      "metric_name": "Div",
+      "value": 0.912,
+      "value_raw": "0.912",
+      "unit": "",
+      "paper_id": "paper:2209.13865",
+      "provenance": "table_extract:1"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "Succ",
+      "metric_name": "liGAN 35",
+      "value": 0.924,
+      "value_raw": "0.924",
+      "unit": "",
+      "paper_id": "paper:2209.13865",
+      "provenance": "table_extract:1"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "Succ",
+      "metric_name": "3D SBDD 2",
+      "value": 0.839,
+      "value_raw": "0.839",
+      "unit": "",
+      "paper_id": "paper:2209.13865",
+      "provenance": "table_extract:1"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "Succ",
+      "metric_name": "SCREEN",
+      "value": 0.892,
+      "value_raw": "0.892",
+      "unit": "",
+      "paper_id": "paper:2209.13865",
+      "provenance": "table_extract:1"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "Succ",
+      "metric_name": "SCREEN",
+      "value": 0.889,
+      "value_raw": "0.889",
+      "unit": "",
+      "paper_id": "paper:2209.13865",
+      "provenance": "table_extract:1"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "Nov",
+      "metric_name": "Div",
+      "value": 0.51,
+      "value_raw": "0.51",
+      "unit": "",
+      "paper_id": "paper:2209.13865",
+      "provenance": "table_extract:1"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "Nov",
+      "metric_name": "liGAN 35",
+      "value": 0.0,
+      "value_raw": "0.00",
+      "unit": "",
+      "paper_id": "paper:2209.13865",
+      "provenance": "table_extract:1"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "Nov",
+      "metric_name": "3D SBDD 2",
+      "value": 0.08,
+      "value_raw": "0.08",
+      "unit": "",
+      "paper_id": "paper:2209.13865",
+      "provenance": "table_extract:1"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "Nov",
+      "metric_name": "SCREEN",
+      "value": 0.23,
+      "value_raw": "0.23",
+      "unit": "",
+      "paper_id": "paper:2209.13865",
+      "provenance": "table_extract:1"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "Nov",
+      "metric_name": "SCREEN",
+      "value": 0.57,
+      "value_raw": "0.57",
+      "unit": "",
+      "paper_id": "paper:2209.13865",
+      "provenance": "table_extract:1"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "Metric",
+      "metric_name": "DESERT-POCKET",
+      "value": 0.522,
+      "value_raw": "0.522",
+      "unit": "",
+      "paper_id": "paper:2209.13865",
+      "provenance": "table_extract:3"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "Metric",
+      "metric_name": "SA",
+      "value": 0.672,
+      "value_raw": "0.672",
+      "unit": "",
+      "paper_id": "paper:2209.13865",
+      "provenance": "table_extract:3"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "Metric",
+      "metric_name": "diversity",
+      "value": 0.873,
+      "value_raw": "0.873",
+      "unit": "",
+      "paper_id": "paper:2209.13865",
+      "provenance": "table_extract:3"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "3D SBDD",
+      "metric_name": "DESERT-POCKET",
+      "value": 0.501,
+      "value_raw": "0.501",
+      "unit": "",
+      "paper_id": "paper:2209.13865",
+      "provenance": "table_extract:3"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "3D SBDD",
+      "metric_name": "SA",
+      "value": 0.623,
+      "value_raw": "0.623",
+      "unit": "",
+      "paper_id": "paper:2209.13865",
+      "provenance": "table_extract:3"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "3D SBDD",
+      "metric_name": "diversity",
+      "value": 0.826,
+      "value_raw": "0.826",
+      "unit": "",
+      "paper_id": "paper:2209.13865",
+      "provenance": "table_extract:3"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "3D SBDD",
+      "metric_name": "DESERT-POCKET",
+      "value": 0.614,
+      "value_raw": "0.614",
+      "unit": "",
+      "paper_id": "paper:2209.13865",
+      "provenance": "table_extract:3"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "3D SBDD",
+      "metric_name": "SA",
+      "value": 0.612,
+      "value_raw": "0.612",
+      "unit": "",
+      "paper_id": "paper:2209.13865",
+      "provenance": "table_extract:3"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "3D SBDD",
+      "metric_name": "diversity",
+      "value": 0.926,
+      "value_raw": "0.926",
+      "unit": "",
+      "paper_id": "paper:2209.13865",
+      "provenance": "table_extract:3"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "DESERT-POCKET",
+      "metric_name": "DESERT-POCKET",
+      "value": 0.549,
+      "value_raw": "0.549",
+      "unit": "",
+      "paper_id": "paper:2209.13865",
+      "provenance": "table_extract:3"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "DESERT-POCKET",
+      "metric_name": "SA",
+      "value": 0.616,
+      "value_raw": "0.616",
+      "unit": "",
+      "paper_id": "paper:2209.13865",
+      "provenance": "table_extract:3"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "DESERT-POCKET",
+      "metric_name": "diversity",
+      "value": 0.908,
+      "value_raw": "0.908",
+      "unit": "",
+      "paper_id": "paper:2209.13865",
+      "provenance": "table_extract:3"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "fa7",
+      "metric_name": "PER",
+      "value": 0.0051,
+      "value_raw": "0.00510",
+      "unit": "",
+      "paper_id": "paper:2110.01219",
+      "provenance": "table_extract:5"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "fa7",
+      "metric_name": "PER",
+      "value": 0.0341,
+      "value_raw": "0.03410",
+      "unit": "",
+      "paper_id": "paper:2110.01219",
+      "provenance": "table_extract:5"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "fa7",
+      "metric_name": "PER",
+      "value": 0.65375,
+      "value_raw": "0.65375",
+      "unit": "",
+      "paper_id": "paper:2110.01219",
+      "provenance": "table_extract:5"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "fa7",
+      "metric_name": "curio",
+      "value": 0.0091,
+      "value_raw": "0.00910",
+      "unit": "",
+      "paper_id": "paper:2110.01219",
+      "provenance": "table_extract:5"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "fa7",
+      "metric_name": "curio",
+      "value": 0.3079,
+      "value_raw": "0.30790",
+      "unit": "",
+      "paper_id": "paper:2110.01219",
+      "provenance": "table_extract:5"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "parp1",
+      "metric_name": "PER",
+      "value": 0.0006,
+      "value_raw": "0.00060",
+      "unit": "",
+      "paper_id": "paper:2110.01219",
+      "provenance": "table_extract:5"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "parp1",
+      "metric_name": "PER",
+      "value": 0.05,
+      "value_raw": "0.05000",
+      "unit": "",
+      "paper_id": "paper:2110.01219",
+      "provenance": "table_extract:5"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "parp1",
+      "metric_name": "PER",
+      "value": 0.098,
+      "value_raw": "0.09800",
+      "unit": "",
+      "paper_id": "paper:2110.01219",
+      "provenance": "table_extract:5"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "parp1",
+      "metric_name": "curio",
+      "value": 0.189,
+      "value_raw": "0.18900",
+      "unit": "",
+      "paper_id": "paper:2110.01219",
+      "provenance": "table_extract:5"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "parp1",
+      "metric_name": "curio",
+      "value": 0.3995,
+      "value_raw": "0.39950",
+      "unit": "",
+      "paper_id": "paper:2110.01219",
+      "provenance": "table_extract:5"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "5ht1b",
+      "metric_name": "PER",
+      "value": 0.0066,
+      "value_raw": "0.00660",
+      "unit": "",
+      "paper_id": "paper:2110.01219",
+      "provenance": "table_extract:5"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "5ht1b",
+      "metric_name": "PER",
+      "value": 0.0248,
+      "value_raw": "0.02480",
+      "unit": "",
+      "paper_id": "paper:2110.01219",
+      "provenance": "table_extract:5"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "5ht1b",
+      "metric_name": "PER",
+      "value": 0.00713,
+      "value_raw": "0.00713",
+      "unit": "",
+      "paper_id": "paper:2110.01219",
+      "provenance": "table_extract:5"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "5ht1b",
+      "metric_name": "curio",
+      "value": 0.1355,
+      "value_raw": "0.13550",
+      "unit": "",
+      "paper_id": "paper:2110.01219",
+      "provenance": "table_extract:5"
+     },
+     {
+      "benchmark_id": "",
+      "model_name": "5ht1b",
+      "metric_name": "curio",
+      "value": 0.0615,
+      "value_raw": "0.06150",
+      "unit": "",
+      "paper_id": "paper:2110.01219",
+      "provenance": "table_extract:5"
+     }
+    ],
+    "sota_by_metric": {
+     "uniqueness": {
+      "metric": "uniqueness",
+      "model": "HierVAE",
+      "value": "100.0",
+      "numeric": 100.0,
+      "direction": "max",
+      "direction_source": "heuristic",
+      "ties": [],
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:1"
+     },
+     "novelty": {
+      "metric": "novelty",
+      "model": "GDSS",
+      "value": "100.0",
+      "numeric": 100.0,
+      "direction": "max",
+      "direction_source": "heuristic",
+      "ties": [],
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:1"
+     },
+     "diversity": {
+      "metric": "diversity",
+      "model": "GDSS",
+      "value": "0.9026",
+      "numeric": 0.9026,
+      "direction": "max",
+      "direction_source": "heuristic",
+      "ties": [],
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:1"
+     },
+     "validity": {
+      "metric": "validity",
+      "model": "MolMiner",
+      "value": "100.0",
+      "numeric": 100.0,
+      "direction": "max",
+      "direction_source": "heuristic",
+      "ties": [
+       "HierVAE",
+       "GDSS"
+      ],
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:1"
+     },
+     "frag_ratio": {
+      "metric": "frag_ratio",
+      "model": "MolMiner",
+      "value": "0.00",
+      "numeric": 0.0,
+      "direction": "min",
+      "direction_source": "vocab",
+      "ties": [
+       "HierVAE"
+      ],
+      "paper_id": "paper:2411.06608",
+      "provenance": "table_extract:1"
+     }
+    },
+    "is_evaluation": true,
+    "label": "ZINC",
+    "protocol": {
+     "seeds": "",
+     "split": "",
+     "eval_script": "",
+     "epochs": ""
+    }
+   },
+   "attribution": "analyst_synthesis",
+   "evidence_ids": [],
+   "source_version": "",
+   "missing_states": {}
+  },
+  {
+   "id": "benchmark:sapt10k",
+   "type": "Benchmark",
+   "label": "SAPT10k",
+   "attrs": {
+    "name": "SAPT10k",
+    "input_form": "原子坐标",
+    "output_form": "能量/力",
+    "n_samples": "10k 二聚体构象",
+    "scale": "小规模 (<1k)",
+    "modality": "3D 结构/坐标",
+    "research_object": "材料/力场",
+    "metrics": [
+     {
+      "name": "mae",
+      "unit": "",
+      "direction": "min",
+      "direction_source": "vocab",
+      "sota_model": "未标注模型",
+      "sota_value": "0.45",
+      "ties": [
+       "SO3LR-T-M"
+      ]
+     },
+     {
+      "name": "rmse",
+      "unit": "",
+      "direction": "min",
+      "direction_source": "vocab",
+      "sota_model": "未标注模型",
+      "sota_value": "0.83",
+      "ties": []
+     }
+    ],
+    "model_results": [
+     {
+      "model": "未标注模型",
+      "metric": "mae",
+      "value": "0.45",
+      "unit": "kcal/mol",
+      "is_sota": true,
+      "paper_id": "paper:2611.06237"
+     },
+     {
+      "model": "未标注模型",
+      "metric": "rmse",
+      "value": "0.83",
+      "unit": "kcal/mol",
+      "is_sota": true,
+      "paper_id": "paper:2611.06237"
+     },
+     {
+      "model": "SO3LR-T-M",
+      "metric": "mae",
+      "value": "0.45",
+      "unit": "kcal/mol",
+      "is_sota": false,
+      "paper_id": "paper:2611.06237"
+     }
+    ],
+    "sota_by_metric": {
+     "mae": {
+      "metric": "mae",
+      "model": "未标注模型",
+      "value": "0.45",
+      "numeric": 0.45,
+      "direction": "min",
+      "direction_source": "vocab",
+      "ties": [
+       "SO3LR-T-M"
+      ],
+      "paper_id": "paper:2611.06237",
+      "provenance": "leaderboard_entry"
+     },
+     "rmse": {
+      "metric": "rmse",
+      "model": "未标注模型",
+      "value": "0.83",
+      "numeric": 0.83,
+      "direction": "min",
+      "direction_source": "vocab",
+      "ties": [],
+      "paper_id": "paper:2611.06237",
+      "provenance": "leaderboard_entry"
+     }
+    },
+    "is_evaluation": true,
+    "label": "SAPT10k"
+   },
+   "attribution": "analyst_synthesis",
+   "evidence_ids": [],
+   "source_version": "",
+   "missing_states": {}
+  },
+  {
+   "id": "benchmark:quid",
+   "type": "Benchmark",
+   "label": "QUID",
+   "attrs": {
+    "name": "QUID",
+    "input_form": "3D坐标",
+    "output_form": "标量",
+    "n_samples": "量子化学相互作用能数据集",
+    "scale": "小规模 (<1k)",
+    "modality": "分子结构",
+    "research_object": "相互作用能",
+    "metrics": [
+     {
+      "name": "MAE",
+      "unit": "kcal/mol",
+      "direction": "min",
+      "contribution_link": "评估模型精度"
+     }
+    ],
+    "model_results": [
+     {
+      "model": "未标注模型",
+      "metric": "mae",
+      "value": "1.24",
+      "unit": "kcal/mol",
+      "is_sota": true,
+      "paper_id": "paper:2611.06237"
+     },
+     {
+      "model": "未标注模型",
+      "metric": "rmse",
+      "value": "1.59",
+      "unit": "kcal/mol",
+      "is_sota": true,
+      "paper_id": "paper:2611.06237"
+     },
+     {
+      "model": "SO3LR-T-M",
+      "metric": "mae",
+      "value": "1.24",
+      "unit": "kcal/mol",
+      "is_sota": false,
+      "paper_id": "paper:2611.06237"
+     }
+    ],
+    "sota_by_metric": {
+     "mae": {
+      "metric": "mae",
+      "model": "未标注模型",
+      "value": "1.24",
+      "numeric": 1.24,
+      "direction": "min",
+      "direction_source": "vocab",
+      "ties": [
+       "SO3LR-T-M"
+      ],
+      "paper_id": "paper:2611.06237",
+      "provenance": "leaderboard_entry"
+     },
+     "rmse": {
+      "metric": "rmse",
+      "model": "未标注模型",
+      "value": "1.59",
+      "numeric": 1.59,
+      "direction": "min",
+      "direction_source": "vocab",
+      "ties": [],
+      "paper_id": "paper:2611.06237",
+      "provenance": "leaderboard_entry"
+     }
+    },
+    "is_evaluation": true,
+    "label": "QUID",
+    "protocol": {
+     "seeds": "",
+     "split": "",
+     "eval_script": "",
+     "epochs": ""
+    }
+   },
+   "attribution": "analyst_synthesis",
+   "evidence_ids": [],
+   "source_version": "",
+   "missing_states": {}
+  },
+  {
+   "id": "benchmark:jsch_2005",
+   "type": "Benchmark",
+   "label": "JSCH-2005",
+   "attrs": {
+    "name": "JSCH-2005",
+    "input_form": "原子坐标",
+    "output_form": "能量/力",
+    "n_samples": "JSCH-2005 基准集",
+    "scale": "小规模 (<1k)",
+    "modality": "3D 结构/坐标",
+    "research_object": "材料/力场",
+    "metrics": [
+     {
+      "name": "mae",
+      "unit": "",
+      "direction": "min",
+      "direction_source": "vocab",
+      "sota_model": "SO3LR-T-M",
+      "sota_value": "0.78",
+      "ties": [
+       "未标注模型"
+      ]
+     },
+     {
+      "name": "rmse",
+      "unit": "",
+      "direction": "min",
+      "direction_source": "vocab",
+      "sota_model": "未标注模型",
+      "sota_value": "1.04",
+      "ties": []
+     }
+    ],
+    "model_results": [
+     {
+      "model": "SO3LR-T-M",
+      "metric": "mae",
+      "value": "0.78",
+      "unit": "kcal/mol",
+      "is_sota": true,
+      "paper_id": "paper:2611.06237"
+     },
+     {
+      "model": "未标注模型",
+      "metric": "mae",
+      "value": "0.78",
+      "unit": "kcal/mol",
+      "is_sota": false,
+      "paper_id": "paper:2611.06237"
+     },
+     {
+      "model": "未标注模型",
+      "metric": "rmse",
+      "value": "1.04",
+      "unit": "kcal/mol",
+      "is_sota": true,
+      "paper_id": "paper:2611.06237"
+     }
+    ],
+    "sota_by_metric": {
+     "mae": {
+      "metric": "mae",
+      "model": "SO3LR-T-M",
+      "value": "0.78",
+      "numeric": 0.78,
+      "direction": "min",
+      "direction_source": "vocab",
+      "ties": [
+       "未标注模型"
+      ],
+      "paper_id": "paper:2611.06237",
+      "provenance": "leaderboard_entry"
+     },
+     "rmse": {
+      "metric": "rmse",
+      "model": "未标注模型",
+      "value": "1.04",
+      "numeric": 1.04,
+      "direction": "min",
+      "direction_source": "vocab",
+      "ties": [],
+      "paper_id": "paper:2611.06237",
+      "provenance": "leaderboard_entry"
+     }
+    },
+    "is_evaluation": true,
+    "label": "JSCH-2005"
+   },
+   "attribution": "analyst_synthesis",
+   "evidence_ids": [],
+   "source_version": "",
+   "missing_states": {}
+  }
+ ],
+ "assertions": [
+  {
+   "id": "assertion:0001",
+   "source": "paper:2411.06608",
+   "target": "coderepository:raulorteg_molminer",
+   "relation": "HAS_CODE",
+   "attribution": "analyst_synthesis",
+   "evidence_ids": [],
+   "properties": {}
+  },
+  {
+   "id": "assertion:0002",
+   "source": "paper:2411.06608",
+   "target": "algorithm:molminer",
+   "relation": "PROPOSES_METHOD",
+   "attribution": "analyst_synthesis",
+   "evidence_ids": [],
+   "properties": {}
+  },
+  {
+   "id": "assertion:0003",
+   "source": "paper:2411.06608",
+   "target": "algorithm:chemicalvae",
+   "relation": "RELATED_TO",
+   "attribution": "analyst_synthesis",
+   "evidence_ids": [],
+   "properties": {}
+  },
+  {
+   "id": "assertion:0004",
+   "source": "paper:2411.06608",
+   "target": "algorithm:schnet",
+   "relation": "RELATED_TO",
+   "attribution": "analyst_synthesis",
+   "evidence_ids": [],
+   "properties": {}
+  },
+  {
+   "id": "assertion:0005",
+   "source": "algorithm:molminer",
+   "target": "algorithmstep:2411.06608:0:symmetry_aware_attachment_standardization",
+   "relation": "HAS_MODULE",
+   "attribution": "analyst_synthesis",
+   "evidence_ids": [],
+   "properties": {}
+  },
+  {
+   "id": "assertion:0006",
+   "source": "algorithmstep:2411.06608:0:symmetry_aware_attachment_standardization",
+   "target": "codefunction:raulorteg_molminer:molminer_processor_py:get_all_possible_attachments",
+   "relation": "MODULE_IMPLEMENTED_BY",
+   "attribution": "analyst_synthesis",
+   "evidence_ids": [],
+   "properties": {}
+  },
+  {
+   "id": "assertion:0007",
+   "source": "algorithmstep:2411.06608:0:symmetry_aware_attachment_standardization",
+   "target": "codefunction:raulorteg_molminer:molminer_processor_py:compute_possible_remaps",
+   "relation": "MODULE_IMPLEMENTED_BY",
+   "attribution": "analyst_synthesis",
+   "evidence_ids": [],
+   "properties": {}
+  },
+  {
+   "id": "assertion:0008",
+   "source": "algorithmstep:2411.06608:0:symmetry_aware_attachment_standardization",
+   "target": "codefunction:raulorteg_molminer:molminer_processor_py:get_canonicalization_map",
+   "relation": "MODULE_IMPLEMENTED_BY",
+   "attribution": "analyst_synthesis",
+   "evidence_ids": [],
+   "properties": {}
+  },
+  {
+   "id": "assertion:0009",
+   "source": "algorithm:molminer",
+   "target": "algorithmstep:2411.06608:1:geometry_biased_attention",
+   "relation": "HAS_MODULE",
+   "attribution": "analyst_synthesis",
+   "evidence_ids": [],
+   "properties": {}
+  },
+  {
+   "id": "assertion:0010",
+   "source": "algorithmstep:2411.06608:1:geometry_biased_attention",
+   "target": "codefunction:raulorteg_molminer:molminer_models_py:forward",
+   "relation": "MODULE_IMPLEMENTED_BY",
+   "attribution": "analyst_synthesis",
+   "evidence_ids": [],
+   "properties": {}
+  },
+  {
+   "id": "assertion:0011",
+   "source": "algorithm:molminer",
+   "target": "algorithmstep:2411.06608:2:fragment_starter",
+   "relation": "HAS_MODULE",
+   "attribution": "analyst_synthesis",
+   "evidence_ids": [],
+   "properties": {}
+  },
+  {
+   "id": "assertion:0012",
+   "source": "algorithmstep:2411.06608:2:fragment_starter",
+   "target": "codefunction:raulorteg_molminer:molminer_models_py:forward",
+   "relation": "MODULE_IMPLEMENTED_BY",
+   "attribution": "analyst_synthesis",
+   "evidence_ids": [],
+   "properties": {}
+  },
+  {
+   "id": "assertion:0014",
+   "source": "algorithm:molminer",
+   "target": "algorithmstep:2411.06608:3:order_agnostic_autoregressive_rollout",
+   "relation": "HAS_MODULE",
+   "attribution": "analyst_synthesis",
+   "evidence_ids": [],
+   "properties": {}
+  },
+  {
+   "id": "assertion:0016",
+   "source": "paper:2411.06608",
+   "target": "benchmark:zinc",
+   "relation": "EVALUATED_ON",
+   "attribution": "analyst_synthesis",
+   "evidence_ids": [],
+   "properties": {}
+  },
+  {
+   "id": "assertion:0017",
+   "source": "paper:2611.06237",
+   "target": "coderepository:general_molecular_simulations_so3lr",
+   "relation": "HAS_CODE",
+   "attribution": "analyst_synthesis",
+   "evidence_ids": [],
+   "properties": {}
+  },
+  {
+   "id": "assertion:0018",
+   "source": "paper:2611.06237",
+   "target": "algorithm:so3lr_tauri",
+   "relation": "PROPOSES_METHOD",
+   "attribution": "analyst_synthesis",
+   "evidence_ids": [],
+   "properties": {}
+  },
+  {
+   "id": "assertion:0034",
+   "source": "paper:2611.06237",
+   "target": "benchmark:sapt10k",
+   "relation": "EVALUATED_ON",
+   "attribution": "analyst_synthesis",
+   "evidence_ids": [],
+   "properties": {}
+  },
+  {
+   "id": "assertion:0035",
+   "source": "paper:2611.06237",
+   "target": "benchmark:quid",
+   "relation": "EVALUATED_ON",
+   "attribution": "analyst_synthesis",
+   "evidence_ids": [],
+   "properties": {}
+  },
+  {
+   "id": "assertion:0036",
+   "source": "paper:2611.06237",
+   "target": "benchmark:jsch_2005",
+   "relation": "EVALUATED_ON",
+   "attribution": "analyst_synthesis",
+   "evidence_ids": [],
+   "properties": {}
+  },
+  {
+   "id": "assertion:0043",
+   "source": "paper:2405.03370",
+   "target": "coderepository:oxpig_antifold",
+   "relation": "HAS_CODE",
+   "attribution": "analyst_synthesis",
+   "evidence_ids": [],
+   "properties": {}
+  },
+  {
+   "id": "assertion:0063",
+   "source": "paper:2407.12296",
+   "target": "coderepository:jkwang93_amp_designer",
+   "relation": "HAS_CODE",
+   "attribution": "analyst_synthesis",
+   "evidence_ids": [],
+   "properties": {}
+  },
+  {
+   "id": "assertion:0195",
+   "source": "coderepository:raulorteg_molminer",
+   "target": "codefunction:raulorteg_molminer:molminer_processor_py:get_all_possible_attachments",
+   "relation": "HAS_FUNCTION",
+   "attribution": "analyst_synthesis",
+   "evidence_ids": [],
+   "properties": {}
+  },
+  {
+   "id": "assertion:0196",
+   "source": "coderepository:raulorteg_molminer",
+   "target": "codefunction:raulorteg_molminer:molminer_processor_py:compute_possible_remaps",
+   "relation": "HAS_FUNCTION",
+   "attribution": "analyst_synthesis",
+   "evidence_ids": [],
+   "properties": {}
+  },
+  {
+   "id": "assertion:0197",
+   "source": "coderepository:raulorteg_molminer",
+   "target": "codefunction:raulorteg_molminer:molminer_processor_py:get_canonicalization_map",
+   "relation": "HAS_FUNCTION",
+   "attribution": "analyst_synthesis",
+   "evidence_ids": [],
+   "properties": {}
+  },
+  {
+   "id": "assertion:0198",
+   "source": "coderepository:raulorteg_molminer",
+   "target": "codefunction:raulorteg_molminer:molminer_models_py:forward",
+   "relation": "HAS_FUNCTION",
+   "attribution": "analyst_synthesis",
+   "evidence_ids": [],
+   "properties": {}
+  },
+  {
+   "id": "assertion:0286",
+   "source": "algorithm:molminer",
+   "target": "benchmark:zinc",
+   "relation": "EVALUATED_ON",
+   "attribution": "analyst_synthesis",
+   "evidence_ids": [],
+   "properties": {}
+  },
+  {
+   "id": "assertion:0291",
+   "source": "algorithm:so3lr_tauri",
+   "target": "benchmark:sapt10k",
+   "relation": "EVALUATED_ON",
+   "attribution": "analyst_synthesis",
+   "evidence_ids": [],
+   "properties": {}
+  },
+  {
+   "id": "assertion:0292",
+   "source": "algorithm:so3lr_tauri",
+   "target": "benchmark:quid",
+   "relation": "EVALUATED_ON",
+   "attribution": "analyst_synthesis",
+   "evidence_ids": [],
+   "properties": {}
+  },
+  {
+   "id": "assertion:0293",
+   "source": "algorithm:so3lr_tauri",
+   "target": "benchmark:jsch_2005",
+   "relation": "EVALUATED_ON",
+   "attribution": "analyst_synthesis",
+   "evidence_ids": [],
+   "properties": {}
+  }
+ ]
+}

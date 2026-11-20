@@ -1,0 +1,33 @@
+{
+  "verdict": "PASS",
+  "critic_state": "GOOD",
+  "rows": [
+    {
+      "stage": "subset",
+      "baseline": 2.4515633150960805,
+      "candidate": 0.0,
+      "direction": "min",
+      "relative_gain_pct": 1.0,
+      "critic_state": "GOOD",
+      "n_rows": 3,
+      "steps_executed": 11,
+      "admitted": true
+    },
+    {
+      "stage": "full",
+      "baseline": 2.18330089354227,
+      "candidate": 0.0,
+      "direction": "min",
+      "relative_gain_pct": 1.0,
+      "critic_state": "GOOD",
+      "n_rows": 3,
+      "steps_executed": 11,
+      "admitted": true
+    }
+  ],
+  "strict_full_improvement": true,
+  "ties_fail": false,
+  "engineer_rounds": 0,
+  "problems": [],
+  "warnings": []
+}

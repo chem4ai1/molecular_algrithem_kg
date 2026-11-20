@@ -1,0 +1,12 @@
+{
+  "verdict": "PASS",
+  "ok": true,
+  "artifacts": [
+    "stages/4broad/"
+  ],
+  "notes": "ok",
+  "reason_code": "ok",
+  "state": "PASS",
+  "stage": "4broad",
+  "evidence_ids": []
+}

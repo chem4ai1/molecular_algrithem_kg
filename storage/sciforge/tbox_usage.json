@@ -1,0 +1,3250 @@
+{
+ "classes": [
+  {
+   "class": "Algorithm",
+   "n_nodes": 34,
+   "n_declared": 7,
+   "attrs": {
+    "name": {
+     "level": "must_have",
+     "nonempty": 34,
+     "coverage": 1.0
+    },
+    "kind": {
+     "level": "should_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "granularity": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "architecture": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "algo_codes": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "paper_ids": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "repository_id": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    }
+   },
+   "undeclared": [
+    "label",
+    "schema_family",
+    "task_type",
+    "task_type_label",
+    "problems_solved",
+    "mechanism",
+    "mechanism_steps",
+    "why_it_works",
+    "applicable_to",
+    "limitations",
+    "source_paper",
+    "source_ref_no"
+   ],
+   "undeclared_counts": {
+    "label": 34,
+    "schema_family": 34,
+    "task_type": 34,
+    "task_type_label": 34,
+    "problems_solved": 34,
+    "mechanism": 34,
+    "mechanism_steps": 34,
+    "why_it_works": 34,
+    "applicable_to": 34,
+    "limitations": 34,
+    "source_paper": 34,
+    "source_ref_no": 34
+   }
+  },
+  {
+   "class": "AlgorithmComposition",
+   "n_nodes": 0,
+   "n_declared": 5,
+   "attrs": {
+    "name": {
+     "level": "must_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "paper_id": {
+     "level": "should_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "n_steps": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "algo_codes": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "step_ids": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    }
+   },
+   "undeclared": [],
+   "undeclared_counts": {}
+  },
+  {
+   "class": "AlgorithmFamily",
+   "n_nodes": 0,
+   "n_declared": 3,
+   "attrs": {
+    "code": {
+     "level": "must_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "label": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "n_papers": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    }
+   },
+   "undeclared": [],
+   "undeclared_counts": {}
+  },
+  {
+   "class": "AlgorithmStep",
+   "n_nodes": 31,
+   "n_declared": 17,
+   "attrs": {
+    "module_name": {
+     "level": "must_have",
+     "nonempty": 31,
+     "coverage": 1.0
+    },
+    "mechanism": {
+     "level": "should_have",
+     "nonempty": 31,
+     "coverage": 1.0
+    },
+    "causal_role": {
+     "level": "should_have",
+     "nonempty": 31,
+     "coverage": 1.0
+    },
+    "inputs": {
+     "level": "should_have",
+     "nonempty": 31,
+     "coverage": 1.0
+    },
+    "outputs": {
+     "level": "should_have",
+     "nonempty": 31,
+     "coverage": 1.0
+    },
+    "parameters": {
+     "level": "optional",
+     "nonempty": 4,
+     "coverage": 0.129
+    },
+    "equation_ref": {
+     "level": "optional",
+     "nonempty": 19,
+     "coverage": 0.613
+    },
+    "order": {
+     "level": "should_have",
+     "nonempty": 31,
+     "coverage": 1.0
+    },
+    "role": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "phase": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "algorithm_id": {
+     "level": "must_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "input_form_id": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "output_form_id": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "is_baseline": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "code_symbols": {
+     "level": "optional",
+     "nonempty": 26,
+     "coverage": 0.839
+    },
+    "grounding_status": {
+     "level": "should_have",
+     "nonempty": 31,
+     "coverage": 1.0
+    },
+    "composition_id": {
+     "level": "should_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    }
+   },
+   "undeclared": [
+    "input_schema",
+    "output_schema",
+    "paper_id",
+    "label",
+    "filled_by"
+   ],
+   "undeclared_counts": {
+    "input_schema": 31,
+    "output_schema": 31,
+    "paper_id": 31,
+    "label": 31,
+    "filled_by": 4
+   }
+  },
+  {
+   "class": "Benchmark",
+   "n_nodes": 85,
+   "n_declared": 28,
+   "attrs": {
+    "name": {
+     "level": "must_have",
+     "nonempty": 85,
+     "coverage": 1.0
+    },
+    "aliases": {
+     "level": "optional",
+     "nonempty": 20,
+     "coverage": 0.235
+    },
+    "version": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "data_source": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "modality": {
+     "level": "optional",
+     "nonempty": 62,
+     "coverage": 0.729
+    },
+    "task_type": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "n_samples": {
+     "level": "optional",
+     "nonempty": 21,
+     "coverage": 0.247
+    },
+    "n_targets": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "split_rule": {
+     "level": "should_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "split_ratio": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "leakage_risk": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "metric_ids": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "top_k": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "sample_budget": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "threshold": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "stage": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "research_object": {
+     "level": "optional",
+     "nonempty": 62,
+     "coverage": 0.729
+    },
+    "input_schema": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "output_schema": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "problem_ids": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "availability": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "license": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "url": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "source_evidence_ids": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "comparability_profile": {
+     "level": "must_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "tested_by_papers": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "tested_by_codes": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "n_observations": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    }
+   },
+   "undeclared": [
+    "label",
+    "schema_family",
+    "schema_version",
+    "input_form",
+    "output_form",
+    "metrics",
+    "model_results",
+    "sota_by_metric",
+    "scale",
+    "matrix",
+    "source_locator",
+    "run_id"
+   ],
+   "undeclared_counts": {
+    "label": 85,
+    "schema_family": 85,
+    "schema_version": 85,
+    "input_form": 85,
+    "output_form": 85,
+    "metrics": 85,
+    "model_results": 85,
+    "sota_by_metric": 85,
+    "scale": 85,
+    "matrix": 85,
+    "source_locator": 85,
+    "run_id": 85
+   }
+  },
+  {
+   "class": "CapabilityClaim",
+   "n_nodes": 0,
+   "n_declared": 7,
+   "attrs": {
+    "statement": {
+     "level": "must_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "claim_scope": {
+     "level": "should_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "attribution": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "evidence_level": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "method_id": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "paper_id": {
+     "level": "should_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "problem_ids": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    }
+   },
+   "undeclared": [],
+   "undeclared_counts": {}
+  },
+  {
+   "class": "CausalGraph",
+   "n_nodes": 0,
+   "n_declared": 6,
+   "attrs": {
+    "algorithm_id": {
+     "level": "must_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "phase": {
+     "level": "should_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "abstraction": {
+     "level": "should_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "source": {
+     "level": "should_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "n_nodes": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "mermaid": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    }
+   },
+   "undeclared": [],
+   "undeclared_counts": {}
+  },
+  {
+   "class": "CausalNode",
+   "n_nodes": 0,
+   "n_declared": 4,
+   "attrs": {
+    "causal_type": {
+     "level": "must_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "label": {
+     "level": "must_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "graph_id": {
+     "level": "should_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "implementation_hint": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    }
+   },
+   "undeclared": [],
+   "undeclared_counts": {}
+  },
+  {
+   "class": "ClaimAnchor",
+   "n_nodes": 0,
+   "n_declared": 11,
+   "attrs": {
+    "run_id": {
+     "level": "must_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "provenance": {
+     "level": "must_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "phase": {
+     "level": "should_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "created_at": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "claim_id": {
+     "level": "must_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "node_id": {
+     "level": "must_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "tex_file": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "line": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "resolved": {
+     "level": "must_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "evidence_refs": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "drift": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    }
+   },
+   "undeclared": [],
+   "undeclared_counts": {}
+  },
+  {
+   "class": "CodeFunction",
+   "n_nodes": 49,
+   "n_declared": 8,
+   "attrs": {
+    "name": {
+     "level": "must_have",
+     "nonempty": 45,
+     "coverage": 0.918
+    },
+    "signature": {
+     "level": "should_have",
+     "nonempty": 45,
+     "coverage": 0.918
+    },
+    "owner_class": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "causal_role": {
+     "level": "should_have",
+     "nonempty": 45,
+     "coverage": 0.918
+    },
+    "docstring": {
+     "level": "optional",
+     "nonempty": 7,
+     "coverage": 0.143
+    },
+    "lineno": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "module_path": {
+     "level": "should_have",
+     "nonempty": 45,
+     "coverage": 0.918
+    },
+    "matched_step_ids": {
+     "level": "optional",
+     "nonempty": 7,
+     "coverage": 0.143
+    }
+   },
+   "undeclared": [
+    "label",
+    "filled_by",
+    "source_locator",
+    "provenance",
+    "run_id",
+    "inputs_sha"
+   ],
+   "undeclared_counts": {
+    "label": 49,
+    "filled_by": 7,
+    "source_locator": 4,
+    "provenance": 4,
+    "run_id": 4,
+    "inputs_sha": 4
+   }
+  },
+  {
+   "class": "CodeGenerationTask",
+   "n_nodes": 0,
+   "n_declared": 11,
+   "attrs": {
+    "run_id": {
+     "level": "must_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "provenance": {
+     "level": "must_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "phase": {
+     "level": "should_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "created_at": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "prompt": {
+     "level": "must_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "model": {
+     "level": "should_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "target_files": {
+     "level": "must_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "generated_files": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "status": {
+     "level": "should_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "registry_hash": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "code_sha": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    }
+   },
+   "undeclared": [],
+   "undeclared_counts": {}
+  },
+  {
+   "class": "CodeModule",
+   "n_nodes": 0,
+   "n_declared": 5,
+   "attrs": {
+    "path": {
+     "level": "must_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "repository_id": {
+     "level": "should_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "n_functions": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "language": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "top_symbols": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    }
+   },
+   "undeclared": [],
+   "undeclared_counts": {}
+  },
+  {
+   "class": "CodeRepository",
+   "n_nodes": 10,
+   "n_declared": 15,
+   "attrs": {
+    "repo_name": {
+     "level": "must_have",
+     "nonempty": 10,
+     "coverage": 1.0
+    },
+    "availability": {
+     "level": "should_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "license": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "repo_url": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "local_path": {
+     "level": "optional",
+     "nonempty": 10,
+     "coverage": 1.0
+    },
+    "commit": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "sha256": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "language": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "loc": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "capability_version_id": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "module_ids": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "has_requirements": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "entry_point": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "runnable": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "paper_ids": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    }
+   },
+   "undeclared": [
+    "is_original_repo",
+    "repo_provenance",
+    "label"
+   ],
+   "undeclared_counts": {
+    "is_original_repo": 10,
+    "repo_provenance": 10,
+    "label": 10
+   }
+  },
+  {
+   "class": "CompileReport",
+   "n_nodes": 0,
+   "n_declared": 9,
+   "attrs": {
+    "run_id": {
+     "level": "must_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "provenance": {
+     "level": "must_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "phase": {
+     "level": "should_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "created_at": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "zero_warnings": {
+     "level": "must_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "embedded_figures": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "artifact_manifest": {
+     "level": "should_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "leakage_scrub": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "tier": {
+     "level": "should_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    }
+   },
+   "undeclared": [],
+   "undeclared_counts": {}
+  },
+  {
+   "class": "DataContract",
+   "n_nodes": 3,
+   "n_declared": 0,
+   "attrs": {},
+   "undeclared": [
+    "source_locator",
+    "provenance",
+    "run_id",
+    "inputs_sha",
+    "input_form",
+    "output_form",
+    "metrics",
+    "label"
+   ],
+   "undeclared_counts": {
+    "source_locator": 3,
+    "provenance": 3,
+    "run_id": 3,
+    "inputs_sha": 3,
+    "input_form": 3,
+    "output_form": 3,
+    "metrics": 3,
+    "label": 3
+   }
+  },
+  {
+   "class": "DataForm",
+   "n_nodes": 0,
+   "n_declared": 5,
+   "attrs": {
+    "form": {
+     "level": "must_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "schema": {
+     "level": "should_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "shape": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "unit": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "source_section": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    }
+   },
+   "undeclared": [],
+   "undeclared_counts": {}
+  },
+  {
+   "class": "Domain",
+   "n_nodes": 0,
+   "n_declared": 3,
+   "attrs": {
+    "code": {
+     "level": "must_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "label": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "n_papers": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    }
+   },
+   "undeclared": [],
+   "undeclared_counts": {}
+  },
+  {
+   "class": "EvaluationRun",
+   "n_nodes": 0,
+   "n_declared": 3,
+   "attrs": {
+    "evaluation_kind": {
+     "level": "must_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "benchmark_id": {
+     "level": "should_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "paper_id": {
+     "level": "should_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    }
+   },
+   "undeclared": [],
+   "undeclared_counts": {}
+  },
+  {
+   "class": "EvaluationTool",
+   "n_nodes": 0,
+   "n_declared": 6,
+   "attrs": {
+    "path": {
+     "level": "must_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "entry_point": {
+     "level": "should_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "metric_ids": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "benchmark_ids": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "repository_id": {
+     "level": "should_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "produces": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    }
+   },
+   "undeclared": [],
+   "undeclared_counts": {}
+  },
+  {
+   "class": "Evidence",
+   "n_nodes": 6,
+   "n_declared": 4,
+   "attrs": {
+    "quote": {
+     "level": "must_have",
+     "nonempty": 6,
+     "coverage": 1.0
+    },
+    "section_id": {
+     "level": "must_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "attribution": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "paper_id": {
+     "level": "should_have",
+     "nonempty": 6,
+     "coverage": 1.0
+    }
+   },
+   "undeclared": [
+    "section",
+    "extraction_method",
+    "label"
+   ],
+   "undeclared_counts": {
+    "section": 6,
+    "extraction_method": 6,
+    "label": 6
+   }
+  },
+  {
+   "class": "ExperimentNode",
+   "n_nodes": 0,
+   "n_declared": 13,
+   "attrs": {
+    "run_id": {
+     "level": "must_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "provenance": {
+     "level": "must_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "phase": {
+     "level": "should_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "created_at": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "kind": {
+     "level": "must_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "code_sha": {
+     "level": "must_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "inputs_sha": {
+     "level": "must_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "outputs_sha": {
+     "level": "must_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "reexec_cmd": {
+     "level": "must_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "seeds": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "status": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "claim_ids": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "parent": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    }
+   },
+   "undeclared": [],
+   "undeclared_counts": {}
+  },
+  {
+   "class": "Figure",
+   "n_nodes": 0,
+   "n_declared": 11,
+   "attrs": {
+    "run_id": {
+     "level": "must_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "provenance": {
+     "level": "must_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "phase": {
+     "level": "should_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "created_at": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "claim": {
+     "level": "must_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "archetype": {
+     "level": "should_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "spec_path": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "render_path": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "audit_verdict": {
+     "level": "should_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "observation_ids": {
+     "level": "must_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "caption": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    }
+   },
+   "undeclared": [],
+   "undeclared_counts": {}
+  },
+  {
+   "class": "Formula",
+   "n_nodes": 0,
+   "n_declared": 0,
+   "attrs": {},
+   "undeclared": [],
+   "undeclared_counts": {}
+  },
+  {
+   "class": "GroundingAlignment",
+   "n_nodes": 0,
+   "n_declared": 6,
+   "attrs": {
+    "code_node_id": {
+     "level": "must_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "paper_node_id": {
+     "level": "should_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "agreement": {
+     "level": "should_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "paper_too_abstract": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "gap_type": {
+     "level": "should_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "algorithm_id": {
+     "level": "should_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    }
+   },
+   "undeclared": [],
+   "undeclared_counts": {}
+  },
+  {
+   "class": "Hypothesis",
+   "n_nodes": 0,
+   "n_declared": 0,
+   "attrs": {},
+   "undeclared": [],
+   "undeclared_counts": {}
+  },
+  {
+   "class": "LeaderboardEntry",
+   "n_nodes": 73,
+   "n_declared": 9,
+   "attrs": {
+    "benchmark_id": {
+     "level": "must_have",
+     "nonempty": 73,
+     "coverage": 1.0
+    },
+    "metric_id": {
+     "level": "must_have",
+     "nonempty": 73,
+     "coverage": 1.0
+    },
+    "value": {
+     "level": "must_have",
+     "nonempty": 73,
+     "coverage": 1.0
+    },
+    "group_key": {
+     "level": "must_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "rank": {
+     "level": "optional",
+     "nonempty": 73,
+     "coverage": 1.0
+    },
+    "is_sota": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "sota_claimable": {
+     "level": "optional",
+     "nonempty": 73,
+     "coverage": 1.0
+    },
+    "paper_id": {
+     "level": "optional",
+     "nonempty": 73,
+     "coverage": 1.0
+    },
+    "code_id": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    }
+   },
+   "undeclared": [
+    "unit",
+    "subject",
+    "label"
+   ],
+   "undeclared_counts": {
+    "unit": 73,
+    "subject": 73,
+    "label": 73
+   }
+  },
+  {
+   "class": "Limitation",
+   "n_nodes": 2,
+   "n_declared": 3,
+   "attrs": {
+    "statement": {
+     "level": "must_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "kind": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "paper_id": {
+     "level": "should_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    }
+   },
+   "undeclared": [
+    "source_locator",
+    "provenance",
+    "run_id",
+    "inputs_sha",
+    "delta",
+    "label"
+   ],
+   "undeclared_counts": {
+    "source_locator": 2,
+    "provenance": 2,
+    "run_id": 2,
+    "inputs_sha": 2,
+    "delta": 2,
+    "label": 2
+   }
+  },
+  {
+   "class": "ManuscriptSection",
+   "n_nodes": 0,
+   "n_declared": 10,
+   "attrs": {
+    "run_id": {
+     "level": "must_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "provenance": {
+     "level": "must_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "phase": {
+     "level": "should_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "created_at": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "section_role": {
+     "level": "must_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "text": {
+     "level": "must_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "claim_refs": {
+     "level": "should_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "figure_refs": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "draft_version": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "leakage_scrub": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    }
+   },
+   "undeclared": [],
+   "undeclared_counts": {}
+  },
+  {
+   "class": "MethodApplication",
+   "n_nodes": 0,
+   "n_declared": 7,
+   "attrs": {
+    "algorithm_id": {
+     "level": "must_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "phase": {
+     "level": "should_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "input_form_id": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "output_form_id": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "metric_ids": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "benchmark_ids": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "paper_id": {
+     "level": "should_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    }
+   },
+   "undeclared": [],
+   "undeclared_counts": {}
+  },
+  {
+   "class": "MethodLock",
+   "n_nodes": 0,
+   "n_declared": 10,
+   "attrs": {
+    "run_id": {
+     "level": "must_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "provenance": {
+     "level": "must_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "phase": {
+     "level": "should_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "created_at": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "registry_hash": {
+     "level": "must_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "scope": {
+     "level": "must_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "locked_modules": {
+     "level": "should_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "approved_by": {
+     "level": "should_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "locked_at": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "evaluation_protocol": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    }
+   },
+   "undeclared": [],
+   "undeclared_counts": {}
+  },
+  {
+   "class": "MetricDefinition",
+   "n_nodes": 12,
+   "n_declared": 6,
+   "attrs": {
+    "name": {
+     "level": "must_have",
+     "nonempty": 12,
+     "coverage": 1.0
+    },
+    "direction": {
+     "level": "should_have",
+     "nonempty": 12,
+     "coverage": 1.0
+    },
+    "unit": {
+     "level": "optional",
+     "nonempty": 8,
+     "coverage": 0.667
+    },
+    "value_type": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "aggregation": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "modality": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    }
+   },
+   "undeclared": [
+    "label"
+   ],
+   "undeclared_counts": {
+    "label": 12
+   }
+  },
+  {
+   "class": "NarrativeConstraint",
+   "n_nodes": 0,
+   "n_declared": 9,
+   "attrs": {
+    "run_id": {
+     "level": "must_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "provenance": {
+     "level": "must_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "phase": {
+     "level": "should_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "created_at": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "fidelity": {
+     "level": "must_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "polarity": {
+     "level": "must_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "allowed_wording": {
+     "level": "should_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "claim_text": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "protagonist_test": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    }
+   },
+   "undeclared": [],
+   "undeclared_counts": {}
+  },
+  {
+   "class": "Observation",
+   "n_nodes": 8,
+   "n_declared": 17,
+   "attrs": {
+    "value": {
+     "level": "must_have",
+     "nonempty": 8,
+     "coverage": 1.0
+    },
+    "metric_id": {
+     "level": "must_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "unit": {
+     "level": "should_have",
+     "nonempty": 6,
+     "coverage": 0.75
+    },
+    "subject": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "modality": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "condition": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "aggregation": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "numerator": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "denominator": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "stage": {
+     "level": "should_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "threshold": {
+     "level": "should_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "top_k": {
+     "level": "should_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "sample_budget": {
+     "level": "should_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "split_rule": {
+     "level": "should_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "missing_state": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "evidence_ids": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "comparability_key": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    }
+   },
+   "undeclared": [
+    "source_locator",
+    "provenance",
+    "run_id",
+    "inputs_sha",
+    "metric",
+    "label"
+   ],
+   "undeclared_counts": {
+    "source_locator": 8,
+    "provenance": 8,
+    "run_id": 8,
+    "inputs_sha": 8,
+    "metric": 8,
+    "label": 8
+   }
+  },
+  {
+   "class": "Paper",
+   "n_nodes": 36,
+   "n_declared": 8,
+   "attrs": {
+    "title": {
+     "level": "must_have",
+     "nonempty": 36,
+     "coverage": 1.0
+    },
+    "arxiv_id": {
+     "level": "optional",
+     "nonempty": 36,
+     "coverage": 1.0
+    },
+    "doi": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "year": {
+     "level": "optional",
+     "nonempty": 2,
+     "coverage": 0.056
+    },
+    "venue": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "domain_codes": {
+     "level": "optional",
+     "nonempty": 36,
+     "coverage": 1.0
+    },
+    "algo_codes": {
+     "level": "optional",
+     "nonempty": 36,
+     "coverage": 1.0
+    },
+    "versions": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    }
+   },
+   "undeclared": [
+    "label",
+    "research_problem",
+    "problem_type",
+    "domain",
+    "domain_code",
+    "algorithm_family",
+    "algorithm_family_id",
+    "why_hard",
+    "evidence",
+    "relation_hints",
+    "schema_version",
+    "paper_type"
+   ],
+   "undeclared_counts": {
+    "label": 36,
+    "research_problem": 36,
+    "problem_type": 36,
+    "domain": 36,
+    "domain_code": 36,
+    "algorithm_family": 36,
+    "algorithm_family_id": 36,
+    "why_hard": 36,
+    "evidence": 36,
+    "relation_hints": 36,
+    "schema_version": 36,
+    "paper_type": 36
+   }
+  },
+  {
+   "class": "ProblemCategory",
+   "n_nodes": 5,
+   "n_declared": 4,
+   "attrs": {
+    "code": {
+     "level": "must_have",
+     "nonempty": 5,
+     "coverage": 1.0
+    },
+    "label": {
+     "level": "optional",
+     "nonempty": 5,
+     "coverage": 1.0
+    },
+    "n_papers": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "n_benchmarks": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    }
+   },
+   "undeclared": [],
+   "undeclared_counts": {}
+  },
+  {
+   "class": "Proposal",
+   "n_nodes": 0,
+   "n_declared": 11,
+   "attrs": {
+    "run_id": {
+     "level": "must_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "provenance": {
+     "level": "must_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "phase": {
+     "level": "should_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "created_at": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "gap_id": {
+     "level": "must_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "hypothesis": {
+     "level": "must_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "novelty": {
+     "level": "should_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "observed_pairs": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "rationale": {
+     "level": "should_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "selected_by": {
+     "level": "should_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "status": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    }
+   },
+   "undeclared": [],
+   "undeclared_counts": {}
+  },
+  {
+   "class": "ReproductionResult",
+   "n_nodes": 0,
+   "n_declared": 12,
+   "attrs": {
+    "run_id": {
+     "level": "must_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "provenance": {
+     "level": "must_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "phase": {
+     "level": "should_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "created_at": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "kind": {
+     "level": "must_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "baseline": {
+     "level": "must_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "candidate": {
+     "level": "must_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "direction": {
+     "level": "should_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "sanity_band": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "analytic_truth": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "ladder_state": {
+     "level": "should_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "relative_gain_pct": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    }
+   },
+   "undeclared": [],
+   "undeclared_counts": {}
+  },
+  {
+   "class": "ResearchObject",
+   "n_nodes": 0,
+   "n_declared": 5,
+   "attrs": {
+    "label": {
+     "level": "must_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "kind": {
+     "level": "should_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "organism": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "state_type": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "paper_ids": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    }
+   },
+   "undeclared": [],
+   "undeclared_counts": {}
+  },
+  {
+   "class": "ResearchQuestion",
+   "n_nodes": 17,
+   "n_declared": 5,
+   "attrs": {
+    "question": {
+     "level": "must_have",
+     "nonempty": 17,
+     "coverage": 1.0
+    },
+    "granularity": {
+     "level": "optional",
+     "nonempty": 17,
+     "coverage": 1.0
+    },
+    "parent": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "status": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "paper_ids": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    }
+   },
+   "undeclared": [
+    "paper_id",
+    "label"
+   ],
+   "undeclared_counts": {
+    "paper_id": 17,
+    "label": 17
+   }
+  },
+  {
+   "class": "ReviewVerdict",
+   "n_nodes": 0,
+   "n_declared": 10,
+   "attrs": {
+    "run_id": {
+     "level": "must_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "provenance": {
+     "level": "must_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "phase": {
+     "level": "should_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "created_at": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "role": {
+     "level": "must_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "rubric_scores": {
+     "level": "must_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "overall": {
+     "level": "must_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "kill_argument": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "reread_from_files": {
+     "level": "should_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "still_unresolved": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    }
+   },
+   "undeclared": [],
+   "undeclared_counts": {}
+  },
+  {
+   "class": "RunPhase",
+   "n_nodes": 0,
+   "n_declared": 11,
+   "attrs": {
+    "run_id": {
+     "level": "must_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "provenance": {
+     "level": "must_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "phase": {
+     "level": "should_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "created_at": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "phase_id": {
+     "level": "must_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "state": {
+     "level": "must_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "gate_kind": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "verdict": {
+     "level": "should_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "artifacts": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "budget_left": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "loopback_from": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    }
+   },
+   "undeclared": [],
+   "undeclared_counts": {}
+  },
+  {
+   "class": "Section",
+   "n_nodes": 0,
+   "n_declared": 5,
+   "attrs": {
+    "role": {
+     "level": "must_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "title": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "char_span": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "text": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "paper_id": {
+     "level": "should_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    }
+   },
+   "undeclared": [],
+   "undeclared_counts": {}
+  },
+  {
+   "class": "SourcePaper",
+   "n_nodes": 5,
+   "n_declared": 0,
+   "attrs": {},
+   "undeclared": [
+    "source_locator",
+    "provenance",
+    "run_id",
+    "inputs_sha",
+    "label",
+    "delta"
+   ],
+   "undeclared_counts": {
+    "source_locator": 5,
+    "provenance": 5,
+    "run_id": 5,
+    "inputs_sha": 5,
+    "label": 5,
+    "delta": 1
+   }
+  },
+  {
+   "class": "StaticCheck",
+   "n_nodes": 0,
+   "n_declared": 9,
+   "attrs": {
+    "run_id": {
+     "level": "must_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "provenance": {
+     "level": "must_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "phase": {
+     "level": "should_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "created_at": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "check_type": {
+     "level": "must_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "verdict": {
+     "level": "must_have",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "findings": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "script": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    },
+    "exit_code": {
+     "level": "optional",
+     "nonempty": 0,
+     "coverage": 0.0
+    }
+   },
+   "undeclared": [],
+   "undeclared_counts": {}
+  },
+  {
+   "class": "Tool",
+   "n_nodes": 0,
+   "n_declared": 0,
+   "attrs": {},
+   "undeclared": [],
+   "undeclared_counts": {}
+  }
+ ],
+ "relations": [
+  {
+   "rel": "ABOUT_METHOD",
+   "domain": "CapabilityClaim",
+   "range": "Algorithm",
+   "desc": "主张针对的方法",
+   "source": "V2",
+   "n": 0,
+   "pairs": []
+  },
+  {
+   "rel": "ABOUT_SUBJECT",
+   "domain": "Observation",
+   "range": "ResearchObject",
+   "desc": "观测的研究对象",
+   "source": "V2",
+   "n": 0,
+   "pairs": []
+  },
+  {
+   "rel": "ADDRESSED_BY",
+   "domain": "ResearchQuestion",
+   "range": "Algorithm",
+   "desc": "问题由哪个算法解决",
+   "source": "V3",
+   "n": 0,
+   "pairs": []
+  },
+  {
+   "rel": "ADDRESSES",
+   "domain": "Paper",
+   "range": "ResearchQuestion",
+   "desc": "论文要回答的问题",
+   "source": "V2",
+   "n": 17,
+   "pairs": [
+    "Paper->ResearchQuestion x17"
+   ]
+  },
+  {
+   "rel": "ALIGNED_BY",
+   "domain": "GroundingAlignment",
+   "range": "CausalNode",
+   "desc": "对齐涉及的节点",
+   "source": "layers",
+   "n": 0,
+   "pairs": []
+  },
+  {
+   "rel": "ANCHORED_TO",
+   "domain": "CapabilityClaim",
+   "range": "ClaimAnchor",
+   "desc": "主张的字节级锚点",
+   "source": "generation",
+   "n": 0,
+   "pairs": []
+  },
+  {
+   "rel": "ANCHORS_GAP",
+   "domain": "Proposal",
+   "range": "ResearchQuestion",
+   "desc": "提案锚定图谱缺口",
+   "source": "generation",
+   "n": 0,
+   "pairs": []
+  },
+  {
+   "rel": "APPLIED_ON",
+   "domain": "MethodApplication",
+   "range": "Benchmark",
+   "desc": "在哪类基准上运行",
+   "source": "layers",
+   "n": 0,
+   "pairs": []
+  },
+  {
+   "rel": "APPLIES_TO",
+   "domain": "MethodApplication",
+   "range": "ResearchQuestion",
+   "desc": "算法这次具体用在哪",
+   "source": "V3",
+   "n": 0,
+   "pairs": []
+  },
+  {
+   "rel": "ASSERTS",
+   "domain": "ManuscriptSection",
+   "range": "CapabilityClaim",
+   "desc": "章节断言了哪些主张",
+   "source": "generation",
+   "n": 0,
+   "pairs": []
+  },
+  {
+   "rel": "BELONGS_TO",
+   "domain": "SourcePaper",
+   "range": "SourcePaper",
+   "desc": "方法家族归类链",
+   "source": "V3",
+   "n": 0,
+   "pairs": []
+  },
+  {
+   "rel": "BENCHMARK_FOR",
+   "domain": "Benchmark",
+   "range": "ResearchQuestion",
+   "desc": "基准对应的问题",
+   "source": "V2",
+   "n": 0,
+   "pairs": []
+  },
+  {
+   "rel": "BINDS_BENCHMARK",
+   "domain": "ExperimentNode",
+   "range": "Benchmark",
+   "desc": "跑在哪个基准契约上",
+   "source": "generation",
+   "n": 0,
+   "pairs": []
+  },
+  {
+   "rel": "BINDS_EVAL_TOOL",
+   "domain": "Benchmark",
+   "range": "EvaluationTool",
+   "desc": "基准用哪个评测脚本",
+   "source": "V3",
+   "n": 0,
+   "pairs": []
+  },
+  {
+   "rel": "BINDS_TOOL",
+   "domain": "CodeRepository",
+   "range": "EvaluationTool",
+   "desc": "仓库里的评测脚本",
+   "source": "layers",
+   "n": 0,
+   "pairs": []
+  },
+  {
+   "rel": "BROADER",
+   "domain": "ResearchQuestion",
+   "range": "ProblemCategory",
+   "desc": "具体问题归入 P01–P11",
+   "source": "V2",
+   "n": 17,
+   "pairs": [
+    "ResearchQuestion->ProblemCategory x17"
+   ]
+  },
+  {
+   "rel": "CALLS",
+   "domain": "CodeFunction",
+   "range": "CodeFunction",
+   "desc": "调用关系",
+   "source": "layers",
+   "n": 0,
+   "pairs": []
+  },
+  {
+   "rel": "CAUSES",
+   "domain": "CausalNode",
+   "range": "CausalNode",
+   "desc": "因果依赖（非共现）",
+   "source": "layers",
+   "n": 0,
+   "pairs": []
+  },
+  {
+   "rel": "CHECKED_BY",
+   "domain": "CodeGenerationTask",
+   "range": "StaticCheck",
+   "desc": "派发前静态检查结果",
+   "source": "generation",
+   "n": 0,
+   "pairs": []
+  },
+  {
+   "rel": "COMPARES_WITH",
+   "domain": "SourcePaper",
+   "range": "SourcePaper",
+   "desc": "对比链",
+   "source": "V3",
+   "n": 2,
+   "pairs": [
+    "SourcePaper->SourcePaper x2"
+   ]
+  },
+  {
+   "rel": "CONSTRAINED_BY",
+   "domain": "CapabilityClaim",
+   "range": "NarrativeConstraint",
+   "desc": "措辞受保真度约束",
+   "source": "generation",
+   "n": 0,
+   "pairs": []
+  },
+  {
+   "rel": "CONSUMES",
+   "domain": "MethodApplication|AlgorithmStep",
+   "range": "DataForm",
+   "desc": "输入数据形式",
+   "source": "layers",
+   "n": 0,
+   "pairs": []
+  },
+  {
+   "rel": "CONTAINS_MODULE",
+   "domain": "CodeRepository",
+   "range": "CodeModule",
+   "desc": "仓库包含模块/文件",
+   "source": "layers",
+   "n": 0,
+   "pairs": []
+  },
+  {
+   "rel": "CORRECTED_BY",
+   "domain": "Paper",
+   "range": "Paper",
+   "desc": "更正通知 / 版本关系",
+   "source": "layers",
+   "n": 0,
+   "pairs": []
+  },
+  {
+   "rel": "CORROBORATES",
+   "domain": "ReproductionResult",
+   "range": "Observation",
+   "desc": "复现结果对应图上的观测",
+   "source": "generation",
+   "n": 0,
+   "pairs": []
+  },
+  {
+   "rel": "DECLARES_HYPOTHESIS",
+   "domain": "Paper",
+   "range": "Hypothesis",
+   "desc": "论文声明假设/观点",
+   "source": "V3",
+   "n": 0,
+   "pairs": []
+  },
+  {
+   "rel": "DEFINES_FUNCTION",
+   "domain": "CodeModule",
+   "range": "CodeFunction",
+   "desc": "模块定义函数",
+   "source": "layers",
+   "n": 0,
+   "pairs": []
+  },
+  {
+   "rel": "DELTA",
+   "domain": "SourcePaper",
+   "range": "Observation",
+   "desc": "数值提升量（数值挂边属性）",
+   "source": "V3",
+   "n": 0,
+   "pairs": []
+  },
+  {
+   "rel": "DERIVED_FROM",
+   "domain": "ClaimAnchor",
+   "range": "Observation",
+   "desc": "锚点同时指向图上的观测",
+   "source": "generation",
+   "n": 0,
+   "pairs": []
+  },
+  {
+   "rel": "EMBEDS",
+   "domain": "Figure",
+   "range": "Observation",
+   "desc": "图嵌入的观测数据",
+   "source": "generation",
+   "n": 0,
+   "pairs": []
+  },
+  {
+   "rel": "EMITS",
+   "domain": "ExperimentNode",
+   "range": "ReproductionResult",
+   "desc": "实验节点产出的数值结果",
+   "source": "layers",
+   "n": 0,
+   "pairs": []
+  },
+  {
+   "rel": "EVALUATED_ON",
+   "domain": "Paper|Algorithm|CodeRepository",
+   "range": "Benchmark",
+   "desc": "谁在该基准上评测",
+   "source": "V2",
+   "n": 45,
+   "pairs": [
+    "Paper->Benchmark x45"
+   ]
+  },
+  {
+   "rel": "EVALUATES_METHOD",
+   "domain": "Benchmark",
+   "range": "Algorithm",
+   "desc": "基准评了哪些方法（含基线）",
+   "source": "V3",
+   "n": 0,
+   "pairs": []
+  },
+  {
+   "rel": "FLOWS_DATA_TO",
+   "domain": "CodeBlock",
+   "range": "CodeBlock",
+   "desc": "数据流",
+   "source": "layers",
+   "n": 0,
+   "pairs": []
+  },
+  {
+   "rel": "FLOWS_TO",
+   "domain": "AlgorithmStep",
+   "range": "AlgorithmStep",
+   "desc": "步骤拓扑（A 的输出进 B）",
+   "source": "layers",
+   "n": 0,
+   "pairs": []
+  },
+  {
+   "rel": "FROM_OBSERVATION",
+   "domain": "LeaderboardEntry",
+   "range": "Observation",
+   "desc": "成绩来自原子观测",
+   "source": "V2",
+   "n": 73,
+   "pairs": [
+    "LeaderboardEntry->MetricObservation x73"
+   ]
+  },
+  {
+   "rel": "GATED_BY",
+   "domain": "RunPhase",
+   "range": "StaticCheck",
+   "desc": "相位被哪个机器门放行",
+   "source": "generation",
+   "n": 0,
+   "pairs": []
+  },
+  {
+   "rel": "GENERATES",
+   "domain": "CodeGenerationTask",
+   "range": "CodeFunction",
+   "desc": "LLM 生成的代码符号",
+   "source": "generation",
+   "n": 0,
+   "pairs": []
+  },
+  {
+   "rel": "GENERATES_MODULE",
+   "domain": "CodeGenerationTask",
+   "range": "CodeModule",
+   "desc": "LLM 生成的代码文件",
+   "source": "generation",
+   "n": 0,
+   "pairs": []
+  },
+  {
+   "rel": "GOVERNS",
+   "domain": "MethodLock",
+   "range": "CodeGenerationTask",
+   "desc": "预注册约束代码生成范围",
+   "source": "generation",
+   "n": 0,
+   "pairs": []
+  },
+  {
+   "rel": "GROUNDS",
+   "domain": "Observation",
+   "range": "CapabilityClaim",
+   "desc": "观测支撑主张",
+   "source": "generation",
+   "n": 0,
+   "pairs": []
+  },
+  {
+   "rel": "GROUNDS_TO",
+   "domain": "CausalNode",
+   "range": "CausalNode",
+   "desc": "code 节点 ↔ paper 节点对齐",
+   "source": "layers",
+   "n": 0,
+   "pairs": []
+  },
+  {
+   "rel": "HAS_BLOCK",
+   "domain": "CodeFunction",
+   "range": "CodeBlock",
+   "desc": "函数内的语法块",
+   "source": "layers",
+   "n": 0,
+   "pairs": []
+  },
+  {
+   "rel": "HAS_CAUSAL_GRAPH",
+   "domain": "Algorithm|CodeRepository",
+   "range": "CausalGraph",
+   "desc": "CAD 因果图",
+   "source": "layers",
+   "n": 0,
+   "pairs": []
+  },
+  {
+   "rel": "HAS_CAUSAL_NODE",
+   "domain": "CausalGraph",
+   "range": "CausalNode",
+   "desc": "因果图节点",
+   "source": "layers",
+   "n": 0,
+   "pairs": []
+  },
+  {
+   "rel": "HAS_CODE",
+   "domain": "Paper",
+   "range": "CodeRepository",
+   "desc": "论文的代码仓库",
+   "source": "V2",
+   "n": 10,
+   "pairs": [
+    "Paper->CodeRepository x10"
+   ]
+  },
+  {
+   "rel": "HAS_COMPOSITION",
+   "domain": "Paper",
+   "range": "AlgorithmComposition",
+   "desc": "论文的方法栈",
+   "source": "layers",
+   "n": 0,
+   "pairs": []
+  },
+  {
+   "rel": "HAS_DATA_CONTRACT",
+   "domain": "Benchmark",
+   "range": "DataContract",
+   "desc": "基准的数据特征契约",
+   "source": "V3",
+   "n": 3,
+   "pairs": [
+    "Benchmark->DataContract x3"
+   ]
+  },
+  {
+   "rel": "HAS_FORMULA",
+   "domain": "AlgorithmStep",
+   "range": "Formula",
+   "desc": "步骤对应的公式",
+   "source": "V3",
+   "n": 0,
+   "pairs": []
+  },
+  {
+   "rel": "HAS_INPUT_FORM",
+   "domain": "Benchmark",
+   "range": "DataForm",
+   "desc": "输入形式（向量/SMILES/3D…）",
+   "source": "V3",
+   "n": 0,
+   "pairs": []
+  },
+  {
+   "rel": "HAS_INPUT_OBJECT",
+   "domain": "Benchmark",
+   "range": "ResearchObject",
+   "desc": "输入对象（分子/口袋/性质向量…）",
+   "source": "V3",
+   "n": 0,
+   "pairs": []
+  },
+  {
+   "rel": "HAS_INPUT_SCHEMA",
+   "domain": "Benchmark",
+   "range": "DataForm",
+   "desc": "基准的输入契约",
+   "source": "layers",
+   "n": 0,
+   "pairs": []
+  },
+  {
+   "rel": "HAS_LEADERBOARD",
+   "domain": "Benchmark",
+   "range": "LeaderboardEntry",
+   "desc": "基准下的成绩",
+   "source": "V2",
+   "n": 73,
+   "pairs": [
+    "Benchmark->LeaderboardEntry x73"
+   ]
+  },
+  {
+   "rel": "HAS_LIMITATION",
+   "domain": "SourcePaper",
+   "range": "Limitation",
+   "desc": "科技树瓶颈：局限短语",
+   "source": "V3",
+   "n": 2,
+   "pairs": [
+    "SourcePaper->Limitation x2"
+   ]
+  },
+  {
+   "rel": "HAS_MODULE_DETAIL",
+   "domain": "Algorithm",
+   "range": "AlgorithmStep",
+   "desc": "整体方法由哪些模块构成",
+   "source": "layers",
+   "n": 31,
+   "pairs": [
+    "Paper->AlgorithmStep x31"
+   ]
+  },
+  {
+   "rel": "HAS_MODULE_IMPL",
+   "domain": "AlgorithmStep",
+   "range": "CodeModule",
+   "desc": "步骤落在哪个代码模块",
+   "source": "V3",
+   "n": 0,
+   "pairs": []
+  },
+  {
+   "rel": "HAS_OUTPUT_FORM",
+   "domain": "Benchmark",
+   "range": "DataForm",
+   "desc": "输出形式",
+   "source": "V3",
+   "n": 0,
+   "pairs": []
+  },
+  {
+   "rel": "HAS_OUTPUT_OBJECT",
+   "domain": "Benchmark",
+   "range": "ResearchObject",
+   "desc": "输出对象",
+   "source": "V3",
+   "n": 0,
+   "pairs": []
+  },
+  {
+   "rel": "HAS_OUTPUT_SCHEMA",
+   "domain": "Benchmark",
+   "range": "DataForm",
+   "desc": "基准的输出契约",
+   "source": "layers",
+   "n": 0,
+   "pairs": []
+  },
+  {
+   "rel": "HAS_PHASE",
+   "domain": "Paper",
+   "range": "RunPhase",
+   "desc": "一次 run 的相位轨迹",
+   "source": "generation",
+   "n": 0,
+   "pairs": []
+  },
+  {
+   "rel": "HAS_PROPOSAL",
+   "domain": "Paper",
+   "range": "Proposal",
+   "desc": "本次 run 从哪篇/哪个问题出发",
+   "source": "generation",
+   "n": 0,
+   "pairs": []
+  },
+  {
+   "rel": "HAS_SECTION",
+   "domain": "Paper",
+   "range": "Section",
+   "desc": "论文的小节，证据定位锚点",
+   "source": "V2",
+   "n": 0,
+   "pairs": []
+  },
+  {
+   "rel": "HAS_STEP",
+   "domain": "AlgorithmComposition",
+   "range": "AlgorithmStep",
+   "desc": "方法栈的一步",
+   "source": "layers",
+   "n": 0,
+   "pairs": []
+  },
+  {
+   "rel": "IMPLEMENTS_ALGORITHM",
+   "domain": "CodeRepository",
+   "range": "Algorithm",
+   "desc": "仓库实现了哪个算法",
+   "source": "layers",
+   "n": 0,
+   "pairs": []
+  },
+  {
+   "rel": "IMPLEMENTS_METRIC",
+   "domain": "EvaluationTool",
+   "range": "MetricDefinition",
+   "desc": "脚本实现了哪个指标",
+   "source": "layers",
+   "n": 0,
+   "pairs": []
+  },
+  {
+   "rel": "IMPLEMENTS_MODULE",
+   "domain": "CodeFunction",
+   "range": "AlgorithmStep",
+   "desc": "模块级 grounding 命中",
+   "source": "layers",
+   "n": 48,
+   "pairs": [
+    "CodeFunction->AlgorithmStep x48"
+   ]
+  },
+  {
+   "rel": "IMPLEMENTS_STEP",
+   "domain": "CodeFunction",
+   "range": "AlgorithmStep",
+   "desc": "代码实现了方法栈的哪一步",
+   "source": "generation",
+   "n": 0,
+   "pairs": []
+  },
+  {
+   "rel": "IMPROVED_BY",
+   "domain": "SourcePaper",
+   "range": "SourcePaper",
+   "desc": "同维度改进链",
+   "source": "V3",
+   "n": 0,
+   "pairs": []
+  },
+  {
+   "rel": "IN_COMPOSITION",
+   "domain": "MethodApplication",
+   "range": "AlgorithmComposition",
+   "desc": "该应用属于哪个方法栈",
+   "source": "layers",
+   "n": 0,
+   "pairs": []
+  },
+  {
+   "rel": "IN_DOMAIN",
+   "domain": "Paper|Algorithm|Benchmark",
+   "range": "Domain",
+   "desc": "领域标签",
+   "source": "V2",
+   "n": 0,
+   "pairs": []
+  },
+  {
+   "rel": "LEADS_TO",
+   "domain": "MethodApplication",
+   "range": "Observation",
+   "desc": "应用产出的结果",
+   "source": "V3",
+   "n": 0,
+   "pairs": []
+  },
+  {
+   "rel": "LOCKED_BY",
+   "domain": "Proposal",
+   "range": "MethodLock",
+   "desc": "方法选择被 hash-lock 冻结",
+   "source": "generation",
+   "n": 0,
+   "pairs": []
+  },
+  {
+   "rel": "LOOPS_BACK_TO",
+   "domain": "RunPhase",
+   "range": "RunPhase",
+   "desc": "失败回退到哪个相位",
+   "source": "generation",
+   "n": 0,
+   "pairs": []
+  },
+  {
+   "rel": "ON_METRIC",
+   "domain": "SourcePaper",
+   "range": "MetricDefinition",
+   "desc": "对比链所用指标",
+   "source": "V3",
+   "n": 0,
+   "pairs": []
+  },
+  {
+   "rel": "PARENT_OF",
+   "domain": "ResearchQuestion",
+   "range": "ResearchQuestion",
+   "desc": "问题树层级",
+   "source": "layers",
+   "n": 0,
+   "pairs": []
+  },
+  {
+   "rel": "PARTICIPATES_IN",
+   "domain": "Algorithm",
+   "range": "MethodApplication",
+   "desc": "算法的一次应用",
+   "source": "layers",
+   "n": 0,
+   "pairs": []
+  },
+  {
+   "rel": "PRODUCED_BY",
+   "domain": "ClaimAnchor",
+   "range": "ExperimentNode",
+   "desc": "锚点指向产生结果的实验节点",
+   "source": "generation",
+   "n": 0,
+   "pairs": []
+  },
+  {
+   "rel": "PRODUCES",
+   "domain": "MethodApplication|AlgorithmStep",
+   "range": "DataForm",
+   "desc": "输出数据形式",
+   "source": "layers",
+   "n": 0,
+   "pairs": []
+  },
+  {
+   "rel": "PRODUCES_OBSERVATION",
+   "domain": "EvaluationRun",
+   "range": "Observation",
+   "desc": "评测产生观测",
+   "source": "V2",
+   "n": 0,
+   "pairs": []
+  },
+  {
+   "rel": "PROPOSES_METHOD",
+   "domain": "Paper",
+   "range": "Algorithm",
+   "desc": "论文提出的方法",
+   "source": "V2",
+   "n": 12,
+   "pairs": [
+    "Paper->Algorithm x12"
+   ]
+  },
+  {
+   "rel": "REALIZED_BY",
+   "domain": "AlgorithmStep",
+   "range": "CodeFunction",
+   "desc": "步骤由哪个函数实现",
+   "source": "V3",
+   "n": 0,
+   "pairs": []
+  },
+  {
+   "rel": "REALIZES",
+   "domain": "CodeFunction|CodeModule",
+   "range": "AlgorithmStep",
+   "desc": "代码函数实现了哪个**模块**",
+   "source": "layers",
+   "n": 0,
+   "pairs": []
+  },
+  {
+   "rel": "REFERS_TO",
+   "domain": "SourcePaper",
+   "range": "Paper",
+   "desc": "出处对应的库内论文",
+   "source": "V3",
+   "n": 0,
+   "pairs": []
+  },
+  {
+   "rel": "REPLACED_BY",
+   "domain": "SourcePaper",
+   "range": "SourcePaper",
+   "desc": "换机制的替代链",
+   "source": "V3",
+   "n": 0,
+   "pairs": []
+  },
+  {
+   "rel": "REPLACES",
+   "domain": "SourcePaper",
+   "range": "SourcePaper",
+   "desc": "换机制的替代链（样式2用词）",
+   "source": "V3",
+   "n": 0,
+   "pairs": []
+  },
+  {
+   "rel": "REPORTED_BY",
+   "domain": "LeaderboardEntry",
+   "range": "Paper|CodeRepository",
+   "desc": "成绩由谁报告",
+   "source": "V2",
+   "n": 73,
+   "pairs": [
+    "LeaderboardEntry->Paper x73"
+   ]
+  },
+  {
+   "rel": "REPORTS_ON",
+   "domain": "CompileReport",
+   "range": "ManuscriptSection",
+   "desc": "编译/验收结果",
+   "source": "generation",
+   "n": 0,
+   "pairs": []
+  },
+  {
+   "rel": "REPORTS_VALUE",
+   "domain": "Benchmark",
+   "range": "Observation",
+   "desc": "基准上各方法的评测值",
+   "source": "V3",
+   "n": 0,
+   "pairs": []
+  },
+  {
+   "rel": "RESOLVED_TO",
+   "domain": "SourcePaper",
+   "range": "Paper",
+   "desc": "出处论文已在当前图/库中",
+   "source": "V3",
+   "n": 0,
+   "pairs": []
+  },
+  {
+   "rel": "REVIEWS",
+   "domain": "ReviewVerdict",
+   "range": "ManuscriptSection",
+   "desc": "盲审作用于哪个章节",
+   "source": "generation",
+   "n": 0,
+   "pairs": []
+  },
+  {
+   "rel": "RUNS_IN",
+   "domain": "CodeGenerationTask",
+   "range": "ExperimentNode",
+   "desc": "代码在哪个内容寻址节点执行",
+   "source": "generation",
+   "n": 0,
+   "pairs": []
+  },
+  {
+   "rel": "RUNS_ON",
+   "domain": "EvaluationTool",
+   "range": "Benchmark",
+   "desc": "脚本跑在哪个基准上",
+   "source": "layers",
+   "n": 0,
+   "pairs": []
+  },
+  {
+   "rel": "SCORED_BY",
+   "domain": "MethodApplication",
+   "range": "MetricDefinition",
+   "desc": "被哪个指标评分",
+   "source": "layers",
+   "n": 0,
+   "pairs": []
+  },
+  {
+   "rel": "SITUATED_IN",
+   "domain": "Paper",
+   "range": "SourcePaper",
+   "desc": "相关论文标出本文在科技树中的位置",
+   "source": "V3",
+   "n": 0,
+   "pairs": []
+  },
+  {
+   "rel": "SOURCED_FROM",
+   "domain": "Paper|Algorithm|Benchmark",
+   "range": "SourcePaper",
+   "desc": "三类根对象各自的出处论文",
+   "source": "V3",
+   "n": 0,
+   "pairs": []
+  },
+  {
+   "rel": "SUPPORTED_BY",
+   "domain": "CapabilityClaim|Limitation|Observation",
+   "range": "Evidence|Section",
+   "desc": "证据绑定",
+   "source": "V2",
+   "n": 6,
+   "pairs": [
+    "Benchmark->Evidence x3",
+    "Algorithm->Evidence x1",
+    "CodeFunction->Evidence x1"
+   ]
+  },
+  {
+   "rel": "SUPPORTS_HYPOTHESIS",
+   "domain": "Observation",
+   "range": "Hypothesis",
+   "desc": "结果回证假设",
+   "source": "V3",
+   "n": 0,
+   "pairs": []
+  },
+  {
+   "rel": "TESTS_HYPOTHESIS",
+   "domain": "Benchmark",
+   "range": "Hypothesis",
+   "desc": "该基准检验哪条假设",
+   "source": "V3",
+   "n": 0,
+   "pairs": []
+  },
+  {
+   "rel": "USES_ALGO_FAMILY",
+   "domain": "Algorithm",
+   "range": "AlgorithmFamily",
+   "desc": "算法族标签",
+   "source": "V2",
+   "n": 0,
+   "pairs": []
+  },
+  {
+   "rel": "USES_FIGURE",
+   "domain": "ManuscriptSection",
+   "range": "Figure",
+   "desc": "章节引用的图",
+   "source": "generation",
+   "n": 0,
+   "pairs": []
+  },
+  {
+   "rel": "USES_METRIC",
+   "domain": "Benchmark|EvaluationRun",
+   "range": "MetricDefinition",
+   "desc": "基准用什么指标",
+   "source": "V2",
+   "n": 27,
+   "pairs": [
+    "Benchmark->MetricDefinition x27"
+   ]
+  },
+  {
+   "rel": "USES_TOOL",
+   "domain": "AlgorithmStep",
+   "range": "Tool",
+   "desc": "步骤用的 RDKit/力场等工具",
+   "source": "V3",
+   "n": 0,
+   "pairs": []
+  }
+ ],
+ "totals": {
+  "nodes": 449,
+  "assertions": 633,
+  "n_classes": 45,
+  "n_relations": 102
+ }
+}

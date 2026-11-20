@@ -1,0 +1,2235 @@
+[
+  {
+    "paper": {
+      "title": "MolMiner: Fragment-Based, Geometry-Aware, and Order-Agnostic Molecular Generation",
+      "arxiv_id": "2411.06608",
+      "doi": "",
+      "paper_type": "method"
+    },
+    "questions": [
+      {
+        "question": "How can multi-step autoregressive molecular generation avoid fixed rollout ordering while maintaining chemical validity and incorporating dynamic 3D geometry?",
+        "granularity": "paper_specific",
+        "problem_category": "P02",
+        "evidence_ids": [
+          "section:2411.06608:Introduction",
+          "section:2411.06608:Method"
+        ]
+      },
+      {
+        "question": "How to resolve attachment ambiguities arising from fragment symmetries during canonicalization and autoregressive assembly?",
+        "granularity": "paper_specific",
+        "problem_category": "P04",
+        "evidence_ids": [
+          "section:2411.06608:Symmetry-Aware Attachment Modeling"
+        ]
+      }
+    ],
+    "proposed_methods": [
+      {
+        "name": "MolMiner",
+        "aliases": [],
+        "architecture": "Fragment-based decoder-only transformer with distance-based geometric attention bias and order-agnostic rollout sampling"
+      }
+    ],
+    "baselines": [
+      {
+        "name": "ChemicalVAE",
+        "kind": "baseline"
+      },
+      {
+        "name": "SchNet",
+        "kind": "baseline"
+      }
+    ],
+    "modules": [
+      {
+        "module_name": "Symmetry-Aware Attachment Standardization",
+        "mechanism": "encoding",
+        "causal_role": "mechanism",
+        "input_schema": "mol_reference, mol_other, canonical_smiles",
+        "output_schema": "canonicalization_map, attachment_id",
+        "inputs": [
+          "fragment_graph"
+        ],
+        "outputs": [
+          "canonical_attachments"
+        ],
+        "parameters": [],
+        "equation_ref": "",
+        "order": 1,
+        "code_symbols": [
+          "GraphProcessor._get_all_possible_attachments",
+          "GraphProcessor._compute_possible_remaps",
+          "GraphProcessor._get_canonicalization_map"
+        ],
+        "grounding_status": "full",
+        "evidence_ids": [
+          "section:2411.06608:Symmetry-Aware Attachment Modeling"
+        ]
+      },
+      {
+        "module_name": "Geometry-Biased Attention",
+        "mechanism": "attention",
+        "causal_role": "mechanism",
+        "input_schema": "x_centroids, hidden_states_h",
+        "output_schema": "attn_weights_alpha_ij, updated_hidden_h",
+        "inputs": [
+          "fragment_centroids",
+          "fragment_embeddings"
+        ],
+        "outputs": [
+          "attended_fragment_representations"
+        ],
+        "parameters": [
+          "theta",
+          "sigma"
+        ],
+        "equation_ref": "2",
+        "order": 2,
+        "code_symbols": [
+          "MoleculeDecoderBlock.forward",
+          "MoleculeTransformer.forward"
+        ],
+        "grounding_status": "full",
+        "evidence_ids": [
+          "section:2411.06608:Model Architecture"
+        ]
+      },
+      {
+        "module_name": "Fragment Starter",
+        "mechanism": "initialization",
+        "causal_role": "decision",
+        "input_schema": "conditioning_vector_c",
+        "output_schema": "starter_fragment_logits",
+        "inputs": [
+          "conditioning_properties"
+        ],
+        "outputs": [
+          "initial_fragment_id"
+        ],
+        "parameters": [
+          "d_model_in",
+          "d_model_out",
+          "d_ff"
+        ],
+        "equation_ref": "",
+        "order": 3,
+        "code_symbols": [
+          "FragmentStarter.forward",
+          "FragmentStarter.__init__"
+        ],
+        "grounding_status": "full",
+        "evidence_ids": [
+          "section:2411.06608:Method",
+          "section:2411.06608:Model Architecture"
+        ]
+      },
+      {
+        "module_name": "Order-Agnostic Autoregressive Rollout",
+        "mechanism": "sampling",
+        "causal_role": "decision",
+        "input_schema": "partial_mol_state, conditioning_c",
+        "output_schema": "next_fragment_and_attachment_logits",
+        "inputs": [
+          "partial_structure",
+          "focal_attachment_site",
+          "properties"
+        ],
+        "outputs": [
+          "next_fragment_attachment_action"
+        ],
+        "parameters": [
+          "vocabulary_actions"
+        ],
+        "equation_ref": "1",
+        "order": 4,
+        "code_symbols": [
+          "MolecularGenerator._sample",
+          "MolecularGenerator.sample"
+        ],
+        "grounding_status": "full",
+        "evidence_ids": [
+          "section:2411.06608:Method",
+          "section:2411.06608:Order-agnostic Molecular Rollouts"
+        ]
+      }
+    ],
+    "experiments": [
+      {
+        "section": "Effect of Conditioning Dimensionality",
+        "benchmark": "ZINC",
+        "metrics": [],
+        "values": []
+      },
+      {
+        "section": "Effect of Rollout Resampling",
+        "benchmark": "ZINC",
+        "metrics": [],
+        "values": []
+      }
+    ],
+    "observations": [],
+    "metric_proposals": [
+      "reconstruction_loss",
+      "hit_rate_lift"
+    ],
+    "limitations": [
+      "Relies on disk-based I/O bottleneck in data ingestion during multi-rollout training.",
+      "Geometry awareness depends on force-field relaxation rather than direct end-to-end 3D coordinate generation."
+    ]
+  },
+  {
+    "paper": {
+      "title": "SO3LR Tauri: Generally Applicable Force Fields for Reactive (Bio)Molecular Simulations Covering the Periodic Table",
+      "arxiv_id": "2611.06237v1",
+      "doi": "",
+      "paper_type": "method"
+    },
+    "questions": [
+      {
+        "question": "How can machine-learned force fields achieve general applicability across the periodic table while maintaining quantum-mechanical accuracy for both reactive and condensed-phase biomolecular dynamics?",
+        "granularity": "paper_specific",
+        "problem_category": "P06",
+        "evidence_ids": [
+          "section:2611.06237:SO3LR-T-S"
+        ]
+      },
+      {
+        "question": "Can explicit, physics-based long-range and short-range modules combined with multi-head multi-fidelity learning accurately describe non-covalent interactions, proton transfers, and transition states without system-specific parameterization?",
+        "granularity": "paper_specific",
+        "problem_category": "P06",
+        "evidence_ids": [
+          "section:2611.06237:SO3LR-T-M pK"
+        ]
+      }
+    ],
+    "proposed_methods": [
+      {
+        "name": "SO3LR Tauri",
+        "aliases": [
+          "SO3LR-T",
+          "SO3LR-T-S",
+          "SO3LR-T-M",
+          "SO3LR-T-L"
+        ],
+        "architecture": "Equivariant SO3krates message-passing neural network combined with explicit pair-specific Nordlund-Lehtola-Hobler (NLH) short-range repulsion, environment-dependent quantum Drude oscillator dispersion, and particle-mesh Ewald damped electrostatics"
+      }
+    ],
+    "baselines": [
+      {
+        "name": "SO3LR",
+        "kind": "baseline"
+      },
+      {
+        "name": "OPLS4",
+        "kind": "baseline"
+      },
+      {
+        "name": "GAFF",
+        "kind": "baseline"
+      },
+      {
+        "name": "MACE-POLAR-1-M",
+        "kind": "baseline"
+      },
+      {
+        "name": "AIMNet2-2025",
+        "kind": "baseline"
+      },
+      {
+        "name": "UMA-S-1.2.1",
+        "kind": "baseline"
+      }
+    ],
+    "modules": [
+      {
+        "module_name": "SO3krates Backbone Representation",
+        "mechanism": "message_compute",
+        "causal_role": "backbone",
+        "input_schema": "atomic_positions_R, atomic_numbers_Z, total_charge_Q, spin_multiplicity_S",
+        "output_schema": "per_atom_embeddings_xi",
+        "inputs": [
+          "atomic_positions_R",
+          "atomic_numbers_Z",
+          "total_charge_Q",
+          "spin_multiplicity_S"
+        ],
+        "outputs": [
+          "per_atom_embeddings_xi"
+        ],
+        "parameters": [
+          "feature_dim_H",
+          "layers_T",
+          "attention_heads_h",
+          "radial_basis_k"
+        ],
+        "equation_ref": "Eq. (S1), Eq. (S2)",
+        "order": 1,
+        "code_symbols": [
+          "forward"
+        ],
+        "grounding_status": "grounded",
+        "evidence_ids": [
+          "section:2611.06237:Radial basis functions"
+        ]
+      },
+      {
+        "module_name": "Multi-head Energy Readout",
+        "mechanism": "readout",
+        "causal_role": "scorer",
+        "input_schema": "per_atom_embeddings_xi, theory_level_index_t, atomic_numbers_Zi",
+        "output_schema": "atomic_energy_epsilon_i_t, partial_charges_qi, polarizability_ratio_hi, dispersion_ratio_rC6_i",
+        "inputs": [
+          "per_atom_embeddings_xi",
+          "theory_level_index_t",
+          "atomic_numbers_Zi"
+        ],
+        "outputs": [
+          "atomic_energy_epsilon_i_t",
+          "partial_charges_qi",
+          "polarizability_ratio_hi",
+          "dispersion_ratio_rC6_i"
+        ],
+        "parameters": [
+          "scale_sZ_t",
+          "offset_bZ_t",
+          "MLP_weights"
+        ],
+        "equation_ref": "Eq. (2), Eq. (9), Eq. (S3)",
+        "order": 2,
+        "code_symbols": [
+          "make_so3lr"
+        ],
+        "grounding_status": "grounded",
+        "evidence_ids": [
+          "section:2611.06237:Energy heads trained"
+        ]
+      },
+      {
+        "module_name": "NLH Short-Range Repulsion",
+        "mechanism": "scoring",
+        "causal_role": "evaluator",
+        "input_schema": "interatomic_distances_rij, atomic_numbers_Zi_Zj",
+        "output_schema": "repulsion_energy_Erep",
+        "inputs": [
+          "interatomic_distances_rij",
+          "atomic_numbers_Zi_Zj"
+        ],
+        "outputs": [
+          "repulsion_energy_Erep"
+        ],
+        "parameters": [
+          "tabulated_coefficients_ak_bk"
+        ],
+        "equation_ref": "Eq. (3), Eq. (4), Eq. (S4)",
+        "order": 3,
+        "code_symbols": [],
+        "grounding_status": "conceptual_gap",
+        "evidence_ids": [
+          "section:2611.06237:SO3LR derived all atomic dispersion parameters from"
+        ]
+      },
+      {
+        "module_name": "Damped Electrostatics with PME",
+        "mechanism": "aggregation",
+        "causal_role": "evaluator",
+        "input_schema": "partial_charges_qi_qj, interatomic_distances_rij, box_vectors",
+        "output_schema": "electrostatic_energy_Eelec",
+        "inputs": [
+          "partial_charges_qi_qj",
+          "interatomic_distances_rij",
+          "box_vectors"
+        ],
+        "outputs": [
+          "electrostatic_energy_Eelec"
+        ],
+        "parameters": [
+          "screening_width_sigma"
+        ],
+        "equation_ref": "Eq. (5), Eq. (S6), Eq. (S7)",
+        "order": 4,
+        "code_symbols": [
+          "kspace_electrostatics_options"
+        ],
+        "grounding_status": "grounded",
+        "evidence_ids": [
+          "section:2611.06237:SO3LR derived all atomic dispersion parameters from"
+        ]
+      },
+      {
+        "module_name": "QDO Pairwise Dispersion with Reciprocal PME",
+        "mechanism": "aggregation",
+        "causal_role": "evaluator",
+        "input_schema": "polarizability_ratios_hi, dispersion_ratios_rC6_i, atomic_numbers_Zi, interatomic_distances_rij",
+        "output_schema": "dispersion_energy_Edisp",
+        "inputs": [
+          "polarizability_ratios_hi",
+          "dispersion_ratios_rC6_i",
+          "atomic_numbers_Zi",
+          "interatomic_distances_rij"
+        ],
+        "outputs": [
+          "dispersion_energy_Edisp"
+        ],
+        "parameters": [
+          "free_atom_polarizability",
+          "free_atom_C6",
+          "damping_parameter"
+        ],
+        "equation_ref": "Eq. (6), Eq. (7), Eq. (8), Eq. (S8)-(S12)",
+        "order": 5,
+        "code_symbols": [
+          "kspace_dispersion_options"
+        ],
+        "grounding_status": "grounded",
+        "evidence_ids": [
+          "section:2611.06237:SO3LR derived all atomic dispersion parameters from"
+        ]
+      }
+    ],
+    "experiments": [
+      {
+        "section": "BENCHMARK ACCURACY",
+        "benchmark": "SAPT10k",
+        "metrics": [
+          {
+            "name": "mae",
+            "direction": "lower",
+            "unit": "kcal/mol"
+          },
+          {
+            "name": "rmse",
+            "direction": "lower",
+            "unit": "kcal/mol"
+          }
+        ],
+        "values": [
+          {
+            "metric": "mae",
+            "value": 0.45,
+            "unit": "kcal/mol"
+          },
+          {
+            "metric": "rmse",
+            "value": 0.83,
+            "unit": "kcal/mol"
+          }
+        ]
+      },
+      {
+        "section": "BENCHMARK ACCURACY",
+        "benchmark": "QUID",
+        "metrics": [
+          {
+            "name": "mae",
+            "direction": "lower",
+            "unit": "kcal/mol"
+          },
+          {
+            "name": "rmse",
+            "direction": "lower",
+            "unit": "kcal/mol"
+          }
+        ],
+        "values": [
+          {
+            "metric": "mae",
+            "value": 1.24,
+            "unit": "kcal/mol"
+          },
+          {
+            "metric": "rmse",
+            "value": 1.59,
+            "unit": "kcal/mol"
+          }
+        ]
+      },
+      {
+        "section": "BENCHMARK ACCURACY",
+        "benchmark": "JSCH-2005",
+        "metrics": [
+          {
+            "name": "mae",
+            "direction": "lower",
+            "unit": "kcal/mol"
+          },
+          {
+            "name": "rmse",
+            "direction": "lower",
+            "unit": "kcal/mol"
+          }
+        ],
+        "values": [
+          {
+            "metric": "mae",
+            "value": 0.78,
+            "unit": "kcal/mol"
+          },
+          {
+            "metric": "rmse",
+            "value": 1.04,
+            "unit": "kcal/mol"
+          }
+        ]
+      },
+      {
+        "section": "BENCHMARK ACCURACY",
+        "benchmark": "PLA15",
+        "metrics": [
+          {
+            "name": "mae",
+            "direction": "lower",
+            "unit": "kcal/mol"
+          },
+          {
+            "name": "rmse",
+            "direction": "lower",
+            "unit": "kcal/mol"
+          }
+        ],
+        "values": [
+          {
+            "metric": "mae",
+            "value": 3.81,
+            "unit": "kcal/mol"
+          },
+          {
+            "metric": "rmse",
+            "value": 5.48,
+            "unit": "kcal/mol"
+          }
+        ]
+      },
+      {
+        "section": "BENCHMARK ACCURACY",
+        "benchmark": "TorsionNet500",
+        "metrics": [
+          {
+            "name": "mae",
+            "direction": "lower",
+            "unit": "kcal/mol"
+          },
+          {
+            "name": "rmse",
+            "direction": "lower",
+            "unit": "kcal/mol"
+          }
+        ],
+        "values": [
+          {
+            "metric": "mae",
+            "value": 0.62,
+            "unit": "kcal/mol"
+          },
+          {
+            "metric": "rmse",
+            "value": 0.93,
+            "unit": "kcal/mol"
+          }
+        ]
+      },
+      {
+        "section": "BENCHMARK ACCURACY",
+        "benchmark": "GlcMal",
+        "metrics": [
+          {
+            "name": "mae",
+            "direction": "lower",
+            "unit": "kcal/mol"
+          },
+          {
+            "name": "rmse",
+            "direction": "lower",
+            "unit": "kcal/mol"
+          },
+          {
+            "name": "spearman",
+            "direction": "higher",
+            "unit": ""
+          }
+        ],
+        "values": [
+          {
+            "metric": "mae",
+            "value": 1.36,
+            "unit": "kcal/mol"
+          },
+          {
+            "metric": "rmse",
+            "value": 1.68,
+            "unit": "kcal/mol"
+          },
+          {
+            "metric": "spearman",
+            "value": 0.89,
+            "unit": ""
+          }
+        ]
+      },
+      {
+        "section": "REACTIVE CHEMISTRY",
+        "benchmark": "Proline-catalyzed aldol addition",
+        "metrics": [
+          {
+            "name": "mae",
+            "direction": "lower",
+            "unit": "kcal/mol"
+          },
+          {
+            "name": "rmsd",
+            "direction": "lower",
+            "unit": "Å"
+          }
+        ],
+        "values": [
+          {
+            "metric": "mae",
+            "value": 2.9,
+            "unit": "kcal/mol"
+          },
+          {
+            "metric": "rmsd",
+            "value": 0.12,
+            "unit": "Å"
+          }
+        ]
+      },
+      {
+        "section": "Proton transfer in aqueous solution",
+        "benchmark": "Side-chain pKa of pentapeptides",
+        "metrics": [
+          {
+            "name": "mae",
+            "direction": "lower",
+            "unit": ""
+          },
+          {
+            "name": "rmse",
+            "direction": "lower",
+            "unit": ""
+          },
+          {
+            "name": "Pearson_r",
+            "direction": "higher",
+            "unit": ""
+          }
+        ],
+        "values": [
+          {
+            "metric": "mae",
+            "value": 0.98,
+            "unit": ""
+          },
+          {
+            "metric": "rmse",
+            "value": 1.12,
+            "unit": ""
+          },
+          {
+            "metric": "Pearson_r",
+            "value": 0.95,
+            "unit": ""
+          }
+        ]
+      },
+      {
+        "section": "Biomolecular dynamics",
+        "benchmark": "Crambin in water",
+        "metrics": [
+          {
+            "name": "rmsd",
+            "direction": "lower",
+            "unit": "Å"
+          }
+        ],
+        "values": [
+          {
+            "metric": "rmsd",
+            "value": 1.1,
+            "unit": "Å"
+          }
+        ]
+      }
+    ],
+    "observations": [
+      {
+        "metric": "mae",
+        "value": 0.45,
+        "unit": "kcal/mol",
+        "subject": "SO3LR-T-M",
+        "benchmark": "SAPT10k",
+        "stage": "test",
+        "evidence_ids": [
+          "section:2611.06237:SO3LR-T-S"
+        ]
+      },
+      {
+        "metric": "mae",
+        "value": 1.24,
+        "unit": "kcal/mol",
+        "subject": "SO3LR-T-M",
+        "benchmark": "QUID",
+        "stage": "test",
+        "evidence_ids": [
+          "section:2611.06237:SO3LR-T-S"
+        ]
+      },
+      {
+        "metric": "mae",
+        "value": 0.78,
+        "unit": "kcal/mol",
+        "subject": "SO3LR-T-M",
+        "benchmark": "JSCH-2005",
+        "stage": "test",
+        "evidence_ids": [
+          "section:2611.06237:SO3LR-T-S"
+        ]
+      },
+      {
+        "metric": "mae",
+        "value": 3.81,
+        "unit": "kcal/mol",
+        "subject": "SO3LR-T-M",
+        "benchmark": "PLA15",
+        "stage": "test",
+        "evidence_ids": [
+          "section:2611.06237:SO3LR-T-S"
+        ]
+      },
+      {
+        "metric": "mae",
+        "value": 0.62,
+        "unit": "kcal/mol",
+        "subject": "SO3LR-T-M",
+        "benchmark": "TorsionNet500",
+        "stage": "test",
+        "evidence_ids": [
+          "section:2611.06237:SO3LR-T-S"
+        ]
+      },
+      {
+        "metric": "mae",
+        "value": 1.36,
+        "unit": "kcal/mol",
+        "subject": "SO3LR-T-M",
+        "benchmark": "GlcMal",
+        "stage": "test",
+        "evidence_ids": [
+          "section:2611.06237:SO3LR-T-S"
+        ]
+      },
+      {
+        "metric": "spearman",
+        "value": 0.89,
+        "unit": "",
+        "subject": "SO3LR-T-M",
+        "benchmark": "GlcMal",
+        "stage": "test",
+        "evidence_ids": [
+          "section:2611.06237:SO3LR-T-S"
+        ]
+      },
+      {
+        "metric": "mae",
+        "value": 0.98,
+        "unit": "",
+        "subject": "SO3LR-T-M",
+        "benchmark": "Side-chain pKa of pentapeptides",
+        "stage": "simulation",
+        "evidence_ids": [
+          "section:2611.06237:SO3LR-T-M pK"
+        ]
+      },
+      {
+        "metric": "rmse",
+        "value": 1.12,
+        "unit": "",
+        "subject": "SO3LR-T-M",
+        "benchmark": "Side-chain pKa of pentapeptides",
+        "stage": "simulation",
+        "evidence_ids": [
+          "section:2611.06237:SO3LR-T-M pK"
+        ]
+      },
+      {
+        "metric": "Pearson_r",
+        "value": 0.95,
+        "unit": "",
+        "subject": "SO3LR-T-M",
+        "benchmark": "Side-chain pKa of pentapeptides",
+        "stage": "simulation",
+        "evidence_ids": [
+          "section:2611.06237:SO3LR-T-M pK"
+        ]
+      },
+      {
+        "metric": "rmsd",
+        "value": 1.1,
+        "unit": "Å",
+        "subject": "SO3LR-T-M",
+        "benchmark": "Crambin in water",
+        "stage": "simulation",
+        "evidence_ids": [
+          "section:2611.06237:The domain evaluation is so far limited to force evalua-"
+        ]
+      }
+    ],
+    "metric_proposals": [
+      "force_mae",
+      "dipole_mae",
+      "mean_relative_error",
+      "enantiomeric_excess"
+    ],
+    "limitations": [
+      "Over-structuring of hydrogen-bond networks in liquid water causes self-diffusion to be underestimated by approximately a factor of two compared to experiment.",
+      "Liquid densities of neat organic solvents have a mean relative error of 6.3%, deviating more than classical empirical force fields like OPLS4.",
+      "Pairwise electrostatic and dispersion approximations ignore non-local, anisotropic many-body dispersion and collective polarization effects.",
+      "The sugar pucker in B-DNA exhibits an unphysical excess population near the O4'-endo conformation.",
+      "Evaluation on domain-decomposed multi-billion-atom configurations is currently limited to force evaluations with real-space cutoffs rather than full long-range PME integration."
+    ]
+  },
+  {
+    "paper": {
+      "title": "AntiFold: antibody-specific inverse folding for structure-based antibody design",
+      "arxiv_id": "2405.03370",
+      "doi": "",
+      "paper_type": "method"
+    },
+    "questions": [
+      {
+        "question": "How can a general protein inverse folding model be fine-tuned to capture antibody-specific loop constraints and maintain CDR sequence recovery?",
+        "granularity": "paper_specific",
+        "problem_category": "P02",
+        "evidence_ids": [
+          "section:2405.03370:Supplementary results"
+        ]
+      },
+      {
+        "question": "How does loop length in the highly variable CDRH3 region affect the sequence recovery of antibody inverse folding?",
+        "granularity": "paper_specific",
+        "problem_category": "P02",
+        "evidence_ids": [
+          "section:2405.03370:Supplementary results"
+        ]
+      }
+    ],
+    "proposed_methods": [
+      {
+        "name": "AntiFold",
+        "aliases": [],
+        "architecture": "ESM-IF1 backbone with IMGT-weighted masking, layer-wise learning rate decay, and antibody structure fine-tuning"
+      }
+    ],
+    "baselines": [
+      {
+        "name": "ESM-IF1",
+        "kind": "baseline"
+      },
+      {
+        "name": "AbMPNN",
+        "kind": "baseline"
+      },
+      {
+        "name": "ProteinMPNN",
+        "kind": "baseline"
+      }
+    ],
+    "modules": [
+      {
+        "module_name": "IMGT-weighted masking",
+        "mechanism": "sampling",
+        "causal_role": "mechanism",
+        "input_schema": "backbone_coords, imgt_regions",
+        "output_schema": "masked_coords",
+        "inputs": [
+          "backbone_coords",
+          "imgt_regions"
+        ],
+        "outputs": [
+          "masked_coords"
+        ],
+        "parameters": [
+          "mask_ratio",
+          "cdr_weight"
+        ],
+        "equation_ref": "",
+        "order": 1,
+        "code_symbols": [
+          "get_imgt_mask",
+          "parse_regions"
+        ],
+        "grounding_status": "grounded",
+        "evidence_ids": [
+          "section:2405.03370:Supplementary results"
+        ]
+      },
+      {
+        "module_name": "Coordinate noise augmentation",
+        "mechanism": "coordinate_update",
+        "causal_role": "mechanism",
+        "input_schema": "backbone_coords",
+        "output_schema": "noisy_backbone_coords",
+        "inputs": [
+          "backbone_coords"
+        ],
+        "outputs": [
+          "noisy_backbone_coords"
+        ],
+        "parameters": [
+          "noise_scale"
+        ],
+        "equation_ref": "",
+        "order": 2,
+        "code_symbols": [],
+        "grounding_status": "conceptual_gap",
+        "evidence_ids": [
+          "section:2405.03370:Supplementary results"
+        ]
+      },
+      {
+        "module_name": "Layer-wise learning rate decay schedule",
+        "mechanism": "other",
+        "causal_role": "parameter",
+        "input_schema": "layer_index, base_lr",
+        "output_schema": "decayed_lr",
+        "inputs": [
+          "layer_index",
+          "base_lr"
+        ],
+        "outputs": [
+          "decayed_lr"
+        ],
+        "parameters": [
+          "decay_factor"
+        ],
+        "equation_ref": "",
+        "order": 3,
+        "code_symbols": [],
+        "grounding_status": "conceptual_gap",
+        "evidence_ids": [
+          "section:2405.03370:Supplementary results"
+        ]
+      },
+      {
+        "module_name": "Inverse folding sequence scoring and logit extraction",
+        "mechanism": "scoring",
+        "causal_role": "mechanism",
+        "input_schema": "coords_dataloader, model_weights",
+        "output_schema": "df_logits, seqprobs",
+        "inputs": [
+          "coords_dataloader",
+          "model_weights"
+        ],
+        "outputs": [
+          "df_logits",
+          "seqprobs"
+        ],
+        "parameters": [],
+        "equation_ref": "",
+        "order": 4,
+        "code_symbols": [
+          "get_pdbs_logits",
+          "dataset_dataloader_to_predictions_list",
+          "logits_to_seqprobs_list"
+        ],
+        "grounding_status": "grounded",
+        "evidence_ids": [
+          "section:2405.03370:Supplementary results"
+        ]
+      },
+      {
+        "module_name": "Temperature-controlled CDR sequence sampling",
+        "mechanism": "sampling",
+        "causal_role": "decision",
+        "input_schema": "df_logits, sampling_temp, imgt_regions",
+        "output_schema": "sampled_sequences",
+        "inputs": [
+          "df_logits",
+          "sampling_temp",
+          "imgt_regions"
+        ],
+        "outputs": [
+          "sampled_sequences"
+        ],
+        "parameters": [
+          "sampling_temp"
+        ],
+        "equation_ref": "",
+        "order": 5,
+        "code_symbols": [
+          "sample_new_sequences_CDR_HL",
+          "sample_from_df_logits_HL"
+        ],
+        "grounding_status": "grounded",
+        "evidence_ids": [
+          "section:2405.03370:Supplementary results"
+        ]
+      },
+      {
+        "module_name": "Positional perplexity evaluation",
+        "mechanism": "scoring",
+        "causal_role": "decision",
+        "input_schema": "df_logits",
+        "output_schema": "pos_perplexity_scalar",
+        "inputs": [
+          "df_logits"
+        ],
+        "outputs": [
+          "pos_perplexity_scalar"
+        ],
+        "parameters": [],
+        "equation_ref": "",
+        "order": 6,
+        "code_symbols": [
+          "calc_pos_perplexity"
+        ],
+        "grounding_status": "grounded",
+        "evidence_ids": [
+          "section:2405.03370:Supplementary results"
+        ]
+      }
+    ],
+    "experiments": [
+      {
+        "section": "Performance by CDRH3 length",
+        "benchmark": "antibody CDRH3 test set",
+        "metrics": [
+          {
+            "name": "accuracy",
+            "direction": "higher_is_better",
+            "unit": "%"
+          }
+        ],
+        "values": [
+          {
+            "metric": "accuracy",
+            "value": 71.0,
+            "unit": "%"
+          },
+          {
+            "metric": "accuracy",
+            "value": 48.0,
+            "unit": "%"
+          }
+        ]
+      }
+    ],
+    "observations": [
+      {
+        "metric": "accuracy",
+        "value": 71.0,
+        "unit": "%",
+        "subject": "AntiFold on short CDRH3 loops (6-9 residues)",
+        "benchmark": "antibody CDRH3 test set",
+        "stage": "test",
+        "evidence_ids": [
+          "section:2405.03370:Supplementary results"
+        ]
+      },
+      {
+        "metric": "accuracy",
+        "value": 48.0,
+        "unit": "%",
+        "subject": "AntiFold on long CDRH3 loops (16-28 residues)",
+        "benchmark": "antibody CDRH3 test set",
+        "stage": "test",
+        "evidence_ids": [
+          "section:2405.03370:Supplementary results"
+        ]
+      }
+    ],
+    "metric_proposals": [
+      "AAR",
+      "observed_perplexity",
+      "sequence_recovery"
+    ],
+    "limitations": [
+      "AntiFold sequence recovery is markedly lower for longer CDRH3 loops compared to shorter loops."
+    ]
+  },
+  {
+    "paper": {
+      "title": "Discovery of novel antimicrobial peptides with notable antibacterial potency by a LLM-based foundation model",
+      "arxiv_id": "2407.12296",
+      "doi": "",
+      "paper_type": "method"
+    },
+    "questions": [
+      {
+        "question": "How can large language foundation models be adapted to generate novel, diverse antimicrobial peptides without overfitting to small labeled datasets?",
+        "granularity": "paper_specific",
+        "problem_category": "P04",
+        "evidence_ids": []
+      },
+      {
+        "question": "Can knowledge distillation compress a prompt-tuned foundation model into a lightweight recurrent architecture to enable computationally efficient reinforcement learning fine-tuning?",
+        "granularity": "paper_specific",
+        "problem_category": "P02",
+        "evidence_ids": [
+          "section:2407.12296:AMP-Distillation"
+        ]
+      },
+      {
+        "question": "Can multi-property reward-guided reinforcement learning yield antimicrobial peptides that demonstrate high broad-spectrum in vitro bactericidal potency and in vivo therapeutic efficacy against drug-resistant Gram-negative bacterial infections?",
+        "granularity": "paper_specific",
+        "problem_category": "P05",
+        "evidence_ids": [
+          "section:2407.12296:AV20",
+          "section:2407.12296:GI16"
+        ]
+      }
+    ],
+    "proposed_methods": [
+      {
+        "name": "AMP-Designer",
+        "aliases": [
+          "AMP Designer"
+        ],
+        "architecture": "A deep generative framework combining GPT pre-training, contrastive soft prompt tuning, knowledge distillation into GRU, and multi-objective reinforcement learning."
+      },
+      {
+        "name": "AMP-GPT",
+        "aliases": [],
+        "architecture": "Autoregressive decoder-only Transformer based on GPT-2 small (12 layers, 8 attention heads) pre-trained on UniProt natural peptides."
+      },
+      {
+        "name": "AMP-Prompt",
+        "aliases": [
+          "Prompt-TopK"
+        ],
+        "architecture": "Prefix prompt-tuned AMP-GPT with frozen base parameters optimized via contrastive discriminative and language modeling loss."
+      },
+      {
+        "name": "AMP-Distillation",
+        "aliases": [],
+        "architecture": "A lightweight 3-layer GRU recurrent neural network trained by soft-target knowledge distillation on softmax probabilities from AMP-Prompt."
+      },
+      {
+        "name": "AMP-MIC",
+        "aliases": [],
+        "architecture": "Fine-tuned AMP-GPT regressor architecture predicting bacterial strain-specific minimum inhibitory concentrations."
+      }
+    ],
+    "baselines": [
+      {
+        "name": "CLaSS",
+        "kind": "baseline"
+      },
+      {
+        "name": "CFPS",
+        "kind": "baseline"
+      },
+      {
+        "name": "Condition Token (CT)",
+        "kind": "baseline"
+      },
+      {
+        "name": "Fine-Tuning (FT)",
+        "kind": "baseline"
+      },
+      {
+        "name": "Huang et al. RNN",
+        "kind": "baseline"
+      }
+    ],
+    "modules": [
+      {
+        "module_name": "AMP-GPT Decoder Backbone",
+        "mechanism": "attention",
+        "causal_role": "mechanism",
+        "input_schema": "token_ids, attention_mask",
+        "output_schema": "hidden_states, logits",
+        "inputs": [
+          "token_ids"
+        ],
+        "outputs": [
+          "logits"
+        ],
+        "parameters": [
+          "transformer_layers",
+          "embedding_weights"
+        ],
+        "equation_ref": "Eq. 1, Eq. 2",
+        "order": 1,
+        "code_symbols": [
+          "predict"
+        ],
+        "grounding_status": "grounded",
+        "evidence_ids": []
+      },
+      {
+        "module_name": "Contrastive Soft Prompt Tuning",
+        "mechanism": "loss",
+        "causal_role": "mechanism",
+        "input_schema": "token_sequence, prompt_prefix_embedding, class_label",
+        "output_schema": "contrastive_loss",
+        "inputs": [
+          "token_sequence",
+          "prompt_prefix_embedding",
+          "class_label"
+        ],
+        "outputs": [
+          "contrastive_loss"
+        ],
+        "parameters": [
+          "prefix_embedding_weights"
+        ],
+        "equation_ref": "Eq. 4, Eq. 5, Eq. 6",
+        "order": 2,
+        "code_symbols": [],
+        "grounding_status": "conceptual_gap",
+        "evidence_ids": []
+      },
+      {
+        "module_name": "Top-k and Top-p Filtering Sampler",
+        "mechanism": "sampling",
+        "causal_role": "decision",
+        "input_schema": "logits, top_k, top_p",
+        "output_schema": "sampled_token_ids",
+        "inputs": [
+          "logits"
+        ],
+        "outputs": [
+          "sampled_token_ids"
+        ],
+        "parameters": [
+          "top_k",
+          "top_p"
+        ],
+        "equation_ref": "",
+        "order": 3,
+        "code_symbols": [
+          "top_k_top_p_filtering",
+          "decode"
+        ],
+        "grounding_status": "grounded",
+        "evidence_ids": []
+      },
+      {
+        "module_name": "AMP-Distillation Student GRU Model",
+        "mechanism": "feature_update",
+        "causal_role": "mechanism",
+        "input_schema": "input_token_id, hidden_state",
+        "output_schema": "output_logits, next_hidden_state",
+        "inputs": [
+          "input_token_id",
+          "hidden_state"
+        ],
+        "outputs": [
+          "output_logits",
+          "next_hidden_state"
+        ],
+        "parameters": [
+          "gru_weights"
+        ],
+        "equation_ref": "Eq. 7",
+        "order": 4,
+        "code_symbols": [
+          "MultiGRU.forward",
+          "MultiGRU",
+          "RNN.sample",
+          "RNN"
+        ],
+        "grounding_status": "grounded",
+        "evidence_ids": [
+          "section:2407.12296:AMP-Distillation"
+        ]
+      },
+      {
+        "module_name": "Augmented Likelihood Policy Gradient Optimization",
+        "mechanism": "loss",
+        "causal_role": "mechanism",
+        "input_schema": "log_prob_agent, log_prob_distilled, total_reward",
+        "output_schema": "policy_loss",
+        "inputs": [
+          "log_prob_agent",
+          "log_prob_distilled",
+          "total_reward"
+        ],
+        "outputs": [
+          "policy_loss"
+        ],
+        "parameters": [
+          "agent_parameters",
+          "sigma"
+        ],
+        "equation_ref": "Eq. 15, Eq. 16, Eq. 18",
+        "order": 5,
+        "code_symbols": [],
+        "grounding_status": "conceptual_gap",
+        "evidence_ids": []
+      },
+      {
+        "module_name": "AMP-MIC Bacterial Potency Predictor",
+        "mechanism": "scoring",
+        "causal_role": "mechanism",
+        "input_schema": "tokenized_peptide_sequence",
+        "output_schema": "mic_prediction_score",
+        "inputs": [
+          "tokenized_peptide_sequence"
+        ],
+        "outputs": [
+          "mic_prediction_score"
+        ],
+        "parameters": [
+          "gpt_regressor_weights"
+        ],
+        "equation_ref": "",
+        "order": 6,
+        "code_symbols": [
+          "CombinedModel.forward",
+          "CombinedModel"
+        ],
+        "grounding_status": "grounded",
+        "evidence_ids": []
+      }
+    ],
+    "experiments": [
+      {
+        "section": "AMP-Designer: the overview",
+        "benchmark": "UniProt and curated AMP datasets",
+        "metrics": [],
+        "values": []
+      },
+      {
+        "section": "Analysis of physical and chemical properties",
+        "benchmark": "UniProt peptide distribution",
+        "metrics": [],
+        "values": []
+      },
+      {
+        "section": "Activity analysis",
+        "benchmark": "CAMP, AMP Scanner, and Macrel ensemble",
+        "metrics": [
+          {
+            "name": "AMP_hit_percent",
+            "direction": "higher",
+            "unit": "%"
+          }
+        ],
+        "values": [
+          {
+            "metric": "AMP_hit_percent",
+            "value": 83.4,
+            "unit": "%"
+          }
+        ]
+      },
+      {
+        "section": "Diversity and novelty analysis",
+        "benchmark": "Real AMPs sequence database",
+        "metrics": [
+          {
+            "name": "validity",
+            "direction": "higher",
+            "unit": "%"
+          },
+          {
+            "name": "uniqueness",
+            "direction": "higher",
+            "unit": "%"
+          },
+          {
+            "name": "novelty",
+            "direction": "higher",
+            "unit": "%"
+          }
+        ],
+        "values": [
+          {
+            "metric": "validity",
+            "value": 100.0,
+            "unit": "%"
+          },
+          {
+            "metric": "uniqueness",
+            "value": 100.0,
+            "unit": "%"
+          },
+          {
+            "metric": "novelty",
+            "value": 99.9,
+            "unit": "%"
+          }
+        ]
+      },
+      {
+        "section": "Design high-activity against Gram-negative bacteria peptides",
+        "benchmark": "Gramapa MIC dataset",
+        "metrics": [],
+        "values": []
+      },
+      {
+        "section": "In vitro activities of the leading AMPs against members of ESKAPE",
+        "benchmark": "ESKAPE pathogen panel",
+        "metrics": [],
+        "values": []
+      },
+      {
+        "section": "In vivo activities of KW13 and AI18 against bacterial pneumonia in a mouse model",
+        "benchmark": "XDR K. pneumoniae pneumonia mouse model",
+        "metrics": [],
+        "values": []
+      },
+      {
+        "section": "Few-shot AMP design against P. acnes",
+        "benchmark": "P. acnes in vitro panel",
+        "metrics": [],
+        "values": []
+      }
+    ],
+    "observations": [
+      {
+        "metric": "AMP_hit_percent",
+        "value": 83.4,
+        "unit": "%",
+        "subject": "AMP-Prompt-TopK",
+        "benchmark": "CAMP, AMP Scanner, and Macrel ensemble",
+        "stage": "in_silico",
+        "evidence_ids": []
+      },
+      {
+        "metric": "AMP_hit_percent",
+        "value": 61.8,
+        "unit": "%",
+        "subject": "AMP-Prompt",
+        "benchmark": "CAMP, AMP Scanner, and Macrel ensemble",
+        "stage": "in_silico",
+        "evidence_ids": []
+      },
+      {
+        "metric": "AMP_hit_percent",
+        "value": 50.7,
+        "unit": "%",
+        "subject": "CLaSS",
+        "benchmark": "CAMP, AMP Scanner, and Macrel ensemble",
+        "stage": "in_silico",
+        "evidence_ids": []
+      },
+      {
+        "metric": "AMP_hit_percent",
+        "value": 57.2,
+        "unit": "%",
+        "subject": "CFPS",
+        "benchmark": "CAMP, AMP Scanner, and Macrel ensemble",
+        "stage": "in_silico",
+        "evidence_ids": []
+      },
+      {
+        "metric": "validity",
+        "value": 100.0,
+        "unit": "%",
+        "subject": "AMP-Prompt-TopK",
+        "benchmark": "Real AMPs sequence database",
+        "stage": "in_silico",
+        "evidence_ids": []
+      },
+      {
+        "metric": "uniqueness",
+        "value": 100.0,
+        "unit": "%",
+        "subject": "AMP-Prompt-TopK",
+        "benchmark": "Real AMPs sequence database",
+        "stage": "in_silico",
+        "evidence_ids": []
+      },
+      {
+        "metric": "novelty",
+        "value": 99.9,
+        "unit": "%",
+        "subject": "AMP-Prompt-TopK",
+        "benchmark": "Real AMPs sequence database",
+        "stage": "in_silico",
+        "evidence_ids": []
+      },
+      {
+        "metric": "validity",
+        "value": 97.9,
+        "unit": "%",
+        "subject": "Condition Token (CT)",
+        "benchmark": "Real AMPs sequence database",
+        "stage": "in_silico",
+        "evidence_ids": []
+      },
+      {
+        "metric": "uniqueness",
+        "value": 91.8,
+        "unit": "%",
+        "subject": "Condition Token (CT)",
+        "benchmark": "Real AMPs sequence database",
+        "stage": "in_silico",
+        "evidence_ids": []
+      },
+      {
+        "metric": "novelty",
+        "value": 84.4,
+        "unit": "%",
+        "subject": "Condition Token (CT)",
+        "benchmark": "Real AMPs sequence database",
+        "stage": "in_silico",
+        "evidence_ids": []
+      },
+      {
+        "metric": "validity",
+        "value": 100.0,
+        "unit": "%",
+        "subject": "Fine-Tuning (FT)",
+        "benchmark": "Real AMPs sequence database",
+        "stage": "in_silico",
+        "evidence_ids": []
+      },
+      {
+        "metric": "uniqueness",
+        "value": 88.3,
+        "unit": "%",
+        "subject": "Fine-Tuning (FT)",
+        "benchmark": "Real AMPs sequence database",
+        "stage": "in_silico",
+        "evidence_ids": []
+      },
+      {
+        "metric": "novelty",
+        "value": 73.1,
+        "unit": "%",
+        "subject": "Fine-Tuning (FT)",
+        "benchmark": "Real AMPs sequence database",
+        "stage": "in_silico",
+        "evidence_ids": []
+      },
+      {
+        "metric": "validity",
+        "value": 100.0,
+        "unit": "%",
+        "subject": "AMP-Distillation",
+        "benchmark": "Real AMPs sequence database",
+        "stage": "in_silico",
+        "evidence_ids": [
+          "section:2407.12296:AMP-Distillation"
+        ]
+      },
+      {
+        "metric": "uniqueness",
+        "value": 99.8,
+        "unit": "%",
+        "subject": "AMP-Distillation",
+        "benchmark": "Real AMPs sequence database",
+        "stage": "in_silico",
+        "evidence_ids": [
+          "section:2407.12296:AMP-Distillation"
+        ]
+      },
+      {
+        "metric": "novelty",
+        "value": 99.7,
+        "unit": "%",
+        "subject": "AMP-Distillation",
+        "benchmark": "Real AMPs sequence database",
+        "stage": "in_silico",
+        "evidence_ids": [
+          "section:2407.12296:AMP-Distillation"
+        ]
+      }
+    ],
+    "metric_proposals": [
+      "MIC",
+      "HC50",
+      "MSE",
+      "R2",
+      "bacterial_load_reduction_percent"
+    ],
+    "limitations": [
+      "Relies on surrogate MIC prediction models for reinforcement learning rewards, which requires sufficient labeled training data and cannot be directly trained for pathogens with scarce data.",
+      "Chemical synthesis of generated peptides remains an experimental bottleneck, with two out of twenty selected candidates failing synthesis.",
+      "Lead peptides exhibited only moderate antibacterial activity against specific colistin-resistant strains such as PDR K. pneumoniae 418015."
+    ]
+  },
+  {
+    "paper": {
+      "title": "Generation of 3D Molecules in Pockets via Language Model",
+      "arxiv_id": "2305.10133",
+      "doi": "",
+      "paper_type": "method"
+    },
+    "questions": [
+      {
+        "question": "How can language models and geometric deep learning be effectively integrated to generate 3D molecules directly in protein pockets without creating unrealistic topologies or non-drug-like substructures?",
+        "granularity": "paper_specific",
+        "problem_category": "P01",
+        "evidence_ids": []
+      },
+      {
+        "question": "How can local and global coordinate systems be combined within an autoregressive generation framework to ensure both rigid local substructures and global binding context?",
+        "granularity": "paper_specific",
+        "problem_category": "P01",
+        "evidence_ids": []
+      }
+    ],
+    "proposed_methods": [
+      {
+        "name": "Lingo3DMol",
+        "aliases": [
+          "Lingo3DMol"
+        ],
+        "architecture": "Transformer-based encoder-decoder with dual 2D/3D decoders and auxiliary NCI/Anchor prediction"
+      }
+    ],
+    "baselines": [
+      {
+        "name": "Pocket2Mol",
+        "kind": "baseline"
+      },
+      {
+        "name": "TargetDiff",
+        "kind": "baseline"
+      }
+    ],
+    "modules": [
+      {
+        "module_name": "Pocket/Ligand Transformer Encoder",
+        "mechanism": "encoding",
+        "causal_role": "mechanism",
+        "input_schema": "atom_type, coords, main_side, residue, hbd_hba, nci_anchor",
+        "output_schema": "pocket_atom_embeddings",
+        "inputs": [
+          "typei",
+          "coordsi",
+          "main_sidei",
+          "residuei",
+          "hbd_hbai",
+          "nci_anchori"
+        ],
+        "outputs": [
+          "H_enc"
+        ],
+        "parameters": [
+          "Etype",
+          "Ecoords",
+          "Emain/side",
+          "Eresidue",
+          "Ehbd/hba",
+          "ENCI/Anchor"
+        ],
+        "equation_ref": "Equation 1, 2, 3",
+        "order": 1,
+        "code_symbols": [
+          "Encoder",
+          "EncoderLayer"
+        ],
+        "grounding_status": "aligned",
+        "evidence_ids": []
+      },
+      {
+        "module_name": "Biased Attention Module",
+        "mechanism": "attention",
+        "causal_role": "mechanism",
+        "input_schema": "Q, K, V, distance_matrix D, edge_vector_matrix J",
+        "output_schema": "Abiased",
+        "inputs": [
+          "Q",
+          "K",
+          "V",
+          "BD",
+          "BJ"
+        ],
+        "outputs": [
+          "Abiased"
+        ],
+        "parameters": [],
+        "equation_ref": "Equation 4",
+        "order": 2,
+        "code_symbols": [
+          "DecoderBias",
+          "DecoderLayerBias"
+        ],
+        "grounding_status": "aligned",
+        "evidence_ids": []
+      },
+      {
+        "module_name": "FSMILES and Local Coordinates Decoder (D2D)",
+        "mechanism": "decoding",
+        "causal_role": "mechanism",
+        "input_schema": "token_embeddings, coords_embeddings, encoder_hidden_state",
+        "output_schema": "next_token_logits, local_r, local_theta, local_phi",
+        "inputs": [
+          "M_dec",
+          "H_enc"
+        ],
+        "outputs": [
+          "Etype_cur",
+          "Htopo",
+          "r",
+          "theta",
+          "phi"
+        ],
+        "parameters": [
+          "MLP1",
+          "MLP2",
+          "MLP3"
+        ],
+        "equation_ref": "Equation 5, 6, 7",
+        "order": 3,
+        "code_symbols": [
+          "Decoder",
+          "DecoderLayer"
+        ],
+        "grounding_status": "aligned",
+        "evidence_ids": []
+      },
+      {
+        "module_name": "Global 3D Coordinates Decoder (D3D)",
+        "mechanism": "decoding",
+        "causal_role": "mechanism",
+        "input_schema": "Htopo, next_token_embedding, local_coords",
+        "output_schema": "global_coords_distribution_xyz",
+        "inputs": [
+          "Htopo",
+          "token_next",
+          "r",
+          "theta",
+          "phi"
+        ],
+        "outputs": [
+          "x",
+          "y",
+          "z"
+        ],
+        "parameters": [],
+        "equation_ref": "",
+        "order": 4,
+        "code_symbols": [
+          "Decoder",
+          "DecoderLayer"
+        ],
+        "grounding_status": "aligned",
+        "evidence_ids": []
+      },
+      {
+        "module_name": "Local-Global Coordinates Fusion & Search",
+        "mechanism": "coordinate_update",
+        "causal_role": "decision",
+        "input_schema": "local_coords_r_theta_phi, global_coords_distribution",
+        "output_schema": "selected_global_xyz",
+        "inputs": [
+          "r",
+          "theta",
+          "phi",
+          "P(x,y,z)"
+        ],
+        "outputs": [
+          "atom_xyz"
+        ],
+        "parameters": [],
+        "equation_ref": "Algorithm S2",
+        "order": 5,
+        "code_symbols": [
+          "changepos",
+          "changepos2"
+        ],
+        "grounding_status": "aligned",
+        "evidence_ids": []
+      },
+      {
+        "module_name": "Clash Avoidance and DFS Reward Sampling",
+        "mechanism": "sampling",
+        "causal_role": "decision",
+        "input_schema": "State_t_pocket_ligand, Action_candidates",
+        "output_schema": "top_filtered_states",
+        "inputs": [
+          "State(t)",
+          "Action(t)"
+        ],
+        "outputs": [
+          "State(t+1)"
+        ],
+        "parameters": [],
+        "equation_ref": "Algorithm S3",
+        "order": 6,
+        "code_symbols": [
+          "CollisionCheck",
+          "bonusVSpenalty2",
+          "CollisionCheck.get_grid_file"
+        ],
+        "grounding_status": "aligned",
+        "evidence_ids": []
+      }
+    ],
+    "experiments": [
+      {
+        "section": "2.2.2 Molecular Property and Binding Mode",
+        "benchmark": "DUD-E",
+        "metrics": [
+          {
+            "name": "QED",
+            "direction": "up",
+            "unit": ""
+          },
+          {
+            "name": "diversity",
+            "direction": "up",
+            "unit": ""
+          },
+          {
+            "name": "rmsd",
+            "direction": "down",
+            "unit": "Å"
+          }
+        ],
+        "values": [
+          {
+            "metric": "QED",
+            "value": 0.53,
+            "unit": ""
+          },
+          {
+            "metric": "diversity",
+            "value": 0.82,
+            "unit": ""
+          },
+          {
+            "metric": "rmsd",
+            "value": 0.9,
+            "unit": "Å"
+          }
+        ]
+      },
+      {
+        "section": "2.4 Ablation Analysis",
+        "benchmark": "DUD-E",
+        "metrics": [
+          {
+            "name": "QED",
+            "direction": "up",
+            "unit": ""
+          },
+          {
+            "name": "diversity",
+            "direction": "up",
+            "unit": ""
+          },
+          {
+            "name": "rmsd",
+            "direction": "down",
+            "unit": "Å"
+          }
+        ],
+        "values": [
+          {
+            "metric": "QED",
+            "value": 0.53,
+            "unit": ""
+          },
+          {
+            "metric": "diversity",
+            "value": 0.82,
+            "unit": ""
+          },
+          {
+            "metric": "rmsd",
+            "value": 0.9,
+            "unit": "Å"
+          }
+        ]
+      }
+    ],
+    "observations": [
+      {
+        "metric": "QED",
+        "value": 0.53,
+        "unit": "",
+        "subject": "Lingo3DMol (ours)",
+        "benchmark": "DUD-E",
+        "stage": "test",
+        "evidence_ids": []
+      },
+      {
+        "metric": "QED",
+        "value": 0.46,
+        "unit": "",
+        "subject": "Pocket2Mol",
+        "benchmark": "DUD-E",
+        "stage": "test",
+        "evidence_ids": []
+      },
+      {
+        "metric": "QED",
+        "value": 0.5,
+        "unit": "",
+        "subject": "TargetDiff",
+        "benchmark": "DUD-E",
+        "stage": "test",
+        "evidence_ids": []
+      },
+      {
+        "metric": "diversity",
+        "value": 0.82,
+        "unit": "",
+        "subject": "Lingo3DMol (ours)",
+        "benchmark": "DUD-E",
+        "stage": "test",
+        "evidence_ids": []
+      },
+      {
+        "metric": "diversity",
+        "value": 0.84,
+        "unit": "",
+        "subject": "Pocket2Mol",
+        "benchmark": "DUD-E",
+        "stage": "test",
+        "evidence_ids": []
+      },
+      {
+        "metric": "diversity",
+        "value": 0.88,
+        "unit": "",
+        "subject": "TargetDiff",
+        "benchmark": "DUD-E",
+        "stage": "test",
+        "evidence_ids": []
+      },
+      {
+        "metric": "rmsd",
+        "value": 0.9,
+        "unit": "Å",
+        "subject": "Lingo3DMol (ours)",
+        "benchmark": "DUD-E",
+        "stage": "test",
+        "evidence_ids": []
+      },
+      {
+        "metric": "rmsd",
+        "value": 1.1,
+        "unit": "Å",
+        "subject": "Pocket2Mol",
+        "benchmark": "DUD-E",
+        "stage": "test",
+        "evidence_ids": []
+      },
+      {
+        "metric": "rmsd",
+        "value": 1.1,
+        "unit": "Å",
+        "subject": "TargetDiff",
+        "benchmark": "DUD-E",
+        "stage": "test",
+        "evidence_ids": []
+      },
+      {
+        "metric": "QED",
+        "value": 0.35,
+        "unit": "",
+        "subject": "Lingo3DMol (with random NCI)",
+        "benchmark": "DUD-E",
+        "stage": "ablation",
+        "evidence_ids": []
+      },
+      {
+        "metric": "QED",
+        "value": 0.46,
+        "unit": "",
+        "subject": "Lingo3DMol (without pre-training)",
+        "benchmark": "DUD-E",
+        "stage": "ablation",
+        "evidence_ids": []
+      },
+      {
+        "metric": "rmsd",
+        "value": 1.3,
+        "unit": "Å",
+        "subject": "Lingo3DMol (with random NCI)",
+        "benchmark": "DUD-E",
+        "stage": "ablation",
+        "evidence_ids": []
+      },
+      {
+        "metric": "rmsd",
+        "value": 1.0,
+        "unit": "Å",
+        "subject": "Lingo3DMol (without pre-training)",
+        "benchmark": "DUD-E",
+        "stage": "ablation",
+        "evidence_ids": []
+      }
+    ],
+    "metric_proposals": [
+      "SAS",
+      "ECFP_TS_gt_0.5",
+      "min_in_place_GlideSP_score",
+      "GlideSP_redocking_score",
+      "Dice_score",
+      "JSD"
+    ],
+    "limitations": [
+      "Capturing all non-covalent interactions within a single molecule remains challenging due to the autoregressive generation process.",
+      "The model relies on data augmentation and SE(3)-invariant representations rather than full SE(3) equivariance.",
+      "The generation does not strictly guarantee exact positioning relative to all predicted pocket NCI positions."
+    ]
+  },
+  {
+    "paper": {
+      "title": "Mol-Instructions: A Large-Scale Biomolecular Instruction Dataset for Large Language Models",
+      "arxiv_id": "2306.08018",
+      "doi": "",
+      "paper_type": "dataset_benchmark"
+    },
+    "questions": [
+      {
+        "question": "How can biomolecular data and tasks across small molecules, proteins, and biomolecular text be structured into instruction-following formats for large language models?",
+        "granularity": "paper_specific",
+        "problem_category": "P06",
+        "evidence_ids": [
+          "section:2306.08018:INTRODUCTION"
+        ]
+      },
+      {
+        "question": "Does instruction tuning LLMs on dedicated biomolecular instructions improve domain-specific comprehension and task execution in chemistry and biology?",
+        "granularity": "paper_specific",
+        "problem_category": "P06",
+        "evidence_ids": [
+          "section:2306.08018:INTRODUCTION"
+        ]
+      }
+    ],
+    "proposed_methods": [
+      {
+        "name": "Mol-Instructions",
+        "aliases": [
+          "Mol-Instructions dataset"
+        ],
+        "architecture": "Biomolecular instruction tuning dataset comprising molecule-oriented, protein-oriented, and biomolecular text instructions"
+      }
+    ],
+    "baselines": [
+      {
+        "name": "LLaMA",
+        "kind": "baseline"
+      },
+      {
+        "name": "Stanford Alpaca",
+        "kind": "baseline"
+      },
+      {
+        "name": "GPT4All",
+        "kind": "baseline"
+      }
+    ],
+    "modules": [],
+    "experiments": [],
+    "observations": [],
+    "metric_proposals": [],
+    "limitations": [
+      "Distinct representation spaces between natural language text and biomolecules hinder fluent bio-language comprehension.",
+      "Parameter-efficient fine-tuning like LoRA may impose expressivity limitations on learning biomolecular representations.",
+      "Vocabulary expansion and multi-modal integration with specialized biomolecular encoders are required for deeper molecular understanding."
+    ]
+  },
+  {},
+  {
+    "paper": {
+      "title": "MOLGEN: Pre-trained Molecular Language Model for Molecule Generation",
+      "arxiv_id": "2301.11259",
+      "doi": "",
+      "paper_type": "method"
+    },
+    "questions": [
+      {
+        "question": "How can pre-trained molecular language models overcome the syntactic brittleness of SMILES and effectively cover both synthetic and natural product domains?",
+        "granularity": "paper_specific",
+        "problem_category": "P01",
+        "evidence_ids": [
+          "section:2301.11259:INTRODUCTION"
+        ]
+      },
+      {
+        "question": "How can molecular hallucinations be mitigated to ensure generated molecules exhibit expected chemical and biological activity?",
+        "granularity": "paper_specific",
+        "problem_category": "P04",
+        "evidence_ids": [
+          "section:2301.11259:INTRODUCTION"
+        ]
+      }
+    ],
+    "proposed_methods": [
+      {
+        "name": "MOLGEN",
+        "aliases": [],
+        "architecture": "Bidirectional and Auto-regressive Transformer (BART) with prefix tuning and chemical feedback paradigm"
+      }
+    ],
+    "baselines": [
+      {
+        "name": "SMILES-based PLMs",
+        "kind": "baseline"
+      }
+    ],
+    "modules": [
+      {
+        "module_name": "Molecular Language Syntax Learning",
+        "mechanism": "encoding",
+        "causal_role": "mechanism",
+        "input_schema": "corrupted_selfies_tokens",
+        "output_schema": "reconstructed_selfies_tokens",
+        "inputs": [
+          "corrupted_selfies_tokens"
+        ],
+        "outputs": [
+          "reconstructed_selfies_tokens"
+        ],
+        "parameters": [
+          "transformer_weights"
+        ],
+        "equation_ref": "",
+        "order": 1,
+        "code_symbols": [
+          "BartConfig",
+          "BartConfig.__init__"
+        ],
+        "grounding_status": "grounded",
+        "evidence_ids": [
+          "section:2301.11259:INTRODUCTION",
+          "section:2301.11259:METHODOLOGY"
+        ]
+      },
+      {
+        "module_name": "Domain-Agnostic Molecular Prefix Tuning",
+        "mechanism": "feature_update",
+        "causal_role": "parameter",
+        "input_schema": "prefix_prompt_tokens, selfies_tokens",
+        "output_schema": "adapted_molecular_representations",
+        "inputs": [
+          "prefix_prompt_tokens",
+          "selfies_tokens"
+        ],
+        "outputs": [
+          "adapted_molecular_representations"
+        ],
+        "parameters": [
+          "prefix_prompt_embeddings"
+        ],
+        "equation_ref": "",
+        "order": 2,
+        "code_symbols": [
+          "Runner.get_prompt"
+        ],
+        "grounding_status": "grounded",
+        "evidence_ids": [
+          "section:2301.11259:INTRODUCTION",
+          "section:2301.11259:METHODOLOGY"
+        ]
+      },
+      {
+        "module_name": "Chemical Feedback Alignment",
+        "mechanism": "loss",
+        "causal_role": "decision",
+        "input_schema": "molecular_output_probabilities, chemical_preference_reward",
+        "output_schema": "feedback_loss",
+        "inputs": [
+          "molecular_output_probabilities",
+          "chemical_preference_reward"
+        ],
+        "outputs": [
+          "feedback_loss"
+        ],
+        "parameters": [],
+        "equation_ref": "",
+        "order": 3,
+        "code_symbols": [
+          "Runner.loss_output",
+          "Runner.update_loss_log"
+        ],
+        "grounding_status": "grounded",
+        "evidence_ids": [
+          "section:2301.11259:INTRODUCTION",
+          "section:2301.11259:METHODOLOGY"
+        ]
+      },
+      {
+        "module_name": "Candidate Generation and Decoding",
+        "mechanism": "sampling",
+        "causal_role": "output",
+        "input_schema": "prompt_representations",
+        "output_schema": "candidate_selfies_sequence",
+        "inputs": [
+          "prompt_representations"
+        ],
+        "outputs": [
+          "candidate_selfies_sequence"
+        ],
+        "parameters": [],
+        "equation_ref": "",
+        "order": 4,
+        "code_symbols": [
+          "Runner.generate_molecules",
+          "Runner.generate_candidate_selfies"
+        ],
+        "grounding_status": "grounded",
+        "evidence_ids": [
+          "section:2301.11259:INTRODUCTION"
+        ]
+      }
+    ],
+    "experiments": [
+      {
+        "section": "EXPERIMENTAL SETUP",
+        "benchmark": "ZINC-15",
+        "metrics": [],
+        "values": []
+      }
+    ],
+    "observations": [],
+    "metric_proposals": [
+      "penalized_logp"
+    ],
+    "limitations": [
+      "Does not currently support reaction prediction or retrosynthesis tasks.",
+      "Lacks multimodal pre-training and incorporation of external knowledge sources."
+    ]
+  },
+  {
+    "paper": {
+      "title": "Langevin Speculative Dynamics",
+      "arxiv_id": "2606.02455",
+      "doi": "",
+      "paper_type": "theory"
+    },
+    "questions": [
+      {
+        "question": "Can speculative sampling be generalized to second-order Langevin dynamics to accelerate serial molecular dynamics simulations while provably preserving the target distribution?",
+        "granularity": "paper_specific",
+        "problem_category": "P06",
+        "evidence_ids": [
+          "section:2606.02455:Introduction"
+        ]
+      },
+      {
+        "question": "How do system characteristics such as atom count, temperature, and draft-target pairing determine achievable speedup and rejection rates in speculative molecular dynamics?",
+        "granularity": "paper_specific",
+        "problem_category": "P06",
+        "evidence_ids": [
+          "section:2606.02455:Introduction",
+          "section:2606.02455:Conclusion and Limitations"
+        ]
+      }
+    ],
+    "proposed_methods": [
+      {
+        "name": "Langevin Speculative Dynamics",
+        "aliases": [
+          "LSD"
+        ],
+        "architecture": "Speculative sampling framework for Langevin dynamics combining fast draft potential proposals, parallel target verification, and stochastic transport acceptance/rejection"
+      }
+    ],
+    "baselines": [],
+    "modules": [],
+    "experiments": [],
+    "observations": [],
+    "metric_proposals": [],
+    "limitations": [
+      "Performance is strongly system-size dependent, with rejection rates becoming prohibitive for systems with more than O(10^3) atoms",
+      "Speedups for smaller systems are often constrained by the computational cost fraction of the draft model",
+      "Focuses on throughput under the assumption of abundant parallel compute, which may not always be practical"
+    ]
+  },
+  {}
+]

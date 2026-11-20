@@ -1,0 +1,168 @@
+{
+  "before": {
+    "AlgorithmStep": {
+      "n": 21,
+      "mechanism": 0.0,
+      "inputs": 0.0,
+      "outputs": 0.0,
+      "input_schema": 0.0,
+      "output_schema": 0.0,
+      "code_symbols": 0.238,
+      "equation_ref": 1.0
+    },
+    "Benchmark": {
+      "n": 4,
+      "input_schema": 1.0,
+      "output_schema": 1.0,
+      "research_object": 1.0,
+      "split_rule": 1.0,
+      "metric_ids": 1.0,
+      "problem_ids": 1.0
+    },
+    "Algorithm": {
+      "n": 11,
+      "architecture": 0.636,
+      "algo_codes": 1.0,
+      "paper_ids": 1.0
+    },
+    "MetricDefinition": {
+      "n": 2,
+      "direction": 0.0,
+      "unit": 0.0,
+      "value_type": 1.0
+    },
+    "CodeFunction": {
+      "n": 31,
+      "signature": 0.0,
+      "causal_role": 0.0,
+      "matched_step_ids": 1.0
+    }
+  },
+  "per_paper": [
+    {
+      "arxiv_id": "2405.03370",
+      "patches": 17,
+      "applied": 17,
+      "fields": 49,
+      "rejected": [],
+      "by_source": {
+        "inferred": 25,
+        "extracted": 13,
+        "code": 11
+      }
+    },
+    {
+      "arxiv_id": "2407.12296",
+      "patches": 17,
+      "applied": 17,
+      "fields": 44,
+      "rejected": [],
+      "by_source": {
+        "extracted": 9,
+        "inferred": 23,
+        "code": 12
+      }
+    },
+    {
+      "arxiv_id": "2301.11259",
+      "patches": 13,
+      "applied": 13,
+      "fields": 33,
+      "rejected": [],
+      "by_source": {
+        "extracted": 10,
+        "inferred": 17,
+        "code": 6
+      }
+    },
+    {
+      "arxiv_id": "2604.05181",
+      "patches": 13,
+      "applied": 13,
+      "fields": 41,
+      "rejected": [],
+      "by_source": {
+        "extracted": 6,
+        "inferred": 34,
+        "code": 1
+      }
+    }
+  ],
+  "total_fields": 167,
+  "rejected": [],
+  "after": {
+    "AlgorithmStep": {
+      "n": 21,
+      "mechanism": 0.0,
+      "inputs": 0.0,
+      "outputs": 0.0,
+      "input_schema": 0.0,
+      "output_schema": 0.0,
+      "code_symbols": 0.0,
+      "equation_ref": 0.524
+    },
+    "Benchmark": {
+      "n": 4,
+      "input_schema": 0.5,
+      "output_schema": 0.5,
+      "research_object": 0.5,
+      "split_rule": 0.5,
+      "metric_ids": 0.75,
+      "problem_ids": 1.0
+    },
+    "Algorithm": {
+      "n": 11,
+      "architecture": 0.0,
+      "algo_codes": 0.0,
+      "paper_ids": 0.364
+    },
+    "MetricDefinition": {
+      "n": 2,
+      "direction": 0.0,
+      "unit": 0.0,
+      "value_type": 0.5
+    },
+    "CodeFunction": {
+      "n": 31,
+      "signature": 0.0,
+      "causal_role": 0.0,
+      "matched_step_ids": 0.161
+    }
+  },
+  "usage": {
+    "calls": 4,
+    "ok": 4,
+    "failed": 0,
+    "prompt_tokens": 19873,
+    "completion_tokens": 9406,
+    "total_tokens": 29279,
+    "latency_s": 74.62,
+    "avg_latency_s": 18.66,
+    "by_task": {
+      "fill:2407.12296": {
+        "calls": 1,
+        "prompt_tokens": 4830,
+        "completion_tokens": 2480,
+        "total_tokens": 7310
+      },
+      "fill:2405.03370": {
+        "calls": 1,
+        "prompt_tokens": 4862,
+        "completion_tokens": 2665,
+        "total_tokens": 7527
+      },
+      "fill:2301.11259": {
+        "calls": 1,
+        "prompt_tokens": 4547,
+        "completion_tokens": 2060,
+        "total_tokens": 6607
+      },
+      "fill:2604.05181": {
+        "calls": 1,
+        "prompt_tokens": 5634,
+        "completion_tokens": 2201,
+        "total_tokens": 7835
+      }
+    }
+  }
+}

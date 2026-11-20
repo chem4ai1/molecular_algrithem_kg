@@ -1,0 +1,44 @@
+{
+  "paper_id": "paper:2302.09048",
+  "spec_hash": "sha256:9443990977927f9e9756e4413133ce1a5f78337665051afa935959cee514e8a6",
+  "code_sha": "sha256:8e9e377fa4cd36fdffbc72cff15d103b234730b850ba4c5d99b857ef16ac6c22",
+  "inputs_sha": "sha256:a00ad8918e4221a02c5b7b6210b2664698c16594dbf5f28f047cbf5aa25e71b6",
+  "outputs_sha": "sha256:d638ca56f2be0e7300ceef53438b927be09b06d80f39740b26c4001ee60417f7",
+  "double_run_equal": true,
+  "second_run_sha": "sha256:d638ca56f2be0e7300ceef53438b927be09b06d80f39740b26c4001ee60417f7",
+  "drift": "",
+  "claims": [
+    {
+      "claim_id": "C1",
+      "sau_id": "sau:230209048:numeric:000",
+      "code_sha": "sha256:8e9e377fa4cd36fdffbc72cff15d103b234730b850ba4c5d99b857ef16ac6c22",
+      "inputs_sha": "sha256:a00ad8918e4221a02c5b7b6210b2664698c16594dbf5f28f047cbf5aa25e71b6",
+      "outputs_sha": "sha256:d638ca56f2be0e7300ceef53438b927be09b06d80f39740b26c4001ee60417f7",
+      "resolved": true
+    },
+    {
+      "claim_id": "C1",
+      "sau_id": "sau:230209048:numeric:001",
+      "code_sha": "sha256:8e9e377fa4cd36fdffbc72cff15d103b234730b850ba4c5d99b857ef16ac6c22",
+      "inputs_sha": "sha256:a00ad8918e4221a02c5b7b6210b2664698c16594dbf5f28f047cbf5aa25e71b6",
+      "outputs_sha": "sha256:d638ca56f2be0e7300ceef53438b927be09b06d80f39740b26c4001ee60417f7",
+      "resolved": true
+    },
+    {
+      "claim_id": "C1",
+      "sau_id": "sau:230209048:numeric:002",
+      "code_sha": "sha256:8e9e377fa4cd36fdffbc72cff15d103b234730b850ba4c5d99b857ef16ac6c22",
+      "inputs_sha": "sha256:a00ad8918e4221a02c5b7b6210b2664698c16594dbf5f28f047cbf5aa25e71b6",
+      "outputs_sha": "sha256:d638ca56f2be0e7300ceef53438b927be09b06d80f39740b26c4001ee60417f7",
+      "resolved": true
+    },
+    {
+      "claim_id": "C1",
+      "sau_id": "sau:230209048:numeric:003",
+      "code_sha": "sha256:8e9e377fa4cd36fdffbc72cff15d103b234730b850ba4c5d99b857ef16ac6c22",
+      "inputs_sha": "sha256:a00ad8918e4221a02c5b7b6210b2664698c16594dbf5f28f047cbf5aa25e71b6",
+      "outputs_sha": "sha256:d638ca56f2be0e7300ceef53438b927be09b06d80f39740b26c4001ee60417f7",
+      "resolved": true
+    }
+  ]
+}

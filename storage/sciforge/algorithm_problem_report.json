@@ -1,0 +1,35 @@
+{
+  "n_algorithms": 34,
+  "by_task_type": {
+    "molecule_generation": 4,
+    "property_prediction": 8,
+    "forcefield_simulation": 3,
+    "structure_docking": 2,
+    "instruction_multitask": 12,
+    "sequence_design": 2,
+    "classifier_screening": 1,
+    "wetlab_baseline": 1,
+    "sampling_acceleration": 1
+  },
+  "with_explicit_mechanism": 34,
+  "with_source_paper": 0,
+  "baseline_groups": {
+    "molecule_generation|小分子": 4,
+    "property_prediction|材料/力场": 5,
+    "forcefield_simulation|材料/力场": 3,
+    "structure_docking|抗体": 1,
+    "instruction_multitask|蛋白/口袋": 1,
+    "property_prediction|抗体": 1,
+    "property_prediction|蛋白/口袋": 1,
+    "sequence_design|多肽": 1,
+    "instruction_multitask|多肽": 4,
+    "classifier_screening": 1,
+    "wetlab_baseline": 1,
+    "instruction_multitask": 5,
+    "sequence_design": 1,
+    "structure_docking|蛋白/口袋": 1,
+    "property_prediction|小分子": 1,
+    "instruction_multitask|小分子": 2,
+    "sampling_acceleration|小分子": 1
+  }
+}

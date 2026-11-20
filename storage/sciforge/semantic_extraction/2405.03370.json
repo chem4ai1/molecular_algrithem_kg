@@ -1,0 +1,2215 @@
+{
+  "arxiv_id": "2405.03370",
+  "stages": {
+    "E1_paper": {
+      "ok": true,
+      "attempts": 1,
+      "issues": [
+        "warn:evidence_not_verbatim:why_hard"
+      ],
+      "fatal": [],
+      "n_fields": 22,
+      "data": {
+        "research_question": "开发一种抗体特异性逆折叠模型，在保持骨架结构不变的前提下生成序列并预测亲和力，以解决现有工具CDR序列恢复率低的问题。",
+        "problem_category": "sequence_design",
+        "domain_code": "D6",
+        "why_hard": "现有逆折叠工具在CDR区域的序列恢复能力有限，且ProteinMPNN类工具存在链重排或插入等与抗体结构不兼容的特征。",
+        "relation_hints": {
+          "related_papers": [
+            "ESM-IF1",
+            "AbMPNN",
+            "IgMPNN",
+            "ProteinMPNN"
+          ],
+          "algorithms": [
+            "AntiFold",
+            "AbMPNN"
+          ],
+          "benchmarks": []
+        },
+        "evidence": {
+          "research_question": "Here, we present AntiFold, an antibody-specific inverse folding model, fine-tuned from ESM-IF1 on solved and predicted antibody structures.",
+          "why_hard": ""
+        },
+        "paradigm": "design",
+        "evidence_type": "simulational",
+        "evidence_norm": [
+          "sequence recovery",
+          "structural similarity",
+          "binding affinity correlation"
+        ],
+        "authors": [
+          "Magnus Haraldson Høie",
+          "Alissa Hummer",
+          "Tobias H. Olsen",
+          "Broncio Aguilar-Sanjuan",
+          "Morten Nielsen",
+          "Charlotte M. Deane"
+        ],
+        "abstract": "Summary: The design and optimization of antibodies requires an intricate balance across multiple properties. Protein inverse folding models, capable of generating diverse sequences folding into the same structure, are promising tools for maintaining structural integrity during antibody design. Here, we present AntiFold, an antibody-specific inverse folding model, fine-tuned from ESM-IF1 on solved and predicted antibody structures. AntiFold outperforms existing inverse folding tools on sequence recovery across complementarity-determining regions, with designed sequences showing high structural similarity to their solved counterpart. It additionally achieves stronger correlations when predicting antibody-antigen binding affinity in a zero-shot manner, while performance is augmented further when including antigen information. AntiFold assigns low probabilities to mutations that disrupt antigen binding, synergizing with protein language model residue probabilities, and demonstrates promise for guiding antibody optimization while retaining structure-related properties.",
+        "claims": [
+          {
+            "statement": "AntiFold在互补决定区（CDR）的序列恢复上优于现有逆折叠工具。",
+            "evidence": "AntiFold outperforms existing inverse folding tools on sequence recovery across complementarity-determining regions"
+          },
+          {
+            "statement": "AntiFold在零样本预测抗体-抗原结合亲和力时表现出更强的相关性。",
+            "evidence": "It additionally achieves stronger correlations when predicting antibody-antigen binding affinity in a zero-shot manner"
+          }
+        ],
+        "references": [],
+        "figures": [],
+        "section_map": [
+          {
+            "section": "Abstract",
+            "claims": [
+              "AntiFold在CDR序列恢复上优于现有工具",
+              "零样本亲和力预测相关性更强"
+            ]
+          },
+          {
+            "section": "Introduction",
+            "claims": [
+              "抗体设计需平衡多属性",
+              "现有逆折叠工具在CDR恢复和结构兼容性上存在局限"
+            ]
+          }
+        ],
+        "gaps": [
+          {
+            "gap_type": "capability",
+            "statement": "现有逆折叠工具在CDR区域的序列恢复能力有限。",
+            "evidence": "However, the sequence recovery of existing tools for the CDR regions has been limited."
+          },
+          {
+            "gap_type": "capability",
+            "statement": "ProteinMPNN类工具存在链重排、CDRH3插入或IMGT编号间隙，与抗体结构不兼容。",
+            "evidence": "ProteinMPNN-based tools have features such as the occasional re-ordering of antibody chains or CDRH3 position 112 insert"
+          }
+        ],
+        "open_problems": [],
+        "delta_claims": [
+          {
+            "statement": "AntiFold显著提高了CDR序列恢复和零样本亲和力预测性能。",
+            "baseline": "ESM-IF1",
+            "evidence": "Here, we present AntiFold, an antibody-specific inverse folding model fine-tuned from ESM-IF1 [Hsu et al., 2022], which "
+          }
+        ],
+        "negative_results": [],
+        "protocol_disclosure": [],
+        "citation_style": "author-year",
+        "writing_style": "标准生物信息学方法论文结构，包含摘要、引言、方法描述及可用性说明，强调模型在特定生物分子（抗体）上的微调优势。"
+      }
+    },
+    "E2_algorithm": {
+      "ok": true,
+      "attempts": 1,
+      "issues": [],
+      "fatal": [],
+      "n_fields": 1,
+      "data": {
+        "algorithms": [
+          {
+            "name": "AntiFold",
+            "task_type": "sequence_design",
+            "problems_solved": [
+              "现有抗体逆折叠工具在CDR区域序列恢复率低",
+              "ProteinMPNN类工具存在链重排或IMGT编号间隙等结构兼容性问题",
+              "需要在保持骨架结构不变的前提下优化抗体性质"
+            ],
+            "mechanism": "基于ESM-IF1预训练模型，在已解决和预测的抗体结构上进行微调，采用跨度掩码、随机残基掩码及CDR加权策略提升CDRH3恢复率。",
+            "why_it_works": "利用ESM-IF1的大规模预训练数据基础，结合抗体特异性数据微调，显著提高了CDR区域的序列恢复准确性和结构保持能力。",
+            "applicable_to": [
+              "抗体结构约束下的序列设计",
+              "抗体亲和力成熟指导",
+              "抗体突变耐受性评估"
+            ],
+            "limitations": [
+              "未直接与IgMPNN比较，因其模型权重和训练数据不可用"
+            ],
+            "modules": [
+              {
+                "name": "ESM-IF1 Backbone",
+                "mechanism": "加载ESM-IF1预训练权重作为基础模型",
+                "formula": "",
+                "inputs": "ESM-IF1预训练模型",
+                "outputs": "初始化后的模型参数",
+                "code_symbols": [],
+                "tools": [
+                  "ESM-IF1"
+                ],
+                "is_novel_component": false,
+                "component_role": "backbone"
+              },
+              {
+                "name": "Antibody Fine-tuning",
+                "mechanism": "在SAbDab和OAS抗体结构数据上微调模型",
+                "formula": "",
+                "inputs": "SAbDab复合物, OAS预测结构",
+                "outputs": "微调后的AntiFold模型",
+                "code_symbols": [],
+                "tools": [
+                  "SAbDab",
+                  "OAS",
+                  "ABodyBuilder2"
+                ],
+                "is_novel_component": false,
+                "component_role": "other"
+              },
+              {
+                "name": "Span-Masking Strategy",
+                "mechanism": "应用跨度掩码和随机残基掩码以增强CDRH3学习",
+                "formula": "",
+                "inputs": "抗体序列",
+                "outputs": "掩码后的训练样本",
+                "code_symbols": [
+                  "get_imgt_mask"
+                ],
+                "tools": [],
+                "is_novel_component": false,
+                "component_role": "other"
+              },
+              {
+                "name": "CDR Weighted Masking",
+                "mechanism": "对CDR残基应用3:1权重进行掩码以聚焦关键区域",
+                "formula": "",
+                "inputs": "IMGT区域定义",
+                "outputs": "加权掩码掩码",
+                "code_symbols": [
+                  "parse_regions"
+                ],
+                "tools": [],
+                "is_novel_component": false,
+                "component_role": "other"
+              },
+              {
+                "name": "Sequence Sampler",
+                "mechanism": "根据温度参数从残基概率分布中采样新序列",
+                "formula": "",
+                "inputs": "残基概率, 温度参数",
+                "outputs": "设计的抗体序列",
+                "code_symbols": [
+                  "sample_new_sequences_CDR_HL",
+                  "top_k_top_p_filtering"
+                ],
+                "tools": [],
+                "is_novel_component": false,
+                "component_role": "sampler"
+              },
+              {
+                "name": "Perplexity Calculator",
+                "mechanism": "计算每个残基位置对突变的结构耐受性（困惑度）",
+                "formula": "",
+                "inputs": "模型Logits",
+                "outputs": "残基耐受性分数",
+                "code_symbols": [
+                  "calc_pos_perplexity",
+                  "logits_to_seqprobs_list"
+                ],
+                "tools": [],
+                "is_novel_component": false,
+                "component_role": "other"
+              }
+            ],
+            "assumptions": [],
+            "novelty_basis": []
+          }
+        ]
+      }
+    },
+    "E3_benchmark": {
+      "ok": true,
+      "attempts": 1,
+      "issues": [],
+      "fatal": [],
+      "n_fields": 1,
+      "data": {
+        "benchmarks": [
+          {
+            "name": "AbMPNN test-set",
+            "input_form": "3D坐标",
+            "output_form": "序列",
+            "n_samples": "",
+            "scale": "",
+            "modality": "protein structure",
+            "research_object": "antibody CDR sequence recovery",
+            "protocol": {
+              "seeds": "",
+              "split": "90% concatenated CDR sequence identity cutoff (80/10/10 train/validation/test)",
+              "eval_script": "",
+              "epochs": ""
+            },
+            "failure_modes": [],
+            "metrics": [
+              {
+                "name": "Amino acid recovery",
+                "unit": "%",
+                "direction": "max",
+                "contribution_link": "CDR sequence recover"
+              },
+              {
+                "name": "RMSD",
+                "unit": "Å",
+                "direction": "min",
+                "contribution_link": "structural similarit"
+              }
+            ]
+          },
+          {
+            "name": "Warszawski, anti-lysozyme DMS",
+            "input_form": "序列",
+            "output_form": "标量",
+            "n_samples": "",
+            "scale": "",
+            "modality": "antibody-antigen binding",
+            "research_object": "binding affinity prediction",
+            "protocol": {
+              "seeds": "",
+              "split": "",
+              "eval_script": "",
+              "epochs": ""
+            },
+            "failure_modes": [],
+            "metrics": [
+              {
+                "name": "Spearman's rank correlation",
+                "unit": "",
+                "direction": "max",
+                "contribution_link": "affinity prediction "
+              }
+            ]
+          },
+          {
+            "name": "Hie, 7x Ab affinity-maturation",
+            "input_form": "序列",
+            "output_form": "标量",
+            "n_samples": "",
+            "scale": "",
+            "modality": "antibody-antigen binding",
+            "research_object": "affinity maturation variant ranking",
+            "protocol": {
+              "seeds": "",
+              "split": "",
+              "eval_script": "",
+              "epochs": ""
+            },
+            "failure_modes": [],
+            "metrics": [
+              {
+                "name": "Rank %",
+                "unit": "%",
+                "direction": "max",
+                "contribution_link": "improved variant sep"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "paper_type": {
+    "paper_type": "method",
+    "confidence": 1.0,
+    "method": "rule",
+    "margin": 2,
+    "uncertain": false,
+    "scores": {
+      "method": 2,
+      "dataset_benchmark": 0,
+      "theory": 0,
+      "survey": 0.0,
+      "system_tool": 0,
+      "application": 0
+    },
+    "stages": [
+      "E1_paper",
+      "E2_algorithm",
+      "E3_benchmark",
+      "E4_values",
+      "E5_relations",
+      "E6_lineage"
+    ],
+    "focus": "重点抽算法模块与机理；基准只抽本文实际评测的"
+  },
+  "slice_meta": {
+    "source": "fallback",
+    "n_blocks": 0,
+    "kinds": {}
+  },
+  "n_ast_symbols": 41,
+  "guide_chars": 1702,
+  "domain_calibrated": "D6",
+  "model_results": {
+    "table": 0,
+    "llm_fallback": 0,
+    "deduplicated": 0,
+    "rows": []
+  },
+  "application_hints": {
+    "tools_formulas": [],
+    "note": "节点化留给应用层任务（复现/生成论文时按任务构建）"
+  },
+  "lineage": {
+    "all": [],
+    "subclass_of": [],
+    "compared_only": []
+  },
+  "cross_check": [],
+  "paradigm": {
+    "ner": {
+      "algorithms": [
+        {
+          "text": "MolMiner",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:molminer"
+        },
+        {
+          "text": "ChemicalVAE",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:chemicalvae"
+        },
+        {
+          "text": "SchNet",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:schnet"
+        },
+        {
+          "text": "SO3LR Tauri",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:so3lr_tauri"
+        },
+        {
+          "text": "SO3LR",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:so3lr"
+        },
+        {
+          "text": "OPLS4",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:opls4"
+        },
+        {
+          "text": "GAFF",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:gaff"
+        },
+        {
+          "text": "MACE-POLAR-1-M",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:mace_polar_1_m"
+        },
+        {
+          "text": "AIMNet2-2025",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:aimnet2_2025"
+        },
+        {
+          "text": "UMA-S-1.2.1",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:uma_s_1_2_1"
+        },
+        {
+          "text": "AntiFold",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:antifold"
+        },
+        {
+          "text": "ESM-IF1",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:esm_if1"
+        },
+        {
+          "text": "AbMPNN",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:abmpnn"
+        },
+        {
+          "text": "ProteinMPNN",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:proteinmpnn"
+        },
+        {
+          "text": "AMP-Designer",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:amp_designer"
+        },
+        {
+          "text": "AMP-GPT",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:amp_gpt"
+        },
+        {
+          "text": "AMP-Prompt",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:amp_prompt"
+        },
+        {
+          "text": "AMP-Distillation",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:amp_distillation"
+        },
+        {
+          "text": "AMP-MIC",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:amp_mic"
+        },
+        {
+          "text": "CLaSS",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:class"
+        },
+        {
+          "text": "CFPS",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:cfps"
+        },
+        {
+          "text": "Condition Token (CT)",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:condition_token_ct"
+        },
+        {
+          "text": "Fine-Tuning (FT)",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:fine_tuning_ft"
+        },
+        {
+          "text": "Huang et al. RNN",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:huang_et_al_rnn"
+        },
+        {
+          "text": "Lingo3DMol",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:lingo3dmol"
+        },
+        {
+          "text": "Pocket2Mol",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:pocket2mol"
+        },
+        {
+          "text": "TargetDiff",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:targetdiff"
+        },
+        {
+          "text": "Mol-Instructions",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:mol_instructions"
+        },
+        {
+          "text": "LLaMA",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:llama"
+        },
+        {
+          "text": "Stanford Alpaca",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:stanford_alpaca"
+        },
+        {
+          "text": "GPT4All",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:gpt4all"
+        },
+        {
+          "text": "MOLGEN",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:molgen"
+        },
+        {
+          "text": "SMILES-based PLMs",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:smiles_based_plms"
+        },
+        {
+          "text": "Langevin Speculative Dynamics",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:langevin_speculative_dynamics"
+        },
+        {
+          "text": "DISCO",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:disco"
+        },
+        {
+          "text": "BART",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:bart"
+        },
+        {
+          "text": "SELFIES",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:selfies"
+        },
+        {
+          "text": "SMILES",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:smiles"
+        },
+        {
+          "text": "self-instruct",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:self_instruct"
+        },
+        {
+          "text": "MMseqs",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:mmseqs"
+        },
+        {
+          "text": "JTNN",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:jtnn"
+        },
+        {
+          "text": "HierVAE",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:hiervae"
+        },
+        {
+          "text": "MoLeR",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:moler"
+        },
+        {
+          "text": "Flow-matching",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:flow_matching"
+        },
+        {
+          "text": "Euclidean conditional flowmatching",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:euclidean_conditional_flowmatching"
+        },
+        {
+          "text": "Discrete Flow Models",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:discrete_flow_models"
+        },
+        {
+          "text": "Transformer",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:transformer"
+        },
+        {
+          "text": "SUBS",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:subs"
+        },
+        {
+          "text": "AlphaFold 2",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:alphafold_2"
+        },
+        {
+          "text": "AF3",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:af3"
+        },
+        {
+          "text": "random remasking",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:random_remasking"
+        },
+        {
+          "text": "Noisy guidance",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:noisy_guidance"
+        },
+        {
+          "text": "reflection-maximal couplings",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:reflection_maximal_couplings"
+        },
+        {
+          "text": "speculative sampling",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:speculative_sampling"
+        },
+        {
+          "text": "Leviathan et al. (2023)",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:leviathan_et_al_2023"
+        },
+        {
+          "text": "TABASCO",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:tabasco"
+        },
+        {
+          "text": "Neural Graph Fingerprints",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:neural_graph_fingerprints"
+        },
+        {
+          "text": "Circular fingerprints",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:circular_fingerprints"
+        },
+        {
+          "text": "ChemTS",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:chemts"
+        },
+        {
+          "text": "MCTS",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:mcts"
+        },
+        {
+          "text": "RNN",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:rnn"
+        },
+        {
+          "text": "NeVAE",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:nevae"
+        },
+        {
+          "text": "variational autoencoders",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:variational_autoencoders"
+        },
+        {
+          "text": "inductive graph representation learning",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:inductive_graph_representation_learning"
+        },
+        {
+          "text": "Bayesian optimization",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:bayesian_optimization"
+        },
+        {
+          "text": "reinforcement learning",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:reinforcement_learning"
+        },
+        {
+          "text": "MolGAN",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:molgan"
+        },
+        {
+          "text": "GAN",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:gan"
+        },
+        {
+          "text": "ORGAN",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:organ"
+        },
+        {
+          "text": "Likelihood-based methods",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:likelihood_based_methods"
+        },
+        {
+          "text": "GCPN",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:gcpn"
+        },
+        {
+          "text": "graph representation",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:graph_representation"
+        },
+        {
+          "text": "adversarial training",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:adversarial_training"
+        },
+        {
+          "text": "GNN Pre-training Strategy",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:gnn_pre_training_strategy"
+        },
+        {
+          "text": "G-SchNet",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:g_schnet"
+        },
+        {
+          "text": "3d isomer generation",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:3d_isomer_generation"
+        },
+        {
+          "text": "SMILES Transformer",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:smiles_transformer"
+        },
+        {
+          "text": "GraphAF",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:graphaf"
+        },
+        {
+          "text": "MOLGYM",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:molgym"
+        },
+        {
+          "text": "graph-based RL methods",
+          "type": "Algorithm",
+          "source": "graph_catalog",
+          "node_id": "algorithm:graph_based_rl_methods"
+        }
+      ],
+      "benchmarks": [
+        {
+          "text": "ZINC",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:zinc"
+        },
+        {
+          "text": "SAPT10k",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:sapt10k"
+        },
+        {
+          "text": "QUID",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:quid"
+        },
+        {
+          "text": "JSCH-2005",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:jsch_2005"
+        },
+        {
+          "text": "PLA15",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:pla15"
+        },
+        {
+          "text": "TorsionNet500",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:torsionnet500"
+        },
+        {
+          "text": "GlcMal",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:glcmal"
+        },
+        {
+          "text": "Proline-catalyzed aldol addition",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:proline_catalyzed_aldol_addition"
+        },
+        {
+          "text": "Side-chain pKa of pentapeptides",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:side_chain_pka_of_pentapeptides"
+        },
+        {
+          "text": "Crambin in water",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:crambin_in_water"
+        },
+        {
+          "text": "antibody CDRH3 test set",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:antibody_cdrh3_test_set"
+        },
+        {
+          "text": "UniProt and curated AMP datasets",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:uniprot_and_curated_amp_datasets"
+        },
+        {
+          "text": "UniProt peptide distribution",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:uniprot_peptide_distribution"
+        },
+        {
+          "text": "CAMP, AMP Scanner, and Macrel ensemble",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:camp_amp_scanner_and_macrel_ensemble"
+        },
+        {
+          "text": "Real AMPs sequence database",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:real_amps_sequence_database"
+        },
+        {
+          "text": "Gramapa MIC dataset",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:gramapa_mic_dataset"
+        },
+        {
+          "text": "ESKAPE pathogen panel",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:eskape_pathogen_panel"
+        },
+        {
+          "text": "XDR K. pneumoniae pneumonia mouse model",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:xdr_k_pneumoniae_pneumonia_mouse_model"
+        },
+        {
+          "text": "P. acnes in vitro panel",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:p_acnes_in_vitro_panel"
+        },
+        {
+          "text": "DUD-E",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:dud_e"
+        },
+        {
+          "text": "ZINC-15",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:zinc_15"
+        },
+        {
+          "text": "ZINC-250k",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:zinc_250k"
+        },
+        {
+          "text": "MOSES",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:moses"
+        },
+        {
+          "text": "GuacaMol",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:guacamol"
+        },
+        {
+          "text": "ChEMBL",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:chembl"
+        },
+        {
+          "text": "GEOM-Drugs",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:geom_drugs"
+        },
+        {
+          "text": "GDB-17",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:gdb_17"
+        },
+        {
+          "text": "PubChem",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:pubchem"
+        },
+        {
+          "text": "QM9",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:qm9"
+        },
+        {
+          "text": "ESOL",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:esol"
+        },
+        {
+          "text": "FreeSolv",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:freesolv"
+        },
+        {
+          "text": "Lipophilicity",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:lipophilicity"
+        },
+        {
+          "text": "BBBP",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:bbbp"
+        },
+        {
+          "text": "HIV",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:hiv"
+        },
+        {
+          "text": "Tox21",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:tox21"
+        },
+        {
+          "text": "ClinTox",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:clintox"
+        },
+        {
+          "text": "SIDER",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:sider"
+        },
+        {
+          "text": "TDC-ADMET",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:tdc_admet"
+        },
+        {
+          "text": "AqSolDB",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:aqsoldb"
+        },
+        {
+          "text": "S22x5",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:s22x5"
+        },
+        {
+          "text": "S66x8",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:s66x8"
+        },
+        {
+          "text": "ANI-1x",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:ani_1x"
+        },
+        {
+          "text": "QM7-X",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:qm7_x"
+        },
+        {
+          "text": "MD17",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:md17"
+        },
+        {
+          "text": "ISO17",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:iso17"
+        },
+        {
+          "text": "PDBbind",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:pdbbind"
+        },
+        {
+          "text": "CASF-2016",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:casf_2016"
+        },
+        {
+          "text": "CrossDocked2020",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:crossdocked2020"
+        },
+        {
+          "text": "BindingDB",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:bindingdb"
+        },
+        {
+          "text": "DBAASP",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:dbaasp"
+        },
+        {
+          "text": "CAMP",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:camp"
+        },
+        {
+          "text": "UniProt",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:uniprot"
+        },
+        {
+          "text": "APD3",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:apd3"
+        },
+        {
+          "text": "AMP Scanner ensemble",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:amp_scanner_ensemble"
+        },
+        {
+          "text": "ChEBI-20",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:chebi_20"
+        },
+        {
+          "text": "SMolInstruct",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:smolinstruct"
+        },
+        {
+          "text": "PubChemQC",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:pubchemqc"
+        },
+        {
+          "text": "Mol-Instructions",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:mol_instructions"
+        },
+        {
+          "text": "USPTO-50k",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:uspto_50k"
+        },
+        {
+          "text": "USPTO-MIT",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:uspto_mit"
+        },
+        {
+          "text": "Pistachio",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:pistachio"
+        },
+        {
+          "text": "ORD",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:kb:ord"
+        },
+        {
+          "text": "Unconditional Generation",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:unconditional_generation"
+        },
+        {
+          "text": "Conditional Generation",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:conditional_generation"
+        },
+        {
+          "text": "Targeted Multi-Property",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:targeted_multi_property"
+        },
+        {
+          "text": "D44.1 anti-lysozyme antibody variants",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:d44_1_anti_lysozyme_antibody_variants"
+        },
+        {
+          "text": "Targeted Generation",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:targeted_generation"
+        },
+        {
+          "text": "Drew–Dickerson dodecamer",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:drew_dickerson_dodecamer"
+        },
+        {
+          "text": "cis-platin 1,2-d(GpG) crosslink",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:cis_platin_1_2_d_gpg_crosslink"
+        },
+        {
+          "text": "POPC bilayer",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:popc_bilayer"
+        },
+        {
+          "text": "solubility dataset",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:solubility_dataset"
+        },
+        {
+          "text": "chemistry dataset",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:chemistry_dataset"
+        },
+        {
+          "text": "biology dataset",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:biology_dataset"
+        },
+        {
+          "text": "MoleculeNet",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:moleculenet"
+        },
+        {
+          "text": "MOLGYM",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:molgym"
+        },
+        {
+          "text": "ChEMBL20",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:chembl20"
+        },
+        {
+          "text": "SidechainNet",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:sidechainnet"
+        },
+        {
+          "text": "ProteinNet",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:proteinnet"
+        },
+        {
+          "text": "RDKit benchmarking platform",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:rdkit_benchmarking_platform"
+        },
+        {
+          "text": "DW4",
+          "type": "Benchmark",
+          "source": "graph_catalog",
+          "node_id": "benchmark:dw4"
+        }
+      ],
+      "code_symbols": [
+        {
+          "text": "_get_all_possible_attachments",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:raulorteg_molminer:molminer_processor_py:get_all_possible_attachments"
+        },
+        {
+          "text": "_compute_possible_remaps",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:raulorteg_molminer:molminer_processor_py:compute_possible_remaps"
+        },
+        {
+          "text": "_get_canonicalization_map",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:raulorteg_molminer:molminer_processor_py:get_canonicalization_map"
+        },
+        {
+          "text": "forward",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:raulorteg_molminer:molminer_models_py:forward"
+        },
+        {
+          "text": "__init__",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:raulorteg_molminer:molminer_models_py:init"
+        },
+        {
+          "text": "_sample",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:raulorteg_molminer:molminer_generator_py:sample"
+        },
+        {
+          "text": "make_so3lr",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:general_molecular_simulations_so3lr:so3lr_base_calculator_py:make_so3lr"
+        },
+        {
+          "text": "kspace_electrostatics_options",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:general_molecular_simulations_so3lr:so3lr_cli_so3lr_cli_py:kspace_electrostatics_options"
+        },
+        {
+          "text": "kspace_dispersion_options",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:general_molecular_simulations_so3lr:so3lr_cli_so3lr_cli_py:kspace_dispersion_options"
+        },
+        {
+          "text": "get_imgt_mask",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:oxpig_antifold:antifold_antiscripts_py:get_imgt_mask"
+        },
+        {
+          "text": "parse_regions",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:oxpig_antifold:antifold_antiscripts_py:parse_regions"
+        },
+        {
+          "text": "get_pdbs_logits",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:oxpig_antifold:antifold_antiscripts_py:get_pdbs_logits"
+        },
+        {
+          "text": "dataset_dataloader_to_predictions_list",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:oxpig_antifold:antifold_antiscripts_py:dataset_dataloader_to_predictions_list"
+        },
+        {
+          "text": "logits_to_seqprobs_list",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:oxpig_antifold:antifold_antiscripts_py:logits_to_seqprobs_list"
+        },
+        {
+          "text": "sample_new_sequences_CDR_HL",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:oxpig_antifold:antifold_antiscripts_py:sample_new_sequences_cdr_hl"
+        },
+        {
+          "text": "sample_from_df_logits_HL",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:oxpig_antifold:antifold_antiscripts_py:sample_from_df_logits_hl"
+        },
+        {
+          "text": "calc_pos_perplexity",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:oxpig_antifold:antifold_antiscripts_py:calc_pos_perplexity"
+        },
+        {
+          "text": "predict",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:jkwang93_amp_designer:amp_gpt_generator_py:predict"
+        },
+        {
+          "text": "top_k_top_p_filtering",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:jkwang93_amp_designer:amp_prompt_generator_py:top_k_top_p_filtering"
+        },
+        {
+          "text": "decode",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:jkwang93_amp_designer:amp_gpt_generator_py:decode"
+        },
+        {
+          "text": "MultiGRU",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:jkwang93_amp_designer:amp_distiilation_py:multigru"
+        },
+        {
+          "text": "RNN",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:jkwang93_amp_designer:amp_distiilation_py:rnn"
+        },
+        {
+          "text": "CombinedModel",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:jkwang93_amp_designer:amp_mic_amp_mic_py:combinedmodel"
+        },
+        {
+          "text": "Encoder",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:stonewiseaidrugdesign_lingo3dmol:model_module_py:encoder"
+        },
+        {
+          "text": "EncoderLayer",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:stonewiseaidrugdesign_lingo3dmol:model_module_py:encoderlayer"
+        },
+        {
+          "text": "DecoderBias",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:stonewiseaidrugdesign_lingo3dmol:model_module_py:decoderbias"
+        },
+        {
+          "text": "DecoderLayerBias",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:stonewiseaidrugdesign_lingo3dmol:model_module_py:decoderlayerbias"
+        },
+        {
+          "text": "Decoder",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:stonewiseaidrugdesign_lingo3dmol:model_module_py:decoder"
+        },
+        {
+          "text": "DecoderLayer",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:stonewiseaidrugdesign_lingo3dmol:model_module_py:decoderlayer"
+        },
+        {
+          "text": "changepos",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:stonewiseaidrugdesign_lingo3dmol:inference_inference_avoid_clash_py:changepos"
+        },
+        {
+          "text": "changepos2",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:stonewiseaidrugdesign_lingo3dmol:inference_inference_avoid_clash_py:changepos2"
+        },
+        {
+          "text": "CollisionCheck",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:stonewiseaidrugdesign_lingo3dmol:inference_cube_collision_check_py:collisioncheck"
+        },
+        {
+          "text": "bonusVSpenalty2",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:stonewiseaidrugdesign_lingo3dmol:inference_inference_avoid_clash_py:bonusvspenalty2"
+        },
+        {
+          "text": "get_grid_file",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:stonewiseaidrugdesign_lingo3dmol:inference_cube_collision_check_py:get_grid_file"
+        },
+        {
+          "text": "BartConfig",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:zjunlp_molgen:molgen_model_bart_configuration_bart_py:bartconfig"
+        },
+        {
+          "text": "get_prompt",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:zjunlp_molgen:molgen_finetune_py:get_prompt"
+        },
+        {
+          "text": "loss_output",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:zjunlp_molgen:molgen_finetune_py:loss_output"
+        },
+        {
+          "text": "update_loss_log",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:zjunlp_molgen:molgen_finetune_py:update_loss_log"
+        },
+        {
+          "text": "generate_molecules",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:zjunlp_molgen:molgen_generate_ds_py:generate_molecules"
+        },
+        {
+          "text": "generate_candidate_selfies",
+          "type": "CodeFunction",
+          "source": "graph_catalog",
+          "node_id": "codefunction:zjunlp_molgen:molgen_generate_ds_py:generate_candidate_selfies"
+        }
+      ],
+      "metrics": [
+        {
+          "text": "validity",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "property optimization",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "mae",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "rmse",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "energy_error",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "spearman",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "rmsd",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "Pearson_r",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "accuracy",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "percentage",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "AMP_hit_percent",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "novelty",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "uniqueness",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "docking score",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "average score",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "diversity",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "goal-directed task performance",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "PB-Valid",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "Novel",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "PIC",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "sample efficiency",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "NLL",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "AS",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "MS",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "Val",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "collision count",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "ROC-AUC",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "Valid Rate",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "AUC",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "Molecular Weight",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "SA Score",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "LogP",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "TDC performance",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "Brier score",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "90% interval score",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "speed",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "average sample quality",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "docking",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "scoring",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "ranking",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "screening",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "binding affinity",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "structure validity",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "QED",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "MW",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "BLEU-4",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "exact-matched",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "rank-1 prediction passed RDKit structura",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "rank-1 prediction passed adversarial LLM",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "reproduced the reference precursors",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "Wasserstein distance",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "controllability",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "fidelity",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "Spearman’s rank correlation",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "Hit rate",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "Fold-enrichment",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "helical twist",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "r",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "DHH",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "PCC",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "energy",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "AUPRC",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "AUROC",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "BEDROC20",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "log-likelihood",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "fitness",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "HOMO-LUMO gap prediction",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "test accuracy",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "mean matching score",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "drugability",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "sequence recovery",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "recovery",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "likelihood",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "sample quality",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "sequence recovery rate",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "molecular properties",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "VINA",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "SA",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "TMScore",
+          "type": "Metric",
+          "source": "graph_catalog"
+        },
+        {
+          "text": "C-RMSD",
+          "type": "Metric",
+          "source": "graph_catalog"
+        }
+      ],
+      "tables": [
+        {
+          "text": "Table 1",
+          "type": "TableRef",
+          "source": "surface_pattern",
+          "offset": 8547,
+          "block": "algorithm"
+        }
+      ]
+    },
+    "canonicalization": {
+      "canonical_map": {
+        "algorithm:AntiFold": {
+          "canonical": "AntiFold",
+          "node_id": "algorithm:antifold",
+          "match": "exact",
+          "score": 1.0
+        },
+        "code:get_imgt_mask": {
+          "canonical": "get_imgt_mask",
+          "match": "grounded",
+          "node_id": "",
+          "score": 1.0
+        },
+        "code:parse_regions": {
+          "canonical": "parse_regions",
+          "match": "grounded",
+          "node_id": "",
+          "score": 1.0
+        },
+        "code:sample_new_sequences_CDR_HL": {
+          "canonical": "sample_new_sequences_CDR_HL",
+          "match": "grounded",
+          "node_id": "",
+          "score": 1.0
+        },
+        "code:top_k_top_p_filtering": {
+          "canonical": "top_k_top_p_filtering",
+          "match": "grounded",
+          "node_id": "",
+          "score": 1.0
+        },
+        "code:calc_pos_perplexity": {
+          "canonical": "calc_pos_perplexity",
+          "match": "grounded",
+          "node_id": "",
+          "score": 1.0
+        },
+        "code:logits_to_seqprobs_list": {
+          "canonical": "logits_to_seqprobs_list",
+          "match": "grounded",
+          "node_id": "",
+          "score": 1.0
+        },
+        "benchmark:AbMPNN test-set": {
+          "canonical": "AbMPNN test-set",
+          "node_id": "benchmark:abmpnn_test_set",
+          "match": "exact",
+          "score": 1.0
+        },
+        "benchmark:Warszawski, anti-lysozyme DMS": {
+          "canonical": "Warszawski, anti-lysozyme DMS",
+          "node_id": "benchmark:warszawski_anti_lysozyme_dms",
+          "match": "exact",
+          "score": 1.0
+        },
+        "benchmark:Hie, 7x Ab affinity-maturation": {
+          "canonical": "Hie, 7x Ab affinity-maturation",
+          "node_id": "benchmark:hie_7x_ab_affinity_maturation",
+          "match": "exact",
+          "score": 1.0
+        }
+      },
+      "alias_groups": {},
+      "n_exact": 4,
+      "n_fuzzy": 0,
+      "n_new": 0,
+      "n_ungrounded_code": 0
+    },
+    "relations": {
+      "grounded": [],
+      "ungrounded": [],
+      "n": 0
+    },
+    "modules": {
+      "chains": [
+        {
+          "algorithm": "AntiFold",
+          "modules": [
+            {
+              "step_order": 1,
+              "name": "ESM-IF1 Backbone",
+              "depends_on": "",
+              "data_flow": "ESM-IF1预训练模型",
+              "inputs": "ESM-IF1预训练模型",
+              "outputs": "初始化后的模型参数",
+              "goal": "加载ESM-IF1预训练权重作为基础模型",
+              "formula": "",
+              "code_symbols": [],
+              "code_aligned": [],
+              "code_alignment_rate": 0.0
+            },
+            {
+              "step_order": 2,
+              "name": "Antibody Fine-tuning",
+              "depends_on": "ESM-IF1 Backbone",
+              "data_flow": "初始化后的模型参数 -> SAbDab复合物, OAS预测结构",
+              "inputs": "SAbDab复合物, OAS预测结构",
+              "outputs": "微调后的AntiFold模型",
+              "goal": "在SAbDab和OAS抗体结构数据上微调模型",
+              "formula": "",
+              "code_symbols": [],
+              "code_aligned": [],
+              "code_alignment_rate": 0.0
+            },
+            {
+              "step_order": 3,
+              "name": "Span-Masking Strategy",
+              "depends_on": "Antibody Fine-tuning",
+              "data_flow": "微调后的AntiFold模型 -> 抗体序列",
+              "inputs": "抗体序列",
+              "outputs": "掩码后的训练样本",
+              "goal": "应用跨度掩码和随机残基掩码以增强CDRH3学习",
+              "formula": "",
+              "code_symbols": [
+                "get_imgt_mask"
+              ],
+              "code_aligned": [
+                "get_imgt_mask"
+              ],
+              "code_alignment_rate": 1.0
+            },
+            {
+              "step_order": 4,
+              "name": "CDR Weighted Masking",
+              "depends_on": "Span-Masking Strategy",
+              "data_flow": "掩码后的训练样本 -> IMGT区域定义",
+              "inputs": "IMGT区域定义",
+              "outputs": "加权掩码掩码",
+              "goal": "对CDR残基应用3:1权重进行掩码以聚焦关键区域",
+              "formula": "",
+              "code_symbols": [
+                "parse_regions"
+              ],
+              "code_aligned": [
+                "parse_regions"
+              ],
+              "code_alignment_rate": 1.0
+            },
+            {
+              "step_order": 5,
+              "name": "Sequence Sampler",
+              "depends_on": "CDR Weighted Masking",
+              "data_flow": "加权掩码掩码 -> 残基概率, 温度参数",
+              "inputs": "残基概率, 温度参数",
+              "outputs": "设计的抗体序列",
+              "goal": "根据温度参数从残基概率分布中采样新序列",
+              "formula": "",
+              "code_symbols": [
+                "sample_new_sequences_CDR_HL",
+                "top_k_top_p_filtering"
+              ],
+              "code_aligned": [
+                "sample_new_sequences_CDR_HL",
+                "top_k_top_p_filtering"
+              ],
+              "code_alignment_rate": 1.0
+            },
+            {
+              "step_order": 6,
+              "name": "Perplexity Calculator",
+              "depends_on": "Sequence Sampler",
+              "data_flow": "设计的抗体序列 -> 模型Logits",
+              "inputs": "模型Logits",
+              "outputs": "残基耐受性分数",
+              "goal": "计算每个残基位置对突变的结构耐受性（困惑度）",
+              "formula": "",
+              "code_symbols": [
+                "calc_pos_perplexity",
+                "logits_to_seqprobs_list"
+              ],
+              "code_aligned": [
+                "calc_pos_perplexity",
+                "logits_to_seqprobs_list"
+              ],
+              "code_alignment_rate": 1.0
+            }
+          ],
+          "n_modules": 6,
+          "pipeline": "ESM-IF1 Backbone -> Antibody Fine-tuning -> Span-Masking Strategy -> CDR Weighted Masking -> Sequence Sampler -> Perplexity Calculator"
+        }
+      ],
+      "n_algorithms": 1,
+      "n_modules": 6
+    },
+    "slot_audit": {
+      "checks": [
+        {
+          "slot": "Paper.research_question",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "slot": "Paper.problem_category",
+          "ok": true,
+          "detail": "sequence_design"
+        },
+        {
+          "slot": "Algorithm.mechanism",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "slot": "AlgorithmModule.inputs",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "slot": "AlgorithmModule.outputs",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "slot": "Benchmark.input_form",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "slot": "Benchmark.output_form",
+          "ok": true,
+          "detail": ""
+        }
+      ],
+      "n_ok": 7,
+      "n_total": 7,
+      "score": 1.0
+    },
+    "summary": {
+      "n_entity_candidates": 281,
+      "n_grounded_relations": 0,
+      "n_ungrounded_relations": 0,
+      "n_modules_tracked": 6,
+      "slot_score": 1.0
+    }
+  },
+  "ok": true,
+  "seconds": 184.58
+}

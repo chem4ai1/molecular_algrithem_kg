@@ -1,0 +1,122 @@
+{
+  "ZINC": {
+    "family": "molecule_generation",
+    "source": "rule",
+    "ok": true,
+    "attempts": 1,
+    "issues": null,
+    "filled": {
+      "task_family": "分子生成",
+      "research_object": "小分子",
+      "modality": "3D 结构/坐标",
+      "input_form": "部分性质规格与3D几何",
+      "output_form": "完整分子结构",
+      "scale": "规模未标注",
+      "metrics": [
+        "validity",
+        "diversity",
+        "conditional control"
+      ],
+      "evidence": "this work focuses on evaluating the generative model itself, in terms of validity, diversity, and conditional control.",
+      "metric_family": [
+        "分布质量",
+        "性质达标"
+      ],
+      "reference_set": "training distribution",
+      "conditional": "属性条件"
+    },
+    "seconds": 10.0
+  },
+  "SAPT10k": {
+    "family": "quantum_energy",
+    "source": "rule",
+    "ok": true,
+    "attempts": 1,
+    "issues": null,
+    "filled": {
+      "task_family": "性质/能量预测",
+      "research_object": "材料/力场",
+      "modality": "3D 结构/坐标",
+      "input_form": "原子坐标与元素类型",
+      "output_form": "能量与力",
+      "scale": "规模未标注",
+      "evidence": "Against coupled-cluster references, the models accurately reproduce nucleobase-pair and charged protein–ligand interactions",
+      "reference_method": "CCSD(T)",
+      "force_labels": "有"
+    },
+    "seconds": 9.0
+  },
+  "DUD-E": {
+    "family": "structure_docking",
+    "source": "rule",
+    "ok": true,
+    "attempts": 1,
+    "issues": null,
+    "filled": {
+      "aliases": [
+        "Directory of Useful Decoys–Enhanced"
+      ],
+      "task_family": "分子生成",
+      "research_object": "小分子",
+      "modality": "3D 结构/坐标",
+      "input_form": "蛋白口袋结构",
+      "output_form": "3D 分子结构",
+      "scale": "规模未标注",
+      "metrics": [
+        "drug-likeness",
+        "synthetic accessibility",
+        "pocket binding mode",
+        "molecule generation speed"
+      ],
+      "baselines": [
+        "state-of-the-art methods"
+      ],
+      "model_results": [
+        "Lingo3DMol outperformed state-of-the-art methods"
+      ],
+      "provenance": "DUD-E dataset",
+      "evidence": "The Directory of Useful Decoys–Enhanced (DUD-E) dataset was used for evaluation.",
+      "metric_family": [
+        "drug-likeness",
+        "synthetic accessibility",
+        "binding mode",
+        "speed"
+      ]
+    },
+    "seconds": 11.0
+  },
+  "Real AMPs sequence database": {
+    "family": "peptide_sequence",
+    "source": "rule",
+    "ok": true,
+    "attempts": 1,
+    "issues": null,
+    "filled": {
+      "task_family": "多肽/序列设计",
+      "research_object": "多肽",
+      "modality": "1D 序列/SMILES",
+      "input_form": "目标性质或特定菌株约束",
+      "output_form": "新型抗菌肽序列",
+      "scale": "规模未标注",
+      "metrics": [
+        "success rate",
+        "MIC"
+      ],
+      "model_results": [
+        "94.4% success rate",
+        "MIC 2.0 μg/ml"
+      ],
+      "evaluation_tool": "in vitro validation",
+      "provenance": "experimentally validated and labeled AMPs",
+      "evidence": "train generative models on a broader data set containing all kinds of natural peptides",
+      "length_range": "10 to 50 amino acids",
+      "activity_label": "MIC 实测",
+      "mic_measurement": "μg/ml",
+      "metric_family": [
+        "活性",
+        "毒性"
+      ]
+    },
+    "seconds": 11.0
+  }
+}

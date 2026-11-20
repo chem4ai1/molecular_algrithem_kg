@@ -1,0 +1,44 @@
+{
+  "paper_id": "paper:2611.06237",
+  "lineage": [
+    {
+      "id": "appsrc:paper_2611_06237_paper_src_2611_06237_pbe0_d3_bj",
+      "label": "PBE0-D3(BJ)",
+      "type": "SourcePaper",
+      "relation": "SITUATED_IN",
+      "source": "paper_out",
+      "kind": "",
+      "node_type": "SourcePaper",
+      "category": "context",
+      "quote": "",
+      "arxiv_id": "",
+      "evidence_available": false
+    },
+    {
+      "id": "appsrc:paper_2611_06237_paper_src_2611_06237_pbe_d3",
+      "label": "PBE-D3",
+      "type": "SourcePaper",
+      "relation": "SITUATED_IN",
+      "source": "paper_out",
+      "kind": "",
+      "node_type": "SourcePaper",
+      "category": "context",
+      "quote": "",
+      "arxiv_id": "",
+      "evidence_available": false
+    },
+    {
+      "id": "appsrc:paper_2611_06237_paper_src_2611_06237_so3lr_t_l",
+      "label": "SO3LR-T-L",
+      "type": "SourcePaper",
+      "relation": "SITUATED_IN",
+      "source": "paper_out",
+      "kind": "",
+      "node_type": "SourcePaper",
+      "category": "context",
+      "quote": "",
+      "arxiv_id": "",
+      "evidence_available": false
+    }
+  ]
+}

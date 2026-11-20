@@ -1,11 +1,16 @@
 # molecular_algrithem_design
 
-**从论文知识抽取到论文复现**的最小可运行工程。
-内含 4 篇论文的完整切片（抽取报告、语义层图、应用层任务图、复现规格与 rubric 树）、
+**从论文知识抽取到论文复现**的最小可运行工程，以**图搜索算法**为核心检索能力：
+用 Leiden 社区发现自动划分研究主题，用 BM25 + 向量混合检索召回节点，
+用可追溯图查询把「规范 / 前沿基线 / 失败模式 / venue 惯例」直接查回图节点。
+内含 783 篇论文的抽取报告、语义层图、应用层任务图、复现规格与 rubric 树、
 后端实现、五个阶段的入口脚本，以及可交互的前端页面。
 
 > 本仓库是 `xKG-main`（783 篇全量）的**结构化切片**：
 > 代码完整迁移、数据裁剪到 4 篇、路径改为仓库内自包含。
+
+> **图搜索算法（NEW）**：`Leiden 社区发现` → `HybridIndex 混合检索` → `graph_query 可追溯查询`，
+> 详见 [图搜索算法](#图搜索算法leiden--混合检索--可追溯查询) 一节。
 
 ## 目录架构
 
@@ -19,6 +24,9 @@ molecular_algrithem_design/
 │   ├── semantic/              # 语义层：tbox_v4 / extraction / apply / refresh /
 │   │                          #   provenance / vector_sync / enrich / batch_extract
 │   ├── applayer/              # 应用层：tbox / miner / tasks / builder
+│   │                          #   + community_discovery（Leiden）/ graph_query（可追溯查询）
+│   ├── kg/                    # 图搜索：graph（能力图 + 重排）/ retrieval（BM25+向量混合检索）
+│   ├── algograph/             # 算法图：parser / callgraph / causal / linker / repair
 │   ├── reprospec/             # 复现规格：contract / compiler / scoring /
 │   │                          #   application / relations / rubric_tree / rubric_runtime
 │   ├── sciforge/              # 编排：repro/ assembly/ relation_layer / table_extract /
@@ -108,6 +116,11 @@ bash scripts/smoke.sh http://127.0.0.1:8091
 
 # 重建索引（改了图或报告后）
 bash scripts/rebuild.sh
+
+# 重跑图搜索：Leiden 社区发现（默认 resolution=1.0）
+PYTHONPATH=src /home/zengshuxin/xKG-main/xKG-main/.venv-linux/bin/python \
+  stages/2_knowledge/build_leiden_b.py
+# → storage/sciforge/factory_knowledge_leiden.json（379 节点 / 479 断言）
 ```
 
 单独跑各阶段：
@@ -139,20 +152,70 @@ PYTHONPATH=src python -m unittest discover -s tests
 # 69 项：基线 / 词表标准 / 范式层 / rubric 树与运行时图 / MolMiner 复现 E2E
 ```
 
-## 图引擎：自研 POGraph + networkx 适配
+## 图搜索算法：Leiden + 混合检索 + 可追溯查询
 
-图谱**不是**图数据库，也**不是** networkx 存储：
+图谱**不是**图数据库，也**不是** networkx 存储；它是一套可组合的图搜索管线：
+**先分区（Leiden）→ 再召回（BM25+向量）→ 最后按图关系重排并追溯到节点**。
+
+### 1）Leiden 社区发现：用算法替代人工预设的 5 类 B 节点
+
+`src/capfactory/applayer/community_discovery.py`：把 46 篇论文按
+`evidence_type / problem_category / domain_code / venue / paradigm / evidence_norm`
+构造成特征图（共享特征的 Jaccard 权重，保留 `w >= 0.2`），再用
+`leidenalg.RBConfigurationVertexPartition`（`seed=42`）自动划社区。
+
+| resolution | 社区数 | 社区大小 |
+|---:|---:|---|
+| 0.6 | 2 | [29, 17] |
+| **1.0（默认）** | **5** | **[13, 12, 9, 6, 6]** |
+| 1.5 | 8 | [9, 9, 7, 6, 5, 5, 2, 2] |
+
+实测的 5 个社区与主导问题：`molecule_optimization`(13, rating 0.76) /
+`molecule_generation`(12, 0.63) / `reaction_prediction`(9, 0.49) /
+验证效率(6, 0.58) / 理论性质(6, 0.45)。rating 由**规模 0.6 + 纯度 0.4** 计算。
+
+**为什么比预设分类好**：旧的 `norm:factory:experimental` 把 32 篇混在一起，
+QED、synthesizability、solve rates、F1 全挤在一类；Leiden 按「问题类型+指标语义」
+自动拆开，使 `query_evaluation_norm()` 能查到**同问题类型**的规范而非「experimental 平均」。
+产物：`storage/sciforge/factory_knowledge_leiden.json`（379 节点 / 479 断言）、
+`storage/sciforge/leiden_communities.json`。复现脚本 `stages/2_knowledge/build_leiden_b.py`。
+
+### 2）混合检索：BM25 + 哈希向量 0.5/0.5 融合
+
+`src/capfactory/kg/retrieval.py::HybridIndex.search()`：
+BM25（`k1=1.5, b=0.75`）+ `HashingEmbedder`（word unigram / char 3-gram，`dim=512`），
+融合 `0.5*bm25_norm + 0.5*vec`。
+`src/capfactory/kg/graph.py::search_capabilities(query, top_k=8, graph_boost=True)`
+再叠加图结构先验 `+0.08*maturity + 0.05*verified.passed`，让「成熟度 + 已验证」的节点排前。
+入口：`POST /api/v2/reason/rerank`。
+
+### 3）可追溯图查询：四类带证据的查询
+
+`src/capfactory/applayer/graph_query.py` 提供 4 类查询，每条结果都返回
+`found / source / via / evidence`：
+
+| 查询 | 用途 |
+|---|---|
+| `query_evaluation_norm()` | 按社区查评测规范（配合 Leiden） |
+| `query_frontier_baseline()` | 查前沿基线 |
+| `query_failure_checks()` | 查失败模式 |
+| `query_venue_profile()` | 查 venue 惯例 |
+
+### 4）图引擎底座：自研 POGraph + networkx 适配
 
 | | 说明 |
 |---|---|
-| 存储 | 自研 `po/store.py::POGraph`（JSON，6001 节点 / 7460 断言），带惰性邻接索引 |
+| 存储 | 自研 `po/store.py::POGraph`（JSON，6001 节点 / 7460 断言），惰性邻接索引 |
 | 适配 | `po/nx_adapter.py` → `nx.MultiDiGraph`，可往返 |
-| 能力 | 统计（连通分量/密度/度分布）、多跳邻居、最短路、GraphML/GEXF 导出 |
-| API | `/api/v9/graph/nx/{stats,neighbors,shortest,export}` |
+| 能力 | 连通分量/密度/度分布、多跳邻居、最短路、GraphML/GEXF 导出 |
+| API | `/api/v9/graph/nx/{stats,neighbors,shortest,export}`；`/api/v6/graph`、`/api/v6/graph/views` |
 
 实测（语义层）：**260** 个弱连通分量、密度 `2.07e-4`、度均值 2.49、最大 33、**DAG=True**、
-GraphML 导出 9.47MB（可被 Gephi 直接打开）。详见
-[src/capfactory/md/GRAPH_ENGINE.md](src/capfactory/md/GRAPH_ENGINE.md)。
+GraphML 导出 9.47MB（可被 Gephi 直接打开）。
+图算法测试：`tests/test_nx_adapter.py`（约 11 项，转换/往返/最短路/导出/API）。
+
+详见 [LEIDEN_COMMUNITY_REPORT.md](docs/factory/LEIDEN_COMMUNITY_REPORT.md)、
+[GRAPH_ENGINE.md](src/capfactory/md/GRAPH_ENGINE.md)。
 
 ## 复现控制台：四环节生命周期（`/repro`）
 
@@ -271,4 +334,7 @@ PYTHONPATH=src python -m unittest tests.test_reproduction_molminer -v
 | `src/capfactory/md/APPLICATION_TASK_LAYERS.md` | 复现 / 生成两种任务的应用层 |
 | `src/capfactory/md/RUBRIC_TREE_LAYER.md` | 层次化 rubric 树（含与 PaperBench 对照） |
 | `src/capfactory/md/TBOX_INVENTORY.md` | TBox 清点与精简方案 |
+| `src/capfactory/md/GRAPH_ENGINE.md` | 图引擎（POGraph / nx 适配 / 实测统计） |
+| `docs/factory/LEIDEN_COMMUNITY_REPORT.md` | Leiden 社区发现：resolution 对比、5 个社区、与预设分类对照 |
+| `docs/factory/METHOD_FAMILY_CLUSTERS.md` | 18 个算法族的聚类与误分类校准 |
 | `docs/` | 复现蓝图、范式调研、全量运行说明、溯源审查 |

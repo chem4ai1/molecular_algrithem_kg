@@ -1,0 +1,168 @@
+{
+  "paper_id": "paper:2411.06608",
+  "arxiv_id": "2411.06608",
+  "spec_hash": "sha256:b3562d3f03436c3299655e49ceb53223bd4c8ab01e9e1b25cd9c91523f57e4fa",
+  "effort": "full",
+  "executable": false,
+  "blocking": [
+    "torch 不可用：ImportError: /home/zengshuxin/anaconda3/lib/python3.12/site-packages/torch/lib/libtorch_cuda.so: undefined symbol: ncclCommWindowDeregister",
+    "缺 rdkit（分子生成类论文必需）",
+    "数据集尚未下载并校验 sha256",
+    "训练配置未确认：repo_url"
+  ],
+  "repositories": [
+    "coderepository:raulorteg_molminer"
+  ],
+  "code_plan_strategy": "audit_repo",
+  "data_root": "/home/zengshuxin/data/2411.06608",
+  "datasets": [
+    {
+      "benchmark": "benchmark:zinc",
+      "label": "ZINC",
+      "declared_n_samples": "1000M",
+      "declared_scale": "1000M pairs",
+      "input_form": "SMILES",
+      "output_form": "SMILES",
+      "target_dir": "/home/zengshuxin/data/2411.06608/zinc",
+      "sha256": "",
+      "status": "not_downloaded"
+    },
+    {
+      "benchmark": "benchmark:canonical:zinc",
+      "label": "ZINC",
+      "declared_n_samples": "unknown",
+      "declared_scale": "规模未标注",
+      "input_form": "unknown",
+      "output_form": "unknown",
+      "target_dir": "/home/zengshuxin/data/2411.06608/zinc",
+      "sha256": "",
+      "status": "not_downloaded"
+    },
+    {
+      "benchmark": "benchmark:unconditional_generation",
+      "label": "Unconditional Generation",
+      "declared_n_samples": "N ≈5,000",
+      "declared_scale": "规模未标注",
+      "input_form": "向量",
+      "output_form": "SMILES",
+      "target_dir": "/home/zengshuxin/data/2411.06608/unconditional_generation",
+      "sha256": "",
+      "status": "not_downloaded"
+    },
+    {
+      "benchmark": "benchmark:conditional_generation",
+      "label": "Conditional Generation",
+      "declared_n_samples": "30 times per target value",
+      "declared_scale": "more than 80 single and multi-property control in silico exp",
+      "input_form": "标量",
+      "output_form": "图",
+      "target_dir": "/home/zengshuxin/data/2411.06608/conditional_generation",
+      "sha256": "",
+      "status": "not_downloaded"
+    },
+    {
+      "benchmark": "benchmark:targeted_multi_property",
+      "label": "Targeted Multi-Property",
+      "declared_n_samples": "unknown",
+      "declared_scale": "规模未标注",
+      "input_form": "unknown",
+      "output_form": "unknown",
+      "target_dir": "/home/zengshuxin/data/2411.06608/targeted_multi_property",
+      "sha256": "",
+      "status": "not_downloaded"
+    },
+    {
+      "benchmark": "benchmark:targeted_generation",
+      "label": "Targeted Generation",
+      "declared_n_samples": "N ≈5,000",
+      "declared_scale": null,
+      "input_form": "向量",
+      "output_form": "SMILES",
+      "target_dir": "/home/zengshuxin/data/2411.06608/targeted_generation",
+      "sha256": "",
+      "status": "not_downloaded"
+    }
+  ],
+  "mirrors": [
+    {
+      "name": "HuggingFace 官方",
+      "hint": "huggingface-cli download --repo-type dataset"
+    },
+    {
+      "name": "HF 镜像站",
+      "hint": "HF_ENDPOINT=https://hf-mirror.com"
+    },
+    {
+      "name": "官方原始源",
+      "hint": "论文/仓库 README 给出的原始下载地址"
+    },
+    {
+      "name": "本地缓存",
+      "hint": "放到 DATA_ROOT/<arxiv>/<benchmark>/ 并登记 sha256"
+    }
+  ],
+  "stages": [
+    {
+      "name": "smoke",
+      "goal": "1 个 mini-batch 前向+反向，验证依赖/shape/显存",
+      "samples": 8,
+      "epochs": 1,
+      "max_minutes": 10,
+      "accept": "无 OOM / 无 shape 错误 / loss 有限"
+    },
+    {
+      "name": "subset",
+      "goal": "小子集完整训练 + 一次评测，验证收敛方向",
+      "samples": 1000,
+      "epochs": 1,
+      "max_minutes": 120,
+      "accept": "指标方向正确、日志与 seed 可复现"
+    },
+    {
+      "name": "full",
+      "goal": "论文设定全量训练",
+      "samples": "论文设定",
+      "epochs": "论文设定",
+      "max_minutes": null,
+      "accept": "主指标相对偏差 ≤ 5%，checkpoint sha 与双跑一致"
+    }
+  ],
+  "required_config_fields": [
+    "repo_url",
+    "commit",
+    "entrypoint",
+    "config_path",
+    "seed",
+    "batch_size",
+    "epochs",
+    "optimizer",
+    "learning_rate",
+    "scheduler",
+    "amp",
+    "split",
+    "checkpoint_path",
+    "metric_names"
+  ],
+  "config": {},
+  "reproducibility": {
+    "seed": null,
+    "deterministic": true,
+    "cudnn_benchmark": false,
+    "double_run": true,
+    "artifacts": [
+      "config.yaml",
+      "train.log",
+      "metrics.json",
+      "checkpoint.sha256",
+      "env.lock"
+    ]
+  },
+  "acceptance": {
+    "metric_tolerance": 0.05,
+    "require_checkpoint_hash": true,
+    "require_double_run_equal": true,
+    "compare_against": "论文表格原始行 model_results（不是 LeaderboardEntry 期望值）"
+  },
+  "relation_to_ggr": "full 是 R5 的真实训练执行器，替换 lite 的 REPRO_SCRIPT.py；R0–R4 规格编译、R6 逐 SAU 语义门与三哈希锚保持不变，新增 dataset_sha / ckpt_sha / seed 三项作为 ClaimAnchor 的第 4–6 个哈希。",
+  "note": "本计划不执行训练；blocking 清空并由人确认 config 后才可启动。"
+}

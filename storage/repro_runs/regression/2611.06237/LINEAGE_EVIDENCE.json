@@ -1,0 +1,64 @@
+{
+  "paper_id": "paper:2611.06237",
+  "n_lineage": 3,
+  "n_verbatim": 0,
+  "n_bibliographic": 3,
+  "n_none": 0,
+  "lineage": [
+    {
+      "id": "appsrc:paper_2611_06237_paper_src_2611_06237_pbe0_d3_bj",
+      "label": "PBE0-D3(BJ)",
+      "type": "SourcePaper",
+      "relation": "SITUATED_IN",
+      "source": "paper_out",
+      "kind": "",
+      "evidence_type": "bibliographic",
+      "verbatim_available": false,
+      "quotes": [],
+      "bibliography": {
+        "title": "PBE0-D3(BJ)",
+        "ref_paper": "paper:src:2611.06237:pbe0_d3_bj",
+        "resolved": "library",
+        "miner": "source_papers"
+      },
+      "note": "引用标题是书目证据，不是论文正文中引用该工作的逐字句子；需回到 PDF 原文把 Evidence.quote 挂到 SourcePaper 的 SUPPORTED_BY 上"
+    },
+    {
+      "id": "appsrc:paper_2611_06237_paper_src_2611_06237_pbe_d3",
+      "label": "PBE-D3",
+      "type": "SourcePaper",
+      "relation": "SITUATED_IN",
+      "source": "paper_out",
+      "kind": "",
+      "evidence_type": "bibliographic",
+      "verbatim_available": false,
+      "quotes": [],
+      "bibliography": {
+        "title": "PBE-D3",
+        "ref_paper": "paper:src:2611.06237:pbe_d3",
+        "resolved": "library",
+        "miner": "source_papers"
+      },
+      "note": "引用标题是书目证据，不是论文正文中引用该工作的逐字句子；需回到 PDF 原文把 Evidence.quote 挂到 SourcePaper 的 SUPPORTED_BY 上"
+    },
+    {
+      "id": "appsrc:paper_2611_06237_paper_src_2611_06237_so3lr_t_l",
+      "label": "SO3LR-T-L",
+      "type": "SourcePaper",
+      "relation": "SITUATED_IN",
+      "source": "paper_out",
+      "kind": "",
+      "evidence_type": "bibliographic",
+      "verbatim_available": false,
+      "quotes": [],
+      "bibliography": {
+        "title": "SO3LR-T-L",
+        "ref_paper": "paper:src:2611.06237:so3lr_t_l",
+        "resolved": "library",
+        "miner": "source_papers"
+      },
+      "note": "引用标题是书目证据，不是论文正文中引用该工作的逐字句子；需回到 PDF 原文把 Evidence.quote 挂到 SourcePaper 的 SUPPORTED_BY 上"
+    }
+  ],
+  "remedy": "Stage2/Stage3 抽取 related_work 段落时保存引文原句，建成 Evidence(kind='citation', quote=...) 并以 SUPPORTED_BY 连到 SourcePaper；本模块会自动升级为 verbatim_quote。"
+}

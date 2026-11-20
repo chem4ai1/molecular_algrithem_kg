@@ -1,0 +1,369 @@
+{
+  "paper_id": "paper:2411.06608",
+  "spec_hash": "sha256:0f1f79f23800ac4e5098d5162ed0760b04cdb00eda6b21380a938250e3aef805",
+  "method": "mini_batch_runtime",
+  "batch_size": 4,
+  "script_sha": "sha256:3b391e3d95d7c4abaf8a2d44ca9827f5c80dae9e1cd49e223673fe356a1385f8",
+  "n_probes": 6,
+  "n_inherited_forms": 4,
+  "inheritance": [
+    {
+      "benchmark": "benchmark:canonical:zinc",
+      "side": "input_form",
+      "declared": "unknown",
+      "effective": "SMILES",
+      "inherited_from": "benchmark:zinc",
+      "rule": "exact_label",
+      "paper_declared": false
+    },
+    {
+      "benchmark": "benchmark:canonical:zinc",
+      "side": "output_form",
+      "declared": "unknown",
+      "effective": "SMILES",
+      "inherited_from": "benchmark:zinc",
+      "rule": "exact_label",
+      "paper_declared": false
+    },
+    {
+      "benchmark": "benchmark:targeted_multi_property",
+      "side": "input_form",
+      "declared": "unknown",
+      "effective": "向量",
+      "inherited_from": "benchmark:targeted_generation",
+      "rule": "label_prefix",
+      "paper_declared": false
+    },
+    {
+      "benchmark": "benchmark:targeted_multi_property",
+      "side": "output_form",
+      "declared": "unknown",
+      "effective": "SMILES",
+      "inherited_from": "benchmark:targeted_generation",
+      "rule": "label_prefix",
+      "paper_declared": false
+    }
+  ],
+  "probes": [
+    {
+      "benchmark": "benchmark:zinc",
+      "label": "ZINC",
+      "declared_input_form": "SMILES",
+      "declared_output_form": "SMILES",
+      "effective_input_form": "SMILES",
+      "effective_output_form": "SMILES",
+      "vocab_input_shape": "(n,)",
+      "vocab_output_shape": "(n,)",
+      "input_observed": {
+        "constructed": true,
+        "form": "SMILES",
+        "observed": {
+          "dims": [
+            4
+          ],
+          "dtype": "str",
+          "kind": "array",
+          "n_scalars": 4,
+          "shape": "(4,)"
+        },
+        "reason": ""
+      },
+      "output_observed": {
+        "constructed": true,
+        "form": "SMILES",
+        "observed": {
+          "dims": [
+            4
+          ],
+          "dtype": "str",
+          "kind": "array",
+          "n_scalars": 4,
+          "shape": "(4,)"
+        },
+        "reason": ""
+      },
+      "form_sources": [],
+      "unknown_forms": [],
+      "runtime_verified": true,
+      "method": "mini_batch_runtime"
+    },
+    {
+      "benchmark": "benchmark:canonical:zinc",
+      "label": "ZINC",
+      "declared_input_form": "unknown",
+      "declared_output_form": "unknown",
+      "effective_input_form": "SMILES",
+      "effective_output_form": "SMILES",
+      "vocab_input_shape": "unknown",
+      "vocab_output_shape": "unknown",
+      "input_observed": {
+        "constructed": true,
+        "form": "SMILES",
+        "observed": {
+          "dims": [
+            4
+          ],
+          "dtype": "str",
+          "kind": "array",
+          "n_scalars": 4,
+          "shape": "(4,)"
+        },
+        "reason": ""
+      },
+      "output_observed": {
+        "constructed": true,
+        "form": "SMILES",
+        "observed": {
+          "dims": [
+            4
+          ],
+          "dtype": "str",
+          "kind": "array",
+          "n_scalars": 4,
+          "shape": "(4,)"
+        },
+        "reason": ""
+      },
+      "form_sources": [
+        {
+          "benchmark": "benchmark:canonical:zinc",
+          "side": "input_form",
+          "declared": "unknown",
+          "effective": "SMILES",
+          "inherited_from": "benchmark:zinc",
+          "rule": "exact_label",
+          "paper_declared": false
+        },
+        {
+          "benchmark": "benchmark:canonical:zinc",
+          "side": "output_form",
+          "declared": "unknown",
+          "effective": "SMILES",
+          "inherited_from": "benchmark:zinc",
+          "rule": "exact_label",
+          "paper_declared": false
+        }
+      ],
+      "unknown_forms": [],
+      "runtime_verified": true,
+      "method": "mini_batch_runtime"
+    },
+    {
+      "benchmark": "benchmark:unconditional_generation",
+      "label": "Unconditional Generation",
+      "declared_input_form": "向量",
+      "declared_output_form": "SMILES",
+      "effective_input_form": "向量",
+      "effective_output_form": "SMILES",
+      "vocab_input_shape": "(n, d)",
+      "vocab_output_shape": "(n,)",
+      "input_observed": {
+        "constructed": true,
+        "form": "向量",
+        "observed": {
+          "dims": [
+            4,
+            8
+          ],
+          "dtype": "float",
+          "kind": "array",
+          "n_scalars": 32,
+          "shape": "(4, 8)"
+        },
+        "reason": ""
+      },
+      "output_observed": {
+        "constructed": true,
+        "form": "SMILES",
+        "observed": {
+          "dims": [
+            4
+          ],
+          "dtype": "str",
+          "kind": "array",
+          "n_scalars": 4,
+          "shape": "(4,)"
+        },
+        "reason": ""
+      },
+      "form_sources": [],
+      "unknown_forms": [],
+      "runtime_verified": true,
+      "method": "mini_batch_runtime"
+    },
+    {
+      "benchmark": "benchmark:conditional_generation",
+      "label": "Conditional Generation",
+      "declared_input_form": "标量",
+      "declared_output_form": "图",
+      "effective_input_form": "标量",
+      "effective_output_form": "图",
+      "vocab_input_shape": "()",
+      "vocab_output_shape": "(n, e, 2) + (n, d)",
+      "input_observed": {
+        "constructed": true,
+        "form": "标量",
+        "observed": {
+          "dims": [
+            4
+          ],
+          "dtype": "float",
+          "kind": "array",
+          "n_scalars": 4,
+          "shape": "(4,)"
+        },
+        "reason": ""
+      },
+      "output_observed": {
+        "constructed": true,
+        "form": "图",
+        "observed": {
+          "fields": {
+            "edge_index": {
+              "dims": [
+                2,
+                4
+              ],
+              "dtype": "int",
+              "kind": "array",
+              "n_scalars": 8,
+              "shape": "(2, 4)"
+            },
+            "x": {
+              "dims": [
+                4,
+                8
+              ],
+              "dtype": "float",
+              "kind": "array",
+              "n_scalars": 32,
+              "shape": "(4, 8)"
+            }
+          },
+          "kind": "struct",
+          "n_scalars": 40
+        },
+        "reason": ""
+      },
+      "form_sources": [],
+      "unknown_forms": [],
+      "runtime_verified": true,
+      "method": "mini_batch_runtime"
+    },
+    {
+      "benchmark": "benchmark:targeted_multi_property",
+      "label": "Targeted Multi-Property",
+      "declared_input_form": "unknown",
+      "declared_output_form": "unknown",
+      "effective_input_form": "向量",
+      "effective_output_form": "SMILES",
+      "vocab_input_shape": "unknown",
+      "vocab_output_shape": "unknown",
+      "input_observed": {
+        "constructed": true,
+        "form": "向量",
+        "observed": {
+          "dims": [
+            4,
+            8
+          ],
+          "dtype": "float",
+          "kind": "array",
+          "n_scalars": 32,
+          "shape": "(4, 8)"
+        },
+        "reason": ""
+      },
+      "output_observed": {
+        "constructed": true,
+        "form": "SMILES",
+        "observed": {
+          "dims": [
+            4
+          ],
+          "dtype": "str",
+          "kind": "array",
+          "n_scalars": 4,
+          "shape": "(4,)"
+        },
+        "reason": ""
+      },
+      "form_sources": [
+        {
+          "benchmark": "benchmark:targeted_multi_property",
+          "side": "input_form",
+          "declared": "unknown",
+          "effective": "向量",
+          "inherited_from": "benchmark:targeted_generation",
+          "rule": "label_prefix",
+          "paper_declared": false
+        },
+        {
+          "benchmark": "benchmark:targeted_multi_property",
+          "side": "output_form",
+          "declared": "unknown",
+          "effective": "SMILES",
+          "inherited_from": "benchmark:targeted_generation",
+          "rule": "label_prefix",
+          "paper_declared": false
+        }
+      ],
+      "unknown_forms": [],
+      "runtime_verified": true,
+      "method": "mini_batch_runtime"
+    },
+    {
+      "benchmark": "benchmark:targeted_generation",
+      "label": "Targeted Generation",
+      "declared_input_form": "向量",
+      "declared_output_form": "SMILES",
+      "effective_input_form": "向量",
+      "effective_output_form": "SMILES",
+      "vocab_input_shape": "(n, d)",
+      "vocab_output_shape": "(n,)",
+      "input_observed": {
+        "constructed": true,
+        "form": "向量",
+        "observed": {
+          "dims": [
+            4,
+            8
+          ],
+          "dtype": "float",
+          "kind": "array",
+          "n_scalars": 32,
+          "shape": "(4, 8)"
+        },
+        "reason": ""
+      },
+      "output_observed": {
+        "constructed": true,
+        "form": "SMILES",
+        "observed": {
+          "dims": [
+            4
+          ],
+          "dtype": "str",
+          "kind": "array",
+          "n_scalars": 4,
+          "shape": "(4,)"
+        },
+        "reason": ""
+      },
+      "form_sources": [],
+      "unknown_forms": [],
+      "runtime_verified": true,
+      "method": "mini_batch_runtime"
+    }
+  ],
+  "ok": true,
+  "warnings": [
+    "4 处表单来自同族继承，非论文原文声明"
+  ],
+  "files": [
+    "MINIBATCH_SCRIPT.py",
+    "OBSERVED_SHAPES.json"
+  ],
+  "n_runtime_verified": 6,
+  "n_unknown_remaining": 0
+}

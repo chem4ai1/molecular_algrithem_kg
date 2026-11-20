@@ -1,0 +1,41 @@
+{
+  "batch_size": 4,
+  "probes": [
+    {
+      "benchmark": "benchmark:kb:geom_drugs",
+      "input": {
+        "constructed": true,
+        "form": "3D坐标",
+        "observed": {
+          "dims": [
+            4,
+            3,
+            3
+          ],
+          "dtype": "float",
+          "kind": "array",
+          "n_scalars": 36,
+          "shape": "(4, 3, 3)"
+        },
+        "reason": ""
+      },
+      "label": "GEOM-Drugs",
+      "output": {
+        "constructed": true,
+        "form": "3D坐标",
+        "observed": {
+          "dims": [
+            4,
+            3,
+            3
+          ],
+          "dtype": "float",
+          "kind": "array",
+          "n_scalars": 36,
+          "shape": "(4, 3, 3)"
+        },
+        "reason": ""
+      }
+    }
+  ]
+}

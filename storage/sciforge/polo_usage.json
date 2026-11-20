@@ -1,0 +1,271 @@
+{
+  "summary": {
+    "calls": 15,
+    "ok": 15,
+    "failed": 0,
+    "prompt_tokens": 72009,
+    "completion_tokens": 42943,
+    "total_tokens": 114952,
+    "latency_s": 239.62,
+    "avg_latency_s": 15.97,
+    "by_task": {
+      "extract:2305.10133": {
+        "calls": 1,
+        "prompt_tokens": 4430,
+        "completion_tokens": 1020,
+        "total_tokens": 5450
+      },
+      "extract:2411.06608": {
+        "calls": 1,
+        "prompt_tokens": 4989,
+        "completion_tokens": 1877,
+        "total_tokens": 6866
+      },
+      "extract:2507.00899": {
+        "calls": 1,
+        "prompt_tokens": 5563,
+        "completion_tokens": 1858,
+        "total_tokens": 7421
+      },
+      "extract:2611.06237": {
+        "calls": 1,
+        "prompt_tokens": 5372,
+        "completion_tokens": 3795,
+        "total_tokens": 9167
+      },
+      "extract:2606.02455": {
+        "calls": 1,
+        "prompt_tokens": 3666,
+        "completion_tokens": 1050,
+        "total_tokens": 4716
+      },
+      "extract:2306.08018": {
+        "calls": 1,
+        "prompt_tokens": 3533,
+        "completion_tokens": 7996,
+        "total_tokens": 11529
+      },
+      "fill:2611.06237": {
+        "calls": 1,
+        "prompt_tokens": 4183,
+        "completion_tokens": 2996,
+        "total_tokens": 7179
+      },
+      "fill:2405.03370": {
+        "calls": 1,
+        "prompt_tokens": 5617,
+        "completion_tokens": 3000,
+        "total_tokens": 8617
+      },
+      "fill:2407.12296": {
+        "calls": 1,
+        "prompt_tokens": 5576,
+        "completion_tokens": 2431,
+        "total_tokens": 8007
+      },
+      "fill:2507.00899": {
+        "calls": 1,
+        "prompt_tokens": 5817,
+        "completion_tokens": 3000,
+        "total_tokens": 8817
+      },
+      "fill:2411.06608": {
+        "calls": 1,
+        "prompt_tokens": 4088,
+        "completion_tokens": 2996,
+        "total_tokens": 7084
+      },
+      "fill:2301.11259": {
+        "calls": 1,
+        "prompt_tokens": 5267,
+        "completion_tokens": 3000,
+        "total_tokens": 8267
+      },
+      "fill:2604.05181": {
+        "calls": 1,
+        "prompt_tokens": 5610,
+        "completion_tokens": 1916,
+        "total_tokens": 7526
+      },
+      "fill:2606.02455": {
+        "calls": 1,
+        "prompt_tokens": 3865,
+        "completion_tokens": 2996,
+        "total_tokens": 6861
+      },
+      "fill:2305.10133": {
+        "calls": 1,
+        "prompt_tokens": 4433,
+        "completion_tokens": 3012,
+        "total_tokens": 7445
+      }
+    }
+  },
+  "records": [
+    {
+      "ts": 1794319811.426591,
+      "model": "gemini-3.8-flash",
+      "task": "extract:2305.10133",
+      "prompt_tokens": 4430,
+      "completion_tokens": 1020,
+      "total_tokens": 5450,
+      "latency_s": 6.09,
+      "ok": true,
+      "error": ""
+    },
+    {
+      "ts": 1794319815.2544394,
+      "model": "gemini-3.8-flash",
+      "task": "extract:2411.06608",
+      "prompt_tokens": 4989,
+      "completion_tokens": 1877,
+      "total_tokens": 6866,
+      "latency_s": 9.99,
+      "ok": true,
+      "error": ""
+    },
+    {
+      "ts": 1794319822.9552782,
+      "model": "gemini-3.8-flash",
+      "task": "extract:2507.00899",
+      "prompt_tokens": 5563,
+      "completion_tokens": 1858,
+      "total_tokens": 7421,
+      "latency_s": 7.67,
+      "ok": true,
+      "error": ""
+    },
+    {
+      "ts": 1794319827.7420707,
+      "model": "gemini-3.8-flash",
+      "task": "extract:2611.06237",
+      "prompt_tokens": 5372,
+      "completion_tokens": 3795,
+      "total_tokens": 9167,
+      "latency_s": 22.18,
+      "ok": true,
+      "error": ""
+    },
+    {
+      "ts": 1794319837.6640623,
+      "model": "gemini-3.8-flash",
+      "task": "extract:2606.02455",
+      "prompt_tokens": 3666,
+      "completion_tokens": 1050,
+      "total_tokens": 4716,
+      "latency_s": 14.68,
+      "ok": true,
+      "error": ""
+    },
+    {
+      "ts": 1794319837.7408557,
+      "model": "gemini-3.8-flash",
+      "task": "extract:2306.08018",
+      "prompt_tokens": 3533,
+      "completion_tokens": 7996,
+      "total_tokens": 11529,
+      "latency_s": 26.27,
+      "ok": true,
+      "error": ""
+    },
+    {
+      "ts": 1794319850.5136595,
+      "model": "gemini-3.8-flash",
+      "task": "fill:2611.06237",
+      "prompt_tokens": 4183,
+      "completion_tokens": 2996,
+      "total_tokens": 7179,
+      "latency_s": 11.78,
+      "ok": true,
+      "error": ""
+    },
+    {
+      "ts": 1794319851.8885326,
+      "model": "gemini-3.8-flash",
+      "task": "fill:2405.03370",
+      "prompt_tokens": 5617,
+      "completion_tokens": 3000,
+      "total_tokens": 8617,
+      "latency_s": 13.15,
+      "ok": true,
+      "error": ""
+    },
+    {
+      "ts": 1794319858.6145234,
+      "model": "gemini-3.8-flash",
+      "task": "fill:2407.12296",
+      "prompt_tokens": 5576,
+      "completion_tokens": 2431,
+      "total_tokens": 8007,
+      "latency_s": 8.1,
+      "ok": true,
+      "error": ""
+    },
+    {
+      "ts": 1794319867.359605,
+      "model": "gemini-3.8-flash",
+      "task": "fill:2507.00899",
+      "prompt_tokens": 5817,
+      "completion_tokens": 3000,
+      "total_tokens": 8817,
+      "latency_s": 8.74,
+      "ok": true,
+      "error": ""
+    },
+    {
+      "ts": 1794319869.9652042,
+      "model": "gemini-3.8-flash",
+      "task": "fill:2411.06608",
+      "prompt_tokens": 4088,
+      "completion_tokens": 2996,
+      "total_tokens": 7084,
+      "latency_s": 31.23,
+      "ok": true,
+      "error": ""
+    },
+    {
+      "ts": 1794319879.3122795,
+      "model": "gemini-3.8-flash",
+      "task": "fill:2301.11259",
+      "prompt_tokens": 5267,
+      "completion_tokens": 3000,
+      "total_tokens": 8267,
+      "latency_s": 11.95,
+      "ok": true,
+      "error": ""
+    },
+    {
+      "ts": 1794319886.1391358,
+      "model": "gemini-3.8-flash",
+      "task": "fill:2604.05181",
+      "prompt_tokens": 5610,
+      "completion_tokens": 1916,
+      "total_tokens": 7526,
+      "latency_s": 6.83,
+      "ok": true,
+      "error": ""
+    },
+    {
+      "ts": 1794319888.4814034,
+      "model": "gemini-3.8-flash",
+      "task": "fill:2606.02455",
+      "prompt_tokens": 3865,
+      "completion_tokens": 2996,
+      "total_tokens": 6861,
+      "latency_s": 18.52,
+      "ok": true,
+      "error": ""
+    },
+    {
+      "ts": 1794319894.3272,
+      "model": "gemini-3.8-flash",
+      "task": "fill:2305.10133",
+      "prompt_tokens": 4433,
+      "completion_tokens": 3012,
+      "total_tokens": 7445,
+      "latency_s": 42.44,
+      "ok": true,
+      "error": ""
+    }
+  ]
+}

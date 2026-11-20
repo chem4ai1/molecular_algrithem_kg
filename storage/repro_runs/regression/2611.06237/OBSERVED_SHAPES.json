@@ -1,0 +1,469 @@
+{
+  "batch_size": 4,
+  "probes": [
+    {
+      "benchmark": "benchmark:sapt10k",
+      "input": {
+        "constructed": false,
+        "form": "原子坐标",
+        "observed": null,
+        "reason": "form_not_declared_or_unregistered"
+      },
+      "label": "SAPT10k",
+      "output": {
+        "constructed": false,
+        "form": "能量/力",
+        "observed": null,
+        "reason": "form_not_declared_or_unregistered"
+      }
+    },
+    {
+      "benchmark": "benchmark:quid",
+      "input": {
+        "constructed": false,
+        "form": "原子坐标",
+        "observed": null,
+        "reason": "form_not_declared_or_unregistered"
+      },
+      "label": "QUID",
+      "output": {
+        "constructed": false,
+        "form": "能量/力",
+        "observed": null,
+        "reason": "form_not_declared_or_unregistered"
+      }
+    },
+    {
+      "benchmark": "benchmark:jsch_2005",
+      "input": {
+        "constructed": false,
+        "form": "原子坐标",
+        "observed": null,
+        "reason": "form_not_declared_or_unregistered"
+      },
+      "label": "JSCH-2005",
+      "output": {
+        "constructed": false,
+        "form": "能量/力",
+        "observed": null,
+        "reason": "form_not_declared_or_unregistered"
+      }
+    },
+    {
+      "benchmark": "benchmark:pla15",
+      "input": {
+        "constructed": false,
+        "form": "原子坐标",
+        "observed": null,
+        "reason": "form_not_declared_or_unregistered"
+      },
+      "label": "PLA15",
+      "output": {
+        "constructed": false,
+        "form": "能量/力",
+        "observed": null,
+        "reason": "form_not_declared_or_unregistered"
+      }
+    },
+    {
+      "benchmark": "benchmark:torsionnet500",
+      "input": {
+        "constructed": true,
+        "form": "3D坐标",
+        "observed": {
+          "dims": [
+            4,
+            3,
+            3
+          ],
+          "dtype": "float",
+          "kind": "array",
+          "n_scalars": 36,
+          "shape": "(4, 3, 3)"
+        },
+        "reason": ""
+      },
+      "label": "TorsionNet500",
+      "output": {
+        "constructed": true,
+        "form": "标量",
+        "observed": {
+          "dims": [
+            4
+          ],
+          "dtype": "float",
+          "kind": "array",
+          "n_scalars": 4,
+          "shape": "(4,)"
+        },
+        "reason": ""
+      }
+    },
+    {
+      "benchmark": "benchmark:glcmal",
+      "input": {
+        "constructed": true,
+        "form": "SMILES",
+        "observed": {
+          "dims": [
+            4
+          ],
+          "dtype": "str",
+          "kind": "array",
+          "n_scalars": 4,
+          "shape": "(4,)"
+        },
+        "reason": ""
+      },
+      "label": "GlcMal",
+      "output": {
+        "constructed": false,
+        "form": "分子",
+        "observed": null,
+        "reason": "form_not_declared_or_unregistered"
+      }
+    },
+    {
+      "benchmark": "benchmark:proline_catalyzed_aldol_addition",
+      "input": {
+        "constructed": true,
+        "form": "SMILES",
+        "observed": {
+          "dims": [
+            4
+          ],
+          "dtype": "str",
+          "kind": "array",
+          "n_scalars": 4,
+          "shape": "(4,)"
+        },
+        "reason": ""
+      },
+      "label": "Proline-catalyzed aldol addition",
+      "output": {
+        "constructed": false,
+        "form": "分子",
+        "observed": null,
+        "reason": "form_not_declared_or_unregistered"
+      }
+    },
+    {
+      "benchmark": "benchmark:side_chain_pka_of_pentapeptides",
+      "input": {
+        "constructed": false,
+        "form": "氨基酸序列",
+        "observed": null,
+        "reason": "form_not_declared_or_unregistered"
+      },
+      "label": "Side-chain pKa of pentapeptides",
+      "output": {
+        "constructed": false,
+        "form": "活性/MIC 标签",
+        "observed": null,
+        "reason": "form_not_declared_or_unregistered"
+      }
+    },
+    {
+      "benchmark": "benchmark:crambin_in_water",
+      "input": {
+        "constructed": false,
+        "form": "原子坐标",
+        "observed": null,
+        "reason": "form_not_declared_or_unregistered"
+      },
+      "label": "Crambin in water",
+      "output": {
+        "constructed": false,
+        "form": "能量/力",
+        "observed": null,
+        "reason": "form_not_declared_or_unregistered"
+      }
+    },
+    {
+      "benchmark": "benchmark:canonical:sapt10k",
+      "input": {
+        "constructed": false,
+        "form": "原子坐标",
+        "observed": null,
+        "reason": "form_not_declared_or_unregistered"
+      },
+      "label": "SAPT10k",
+      "output": {
+        "constructed": false,
+        "form": "能量/力",
+        "observed": null,
+        "reason": "form_not_declared_or_unregistered"
+      }
+    },
+    {
+      "benchmark": "benchmark:canonical:quid",
+      "input": {
+        "constructed": false,
+        "form": "原子坐标",
+        "observed": null,
+        "reason": "form_not_declared_or_unregistered"
+      },
+      "label": "QUID",
+      "output": {
+        "constructed": false,
+        "form": "能量/力",
+        "observed": null,
+        "reason": "form_not_declared_or_unregistered"
+      }
+    },
+    {
+      "benchmark": "benchmark:canonical:jsch_2005",
+      "input": {
+        "constructed": false,
+        "form": "原子坐标",
+        "observed": null,
+        "reason": "form_not_declared_or_unregistered"
+      },
+      "label": "JSCH-2005",
+      "output": {
+        "constructed": false,
+        "form": "能量/力",
+        "observed": null,
+        "reason": "form_not_declared_or_unregistered"
+      }
+    },
+    {
+      "benchmark": "benchmark:canonical:pla15",
+      "input": {
+        "constructed": false,
+        "form": "原子坐标",
+        "observed": null,
+        "reason": "form_not_declared_or_unregistered"
+      },
+      "label": "PLA15",
+      "output": {
+        "constructed": false,
+        "form": "能量/力",
+        "observed": null,
+        "reason": "form_not_declared_or_unregistered"
+      }
+    },
+    {
+      "benchmark": "benchmark:canonical:torsionnet500",
+      "input": {
+        "constructed": true,
+        "form": "3D坐标",
+        "observed": {
+          "dims": [
+            4,
+            3,
+            3
+          ],
+          "dtype": "float",
+          "kind": "array",
+          "n_scalars": 36,
+          "shape": "(4, 3, 3)"
+        },
+        "reason": ""
+      },
+      "label": "TorsionNet500",
+      "output": {
+        "constructed": true,
+        "form": "标量",
+        "observed": {
+          "dims": [
+            4
+          ],
+          "dtype": "float",
+          "kind": "array",
+          "n_scalars": 4,
+          "shape": "(4,)"
+        },
+        "reason": ""
+      }
+    },
+    {
+      "benchmark": "benchmark:canonical:glcmal",
+      "input": {
+        "constructed": true,
+        "form": "SMILES",
+        "observed": {
+          "dims": [
+            4
+          ],
+          "dtype": "str",
+          "kind": "array",
+          "n_scalars": 4,
+          "shape": "(4,)"
+        },
+        "reason": ""
+      },
+      "label": "GlcMal",
+      "output": {
+        "constructed": false,
+        "form": "分子",
+        "observed": null,
+        "reason": "form_not_declared_or_unregistered"
+      }
+    },
+    {
+      "benchmark": "benchmark:canonical:proline_catalyzed_aldol_addition",
+      "input": {
+        "constructed": true,
+        "form": "SMILES",
+        "observed": {
+          "dims": [
+            4
+          ],
+          "dtype": "str",
+          "kind": "array",
+          "n_scalars": 4,
+          "shape": "(4,)"
+        },
+        "reason": ""
+      },
+      "label": "Proline-catalyzed aldol addition",
+      "output": {
+        "constructed": false,
+        "form": "分子",
+        "observed": null,
+        "reason": "form_not_declared_or_unregistered"
+      }
+    },
+    {
+      "benchmark": "benchmark:canonical:side_chain_pka_of_pentapeptides",
+      "input": {
+        "constructed": false,
+        "form": "氨基酸序列",
+        "observed": null,
+        "reason": "form_not_declared_or_unregistered"
+      },
+      "label": "Side-chain pKa of pentapeptides",
+      "output": {
+        "constructed": false,
+        "form": "活性/MIC 标签",
+        "observed": null,
+        "reason": "form_not_declared_or_unregistered"
+      }
+    },
+    {
+      "benchmark": "benchmark:canonical:crambin_in_water",
+      "input": {
+        "constructed": false,
+        "form": "原子坐标",
+        "observed": null,
+        "reason": "form_not_declared_or_unregistered"
+      },
+      "label": "Crambin in water",
+      "output": {
+        "constructed": false,
+        "form": "能量/力",
+        "observed": null,
+        "reason": "form_not_declared_or_unregistered"
+      }
+    },
+    {
+      "benchmark": "benchmark:drew_dickerson_dodecamer",
+      "input": {
+        "constructed": true,
+        "form": "3D坐标",
+        "observed": {
+          "dims": [
+            4,
+            3,
+            3
+          ],
+          "dtype": "float",
+          "kind": "array",
+          "n_scalars": 36,
+          "shape": "(4, 3, 3)"
+        },
+        "reason": ""
+      },
+      "label": "Drew–Dickerson dodecamer",
+      "output": {
+        "constructed": true,
+        "form": "3D坐标",
+        "observed": {
+          "dims": [
+            4,
+            3,
+            3
+          ],
+          "dtype": "float",
+          "kind": "array",
+          "n_scalars": 36,
+          "shape": "(4, 3, 3)"
+        },
+        "reason": ""
+      }
+    },
+    {
+      "benchmark": "benchmark:cis_platin_1_2_d_gpg_crosslink",
+      "input": {
+        "constructed": true,
+        "form": "3D坐标",
+        "observed": {
+          "dims": [
+            4,
+            3,
+            3
+          ],
+          "dtype": "float",
+          "kind": "array",
+          "n_scalars": 36,
+          "shape": "(4, 3, 3)"
+        },
+        "reason": ""
+      },
+      "label": "cis-platin 1,2-d(GpG) crosslink",
+      "output": {
+        "constructed": true,
+        "form": "3D坐标",
+        "observed": {
+          "dims": [
+            4,
+            3,
+            3
+          ],
+          "dtype": "float",
+          "kind": "array",
+          "n_scalars": 36,
+          "shape": "(4, 3, 3)"
+        },
+        "reason": ""
+      }
+    },
+    {
+      "benchmark": "benchmark:popc_bilayer",
+      "input": {
+        "constructed": true,
+        "form": "3D坐标",
+        "observed": {
+          "dims": [
+            4,
+            3,
+            3
+          ],
+          "dtype": "float",
+          "kind": "array",
+          "n_scalars": 36,
+          "shape": "(4, 3, 3)"
+        },
+        "reason": ""
+      },
+      "label": "POPC bilayer",
+      "output": {
+        "constructed": true,
+        "form": "3D坐标",
+        "observed": {
+          "dims": [
+            4,
+            3,
+            3
+          ],
+          "dtype": "float",
+          "kind": "array",
+          "n_scalars": 36,
+          "shape": "(4, 3, 3)"
+        },
+        "reason": ""
+      }
+    }
+  ]
+}

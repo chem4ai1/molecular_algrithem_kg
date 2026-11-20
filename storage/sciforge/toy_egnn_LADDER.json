@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0",
+  "direction": "minimize",
+  "baseline_score": 4.461111696403216,
+  "candidate_score": 1.1842378929335002e-15,
+  "critic_state": "GOOD",
+  "engineer_rounds": 0,
+  "relative_gain_pct": 99.99999999999997,
+  "full_set_pass": true,
+  "rows": [
+    {
+      "seed": 42,
+      "baseline_error": 4.491662020883966,
+      "candidate_error": 8.881784197001252e-16
+    },
+    {
+      "seed": 43,
+      "baseline_error": 5.0287087054348465,
+      "candidate_error": 8.881784197001252e-16
+    },
+    {
+      "seed": 44,
+      "baseline_error": 3.862964362890834,
+      "candidate_error": 1.7763568394002505e-15
+    }
+  ],
+  "seeds": [
+    42,
+    43,
+    44
+  ],
+  "note": "真实 toy 实验：naive 绝对坐标层 vs EGNN 相对位移等变层"
+}

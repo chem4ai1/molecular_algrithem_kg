@@ -1,0 +1,31 @@
+{
+  "request_key": "rq:97cb980c1509c76d12ef2bb107235a60",
+  "cache_identity": {
+    "task": "generation",
+    "stage": "4broad",
+    "input_fp": "sha256:97684ab38408dc16068fa23f69d8368a4225f3d5d569b367381a8d22c7f7d866",
+    "semantic_fp": "sha256:2014b7da1dc3ceaae11b0de44d0039ce5305419aaeff237c605751acccde06db",
+    "tbox_version": "v4.1-semantic@dyn-1.0.0",
+    "prompt_version": "v1",
+    "model_id": "stub",
+    "effort": "balanced",
+    "decision_fp": ""
+  },
+  "stage": "4broad",
+  "paper_id": "",
+  "raw_output": {
+    "gap": "GAP-01"
+  },
+  "output_sha": "sha256:d34d82e55098e095306d84eb03f614e137f088819e62ba556a37478ce43823ea",
+  "prompt_sha": "sha256:161078e42e8fef3ba4b9c984035baa2e431a50b31a18ac95614cc6820394af13",
+  "input_sha": "sha256:97684ab38408dc16068fa23f69d8368a4225f3d5d569b367381a8d22c7f7d866",
+  "code_sha": "sha256:c7cbb496950e5d855d45bc59449e002546429424060fcf40f056f4439476a5e6",
+  "model_id": "stub",
+  "prompt_version": "v1",
+  "tokens_in": 0,
+  "tokens_out": 0,
+  "recorded_at": "2026-11-15T14:25:19Z",
+  "hit_count": 1,
+  "n_proposals": 0,
+  "decision_fp": ""
+}

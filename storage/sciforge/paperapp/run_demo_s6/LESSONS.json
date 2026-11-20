@@ -1,0 +1,112 @@
+{
+  "failed_experiments": [],
+  "idea_rollbacks": [],
+  "code_errors": [],
+  "what_worked": [
+    {
+      "evidence": "stages/0/",
+      "lesson": "stage completed"
+    },
+    {
+      "evidence": "stages/1/",
+      "lesson": "stage completed"
+    },
+    {
+      "evidence": "stages/1a/",
+      "lesson": "stage completed"
+    },
+    {
+      "evidence": "stages/1b/",
+      "lesson": "stage completed"
+    },
+    {
+      "evidence": "stages/4broad/",
+      "lesson": "stage completed"
+    },
+    {
+      "evidence": "stages/2/",
+      "lesson": "stage completed"
+    },
+    {
+      "evidence": "stages/2.5/",
+      "lesson": "stage completed"
+    },
+    {
+      "evidence": "stages/2.5b/",
+      "lesson": "stage completed"
+    },
+    {
+      "evidence": "stages/3/",
+      "lesson": "stage completed"
+    },
+    {
+      "evidence": "stages/4targeted/",
+      "lesson": "stage completed"
+    },
+    {
+      "evidence": "stages/5/",
+      "lesson": "stage completed"
+    },
+    {
+      "evidence": "stages/6/",
+      "lesson": "stage completed"
+    },
+    {
+      "evidence": "stages/6a/",
+      "lesson": "stage completed"
+    },
+    {
+      "evidence": "stages/6b/",
+      "lesson": "stage completed"
+    },
+    {
+      "evidence": "stages/6c/",
+      "lesson": "stage completed"
+    },
+    {
+      "evidence": "stages/7/",
+      "lesson": "stage completed"
+    },
+    {
+      "evidence": "stages/8/",
+      "lesson": "stage completed"
+    },
+    {
+      "evidence": "stages/9/",
+      "lesson": "stage completed"
+    },
+    {
+      "evidence": "stages/10/",
+      "lesson": "stage completed"
+    },
+    {
+      "evidence": "stages/11/",
+      "lesson": "stage completed"
+    },
+    {
+      "evidence": "stages/12/",
+      "lesson": "stage completed"
+    },
+    {
+      "evidence": "stages/13/",
+      "lesson": "stage completed"
+    },
+    {
+      "evidence": "stages/14/",
+      "lesson": "stage completed"
+    },
+    {
+      "evidence": "stages/15/",
+      "lesson": "stage completed"
+    },
+    {
+      "evidence": "stages/15.5/",
+      "lesson": "stage completed"
+    },
+    {
+      "evidence": "stages/16/",
+      "lesson": "stage completed"
+    }
+  ],
+  "human_hypothesis_rollbacks": []
+}

@@ -1,0 +1,16 @@
+{
+  "signal_id": "sig:91463834f3a8c787",
+  "kind": "align_unmatched",
+  "value": "prop:25a533cbcbe02a93",
+  "stage": "2",
+  "paper_id": "paper:2411.06608",
+  "run_id": "run:demo:s6",
+  "source": "nodecache.put_proposal",
+  "count": 1,
+  "status": "observed",
+  "evidence_ids": [],
+  "promoted_to": "",
+  "dismiss_reason": "",
+  "first_seen": "2026-11-15T14:25:19Z",
+  "last_seen": "2026-11-15T14:25:19Z"
+}
